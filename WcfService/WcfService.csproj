@@ -111,17 +111,30 @@
     <Reference Include="System.Xml.Linq">
       <Private>True</Private>
     </Reference>
+    <Reference Include="Telerik.OpenAccess, Version=2014.2.918.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.OpenAccess.35.Extensions, Version=2014.2.918.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="EntitiesModelService.svc" />
     <Content Include="Service.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assemblers.cs" />
+    <Compile Include="Converter.cs" />
+    <Compile Include="DynamicLinq.cs" />
+    <Compile Include="EntitiesModelService.svc.cs">
+      <DependentUpon>EntitiesModelService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="IEntitiesModelService.cs" />
     <Compile Include="IService.cs" />
+    <Compile Include="Repositories.cs" />
     <Compile Include="Service.svc.cs">
       <DependentUpon>Service.svc</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services.cs" />
+    <Compile Include="Transport.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
