@@ -124,6 +124,21 @@ namespace WcfService
             return 0;
         }
 
+        public Dto.AziendaDto ReadAzienda(object Id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var azienda = wcf.ReadAzienda("Id=" + Id);
+                return azienda;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         private IQueryable<DataLayer.Azienda> QueryAziende(string search)
         {
             try
