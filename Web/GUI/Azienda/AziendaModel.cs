@@ -8,7 +8,7 @@ using System.Drawing;
 using System.Text;
 using Web.Code;
 
-namespace Web.GUI.Comune
+namespace Web.GUI.Azienda
 {
 	public partial class AziendaModel : TemplateModel
 	{
@@ -35,12 +35,7 @@ namespace Web.GUI.Comune
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.ComuneDto)model;
-                    editNome.Value = obj.Nome;
-                    editDescrizione.Value = obj.Descrizione;
-                    editCodiceISTAT.Value = obj.CodiceISTAT;
-                    editNumeroSezioni.Value = obj.NumeroSezioni;
-                    editProvincia.Value = obj.Provincia;
+                    var obj = (WcfService.Dto.AziendaDto)model;
                 }
             }
             catch (Exception ex)
@@ -53,12 +48,7 @@ namespace Web.GUI.Comune
         {
             try
             {
-                var obj = (WcfService.Dto.ComuneDto)model;
-                obj.Nome = editNome.Value;
-                obj.Descrizione= editDescrizione.Value;
-                obj.CodiceISTAT=editCodiceISTAT.Value;
-                obj.NumeroSezioni= editNumeroSezioni.Value;
-                obj.Provincia= editProvincia.Value;
+                var obj = (WcfService.Dto.AziendaDto)model;
             }
             catch (Exception ex)
             {

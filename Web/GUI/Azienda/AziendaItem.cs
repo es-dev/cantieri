@@ -9,7 +9,7 @@ using System.Drawing;
 using System.Text;
 using Web.Code;
 
-namespace Web.GUI.Comune
+namespace Web.GUI.Azienda
 {
 	public partial class AziendaItem : TemplateItem
 	{
@@ -24,9 +24,7 @@ namespace Web.GUI.Comune
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.ComuneDto)model;
-                    infoComune.Text = obj.Nome + " (" + obj.Provincia + ")";
-                    infoDescrizione.Text = "Numero Sezioni: " + obj.NumeroSezioni.ToString();
+                    var obj = (WcfService.Dto.AziendaDto)model;
 
                 }
             }
@@ -36,14 +34,14 @@ namespace Web.GUI.Comune
             }
         }
 
-        private void ComuneItem_ItemClick(IItem item)
+        private void AziendaItem_ItemClick(IItem item)
         {
             try
             {
                 if (item != null)
                 {
                     var space = new AziendaModel();
-                    space.Title = "DETTAGLI COMUNE";
+                    space.Title = "DETTAGLI AZIENDA";
                     AddSpace(space);
                 }
             }

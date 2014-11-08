@@ -6,9 +6,9 @@ using System.Linq;
 using System.Web;
 using WcfService.Dto;
 
-namespace Web.GUI.Comune
+namespace Web.GUI.Azienda
 {
-    public class AziendaViewModel : Library.Template.MVVM.TemplateViewModel<ComuneDto, AziendaItem>
+    public class AziendaViewModel : Library.Template.MVVM.TemplateViewModel<AziendaDto, AziendaItem>
     {
 
         public AziendaViewModel(ISpace space)

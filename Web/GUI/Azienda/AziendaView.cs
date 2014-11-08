@@ -7,7 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 
-namespace Web.GUI.Comune
+namespace Web.GUI.Azienda
 {
 	public partial class AziendaView : TemplateView
 	{
@@ -23,7 +23,7 @@ namespace Web.GUI.Comune
                 Take = 10;
                 ViewModel = new AziendaViewModel(this);
                 TitleSpace = "ENTERPRISE MANAGER - ESD";
-                Title = "COMUNI";
+                Title = "AZIENDE";
             }
             catch (Exception ex)
             {
@@ -36,8 +36,8 @@ namespace Web.GUI.Comune
             try
             {
                 var space = new AziendaModel();
-                space.Title = "NUOVO COMUNE";
-                space.Model = new WcfService.Dto.ComuneDto() ;
+                space.Title = "NUOVA AZIENDA";
+                space.Model = new WcfService.Dto.AziendaDto() ;
                 AddSpace(space);
             }
             catch (Exception ex)

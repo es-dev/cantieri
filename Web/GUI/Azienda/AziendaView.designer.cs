@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace Web.GUI.Comune
+namespace Web.GUI.Azienda
 {
     partial class AziendaView
 	{

@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace Web.GUI.Comune
+namespace Web.GUI.Azienda
 {
     partial class AziendaItem
 	{
@@ -105,7 +105,7 @@ namespace Web.GUI.Comune
             this.Controls.Add(this.infoComune);
             this.Controls.Add(this.infoDescrizione);
             this.Size = new System.Drawing.Size(407, 93);
-            this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.ComuneItem_ItemClick);
+            this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.AziendaItem_ItemClick);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.ResumeLayout(false);
