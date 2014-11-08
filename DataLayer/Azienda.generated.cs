@@ -115,8 +115,8 @@ namespace DataLayer
 			}
 		}
 		
-		private int _dipendenti;
-		public virtual int Dipendenti
+		private int? _dipendenti;
+		public virtual int? Dipendenti
 		{
 			get
 			{

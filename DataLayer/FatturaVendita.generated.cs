@@ -102,8 +102,8 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal _imponibile;
-		public virtual decimal Imponibile
+		private decimal? _imponibile;
+		public virtual decimal? Imponibile
 		{
 			get
 			{
@@ -115,8 +115,8 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal _iVA;
-		public virtual decimal IVA
+		private decimal? _iVA;
+		public virtual decimal? IVA
 		{
 			get
 			{
@@ -128,8 +128,8 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal _totale;
-		public virtual decimal Totale
+		private decimal? _totale;
+		public virtual decimal? Totale
 		{
 			get
 			{
@@ -141,8 +141,8 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal _saldo;
-		public virtual decimal Saldo
+		private decimal? _saldo;
+		public virtual decimal? Saldo
 		{
 			get
 			{

@@ -30,7 +30,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public AziendaDto(int _id, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _pIva, int _dipendenti, IList<CommessaDto> _commessas)
+		public AziendaDto(int _id, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _pIva, int? _dipendenti, IList<CommessaDto> _commessas)
 		{
 			this.Id = _id;
 			this.Denominazione = _denominazione;
@@ -68,7 +68,7 @@ namespace WcfService.Dto
 		public virtual string PIva { get;set; }
 
 		[DataMember]
-		public virtual int Dipendenti { get;set; }
+		public virtual int? Dipendenti { get;set; }
 
 		[DataMember]
 		public virtual IList<CommessaDto> Commessas { get;set; }
@@ -86,7 +86,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public CommessaDto(int _id, int _aziendaId, string _numero, DateTime _creazione, DateTime _scadenza, string _descrizione, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _riferimento, decimal _importo, decimal _margine, string _stato, AziendaDto _azienda, IList<FornitoreDto> _fornitores, StatisticaDto _statistica, ClienteDto _cliente)
+		public CommessaDto(int _id, int _aziendaId, string _numero, DateTime _creazione, DateTime _scadenza, string _descrizione, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _riferimento, decimal? _importo, decimal? _margine, string _stato, AziendaDto _azienda, IList<FornitoreDto> _fornitores, StatisticaDto _statistica, ClienteDto _cliente)
 		{
 			this.Id = _id;
 			this.AziendaId = _aziendaId;
@@ -149,10 +149,10 @@ namespace WcfService.Dto
 		public virtual string Riferimento { get;set; }
 
 		[DataMember]
-		public virtual decimal Importo { get;set; }
+		public virtual decimal? Importo { get;set; }
 
 		[DataMember]
-		public virtual decimal Margine { get;set; }
+		public virtual decimal? Margine { get;set; }
 
 		[DataMember]
 		public virtual string Stato { get;set; }
@@ -397,7 +397,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public FatturaAcquistoDto(int _id, int _fornitoreId, DateTime _data, string _numero, string _tipoPagamento, string _descrizione, decimal _imponibile, decimal _iVA, decimal _totale, decimal _saldo, FornitoreDto _fornitore, IList<ArticoloDto> _articolos, IList<PagamentoDto> _pagamentos)
+		public FatturaAcquistoDto(int _id, int _fornitoreId, DateTime _data, string _numero, string _tipoPagamento, string _descrizione, decimal? _imponibile, decimal? _iVA, decimal? _totale, decimal? _saldo, FornitoreDto _fornitore, IList<ArticoloDto> _articolos, IList<PagamentoDto> _pagamentos)
 		{
 			this.Id = _id;
 			this.FornitoreId = _fornitoreId;
@@ -436,16 +436,16 @@ namespace WcfService.Dto
 		public virtual string Descrizione { get;set; }
 
 		[DataMember]
-		public virtual decimal Imponibile { get;set; }
+		public virtual decimal? Imponibile { get;set; }
 
 		[DataMember]
-		public virtual decimal IVA { get;set; }
+		public virtual decimal? IVA { get;set; }
 
 		[DataMember]
-		public virtual decimal Totale { get;set; }
+		public virtual decimal? Totale { get;set; }
 
 		[DataMember]
-		public virtual decimal Saldo { get;set; }
+		public virtual decimal? Saldo { get;set; }
 
 		[DataMember]
 		public virtual FornitoreDto Fornitore { get;set; }
@@ -466,7 +466,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public ArticoloDto(int _id, int _fatturaId, string _codice, string _descrizione, int _quantita, decimal _sconto, decimal _costo, decimal _importo, decimal _iVA, decimal _totale, FatturaAcquistoDto _fattura)
+		public ArticoloDto(int _id, int _fatturaId, string _codice, string _descrizione, int? _quantita, decimal? _sconto, decimal? _costo, decimal? _importo, decimal? _iVA, decimal? _totale, FatturaAcquistoDto _fattura)
 		{
 			this.Id = _id;
 			this.FatturaId = _fatturaId;
@@ -497,22 +497,22 @@ namespace WcfService.Dto
 		public virtual string Descrizione { get;set; }
 
 		[DataMember]
-		public virtual int Quantita { get;set; }
+		public virtual int? Quantita { get;set; }
 
 		[DataMember]
-		public virtual decimal Sconto { get;set; }
+		public virtual decimal? Sconto { get;set; }
 
 		[DataMember]
-		public virtual decimal Costo { get;set; }
+		public virtual decimal? Costo { get;set; }
 
 		[DataMember]
-		public virtual decimal Importo { get;set; }
+		public virtual decimal? Importo { get;set; }
 
 		[DataMember]
-		public virtual decimal IVA { get;set; }
+		public virtual decimal? IVA { get;set; }
 
 		[DataMember]
-		public virtual decimal Totale { get;set; }
+		public virtual decimal? Totale { get;set; }
 
 		[DataMember]
 		public virtual FatturaAcquistoDto Fattura { get;set; }
@@ -527,7 +527,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public PagamentoDto(int _id, int _fatturaAcquistoId, DateTime _data, string _modalita, decimal _importo, DateTime _scadenza, bool _eseguito, FatturaAcquistoDto _fatturaAcquisto)
+		public PagamentoDto(int _id, int _fatturaAcquistoId, DateTime _data, string _modalita, decimal? _importo, DateTime _scadenza, bool _eseguito, FatturaAcquistoDto _fatturaAcquisto)
 		{
 			this.Id = _id;
 			this.FatturaAcquistoId = _fatturaAcquistoId;
@@ -555,7 +555,7 @@ namespace WcfService.Dto
 		public virtual string Modalita { get;set; }
 
 		[DataMember]
-		public virtual decimal Importo { get;set; }
+		public virtual decimal? Importo { get;set; }
 
 		[DataMember]
 		public virtual DateTime Scadenza { get;set; }
@@ -577,7 +577,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public FatturaVenditaDto(int _id, int _clienteId, DateTime _data, string _numero, string _tipoPagamento, string _descrizione, decimal _imponibile, decimal _iVA, decimal _totale, decimal _saldo, ClienteDto _cliente, IList<LiquidazioneDto> _liquidaziones)
+		public FatturaVenditaDto(int _id, int _clienteId, DateTime _data, string _numero, string _tipoPagamento, string _descrizione, decimal? _imponibile, decimal? _iVA, decimal? _totale, decimal? _saldo, ClienteDto _cliente, IList<LiquidazioneDto> _liquidaziones)
 		{
 			this.Id = _id;
 			this.ClienteId = _clienteId;
@@ -615,16 +615,16 @@ namespace WcfService.Dto
 		public virtual string Descrizione { get;set; }
 
 		[DataMember]
-		public virtual decimal Imponibile { get;set; }
+		public virtual decimal? Imponibile { get;set; }
 
 		[DataMember]
-		public virtual decimal IVA { get;set; }
+		public virtual decimal? IVA { get;set; }
 
 		[DataMember]
-		public virtual decimal Totale { get;set; }
+		public virtual decimal? Totale { get;set; }
 
 		[DataMember]
-		public virtual decimal Saldo { get;set; }
+		public virtual decimal? Saldo { get;set; }
 
 		[DataMember]
 		public virtual ClienteDto Cliente { get;set; }
@@ -642,7 +642,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public LiquidazioneDto(int _id, int _fatturaVenditaId, DateTime _data, string _modalita, decimal _importo, DateTime _scadenza, bool _eseguito, FatturaVenditaDto _fatturaVendita)
+		public LiquidazioneDto(int _id, int _fatturaVenditaId, DateTime _data, string _modalita, decimal? _importo, DateTime _scadenza, bool _eseguito, FatturaVenditaDto _fatturaVendita)
 		{
 			this.Id = _id;
 			this.FatturaVenditaId = _fatturaVenditaId;
@@ -670,7 +670,7 @@ namespace WcfService.Dto
 		public virtual string Modalita { get;set; }
 
 		[DataMember]
-		public virtual decimal Importo { get;set; }
+		public virtual decimal? Importo { get;set; }
 
 		[DataMember]
 		public virtual DateTime Scadenza { get;set; }
@@ -811,7 +811,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public SALDto(int _id, int _statisticaId, DateTime _data, decimal _totaleAcquisti, decimal _totaleVendite, bool _lock, StatisticaDto _statistica)
+		public SALDto(int _id, int _statisticaId, DateTime _data, decimal? _totaleAcquisti, decimal? _totaleVendite, bool _lock, StatisticaDto _statistica)
 		{
 			this.Id = _id;
 			this.StatisticaId = _statisticaId;
@@ -835,10 +835,10 @@ namespace WcfService.Dto
 		public virtual DateTime Data { get;set; }
 
 		[DataMember]
-		public virtual decimal TotaleAcquisti { get;set; }
+		public virtual decimal? TotaleAcquisti { get;set; }
 
 		[DataMember]
-		public virtual decimal TotaleVendite { get;set; }
+		public virtual decimal? TotaleVendite { get;set; }
 
 		[DataMember]
 		public virtual bool Lock { get;set; }

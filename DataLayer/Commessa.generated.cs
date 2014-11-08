@@ -180,8 +180,8 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal _importo;
-		public virtual decimal Importo
+		private decimal? _importo;
+		public virtual decimal? Importo
 		{
 			get
 			{
@@ -193,8 +193,8 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal _margine;
-		public virtual decimal Margine
+		private decimal? _margine;
+		public virtual decimal? Margine
 		{
 			get
 			{

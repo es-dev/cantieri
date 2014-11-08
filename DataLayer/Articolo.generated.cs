@@ -76,8 +76,8 @@ namespace DataLayer
 			}
 		}
 		
-		private int _quantita;
-		public virtual int Quantita
+		private int? _quantita;
+		public virtual int? Quantita
 		{
 			get
 			{
@@ -89,8 +89,8 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal _sconto;
-		public virtual decimal Sconto
+		private decimal? _sconto;
+		public virtual decimal? Sconto
 		{
 			get
 			{
@@ -102,8 +102,8 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal _costo;
-		public virtual decimal Costo
+		private decimal? _costo;
+		public virtual decimal? Costo
 		{
 			get
 			{
@@ -115,8 +115,8 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal _importo;
-		public virtual decimal Importo
+		private decimal? _importo;
+		public virtual decimal? Importo
 		{
 			get
 			{
@@ -128,8 +128,8 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal _iVA;
-		public virtual decimal IVA
+		private decimal? _iVA;
+		public virtual decimal? IVA
 		{
 			get
 			{
@@ -141,8 +141,8 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal _totale;
-		public virtual decimal Totale
+		private decimal? _totale;
+		public virtual decimal? Totale
 		{
 			get
 			{

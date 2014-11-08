@@ -30,8 +30,8 @@
         <orm:field name="_pIva" property="PIva" uniqueId="3c4d82b8-36fa-43ab-b7ce-36c0c2f6b5c9" type="System.String">
           <orm:column name="PIva" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_dipendenti" property="Dipendenti" uniqueId="2f09d16a-870f-47cc-b64d-62cbcf01da6a" type="System.Int32">
-          <orm:column name="Dipendenti" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:field name="_dipendenti" property="Dipendenti" uniqueId="2f09d16a-870f-47cc-b64d-62cbcf01da6a" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Dipendenti" sql-type="int" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         </orm:field>
         <orm:field name="_commessas" property="Commessas" behavior="readwrite" uniqueId="966c5bf1-e84b-4658-a843-ef38d0bb7093" type="DataLayer.Commessa">
           <orm:collection element-class="DataLayer.Commessa" inverse-field="_azienda" order-by="" uniqueId="9529a813-1327-451c-bfdc-62fcf2c3ea6a" />
@@ -80,11 +80,11 @@
         <orm:field name="_riferimento" property="Riferimento" uniqueId="2b03da80-172a-4697-b131-32da03eef135" type="System.String">
           <orm:column name="Riferimento" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_importo" property="Importo" uniqueId="ac5ca902-5e96-4a4c-ad21-6c0acf3e49fa" type="System.Decimal">
-          <orm:column name="Importo" sql-type="numeric" nullable="false" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_importo" property="Importo" uniqueId="ac5ca902-5e96-4a4c-ad21-6c0acf3e49fa" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
-        <orm:field name="_margine" property="Margine" uniqueId="da5c5631-da28-413e-bc18-0a610a7fe701" type="System.Decimal">
-          <orm:column name="Margine" sql-type="numeric" nullable="false" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_margine" property="Margine" uniqueId="da5c5631-da28-413e-bc18-0a610a7fe701" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Margine" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
         <orm:field name="_stato" property="Stato" uniqueId="9c5b0516-8f4a-4f66-ac25-4f9f39550e64" type="System.String">
           <orm:column name="Stato" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
@@ -262,17 +262,17 @@
         <orm:field name="_descrizione" property="Descrizione" uniqueId="9eeadc7a-3de5-4791-9135-ac6ea147e270" type="System.String">
           <orm:column name="Descrizione" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_imponibile" property="Imponibile" uniqueId="fcd52f31-56da-4171-a095-15f0fec60508" type="System.Decimal">
-          <orm:column name="Imponibile" sql-type="numeric" nullable="false" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_imponibile" property="Imponibile" uniqueId="fcd52f31-56da-4171-a095-15f0fec60508" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Imponibile" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
-        <orm:field name="_iVA" property="IVA" uniqueId="ca86fab8-a6d3-499b-bcb5-1f4dec785a32" type="System.Decimal">
-          <orm:column name="IVA" sql-type="numeric" nullable="false" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_iVA" property="IVA" uniqueId="ca86fab8-a6d3-499b-bcb5-1f4dec785a32" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="IVA" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
-        <orm:field name="_totale" property="Totale" uniqueId="72b951fa-df05-44cd-b2ac-a774a0f00e18" type="System.Decimal">
-          <orm:column name="Totale" sql-type="numeric" nullable="false" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_totale" property="Totale" uniqueId="72b951fa-df05-44cd-b2ac-a774a0f00e18" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Totale" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
-        <orm:field name="_saldo" property="Saldo" uniqueId="e5e1062e-5d4b-43fa-8cf3-d90e9be00047" type="System.Decimal">
-          <orm:column name="Saldo" sql-type="numeric" nullable="false" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_saldo" property="Saldo" uniqueId="e5e1062e-5d4b-43fa-8cf3-d90e9be00047" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Saldo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
         <orm:field name="_fornitore" property="Fornitore" behavior="readwrite" uniqueId="a72fb4b6-40c4-458b-8b90-6997eaf59ce5" type="DataLayer.Fornitore">
           <orm:reference uniqueId="9133edb8-9422-4c9c-a7d6-77def2077659" association-name="FatturaHasFornitore">
@@ -302,23 +302,23 @@
         <orm:field name="_descrizione" property="Descrizione" uniqueId="1f694a5a-479a-4937-bf3b-c7e6fe55a798" type="System.String">
           <orm:column name="Descrizione" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_quantita" property="Quantita" uniqueId="7e0652f1-f3b3-415e-9097-2c95c2d9a2d0" type="System.Int32">
-          <orm:column name="Quantita" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:field name="_quantita" property="Quantita" uniqueId="7e0652f1-f3b3-415e-9097-2c95c2d9a2d0" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Quantita" sql-type="int" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         </orm:field>
-        <orm:field name="_sconto" property="Sconto" uniqueId="a643b73a-9766-4b51-94ad-36c81aee5d3d" type="System.Decimal">
-          <orm:column name="Sconto" sql-type="numeric" nullable="false" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_sconto" property="Sconto" uniqueId="a643b73a-9766-4b51-94ad-36c81aee5d3d" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Sconto" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
-        <orm:field name="_costo" property="Costo" uniqueId="6b259077-cb13-4d72-b29f-524a1ec60394" type="System.Decimal">
-          <orm:column name="Costo" sql-type="numeric" nullable="false" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_costo" property="Costo" uniqueId="6b259077-cb13-4d72-b29f-524a1ec60394" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Costo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
-        <orm:field name="_importo" property="Importo" uniqueId="f8ecc98c-ec34-45e6-9df4-534c43d5c9c2" type="System.Decimal">
-          <orm:column name="Importo" sql-type="numeric" nullable="false" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_importo" property="Importo" uniqueId="f8ecc98c-ec34-45e6-9df4-534c43d5c9c2" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
-        <orm:field name="_iVA" property="IVA" uniqueId="cbd1c917-cd5e-4f07-bbe7-67d85802478f" type="System.Decimal">
-          <orm:column name="IVA" sql-type="numeric" nullable="false" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_iVA" property="IVA" uniqueId="cbd1c917-cd5e-4f07-bbe7-67d85802478f" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="IVA" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
-        <orm:field name="_totale" property="Totale" uniqueId="f2360461-6b2f-47ae-8a9c-ae4699054885" type="System.Decimal">
-          <orm:column name="Totale" sql-type="numeric" nullable="false" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_totale" property="Totale" uniqueId="f2360461-6b2f-47ae-8a9c-ae4699054885" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Totale" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
         <orm:field name="_fattura" property="Fattura" behavior="readwrite" uniqueId="58ab2dc7-6dfd-49b4-9d0a-4bc30dc32b47" type="DataLayer.FatturaAcquisto">
           <orm:reference uniqueId="41eee6d8-a5b7-4fea-b639-08b8ca83cdcf" association-name="ArticoloHasFattura">
@@ -342,8 +342,8 @@
         <orm:field name="_modalita" property="Modalita" uniqueId="e005bac1-fe9d-4ee5-997d-15d6c31bd2aa" type="System.String">
           <orm:column name="Modalita" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_importo" property="Importo" uniqueId="b92c07db-3de2-4fb9-abc8-dd019de790fe" type="System.Decimal">
-          <orm:column name="Importo" sql-type="numeric" nullable="false" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_importo" property="Importo" uniqueId="b92c07db-3de2-4fb9-abc8-dd019de790fe" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
         <orm:field name="_scadenza" property="Scadenza" uniqueId="648fd8e5-140c-4d0d-94c1-9cffd6aa88fd" type="System.DateTime">
           <orm:column name="Scadenza" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
@@ -379,17 +379,17 @@
         <orm:field name="_descrizione" property="Descrizione" uniqueId="5bfdb114-423d-4793-b7b5-280f1e3dd51e" type="System.String">
           <orm:column name="Descrizione" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_imponibile" property="Imponibile" uniqueId="db4ff754-bdaf-4e0c-ac9d-c57ab9d3e998" type="System.Decimal">
-          <orm:column name="Imponibile" sql-type="numeric" nullable="false" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_imponibile" property="Imponibile" uniqueId="db4ff754-bdaf-4e0c-ac9d-c57ab9d3e998" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Imponibile" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
-        <orm:field name="_iVA" property="IVA" uniqueId="ca135076-c343-4acd-b4a9-7b2afe75bf31" type="System.Decimal">
-          <orm:column name="IVA" sql-type="numeric" nullable="false" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_iVA" property="IVA" uniqueId="ca135076-c343-4acd-b4a9-7b2afe75bf31" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="IVA" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
-        <orm:field name="_totale" property="Totale" uniqueId="5deb339c-0f66-4d81-9566-b3ac991013ef" type="System.Decimal">
-          <orm:column name="Totale" sql-type="numeric" nullable="false" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_totale" property="Totale" uniqueId="5deb339c-0f66-4d81-9566-b3ac991013ef" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Totale" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
-        <orm:field name="_saldo" property="Saldo" uniqueId="c94e8574-a634-4781-83ba-d0b98bbd5850" type="System.Decimal">
-          <orm:column name="Saldo" sql-type="numeric" nullable="false" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_saldo" property="Saldo" uniqueId="c94e8574-a634-4781-83ba-d0b98bbd5850" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Saldo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
         <orm:field name="_cliente" property="Cliente" behavior="readwrite" uniqueId="1d9a256b-bc28-4168-89ff-c7bf05be68de" type="DataLayer.Cliente">
           <orm:reference uniqueId="17987c58-2c27-4bba-b919-b1e4679a2b98" association-name="FatturaVenditaHasCliente">
@@ -416,8 +416,8 @@
         <orm:field name="_modalita" property="Modalita" uniqueId="80dc1956-dfff-4539-b507-f2e06ca80bb1" type="System.String">
           <orm:column name="Modalita" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_importo" property="Importo" uniqueId="77fb2dd4-f370-4013-a71c-9c13fe10586c" type="System.Decimal">
-          <orm:column name="Importo" sql-type="numeric" nullable="false" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_importo" property="Importo" uniqueId="77fb2dd4-f370-4013-a71c-9c13fe10586c" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
         <orm:field name="_scadenza" property="Scadenza" uniqueId="3d257538-9769-4cc8-8655-f6485c023d73" type="System.DateTime">
           <orm:column name="Scadenza" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
@@ -520,11 +520,11 @@
         <orm:field name="_data" property="Data" uniqueId="b1b806c6-eae5-4001-a8e4-49734c1315c7" type="System.DateTime">
           <orm:column name="dta" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
-        <orm:field name="_totaleAcquisti" property="TotaleAcquisti" uniqueId="be14a63c-72d7-4cb1-a081-fe04c8a6b5c3" type="System.Decimal">
-          <orm:column name="TotaleAcquisti" sql-type="numeric" nullable="false" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_totaleAcquisti" property="TotaleAcquisti" uniqueId="be14a63c-72d7-4cb1-a081-fe04c8a6b5c3" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="TotaleAcquisti" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
-        <orm:field name="_totaleVendite" property="TotaleVendite" uniqueId="e50f8b5c-1bbb-4bf2-8405-c3f9f88429f5" type="System.Decimal">
-          <orm:column name="TotaleVendite" sql-type="numeric" nullable="false" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_totaleVendite" property="TotaleVendite" uniqueId="e50f8b5c-1bbb-4bf2-8405-c3f9f88429f5" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="TotaleVendite" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
         <orm:field name="_lock" property="Lock" uniqueId="01eb4d3f-25f4-427c-bf7f-402c86a3f2ad" type="System.Boolean">
           <orm:column name="lck" sql-type="tinyint" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.OneZero2BooleanConverter" ado-type="Bit" />
@@ -534,11 +534,6 @@
             <orm:sharedfield name="_statisticaId" target-class="DataLayer.Statistica" target-field="_id" />
           </orm:reference>
         </orm:field>
-        <orm:index name="idx_SAL_StatisticaId">
-          <orm:columnMapping>
-            <orm:column name="StatisticaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
-          </orm:columnMapping>
-        </orm:index>
       </orm:class>
     </orm:namespace>
     <orm:schema schema="" />
@@ -550,7 +545,7 @@
   </orm:orm>
   <ModelSettings xmlns="">
     <AppConfigConnectionPropertyName>ESCantieriConnection</AppConfigConnectionPropertyName>
-    <AppConfigConnectionString>Data Source=localhost;Initial Catalog=ESCantieri;Integrated Security=True</AppConfigConnectionString>
+    <AppConfigConnectionString>data source=localhost;initial catalog=ESCantieri;integrated security=True</AppConfigConnectionString>
     <NamingSettings>
       <ClassRules>
         <CaseMode>PascalCase</CaseMode>
@@ -571,6 +566,7 @@
     <SchemaUpdateSettings>
       <ExecuteScript>true</ExecuteScript>
       <DeploymentProject>DataLayer</DeploymentProject>
+      <UpdateDatabaseOperation>Migrate</UpdateDatabaseOperation>
     </SchemaUpdateSettings>
     <BackendConfigurationSettings>
       <BackendConfiguration>
@@ -591,7 +587,7 @@
       <Property Id="e866c776-f0d5-491c-8256-74055137444b" name="Comune" label="Comune : String" fieldName="_comune" />
       <Property Id="a3e4768b-bc9e-4560-9f73-714501c1a525" name="Provincia" label="Provincia : String" fieldName="_provincia" />
       <Property Id="3c4d82b8-36fa-43ab-b7ce-36c0c2f6b5c9" name="PIva" label="PIva : String" fieldName="_pIva" />
-      <Property Id="2f09d16a-870f-47cc-b64d-62cbcf01da6a" name="Dipendenti" type="Int32" label="Dipendenti : Int32" fieldName="_dipendenti" />
+      <Property Id="2f09d16a-870f-47cc-b64d-62cbcf01da6a" name="Dipendenti" type="Int32" label="Dipendenti : Int32" nullable="true" fieldName="_dipendenti" />
       <navigationalProperties>
         <classHasNavigationalProperties Id="265c7d9c-c78e-44bb-9804-cd1228ad49e6">
           <NavigationalProperty Id="966c5bf1-e84b-4658-a843-ef38d0bb7093" name="Commessas" type="IList&lt;Commessa&gt;" label="Commessas : IList&lt;Commessa&gt;" nullable="true" kind="Persistent" fieldName="_commessas" isDependent="false" isManaged="false" />
@@ -611,8 +607,8 @@
       <Property Id="c843a834-9eab-4aaf-a1a1-84261d728770" name="Comune" label="Comune : String" fieldName="_comune" />
       <Property Id="77855470-6c48-40e0-abe1-7b2e2679e0c5" name="Provincia" label="Provincia : String" fieldName="_provincia" />
       <Property Id="2b03da80-172a-4697-b131-32da03eef135" name="Riferimento" label="Riferimento : String" fieldName="_riferimento" />
-      <Property Id="ac5ca902-5e96-4a4c-ad21-6c0acf3e49fa" name="Importo" type="Decimal" label="Importo : Decimal" fieldName="_importo" />
-      <Property Id="da5c5631-da28-413e-bc18-0a610a7fe701" name="Margine" type="Decimal" label="Margine : Decimal" fieldName="_margine" />
+      <Property Id="ac5ca902-5e96-4a4c-ad21-6c0acf3e49fa" name="Importo" type="Decimal" label="Importo : Decimal" nullable="true" fieldName="_importo" />
+      <Property Id="da5c5631-da28-413e-bc18-0a610a7fe701" name="Margine" type="Decimal" label="Margine : Decimal" nullable="true" fieldName="_margine" />
       <Property Id="9c5b0516-8f4a-4f66-ac25-4f9f39550e64" name="Stato" label="Stato : String" fieldName="_stato" />
       <AssociationTargets>
         <Association Id="9529a813-1327-451c-bfdc-62fcf2c3ea6a" SourceMultiplicity="ZeroOne" name="CommessaHasAzienda">
@@ -777,10 +773,10 @@
       <Property Id="2da95105-d585-4136-b57f-ad8bcf82b522" name="Numero" label="Numero : String" fieldName="_numero" />
       <Property Id="4e1fff6c-8811-4eae-a13c-8b0e0ea6c2ac" name="TipoPagamento" label="TipoPagamento : String" fieldName="_tipoPagamento" />
       <Property Id="9eeadc7a-3de5-4791-9135-ac6ea147e270" name="Descrizione" label="Descrizione : String" fieldName="_descrizione" />
-      <Property Id="fcd52f31-56da-4171-a095-15f0fec60508" name="Imponibile" type="Decimal" label="Imponibile : Decimal" fieldName="_imponibile" />
-      <Property Id="ca86fab8-a6d3-499b-bcb5-1f4dec785a32" name="IVA" type="Decimal" label="IVA : Decimal" fieldName="_iVA" />
-      <Property Id="72b951fa-df05-44cd-b2ac-a774a0f00e18" name="Totale" type="Decimal" label="Totale : Decimal" fieldName="_totale" />
-      <Property Id="e5e1062e-5d4b-43fa-8cf3-d90e9be00047" name="Saldo" type="Decimal" label="Saldo : Decimal" fieldName="_saldo" />
+      <Property Id="fcd52f31-56da-4171-a095-15f0fec60508" name="Imponibile" type="Decimal" label="Imponibile : Decimal" nullable="true" fieldName="_imponibile" />
+      <Property Id="ca86fab8-a6d3-499b-bcb5-1f4dec785a32" name="IVA" type="Decimal" label="IVA : Decimal" nullable="true" fieldName="_iVA" />
+      <Property Id="72b951fa-df05-44cd-b2ac-a774a0f00e18" name="Totale" type="Decimal" label="Totale : Decimal" nullable="true" fieldName="_totale" />
+      <Property Id="e5e1062e-5d4b-43fa-8cf3-d90e9be00047" name="Saldo" type="Decimal" label="Saldo : Decimal" nullable="true" fieldName="_saldo" />
       <AssociationTargets>
         <Association Id="9133edb8-9422-4c9c-a7d6-77def2077659" SourceMultiplicity="ZeroOne" name="FatturaHasFornitore">
           <DomainClassMoniker name="/EntitiesModel/Fornitore" />
@@ -813,12 +809,12 @@
       <Property Id="acd284b3-5574-46f7-9896-812e37d1e8e7" name="FatturaId" type="Int32" label="FatturaId : Int32" fieldName="_fatturaId" />
       <Property Id="eff79142-85f8-4b53-ab14-d5c099179eb2" name="Codice" label="Codice : String" fieldName="_codice" />
       <Property Id="1f694a5a-479a-4937-bf3b-c7e6fe55a798" name="Descrizione" label="Descrizione : String" fieldName="_descrizione" />
-      <Property Id="7e0652f1-f3b3-415e-9097-2c95c2d9a2d0" name="Quantita" type="Int32" label="Quantita : Int32" fieldName="_quantita" />
-      <Property Id="a643b73a-9766-4b51-94ad-36c81aee5d3d" name="Sconto" type="Decimal" label="Sconto : Decimal" fieldName="_sconto" />
-      <Property Id="6b259077-cb13-4d72-b29f-524a1ec60394" name="Costo" type="Decimal" label="Costo : Decimal" fieldName="_costo" />
-      <Property Id="f8ecc98c-ec34-45e6-9df4-534c43d5c9c2" name="Importo" type="Decimal" label="Importo : Decimal" fieldName="_importo" />
-      <Property Id="cbd1c917-cd5e-4f07-bbe7-67d85802478f" name="IVA" type="Decimal" label="IVA : Decimal" fieldName="_iVA" />
-      <Property Id="f2360461-6b2f-47ae-8a9c-ae4699054885" name="Totale" type="Decimal" label="Totale : Decimal" fieldName="_totale" />
+      <Property Id="7e0652f1-f3b3-415e-9097-2c95c2d9a2d0" name="Quantita" type="Int32" label="Quantita : Int32" nullable="true" fieldName="_quantita" />
+      <Property Id="a643b73a-9766-4b51-94ad-36c81aee5d3d" name="Sconto" type="Decimal" label="Sconto : Decimal" nullable="true" fieldName="_sconto" />
+      <Property Id="6b259077-cb13-4d72-b29f-524a1ec60394" name="Costo" type="Decimal" label="Costo : Decimal" nullable="true" fieldName="_costo" />
+      <Property Id="f8ecc98c-ec34-45e6-9df4-534c43d5c9c2" name="Importo" type="Decimal" label="Importo : Decimal" nullable="true" fieldName="_importo" />
+      <Property Id="cbd1c917-cd5e-4f07-bbe7-67d85802478f" name="IVA" type="Decimal" label="IVA : Decimal" nullable="true" fieldName="_iVA" />
+      <Property Id="f2360461-6b2f-47ae-8a9c-ae4699054885" name="Totale" type="Decimal" label="Totale : Decimal" nullable="true" fieldName="_totale" />
       <AssociationTargets>
         <Association Id="41eee6d8-a5b7-4fea-b639-08b8ca83cdcf" SourceMultiplicity="ZeroOne" name="ArticoloHasFattura">
           <DomainClassMoniker name="/EntitiesModel/FatturaAcquisto" />
@@ -845,7 +841,7 @@
       <Property Id="9f9411d0-3e46-4ac4-97af-60e82d303ba2" name="FatturaAcquistoId" type="Int32" label="FatturaAcquistoId : Int32" fieldName="_fatturaAcquistoId" />
       <Property Id="df9f1369-fe4d-4820-b339-57d78c04ea08" name="Data" type="DateTime" label="Data : DateTime" fieldName="_data" />
       <Property Id="e005bac1-fe9d-4ee5-997d-15d6c31bd2aa" name="Modalita" label="Modalita : String" fieldName="_modalita" />
-      <Property Id="b92c07db-3de2-4fb9-abc8-dd019de790fe" name="Importo" type="Decimal" label="Importo : Decimal" fieldName="_importo" />
+      <Property Id="b92c07db-3de2-4fb9-abc8-dd019de790fe" name="Importo" type="Decimal" label="Importo : Decimal" nullable="true" fieldName="_importo" />
       <Property Id="648fd8e5-140c-4d0d-94c1-9cffd6aa88fd" name="Scadenza" type="DateTime" label="Scadenza : DateTime" fieldName="_scadenza" />
       <Property Id="02c30564-e432-4fb1-8db9-960a806cafcd" name="Eseguito" type="Boolean" label="Eseguito : Boolean" fieldName="_eseguito" />
       <AssociationTargets>
@@ -876,10 +872,10 @@
       <Property Id="dd7184e1-468a-42ff-a47d-183304ccf644" name="Numero" label="Numero : String" fieldName="_numero" />
       <Property Id="311f6dda-4d8f-4bad-b209-ce59f1a82401" name="TipoPagamento" label="TipoPagamento : String" fieldName="_tipoPagamento" />
       <Property Id="5bfdb114-423d-4793-b7b5-280f1e3dd51e" name="Descrizione" label="Descrizione : String" fieldName="_descrizione" />
-      <Property Id="db4ff754-bdaf-4e0c-ac9d-c57ab9d3e998" name="Imponibile" type="Decimal" label="Imponibile : Decimal" fieldName="_imponibile" />
-      <Property Id="ca135076-c343-4acd-b4a9-7b2afe75bf31" name="IVA" type="Decimal" label="IVA : Decimal" fieldName="_iVA" />
-      <Property Id="5deb339c-0f66-4d81-9566-b3ac991013ef" name="Totale" type="Decimal" label="Totale : Decimal" fieldName="_totale" />
-      <Property Id="c94e8574-a634-4781-83ba-d0b98bbd5850" name="Saldo" type="Decimal" label="Saldo : Decimal" fieldName="_saldo" />
+      <Property Id="db4ff754-bdaf-4e0c-ac9d-c57ab9d3e998" name="Imponibile" type="Decimal" label="Imponibile : Decimal" nullable="true" fieldName="_imponibile" />
+      <Property Id="ca135076-c343-4acd-b4a9-7b2afe75bf31" name="IVA" type="Decimal" label="IVA : Decimal" nullable="true" fieldName="_iVA" />
+      <Property Id="5deb339c-0f66-4d81-9566-b3ac991013ef" name="Totale" type="Decimal" label="Totale : Decimal" nullable="true" fieldName="_totale" />
+      <Property Id="c94e8574-a634-4781-83ba-d0b98bbd5850" name="Saldo" type="Decimal" label="Saldo : Decimal" nullable="true" fieldName="_saldo" />
       <AssociationTargets>
         <Association Id="17987c58-2c27-4bba-b919-b1e4679a2b98" SourceMultiplicity="ZeroOne" name="FatturaVenditaHasCliente">
           <DomainClassMoniker name="/EntitiesModel/Cliente" />
@@ -909,7 +905,7 @@
       <Property Id="8b02f20d-45f7-4e9b-8600-059d653133c7" name="FatturaVenditaId" type="Int32" label="FatturaVenditaId : Int32" fieldName="_fatturaVenditaId" />
       <Property Id="829daa33-34a7-421e-93cd-1a61ac1c74dc" name="Data" type="DateTime" label="Data : DateTime" fieldName="_data" />
       <Property Id="80dc1956-dfff-4539-b507-f2e06ca80bb1" name="Modalita" label="Modalita : String" fieldName="_modalita" />
-      <Property Id="77fb2dd4-f370-4013-a71c-9c13fe10586c" name="Importo" type="Decimal" label="Importo : Decimal" fieldName="_importo" />
+      <Property Id="77fb2dd4-f370-4013-a71c-9c13fe10586c" name="Importo" type="Decimal" label="Importo : Decimal" nullable="true" fieldName="_importo" />
       <Property Id="3d257538-9769-4cc8-8655-f6485c023d73" name="Scadenza" type="DateTime" label="Scadenza : DateTime" fieldName="_scadenza" />
       <Property Id="251d00ad-f3c5-4a85-bf57-928408852d74" name="Eseguito" type="Boolean" label="Eseguito : Boolean" fieldName="_eseguito" />
       <AssociationTargets>
@@ -963,8 +959,8 @@
       <Property Id="43f46d78-44da-4e5d-bbc2-f559f63fe653" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
       <Property Id="6a72fb26-a4b7-4062-b3fe-736683e75469" name="StatisticaId" type="Int32" label="StatisticaId : Int32" fieldName="_statisticaId" />
       <Property Id="b1b806c6-eae5-4001-a8e4-49734c1315c7" name="Data" type="DateTime" label="Data : DateTime" fieldName="_data" />
-      <Property Id="be14a63c-72d7-4cb1-a081-fe04c8a6b5c3" name="TotaleAcquisti" type="Decimal" label="TotaleAcquisti : Decimal" fieldName="_totaleAcquisti" />
-      <Property Id="e50f8b5c-1bbb-4bf2-8405-c3f9f88429f5" name="TotaleVendite" type="Decimal" label="TotaleVendite : Decimal" fieldName="_totaleVendite" />
+      <Property Id="be14a63c-72d7-4cb1-a081-fe04c8a6b5c3" name="TotaleAcquisti" type="Decimal" label="TotaleAcquisti : Decimal" nullable="true" fieldName="_totaleAcquisti" />
+      <Property Id="e50f8b5c-1bbb-4bf2-8405-c3f9f88429f5" name="TotaleVendite" type="Decimal" label="TotaleVendite : Decimal" nullable="true" fieldName="_totaleVendite" />
       <Property Id="01eb4d3f-25f4-427c-bf7f-402c86a3f2ad" name="Lock" type="Boolean" label="Lock : Boolean" fieldName="_lock" />
       <AssociationTargets>
         <Association Id="16e06c44-68ff-4947-9938-5ce0bd2f531b" SourceMultiplicity="ZeroOne" name="SALHasStatistica">

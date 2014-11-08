@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <EntityDiagrams>
-  <entityDiagramsDiagram dslVersion="2.0.0.0" absoluteBounds="0, 0, 12.25, 18.75" name="EntitiesModel" fillColor="62, 62, 65" isDefault="true">
+  <entityDiagramsDiagram dslVersion="2.0.0.0" absoluteBounds="0, 0, 12.625, 18.75" name="EntitiesModel" fillColor="62, 62, 65" isDefault="true">
     <DomainModelMoniker name="/EntitiesModel" />
     <nestedChildShapes>
-      <classShape Id="585bd789-f3ff-4ef4-adf5-4ad157d96627" absoluteBounds="4.75, 0.625, 1.5, 3.108881835937499">
+      <classShape Id="585bd789-f3ff-4ef4-adf5-4ad157d96627" absoluteBounds="4.75, 0.625, 3.125, 3.108881835937499">
         <DomainClassMoniker name="/EntitiesModel/Azienda" />
         <nestedChildShapes>
-          <elementListCompartment Id="1b3301de-d167-47aa-99bc-14e740e90a64" absoluteBounds="4.765, 1.1349999999999998, 1.4700000000000002, 1.7878011067708333" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
-          <elementListCompartment Id="0bfee49b-64eb-462e-aae7-30be65dc04aa" absoluteBounds="4.765, 2.9328011067708331, 1.4700000000000002, 0.2493896484375" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
-          <elementListCompartment Id="0e4ebf23-8089-4bff-8a2c-be253c16c983" absoluteBounds="4.765, 3.1921907552083328, 1.4700000000000002, 0.44169108072916607" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
+          <elementListCompartment Id="1b3301de-d167-47aa-99bc-14e740e90a64" absoluteBounds="4.765, 1.135, 3.0949999999999998, 1.7878011067708333" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+          <elementListCompartment Id="0bfee49b-64eb-462e-aae7-30be65dc04aa" absoluteBounds="4.765, 2.9328011067708331, 3.0949999999999998, 0.2493896484375" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+          <elementListCompartment Id="0e4ebf23-8089-4bff-8a2c-be253c16c983" absoluteBounds="4.765, 3.1921907552083328, 3.0949999999999998, 0.44169108072916607" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
         </nestedChildShapes>
       </classShape>
-      <classShape Id="6bcca395-c326-4ffd-9969-a11f618c99af" absoluteBounds="4.75, 4, 1.5, 5.0318961588541651">
+      <classShape Id="6bcca395-c326-4ffd-9969-a11f618c99af" absoluteBounds="4.75, 4, 1.75, 5.0318961588541651">
         <DomainClassMoniker name="/EntitiesModel/Commessa" />
         <nestedChildShapes>
-          <elementListCompartment Id="a91eb1a2-1140-4ff8-9aa2-dee02242bdf9" absoluteBounds="4.765, 4.51, 1.4700000000000002, 3.1339111328125" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
-          <elementListCompartment Id="9757bd4e-a58c-4250-bf09-54cf16efb43a" absoluteBounds="4.765, 7.6539111328125, 1.4700000000000002, 0.2493896484375" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
-          <elementListCompartment Id="6c717f09-9902-4111-9542-46ee8c9849bb" absoluteBounds="4.765, 7.9133007812499994, 1.4700000000000002, 1.018595377604167" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
+          <elementListCompartment Id="a91eb1a2-1140-4ff8-9aa2-dee02242bdf9" absoluteBounds="4.765, 4.51, 1.7200000000000002, 3.1339111328125" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+          <elementListCompartment Id="9757bd4e-a58c-4250-bf09-54cf16efb43a" absoluteBounds="4.765, 7.6539111328125, 1.7200000000000002, 0.2493896484375" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+          <elementListCompartment Id="6c717f09-9902-4111-9542-46ee8c9849bb" absoluteBounds="4.765, 7.9133007812499994, 1.7200000000000002, 1.018595377604167" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
         </nestedChildShapes>
       </classShape>
-      <associationConnector edgePoints="[(5.5 : 4); (5.5 : 3.7338818359375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <associationConnector edgePoints="[(5.625 : 4); (5.625 : 3.7338818359375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
         <AssociationMoniker Id="9529a813-1327-451c-bfdc-62fcf2c3ea6a" />
         <relativeChildShapes />
         <nodes>
@@ -27,15 +27,15 @@
           <classShapeMoniker Id="585bd789-f3ff-4ef4-adf5-4ad157d96627" />
         </nodes>
       </associationConnector>
-      <classShape Id="7af17dae-3e00-4038-a760-bb4045ad2587" absoluteBounds="2.875, 5.875, 1.5, 4.4549918619791651">
+      <classShape Id="7af17dae-3e00-4038-a760-bb4045ad2587" absoluteBounds="2.875, 5.875, 1.875, 4.4549918619791651">
         <DomainClassMoniker name="/EntitiesModel/Fornitore" />
         <nestedChildShapes>
-          <elementListCompartment Id="191ec3da-a797-4eba-9eff-51935af7fe4f" absoluteBounds="2.89, 6.385, 1.4700000000000002, 2.7493082682291665" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
-          <elementListCompartment Id="60b8d587-e695-4b2e-b172-97ebf21ca553" absoluteBounds="2.89, 9.1443082682291674, 1.4700000000000002, 0.2493896484375" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
-          <elementListCompartment Id="df303ceb-b86e-44f4-be12-bc3fe9b9333f" absoluteBounds="2.89, 9.4036979166666654, 1.4700000000000002, 0.8262939453125" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
+          <elementListCompartment Id="191ec3da-a797-4eba-9eff-51935af7fe4f" absoluteBounds="2.89, 6.385, 1.8450000000000002, 2.749308268229167" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+          <elementListCompartment Id="60b8d587-e695-4b2e-b172-97ebf21ca553" absoluteBounds="2.89, 9.1443082682291674, 1.8450000000000002, 0.2493896484375" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+          <elementListCompartment Id="df303ceb-b86e-44f4-be12-bc3fe9b9333f" absoluteBounds="2.89, 9.4036979166666654, 1.8450000000000002, 0.8262939453125" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
         </nestedChildShapes>
       </classShape>
-      <associationConnector edgePoints="[(4.375 : 7.45344807942708); (4.75 : 7.45344807942708)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <associationConnector edgePoints="[(4.75 : 9.68094451041667); (5.65625 : 9.68094451041667); (5.65625 : 9.03189615885417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
         <AssociationMoniker Id="032d408c-e267-47d7-bbd9-3cb51d71d72d" />
         <relativeChildShapes />
         <nodes>
@@ -59,7 +59,7 @@
           <elementListCompartment Id="ff72de99-3354-4883-9e45-8a6eac5396af" absoluteBounds="8.265, 7.0960807291666663, 1.4700000000000002, 0.63399251302083326" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
         </nestedChildShapes>
       </classShape>
-      <associationConnector edgePoints="[(8.25 : 6.03125); (6.25 : 6.03125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <associationConnector edgePoints="[(8.25 : 6.03125); (6.5 : 6.03125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
         <AssociationMoniker Id="aeb7d8f6-5a71-4bb4-a3b8-2b1e14b7e562" />
         <relativeChildShapes />
         <nodes>
@@ -75,7 +75,7 @@
           <elementListCompartment Id="51384665-f65c-4a36-bcaa-9a45f3f3fead" absoluteBounds="0.765, 8.10568359375, 1.4700000000000002, 0.4416910807291663" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
         </nestedChildShapes>
       </classShape>
-      <associationConnector edgePoints="[(2.875 : 7.57368733723958); (2.25 : 7.57368733723958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <associationConnector edgePoints="[(2.875 : 7.57368733723958); (2.25 : 7.57368733723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
         <AssociationMoniker Id="10c60be0-f263-4736-add5-d7fb84576c47" />
         <relativeChildShapes />
         <nodes>
@@ -91,7 +91,7 @@
           <elementListCompartment Id="61ea5f39-92e9-431f-906f-6389c79bc5aa" absoluteBounds="3.015, 13.826793619791665, 2.2199999999999998, 0.8262939453125" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
         </nestedChildShapes>
       </classShape>
-      <associationConnector edgePoints="[(3.6875 : 10.875); (3.6875 : 10.3299918619792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <associationConnector edgePoints="[(3.875 : 10.875); (3.875 : 10.3299918619792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
         <AssociationMoniker Id="9133edb8-9422-4c9c-a7d6-77def2077659" />
         <relativeChildShapes />
         <nodes>
@@ -163,12 +163,12 @@
           <classShapeMoniker Id="5162d102-0104-4198-be59-a75961aa2778" />
         </nodes>
       </associationConnector>
-      <classShape Id="f41cecec-e63b-42fc-99b9-93b2b18560bb" absoluteBounds="10.5, 5.125, 1.5, 3.4934847005208329">
+      <classShape Id="f41cecec-e63b-42fc-99b9-93b2b18560bb" absoluteBounds="10.5, 5.125, 1.875, 3.4934847005208329">
         <DomainClassMoniker name="/EntitiesModel/AnagraficaFornitore" />
         <nestedChildShapes>
-          <elementListCompartment Id="cd37ba31-5c3e-4fc8-b08a-ce111a356f70" absoluteBounds="10.515, 5.635, 1.4700000000000002, 2.364705403645833" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
-          <elementListCompartment Id="37b26dfb-4a16-4a5b-b1d3-a00d54bd7ce4" absoluteBounds="10.515, 8.0097054036458317, 1.4700000000000002, 0.2493896484375" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
-          <elementListCompartment Id="29a53e4c-5285-41fe-aeec-3fd40c2b189b" absoluteBounds="10.515, 8.2690950520833333, 1.4700000000000002, 0.2493896484375" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
+          <elementListCompartment Id="cd37ba31-5c3e-4fc8-b08a-ce111a356f70" absoluteBounds="10.515, 5.635, 1.8450000000000002, 2.364705403645833" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+          <elementListCompartment Id="37b26dfb-4a16-4a5b-b1d3-a00d54bd7ce4" absoluteBounds="10.515, 8.0097054036458317, 1.8450000000000002, 0.2493896484375" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+          <elementListCompartment Id="29a53e4c-5285-41fe-aeec-3fd40c2b189b" absoluteBounds="10.515, 8.2690950520833333, 1.8450000000000002, 0.2493896484375" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
         </nestedChildShapes>
       </classShape>
       <classShape Id="66251261-9c68-4269-9b42-6946ca6b4d24" absoluteBounds="10.5, 8.75, 1.5, 3.4934847005208329">
@@ -179,7 +179,7 @@
           <elementListCompartment Id="f7749c34-2fce-46f1-95b8-f7923fec485b" absoluteBounds="10.515, 11.894095052083333, 1.4700000000000002, 0.2493896484375" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
         </nestedChildShapes>
       </classShape>
-      <associationConnector edgePoints="[(6.625 : 7.64094807942708); (6.25 : 7.64094807942708)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <associationConnector edgePoints="[(6.625 : 7.64094807942708); (6.5 : 7.64094807942708)]" fixedFrom="Algorithm" fixedTo="Algorithm">
         <AssociationMoniker Id="2e7765b0-82e3-4978-a0c4-56bb3098179a" />
         <relativeChildShapes />
         <nodes>
@@ -195,7 +195,7 @@
           <elementListCompartment Id="ca9548cb-92c8-4071-99d2-6050dc417aa9" absoluteBounds="8.265, 10.682587890625, 1.8450000000000002, 0.44169108072916696" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
         </nestedChildShapes>
       </classShape>
-      <associationConnector edgePoints="[(9 : 8.5); (9 : 7.8300732421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <associationConnector edgePoints="[(9 : 8.5); (9 : 7.8300732421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
         <AssociationMoniker Id="16e06c44-68ff-4947-9938-5ce0bd2f531b" />
         <relativeChildShapes />
         <nodes>

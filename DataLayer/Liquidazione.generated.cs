@@ -76,8 +76,8 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal _importo;
-		public virtual decimal Importo
+		private decimal? _importo;
+		public virtual decimal? Importo
 		{
 			get
 			{

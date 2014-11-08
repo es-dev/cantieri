@@ -63,8 +63,8 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal _totaleAcquisti;
-		public virtual decimal TotaleAcquisti
+		private decimal? _totaleAcquisti;
+		public virtual decimal? TotaleAcquisti
 		{
 			get
 			{
@@ -76,8 +76,8 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal _totaleVendite;
-		public virtual decimal TotaleVendite
+		private decimal? _totaleVendite;
+		public virtual decimal? TotaleVendite
 		{
 			get
 			{
