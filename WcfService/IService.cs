@@ -30,7 +30,6 @@ namespace WcfService
         [OperationContract]
         int CountAziende();
         #endregion
-
         #region Custom
         [OperationContract]
         IEnumerable<Dto.AziendaDto> LoadAziende(int skip, int take, string search = null);

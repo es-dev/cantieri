@@ -103,6 +103,11 @@
         <orm:field name="_cliente" property="Cliente" behavior="readwrite" uniqueId="ed833669-0921-4344-895a-27a4883be7e0" type="DataLayer.Cliente">
           <orm:inversereference inverse-field="_commessa" uniqueId="2e7765b0-82e3-4978-a0c4-56bb3098179a" />
         </orm:field>
+        <orm:index name="idx_Commessa_AziendaId">
+          <orm:columnMapping>
+            <orm:column name="AziendaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
       </orm:class>
       <orm:class name="Fornitore" use-default-mapping="true" uniqueId="6bd2fb4a-065e-4782-aff0-394e97a8c10e">
         <orm:identity>
@@ -160,6 +165,16 @@
         <orm:field name="_fatturas" property="Fatturas" behavior="readwrite" uniqueId="c005e506-8dd4-429b-830f-7f3d6bbe34a1" type="DataLayer.FatturaAcquisto">
           <orm:collection element-class="DataLayer.FatturaAcquisto" inverse-field="_fornitore" order-by="" uniqueId="9133edb8-9422-4c9c-a7d6-77def2077659" />
         </orm:field>
+        <orm:index name="idx_Fornitore_CentroCostoId">
+          <orm:columnMapping>
+            <orm:column name="CentroCostoId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:index name="idx_Fornitore_CommessaId">
+          <orm:columnMapping>
+            <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
       </orm:class>
       <orm:class name="Cliente" use-default-mapping="true" uniqueId="2fb30af5-7285-4d31-98ce-5913cc73edde">
         <orm:identity>
@@ -285,6 +300,11 @@
         <orm:field name="_pagamentos" property="Pagamentos" behavior="readwrite" uniqueId="e729c44d-e2ae-4052-8ad4-1683d392a794" type="DataLayer.Pagamento">
           <orm:collection element-class="DataLayer.Pagamento" inverse-field="_fatturaAcquisto" order-by="" uniqueId="c5b7ccac-23e7-4d05-9ef1-626f304fefdf" />
         </orm:field>
+        <orm:index name="idx_FtturaAcquisto_FornitoreId">
+          <orm:columnMapping>
+            <orm:column name="FornitoreId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
       </orm:class>
       <orm:class name="Articolo" use-default-mapping="true" uniqueId="50d8cde8-72ca-4f97-bde9-f98174397799">
         <orm:identity>
@@ -325,6 +345,11 @@
             <orm:sharedfield name="_fatturaId" target-class="DataLayer.FatturaAcquisto" target-field="_id" />
           </orm:reference>
         </orm:field>
+        <orm:index name="idx_Articolo_FatturaId">
+          <orm:columnMapping>
+            <orm:column name="FatturaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
       </orm:class>
       <orm:class name="Pagamento" use-default-mapping="true" uniqueId="1d1e4210-fafe-4ae8-981d-60f54382dc0a">
         <orm:identity>
@@ -356,6 +381,11 @@
             <orm:sharedfield name="_fatturaAcquistoId" target-class="DataLayer.FatturaAcquisto" target-field="_id" />
           </orm:reference>
         </orm:field>
+        <orm:index name="idx_Pgamento_FatturaAcquistoId">
+          <orm:columnMapping>
+            <orm:column name="FatturaAcquistoId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
       </orm:class>
       <orm:class name="FatturaVendita" use-default-mapping="true" uniqueId="81aa053a-6585-47b3-b1b2-0336988a1b20">
         <orm:identity>
@@ -399,6 +429,11 @@
         <orm:field name="_liquidaziones" property="Liquidaziones" behavior="readwrite" uniqueId="a812dacc-c65e-4a4d-bdd0-6d9c2fd831b0" type="DataLayer.Liquidazione">
           <orm:collection element-class="DataLayer.Liquidazione" inverse-field="_fatturaVendita" order-by="" uniqueId="3d93d254-2a67-4e4a-8665-f0d72e57af0f" />
         </orm:field>
+        <orm:index name="idx_FatturaVendita_ClienteId">
+          <orm:columnMapping>
+            <orm:column name="ClienteId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
       </orm:class>
       <orm:class name="Liquidazione" use-default-mapping="true" uniqueId="76631ce8-b93f-442e-809c-9cf9b12bd132">
         <orm:identity>
@@ -430,6 +465,11 @@
             <orm:sharedfield name="_fatturaVenditaId" target-class="DataLayer.FatturaVendita" target-field="_id" />
           </orm:reference>
         </orm:field>
+        <orm:index name="idx_Lqdazione_FatturaVenditaId">
+          <orm:columnMapping>
+            <orm:column name="FatturaVenditaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
       </orm:class>
       <orm:class name="AnagraficaFornitore" use-default-mapping="true" uniqueId="2b290f90-521f-4b26-a189-8cd4b1f60f65">
         <orm:identity>
@@ -534,6 +574,11 @@
             <orm:sharedfield name="_statisticaId" target-class="DataLayer.Statistica" target-field="_id" />
           </orm:reference>
         </orm:field>
+        <orm:index name="idx_SAL_StatisticaId">
+          <orm:columnMapping>
+            <orm:column name="StatisticaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
       </orm:class>
     </orm:namespace>
     <orm:schema schema="" />

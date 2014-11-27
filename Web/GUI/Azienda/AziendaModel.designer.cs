@@ -35,6 +35,7 @@ namespace Web.GUI.Azienda
             this.editProvincia = new Library.Template.Controls.TemplateEditText();
             this.editCodiceISTAT = new Library.Template.Controls.TemplateEditText();
             this.editNumeroSezioni = new Library.Template.Controls.TemplateEditNumeric();
+            this.clientStorage1 = new Gizmox.WebGUI.Forms.Client.ClientStorage();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.SuspendLayout();
@@ -175,6 +176,13 @@ namespace Web.GUI.Azienda
             this.editNumeroSezioni.Size = new System.Drawing.Size(800, 30);
             this.editNumeroSezioni.TabIndex = 6;
             this.editNumeroSezioni.Text = "EditControl";
+            this.editNumeroSezioni.Value = 0;
+            // 
+            // clientStorage1
+            // 
+            this.clientStorage1.Description = "";
+            this.clientStorage1.MajorVersion = ((ushort)(1));
+            this.clientStorage1.MinorVersion = ((ushort)(0));
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
@@ -189,6 +197,7 @@ namespace Web.GUI.Azienda
         private Library.Template.Controls.TemplateEditText editCodiceISTAT;
         private Library.Template.Controls.TemplateEditText editProvincia;
         private Library.Template.Controls.TemplateEditText editDescrizione;
+        private Gizmox.WebGUI.Forms.Client.ClientStorage clientStorage1;
 
 
     }

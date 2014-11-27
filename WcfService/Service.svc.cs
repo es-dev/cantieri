@@ -270,6 +270,21 @@ namespace WcfService
             return 0;
         }
 
+        public Dto.CommessaDto ReadCommessa(object Id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var commessa = wcf.ReadCommessa("Id=" + Id);
+                return commessa;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         private IQueryable<DataLayer.Commessa> QueryCommesse(string search)
         {
             try
@@ -399,6 +414,21 @@ namespace WcfService
                 UtilityError.Write(ex);
             }
             return 0;
+        }
+
+        public Dto.FornitoreDto ReadFornitore(object Id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var fornitore = wcf.ReadFornitore("Id=" + Id);
+                return fornitore;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
 
         private IQueryable<DataLayer.Fornitore> QueryFornitori(string search)
@@ -532,6 +562,21 @@ namespace WcfService
             return 0;
         }
 
+        public Dto.CentroCostoDto ReadCentroCosto(object Id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var centroCosto = wcf.ReadCentroCosto("Id=" + Id);
+                return centroCosto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         private IQueryable<DataLayer.CentroCosto> QueryCentriCosto(string search)
         {
             try
@@ -661,6 +706,21 @@ namespace WcfService
                 UtilityError.Write(ex);
             }
             return 0;
+        }
+
+        public Dto.FatturaAcquistoDto ReadFatturaAcquisto(object Id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var fatturaAcquisto = wcf.ReadFatturaAcquisto("Id=" + Id);
+                return fatturaAcquisto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
 
         private IQueryable<DataLayer.FatturaAcquisto> QueryFattureAcquisto(string search)
@@ -794,6 +854,21 @@ namespace WcfService
             return 0;
         }
 
+        public Dto.ArticoloDto ReadArticolo(object Id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var articolo = wcf.ReadArticolo("Id=" + Id);
+                return articolo;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         private IQueryable<DataLayer.Articolo> QueryArticoli(string search)
         {
             try
@@ -923,6 +998,21 @@ namespace WcfService
                 UtilityError.Write(ex);
             }
             return 0;
+        }
+
+        public Dto.PagamentoDto ReadPagamento(object Id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var pagamento = wcf.ReadPagamento("Id=" + Id);
+                return pagamento;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
 
         private IQueryable<DataLayer.Pagamento> QueryPagamenti(string search)
@@ -1056,6 +1146,21 @@ namespace WcfService
             return 0;
         }
 
+        public Dto.ClienteDto ReadCliente(object Id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var cliente = wcf.ReadCliente("Id=" + Id);
+                return cliente;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         private IQueryable<DataLayer.Cliente> QueryClienti(string search)
         {
             try
@@ -1185,6 +1290,21 @@ namespace WcfService
                 UtilityError.Write(ex);
             }
             return 0;
+        }
+
+        public Dto.FatturaVenditaDto ReadFatturaVendita(object Id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var fatturaVendita = wcf.ReadFatturaVendita("Id=" + Id);
+                return fatturaVendita;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
 
         private IQueryable<DataLayer.FatturaVendita> QueryFattureVendita(string search)
@@ -1318,6 +1438,21 @@ namespace WcfService
             return 0;
         }
 
+        public Dto.LiquidazioneDto ReadLiquidazione(object Id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var liquidazione = wcf.ReadLiquidazione("Id=" + Id);
+                return liquidazione;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         private IQueryable<DataLayer.Liquidazione> QueryLiquidazioni(string search)
         {
             try
@@ -1447,6 +1582,21 @@ namespace WcfService
                 UtilityError.Write(ex);
             }
             return 0;
+        }
+
+        public Dto.StatisticaDto ReadStatistica(object Id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var statistica = wcf.ReadStatistica("Id=" + Id);
+                return statistica;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
 
         private IQueryable<DataLayer.Statistica> QueryStatistiche(string search)
@@ -1580,6 +1730,21 @@ namespace WcfService
             return 0;
         }
 
+        public Dto.SALDto ReadSAL(object Id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var SAL = wcf.ReadSAL("Id=" + Id);
+                return SAL;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         private IQueryable<DataLayer.SAL> QuerySALs(string search)
         {
             try
@@ -1711,6 +1876,21 @@ namespace WcfService
             return 0;
         }
 
+        public Dto.AnagraficaFornitoreDto ReadAnagraficaFornitore(object Id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var anagraficaFornitore = wcf.ReadAnagraficaFornitore("Id=" + Id);
+                return anagraficaFornitore;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         private IQueryable<DataLayer.AnagraficaFornitore> QueryAnagraficheFornitori(string search)
         {
             try
@@ -1840,6 +2020,21 @@ namespace WcfService
                 UtilityError.Write(ex);
             }
             return 0;
+        }
+
+        public Dto.AnagraficaClienteDto ReadAnagraficaCilente(object Id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var anagraficaCliente = wcf.ReadAnagraficaCliente("Id=" + Id);
+                return anagraficaCliente;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
 
         private IQueryable<DataLayer.AnagraficaCliente> QueryAnagraficheClienti(string search)
