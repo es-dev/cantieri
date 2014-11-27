@@ -105,7 +105,7 @@ namespace Web.GUI.Commessa
             this.Controls.Add(this.infoComune);
             this.Controls.Add(this.infoDescrizione);
             this.Size = new System.Drawing.Size(407, 93);
-            this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.AziendaItem_ItemClick);
+            this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.CommessaItem_ItemClick);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.ResumeLayout(false);

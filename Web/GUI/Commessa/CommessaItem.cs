@@ -34,7 +34,7 @@ namespace Web.GUI.Commessa
             }
         }
 
-        private void AziendaItem_ItemClick(IItem item)
+        private void CommessaItem_ItemClick(IItem item)
         {
             try
             {
