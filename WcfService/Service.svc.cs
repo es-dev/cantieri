@@ -245,7 +245,13 @@ namespace WcfService
                 var commesse = QueryCommesse(search);
                 commesse = (from q in commesse select q).Skip(skip).Take(take);
                 var engine = new Assemblers.CommessaAssembler();
-                var commesseDto = engine.Assemble(commesse);
+                var commesseDto = new List<Dto.CommessaDto>();
+                foreach (var commessa in commesse)
+                {
+                    var commessaDto = engine.Assemble(commessa);
+                    engine.AssembleNavigational(commessa, commessaDto);
+                    commesseDto.Add(commessaDto);
+                }
                 return commesseDto;
             }
             catch (Exception ex)
