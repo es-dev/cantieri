@@ -33,7 +33,7 @@ namespace Web.GUI.Commessa
             this.infoDescrizione = new Gizmox.WebGUI.Forms.Label();
             this.infoCodice = new Gizmox.WebGUI.Forms.Label();
             this.infoImage = new Gizmox.WebGUI.Forms.PictureBox();
-            this.infoComune = new Gizmox.WebGUI.Forms.Label();
+            this.infoDenominazione = new Gizmox.WebGUI.Forms.Label();
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
@@ -50,7 +50,7 @@ namespace Web.GUI.Commessa
             this.infoDescrizione.Name = "infoDescrizione";
             this.infoDescrizione.Size = new System.Drawing.Size(309, 55);
             this.infoDescrizione.TabIndex = 1;
-            this.infoDescrizione.Text = "Numero sezioni: 10";
+            this.infoDescrizione.Text = "Descrizione";
             // 
             // infoCodice
             // 
@@ -74,17 +74,17 @@ namespace Web.GUI.Commessa
             this.infoImage.TabIndex = 1;
             this.infoImage.TabStop = false;
             // 
-            // infoComune
+            // infoDenominazione
             // 
-            this.infoComune.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.infoDenominazione.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.infoComune.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoComune.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
-            this.infoComune.Location = new System.Drawing.Point(91, 2);
-            this.infoComune.Name = "infoComune";
-            this.infoComune.Size = new System.Drawing.Size(305, 30);
-            this.infoComune.TabIndex = 1;
-            this.infoComune.Text = "COMUNE (PV)";
+            this.infoDenominazione.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoDenominazione.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.infoDenominazione.Location = new System.Drawing.Point(91, 2);
+            this.infoDenominazione.Name = "infoDenominazione";
+            this.infoDenominazione.Size = new System.Drawing.Size(305, 30);
+            this.infoDenominazione.TabIndex = 1;
+            this.infoDenominazione.Text = "DENOMINAZIONE";
             // 
             // panelLeft
             // 
@@ -98,11 +98,11 @@ namespace Web.GUI.Commessa
             this.panelLeft.Size = new System.Drawing.Size(83, 93);
             this.panelLeft.TabIndex = 0;
             // 
-            // ComuneItem
+            // CommessaItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.panelLeft);
-            this.Controls.Add(this.infoComune);
+            this.Controls.Add(this.infoDenominazione);
             this.Controls.Add(this.infoDescrizione);
             this.Size = new System.Drawing.Size(407, 93);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.CommessaItem_ItemClick);
@@ -117,7 +117,7 @@ namespace Web.GUI.Commessa
         private Gizmox.WebGUI.Forms.Label infoDescrizione;
         private Gizmox.WebGUI.Forms.Label infoCodice;
         private Gizmox.WebGUI.Forms.PictureBox infoImage;
-        private Gizmox.WebGUI.Forms.Label infoComune;
+        private Gizmox.WebGUI.Forms.Label infoDenominazione;
         private Gizmox.WebGUI.Forms.Panel panelLeft;
 	}
 }
