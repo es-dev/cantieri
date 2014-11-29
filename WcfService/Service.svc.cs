@@ -397,7 +397,14 @@ namespace WcfService
                 var fornitori = QueryFornitori(search);
                 fornitori = (from q in fornitori select q).Skip(skip).Take(take);
                 var engine = new Assemblers.FornitoreAssembler();
-                var fornitoriDto = engine.Assemble(fornitori);
+                var fornitoriDto = new List<Dto.FornitoreDto>();
+                foreach (var fornitore in fornitori)
+                {
+                    var fornitoreDto = engine.Assemble(fornitore);
+                    engine.AssembleNavigational(fornitore, fornitoreDto);
+                    fornitoriDto.Add(fornitoreDto);
+                }
+
                 return fornitoriDto;
             }
             catch (Exception ex)
@@ -543,7 +550,13 @@ namespace WcfService
                 var centriCosto = QueryCentriCosto(search);
                 centriCosto = (from q in centriCosto select q).Skip(skip).Take(take);
                 var engine = new Assemblers.CentroCostoAssembler();
-                var centriCostoDto = engine.Assemble(centriCosto);
+                var centriCostoDto = new List<Dto.CentroCostoDto>();
+                foreach (var centroCosto in centriCosto)
+                {
+                    var centroCostoDto = engine.Assemble(centroCosto);
+                    engine.AssembleNavigational(centroCosto, centroCostoDto);
+                    centriCostoDto.Add(centroCostoDto);
+                }
                 return centriCostoDto;
             }
             catch (Exception ex)
@@ -689,7 +702,13 @@ namespace WcfService
                 var fattureAcquisto = QueryFattureAcquisto(search);
                 fattureAcquisto = (from q in fattureAcquisto select q).Skip(skip).Take(take);
                 var engine = new Assemblers.FatturaAcquistoAssembler();
-                var fattureAcquistoDto = engine.Assemble(fattureAcquisto);
+                var fattureAcquistoDto = new List<Dto.FatturaAcquistoDto>();
+                foreach (var fatturaAcquisto in fattureAcquisto)
+                {
+                    var fatturaAcquistoDto = engine.Assemble(fatturaAcquisto);
+                    engine.AssembleNavigational(fatturaAcquisto, fatturaAcquistoDto);
+                    fattureAcquistoDto.Add(fatturaAcquistoDto);
+                }
                 return fattureAcquistoDto;
             }
             catch (Exception ex)
@@ -835,7 +854,13 @@ namespace WcfService
                 var articoli = QueryArticoli(search);
                 articoli = (from q in articoli select q).Skip(skip).Take(take);
                 var engine = new Assemblers.ArticoloAssembler();
-                var articoliDto = engine.Assemble(articoli);
+                var articoliDto = new List<Dto.ArticoloDto>();
+                foreach (var articolo in articoli)
+                {
+                    var articoloDto = engine.Assemble(articolo);
+                    engine.AssembleNavigational(articolo, articoloDto);
+                    articoliDto.Add(articoloDto);
+                }
                 return articoliDto;
             }
             catch (Exception ex)
@@ -981,7 +1006,13 @@ namespace WcfService
                 var pagamenti = QueryPagamenti(search);
                 pagamenti = (from q in pagamenti select q).Skip(skip).Take(take);
                 var engine = new Assemblers.PagamentoAssembler();
-                var pagamentiDto = engine.Assemble(pagamenti);
+                var pagamentiDto = new List<Dto.PagamentoDto>();
+                foreach (var pagamento in pagamenti)
+                {
+                    var pagamentoDto = engine.Assemble(pagamento);
+                    engine.AssembleNavigational(pagamento, pagamentoDto);
+                    pagamentiDto.Add(pagamentoDto);
+                }
                 return pagamentiDto;
             }
             catch (Exception ex)
@@ -1127,7 +1158,13 @@ namespace WcfService
                 var clienti = QueryClienti(search);
                 clienti = (from q in clienti select q).Skip(skip).Take(take);
                 var engine = new Assemblers.ClienteAssembler();
-                var clientiDto = engine.Assemble(clienti);
+                var clientiDto = new List<Dto.ClienteDto>();
+                foreach (var cliente in clienti)
+                {
+                    var clienteDto = engine.Assemble(cliente);
+                    engine.AssembleNavigational(cliente, clienteDto);
+                    clientiDto.Add(clienteDto);
+                }
                 return clientiDto;
             }
             catch (Exception ex)
@@ -1273,7 +1310,13 @@ namespace WcfService
                 var fattureVendita = QueryFattureVendita(search);
                 fattureVendita = (from q in fattureVendita select q).Skip(skip).Take(take);
                 var engine = new Assemblers.FatturaVenditaAssembler();
-                var fattureVenditaDto = engine.Assemble(fattureVendita);
+                var fattureVenditaDto = new List<Dto.FatturaVenditaDto>();
+                foreach (var fatturaVendita in fattureVendita)
+                {
+                    var fatturaVenditaDto = engine.Assemble(fatturaVendita);
+                    engine.AssembleNavigational(fatturaVendita, fatturaVenditaDto);
+                    fattureVenditaDto.Add(fatturaVenditaDto);
+                }
                 return fattureVenditaDto;
             }
             catch (Exception ex)
@@ -1419,7 +1462,13 @@ namespace WcfService
                 var liquidazioni = QueryLiquidazioni(search);
                 liquidazioni = (from q in liquidazioni select q).Skip(skip).Take(take);
                 var engine = new Assemblers.LiquidazioneAssembler();
-                var liquidazioniDto = engine.Assemble(liquidazioni);
+                var liquidazioniDto = new List<Dto.LiquidazioneDto>();
+                foreach (var liquidazione in liquidazioni)
+                {
+                    var liquidazioneDto = engine.Assemble(liquidazione);
+                    engine.AssembleNavigational(liquidazione, liquidazioneDto);
+                    liquidazioniDto.Add(liquidazioneDto);
+                }
                 return liquidazioniDto;
             }
             catch (Exception ex)
@@ -1565,7 +1614,13 @@ namespace WcfService
                 var statistiche = QueryStatistiche(search);
                 statistiche = (from q in statistiche select q).Skip(skip).Take(take);
                 var engine = new Assemblers.StatisticaAssembler();
-                var statisticheDto = engine.Assemble(statistiche);
+                var statisticheDto = new List<Dto.StatisticaDto>();
+                foreach (var statistica in statistiche)
+                {
+                    var statisticaDto = engine.Assemble(statistica);
+                    engine.AssembleNavigational(statistica, statisticaDto);
+                    statisticheDto.Add(statisticaDto);
+                }
                 return statisticheDto;
             }
             catch (Exception ex)
@@ -1711,7 +1766,13 @@ namespace WcfService
                 var sals = QuerySALs(search);
                 sals = (from q in sals select q).Skip(skip).Take(take);
                 var engine = new Assemblers.SALAssembler();
-                var salsDto = engine.Assemble(sals);
+                var salsDto = new List<Dto.SALDto>();
+                foreach (var sal in sals)
+                {
+                    var salDto = engine.Assemble(sal);
+                    engine.AssembleNavigational(sal, salDto);
+                    salsDto.Add(salDto);
+                }
                 return salsDto;
             }
             catch (Exception ex)
@@ -1857,7 +1918,13 @@ namespace WcfService
                 var anagraficheFornitori = QueryAnagraficheFornitori(search);
                 anagraficheFornitori = (from q in anagraficheFornitori select q).Skip(skip).Take(take);
                 var engine = new Assemblers.AnagraficaFornitoreAssembler();
-                var anagraficheFornitoriDto = engine.Assemble(anagraficheFornitori);
+                var anagraficheFornitoriDto = new List<Dto.AnagraficaFornitoreDto>();
+                foreach (var anagraficaFornitore in anagraficheFornitori)
+                {
+                    var anagraficaFornitoreDto = engine.Assemble(anagraficaFornitore);
+                    engine.AssembleNavigational(anagraficaFornitore, anagraficaFornitoreDto);
+                    anagraficheFornitoriDto.Add(anagraficaFornitoreDto);
+                }
                 return anagraficheFornitoriDto;
             }
             catch (Exception ex)
@@ -2003,7 +2070,13 @@ namespace WcfService
                 var anagraficheClienti = QueryAnagraficheClienti(search);
                 anagraficheClienti = (from q in anagraficheClienti select q).Skip(skip).Take(take);
                 var engine = new Assemblers.AnagraficaClienteAssembler();
-                var anagraficheClientiDto = engine.Assemble(anagraficheClienti);
+                var anagraficheClientiDto = new List<Dto.AnagraficaClienteDto>();
+                foreach (var anagraficaCliente in anagraficheClienti)
+                {
+                    var anagraficaClienteDto = engine.Assemble(anagraficaCliente);
+                    engine.AssembleNavigational(anagraficaCliente, anagraficaClienteDto);
+                    anagraficheClientiDto.Add(anagraficaClienteDto);
+                }
                 return anagraficheClientiDto;
             }
             catch (Exception ex)
