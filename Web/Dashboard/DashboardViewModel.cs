@@ -91,8 +91,8 @@ namespace Web.Dashboard
                 var dashboardLiquidazione = new Dashboard("Liquidazioni", "CODE", "Description...", "Images.dashboard.png", "", typeof(LiquidazioneView));
                 var dashboardStatistica = new Dashboard("Statistiche", "CODE", "Description...", "Images.dashboard.png", "", typeof(StatisticaView));
                 var dashboardSAL = new Dashboard("SAL", "CODE", "Description...", "Images.dashboard.png", "", typeof(SALView));
-                var dashboardAnagraficaFornitore = new Dashboard("Anagrafica fornitore", "CODE", "Description...", "Images.dashboard.png", "", typeof(AnagraficaFornitoreView));
-                var dashboardAnagraficaCliente = new Dashboard("Anagrafica cliente", "CODE", "Description...", "Images.dashboard.png", "", typeof(AnagraficaClienteView));
+                var dashboardAnagraficaFornitore = new Dashboard("Anagrafiche fornitori", "CODE", "Description...", "Images.dashboard.png", "", typeof(AnagraficaFornitoreView));
+                var dashboardAnagraficaCliente = new Dashboard("Anagrafiche clienti", "CODE", "Description...", "Images.dashboard.png", "", typeof(AnagraficaClienteView));
                dashboards.Add(dashboardAzienda);
                 dashboards.Add(dashboardCommessa);
                 dashboards.Add(dashboardFornitore);
