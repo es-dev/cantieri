@@ -363,5 +363,32 @@ namespace WcfService
         #endregion
         #endregion
 
+        #region AnagraficaArticolo
+        #region CRUD
+        [OperationContract]
+        Dto.AnagraficaArticoloDto CreateAnagraficaArticolo(Dto.AnagraficaArticoloDto anagraficaArticolo);
+
+        [OperationContract]
+        IEnumerable<Dto.AnagraficaArticoloDto> ReadAnagraficheArticoli();
+
+        [OperationContract]
+        bool UpdateAnagraficaArticolo(Dto.AnagraficaArticoloDto anagraficaArticolo);
+
+        [OperationContract]
+        bool DeleteAnagraficaArticolo(Dto.AnagraficaArticoloDto anagraficaArticolo);
+
+        [OperationContract]
+        int CountAnagraficheArticoli();
+        #endregion
+
+        #region Custom
+        [OperationContract]
+        IEnumerable<Dto.AnagraficaArticoloDto> LoadAnagraficheArticoli(int skip, int take, string search = null);
+
+        [OperationContract]
+        int CountAnagraficheArticoli(string search = null);
+        #endregion
+        #endregion
+
     }
 }

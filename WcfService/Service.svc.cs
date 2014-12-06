@@ -1949,7 +1949,7 @@ namespace WcfService
             return 0;
         }
 
-        public Dto.AnagraficaClienteDto ReadAnagraficaCilente(object Id)
+        public Dto.AnagraficaClienteDto ReadAnagraficaCliente(object Id)
         {
             try
             {
@@ -1974,6 +1974,158 @@ namespace WcfService
                     anagraficheClienti = (from q in anagraficheClienti where q.RagioneSociale.StartsWith(search) select q);
                 anagraficheClienti = (from q in anagraficheClienti orderby q.RagioneSociale select q);
                 return anagraficheClienti;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+        #endregion
+        #endregion
+
+        #region AnagraficaArticolo
+        #region CRUD
+        public Dto.AnagraficaArticoloDto CreateAnagraficaArticolo(Dto.AnagraficaArticoloDto anagraficaArticolo)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var dtoKey = wcf.CreateAnagraficaArticolo(anagraficaArticolo);
+                var newAnagraficaArticolo = wcf.ReadAnagraficaArticolo(dtoKey);
+                return newAnagraficaArticolo;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<Dto.AnagraficaArticoloDto> ReadAnagraficheArticoli()
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var anagraficheArticoli = wcf.ReadAnagraficaArticolos();
+                return anagraficheArticoli;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public bool UpdateAnagraficaArticolo(Dto.AnagraficaArticoloDto anagraficaArticolo)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                wcf.UpdateAnagraficaArticolo(anagraficaArticolo);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
+        }
+
+        public bool DeleteAnagraficaArticolo(Dto.AnagraficaArticoloDto anagraficaArticolo)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                wcf.DeleteAnagraficaArticolo(anagraficaArticolo);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
+        }
+
+        public int CountAnagraficheArticoli()
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var count = wcf.AnagraficaArticolosCount();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+        #endregion
+        #region Custom
+        public IEnumerable<Dto.AnagraficaArticoloDto> LoadAnagraficheArticoli(int skip, int take, string search = null)
+        {
+            try
+            {
+                var anagraficheArticoli = QueryAnagraficheArticoli(search);
+                anagraficheArticoli = (from q in anagraficheArticoli select q).Skip(skip).Take(take);
+                var engine = new Assemblers.AnagraficaArticoloAssembler();
+                var anagraficheArticoliDto = new List<Dto.AnagraficaArticoloDto>();
+                foreach (var anagraficaArticolo in anagraficheArticoli)
+                {
+                    var anagraficaArticoloDto = engine.Assemble(anagraficaArticolo);
+                    engine.AssembleNavigational(anagraficaArticolo, anagraficaArticoloDto);
+                    anagraficheArticoliDto.Add(anagraficaArticoloDto);
+                }
+                return anagraficheArticoliDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public int CountAnagraficheArticoli(string search = null)
+        {
+            try
+            {
+                var anagraficheArticoli = QueryAnagraficheArticoli(search);
+                var count = anagraficheArticoli.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public Dto.AnagraficaArticoloDto ReadAnagraficaArticolo(object Id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var anagraficaArticolo = wcf.ReadAnagraficaArticolo("Id=" + Id);
+                return anagraficaArticolo;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private IQueryable<DataLayer.AnagraficaArticolo> QueryAnagraficheArticoli(string search)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var anagraficheArticoli = (from q in ef.AnagraficaArticolos select q);
+                if (search != null)
+                    anagraficheArticoli = (from q in anagraficheArticoli where q.Codice.StartsWith(search) select q);
+                anagraficheArticoli = (from q in anagraficheArticoli orderby q.Codice select q);
+                return anagraficheArticoli;
             }
             catch (Exception ex)
             {

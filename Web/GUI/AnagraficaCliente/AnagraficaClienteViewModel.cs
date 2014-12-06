@@ -105,7 +105,7 @@ namespace Web.GUI.AnagraficaCliente
             try
             {
                 var wcf = new WcfService.Service();
-                var obj = wcf.ReadAnagraficaCilente(Id);
+                var obj = wcf.ReadAnagraficaCliente(Id);
                 return obj;
             }
             catch (Exception ex)
