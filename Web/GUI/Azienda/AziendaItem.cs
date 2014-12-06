@@ -25,7 +25,8 @@ namespace Web.GUI.Azienda
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AziendaDto)model;
-
+                    infoDenominazione.Text = obj.Denominazione;
+                    infoIndirizzo.Text = obj.Indirizzo + " " + obj.CAP + " " + obj.Comune + " (" + obj.Provincia + ")";
                 }
             }
             catch (Exception ex)

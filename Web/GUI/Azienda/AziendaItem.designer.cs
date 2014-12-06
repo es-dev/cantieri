@@ -33,7 +33,7 @@ namespace Web.GUI.Azienda
             this.infoIndirizzo = new Gizmox.WebGUI.Forms.Label();
             this.infoCodice = new Gizmox.WebGUI.Forms.Label();
             this.infoImage = new Gizmox.WebGUI.Forms.PictureBox();
-            this.infoAzienda = new Gizmox.WebGUI.Forms.Label();
+            this.infoDenominazione = new Gizmox.WebGUI.Forms.Label();
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
@@ -74,17 +74,17 @@ namespace Web.GUI.Azienda
             this.infoImage.TabIndex = 1;
             this.infoImage.TabStop = false;
             // 
-            // infoAzienda
+            // infoDenominazione
             // 
-            this.infoAzienda.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.infoDenominazione.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.infoAzienda.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoAzienda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
-            this.infoAzienda.Location = new System.Drawing.Point(91, 2);
-            this.infoAzienda.Name = "infoAzienda";
-            this.infoAzienda.Size = new System.Drawing.Size(305, 30);
-            this.infoAzienda.TabIndex = 1;
-            this.infoAzienda.Text = "AZIENDA";
+            this.infoDenominazione.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoDenominazione.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.infoDenominazione.Location = new System.Drawing.Point(91, 2);
+            this.infoDenominazione.Name = "infoDenominazione";
+            this.infoDenominazione.Size = new System.Drawing.Size(305, 30);
+            this.infoDenominazione.TabIndex = 1;
+            this.infoDenominazione.Text = "DENOMINAZIONE";
             // 
             // panelLeft
             // 
@@ -102,7 +102,7 @@ namespace Web.GUI.Azienda
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.panelLeft);
-            this.Controls.Add(this.infoAzienda);
+            this.Controls.Add(this.infoDenominazione);
             this.Controls.Add(this.infoIndirizzo);
             this.Size = new System.Drawing.Size(407, 93);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.AziendaItem_ItemClick);
@@ -117,7 +117,7 @@ namespace Web.GUI.Azienda
         private Gizmox.WebGUI.Forms.Label infoIndirizzo;
         private Gizmox.WebGUI.Forms.Label infoCodice;
         private Gizmox.WebGUI.Forms.PictureBox infoImage;
-        private Gizmox.WebGUI.Forms.Label infoAzienda;
+        private Gizmox.WebGUI.Forms.Label infoDenominazione;
         private Gizmox.WebGUI.Forms.Panel panelLeft;
 	}
 }
