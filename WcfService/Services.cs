@@ -230,20 +230,6 @@ namespace WcfService.Services
 	    }
 	}
 	
-	public partial interface IStatisticaService : IService<StatisticaDto, Statistica>
-	{
-	
-	}
-	
-	public partial class StatisticaService : Service<StatisticaDto, Statistica>, IStatisticaService
-	{
-	    public StatisticaService(IStatisticaAssembler assembler, IStatisticaRepository repository)
-	        : base(assembler, repository)
-	    {
-	
-	    }
-	}
-	
 	public partial interface ICentroCostoService : IService<CentroCostoDto, CentroCosto>
 	{
 	
@@ -364,6 +350,20 @@ namespace WcfService.Services
 	public partial class SALService : Service<SALDto, SAL>, ISALService
 	{
 	    public SALService(ISALAssembler assembler, ISALRepository repository)
+	        : base(assembler, repository)
+	    {
+	
+	    }
+	}
+	
+	public partial interface IAnagraficaArticoloService : IService<AnagraficaArticoloDto, AnagraficaArticolo>
+	{
+	
+	}
+	
+	public partial class AnagraficaArticoloService : Service<AnagraficaArticoloDto, AnagraficaArticolo>, IAnagraficaArticoloService
+	{
+	    public AnagraficaArticoloService(IAnagraficaArticoloAssembler assembler, IAnagraficaArticoloRepository repository)
 	        : base(assembler, repository)
 	    {
 	

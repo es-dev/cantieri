@@ -78,7 +78,7 @@ namespace WcfService.Dto
 	[DataContract(IsReference = true)]
 	[KnownType(typeof(AziendaDto))]
 	[KnownType(typeof(FornitoreDto))]
-	[KnownType(typeof(StatisticaDto))]
+	[KnownType(typeof(SALDto))]
 	[KnownType(typeof(ClienteDto))]
 	public partial class CommessaDto : IDtoWithKey
 	{
@@ -86,7 +86,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public CommessaDto(int _id, int _aziendaId, string _numero, DateTime _creazione, DateTime _scadenza, string _descrizione, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _riferimento, decimal? _importo, decimal? _margine, string _stato, AziendaDto _azienda, IList<FornitoreDto> _fornitores, StatisticaDto _statistica, ClienteDto _cliente)
+		public CommessaDto(int _id, int _aziendaId, string _numero, DateTime _creazione, DateTime _scadenza, string _descrizione, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _riferimento, decimal? _importo, decimal? _margine, string _stato, AziendaDto _azienda, IList<FornitoreDto> _fornitores, IList<SALDto> _sALs, ClienteDto _cliente)
 		{
 			this.Id = _id;
 			this.AziendaId = _aziendaId;
@@ -105,7 +105,7 @@ namespace WcfService.Dto
 			this.Stato = _stato;
 			this.Azienda = _azienda;
 			this.Fornitores = _fornitores;
-			this.Statistica = _statistica;
+			this.SALs = _sALs;
 			this.Cliente = _cliente;
 		}
 		
@@ -164,7 +164,7 @@ namespace WcfService.Dto
 		public virtual IList<FornitoreDto> Fornitores { get;set; }
 
 		[DataMember]
-		public virtual StatisticaDto Statistica { get;set; }
+		public virtual IList<SALDto> SALs { get;set; }
 
 		[DataMember]
 		public virtual ClienteDto Cliente { get;set; }
@@ -173,7 +173,6 @@ namespace WcfService.Dto
 	
 	[DataContract(IsReference = true)]
 	[KnownType(typeof(CommessaDto))]
-	[KnownType(typeof(CentroCostoDto))]
 	[KnownType(typeof(FatturaAcquistoDto))]
 	public partial class FornitoreDto : IDtoWithKey
 	{
@@ -181,11 +180,11 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public FornitoreDto(int _id, int _commessaId, int _centroCostoId, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, CommessaDto _commessa, CentroCostoDto _centroCosto, IList<FatturaAcquistoDto> _fatturas)
+		public FornitoreDto(int _id, int _commessaId, string _codiceCentroCosto, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, CommessaDto _commessa, IList<FatturaAcquistoDto> _fatturas)
 		{
 			this.Id = _id;
 			this.CommessaId = _commessaId;
-			this.CentroCostoId = _centroCostoId;
+			this.CodiceCentroCosto = _codiceCentroCosto;
 			this.RagioneSociale = _ragioneSociale;
 			this.Indirizzo = _indirizzo;
 			this.CAP = _cAP;
@@ -197,7 +196,6 @@ namespace WcfService.Dto
 			this.Email = _email;
 			this.PIva = _pIva;
 			this.Commessa = _commessa;
-			this.CentroCosto = _centroCosto;
 			this.Fatturas = _fatturas;
 		}
 		
@@ -211,7 +209,7 @@ namespace WcfService.Dto
 		public virtual int CommessaId { get;set; }
 
 		[DataMember]
-		public virtual int CentroCostoId { get;set; }
+		public virtual string CodiceCentroCosto { get;set; }
 
 		[DataMember]
 		public virtual string RagioneSociale { get;set; }
@@ -245,9 +243,6 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual CommessaDto Commessa { get;set; }
-
-		[DataMember]
-		public virtual CentroCostoDto CentroCosto { get;set; }
 
 		[DataMember]
 		public virtual IList<FatturaAcquistoDto> Fatturas { get;set; }
@@ -325,49 +320,17 @@ namespace WcfService.Dto
 	}
 	
 	[DataContract(IsReference = true)]
-	[KnownType(typeof(CommessaDto))]
-	[KnownType(typeof(SALDto))]
-	public partial class StatisticaDto : IDtoWithKey
-	{
-		public StatisticaDto()
-		{
-		}
-		
-		public StatisticaDto(int _id, CommessaDto _commessa, IList<SALDto> _sALs)
-		{
-			this.Id = _id;
-			this.Commessa = _commessa;
-			this.SALs = _sALs;
-		}
-		
-		[DataMember]
-		public virtual string DtoKey { get; set; }
-		
-		[DataMember]
-		public virtual int Id { get;set; }
-
-		[DataMember]
-		public virtual CommessaDto Commessa { get;set; }
-
-		[DataMember]
-		public virtual IList<SALDto> SALs { get;set; }
-
-	}
-	
-	[DataContract(IsReference = true)]
-	[KnownType(typeof(FornitoreDto))]
 	public partial class CentroCostoDto : IDtoWithKey
 	{
 		public CentroCostoDto()
 		{
 		}
 		
-		public CentroCostoDto(int _id, string _codice, string _denominazione, IList<FornitoreDto> _fornitores)
+		public CentroCostoDto(int _id, string _codice, string _denominazione)
 		{
 			this.Id = _id;
 			this.Codice = _codice;
 			this.Denominazione = _denominazione;
-			this.Fornitores = _fornitores;
 		}
 		
 		[DataMember]
@@ -381,9 +344,6 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual string Denominazione { get;set; }
-
-		[DataMember]
-		public virtual IList<FornitoreDto> Fornitores { get;set; }
 
 	}
 	
@@ -804,22 +764,23 @@ namespace WcfService.Dto
 	}
 	
 	[DataContract(IsReference = true)]
-	[KnownType(typeof(StatisticaDto))]
+	[KnownType(typeof(CommessaDto))]
 	public partial class SALDto : IDtoWithKey
 	{
 		public SALDto()
 		{
 		}
 		
-		public SALDto(int _id, int _statisticaId, DateTime _data, decimal? _totaleAcquisti, decimal? _totaleVendite, bool _lock, StatisticaDto _statistica)
+		public SALDto(int _id, int _commessaId, DateTime _data, decimal? _totaleAcquisti, decimal? _totaleVendite, bool _lock, string _denominazione, CommessaDto _commessa)
 		{
 			this.Id = _id;
-			this.StatisticaId = _statisticaId;
+			this.CommessaId = _commessaId;
 			this.Data = _data;
 			this.TotaleAcquisti = _totaleAcquisti;
 			this.TotaleVendite = _totaleVendite;
 			this.Lock = _lock;
-			this.Statistica = _statistica;
+			this.Denominazione = _denominazione;
+			this.Commessa = _commessa;
 		}
 		
 		[DataMember]
@@ -829,7 +790,7 @@ namespace WcfService.Dto
 		public virtual int Id { get;set; }
 
 		[DataMember]
-		public virtual int StatisticaId { get;set; }
+		public virtual int CommessaId { get;set; }
 
 		[DataMember]
 		public virtual DateTime Data { get;set; }
@@ -844,7 +805,38 @@ namespace WcfService.Dto
 		public virtual bool Lock { get;set; }
 
 		[DataMember]
-		public virtual StatisticaDto Statistica { get;set; }
+		public virtual string Denominazione { get;set; }
+
+		[DataMember]
+		public virtual CommessaDto Commessa { get;set; }
+
+	}
+	
+	[DataContract(IsReference = true)]
+	public partial class AnagraficaArticoloDto : IDtoWithKey
+	{
+		public AnagraficaArticoloDto()
+		{
+		}
+		
+		public AnagraficaArticoloDto(int _id, string _codice, string _descrizione)
+		{
+			this.Id = _id;
+			this.Codice = _codice;
+			this.Descrizione = _descrizione;
+		}
+		
+		[DataMember]
+		public virtual string DtoKey { get; set; }
+		
+		[DataMember]
+		public virtual int Id { get;set; }
+
+		[DataMember]
+		public virtual string Codice { get;set; }
+
+		[DataMember]
+		public virtual string Descrizione { get;set; }
 
 	}
 	

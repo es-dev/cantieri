@@ -82,14 +82,6 @@ namespace DataLayer
 			}
 		}
 		
-		public IQueryable<Statistica> Statisticas 
-		{
-			get
-			{
-				return this.GetAll<Statistica>();
-			}
-		}
-		
 		public IQueryable<CentroCosto> CentroCostos 
 		{
 			get
@@ -106,11 +98,11 @@ namespace DataLayer
 			}
 		}
 		
-		public IQueryable<Articolo> Articolos 
+		public IQueryable<AnagraficaArticolo> AnagraficaArticolos 
 		{
 			get
 			{
-				return this.GetAll<Articolo>();
+				return this.GetAll<AnagraficaArticolo>();
 			}
 		}
 		
@@ -162,6 +154,14 @@ namespace DataLayer
 			}
 		}
 		
+		public IQueryable<Articolo> Articolos 
+		{
+			get
+			{
+				return this.GetAll<Articolo>();
+			}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -200,10 +200,6 @@ namespace DataLayer
 		{
 			get;
 		}
-		IQueryable<Statistica> Statisticas
-		{
-			get;
-		}
 		IQueryable<CentroCosto> CentroCostos
 		{
 			get;
@@ -212,7 +208,7 @@ namespace DataLayer
 		{
 			get;
 		}
-		IQueryable<Articolo> Articolos
+		IQueryable<AnagraficaArticolo> AnagraficaArticolos
 		{
 			get;
 		}
@@ -237,6 +233,10 @@ namespace DataLayer
 			get;
 		}
 		IQueryable<SAL> SALs
+		{
+			get;
+		}
+		IQueryable<Articolo> Articolos
 		{
 			get;
 		}

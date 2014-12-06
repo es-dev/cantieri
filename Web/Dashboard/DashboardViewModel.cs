@@ -19,7 +19,6 @@ using Web.GUI.Fornitore;
 using Web.GUI.Liquidazione;
 using Web.GUI.Pagamento;
 using Web.GUI.SAL;
-using Web.GUI.Statistica;
 
 namespace Web.Dashboard
 {
@@ -89,7 +88,6 @@ namespace Web.Dashboard
                 var dashboardCliente = new Dashboard("Clienti", "CODE", "Description...", "Images.dashboard.png", "", typeof(ClienteView));
                 var dashboardFatturaVendita = new Dashboard("Fatture vendita", "CODE", "Description...", "Images.dashboard.png", "", typeof(FatturaVenditaView));
                 var dashboardLiquidazione = new Dashboard("Liquidazioni", "CODE", "Description...", "Images.dashboard.png", "", typeof(LiquidazioneView));
-                var dashboardStatistica = new Dashboard("Statistiche", "CODE", "Description...", "Images.dashboard.png", "", typeof(StatisticaView));
                 var dashboardSAL = new Dashboard("SAL", "CODE", "Description...", "Images.dashboard.png", "", typeof(SALView));
                 var dashboardAnagraficaFornitore = new Dashboard("Anagrafiche fornitori", "CODE", "Description...", "Images.dashboard.png", "", typeof(AnagraficaFornitoreView));
                 var dashboardAnagraficaCliente = new Dashboard("Anagrafiche clienti", "CODE", "Description...", "Images.dashboard.png", "", typeof(AnagraficaClienteView));
@@ -103,7 +101,6 @@ namespace Web.Dashboard
                 dashboards.Add(dashboardCliente);
                 dashboards.Add(dashboardFatturaVendita);
                 dashboards.Add(dashboardLiquidazione);
-                dashboards.Add(dashboardStatistica);
                 dashboards.Add(dashboardSAL);
                 dashboards.Add(dashboardAnagraficaFornitore);
                 dashboards.Add(dashboardAnagraficaCliente);

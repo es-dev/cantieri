@@ -225,9 +225,6 @@ namespace WcfService.Assemblers
 			AziendaAssembler aziendaAssembler = new AziendaAssembler();
 			dto.Azienda = aziendaAssembler.Assemble(entity.Azienda);
 
-			StatisticaAssembler statisticaAssembler = new StatisticaAssembler();
-			dto.Statistica = statisticaAssembler.Assemble(entity.Statistica);
-
 			ClienteAssembler clienteAssembler = new ClienteAssembler();
 			dto.Cliente = clienteAssembler.Assemble(entity.Cliente);
 
@@ -243,6 +240,16 @@ namespace WcfService.Assemblers
 				var dtoItem = fornitoreAssembler.Assemble(item);
 				dtoItem.Commessa = dto;
 				dto.Fornitores.Add(dtoItem);
+			}
+
+			SALAssembler sALAssembler = new SALAssembler();
+
+			dto.SALs = new List<SALDto>();
+			foreach (SAL item in entity.SALs)
+			{
+				var dtoItem = sALAssembler.Assemble(item);
+				dtoItem.Commessa = dto;
+				dto.SALs.Add(dtoItem);
 			}
 
 	    }
@@ -283,7 +290,7 @@ namespace WcfService.Assemblers
 			
 			entity.Id = dto.Id;
 			entity.CommessaId = dto.CommessaId;
-			entity.CentroCostoId = dto.CentroCostoId;
+			entity.CodiceCentroCosto = dto.CodiceCentroCosto;
 			entity.RagioneSociale = dto.RagioneSociale;
 			entity.Indirizzo = dto.Indirizzo;
 			entity.CAP = dto.CAP;
@@ -306,7 +313,7 @@ namespace WcfService.Assemblers
 			dto.DtoKey = KeyUtility.Instance.Convert(key);
 			dto.Id = entity.Id;
 			dto.CommessaId = entity.CommessaId;
-			dto.CentroCostoId = entity.CentroCostoId;
+			dto.CodiceCentroCosto = entity.CodiceCentroCosto;
 			dto.RagioneSociale = entity.RagioneSociale;
 			dto.Indirizzo = entity.Indirizzo;
 			dto.CAP = entity.CAP;
@@ -325,9 +332,6 @@ namespace WcfService.Assemblers
 	    {
 			CommessaAssembler commessaAssembler = new CommessaAssembler();
 			dto.Commessa = commessaAssembler.Assemble(entity.Commessa);
-
-			CentroCostoAssembler centroCostoAssembler = new CentroCostoAssembler();
-			dto.CentroCosto = centroCostoAssembler.Assemble(entity.CentroCosto);
 
 	    }
 	
@@ -444,77 +448,6 @@ namespace WcfService.Assemblers
 	    
 	}
 	
-	public partial interface IStatisticaAssembler : IAssembler<StatisticaDto, Statistica>
-	{ 
-	
-	}
-	
-	public partial class StatisticaAssemblerBase : Assembler<StatisticaDto, Statistica>
-	{
-		/// <summary>
-	    /// Invoked after the StatisticaDto instance is assembled.
-	    /// </summary>
-	    /// <param name="dto"><see cref="StatisticaDto"/> The Dto instance.</param>
-		partial void OnDTOAssembled(StatisticaDto dto);
-	
-		/// <summary>
-	    /// Invoked after the Statistica instance is assembled.
-	    /// </summary>
-	    /// <param name="entity">The <see cref="Statistica"/> instance.</param>
-		partial void OnEntityAssembled(Statistica entity);
-		
-	    public override Statistica Assemble(Statistica entity, StatisticaDto dto)
-	    {
-	        if (entity == null)
-	        {
-	            entity = new Statistica();
-	        }
-			
-			entity.Id = dto.Id;
-	        this.OnEntityAssembled(entity);
-	        return entity;
-	    }
-	
-	    public override StatisticaDto Assemble(Statistica entity)
-	    {
-	        StatisticaDto dto = new StatisticaDto();
-	        
-			ObjectKey key = KeyUtility.Instance.Create(entity);
-			dto.DtoKey = KeyUtility.Instance.Convert(key);
-			dto.Id = entity.Id;
-			this.OnDTOAssembled(dto); 
-	        return dto;
-	    }
-	
-	    public override void AssembleReferences(Statistica entity, StatisticaDto dto)
-	    {
-			CommessaAssembler commessaAssembler = new CommessaAssembler();
-			dto.Commessa = commessaAssembler.Assemble(entity.Commessa);
-
-	    }
-	
-	    public override void AssembleCollections(Statistica entity, StatisticaDto dto)
-	    {
-			SALAssembler sALAssembler = new SALAssembler();
-
-			dto.SALs = new List<SALDto>();
-			foreach (SAL item in entity.SALs)
-			{
-				var dtoItem = sALAssembler.Assemble(item);
-				dtoItem.Statistica = dto;
-				dto.SALs.Add(dtoItem);
-			}
-
-	    }
-	
-	}
-	
-	
-	public partial class StatisticaAssembler : StatisticaAssemblerBase, IStatisticaAssembler
-	{
-	    
-	}
-	
 	public partial interface ICentroCostoAssembler : IAssembler<CentroCostoDto, CentroCosto>
 	{ 
 	
@@ -567,16 +500,6 @@ namespace WcfService.Assemblers
 	
 	    public override void AssembleCollections(CentroCosto entity, CentroCostoDto dto)
 	    {
-			FornitoreAssembler fornitoreAssembler = new FornitoreAssembler();
-
-			dto.Fornitores = new List<FornitoreDto>();
-			foreach (Fornitore item in entity.Fornitores)
-			{
-				var dtoItem = fornitoreAssembler.Assemble(item);
-				dtoItem.CentroCosto = dto;
-				dto.Fornitores.Add(dtoItem);
-			}
-
 	    }
 	
 	}
@@ -1183,11 +1106,12 @@ namespace WcfService.Assemblers
 	        }
 			
 			entity.Id = dto.Id;
-			entity.StatisticaId = dto.StatisticaId;
+			entity.CommessaId = dto.CommessaId;
 			entity.Data = dto.Data;
 			entity.TotaleAcquisti = dto.TotaleAcquisti;
 			entity.TotaleVendite = dto.TotaleVendite;
 			entity.Lock = dto.Lock;
+			entity.Denominazione = dto.Denominazione;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1199,19 +1123,20 @@ namespace WcfService.Assemblers
 			ObjectKey key = KeyUtility.Instance.Create(entity);
 			dto.DtoKey = KeyUtility.Instance.Convert(key);
 			dto.Id = entity.Id;
-			dto.StatisticaId = entity.StatisticaId;
+			dto.CommessaId = entity.CommessaId;
 			dto.Data = entity.Data;
 			dto.TotaleAcquisti = entity.TotaleAcquisti;
 			dto.TotaleVendite = entity.TotaleVendite;
 			dto.Lock = entity.Lock;
+			dto.Denominazione = entity.Denominazione;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
 	
 	    public override void AssembleReferences(SAL entity, SALDto dto)
 	    {
-			StatisticaAssembler statisticaAssembler = new StatisticaAssembler();
-			dto.Statistica = statisticaAssembler.Assemble(entity.Statistica);
+			CommessaAssembler commessaAssembler = new CommessaAssembler();
+			dto.Commessa = commessaAssembler.Assemble(entity.Commessa);
 
 	    }
 	
@@ -1223,6 +1148,68 @@ namespace WcfService.Assemblers
 	
 	
 	public partial class SALAssembler : SALAssemblerBase, ISALAssembler
+	{
+	    
+	}
+	
+	public partial interface IAnagraficaArticoloAssembler : IAssembler<AnagraficaArticoloDto, AnagraficaArticolo>
+	{ 
+	
+	}
+	
+	public partial class AnagraficaArticoloAssemblerBase : Assembler<AnagraficaArticoloDto, AnagraficaArticolo>
+	{
+		/// <summary>
+	    /// Invoked after the AnagraficaArticoloDto instance is assembled.
+	    /// </summary>
+	    /// <param name="dto"><see cref="AnagraficaArticoloDto"/> The Dto instance.</param>
+		partial void OnDTOAssembled(AnagraficaArticoloDto dto);
+	
+		/// <summary>
+	    /// Invoked after the AnagraficaArticolo instance is assembled.
+	    /// </summary>
+	    /// <param name="entity">The <see cref="AnagraficaArticolo"/> instance.</param>
+		partial void OnEntityAssembled(AnagraficaArticolo entity);
+		
+	    public override AnagraficaArticolo Assemble(AnagraficaArticolo entity, AnagraficaArticoloDto dto)
+	    {
+	        if (entity == null)
+	        {
+	            entity = new AnagraficaArticolo();
+	        }
+			
+			entity.Id = dto.Id;
+			entity.Codice = dto.Codice;
+			entity.Descrizione = dto.Descrizione;
+	        this.OnEntityAssembled(entity);
+	        return entity;
+	    }
+	
+	    public override AnagraficaArticoloDto Assemble(AnagraficaArticolo entity)
+	    {
+	        AnagraficaArticoloDto dto = new AnagraficaArticoloDto();
+	        
+			ObjectKey key = KeyUtility.Instance.Create(entity);
+			dto.DtoKey = KeyUtility.Instance.Convert(key);
+			dto.Id = entity.Id;
+			dto.Codice = entity.Codice;
+			dto.Descrizione = entity.Descrizione;
+			this.OnDTOAssembled(dto); 
+	        return dto;
+	    }
+	
+	    public override void AssembleReferences(AnagraficaArticolo entity, AnagraficaArticoloDto dto)
+	    {
+	    }
+	
+	    public override void AssembleCollections(AnagraficaArticolo entity, AnagraficaArticoloDto dto)
+	    {
+	    }
+	
+	}
+	
+	
+	public partial class AnagraficaArticoloAssembler : AnagraficaArticoloAssemblerBase, IAnagraficaArticoloAssembler
 	{
 	    
 	}

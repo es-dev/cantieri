@@ -18,7 +18,6 @@ using Telerik.OpenAccess.Metadata;
 using Telerik.OpenAccess.Data.Common;
 using Telerik.OpenAccess.Metadata.Fluent;
 using Telerik.OpenAccess.Metadata.Fluent.Advanced;
-using DataLayer;
 
 namespace DataLayer	
 {
@@ -60,15 +59,6 @@ namespace DataLayer
 			set
 			{
 				this._denominazione = value;
-			}
-		}
-		
-		private IList<Fornitore> _fornitores = new List<Fornitore>();
-		public virtual IList<Fornitore> Fornitores
-		{
-			get
-			{
-				return this._fornitores;
 			}
 		}
 		

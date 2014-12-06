@@ -37,16 +37,16 @@ namespace DataLayer
 			}
 		}
 		
-		private int _statisticaId;
-		public virtual int StatisticaId
+		private int _commessaId;
+		public virtual int CommessaId
 		{
 			get
 			{
-				return this._statisticaId;
+				return this._commessaId;
 			}
 			set
 			{
-				this._statisticaId = value;
+				this._commessaId = value;
 			}
 		}
 		
@@ -102,16 +102,29 @@ namespace DataLayer
 			}
 		}
 		
-		private Statistica _statistica;
-		public virtual Statistica Statistica
+		private string _denominazione;
+		public virtual string Denominazione
 		{
 			get
 			{
-				return this._statistica;
+				return this._denominazione;
 			}
 			set
 			{
-				this._statistica = value;
+				this._denominazione = value;
+			}
+		}
+		
+		private Commessa _commessa;
+		public virtual Commessa Commessa
+		{
+			get
+			{
+				return this._commessa;
+			}
+			set
+			{
+				this._commessa = value;
 			}
 		}
 		

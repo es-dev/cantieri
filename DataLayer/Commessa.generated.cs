@@ -241,16 +241,12 @@ namespace DataLayer
 			}
 		}
 		
-		private Statistica _statistica;
-		public virtual Statistica Statistica
+		private IList<SAL> _sALs = new List<SAL>();
+		public virtual IList<SAL> SALs
 		{
 			get
 			{
-				return this._statistica;
-			}
-			set
-			{
-				this._statistica = value;
+				return this._sALs;
 			}
 		}
 		

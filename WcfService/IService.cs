@@ -282,33 +282,6 @@ namespace WcfService
         #endregion
         #endregion
 
-        #region Statistica
-        #region CRUD
-        [OperationContract]
-        Dto.StatisticaDto CreateStatistica(Dto.StatisticaDto statistica);
-
-        [OperationContract]
-        IEnumerable<Dto.StatisticaDto> ReadStatistiche();
-
-        [OperationContract]
-        bool UpdateStatistica(Dto.StatisticaDto statistica);
-
-        [OperationContract]
-        bool DeleteStatistica(Dto.StatisticaDto statistica);
-
-        [OperationContract]
-        int CountStatistiche();
-        #endregion
-
-        #region Custom
-        [OperationContract]
-        IEnumerable<Dto.StatisticaDto> LoadStatistiche(int skip, int take, string search = null);
-
-        [OperationContract]
-        int CountStatistiche(string search = null);
-        #endregion
-        #endregion
-
         #region SAL
         #region CRUD
         [OperationContract]

@@ -58,6 +58,182 @@ namespace WcfService
 	    }	
 	    
 	    /// <summary>
+	    /// A general purpose generated service used for all CRUD operations against AnagraficaArticolo entity.
+	    /// </summary>
+	    private IAnagraficaArticoloService anagraficaarticoloservice;
+	    
+	    /// <summary>
+	    /// Gets or sets the general purpose generated service used for all CRUD operations against AnagraficaArticolo entity.
+	    /// </summary>
+	    public virtual IAnagraficaArticoloService AnagraficaArticoloService
+	    {
+	        get
+	        {
+	            if (this.anagraficaarticoloservice == null)
+	            {
+	                IAnagraficaArticoloAssembler assembler = new AnagraficaArticoloAssembler();
+	                IAnagraficaArticoloRepository repository = new AnagraficaArticoloRepository(this.UnitOfWork);
+	
+	                this.anagraficaarticoloservice = new AnagraficaArticoloService(assembler, repository);
+	            }
+	            return this.anagraficaarticoloservice;
+	        }
+	    }
+	        
+	    #region AnagraficaArticolos CRUD Operations
+	
+	    /// <summary>
+	    /// Returns all anagraficaarticolos.
+	    /// </summary>
+	    /// <returns></returns>
+	    public IEnumerable<AnagraficaArticoloDto> ReadAnagraficaArticolos()	
+	    {
+	        return this.AnagraficaArticoloService.GetAll();
+	    }
+	
+	    /// <summary>
+	    /// Returns a specified amount of anagraficaarticolos from the given start index.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <returns></returns>
+	    public IEnumerable<AnagraficaArticoloDto> ReadAnagraficaArticolosPaged(int startIndex, int pageSize)
+	    {
+	        return this.AnagraficaArticoloService.Find(startIndex, pageSize);
+	    }
+	
+	    /// <summary>
+	    /// Returns all anagraficaarticolos filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public IEnumerable<AnagraficaArticoloDto> ReadAnagraficaArticolosFiltered(string sortExpression, string filterExpression)
+	    {
+	        return this.AnagraficaArticoloService.Find(sortExpression, filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Returns a specified amount of anagraficaarticolos from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public IEnumerable<AnagraficaArticoloDto> ReadAnagraficaArticolosPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression)
+	    {
+	        return this.AnagraficaArticoloService.Find(startIndex, pageSize, sortExpression, filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Returns a anagraficaarticolo with the specified dto key.
+	    /// </summary>
+	    /// <param name="dtoKey">The specified dto key value.</param>
+	    /// <returns></returns>
+	    public AnagraficaArticoloDto ReadAnagraficaArticolo(string dtoKey)
+	    {
+	        return this.AnagraficaArticoloService.GetByKey(dtoKey);
+	    }
+	    
+	    /// <summary>
+	    /// Returns all anagraficaarticolos count.
+	    /// </summary>
+	    /// <returns></returns>
+	    public int AnagraficaArticolosCount()
+	    {
+	        return this.AnagraficaArticoloService.Count();
+	    }
+	    
+	    /// <summary>
+	    /// Returns all anagraficaarticolos count filtered by the specified filter expression.
+	    /// </summary>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public int AnagraficaArticolosCountFiltered(string filterExpression)
+	    {
+	        return this.AnagraficaArticoloService.Count(filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Adds a new anagraficaarticolo from the given dto object into the database.
+	    /// </summary>
+	    /// <param name="anagraficaarticolo">The dto object.</param>
+	    /// <returns>The dto key of the newly created anagraficaarticolo.</returns>
+	    public string CreateAnagraficaArticolo(AnagraficaArticoloDto anagraficaarticolo)
+	    {
+	        string key = this.AnagraficaArticoloService.Add(anagraficaarticolo);
+	        this.UnitOfWork.SaveChanges();
+	        return key;
+	    }
+	
+	    /// <summary>
+	    /// Updates an existing anagraficaarticolo in the database from the given dto object.
+	    /// </summary>
+	    /// <param name="anagraficaarticolo">The dto object.</param>
+	    public void UpdateAnagraficaArticolo(AnagraficaArticoloDto anagraficaarticolo)
+	    {
+	        this.AnagraficaArticoloService.Update(anagraficaarticolo);
+	        this.UnitOfWork.SaveChanges();
+	    }
+	
+	    /// <summary>
+	    /// Update anagraficaarticolos in the database from the given dto object list.
+	    /// </summary>
+	    /// <param name="anagraficaarticolos">The dto object list.</param>
+	    public void UpdateAnagraficaArticolos(IEnumerable<AnagraficaArticoloDto> anagraficaarticolos)
+	    {
+	        if (anagraficaarticolos == null)
+	        {
+	            return;
+	        }
+	
+	        foreach (AnagraficaArticoloDto anagraficaarticolo in anagraficaarticolos)
+	        {
+	            if (anagraficaarticolo == null)
+	            {
+	                continue;
+	            }
+	            
+	            this.UpdateAnagraficaArticolo(anagraficaarticolo);
+	        }
+	    }
+	
+	    /// <summary>
+	    /// Deletes anagraficaarticolo from the database by the given dto object.
+	    /// </summary>
+	    /// <param name="anagraficaarticolo">The dto object.</param>
+	    public void DeleteAnagraficaArticolo(AnagraficaArticoloDto anagraficaarticolo)
+	    {
+	        this.AnagraficaArticoloService.Delete(anagraficaarticolo);
+	        this.UnitOfWork.SaveChanges();		
+	    }
+	
+	    /// <summary>
+	    /// Delete anagraficaarticolos from the database by the given dto object list.
+	    /// </summary>
+	    /// <param name="anagraficaarticolos">The dto object list.</param>
+	    public void DeleteAnagraficaArticolos(IEnumerable<AnagraficaArticoloDto> anagraficaarticolos)
+	    {
+	        if (anagraficaarticolos == null)
+	        {
+	            return;
+	        }
+	
+	        foreach (AnagraficaArticoloDto anagraficaarticolo in anagraficaarticolos)
+	        {
+	            if (anagraficaarticolo == null)
+	            {
+	                continue;
+	            }
+	            
+	            this.DeleteAnagraficaArticolo(anagraficaarticolo);
+	        }
+	    }
+	    
+	    #endregion
+	    
+	    /// <summary>
 	    /// A general purpose generated service used for all CRUD operations against AnagraficaCliente entity.
 	    /// </summary>
 	    private IAnagraficaClienteService anagraficaclienteservice;
@@ -2340,182 +2516,6 @@ namespace WcfService
 	            }
 	            
 	            this.DeleteSAL(sal);
-	        }
-	    }
-	    
-	    #endregion
-	    
-	    /// <summary>
-	    /// A general purpose generated service used for all CRUD operations against Statistica entity.
-	    /// </summary>
-	    private IStatisticaService statisticaservice;
-	    
-	    /// <summary>
-	    /// Gets or sets the general purpose generated service used for all CRUD operations against Statistica entity.
-	    /// </summary>
-	    public virtual IStatisticaService StatisticaService
-	    {
-	        get
-	        {
-	            if (this.statisticaservice == null)
-	            {
-	                IStatisticaAssembler assembler = new StatisticaAssembler();
-	                IStatisticaRepository repository = new StatisticaRepository(this.UnitOfWork);
-	
-	                this.statisticaservice = new StatisticaService(assembler, repository);
-	            }
-	            return this.statisticaservice;
-	        }
-	    }
-	        
-	    #region Statisticas CRUD Operations
-	
-	    /// <summary>
-	    /// Returns all statisticas.
-	    /// </summary>
-	    /// <returns></returns>
-	    public IEnumerable<StatisticaDto> ReadStatisticas()	
-	    {
-	        return this.StatisticaService.GetAll();
-	    }
-	
-	    /// <summary>
-	    /// Returns a specified amount of statisticas from the given start index.
-	    /// </summary>
-	    /// <param name="startIndex">The start index.</param>
-	    /// <param name="pageSize">The returned entities count.</param>
-	    /// <returns></returns>
-	    public IEnumerable<StatisticaDto> ReadStatisticasPaged(int startIndex, int pageSize)
-	    {
-	        return this.StatisticaService.Find(startIndex, pageSize);
-	    }
-	
-	    /// <summary>
-	    /// Returns all statisticas filtered by the specified filter expression and sorted by the specified sort expression.
-	    /// </summary>
-	    /// <param name="sortExpression">The sort expression.</param>
-	    /// <param name="filterExpression">The filter expression.</param>
-	    /// <returns></returns>
-	    public IEnumerable<StatisticaDto> ReadStatisticasFiltered(string sortExpression, string filterExpression)
-	    {
-	        return this.StatisticaService.Find(sortExpression, filterExpression);
-	    }
-	
-	    /// <summary>
-	    /// Returns a specified amount of statisticas from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
-	    /// </summary>
-	    /// <param name="startIndex">The start index.</param>
-	    /// <param name="pageSize">The returned entities count.</param>
-	    /// <param name="sortExpression">The sort expression.</param>
-	    /// <param name="filterExpression">The filter expression.</param>
-	    /// <returns></returns>
-	    public IEnumerable<StatisticaDto> ReadStatisticasPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression)
-	    {
-	        return this.StatisticaService.Find(startIndex, pageSize, sortExpression, filterExpression);
-	    }
-	
-	    /// <summary>
-	    /// Returns a statistica with the specified dto key.
-	    /// </summary>
-	    /// <param name="dtoKey">The specified dto key value.</param>
-	    /// <returns></returns>
-	    public StatisticaDto ReadStatistica(string dtoKey)
-	    {
-	        return this.StatisticaService.GetByKey(dtoKey);
-	    }
-	    
-	    /// <summary>
-	    /// Returns all statisticas count.
-	    /// </summary>
-	    /// <returns></returns>
-	    public int StatisticasCount()
-	    {
-	        return this.StatisticaService.Count();
-	    }
-	    
-	    /// <summary>
-	    /// Returns all statisticas count filtered by the specified filter expression.
-	    /// </summary>
-	    /// <param name="filterExpression">The filter expression.</param>
-	    /// <returns></returns>
-	    public int StatisticasCountFiltered(string filterExpression)
-	    {
-	        return this.StatisticaService.Count(filterExpression);
-	    }
-	
-	    /// <summary>
-	    /// Adds a new statistica from the given dto object into the database.
-	    /// </summary>
-	    /// <param name="statistica">The dto object.</param>
-	    /// <returns>The dto key of the newly created statistica.</returns>
-	    public string CreateStatistica(StatisticaDto statistica)
-	    {
-	        string key = this.StatisticaService.Add(statistica);
-	        this.UnitOfWork.SaveChanges();
-	        return key;
-	    }
-	
-	    /// <summary>
-	    /// Updates an existing statistica in the database from the given dto object.
-	    /// </summary>
-	    /// <param name="statistica">The dto object.</param>
-	    public void UpdateStatistica(StatisticaDto statistica)
-	    {
-	        this.StatisticaService.Update(statistica);
-	        this.UnitOfWork.SaveChanges();
-	    }
-	
-	    /// <summary>
-	    /// Update statisticas in the database from the given dto object list.
-	    /// </summary>
-	    /// <param name="statisticas">The dto object list.</param>
-	    public void UpdateStatisticas(IEnumerable<StatisticaDto> statisticas)
-	    {
-	        if (statisticas == null)
-	        {
-	            return;
-	        }
-	
-	        foreach (StatisticaDto statistica in statisticas)
-	        {
-	            if (statistica == null)
-	            {
-	                continue;
-	            }
-	            
-	            this.UpdateStatistica(statistica);
-	        }
-	    }
-	
-	    /// <summary>
-	    /// Deletes statistica from the database by the given dto object.
-	    /// </summary>
-	    /// <param name="statistica">The dto object.</param>
-	    public void DeleteStatistica(StatisticaDto statistica)
-	    {
-	        this.StatisticaService.Delete(statistica);
-	        this.UnitOfWork.SaveChanges();		
-	    }
-	
-	    /// <summary>
-	    /// Delete statisticas from the database by the given dto object list.
-	    /// </summary>
-	    /// <param name="statisticas">The dto object list.</param>
-	    public void DeleteStatisticas(IEnumerable<StatisticaDto> statisticas)
-	    {
-	        if (statisticas == null)
-	        {
-	            return;
-	        }
-	
-	        foreach (StatisticaDto statistica in statisticas)
-	        {
-	            if (statistica == null)
-	            {
-	                continue;
-	            }
-	            
-	            this.DeleteStatistica(statistica);
 	        }
 	    }
 	    

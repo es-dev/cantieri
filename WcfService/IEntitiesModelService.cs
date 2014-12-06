@@ -27,6 +27,105 @@ namespace WcfService
 	[ServiceContract]
 	public interface IEntitiesModelService
 	{
+	    #region AnagraficaArticolos CRUD Operations
+	
+	    /// <summary>
+	    /// Returns all anagraficaarticolos.
+	    /// </summary>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<AnagraficaArticoloDto> ReadAnagraficaArticolos();
+	
+	    /// <summary>
+	    /// Returns a specified amount of anagraficaarticolos from the given start index.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<AnagraficaArticoloDto> ReadAnagraficaArticolosPaged(int startIndex, int pageSize);
+	
+	    /// <summary>
+	    /// Returns all anagraficaarticolos filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<AnagraficaArticoloDto> ReadAnagraficaArticolosFiltered(string sortExpression, string filterExpression);
+	
+	    /// <summary>
+	    /// Returns a specified amount of anagraficaarticolos from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<AnagraficaArticoloDto> ReadAnagraficaArticolosPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression);
+	
+	    /// <summary>
+	    /// Returns a anagraficaarticolo with the specified dto key.
+	    /// </summary>
+	    /// <param name="dtoKey">The specified dto key value.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    AnagraficaArticoloDto ReadAnagraficaArticolo(string dtoKey);
+	
+	    /// <summary>
+	    /// Returns all anagraficaarticolos count.
+	    /// </summary>
+	    /// <returns></returns>
+	    [OperationContract]
+	    int AnagraficaArticolosCount();
+	
+	    /// <summary>
+	    /// Returns all anagraficaarticolos count filtered by the specified filter expression.
+	    /// </summary>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    int AnagraficaArticolosCountFiltered(string filterExpression);
+	
+	    /// <summary>
+	    /// Adds a new anagraficaarticolo from the given dto object into the database.
+	    /// </summary>
+	    /// <param name="anagraficaarticolo">The dto object.</param>
+	    /// <returns>The dto key of the newly created anagraficaarticolo.</returns>
+	    [OperationContract]
+	    string CreateAnagraficaArticolo(AnagraficaArticoloDto anagraficaarticolo);
+	
+	    /// <summary>
+	    /// Updates anagraficaarticolo in the database from the given dto object.
+	    /// </summary>
+	    /// <param name="anagraficaarticolo">The dto object.</param>
+	    [OperationContract]
+	    void UpdateAnagraficaArticolo(AnagraficaArticoloDto anagraficaarticolo);
+	
+	    /// <summary>
+	    /// Update an existing anagraficaarticolos in the database from the given dto object list.
+	    /// </summary>
+	    /// <param name="anagraficaarticolos">The dto object list.</param>
+	    [OperationContract]
+	    void UpdateAnagraficaArticolos(IEnumerable<AnagraficaArticoloDto> anagraficaarticolos);
+	
+	    /// <summary>
+	    /// Deletes anagraficaarticolo from the database by the given dto object.
+	    /// </summary>
+	    /// <param name="anagraficaarticolo">The dto object.</param>
+	    [OperationContract]
+	    void DeleteAnagraficaArticolo(AnagraficaArticoloDto anagraficaarticolo);
+	
+	    /// <summary>
+	    /// Delete anagraficaarticolos from the database by the given dto object list.
+	    /// </summary>
+	    /// <param name="anagraficaarticolos">The dto object list.</param>
+	    [OperationContract]
+	    void DeleteAnagraficaArticolos(IEnumerable<AnagraficaArticoloDto> anagraficaarticolos);
+	    
+	    #endregion
+	    
 	    #region AnagraficaClientes CRUD Operations
 	
 	    /// <summary>
@@ -1311,105 +1410,6 @@ namespace WcfService
 	    /// <param name="sals">The dto object list.</param>
 	    [OperationContract]
 	    void DeleteSALs(IEnumerable<SALDto> sals);
-	    
-	    #endregion
-	    
-	    #region Statisticas CRUD Operations
-	
-	    /// <summary>
-	    /// Returns all statisticas.
-	    /// </summary>
-	    /// <returns></returns>
-	    [OperationContract]
-	    IEnumerable<StatisticaDto> ReadStatisticas();
-	
-	    /// <summary>
-	    /// Returns a specified amount of statisticas from the given start index.
-	    /// </summary>
-	    /// <param name="startIndex">The start index.</param>
-	    /// <param name="pageSize">The returned entities count.</param>
-	    /// <returns></returns>
-	    [OperationContract]
-	    IEnumerable<StatisticaDto> ReadStatisticasPaged(int startIndex, int pageSize);
-	
-	    /// <summary>
-	    /// Returns all statisticas filtered by the specified filter expression and sorted by the specified sort expression.
-	    /// </summary>
-	    /// <param name="sortExpression">The sort expression.</param>
-	    /// <param name="filterExpression">The filter expression.</param>
-	    /// <returns></returns>
-	    [OperationContract]
-	    IEnumerable<StatisticaDto> ReadStatisticasFiltered(string sortExpression, string filterExpression);
-	
-	    /// <summary>
-	    /// Returns a specified amount of statisticas from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
-	    /// </summary>
-	    /// <param name="startIndex">The start index.</param>
-	    /// <param name="pageSize">The returned entities count.</param>
-	    /// <param name="sortExpression">The sort expression.</param>
-	    /// <param name="filterExpression">The filter expression.</param>
-	    /// <returns></returns>
-	    [OperationContract]
-	    IEnumerable<StatisticaDto> ReadStatisticasPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression);
-	
-	    /// <summary>
-	    /// Returns a statistica with the specified dto key.
-	    /// </summary>
-	    /// <param name="dtoKey">The specified dto key value.</param>
-	    /// <returns></returns>
-	    [OperationContract]
-	    StatisticaDto ReadStatistica(string dtoKey);
-	
-	    /// <summary>
-	    /// Returns all statisticas count.
-	    /// </summary>
-	    /// <returns></returns>
-	    [OperationContract]
-	    int StatisticasCount();
-	
-	    /// <summary>
-	    /// Returns all statisticas count filtered by the specified filter expression.
-	    /// </summary>
-	    /// <param name="filterExpression">The filter expression.</param>
-	    /// <returns></returns>
-	    [OperationContract]
-	    int StatisticasCountFiltered(string filterExpression);
-	
-	    /// <summary>
-	    /// Adds a new statistica from the given dto object into the database.
-	    /// </summary>
-	    /// <param name="statistica">The dto object.</param>
-	    /// <returns>The dto key of the newly created statistica.</returns>
-	    [OperationContract]
-	    string CreateStatistica(StatisticaDto statistica);
-	
-	    /// <summary>
-	    /// Updates statistica in the database from the given dto object.
-	    /// </summary>
-	    /// <param name="statistica">The dto object.</param>
-	    [OperationContract]
-	    void UpdateStatistica(StatisticaDto statistica);
-	
-	    /// <summary>
-	    /// Update an existing statisticas in the database from the given dto object list.
-	    /// </summary>
-	    /// <param name="statisticas">The dto object list.</param>
-	    [OperationContract]
-	    void UpdateStatisticas(IEnumerable<StatisticaDto> statisticas);
-	
-	    /// <summary>
-	    /// Deletes statistica from the database by the given dto object.
-	    /// </summary>
-	    /// <param name="statistica">The dto object.</param>
-	    [OperationContract]
-	    void DeleteStatistica(StatisticaDto statistica);
-	
-	    /// <summary>
-	    /// Delete statisticas from the database by the given dto object list.
-	    /// </summary>
-	    /// <param name="statisticas">The dto object list.</param>
-	    [OperationContract]
-	    void DeleteStatisticas(IEnumerable<StatisticaDto> statisticas);
 	    
 	    #endregion
 	    

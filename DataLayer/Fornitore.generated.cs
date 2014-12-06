@@ -50,16 +50,16 @@ namespace DataLayer
 			}
 		}
 		
-		private int _centroCostoId;
-		public virtual int CentroCostoId
+		private string _codiceCentroCosto;
+		public virtual string CodiceCentroCosto
 		{
 			get
 			{
-				return this._centroCostoId;
+				return this._codiceCentroCosto;
 			}
 			set
 			{
-				this._centroCostoId = value;
+				this._codiceCentroCosto = value;
 			}
 		}
 		
@@ -203,19 +203,6 @@ namespace DataLayer
 			set
 			{
 				this._commessa = value;
-			}
-		}
-		
-		private CentroCosto _centroCosto;
-		public virtual CentroCosto CentroCosto
-		{
-			get
-			{
-				return this._centroCosto;
-			}
-			set
-			{
-				this._centroCosto = value;
 			}
 		}
 		

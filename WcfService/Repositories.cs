@@ -119,19 +119,6 @@ namespace WcfService.Repositories
 	    }
 	}
 	
-	public partial interface IStatisticaRepository : IRepository<Statistica>
-	{ 
-	
-	}
-	
-	public partial class StatisticaRepository : Repository<Statistica>, IStatisticaRepository
-	{
-	    public StatisticaRepository(IEntitiesModelUnitOfWork unitOfWork)
-	        : base(unitOfWork)
-	    {
-	    }
-	}
-	
 	public partial interface ICentroCostoRepository : IRepository<CentroCosto>
 	{ 
 	
@@ -244,6 +231,19 @@ namespace WcfService.Repositories
 	public partial class SALRepository : Repository<SAL>, ISALRepository
 	{
 	    public SALRepository(IEntitiesModelUnitOfWork unitOfWork)
+	        : base(unitOfWork)
+	    {
+	    }
+	}
+	
+	public partial interface IAnagraficaArticoloRepository : IRepository<AnagraficaArticolo>
+	{ 
+	
+	}
+	
+	public partial class AnagraficaArticoloRepository : Repository<AnagraficaArticolo>, IAnagraficaArticoloRepository
+	{
+	    public AnagraficaArticoloRepository(IEntitiesModelUnitOfWork unitOfWork)
 	        : base(unitOfWork)
 	    {
 	    }
