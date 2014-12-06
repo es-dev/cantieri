@@ -36,6 +36,13 @@ namespace Web.GUI.Azienda
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AziendaDto)model;
+                    editDenominazione.Value = obj.Denominazione;
+                    editCAP.Value = obj.CAP;
+                    editComune.Value = obj.Comune;
+                    editIndirizzo.Value = obj.Indirizzo;
+                    editNumeroDipendenti.Value = obj.Dipendenti;
+                    editPartitaIVA.Value = obj.PIva;
+                    editProvincia.Value = obj.Provincia;
                 }
             }
             catch (Exception ex)
@@ -49,6 +56,13 @@ namespace Web.GUI.Azienda
             try
             {
                 var obj = (WcfService.Dto.AziendaDto)model;
+                obj.Denominazione = editDenominazione.Value;
+                obj.CAP = editCAP.Value;
+                obj.Comune = editComune.Value;
+                obj.Dipendenti = editNumeroDipendenti.Value;
+                obj.Indirizzo = editIndirizzo.Value;
+                obj.PIva = editPartitaIVA.Value;
+                obj.Provincia = editIndirizzo.Value;
             }
             catch (Exception ex)
             {
