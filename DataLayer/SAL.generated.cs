@@ -50,8 +50,8 @@ namespace DataLayer
 			}
 		}
 		
-		private DateTime _data;
-		public virtual DateTime Data
+		private DateTime? _data;
+		public virtual DateTime? Data
 		{
 			get
 			{

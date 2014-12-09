@@ -63,8 +63,8 @@ namespace DataLayer
 			}
 		}
 		
-		private DateTime _creazione;
-		public virtual DateTime Creazione
+		private DateTime? _creazione;
+		public virtual DateTime? Creazione
 		{
 			get
 			{
@@ -76,8 +76,8 @@ namespace DataLayer
 			}
 		}
 		
-		private DateTime _scadenza;
-		public virtual DateTime Scadenza
+		private DateTime? _scadenza;
+		public virtual DateTime? Scadenza
 		{
 			get
 			{

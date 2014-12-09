@@ -73,13 +73,13 @@ namespace Web.GUI.Commessa
                 obj.Comune = editComune.Value;
                 obj.Indirizzo = editIndirizzo.Value;
                 obj.Provincia = editIndirizzo.Value;
-                obj.Creazione= (DateTime)editCreazione.Value;
+                obj.Creazione = editCreazione.Value;
                 obj.Descrizione = editDescrizione.Value;
                 obj.Numero = editNumero.Value;
                 obj.Riferimento = editRiferimento.Value;
-                obj.Scadenza = (DateTime)editScadenza.Value;
-                obj.Stato= editStato.Value;
-                //obj.Importo= editImporto.Value;     // todo: da modificare con controlli nuovi
+                obj.Scadenza = editScadenza.Value;
+                obj.Stato = editStato.Value;
+                //obj.Importo = editImporto.Value;     // todo: da modificare con controlli nuovi
                 //obj.Margine = editMargine.Value;    // todo: da modificare con controlli nuovi
                 obj.AziendaId = (int)editAzienda.Id;
                 obj.Azienda = (WcfService.Dto.AziendaDto)editAzienda.Model;
@@ -96,7 +96,6 @@ namespace Web.GUI.Commessa
             {
                 var view = new Azienda.AziendaView();
                 editAzienda.Show(view);
-
             }
             catch (Exception ex)
             {
@@ -111,7 +110,6 @@ namespace Web.GUI.Commessa
                 var azienda = (WcfService.Dto.AziendaDto)model;
                 if (azienda != null)
                     editAzienda.Value = azienda.Denominazione;
-
             }
             catch (Exception ex)
             {

@@ -89,7 +89,6 @@ namespace Web.GUI.Azienda
             this.editDenominazione.Label = "Denominazione";
             this.editDenominazione.LabelWidth = 175;
             this.editDenominazione.Location = new System.Drawing.Point(25, 75);
-            this.editDenominazione.Multiline = false;
             this.editDenominazione.Name = "editDenominazione";
             this.editDenominazione.ReadOnly = false;
             this.editDenominazione.Required = false;
@@ -111,8 +110,7 @@ namespace Web.GUI.Azienda
             this.editIndirizzo.Editing = false;
             this.editIndirizzo.Label = "Indirizzo";
             this.editIndirizzo.LabelWidth = 175;
-            this.editIndirizzo.Location = new System.Drawing.Point(25, 124);
-            this.editIndirizzo.Multiline = false;
+            this.editIndirizzo.Location = new System.Drawing.Point(25, 125);
             this.editIndirizzo.Name = "editIndirizzo";
             this.editIndirizzo.ReadOnly = false;
             this.editIndirizzo.Required = false;
@@ -134,8 +132,7 @@ namespace Web.GUI.Azienda
             this.editCAP.Editing = false;
             this.editCAP.Label = "CAP";
             this.editCAP.LabelWidth = 175;
-            this.editCAP.Location = new System.Drawing.Point(25, 173);
-            this.editCAP.Multiline = false;
+            this.editCAP.Location = new System.Drawing.Point(25, 175);
             this.editCAP.Name = "editCAP";
             this.editCAP.ReadOnly = false;
             this.editCAP.Required = false;
@@ -157,8 +154,7 @@ namespace Web.GUI.Azienda
             this.editComune.Editing = false;
             this.editComune.Label = "Comune";
             this.editComune.LabelWidth = 175;
-            this.editComune.Location = new System.Drawing.Point(25, 222);
-            this.editComune.Multiline = false;
+            this.editComune.Location = new System.Drawing.Point(25, 225);
             this.editComune.Name = "editComune";
             this.editComune.ReadOnly = false;
             this.editComune.Required = false;
@@ -180,8 +176,7 @@ namespace Web.GUI.Azienda
             this.editProvincia.Editing = false;
             this.editProvincia.Label = "Provincia";
             this.editProvincia.LabelWidth = 175;
-            this.editProvincia.Location = new System.Drawing.Point(25, 271);
-            this.editProvincia.Multiline = false;
+            this.editProvincia.Location = new System.Drawing.Point(25, 275);
             this.editProvincia.Name = "editProvincia";
             this.editProvincia.ReadOnly = false;
             this.editProvincia.Required = false;
@@ -203,8 +198,7 @@ namespace Web.GUI.Azienda
             this.editPartitaIVA.Editing = false;
             this.editPartitaIVA.Label = "Partita IVA";
             this.editPartitaIVA.LabelWidth = 175;
-            this.editPartitaIVA.Location = new System.Drawing.Point(25, 320);
-            this.editPartitaIVA.Multiline = false;
+            this.editPartitaIVA.Location = new System.Drawing.Point(25, 325);
             this.editPartitaIVA.Name = "editPartitaIVA";
             this.editPartitaIVA.ReadOnly = false;
             this.editPartitaIVA.Required = false;
@@ -226,14 +220,14 @@ namespace Web.GUI.Azienda
             this.editNumeroDipendenti.Editing = false;
             this.editNumeroDipendenti.Label = "Numero dipendenti";
             this.editNumeroDipendenti.LabelWidth = 175;
-            this.editNumeroDipendenti.Location = new System.Drawing.Point(25, 369);
+            this.editNumeroDipendenti.Location = new System.Drawing.Point(25, 375);
             this.editNumeroDipendenti.Name = "editNumeroDipendenti";
             this.editNumeroDipendenti.ReadOnly = false;
             this.editNumeroDipendenti.Required = false;
             this.editNumeroDipendenti.Size = new System.Drawing.Size(798, 30);
             this.editNumeroDipendenti.TabIndex = 9;
-            this.editNumeroDipendenti.Text = "EditControl";
-            this.editNumeroDipendenti.Value = 0;
+            this.editNumeroDipendenti.Text = "TemplateEditNumeric";
+            this.editNumeroDipendenti.Value = null;
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();

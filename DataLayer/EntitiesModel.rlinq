@@ -55,11 +55,11 @@
         <orm:field name="_numero" property="Numero" uniqueId="d723c940-39c4-4ab4-ab53-ebb6b782ee55" type="System.String">
           <orm:column name="Numero" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_creazione" property="Creazione" uniqueId="c65d72af-9d98-4e86-810f-8f1bfbc44008" type="System.DateTime">
-          <orm:column name="Creazione" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:field name="_creazione" property="Creazione" uniqueId="c65d72af-9d98-4e86-810f-8f1bfbc44008" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Creazione" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
-        <orm:field name="_scadenza" property="Scadenza" uniqueId="4fd69a21-6ecb-4160-ac77-27c2157eafe6" type="System.DateTime">
-          <orm:column name="Scadenza" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:field name="_scadenza" property="Scadenza" uniqueId="4fd69a21-6ecb-4160-ac77-27c2157eafe6" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Scadenza" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_descrizione" property="Descrizione" uniqueId="10cf8ede-a672-4cea-b729-db3a000c7732" type="System.String">
           <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
@@ -251,8 +251,8 @@
         <orm:field name="_fornitoreId" property="FornitoreId" uniqueId="396359f4-1526-4798-a38d-8f2b63363da2" type="System.Int32">
           <orm:column name="FornitoreId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         </orm:field>
-        <orm:field name="_data" property="Data" uniqueId="0fb01481-11dc-4f5f-aa46-6ab6f20e95e6" type="System.DateTime">
-          <orm:column name="data" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:field name="_data" property="Data" uniqueId="0fb01481-11dc-4f5f-aa46-6ab6f20e95e6" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="data" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_numero" property="Numero" uniqueId="2da95105-d585-4136-b57f-ad8bcf82b522" type="System.String">
           <orm:column name="Numero" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
@@ -355,8 +355,8 @@
         <orm:field name="_fatturaAcquistoId" property="FatturaAcquistoId" uniqueId="9f9411d0-3e46-4ac4-97af-60e82d303ba2" type="System.Int32">
           <orm:column name="FatturaAcquistoId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         </orm:field>
-        <orm:field name="_data" property="Data" uniqueId="df9f1369-fe4d-4820-b339-57d78c04ea08" type="System.DateTime">
-          <orm:column name="dta" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:field name="_data" property="Data" uniqueId="df9f1369-fe4d-4820-b339-57d78c04ea08" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="dta" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_modalita" property="Modalita" uniqueId="e005bac1-fe9d-4ee5-997d-15d6c31bd2aa" type="System.String">
           <orm:column name="Modalita" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
@@ -364,11 +364,11 @@
         <orm:field name="_importo" property="Importo" uniqueId="b92c07db-3de2-4fb9-abc8-dd019de790fe" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
-        <orm:field name="_scadenza" property="Scadenza" uniqueId="648fd8e5-140c-4d0d-94c1-9cffd6aa88fd" type="System.DateTime">
-          <orm:column name="Scadenza" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:field name="_scadenza" property="Scadenza" uniqueId="648fd8e5-140c-4d0d-94c1-9cffd6aa88fd" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Scadenza" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_eseguito" property="Eseguito" uniqueId="02c30564-e432-4fb1-8db9-960a806cafcd" type="System.Boolean">
-          <orm:column name="Eseguito" sql-type="tinyint" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.OneZero2BooleanConverter" ado-type="Bit" />
+          <orm:column name="Eseguito" sql-type="tinyint" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.OneZero2BooleanConverter" ado-type="Bit" />
         </orm:field>
         <orm:field name="_fatturaAcquisto" property="FatturaAcquisto" behavior="readwrite" uniqueId="f717ab9e-9083-481c-afb9-aff821782252" type="DataLayer.FatturaAcquisto">
           <orm:reference uniqueId="c5b7ccac-23e7-4d05-9ef1-626f304fefdf" association-name="PagamentoHasFatturaAcquisto">
@@ -395,8 +395,8 @@
         <orm:field name="_clienteId" property="ClienteId" uniqueId="662b16f7-5be3-41d3-98a3-f3c578460321" type="System.Int32">
           <orm:column name="ClienteId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         </orm:field>
-        <orm:field name="_data" property="Data" uniqueId="e53be1af-e021-475e-abc6-a2d56c4cc0c0" type="System.DateTime">
-          <orm:column name="dta" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:field name="_data" property="Data" uniqueId="e53be1af-e021-475e-abc6-a2d56c4cc0c0" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="dta" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_numero" property="Numero" uniqueId="dd7184e1-468a-42ff-a47d-183304ccf644" type="System.String">
           <orm:column name="Numero" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
@@ -447,8 +447,8 @@
         <orm:field name="_fatturaVenditaId" property="FatturaVenditaId" uniqueId="8b02f20d-45f7-4e9b-8600-059d653133c7" type="System.Int32">
           <orm:column name="FatturaVenditaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         </orm:field>
-        <orm:field name="_data" property="Data" uniqueId="829daa33-34a7-421e-93cd-1a61ac1c74dc" type="System.DateTime">
-          <orm:column name="dta" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:field name="_data" property="Data" uniqueId="829daa33-34a7-421e-93cd-1a61ac1c74dc" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="dta" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_modalita" property="Modalita" uniqueId="80dc1956-dfff-4539-b507-f2e06ca80bb1" type="System.String">
           <orm:column name="Modalita" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
@@ -456,11 +456,11 @@
         <orm:field name="_importo" property="Importo" uniqueId="77fb2dd4-f370-4013-a71c-9c13fe10586c" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
-        <orm:field name="_scadenza" property="Scadenza" uniqueId="3d257538-9769-4cc8-8655-f6485c023d73" type="System.DateTime">
-          <orm:column name="Scadenza" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:field name="_scadenza" property="Scadenza" uniqueId="3d257538-9769-4cc8-8655-f6485c023d73" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Scadenza" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_eseguito" property="Eseguito" uniqueId="251d00ad-f3c5-4a85-bf57-928408852d74" type="System.Boolean">
-          <orm:column name="Eseguito" sql-type="tinyint" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.OneZero2BooleanConverter" ado-type="Bit" />
+          <orm:column name="Eseguito" sql-type="tinyint" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.OneZero2BooleanConverter" ado-type="Bit" />
         </orm:field>
         <orm:field name="_fatturaVendita" property="FatturaVendita" behavior="readwrite" uniqueId="f442223b-ae9c-4200-bc51-86d2e364dc58" type="DataLayer.FatturaVendita">
           <orm:reference uniqueId="3d93d254-2a67-4e4a-8665-f0d72e57af0f" association-name="LiquidazioneHasFatturaVendita">
@@ -571,8 +571,8 @@
         <orm:field name="_commessaId" property="CommessaId" uniqueId="6a72fb26-a4b7-4062-b3fe-736683e75469" type="System.Int32">
           <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         </orm:field>
-        <orm:field name="_data" property="Data" uniqueId="b1b806c6-eae5-4001-a8e4-49734c1315c7" type="System.DateTime">
-          <orm:column name="dta" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:field name="_data" property="Data" uniqueId="b1b806c6-eae5-4001-a8e4-49734c1315c7" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="dta" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_totaleAcquisti" property="TotaleAcquisti" uniqueId="be14a63c-72d7-4cb1-a081-fe04c8a6b5c3" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="TotaleAcquisti" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
@@ -581,7 +581,7 @@
           <orm:column name="TotaleVendite" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
         <orm:field name="_lock" property="Lock" uniqueId="01eb4d3f-25f4-427c-bf7f-402c86a3f2ad" type="System.Boolean">
-          <orm:column name="lck" sql-type="tinyint" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.OneZero2BooleanConverter" ado-type="Bit" />
+          <orm:column name="lck" sql-type="tinyint" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.OneZero2BooleanConverter" ado-type="Bit" />
         </orm:field>
         <orm:field name="_denominazione" property="Denominazione" uniqueId="2d2c0b19-361b-40de-8806-6d1a6f07afa6" type="System.String">
           <orm:column name="Denominazione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
@@ -630,8 +630,8 @@
       <orm:table name="Commessa">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
         <orm:column name="Numero" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        <orm:column name="Creazione" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
-        <orm:column name="Scadenza" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:column name="Creazione" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:column name="Scadenza" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Denominazione" sql-type="varchar(max)" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="Indirizzo" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
@@ -676,7 +676,7 @@
       </orm:table>
       <orm:table name="FatturaAcquisto">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
-        <orm:column name="data" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:column name="data" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         <orm:column name="Numero" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="TipoPagamento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
@@ -710,11 +710,11 @@
       </orm:table>
       <orm:table name="Pagamento">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
-        <orm:column name="dta" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:column name="dta" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         <orm:column name="Modalita" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
-        <orm:column name="Scadenza" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
-        <orm:column name="Eseguito" sql-type="tinyint" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.OneZero2BooleanConverter" ado-type="Bit" />
+        <orm:column name="Scadenza" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:column name="Eseguito" sql-type="tinyint" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.OneZero2BooleanConverter" ado-type="Bit" />
         <orm:column name="FatturaAcquistoId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         <orm:index name="idx_Pgamento_FatturaAcquistoId">
           <orm:columnMapping>
@@ -737,7 +737,7 @@
       </orm:table>
       <orm:table name="FatturaVendita">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
-        <orm:column name="dta" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:column name="dta" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         <orm:column name="Numero" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="TipoPagamento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
@@ -754,11 +754,11 @@
       </orm:table>
       <orm:table name="Liquidazione">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
-        <orm:column name="dta" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:column name="dta" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         <orm:column name="Modalita" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
-        <orm:column name="Scadenza" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
-        <orm:column name="Eseguito" sql-type="tinyint" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.OneZero2BooleanConverter" ado-type="Bit" />
+        <orm:column name="Scadenza" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:column name="Eseguito" sql-type="tinyint" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.OneZero2BooleanConverter" ado-type="Bit" />
         <orm:column name="FatturaVenditaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         <orm:index name="idx_Lqdazione_FatturaVenditaId">
           <orm:columnMapping>
@@ -768,10 +768,10 @@
       </orm:table>
       <orm:table name="SAL">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
-        <orm:column name="dta" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:column name="dta" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         <orm:column name="TotaleAcquisti" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="TotaleVendite" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
-        <orm:column name="lck" sql-type="tinyint" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.OneZero2BooleanConverter" ado-type="Bit" />
+        <orm:column name="lck" sql-type="tinyint" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.OneZero2BooleanConverter" ado-type="Bit" />
         <orm:column name="Denominazione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         <orm:index name="idx_SAL_CommessaId">
@@ -841,6 +841,7 @@
     <SchemaUpdateSettings>
       <ExecuteScript>true</ExecuteScript>
       <DeploymentProject>DataLayer</DeploymentProject>
+      <UpdateDatabaseOperation>Migrate</UpdateDatabaseOperation>
     </SchemaUpdateSettings>
     <BackendConfigurationSettings>
       <BackendConfiguration>
@@ -872,8 +873,8 @@
       <Property Id="5203d0ab-3678-4d1b-bb50-613c9b9c078b" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
       <Property Id="fa32b9a6-80e6-4b35-93ee-1bb32367dad1" name="AziendaId" type="Int32" label="AziendaId : Int32" fieldName="_aziendaId" />
       <Property Id="d723c940-39c4-4ab4-ab53-ebb6b782ee55" name="Numero" label="Numero : String" fieldName="_numero" />
-      <Property Id="c65d72af-9d98-4e86-810f-8f1bfbc44008" name="Creazione" type="DateTime" label="Creazione : DateTime" fieldName="_creazione" />
-      <Property Id="4fd69a21-6ecb-4160-ac77-27c2157eafe6" name="Scadenza" type="DateTime" label="Scadenza : DateTime" fieldName="_scadenza" />
+      <Property Id="c65d72af-9d98-4e86-810f-8f1bfbc44008" name="Creazione" type="DateTime" label="Creazione : DateTime" nullable="true" fieldName="_creazione" />
+      <Property Id="4fd69a21-6ecb-4160-ac77-27c2157eafe6" name="Scadenza" type="DateTime" label="Scadenza : DateTime" nullable="true" fieldName="_scadenza" />
       <Property Id="10cf8ede-a672-4cea-b729-db3a000c7732" name="Descrizione" label="Descrizione : String" fieldName="_descrizione" />
       <Property Id="bfd977c7-eb59-45eb-9a9e-8c0faff12423" name="Denominazione" label="Denominazione : String" fieldName="_denominazione" />
       <Property Id="ce9fbab8-8ba8-436e-ae46-a42ac1229818" name="Indirizzo" label="Indirizzo : String" fieldName="_indirizzo" />
@@ -996,7 +997,7 @@
     <DomainClass Id="b521b513-ee0f-41cc-a6db-8bb57ccc71c1" name="FatturaAcquisto" namespace="DataLayer" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
       <Property Id="ccc6cf8c-a658-4116-88ed-4951fecb0b12" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
       <Property Id="396359f4-1526-4798-a38d-8f2b63363da2" name="FornitoreId" type="Int32" label="FornitoreId : Int32" fieldName="_fornitoreId" />
-      <Property Id="0fb01481-11dc-4f5f-aa46-6ab6f20e95e6" name="Data" type="DateTime" label="Data : DateTime" fieldName="_data" />
+      <Property Id="0fb01481-11dc-4f5f-aa46-6ab6f20e95e6" name="Data" type="DateTime" label="Data : DateTime" nullable="true" fieldName="_data" />
       <Property Id="2da95105-d585-4136-b57f-ad8bcf82b522" name="Numero" label="Numero : String" fieldName="_numero" />
       <Property Id="4e1fff6c-8811-4eae-a13c-8b0e0ea6c2ac" name="TipoPagamento" label="TipoPagamento : String" fieldName="_tipoPagamento" />
       <Property Id="9eeadc7a-3de5-4791-9135-ac6ea147e270" name="Descrizione" label="Descrizione : String" fieldName="_descrizione" />
@@ -1066,10 +1067,10 @@
     <DomainClass Id="1d1e4210-fafe-4ae8-981d-60f54382dc0a" name="Pagamento" namespace="DataLayer" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
       <Property Id="91e46e1d-4567-4c13-9f26-915a1382ee92" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
       <Property Id="9f9411d0-3e46-4ac4-97af-60e82d303ba2" name="FatturaAcquistoId" type="Int32" label="FatturaAcquistoId : Int32" fieldName="_fatturaAcquistoId" />
-      <Property Id="df9f1369-fe4d-4820-b339-57d78c04ea08" name="Data" type="DateTime" label="Data : DateTime" fieldName="_data" />
+      <Property Id="df9f1369-fe4d-4820-b339-57d78c04ea08" name="Data" type="DateTime" label="Data : DateTime" nullable="true" fieldName="_data" />
       <Property Id="e005bac1-fe9d-4ee5-997d-15d6c31bd2aa" name="Modalita" label="Modalita : String" fieldName="_modalita" />
       <Property Id="b92c07db-3de2-4fb9-abc8-dd019de790fe" name="Importo" type="Decimal" label="Importo : Decimal" nullable="true" fieldName="_importo" />
-      <Property Id="648fd8e5-140c-4d0d-94c1-9cffd6aa88fd" name="Scadenza" type="DateTime" label="Scadenza : DateTime" fieldName="_scadenza" />
+      <Property Id="648fd8e5-140c-4d0d-94c1-9cffd6aa88fd" name="Scadenza" type="DateTime" label="Scadenza : DateTime" nullable="true" fieldName="_scadenza" />
       <Property Id="02c30564-e432-4fb1-8db9-960a806cafcd" name="Eseguito" type="Boolean" label="Eseguito : Boolean" fieldName="_eseguito" />
       <AssociationTargets>
         <Association Id="c5b7ccac-23e7-4d05-9ef1-626f304fefdf" SourceMultiplicity="ZeroOne" name="PagamentoHasFatturaAcquisto">
@@ -1095,7 +1096,7 @@
     <DomainClass Id="81aa053a-6585-47b3-b1b2-0336988a1b20" name="FatturaVendita" namespace="DataLayer" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
       <Property Id="33e782f9-58b2-4c4c-b9f2-674635c73441" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
       <Property Id="662b16f7-5be3-41d3-98a3-f3c578460321" name="ClienteId" type="Int32" label="ClienteId : Int32" fieldName="_clienteId" />
-      <Property Id="e53be1af-e021-475e-abc6-a2d56c4cc0c0" name="Data" type="DateTime" label="Data : DateTime" fieldName="_data" />
+      <Property Id="e53be1af-e021-475e-abc6-a2d56c4cc0c0" name="Data" type="DateTime" label="Data : DateTime" nullable="true" fieldName="_data" />
       <Property Id="dd7184e1-468a-42ff-a47d-183304ccf644" name="Numero" label="Numero : String" fieldName="_numero" />
       <Property Id="311f6dda-4d8f-4bad-b209-ce59f1a82401" name="TipoPagamento" label="TipoPagamento : String" fieldName="_tipoPagamento" />
       <Property Id="5bfdb114-423d-4793-b7b5-280f1e3dd51e" name="Descrizione" label="Descrizione : String" fieldName="_descrizione" />
@@ -1130,10 +1131,10 @@
     <DomainClass Id="76631ce8-b93f-442e-809c-9cf9b12bd132" name="Liquidazione" namespace="DataLayer" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
       <Property Id="e4ebe46f-0535-427b-869f-3e1f8afe5759" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
       <Property Id="8b02f20d-45f7-4e9b-8600-059d653133c7" name="FatturaVenditaId" type="Int32" label="FatturaVenditaId : Int32" fieldName="_fatturaVenditaId" />
-      <Property Id="829daa33-34a7-421e-93cd-1a61ac1c74dc" name="Data" type="DateTime" label="Data : DateTime" fieldName="_data" />
+      <Property Id="829daa33-34a7-421e-93cd-1a61ac1c74dc" name="Data" type="DateTime" label="Data : DateTime" nullable="true" fieldName="_data" />
       <Property Id="80dc1956-dfff-4539-b507-f2e06ca80bb1" name="Modalita" label="Modalita : String" fieldName="_modalita" />
       <Property Id="77fb2dd4-f370-4013-a71c-9c13fe10586c" name="Importo" type="Decimal" label="Importo : Decimal" nullable="true" fieldName="_importo" />
-      <Property Id="3d257538-9769-4cc8-8655-f6485c023d73" name="Scadenza" type="DateTime" label="Scadenza : DateTime" fieldName="_scadenza" />
+      <Property Id="3d257538-9769-4cc8-8655-f6485c023d73" name="Scadenza" type="DateTime" label="Scadenza : DateTime" nullable="true" fieldName="_scadenza" />
       <Property Id="251d00ad-f3c5-4a85-bf57-928408852d74" name="Eseguito" type="Boolean" label="Eseguito : Boolean" fieldName="_eseguito" />
       <AssociationTargets>
         <Association Id="3d93d254-2a67-4e4a-8665-f0d72e57af0f" SourceMultiplicity="ZeroOne" name="LiquidazioneHasFatturaVendita">
@@ -1185,7 +1186,7 @@
     <DomainClass Id="3526a02f-30f3-45ef-bc27-6002b0758f75" name="SAL" namespace="DataLayer" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
       <Property Id="43f46d78-44da-4e5d-bbc2-f559f63fe653" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
       <Property Id="6a72fb26-a4b7-4062-b3fe-736683e75469" name="CommessaId" type="Int32" label="CommessaId : Int32" fieldName="_commessaId" />
-      <Property Id="b1b806c6-eae5-4001-a8e4-49734c1315c7" name="Data" type="DateTime" label="Data : DateTime" fieldName="_data" />
+      <Property Id="b1b806c6-eae5-4001-a8e4-49734c1315c7" name="Data" type="DateTime" label="Data : DateTime" nullable="true" fieldName="_data" />
       <Property Id="be14a63c-72d7-4cb1-a081-fe04c8a6b5c3" name="TotaleAcquisti" type="Decimal" label="TotaleAcquisti : Decimal" nullable="true" fieldName="_totaleAcquisti" />
       <Property Id="e50f8b5c-1bbb-4bf2-8405-c3f9f88429f5" name="TotaleVendite" type="Decimal" label="TotaleVendite : Decimal" nullable="true" fieldName="_totaleVendite" />
       <Property Id="01eb4d3f-25f4-427c-bf7f-402c86a3f2ad" name="Lock" type="Boolean" label="Lock : Boolean" fieldName="_lock" />
