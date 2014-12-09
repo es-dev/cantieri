@@ -26,6 +26,7 @@ namespace Web.GUI.Commessa
                 {
                     var obj = (WcfService.Dto.CommessaDto)model;
 
+
                 }
             }
             catch (Exception ex)
