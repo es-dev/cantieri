@@ -71,7 +71,6 @@ namespace Web.GUI.Fornitore
                 obj.CAP = editCAP.Value;
                 obj.Comune = editComune.Value;
                 obj.Provincia = editIndirizzo.Value;
-                
                 obj.Telefono = editTelefono.Value;
                 obj.Fax = editFAX.Value;
                 obj.Mobile = editMobile.Value;

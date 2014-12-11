@@ -36,6 +36,8 @@ namespace Web.GUI.CentroCosto
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.CentroCostoDto)model;
+                    editCodice.Value = obj.Codice;
+                    editDenominazione.Value = obj.Denominazione;
                 }
             }
             catch (Exception ex)
@@ -49,6 +51,8 @@ namespace Web.GUI.CentroCosto
             try
             {
                 var obj = (WcfService.Dto.CentroCostoDto)model;
+                obj.Denominazione = editDenominazione.Value;
+                obj.Codice = editCodice.Value;
             }
             catch (Exception ex)
             {

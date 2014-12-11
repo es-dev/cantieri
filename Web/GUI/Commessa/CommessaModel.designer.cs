@@ -375,7 +375,7 @@ namespace Web.GUI.Commessa
             this.editImporto.Changed = false;
             this.editImporto.Editing = false;
             this.editImporto.Label = "Importo";
-            this.editImporto.LabelWidth = 108;
+            this.editImporto.LabelWidth = 175;
             this.editImporto.Location = new System.Drawing.Point(25, 511);
             this.editImporto.Name = "editImporto";
             this.editImporto.ReadOnly = false;
@@ -397,7 +397,7 @@ namespace Web.GUI.Commessa
             this.editMargine.Changed = false;
             this.editMargine.Editing = false;
             this.editMargine.Label = "Margine";
-            this.editMargine.LabelWidth = 108;
+            this.editMargine.LabelWidth = 175;
             this.editMargine.Location = new System.Drawing.Point(25, 559);
             this.editMargine.Name = "editMargine";
             this.editMargine.ReadOnly = false;

@@ -36,6 +36,21 @@ namespace Web.GUI.FatturaAcquisto
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.FatturaAcquistoDto)model;
+                    editData.Value = obj.Data;
+                    editDescrizione.Value = obj.Descrizione;
+                    //editImponibile.Value = obj.Imponibile; // todo: da modificare con controlli nuovi
+                    //editIVA.Value = obj.IVA;               // todo: da modificare con controlli nuovi
+                    editNumero.Value = obj.Numero;
+                    //editSaldo.Value = obj.Saldo;  // todo: da modificare con controlli nuovi
+                    editTipoPagamento.Value = obj.TipoPagamento;
+                    //editTotale.Value = obj.Totale;  // todo: da modificare con controlli nuovi
+                    var fornitore = obj.Fornitore;
+                    if (fornitore != null)
+                    {
+                        editFornitore.Model = fornitore;
+                        editFornitore.Value = fornitore.RagioneSociale;
+                    }
+
                 }
             }
             catch (Exception ex)
@@ -49,6 +64,43 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 var obj = (WcfService.Dto.FatturaAcquistoDto)model;
+                obj.Data = editData.Value;
+                obj.Descrizione = editDescrizione.Value;
+                //obj.Imponibile = editImponibile.Value;
+                //obj.IVA = editIVA.Value;
+                obj.Numero = editNumero.Value;
+                //obj.Saldo = editSaldo.Value;
+                obj.TipoPagamento = editTipoPagamento.Value;
+                //obj.Totale = editTotale.Value;
+                obj.FornitoreId = (int)editFornitore.Id;
+                obj.Fornitore = (WcfService.Dto.FornitoreDto)editFornitore.Model;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editFornitore_ComboClick()
+        {
+            try
+            {
+                var view = new Fornitore.FornitoreView();
+                editFornitore.Show(view);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editFornitore_ComboConfirm(object model)
+        {
+            try
+            {
+                var fornitore = (WcfService.Dto.FornitoreDto)model;
+                if (fornitore != null)
+                    editFornitore.Value = fornitore.RagioneSociale;
             }
             catch (Exception ex)
             {

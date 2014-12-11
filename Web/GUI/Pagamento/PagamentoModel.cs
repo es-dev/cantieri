@@ -36,6 +36,18 @@ namespace Web.GUI.Pagamento
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.PagamentoDto)model;
+                    editData.Value = obj.Data;
+                    editEseguito.Value = obj.Eseguito;
+                    //editImporto.Value = obj.Importo;
+                    editModalita.Value = obj.Modalita;
+                    editScadenza.Value = obj.Scadenza;
+                    var fatturaAcquisto = obj.FatturaAcquisto;
+                    if (fatturaAcquisto != null)
+                    {
+                        editFatturaAcquisto.Model = fatturaAcquisto;
+                        editFatturaAcquisto.Value = fatturaAcquisto.Numero;
+                    }
+
                 }
             }
             catch (Exception ex)
@@ -49,6 +61,41 @@ namespace Web.GUI.Pagamento
             try
             {
                 var obj = (WcfService.Dto.PagamentoDto)model;
+                obj.Data = editData.Value;
+                //obj.Eseguito= editEseguito.Value;
+                //obj.Importo = editImporto.Value;
+                obj.Modalita = editModalita.Value;
+                obj.Scadenza = editScadenza.Value;
+                obj.FatturaAcquistoId = (int)editFatturaAcquisto.Id;
+                obj.FatturaAcquisto = (WcfService.Dto.FatturaAcquistoDto)editFatturaAcquisto.Model;
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editFatturaAcquisto_ComboClick()
+        {
+            try
+            {
+                var view = new FatturaAcquisto.FatturaAcquistoView();
+                editFatturaAcquisto.Show(view);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editFatturaAcquisto_ComboConfirm(object model)
+        {
+            try
+            {
+                var fatturaAcquisto = (WcfService.Dto.FatturaAcquistoDto)model;
+                if (fatturaAcquisto != null)
+                    editFatturaAcquisto.Value = fatturaAcquisto.Numero;
             }
             catch (Exception ex)
             {
