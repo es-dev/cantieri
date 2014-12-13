@@ -36,6 +36,17 @@ namespace Web.GUI.Liquidazione
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.LiquidazioneDto)model;
+                    editData.Value = obj.Data;
+                    editEseguito.Value = obj.Eseguito;
+                    //editImporto.Value = obj.Importo;
+                    editModalita.Value = obj.Modalita;
+                    editScadenza.Value = obj.Scadenza;
+                    var fatturaVendita = obj.FatturaVendita;
+                    if (fatturaVendita != null)
+                    {
+                        editFatturaVendita.Model = fatturaVendita;
+                        editFatturaVendita.Value = fatturaVendita.Numero;
+                    }
                 }
             }
             catch (Exception ex)
@@ -49,6 +60,41 @@ namespace Web.GUI.Liquidazione
             try
             {
                 var obj = (WcfService.Dto.LiquidazioneDto)model;
+                obj.Data = editData.Value;
+                //obj.Eseguito = editEseguito.Value;
+                //obj.Importo = editImporto.Value;
+                obj.Modalita = editModalita.Value;
+                obj.Scadenza = editScadenza.Value;
+                obj.FatturaVenditaId = (int)editFatturaVendita.Id;
+                obj.FatturaVendita = (WcfService.Dto.FatturaVenditaDto)editFatturaVendita.Model;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editFatturaVendita_ComboClick()
+        {
+            try
+            {
+                var view = new FatturaVendita.FatturaVenditaView();
+                editFatturaVendita.Show(view);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editFatturaVendita_ComboConfirm(object model)
+        {
+            try
+            {
+                var fatturaVendita = (WcfService.Dto.FatturaVenditaDto)model;
+                if (fatturaVendita != null)
+                    editFatturaVendita.Value = fatturaVendita.Numero;
             }
             catch (Exception ex)
             {

@@ -56,5 +56,29 @@ namespace Web.GUI.SAL
             }
         }
 
+        private void editCommessa_ComboClick()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editCommessa_ComboConfirm(object model)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
 	}
 }
