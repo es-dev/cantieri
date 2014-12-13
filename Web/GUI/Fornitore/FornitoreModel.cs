@@ -91,7 +91,6 @@ namespace Web.GUI.Fornitore
             {
                 var view = new Commessa.CommessaView();
                 editCommessa.Show(view);
-
             }
             catch (Exception ex)
             {
@@ -105,7 +104,6 @@ namespace Web.GUI.Fornitore
                 var commessa = (WcfService.Dto.CommessaDto)model;
                 if (commessa != null)
                     editCommessa.Value = commessa.Denominazione;
-
             }
             catch (Exception ex)
             {

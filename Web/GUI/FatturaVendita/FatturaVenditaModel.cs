@@ -36,6 +36,20 @@ namespace Web.GUI.FatturaVendita
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.FatturaVenditaDto)model;
+                    editData.Value = obj.Data;
+                    editDescrizione.Value = obj.Descrizione;
+                    //editImponibile.Value = obj.Imponibile; // todo: da modificare con controlli nuovi
+                    //editIVA.Value = obj.IVA;               // todo: da modificare con controlli nuovi
+                    editNumero.Value = obj.Numero;
+                    //editSaldo.Value = obj.Saldo;  // todo: da modificare con controlli nuovi
+                    editTipoPagamento.Value = obj.TipoPagamento;
+                    //editTotale.Value = obj.Totale;  // todo: da modificare con controlli nuovi
+                    var cliente = obj.Cliente;
+                    if (cliente != null)
+                    {
+                        editCliente.Model = cliente;
+                        editCliente.Value = cliente.RagioneSociale;
+                    }
                 }
             }
             catch (Exception ex)
@@ -49,6 +63,44 @@ namespace Web.GUI.FatturaVendita
             try
             {
                 var obj = (WcfService.Dto.FatturaVenditaDto)model;
+                obj.Data = editData.Value;
+                obj.Descrizione = editDescrizione.Value;
+                //obj.Imponibile = editImponibile.Value;
+                //obj.IVA = editIVA.Value;
+                obj.Numero = editNumero.Value;
+                //obj.Saldo = editSaldo.Value;
+                obj.TipoPagamento = editTipoPagamento.Value;
+                //obj.Totale = editTotale.Value;
+                obj.ClienteId = (int)editCliente.Id;
+                obj.Cliente = (WcfService.Dto.ClienteDto)editCliente.Model;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editCliente_ComboClick()
+        {
+            try
+            {
+                var view = new Cliente.ClienteView();
+                editCliente.Show(view);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editCliente_ComboConfirm(object model)
+        {
+            try
+            {
+                var cliente = (WcfService.Dto.ClienteDto)model;
+                if (cliente != null)
+                    editCliente.Value = cliente.RagioneSociale;
             }
             catch (Exception ex)
             {

@@ -50,7 +50,6 @@ namespace Web.GUI.FatturaAcquisto
                         editFornitore.Model = fornitore;
                         editFornitore.Value = fornitore.RagioneSociale;
                     }
-
                 }
             }
             catch (Exception ex)
