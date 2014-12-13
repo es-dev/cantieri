@@ -38,12 +38,12 @@ namespace Web.GUI.FatturaAcquisto
                     var obj = (WcfService.Dto.FatturaAcquistoDto)model;
                     editData.Value = obj.Data;
                     editDescrizione.Value = obj.Descrizione;
-                    //editImponibile.Value = obj.Imponibile; // todo: da modificare con controlli nuovi
-                    //editIVA.Value = obj.IVA;               // todo: da modificare con controlli nuovi
+                    editImponibile.Value = obj.Imponibile; 
+                    editIVA.Value = obj.IVA;               
                     editNumero.Value = obj.Numero;
-                    //editSaldo.Value = obj.Saldo;  // todo: da modificare con controlli nuovi
+                    editSaldo.Value = obj.Saldo; 
                     editTipoPagamento.Value = obj.TipoPagamento;
-                    //editTotale.Value = obj.Totale;  // todo: da modificare con controlli nuovi
+                    editTotale.Value = obj.Totale; 
                     var fornitore = obj.Fornitore;
                     if (fornitore != null)
                     {
@@ -65,12 +65,12 @@ namespace Web.GUI.FatturaAcquisto
                 var obj = (WcfService.Dto.FatturaAcquistoDto)model;
                 obj.Data = editData.Value;
                 obj.Descrizione = editDescrizione.Value;
-                //obj.Imponibile = editImponibile.Value;
-                //obj.IVA = editIVA.Value;
+                obj.Imponibile = editImponibile.Value;
+                obj.IVA = editIVA.Value;
                 obj.Numero = editNumero.Value;
-                //obj.Saldo = editSaldo.Value;
+                obj.Saldo = editSaldo.Value;
                 obj.TipoPagamento = editTipoPagamento.Value;
-                //obj.Totale = editTotale.Value;
+                obj.Totale = editTotale.Value;
                 obj.FornitoreId = (int)editFornitore.Id;
                 obj.Fornitore = (WcfService.Dto.FornitoreDto)editFornitore.Model;
             }

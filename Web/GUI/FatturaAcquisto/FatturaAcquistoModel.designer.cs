@@ -36,10 +36,10 @@ namespace Web.GUI.FatturaAcquisto
             this.editNumero = new Library.Template.Controls.TemplateEditText();
             this.editTipoPagamento = new Library.Template.Controls.TemplateEditText();
             this.editDescrizione = new Library.Template.Controls.TemplateEditText();
-            this.editImponibile = new Library.Template.Controls.TemplateEditText();
-            this.editIVA = new Library.Template.Controls.TemplateEditText();
-            this.editTotale = new Library.Template.Controls.TemplateEditText();
-            this.editSaldo = new Library.Template.Controls.TemplateEditText();
+            this.editImponibile = new Library.Template.Controls.TemplateEditDecimal();
+            this.editIVA = new Library.Template.Controls.TemplateEditDecimal();
+            this.editTotale = new Library.Template.Controls.TemplateEditDecimal();
+            this.editSaldo = new Library.Template.Controls.TemplateEditDecimal();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.SuspendLayout();
@@ -83,6 +83,8 @@ namespace Web.GUI.FatturaAcquisto
             // 
             // editFornitore
             // 
+            this.editFornitore.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.editFornitore.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.editFornitore.BackColor = System.Drawing.Color.Transparent;
             this.editFornitore.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
@@ -106,6 +108,8 @@ namespace Web.GUI.FatturaAcquisto
             // 
             // editData
             // 
+            this.editData.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.editData.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.editData.BackColor = System.Drawing.Color.Transparent;
             this.editData.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
@@ -115,7 +119,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editData.Editing = false;
             this.editData.Label = "Data";
             this.editData.LabelWidth = 175;
-            this.editData.Location = new System.Drawing.Point(25, 126);
+            this.editData.Location = new System.Drawing.Point(25, 119);
             this.editData.Name = "editData";
             this.editData.ReadOnly = false;
             this.editData.Required = false;
@@ -126,6 +130,8 @@ namespace Web.GUI.FatturaAcquisto
             // 
             // editNumero
             // 
+            this.editNumero.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.editNumero.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.editNumero.BackColor = System.Drawing.Color.Transparent;
             this.editNumero.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
@@ -135,7 +141,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editNumero.Editing = false;
             this.editNumero.Label = "Numero";
             this.editNumero.LabelWidth = 175;
-            this.editNumero.Location = new System.Drawing.Point(25, 177);
+            this.editNumero.Location = new System.Drawing.Point(25, 163);
             this.editNumero.Name = "editNumero";
             this.editNumero.ReadOnly = false;
             this.editNumero.Required = false;
@@ -146,6 +152,8 @@ namespace Web.GUI.FatturaAcquisto
             // 
             // editTipoPagamento
             // 
+            this.editTipoPagamento.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.editTipoPagamento.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.editTipoPagamento.BackColor = System.Drawing.Color.Transparent;
             this.editTipoPagamento.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
@@ -155,7 +163,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editTipoPagamento.Editing = false;
             this.editTipoPagamento.Label = "Tipo pagamento";
             this.editTipoPagamento.LabelWidth = 175;
-            this.editTipoPagamento.Location = new System.Drawing.Point(25, 228);
+            this.editTipoPagamento.Location = new System.Drawing.Point(25, 207);
             this.editTipoPagamento.Name = "editTipoPagamento";
             this.editTipoPagamento.ReadOnly = false;
             this.editTipoPagamento.Required = false;
@@ -166,6 +174,8 @@ namespace Web.GUI.FatturaAcquisto
             // 
             // editDescrizione
             // 
+            this.editDescrizione.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.editDescrizione.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.editDescrizione.BackColor = System.Drawing.Color.Transparent;
             this.editDescrizione.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
@@ -175,7 +185,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editDescrizione.Editing = false;
             this.editDescrizione.Label = "Descrizione";
             this.editDescrizione.LabelWidth = 175;
-            this.editDescrizione.Location = new System.Drawing.Point(25, 279);
+            this.editDescrizione.Location = new System.Drawing.Point(25, 251);
             this.editDescrizione.Name = "editDescrizione";
             this.editDescrizione.ReadOnly = false;
             this.editDescrizione.Required = false;
@@ -186,6 +196,8 @@ namespace Web.GUI.FatturaAcquisto
             // 
             // editImponibile
             // 
+            this.editImponibile.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.editImponibile.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.editImponibile.BackColor = System.Drawing.Color.Transparent;
             this.editImponibile.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
@@ -195,17 +207,19 @@ namespace Web.GUI.FatturaAcquisto
             this.editImponibile.Editing = false;
             this.editImponibile.Label = "Imponibile";
             this.editImponibile.LabelWidth = 175;
-            this.editImponibile.Location = new System.Drawing.Point(25, 330);
+            this.editImponibile.Location = new System.Drawing.Point(25, 295);
             this.editImponibile.Name = "editImponibile";
             this.editImponibile.ReadOnly = false;
             this.editImponibile.Required = false;
             this.editImponibile.Size = new System.Drawing.Size(800, 30);
             this.editImponibile.TabIndex = 7;
-            this.editImponibile.Text = "EditControl";
+            this.editImponibile.Text = "TemplateEditNumeric";
             this.editImponibile.Value = null;
             // 
             // editIVA
             // 
+            this.editIVA.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.editIVA.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.editIVA.BackColor = System.Drawing.Color.Transparent;
             this.editIVA.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
@@ -215,17 +229,19 @@ namespace Web.GUI.FatturaAcquisto
             this.editIVA.Editing = false;
             this.editIVA.Label = "IVA";
             this.editIVA.LabelWidth = 175;
-            this.editIVA.Location = new System.Drawing.Point(25, 381);
+            this.editIVA.Location = new System.Drawing.Point(25, 339);
             this.editIVA.Name = "editIVA";
             this.editIVA.ReadOnly = false;
             this.editIVA.Required = false;
             this.editIVA.Size = new System.Drawing.Size(800, 30);
             this.editIVA.TabIndex = 8;
-            this.editIVA.Text = "EditControl";
+            this.editIVA.Text = "TemplateEditNumeric";
             this.editIVA.Value = null;
             // 
             // editTotale
             // 
+            this.editTotale.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.editTotale.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.editTotale.BackColor = System.Drawing.Color.Transparent;
             this.editTotale.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
@@ -235,17 +251,19 @@ namespace Web.GUI.FatturaAcquisto
             this.editTotale.Editing = false;
             this.editTotale.Label = "Totale";
             this.editTotale.LabelWidth = 175;
-            this.editTotale.Location = new System.Drawing.Point(25, 432);
+            this.editTotale.Location = new System.Drawing.Point(25, 383);
             this.editTotale.Name = "editTotale";
             this.editTotale.ReadOnly = false;
             this.editTotale.Required = false;
             this.editTotale.Size = new System.Drawing.Size(800, 30);
             this.editTotale.TabIndex = 9;
-            this.editTotale.Text = "EditControl";
+            this.editTotale.Text = "TemplateEditNumeric";
             this.editTotale.Value = null;
             // 
             // editSaldo
             // 
+            this.editSaldo.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.editSaldo.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.editSaldo.BackColor = System.Drawing.Color.Transparent;
             this.editSaldo.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
@@ -255,13 +273,13 @@ namespace Web.GUI.FatturaAcquisto
             this.editSaldo.Editing = false;
             this.editSaldo.Label = "Saldo";
             this.editSaldo.LabelWidth = 175;
-            this.editSaldo.Location = new System.Drawing.Point(25, 483);
+            this.editSaldo.Location = new System.Drawing.Point(25, 427);
             this.editSaldo.Name = "editSaldo";
             this.editSaldo.ReadOnly = false;
             this.editSaldo.Required = false;
             this.editSaldo.Size = new System.Drawing.Size(800, 30);
             this.editSaldo.TabIndex = 10;
-            this.editSaldo.Text = "EditControl";
+            this.editSaldo.Text = "TemplateEditNumeric";
             this.editSaldo.Value = null;
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
@@ -273,15 +291,15 @@ namespace Web.GUI.FatturaAcquisto
 		#endregion
 
         private Gizmox.WebGUI.Forms.Client.ClientStorage clientStorage1;
-        private Library.Template.Controls.TemplateEditText editSaldo;
-        private Library.Template.Controls.TemplateEditText editTotale;
-        private Library.Template.Controls.TemplateEditText editIVA;
-        private Library.Template.Controls.TemplateEditText editImponibile;
         private Library.Template.Controls.TemplateEditText editDescrizione;
         private Library.Template.Controls.TemplateEditText editTipoPagamento;
         private Library.Template.Controls.TemplateEditText editNumero;
         private Library.Template.Controls.TemplateEditData editData;
         private Library.Template.Controls.TemplateEditCombo editFornitore;
+        private Library.Template.Controls.TemplateEditDecimal editSaldo;
+        private Library.Template.Controls.TemplateEditDecimal editTotale;
+        private Library.Template.Controls.TemplateEditDecimal editIVA;
+        private Library.Template.Controls.TemplateEditDecimal editImponibile;
 
 
     }

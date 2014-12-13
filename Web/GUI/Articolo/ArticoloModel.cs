@@ -36,20 +36,19 @@ namespace Web.GUI.Articolo
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.ArticoloDto)model;
-                    //editCosto.Value = obj.Costo;
+                    editCosto.Value = obj.Costo;
                     editDescrizione.Value = obj.Descrizione;
-                    //editImporto.Value = obj.Importo;
-                    //editIVA.Value = obj.IVA;
+                    editImporto.Value = obj.Importo;
+                    editIVA.Value = obj.IVA;
                     editQuantita.Value = obj.Quantita;
-                    //editSconto.Value = obj.Sconto;
-                    //editTotale.Value = obj.Totale;
+                    editSconto.Value = obj.Sconto;
+                    editTotale.Value = obj.Totale;
                     var fatturaAcquisto = obj.Fattura;
                     if (fatturaAcquisto != null)
                     {
                         editFatturaAcquisto.Model = fatturaAcquisto;
                         editFatturaAcquisto.Value = fatturaAcquisto.Numero;
                     }
-
                 }
             }
             catch (Exception ex)
@@ -64,13 +63,13 @@ namespace Web.GUI.Articolo
             {
                 var obj = (WcfService.Dto.ArticoloDto)model;
                 obj.Codice = editCodice.Value;
-                //obj.Costo = editCosto.Value;
+                obj.Costo = editCosto.Value;
                 obj.Descrizione = editDescrizione.Value;
-                //obj.Importo = editImporto.Value;
-                //obj.IVA = editIVA.Value;
+                obj.Importo = editImporto.Value;
+                obj.IVA = editIVA.Value;
                 obj.Quantita = editQuantita.Value;
-                //obj.Sconto = editSconto.Value;
-                //obj.Totale = editTotale.Value;
+                obj.Sconto = editSconto.Value;
+                obj.Totale = editTotale.Value;
                 obj.FatturaId = (int)editFatturaAcquisto.Id;
                 obj.Fattura = (WcfService.Dto.FatturaAcquistoDto)editFatturaAcquisto.Model;
             }

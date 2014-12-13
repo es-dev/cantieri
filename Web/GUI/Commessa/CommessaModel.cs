@@ -47,8 +47,8 @@ namespace Web.GUI.Commessa
                     editRiferimento.Value = obj.Riferimento;
                     editScadenza.Value = obj.Scadenza;
                     editStato.Value = obj.Stato;
-                    editImporto.Value = obj.Importo.ToString();   // todo: da modificare con controlli nuovi
-                    editMargine.Value = obj.Margine.ToString();   // todo: da modificare con controlli nuovi
+                    editImporto.Value = obj.Importo;
+                    editMargine.Value = obj.Margine;
                     var azienda = obj.Azienda;
                     if (azienda != null)
                     {
@@ -79,8 +79,8 @@ namespace Web.GUI.Commessa
                 obj.Riferimento = editRiferimento.Value;
                 obj.Scadenza = editScadenza.Value;
                 obj.Stato = editStato.Value;
-                //obj.Importo = editImporto.Value;     // todo: da modificare con controlli nuovi
-                //obj.Margine = editMargine.Value;    // todo: da modificare con controlli nuovi
+                obj.Importo = editImporto.Value;    
+                obj.Margine = editMargine.Value;    
                 obj.AziendaId = (int)editAzienda.Id;
                 obj.Azienda = (WcfService.Dto.AziendaDto)editAzienda.Model;
             }
