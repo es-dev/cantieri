@@ -37,7 +37,7 @@ namespace Web.GUI.Articolo
                 {
                     var obj = (WcfService.Dto.ArticoloDto)model;
                     editCosto.Value = obj.Costo;
-                    editCodice.Value = obj.Codice;
+                    editCodiceArticolo.Value = obj.Codice;
                     editDescrizione.Value = obj.Descrizione;
                     editImporto.Value = obj.Importo;
                     editIVA.Value = obj.IVA;
@@ -64,7 +64,7 @@ namespace Web.GUI.Articolo
             {
                 var obj = (WcfService.Dto.ArticoloDto)model;
                 obj.Costo = editCosto.Value;
-                obj.Codice = editCodice.Value;
+                obj.Codice = editCodiceArticolo.Value;
                 obj.Descrizione = editDescrizione.Value;
                 obj.Importo = editImporto.Value;
                 obj.IVA = editIVA.Value;
@@ -100,6 +100,37 @@ namespace Web.GUI.Articolo
                 var fatturaAcquisto = (WcfService.Dto.FatturaAcquistoDto)model;
                 if (fatturaAcquisto != null)
                     editFatturaAcquisto.Value = fatturaAcquisto.Numero;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editCodice_ComboClick()
+        {
+            try
+            {
+                var view = new AnagraficaArticolo.AnagraficaArticoloView();
+                editCodiceArticolo.Show(view);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editCodice_ComboConfirm(object model)
+        {
+            try
+            {
+                var anagraficaArticolo = (WcfService.Dto.AnagraficaArticoloDto)model;
+                if (anagraficaArticolo != null)
+                {
+                    editCodiceArticolo.Value = anagraficaArticolo.Codice;
+                    editDescrizione.Value = anagraficaArticolo.Descrizione;
+                }
             }
             catch (Exception ex)
             {
