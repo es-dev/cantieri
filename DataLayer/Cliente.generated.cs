@@ -167,6 +167,19 @@ namespace DataLayer
 			}
 		}
 		
+		private string _codiceCliente;
+		public virtual string CodiceCliente
+		{
+			get
+			{
+				return this._codiceCliente;
+			}
+			set
+			{
+				this._codiceCliente = value;
+			}
+		}
+		
 		private Commessa _commessa;
 		public virtual Commessa Commessa
 		{

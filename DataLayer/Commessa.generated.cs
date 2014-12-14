@@ -250,19 +250,6 @@ namespace DataLayer
 			}
 		}
 		
-		private Cliente _cliente;
-		public virtual Cliente Cliente
-		{
-			get
-			{
-				return this._cliente;
-			}
-			set
-			{
-				this._cliente = value;
-			}
-		}
-		
 	}
 }
 #pragma warning restore 1591

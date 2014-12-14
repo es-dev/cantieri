@@ -26,6 +26,7 @@ namespace Web.GUI.Commessa
                 {
                     var obj = (WcfService.Dto.CommessaDto)model;
                     infoDenominazione.Text = obj.Denominazione;
+                    infoDescrizione.Text = obj.Descrizione;
                     var azienda = obj.Azienda;
                     if (azienda != null)
                         infoAzienda.Text = azienda.Denominazione;

@@ -72,7 +72,7 @@ namespace Web.GUI.Commessa
                 obj.CAP = editCAP.Value;
                 obj.Comune = editComune.Value;
                 obj.Indirizzo = editIndirizzo.Value;
-                obj.Provincia = editIndirizzo.Value;
+                obj.Provincia = editProvincia.Value;
                 obj.Creazione = editCreazione.Value;
                 obj.Descrizione = editDescrizione.Value;
                 obj.Numero = editNumero.Value;

@@ -52,6 +52,7 @@ namespace Web.GUI.Cliente
                         editCommessa.Model = commessa;
                         editCommessa.Value = commessa.Denominazione;
                     }
+                    editCodiceCliente.Value = obj.CodiceCliente;
 
                 }
             }
@@ -70,12 +71,13 @@ namespace Web.GUI.Cliente
                 obj.Indirizzo = editIndirizzo.Value;
                 obj.CAP = editCAP.Value;
                 obj.Comune = editComune.Value;
-                obj.Provincia = editIndirizzo.Value;
+                obj.Provincia = editProvincia.Value;
                 obj.Telefono = editTelefono.Value;
                 obj.Fax = editFAX.Value;
                 obj.Mobile = editMobile.Value;
                 obj.Email = editEmail.Value;
                 obj.PIva = editPartitaIVA.Value;
+                obj.CodiceCliente = editCodiceCliente.Value;
                 obj.Id = (int)editCommessa.Id; //todo: da verificare
                 obj.Commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
             }
@@ -105,6 +107,46 @@ namespace Web.GUI.Cliente
                 var commessa = (WcfService.Dto.CommessaDto)model;
                 if (commessa != null)
                     editCommessa.Value = commessa.Denominazione;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editCodiceCliente_ComboClick()
+        {
+            try
+            {
+                var view = new AnagraficaCliente.AnagraficaClienteView();
+                editCodiceCliente.Show(view);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editCodiceCliente_ComboConfirm(object model)
+        {
+            try
+            {
+                var anagraficaCliente = (WcfService.Dto.AnagraficaClienteDto)model;
+                if (anagraficaCliente != null)
+                {
+                    editCodiceCliente.Value = anagraficaCliente.Codice;
+                    editCAP.Value = anagraficaCliente.CAP;
+                    editComune.Value = anagraficaCliente.Comune;
+                    editEmail.Value = anagraficaCliente.Email;
+                    editFAX.Value = anagraficaCliente.Fax;
+                    editIndirizzo.Value = anagraficaCliente.Indirizzo;
+                    editMobile.Value = anagraficaCliente.Mobile;
+                    editPartitaIVA.Value = anagraficaCliente.PIva;
+                    editProvincia.Value = anagraficaCliente.Provincia;
+                    editRagioneSociale.Value = anagraficaCliente.RagioneSociale;
+                    editTelefono.Value = anagraficaCliente.Telefono;
+                }
             }
             catch (Exception ex)
             {

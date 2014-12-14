@@ -115,7 +115,7 @@ namespace Web.GUI.Commessa
             this.editAzienda.ReadOnly = false;
             this.editAzienda.Required = false;
             this.editAzienda.Size = new System.Drawing.Size(745, 30);
-            this.editAzienda.TabIndex = 2;
+            this.editAzienda.TabIndex = 0;
             this.editAzienda.Text = "EditControl";
             this.editAzienda.Value = null;
             this.editAzienda.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editAzienda_ComboConfirm);
@@ -139,7 +139,7 @@ namespace Web.GUI.Commessa
             this.editNumero.ReadOnly = false;
             this.editNumero.Required = false;
             this.editNumero.Size = new System.Drawing.Size(745, 30);
-            this.editNumero.TabIndex = 3;
+            this.editNumero.TabIndex = 1;
             this.editNumero.Text = "EditControl";
             this.editNumero.Value = null;
             // 
@@ -161,7 +161,7 @@ namespace Web.GUI.Commessa
             this.editCreazione.ReadOnly = false;
             this.editCreazione.Required = false;
             this.editCreazione.Size = new System.Drawing.Size(745, 30);
-            this.editCreazione.TabIndex = 4;
+            this.editCreazione.TabIndex = 2;
             this.editCreazione.Text = "TemplateEditData";
             this.editCreazione.Value = null;
             // 
@@ -183,7 +183,7 @@ namespace Web.GUI.Commessa
             this.editScadenza.ReadOnly = false;
             this.editScadenza.Required = false;
             this.editScadenza.Size = new System.Drawing.Size(745, 30);
-            this.editScadenza.TabIndex = 5;
+            this.editScadenza.TabIndex = 3;
             this.editScadenza.Text = "TemplateEditData";
             this.editScadenza.Value = null;
             // 
@@ -205,7 +205,7 @@ namespace Web.GUI.Commessa
             this.editProvincia.ReadOnly = false;
             this.editProvincia.Required = false;
             this.editProvincia.Size = new System.Drawing.Size(745, 30);
-            this.editProvincia.TabIndex = 6;
+            this.editProvincia.TabIndex = 9;
             this.editProvincia.Text = "EditControl";
             this.editProvincia.Value = null;
             // 
@@ -227,7 +227,7 @@ namespace Web.GUI.Commessa
             this.editComune.ReadOnly = false;
             this.editComune.Required = false;
             this.editComune.Size = new System.Drawing.Size(745, 30);
-            this.editComune.TabIndex = 5;
+            this.editComune.TabIndex = 8;
             this.editComune.Text = "EditControl";
             this.editComune.Value = null;
             // 
@@ -249,7 +249,7 @@ namespace Web.GUI.Commessa
             this.editCAP.ReadOnly = false;
             this.editCAP.Required = false;
             this.editCAP.Size = new System.Drawing.Size(745, 30);
-            this.editCAP.TabIndex = 4;
+            this.editCAP.TabIndex = 7;
             this.editCAP.Text = "EditControl";
             this.editCAP.Value = null;
             // 
@@ -271,7 +271,7 @@ namespace Web.GUI.Commessa
             this.editIndirizzo.ReadOnly = false;
             this.editIndirizzo.Required = false;
             this.editIndirizzo.Size = new System.Drawing.Size(745, 30);
-            this.editIndirizzo.TabIndex = 3;
+            this.editIndirizzo.TabIndex = 6;
             this.editIndirizzo.Text = "EditControl";
             this.editIndirizzo.Value = null;
             // 
@@ -293,7 +293,7 @@ namespace Web.GUI.Commessa
             this.editDenominazione.ReadOnly = false;
             this.editDenominazione.Required = false;
             this.editDenominazione.Size = new System.Drawing.Size(745, 30);
-            this.editDenominazione.TabIndex = 2;
+            this.editDenominazione.TabIndex = 4;
             this.editDenominazione.Text = "EditControl";
             this.editDenominazione.Value = null;
             // 
@@ -315,7 +315,7 @@ namespace Web.GUI.Commessa
             this.editDescrizione.ReadOnly = false;
             this.editDescrizione.Required = false;
             this.editDescrizione.Size = new System.Drawing.Size(745, 30);
-            this.editDescrizione.TabIndex = 7;
+            this.editDescrizione.TabIndex = 5;
             this.editDescrizione.Text = "EditControl";
             this.editDescrizione.Value = null;
             // 
@@ -337,7 +337,7 @@ namespace Web.GUI.Commessa
             this.editRiferimento.ReadOnly = false;
             this.editRiferimento.Required = false;
             this.editRiferimento.Size = new System.Drawing.Size(745, 30);
-            this.editRiferimento.TabIndex = 8;
+            this.editRiferimento.TabIndex = 10;
             this.editRiferimento.Text = "EditControl";
             this.editRiferimento.Value = null;
             // 
@@ -359,7 +359,7 @@ namespace Web.GUI.Commessa
             this.editStato.ReadOnly = false;
             this.editStato.Required = false;
             this.editStato.Size = new System.Drawing.Size(745, 30);
-            this.editStato.TabIndex = 9;
+            this.editStato.TabIndex = 11;
             this.editStato.Text = "EditControl";
             this.editStato.Value = null;
             // 
@@ -381,7 +381,7 @@ namespace Web.GUI.Commessa
             this.editImporto.ReadOnly = false;
             this.editImporto.Required = false;
             this.editImporto.Size = new System.Drawing.Size(745, 30);
-            this.editImporto.TabIndex = 10;
+            this.editImporto.TabIndex = 12;
             this.editImporto.Text = "TemplateEditNumeric";
             this.editImporto.Value = null;
             // 
@@ -403,7 +403,7 @@ namespace Web.GUI.Commessa
             this.editMargine.ReadOnly = false;
             this.editMargine.Required = false;
             this.editMargine.Size = new System.Drawing.Size(745, 30);
-            this.editMargine.TabIndex = 11;
+            this.editMargine.TabIndex = 13;
             this.editMargine.Text = "TemplateEditNumeric";
             this.editMargine.Value = null;
             this.Controls.SetChildIndex(this.container, 0);

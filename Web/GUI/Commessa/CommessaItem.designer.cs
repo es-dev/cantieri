@@ -35,6 +35,7 @@ namespace Web.GUI.Commessa
             this.infoDenominazione = new Gizmox.WebGUI.Forms.Label();
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
             this.infoAzienda = new Gizmox.WebGUI.Forms.Label();
+            this.infoDescrizione = new Gizmox.WebGUI.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
             this.SuspendLayout();
@@ -90,7 +91,7 @@ namespace Web.GUI.Commessa
             this.infoAzienda.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.infoAzienda.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoAzienda.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoAzienda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.infoAzienda.Location = new System.Drawing.Point(205, 72);
             this.infoAzienda.Name = "infoAzienda";
@@ -98,9 +99,19 @@ namespace Web.GUI.Commessa
             this.infoAzienda.TabIndex = 1;
             this.infoAzienda.Text = "Azienda";
             // 
+            // infoDescrizione
+            // 
+            this.infoDescrizione.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoDescrizione.Location = new System.Drawing.Point(93, 36);
+            this.infoDescrizione.Name = "infoDescrizione";
+            this.infoDescrizione.Size = new System.Drawing.Size(314, 36);
+            this.infoDescrizione.TabIndex = 2;
+            this.infoDescrizione.Text = "Descrizione";
+            // 
             // CommessaItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Controls.Add(this.infoDescrizione);
             this.Controls.Add(this.infoAzienda);
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.infoDenominazione);
@@ -119,5 +130,6 @@ namespace Web.GUI.Commessa
         private Gizmox.WebGUI.Forms.Label infoDenominazione;
         private Gizmox.WebGUI.Forms.Panel panelLeft;
         private Gizmox.WebGUI.Forms.Label infoAzienda;
+        private Gizmox.WebGUI.Forms.Label infoDescrizione;
 	}
 }

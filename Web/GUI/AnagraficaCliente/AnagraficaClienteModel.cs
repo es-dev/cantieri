@@ -46,6 +46,7 @@ namespace Web.GUI.AnagraficaCliente
                     editMobile.Value = obj.Mobile;
                     editEmail.Value = obj.Email;
                     editPartitaIVA.Value = obj.PIva;
+                    editCodice.Value = obj.Codice;
                 }
             }
             catch (Exception ex)
@@ -63,12 +64,13 @@ namespace Web.GUI.AnagraficaCliente
                 obj.Indirizzo = editIndirizzo.Value;
                 obj.CAP = editCAP.Value;
                 obj.Comune = editComune.Value;
-                obj.Provincia = editIndirizzo.Value;
+                obj.Provincia = editProvincia.Value;
                 obj.Telefono = editTelefono.Value;
                 obj.Fax = editFAX.Value;
                 obj.Mobile = editMobile.Value;
                 obj.Email = editEmail.Value;
                 obj.PIva = editPartitaIVA.Value;
+                obj.Codice = editCodice.Value;
             }
             catch (Exception ex)
             {

@@ -53,6 +53,7 @@ namespace Web.GUI.Fornitore
                         editCommessa.Value = commessa.Denominazione;
                     }
                     editCentroCosto.Value = obj.CodiceCentroCosto;
+                    editCodiceFornitore.Value = obj.CodiceFornitore;
                 }
             }
             catch (Exception ex)
@@ -70,12 +71,13 @@ namespace Web.GUI.Fornitore
                 obj.Indirizzo = editIndirizzo.Value;
                 obj.CAP = editCAP.Value;
                 obj.Comune = editComune.Value;
-                obj.Provincia = editIndirizzo.Value;
+                obj.Provincia = editProvincia.Value;
                 obj.Telefono = editTelefono.Value;
                 obj.Fax = editFAX.Value;
                 obj.Mobile = editMobile.Value;
                 obj.Email = editEmail.Value;
                 obj.PIva = editPartitaIVA.Value;
+                obj.CodiceFornitore = editCodiceFornitore.Value;
                 obj.CodiceCentroCosto = editCentroCosto.Value;
                 obj.CommessaId = (int)editCommessa.Id;
                 obj.Commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
@@ -112,13 +114,26 @@ namespace Web.GUI.Fornitore
             }
         }
 
-        private void editCentroCosto_ComboConfirm(object model)
+        private void editCentroCosto_ComboClick()
         {
             try
             {
                 var view = new CentroCosto.CentroCostoView();
                 editCentroCosto.Show(view);
-
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }      
+        
+        private void editCentroCosto_ComboConfirm(object model)
+        {
+            try
+            {
+                var centroCosto = (WcfService.Dto.CentroCostoDto)model;
+                if (centroCosto != null)
+                    editCentroCosto.Value = centroCosto.Denominazione;
             }
             catch (Exception ex)
             {
@@ -126,13 +141,38 @@ namespace Web.GUI.Fornitore
             }
         }
 
-        private void editCentroCosto_ComboClick()
+        private void editCodiceFornitore_ComboClick()
         {
             try
             {
-                //var centroCosto = (WcfService.Dto.CentroCostoDto)model;
-                //if (centroCosto != null)
-                //    editCentroCosto.Value = centroCosto.Denominazione;
+                var view = new AnagraficaFornitore.AnagraficaFornitoreView();
+                editCodiceFornitore.Show(view);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editCodiceFornitore_ComboConfirm(object model)
+        {
+            try
+            {
+                var anagraficaFornitore = (WcfService.Dto.AnagraficaFornitoreDto)model;
+                if (anagraficaFornitore != null)
+                {
+                    editCodiceFornitore.Value = anagraficaFornitore.Codice;
+                    editCAP.Value = anagraficaFornitore.CAP;
+                    editComune.Value = anagraficaFornitore.Comune;
+                    editEmail.Value = anagraficaFornitore.Email;
+                    editFAX.Value = anagraficaFornitore.Fax;
+                    editIndirizzo.Value = anagraficaFornitore.Indirizzo;
+                    editMobile.Value = anagraficaFornitore.Mobile;
+                    editPartitaIVA.Value = anagraficaFornitore.PIva;
+                    editProvincia.Value = anagraficaFornitore.Provincia;
+                    editRagioneSociale.Value = anagraficaFornitore.RagioneSociale;
+                    editTelefono.Value = anagraficaFornitore.Telefono;
+                }
             }
             catch (Exception ex)
             {

@@ -25,7 +25,13 @@ namespace Web.GUI.FatturaVendita
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.FatturaVenditaDto)model;
-
+                    infoCodice.Text = "FV";
+                    infoNumero.Text = obj.Numero;
+                    infoData.Text = obj.Data.ToString();
+                    infoDescrizione.Text = obj.Descrizione;
+                    var cliente = obj.Cliente;
+                    if (cliente != null)
+                        infoCliente.Text = cliente.RagioneSociale;
                 }
             }
             catch (Exception ex)

@@ -25,7 +25,15 @@ namespace Web.GUI.Fornitore
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.FornitoreDto)model;
-
+                    infoRagioneSociale.Text = obj.RagioneSociale;
+                    infoPartitaIVA.Text = obj.PIva;
+                    infoCodice.Text = obj.CodiceFornitore;
+                    infoCentroCosto.Text = obj.CodiceCentroCosto;
+                    var commessa= obj.Commessa;
+                    if (commessa != null)
+                    {
+                        infoCommesssa.Text = commessa.Denominazione;
+                    }
                 }
             }
             catch (Exception ex)
