@@ -25,7 +25,13 @@ namespace Web.GUI.FatturaAcquisto
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.FatturaAcquistoDto)model;
-
+                    infoCodice.Text = "FA";
+                    infoNumero.Text = obj.Numero;
+                    infoData.Text = obj.Data.ToString();
+                    infoDescrizione.Text = obj.Descrizione;
+                    var fornitore = obj.Fornitore;
+                    if (fornitore != null)
+                        infoFornitore.Text = fornitore.RagioneSociale;
                 }
             }
             catch (Exception ex)
