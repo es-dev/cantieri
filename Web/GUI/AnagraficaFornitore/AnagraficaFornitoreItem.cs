@@ -25,7 +25,9 @@ namespace Web.GUI.AnagraficaFornitore
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AnagraficaFornitoreDto)model;
-
+                    infoRagioneSociale.Text = obj.RagioneSociale;
+                    infoCodice.Text = obj.Codice;
+                    infoPartitaIVA.Text = obj.PIva;
                 }
             }
             catch (Exception ex)

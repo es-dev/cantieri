@@ -70,7 +70,7 @@ namespace Web.GUI.Cliente
                 obj.Indirizzo = editIndirizzo.Value;
                 obj.CAP = editCAP.Value;
                 obj.Comune = editComune.Value;
-                obj.Provincia = editIndirizzo.Value;
+                obj.Provincia = editProvincia.Value;
                 obj.Telefono = editTelefono.Value;
                 obj.Fax = editFAX.Value;
                 obj.Mobile = editMobile.Value;

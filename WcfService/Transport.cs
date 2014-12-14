@@ -79,14 +79,13 @@ namespace WcfService.Dto
 	[KnownType(typeof(AziendaDto))]
 	[KnownType(typeof(FornitoreDto))]
 	[KnownType(typeof(SALDto))]
-	[KnownType(typeof(ClienteDto))]
 	public partial class CommessaDto : IDtoWithKey
 	{
 		public CommessaDto()
 		{
 		}
 		
-		public CommessaDto(int _id, int _aziendaId, string _numero, DateTime? _creazione, DateTime? _scadenza, string _descrizione, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _riferimento, decimal? _importo, decimal? _margine, string _stato, AziendaDto _azienda, IList<FornitoreDto> _fornitores, IList<SALDto> _sALs, ClienteDto _cliente)
+		public CommessaDto(int _id, int _aziendaId, string _numero, DateTime? _creazione, DateTime? _scadenza, string _descrizione, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _riferimento, decimal? _importo, decimal? _margine, string _stato, AziendaDto _azienda, IList<FornitoreDto> _fornitores, IList<SALDto> _sALs)
 		{
 			this.Id = _id;
 			this.AziendaId = _aziendaId;
@@ -106,7 +105,6 @@ namespace WcfService.Dto
 			this.Azienda = _azienda;
 			this.Fornitores = _fornitores;
 			this.SALs = _sALs;
-			this.Cliente = _cliente;
 		}
 		
 		[DataMember]
@@ -166,9 +164,6 @@ namespace WcfService.Dto
 		[DataMember]
 		public virtual IList<SALDto> SALs { get;set; }
 
-		[DataMember]
-		public virtual ClienteDto Cliente { get;set; }
-
 	}
 	
 	[DataContract(IsReference = true)]
@@ -180,7 +175,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public FornitoreDto(int _id, int _commessaId, string _codiceCentroCosto, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, CommessaDto _commessa, IList<FatturaAcquistoDto> _fatturas)
+		public FornitoreDto(int _id, int _commessaId, string _codiceCentroCosto, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, string _codiceFornitore, CommessaDto _commessa, IList<FatturaAcquistoDto> _fatturas)
 		{
 			this.Id = _id;
 			this.CommessaId = _commessaId;
@@ -195,6 +190,7 @@ namespace WcfService.Dto
 			this.Fax = _fax;
 			this.Email = _email;
 			this.PIva = _pIva;
+			this.CodiceFornitore = _codiceFornitore;
 			this.Commessa = _commessa;
 			this.Fatturas = _fatturas;
 		}
@@ -242,6 +238,9 @@ namespace WcfService.Dto
 		public virtual string PIva { get;set; }
 
 		[DataMember]
+		public virtual string CodiceFornitore { get;set; }
+
+		[DataMember]
 		public virtual CommessaDto Commessa { get;set; }
 
 		[DataMember]
@@ -258,7 +257,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public ClienteDto(int _id, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, CommessaDto _commessa, IList<FatturaVenditaDto> _fatturaVenditas)
+		public ClienteDto(int _id, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, string _codiceCliente, CommessaDto _commessa, IList<FatturaVenditaDto> _fatturaVenditas)
 		{
 			this.Id = _id;
 			this.RagioneSociale = _ragioneSociale;
@@ -271,6 +270,7 @@ namespace WcfService.Dto
 			this.Fax = _fax;
 			this.Email = _email;
 			this.PIva = _pIva;
+			this.CodiceCliente = _codiceCliente;
 			this.Commessa = _commessa;
 			this.FatturaVenditas = _fatturaVenditas;
 		}
@@ -310,6 +310,9 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual string PIva { get;set; }
+
+		[DataMember]
+		public virtual string CodiceCliente { get;set; }
 
 		[DataMember]
 		public virtual CommessaDto Commessa { get;set; }
@@ -650,7 +653,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public AnagraficaFornitoreDto(int _id, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva)
+		public AnagraficaFornitoreDto(int _id, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, string _codice)
 		{
 			this.Id = _id;
 			this.RagioneSociale = _ragioneSociale;
@@ -663,6 +666,7 @@ namespace WcfService.Dto
 			this.Fax = _fax;
 			this.Email = _email;
 			this.PIva = _pIva;
+			this.Codice = _codice;
 		}
 		
 		[DataMember]
@@ -700,6 +704,9 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual string PIva { get;set; }
+
+		[DataMember]
+		public virtual string Codice { get;set; }
 
 	}
 	
@@ -710,7 +717,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public AnagraficaClienteDto(int _id, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva)
+		public AnagraficaClienteDto(int _id, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, string _codice)
 		{
 			this.Id = _id;
 			this.RagioneSociale = _ragioneSociale;
@@ -723,6 +730,7 @@ namespace WcfService.Dto
 			this.Fax = _fax;
 			this.Email = _email;
 			this.PIva = _pIva;
+			this.Codice = _codice;
 		}
 		
 		[DataMember]
@@ -760,6 +768,9 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual string PIva { get;set; }
+
+		[DataMember]
+		public virtual string Codice { get;set; }
 
 	}
 	

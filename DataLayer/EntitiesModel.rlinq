@@ -102,9 +102,6 @@
         <orm:field name="_sALs" property="SALs" behavior="readwrite" uniqueId="0dbed7e3-e3c6-46cc-a388-6ceb266c16ee" type="DataLayer.SAL">
           <orm:collection element-class="DataLayer.SAL" inverse-field="_commessa" order-by="" uniqueId="5e538b05-7df0-4fbd-9e24-1297d12e5678" />
         </orm:field>
-        <orm:field name="_cliente" property="Cliente" behavior="readwrite" uniqueId="ed833669-0921-4344-895a-27a4883be7e0" type="DataLayer.Cliente">
-          <orm:inversereference inverse-field="_commessa" uniqueId="2e7765b0-82e3-4978-a0c4-56bb3098179a" />
-        </orm:field>
         <orm:index name="idx_Commessa_AziendaId">
           <orm:columnMapping>
             <orm:column name="AziendaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -141,7 +138,7 @@
           <orm:column name="Comune" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_provincia" property="Provincia" uniqueId="7277bc91-c655-4de3-8a41-9b6850ef1a49" type="System.String">
-          <orm:column name="Provincia" sql-type="varchar" nullable="true" length="2" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+          <orm:column name="Provincia" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_telefono" property="Telefono" uniqueId="d38769a7-bc95-42a1-bbaf-970cd62b90f8" type="System.String">
           <orm:column name="Telefono" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
@@ -153,10 +150,13 @@
           <orm:column name="Fax" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_email" property="Email" uniqueId="a93efbac-026b-4529-ac1a-6f973b758be0" type="System.String">
-          <orm:column name="Email" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+          <orm:column name="Email" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_pIva" property="PIva" uniqueId="d1bb9712-68b2-4620-aa34-ed500baa263c" type="System.String">
-          <orm:column name="PIva" sql-type="varchar" nullable="true" length="11" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+          <orm:column name="PIva" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_codiceFornitore" property="CodiceFornitore" uniqueId="5534e8fc-5f84-4390-9eee-749b30ab8a0d" type="System.String">
+          <orm:column name="CodiceFornitore" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_commessa" property="Commessa" behavior="readwrite" uniqueId="791cabb3-ef72-40a8-b4a7-3ca133c6521c" type="DataLayer.Commessa">
           <orm:reference uniqueId="032d408c-e267-47d7-bbd9-3cb51d71d72d" association-name="FornitoreHasCommessa">
@@ -209,6 +209,9 @@
         </orm:field>
         <orm:field name="_pIva" property="PIva" uniqueId="5bafbccf-c05f-4922-9f1e-d1ac6527766f" type="System.String">
           <orm:column name="PIva" sql-type="varchar" nullable="true" length="11" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_codiceCliente" property="CodiceCliente" uniqueId="1d5cde1d-271e-4ddb-8eac-172d1b35bb71" type="System.String">
+          <orm:column name="CodiceCliente" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_commessa" property="Commessa" behavior="readwrite" uniqueId="d2449fe8-a609-403e-8779-406be42f82eb" type="DataLayer.Commessa">
           <orm:reference uniqueId="2e7765b0-82e3-4978-a0c4-56bb3098179a" association-name="ClienteHasCommessa">
@@ -514,6 +517,9 @@
         <orm:field name="_pIva" property="PIva" uniqueId="586230d3-0691-4dd2-8b3b-2808006a7580" type="System.String">
           <orm:column name="PIva" sql-type="varchar" nullable="true" length="11" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
+        <orm:field name="_codice" property="Codice" uniqueId="a361b66b-2d6f-4c95-96e2-dd093275942a" type="System.String">
+          <orm:column name="Codice" sql-type="varchar" nullable="true" length="255" scale="0" ado-type="" />
+        </orm:field>
       </orm:class>
       <orm:class name="AnagraficaCliente" uniqueId="ecae24a4-5714-4038-a49d-a3603e1e9a84">
         <orm:table name="AnagraficaCliente" />
@@ -555,6 +561,9 @@
         </orm:field>
         <orm:field name="_pIva" property="PIva" uniqueId="eb8e8b82-725d-4c8e-8ddc-213a342e2e59" type="System.String">
           <orm:column name="PIva" sql-type="varchar" nullable="true" length="11" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_codice" property="Codice" uniqueId="11862c95-d2f1-4cf4-905f-b84ece07e150" type="System.String">
+          <orm:column name="Codice" sql-type="varchar" nullable="true" length="255" scale="0" ado-type="" />
         </orm:field>
       </orm:class>
       <orm:class name="SAL" uniqueId="3526a02f-30f3-45ef-bc27-6002b0758f75">
@@ -654,26 +663,6 @@
         <orm:column name="Codice" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="Denominazione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
       </orm:table>
-      <orm:table name="Fornitore">
-        <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
-        <orm:column name="CodiceCentroCosto" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
-        <orm:column name="RagioneSociale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        <orm:column name="Indirizzo" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        <orm:column name="CAP" sql-type="varchar" nullable="true" length="5" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
-        <orm:column name="Comune" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        <orm:column name="Provincia" sql-type="varchar" nullable="true" length="2" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
-        <orm:column name="Telefono" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
-        <orm:column name="Mobile" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
-        <orm:column name="Fax" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
-        <orm:column name="Email" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        <orm:column name="PIva" sql-type="varchar" nullable="true" length="11" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
-        <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
-        <orm:index name="idx_Fornitore_CommessaId">
-          <orm:columnMapping>
-            <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
-          </orm:columnMapping>
-        </orm:index>
-      </orm:table>
       <orm:table name="FatturaAcquisto">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
         <orm:column name="data" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
@@ -734,6 +723,7 @@
         <orm:column name="Fax" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="Email" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="PIva" sql-type="varchar" nullable="true" length="11" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        <orm:column name="CodiceCliente" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
       </orm:table>
       <orm:table name="FatturaVendita">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
@@ -792,6 +782,7 @@
         <orm:column name="Fax" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="Email" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="PIva" sql-type="varchar" nullable="true" length="11" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        <orm:column name="Codice" sql-type="varchar" nullable="true" length="255" scale="0" ado-type="" />
       </orm:table>
       <orm:table name="AnagraficaCliente">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
@@ -805,11 +796,33 @@
         <orm:column name="Fax" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="Email" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="PIva" sql-type="varchar" nullable="true" length="11" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        <orm:column name="Codice" sql-type="varchar" nullable="true" length="255" scale="0" ado-type="" />
       </orm:table>
       <orm:table name="AnagraficaArticolo">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
         <orm:column name="Codice" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+      </orm:table>
+      <orm:table name="Fornitore">
+        <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="CodiceCentroCosto" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        <orm:column name="RagioneSociale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="Indirizzo" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="CAP" sql-type="varchar" nullable="true" length="5" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        <orm:column name="Comune" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="Provincia" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        <orm:column name="Telefono" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        <orm:column name="Mobile" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        <orm:column name="Fax" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        <orm:column name="Email" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        <orm:column name="PIva" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        <orm:column name="CodiceFornitore" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:index name="idx_Fornitore_CommessaId">
+          <orm:columnMapping>
+            <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
       </orm:table>
     </orm:schema>
     <orm:relational-naming-settings>
@@ -907,9 +920,6 @@
         <classHasNavigationalProperties Id="3db11e62-bb29-4bbe-9127-deb67f5d4a5c">
           <NavigationalProperty Id="09d3884d-bbaf-4527-b26c-4fcd2168a2cf" name="Fornitores" type="IList&lt;Fornitore&gt;" label="Fornitores : IList&lt;Fornitore&gt;" nullable="true" kind="Persistent" fieldName="_fornitores" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
-        <classHasNavigationalProperties Id="a7cbe4ba-6dac-4c5b-be93-47b7ae5b7461">
-          <NavigationalProperty Id="ed833669-0921-4344-895a-27a4883be7e0" name="Cliente" type="Cliente" label="Cliente : Cliente" nullable="true" kind="Persistent" fieldName="_cliente" isDependent="false" isManaged="true" />
-        </classHasNavigationalProperties>
         <classHasNavigationalProperties Id="b9630218-4869-4e18-8d23-4771cafd5800">
           <NavigationalProperty Id="0dbed7e3-e3c6-46cc-a388-6ceb266c16ee" name="SALs" type="IList&lt;SAL&gt;" label="SALs : IList&lt;SAL&gt;" nullable="true" kind="Persistent" fieldName="_sALs" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
@@ -929,6 +939,7 @@
       <Property Id="cd718fa4-2b28-47c0-bf63-f2f68c60b763" name="Fax" label="Fax : String" fieldName="_fax" />
       <Property Id="a93efbac-026b-4529-ac1a-6f973b758be0" name="Email" label="Email : String" fieldName="_email" />
       <Property Id="d1bb9712-68b2-4620-aa34-ed500baa263c" name="PIva" label="PIva : String" fieldName="_pIva" />
+      <Property Id="5534e8fc-5f84-4390-9eee-749b30ab8a0d" name="CodiceFornitore" label="CodiceFornitore : String" fieldName="_codiceFornitore" />
       <AssociationTargets>
         <Association Id="032d408c-e267-47d7-bbd9-3cb51d71d72d" SourceMultiplicity="ZeroOne" name="FornitoreHasCommessa">
           <DomainClassMoniker name="/EntitiesModel/Commessa" />
@@ -965,14 +976,10 @@
       <Property Id="4561dc69-e69e-4187-a1b3-2d68dff69f94" name="Fax" label="Fax : String" fieldName="_fax" />
       <Property Id="7e366140-c536-477b-b997-e728ae697bbe" name="Email" label="Email : String" fieldName="_email" />
       <Property Id="5bafbccf-c05f-4922-9f1e-d1ac6527766f" name="PIva" label="PIva : String" fieldName="_pIva" />
+      <Property Id="1d5cde1d-271e-4ddb-8eac-172d1b35bb71" name="CodiceCliente" label="CodiceCliente : String" fieldName="_codiceCliente" />
       <AssociationTargets>
         <Association Id="2e7765b0-82e3-4978-a0c4-56bb3098179a" SourceMultiplicity="One" TargetMultiplicity="ZeroOne" name="ClienteHasCommessa">
           <DomainClassMoniker name="/EntitiesModel/Commessa" />
-          <targetNavigationalProperty>
-            <associationDefinesTargetProperty Id="56203fdc-9a04-4398-8d0a-872a412c6a95">
-              <NavigationalPropertyMoniker name="/EntitiesModel/Commessa/Cliente" />
-            </associationDefinesTargetProperty>
-          </targetNavigationalProperty>
           <sourceNavigationalProperty>
             <associationDefinesSourceProperty Id="5997511e-0506-4463-9a97-4128f0e19a7c">
               <NavigationalPropertyMoniker name="/EntitiesModel/Cliente/Commessa" />
@@ -1169,6 +1176,7 @@
       <Property Id="a8c522da-832b-42a4-bd9d-020edc76ef98" name="Fax" label="Fax : String" fieldName="_fax" />
       <Property Id="82f63353-5c7f-41d5-b8ba-f6d0c79bb575" name="Email" label="Email : String" fieldName="_email" />
       <Property Id="586230d3-0691-4dd2-8b3b-2808006a7580" name="PIva" label="PIva : String" fieldName="_pIva" />
+      <Property Id="a361b66b-2d6f-4c95-96e2-dd093275942a" name="Codice" label="Codice : String" fieldName="_codice" />
     </DomainClass>
     <DomainClass Id="ecae24a4-5714-4038-a49d-a3603e1e9a84" name="AnagraficaCliente" namespace="DataLayer" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
       <Property Id="201daee6-3108-44d5-bd29-7ec815dc9a13" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
@@ -1182,6 +1190,7 @@
       <Property Id="7ed48bd1-62bd-42f0-8696-7e56a10a24d5" name="Fax" label="Fax : String" fieldName="_fax" />
       <Property Id="3debd6af-5522-4a25-a2c1-ec108154ec5d" name="Email" label="Email : String" fieldName="_email" />
       <Property Id="eb8e8b82-725d-4c8e-8ddc-213a342e2e59" name="PIva" label="PIva : String" fieldName="_pIva" />
+      <Property Id="11862c95-d2f1-4cf4-905f-b84ece07e150" name="Codice" label="Codice : String" fieldName="_codice" />
     </DomainClass>
     <DomainClass Id="3526a02f-30f3-45ef-bc27-6002b0758f75" name="SAL" namespace="DataLayer" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
       <Property Id="43f46d78-44da-4e5d-bbc2-f559f63fe653" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />

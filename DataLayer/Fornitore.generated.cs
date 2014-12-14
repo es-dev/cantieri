@@ -193,6 +193,19 @@ namespace DataLayer
 			}
 		}
 		
+		private string _codiceFornitore;
+		public virtual string CodiceFornitore
+		{
+			get
+			{
+				return this._codiceFornitore;
+			}
+			set
+			{
+				this._codiceFornitore = value;
+			}
+		}
+		
 		private Commessa _commessa;
 		public virtual Commessa Commessa
 		{

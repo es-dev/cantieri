@@ -225,9 +225,6 @@ namespace WcfService.Assemblers
 			AziendaAssembler aziendaAssembler = new AziendaAssembler();
 			dto.Azienda = aziendaAssembler.Assemble(entity.Azienda);
 
-			ClienteAssembler clienteAssembler = new ClienteAssembler();
-			dto.Cliente = clienteAssembler.Assemble(entity.Cliente);
-
 	    }
 	
 	    public override void AssembleCollections(Commessa entity, CommessaDto dto)
@@ -301,6 +298,7 @@ namespace WcfService.Assemblers
 			entity.Fax = dto.Fax;
 			entity.Email = dto.Email;
 			entity.PIva = dto.PIva;
+			entity.CodiceFornitore = dto.CodiceFornitore;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -324,6 +322,7 @@ namespace WcfService.Assemblers
 			dto.Fax = entity.Fax;
 			dto.Email = entity.Email;
 			dto.PIva = entity.PIva;
+			dto.CodiceFornitore = entity.CodiceFornitore;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -394,6 +393,7 @@ namespace WcfService.Assemblers
 			entity.Fax = dto.Fax;
 			entity.Email = dto.Email;
 			entity.PIva = dto.PIva;
+			entity.CodiceCliente = dto.CodiceCliente;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -415,6 +415,7 @@ namespace WcfService.Assemblers
 			dto.Fax = entity.Fax;
 			dto.Email = entity.Email;
 			dto.PIva = entity.PIva;
+			dto.CodiceCliente = entity.CodiceCliente;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -960,6 +961,7 @@ namespace WcfService.Assemblers
 			entity.Fax = dto.Fax;
 			entity.Email = dto.Email;
 			entity.PIva = dto.PIva;
+			entity.Codice = dto.Codice;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -981,6 +983,7 @@ namespace WcfService.Assemblers
 			dto.Fax = entity.Fax;
 			dto.Email = entity.Email;
 			dto.PIva = entity.PIva;
+			dto.Codice = entity.Codice;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -1038,6 +1041,7 @@ namespace WcfService.Assemblers
 			entity.Fax = dto.Fax;
 			entity.Email = dto.Email;
 			entity.PIva = dto.PIva;
+			entity.Codice = dto.Codice;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1059,6 +1063,7 @@ namespace WcfService.Assemblers
 			dto.Fax = entity.Fax;
 			dto.Email = entity.Email;
 			dto.PIva = entity.PIva;
+			dto.Codice = entity.Codice;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }

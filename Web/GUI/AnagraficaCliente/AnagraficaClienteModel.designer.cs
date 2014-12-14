@@ -41,12 +41,14 @@ namespace Web.GUI.AnagraficaCliente
             this.editMobile = new Library.Template.Controls.TemplateEditText();
             this.editEmail = new Library.Template.Controls.TemplateEditText();
             this.editRagioneSociale = new Library.Template.Controls.TemplateEditText();
+            this.editCodice = new Library.Template.Controls.TemplateEditText();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.SuspendLayout();
             // 
             // container
             // 
+            this.container.Controls.Add(this.editCodice);
             this.container.Controls.Add(this.editRagioneSociale);
             this.container.Controls.Add(this.editEmail);
             this.container.Controls.Add(this.editMobile);
@@ -69,6 +71,7 @@ namespace Web.GUI.AnagraficaCliente
             this.container.Controls.SetChildIndex(this.editMobile, 0);
             this.container.Controls.SetChildIndex(this.editEmail, 0);
             this.container.Controls.SetChildIndex(this.editRagioneSociale, 0);
+            this.container.Controls.SetChildIndex(this.editCodice, 0);
             // 
             // infoSubtitle
             // 
@@ -303,6 +306,28 @@ namespace Web.GUI.AnagraficaCliente
             this.editRagioneSociale.TabIndex = 4;
             this.editRagioneSociale.Text = "EditControl";
             this.editRagioneSociale.Value = null;
+            // 
+            // editCodice
+            // 
+            this.editCodice.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editCodice.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editCodice.BackColor = System.Drawing.Color.Transparent;
+            this.editCodice.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editCodice.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editCodice.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editCodice.Changed = true;
+            this.editCodice.Editing = false;
+            this.editCodice.Label = "Codice";
+            this.editCodice.LabelWidth = 175;
+            this.editCodice.Location = new System.Drawing.Point(25, 498);
+            this.editCodice.Name = "editCodice";
+            this.editCodice.ReadOnly = false;
+            this.editCodice.Required = false;
+            this.editCodice.Size = new System.Drawing.Size(800, 30);
+            this.editCodice.TabIndex = 12;
+            this.editCodice.Text = "EditControl";
+            this.editCodice.Value = null;
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
@@ -323,6 +348,7 @@ namespace Web.GUI.AnagraficaCliente
         private Library.Template.Controls.TemplateEditText editPartitaIVA;
         private Library.Template.Controls.TemplateEditText editIndirizzo;
         private Library.Template.Controls.TemplateEditText editRagioneSociale;
+        private Library.Template.Controls.TemplateEditText editCodice;
 
 
     }

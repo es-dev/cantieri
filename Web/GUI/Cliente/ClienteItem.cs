@@ -25,7 +25,14 @@ namespace Web.GUI.Cliente
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.ClienteDto)model;
-
+                    infoRagioneSociale.Text = obj.RagioneSociale;
+                    infoPartitaIVA.Text = obj.PIva;
+                    infoCodice.Text = obj.CodiceCliente;
+                    var commessa = obj.Commessa;
+                    if (commessa != null)
+                    {
+                        infoCommesssa.Text = commessa.Denominazione;
+                    }
                 }
             }
             catch (Exception ex)

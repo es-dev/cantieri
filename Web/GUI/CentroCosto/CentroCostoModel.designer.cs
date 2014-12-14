@@ -69,7 +69,7 @@ namespace Web.GUI.CentroCosto
             this.editCodice.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
             this.editCodice.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
             this.editCodice.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editCodice.Changed = false;
+            this.editCodice.Changed = true;
             this.editCodice.Editing = false;
             this.editCodice.Label = "Codice";
             this.editCodice.LabelWidth = 175;
@@ -78,9 +78,9 @@ namespace Web.GUI.CentroCosto
             this.editCodice.ReadOnly = false;
             this.editCodice.Required = false;
             this.editCodice.Size = new System.Drawing.Size(800, 30);
-            this.editCodice.TabIndex = 2;
+            this.editCodice.TabIndex = 0;
             this.editCodice.Text = "EditControl";
-            this.editCodice.Value = "";
+            this.editCodice.Value = null;
             // 
             // editDenominazione
             // 
@@ -91,7 +91,7 @@ namespace Web.GUI.CentroCosto
             this.editDenominazione.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
             this.editDenominazione.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
             this.editDenominazione.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editDenominazione.Changed = false;
+            this.editDenominazione.Changed = true;
             this.editDenominazione.Editing = false;
             this.editDenominazione.Label = "Denominazione";
             this.editDenominazione.LabelWidth = 175;
@@ -100,9 +100,9 @@ namespace Web.GUI.CentroCosto
             this.editDenominazione.ReadOnly = false;
             this.editDenominazione.Required = false;
             this.editDenominazione.Size = new System.Drawing.Size(800, 30);
-            this.editDenominazione.TabIndex = 3;
+            this.editDenominazione.TabIndex = 1;
             this.editDenominazione.Text = "EditControl";
-            this.editDenominazione.Value = "";
+            this.editDenominazione.Value = null;
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
