@@ -100,12 +100,12 @@ namespace Web.GUI.Cliente
             return false;
         }
 
-        public override object Read(object Id)
+        public override object Read(object id)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var obj = wcf.ReadCliente(Id);
+                var obj = wcf.ReadCliente(id);
                 return obj;
             }
             catch (Exception ex)

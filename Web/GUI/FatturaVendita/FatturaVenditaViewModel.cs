@@ -100,12 +100,12 @@ namespace Web.GUI.FatturaVendita
             return false;
         }
 
-        public override object Read(object Id)
+        public override object Read(object id)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var obj = wcf.ReadFatturaVendita(Id);
+                var obj = wcf.ReadFatturaVendita(id);
                 return obj;
             }
             catch (Exception ex)

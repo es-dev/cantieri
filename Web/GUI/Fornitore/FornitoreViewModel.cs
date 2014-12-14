@@ -100,12 +100,12 @@ namespace Web.GUI.Fornitore
             return false;
         }
 
-        public override object Read(object Id)
+        public override object Read(object id)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var obj = wcf.ReadFornitore(Id);
+                var obj = wcf.ReadFornitore(id);
                 return obj;
             }
             catch (Exception ex)

@@ -100,12 +100,12 @@ namespace Web.GUI.Azienda
             return false;
         }
 
-        public override object Read(object Id)
+        public override object Read(object id)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var obj = wcf.ReadAzienda(Id);
+                var obj = wcf.ReadAzienda(id);
                 return obj;
             }
             catch (Exception ex)

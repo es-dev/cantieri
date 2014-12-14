@@ -100,12 +100,12 @@ namespace Web.GUI.SAL
             return false;
         }
 
-        public override object Read(object Id)
+        public override object Read(object id)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var obj = wcf.ReadSAL(Id);
+                var obj = wcf.ReadSAL(id);
                 return obj;
             }
             catch (Exception ex)

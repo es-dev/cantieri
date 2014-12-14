@@ -100,12 +100,12 @@ namespace Web.GUI.AnagraficaArticolo
             return false;
         }
 
-        public override object Read(object Id)
+        public override object Read(object id)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var obj = wcf.ReadAnagraficaArticolo(Id);
+                var obj = wcf.ReadAnagraficaArticolo(id);
                 return obj;
             }
             catch (Exception ex)

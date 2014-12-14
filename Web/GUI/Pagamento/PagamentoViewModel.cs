@@ -100,12 +100,12 @@ namespace Web.GUI.Pagamento
             return false;
         }
 
-        public override object Read(object Id)
+        public override object Read(object id)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var obj = wcf.ReadPagamento(Id);
+                var obj = wcf.ReadPagamento(id);
                 return obj;
             }
             catch (Exception ex)

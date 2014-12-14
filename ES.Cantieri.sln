@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{0BC0A297-EC61-40D6-91F9-C81E9BDA4697}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{FE69B1BF-C589-4BF7-A967-9B03CFD25026}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfService", "WcfService\WcfService.csproj", "{9DAAA204-12DE-4170-AF7A-8C6004974959}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ES.Library", "..\ES.Library\ES.Library.csproj", "{67131ADF-23DE-46CF-888B-9AFD6F648405}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{9DAAA204-12DE-4170-AF7A-8C6004974959}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DAAA204-12DE-4170-AF7A-8C6004974959}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DAAA204-12DE-4170-AF7A-8C6004974959}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67131ADF-23DE-46CF-888B-9AFD6F648405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67131ADF-23DE-46CF-888B-9AFD6F648405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67131ADF-23DE-46CF-888B-9AFD6F648405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67131ADF-23DE-46CF-888B-9AFD6F648405}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
