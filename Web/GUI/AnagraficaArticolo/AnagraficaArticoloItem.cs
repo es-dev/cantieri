@@ -25,7 +25,9 @@ namespace Web.GUI.AnagraficaArticolo
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AnagraficaArticoloDto)model;
-
+                    infoCodice.Text = "CA";
+                    infoCodiceArticolo.Text = obj.Codice;
+                    infoDescrizione.Text = obj.Descrizione;
                 }
             }
             catch (Exception ex)

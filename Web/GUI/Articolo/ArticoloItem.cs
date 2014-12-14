@@ -25,7 +25,12 @@ namespace Web.GUI.Articolo
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.ArticoloDto)model;
-
+                    infoCodice.Text = "CA";
+                    infoCodiceArticolo.Text = obj.Codice;
+                    infoDescrizione.Text = obj.Descrizione;
+                    var fattura = obj.Fattura;
+                    if (fattura != null)
+                        infoFattura.Text = "Fattura N. " + fattura.Numero;
                 }
             }
             catch (Exception ex)

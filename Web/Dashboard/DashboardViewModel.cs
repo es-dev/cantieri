@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Web.Dashboard;
+using Web.GUI.AnagraficaArticolo;
 using Web.GUI.AnagraficaCliente;
 using Web.GUI.AnagraficaFornitore;
 using Web.GUI.Articolo;
@@ -91,7 +92,8 @@ namespace Web.Dashboard
                 var dashboardSAL = new Dashboard("SAL", "CODE", "Description...", "Images.dashboard.png", "", typeof(SALView));
                 var dashboardAnagraficaFornitore = new Dashboard("Anagrafiche fornitori", "CODE", "Description...", "Images.dashboard.png", "", typeof(AnagraficaFornitoreView));
                 var dashboardAnagraficaCliente = new Dashboard("Anagrafiche clienti", "CODE", "Description...", "Images.dashboard.png", "", typeof(AnagraficaClienteView));
-               dashboards.Add(dashboardAzienda);
+                var dashboardAnagraficaArticolo = new Dashboard("Anagrafiche articoli", "CODE", "Description...", "Images.dashboard.png", "", typeof(AnagraficaArticoloView));
+                dashboards.Add(dashboardAzienda);
                 dashboards.Add(dashboardCommessa);
                 dashboards.Add(dashboardFornitore);
                 dashboards.Add(dashboardCentroCosto);
@@ -104,6 +106,7 @@ namespace Web.Dashboard
                 dashboards.Add(dashboardSAL);
                 dashboards.Add(dashboardAnagraficaFornitore);
                 dashboards.Add(dashboardAnagraficaCliente);
+                dashboards.Add(dashboardAnagraficaArticolo);
 
                 var query = dashboards.AsQueryable();
                 return query;

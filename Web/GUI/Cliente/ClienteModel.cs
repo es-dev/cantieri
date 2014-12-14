@@ -120,7 +120,6 @@ namespace Web.GUI.Cliente
             {
                 var view = new AnagraficaCliente.AnagraficaClienteView();
                 editCodiceCliente.Show(view);
-
             }
             catch (Exception ex)
             {

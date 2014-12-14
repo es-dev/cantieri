@@ -33,39 +33,39 @@ namespace Web.GUI.Articolo
             this.clientStorage1 = new Gizmox.WebGUI.Forms.Client.ClientStorage();
             this.editFatturaAcquisto = new Library.Template.Controls.TemplateEditCombo();
             this.editQuantita = new Library.Template.Controls.TemplateEditNumeric();
-            this.editCodice = new Library.Template.Controls.TemplateEditText();
             this.editDescrizione = new Library.Template.Controls.TemplateEditText();
             this.editSconto = new Library.Template.Controls.TemplateEditDecimal();
             this.editCosto = new Library.Template.Controls.TemplateEditDecimal();
             this.editImporto = new Library.Template.Controls.TemplateEditDecimal();
             this.editIVA = new Library.Template.Controls.TemplateEditDecimal();
             this.editTotale = new Library.Template.Controls.TemplateEditDecimal();
+            this.editCodiceArticolo = new Library.Template.Controls.TemplateEditCombo();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.SuspendLayout();
             // 
             // container
             // 
+            this.container.Controls.Add(this.editCodiceArticolo);
             this.container.Controls.Add(this.editTotale);
             this.container.Controls.Add(this.editIVA);
             this.container.Controls.Add(this.editImporto);
             this.container.Controls.Add(this.editCosto);
             this.container.Controls.Add(this.editSconto);
             this.container.Controls.Add(this.editDescrizione);
-            this.container.Controls.Add(this.editCodice);
             this.container.Controls.Add(this.editQuantita);
             this.container.Controls.Add(this.editFatturaAcquisto);
             this.container.Controls.SetChildIndex(this.infoSubtitleImage, 0);
             this.container.Controls.SetChildIndex(this.infoSubtitle, 0);
             this.container.Controls.SetChildIndex(this.editFatturaAcquisto, 0);
             this.container.Controls.SetChildIndex(this.editQuantita, 0);
-            this.container.Controls.SetChildIndex(this.editCodice, 0);
             this.container.Controls.SetChildIndex(this.editDescrizione, 0);
             this.container.Controls.SetChildIndex(this.editSconto, 0);
             this.container.Controls.SetChildIndex(this.editCosto, 0);
             this.container.Controls.SetChildIndex(this.editImporto, 0);
             this.container.Controls.SetChildIndex(this.editIVA, 0);
             this.container.Controls.SetChildIndex(this.editTotale, 0);
+            this.container.Controls.SetChildIndex(this.editCodiceArticolo, 0);
             // 
             // infoSubtitle
             // 
@@ -92,7 +92,7 @@ namespace Web.GUI.Articolo
             this.editFatturaAcquisto.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editFatturaAcquisto.Changed = true;
             this.editFatturaAcquisto.Editing = false;
-            this.editFatturaAcquisto.Label = "Fattura acquisto";
+            this.editFatturaAcquisto.Label = "Fattura";
             this.editFatturaAcquisto.LabelWidth = 175;
             this.editFatturaAcquisto.Location = new System.Drawing.Point(25, 75);
             this.editFatturaAcquisto.Model = null;
@@ -127,28 +127,6 @@ namespace Web.GUI.Articolo
             this.editQuantita.TabIndex = 3;
             this.editQuantita.Text = "TemplateEditNumeric";
             this.editQuantita.Value = null;
-            // 
-            // editCodice
-            // 
-            this.editCodice.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editCodice.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editCodice.BackColor = System.Drawing.Color.Transparent;
-            this.editCodice.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editCodice.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editCodice.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editCodice.Changed = true;
-            this.editCodice.Editing = false;
-            this.editCodice.Label = "Codice";
-            this.editCodice.LabelWidth = 175;
-            this.editCodice.Location = new System.Drawing.Point(25, 118);
-            this.editCodice.Name = "editCodice";
-            this.editCodice.ReadOnly = false;
-            this.editCodice.Required = false;
-            this.editCodice.Size = new System.Drawing.Size(800, 30);
-            this.editCodice.TabIndex = 4;
-            this.editCodice.Text = "EditControl";
-            this.editCodice.Value = null;
             // 
             // editDescrizione
             // 
@@ -281,6 +259,31 @@ namespace Web.GUI.Articolo
             this.editTotale.TabIndex = 10;
             this.editTotale.Text = "TemplateEditNumeric";
             this.editTotale.Value = null;
+            // 
+            // editCodiceArticolo
+            // 
+            this.editCodiceArticolo.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editCodiceArticolo.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editCodiceArticolo.BackColor = System.Drawing.Color.Transparent;
+            this.editCodiceArticolo.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editCodiceArticolo.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editCodiceArticolo.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editCodiceArticolo.Changed = true;
+            this.editCodiceArticolo.Editing = false;
+            this.editCodiceArticolo.Label = "Codice";
+            this.editCodiceArticolo.LabelWidth = 175;
+            this.editCodiceArticolo.Location = new System.Drawing.Point(25, 118);
+            this.editCodiceArticolo.Model = null;
+            this.editCodiceArticolo.Name = "editCodiceArticolo";
+            this.editCodiceArticolo.ReadOnly = false;
+            this.editCodiceArticolo.Required = false;
+            this.editCodiceArticolo.Size = new System.Drawing.Size(798, 30);
+            this.editCodiceArticolo.TabIndex = 11;
+            this.editCodiceArticolo.Text = "EditControl";
+            this.editCodiceArticolo.Value = null;
+            this.editCodiceArticolo.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editCodice_ComboConfirm);
+            this.editCodiceArticolo.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editCodice_ComboClick);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
@@ -292,7 +295,6 @@ namespace Web.GUI.Articolo
 
         private Gizmox.WebGUI.Forms.Client.ClientStorage clientStorage1;
         private Library.Template.Controls.TemplateEditText editDescrizione;
-        private Library.Template.Controls.TemplateEditText editCodice;
         private Library.Template.Controls.TemplateEditNumeric editQuantita;
         private Library.Template.Controls.TemplateEditCombo editFatturaAcquisto;
         private Library.Template.Controls.TemplateEditDecimal editTotale;
@@ -300,6 +302,7 @@ namespace Web.GUI.Articolo
         private Library.Template.Controls.TemplateEditDecimal editImporto;
         private Library.Template.Controls.TemplateEditDecimal editCosto;
         private Library.Template.Controls.TemplateEditDecimal editSconto;
+        private Library.Template.Controls.TemplateEditCombo editCodiceArticolo;
 
 
     }
