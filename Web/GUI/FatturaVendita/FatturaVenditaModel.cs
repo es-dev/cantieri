@@ -38,12 +38,12 @@ namespace Web.GUI.FatturaVendita
                     var obj = (WcfService.Dto.FatturaVenditaDto)model;
                     editData.Value = obj.Data;
                     editDescrizione.Value = obj.Descrizione;
-                    //editImponibile.Value = obj.Imponibile; // todo: da modificare con controlli nuovi
-                    //editIVA.Value = obj.IVA;               // todo: da modificare con controlli nuovi
+                    editImponibile.Value = obj.Imponibile;
+                    editIVA.Value = obj.IVA;              
                     editNumero.Value = obj.Numero;
-                    //editSaldo.Value = obj.Saldo;  // todo: da modificare con controlli nuovi
+                    editSaldo.Value = obj.Saldo;  
                     editTipoPagamento.Value = obj.TipoPagamento;
-                    //editTotale.Value = obj.Totale;  // todo: da modificare con controlli nuovi
+                    editTotale.Value = obj.Totale; 
                     var cliente = obj.Cliente;
                     if (cliente != null)
                     {
@@ -65,12 +65,12 @@ namespace Web.GUI.FatturaVendita
                 var obj = (WcfService.Dto.FatturaVenditaDto)model;
                 obj.Data = editData.Value;
                 obj.Descrizione = editDescrizione.Value;
-                //obj.Imponibile = editImponibile.Value;
-                //obj.IVA = editIVA.Value;
+                obj.Imponibile = editImponibile.Value;
+                obj.IVA = editIVA.Value;
                 obj.Numero = editNumero.Value;
-                //obj.Saldo = editSaldo.Value;
+                obj.Saldo = editSaldo.Value;
                 obj.TipoPagamento = editTipoPagamento.Value;
-                //obj.Totale = editTotale.Value;
+                obj.Totale = editTotale.Value;
                 obj.ClienteId = (int)editCliente.Id;
                 obj.Cliente = (WcfService.Dto.ClienteDto)editCliente.Model;
             }
@@ -86,7 +86,6 @@ namespace Web.GUI.FatturaVendita
             {
                 var view = new Cliente.ClienteView();
                 editCliente.Show(view);
-
             }
             catch (Exception ex)
             {

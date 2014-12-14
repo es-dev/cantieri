@@ -36,6 +36,8 @@ namespace Web.GUI.AnagraficaArticolo
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AnagraficaArticoloDto)model;
+                    editCodice.Value = obj.Codice;
+                    editDescrizione.Value = obj.Descrizione;
                 }
             }
             catch (Exception ex)
@@ -49,6 +51,8 @@ namespace Web.GUI.AnagraficaArticolo
             try
             {
                 var obj = (WcfService.Dto.AnagraficaArticoloDto)model;
+                obj.Codice = editCodice.Value;
+                obj.Descrizione = editDescrizione.Value;
             }
             catch (Exception ex)
             {

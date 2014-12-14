@@ -36,6 +36,16 @@ namespace Web.GUI.AnagraficaFornitore
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AnagraficaFornitoreDto)model;
+                    editRagioneSociale.Value = obj.RagioneSociale;
+                    editIndirizzo.Value = obj.Indirizzo;
+                    editCAP.Value = obj.CAP;
+                    editComune.Value = obj.Comune;
+                    editProvincia.Value = obj.Provincia;
+                    editTelefono.Value = obj.Telefono;
+                    editFAX.Value = obj.Fax;
+                    editMobile.Value = obj.Mobile;
+                    editEmail.Value = obj.Email;
+                    editPartitaIVA.Value = obj.PIva;
                 }
             }
             catch (Exception ex)
@@ -49,6 +59,16 @@ namespace Web.GUI.AnagraficaFornitore
             try
             {
                 var obj = (WcfService.Dto.AnagraficaFornitoreDto)model;
+                obj.RagioneSociale = editRagioneSociale.Value;
+                obj.Indirizzo = editIndirizzo.Value;
+                obj.CAP = editCAP.Value;
+                obj.Comune = editComune.Value;
+                obj.Provincia = editIndirizzo.Value;
+                obj.Telefono = editTelefono.Value;
+                obj.Fax = editFAX.Value;
+                obj.Mobile = editMobile.Value;
+                obj.Email = editEmail.Value;
+                obj.PIva = editPartitaIVA.Value;
             }
             catch (Exception ex)
             {

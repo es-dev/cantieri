@@ -37,6 +37,7 @@ namespace Web.GUI.Articolo
                 {
                     var obj = (WcfService.Dto.ArticoloDto)model;
                     editCosto.Value = obj.Costo;
+                    editCodice.Value = obj.Codice;
                     editDescrizione.Value = obj.Descrizione;
                     editImporto.Value = obj.Importo;
                     editIVA.Value = obj.IVA;
@@ -62,8 +63,8 @@ namespace Web.GUI.Articolo
             try
             {
                 var obj = (WcfService.Dto.ArticoloDto)model;
-                obj.Codice = editCodice.Value;
                 obj.Costo = editCosto.Value;
+                obj.Codice = editCodice.Value;
                 obj.Descrizione = editDescrizione.Value;
                 obj.Importo = editImporto.Value;
                 obj.IVA = editIVA.Value;

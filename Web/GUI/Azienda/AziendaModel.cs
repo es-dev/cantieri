@@ -62,7 +62,7 @@ namespace Web.GUI.Azienda
                 obj.Dipendenti = editNumeroDipendenti.Value;
                 obj.Indirizzo = editIndirizzo.Value;
                 obj.PIva = editPartitaIVA.Value;
-                obj.Provincia = editIndirizzo.Value;
+                obj.Provincia = editProvincia.Value;
             }
             catch (Exception ex)
             {

@@ -75,6 +75,7 @@ namespace Web.GUI.Fornitore
                 obj.Fax = editFAX.Value;
                 obj.Mobile = editMobile.Value;
                 obj.Email = editEmail.Value;
+                obj.PIva = editPartitaIVA.Value;
                 obj.CodiceCentroCosto = editCentroCosto.Value;
                 obj.CommessaId = (int)editCommessa.Id;
                 obj.Commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;

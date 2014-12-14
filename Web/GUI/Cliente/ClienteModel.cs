@@ -75,6 +75,7 @@ namespace Web.GUI.Cliente
                 obj.Fax = editFAX.Value;
                 obj.Mobile = editMobile.Value;
                 obj.Email = editEmail.Value;
+                obj.PIva = editPartitaIVA.Value;
                 obj.Id = (int)editCommessa.Id; //todo: da verificare
                 obj.Commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
             }
