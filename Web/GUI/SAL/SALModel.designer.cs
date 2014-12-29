@@ -136,7 +136,7 @@ namespace Web.GUI.SAL
             this.editDenominazione.Name = "editDenominazione";
             this.editDenominazione.ReadOnly = false;
             this.editDenominazione.Required = false;
-            this.editDenominazione.Size = new System.Drawing.Size(800, 30);
+            this.editDenominazione.Size = new System.Drawing.Size(798, 30);
             this.editDenominazione.TabIndex = 6;
             this.editDenominazione.Text = "EditControl";
             this.editDenominazione.Value = null;
@@ -178,7 +178,7 @@ namespace Web.GUI.SAL
             this.editTotaleAcquisti.Editing = false;
             this.editTotaleAcquisti.Label = "Totale acquisti";
             this.editTotaleAcquisti.LabelWidth = 175;
-            this.editTotaleAcquisti.Location = new System.Drawing.Point(25, 168);
+            this.editTotaleAcquisti.Location = new System.Drawing.Point(25, 161);
             this.editTotaleAcquisti.Name = "editTotaleAcquisti";
             this.editTotaleAcquisti.ReadOnly = false;
             this.editTotaleAcquisti.Required = false;
@@ -200,7 +200,7 @@ namespace Web.GUI.SAL
             this.editTotaleVendite.Editing = false;
             this.editTotaleVendite.Label = "Totale vendite";
             this.editTotaleVendite.LabelWidth = 175;
-            this.editTotaleVendite.Location = new System.Drawing.Point(25, 213);
+            this.editTotaleVendite.Location = new System.Drawing.Point(25, 204);
             this.editTotaleVendite.Name = "editTotaleVendite";
             this.editTotaleVendite.ReadOnly = false;
             this.editTotaleVendite.Required = false;

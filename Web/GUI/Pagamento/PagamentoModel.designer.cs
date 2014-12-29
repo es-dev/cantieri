@@ -35,16 +35,16 @@ namespace Web.GUI.Pagamento
             this.editModalita = new Library.Template.Controls.TemplateEditText();
             this.editData = new Library.Template.Controls.TemplateEditData();
             this.editScadenza = new Library.Template.Controls.TemplateEditData();
-            this.editEseguito = new Library.Template.Controls.TemplateEditCheckBox();
             this.editImporto = new Library.Template.Controls.TemplateEditDecimal();
+            this.editEseguito = new Library.Template.Controls.TemplateEditCheckBox();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.SuspendLayout();
             // 
             // container
             // 
-            this.container.Controls.Add(this.editImporto);
             this.container.Controls.Add(this.editEseguito);
+            this.container.Controls.Add(this.editImporto);
             this.container.Controls.Add(this.editScadenza);
             this.container.Controls.Add(this.editData);
             this.container.Controls.Add(this.editModalita);
@@ -55,8 +55,8 @@ namespace Web.GUI.Pagamento
             this.container.Controls.SetChildIndex(this.editModalita, 0);
             this.container.Controls.SetChildIndex(this.editData, 0);
             this.container.Controls.SetChildIndex(this.editScadenza, 0);
-            this.container.Controls.SetChildIndex(this.editEseguito, 0);
             this.container.Controls.SetChildIndex(this.editImporto, 0);
+            this.container.Controls.SetChildIndex(this.editEseguito, 0);
             // 
             // infoSubtitle
             // 
@@ -163,30 +163,6 @@ namespace Web.GUI.Pagamento
             this.editScadenza.Text = "EditControl";
             this.editScadenza.Value = null;
             // 
-            // editEseguito
-            // 
-            this.editEseguito.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editEseguito.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editEseguito.BackColor = System.Drawing.Color.Transparent;
-            this.editEseguito.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editEseguito.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editEseguito.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editEseguito.Changed = true;
-            this.editEseguito.Editing = false;
-            this.editEseguito.Label = "Eseguito";
-            this.editEseguito.LabelWidth = 175;
-            this.editEseguito.Location = new System.Drawing.Point(25, 315);
-            this.editEseguito.Name = "editEseguito";
-            this.editEseguito.ReadOnly = false;
-            this.editEseguito.Required = false;
-            this.editEseguito.Size = new System.Drawing.Size(798, 30);
-            this.editEseguito.TabIndex = 9;
-            this.editEseguito.Text = "TemplateCheckBox";
-            this.editEseguito.TextFalse = "";
-            this.editEseguito.TextTrue = "";
-            this.editEseguito.Value = null;
-            // 
             // editImporto
             // 
             this.editImporto.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
@@ -208,6 +184,30 @@ namespace Web.GUI.Pagamento
             this.editImporto.TabIndex = 10;
             this.editImporto.Text = "TemplateEditNumeric";
             this.editImporto.Value = null;
+            // 
+            // editEseguito
+            // 
+            this.editEseguito.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editEseguito.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editEseguito.BackColor = System.Drawing.Color.Transparent;
+            this.editEseguito.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editEseguito.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editEseguito.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editEseguito.Changed = true;
+            this.editEseguito.Editing = false;
+            this.editEseguito.Label = "Eseguito";
+            this.editEseguito.LabelWidth = 175;
+            this.editEseguito.Location = new System.Drawing.Point(25, 313);
+            this.editEseguito.Name = "editEseguito";
+            this.editEseguito.ReadOnly = false;
+            this.editEseguito.Required = false;
+            this.editEseguito.Size = new System.Drawing.Size(481, 30);
+            this.editEseguito.TabIndex = 11;
+            this.editEseguito.Text = "TemplateCheckBox";
+            this.editEseguito.TextFalse = "";
+            this.editEseguito.TextTrue = "";
+            this.editEseguito.Value = null;
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
@@ -222,8 +222,8 @@ namespace Web.GUI.Pagamento
         private Library.Template.Controls.TemplateEditText editModalita;
         private Library.Template.Controls.TemplateEditCombo editFatturaAcquisto;
         private Library.Template.Controls.TemplateEditData editScadenza;
-        private Library.Template.Controls.TemplateEditCheckBox editEseguito;
         private Library.Template.Controls.TemplateEditDecimal editImporto;
+        private Library.Template.Controls.TemplateEditCheckBox editEseguito;
 
 
     }

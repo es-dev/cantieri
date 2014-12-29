@@ -25,6 +25,13 @@ namespace Web.GUI.SAL
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.SALDto)model;
+                    infoDenominazione.Text = obj.Denominazione;
+                    infoData.Text = obj.Data.ToString();
+                    var commessa = obj.Commessa;
+                    if (commessa != null)
+                    {
+                        infoCommesssa.Text = commessa.Denominazione;
+                    }
 
                 }
             }
