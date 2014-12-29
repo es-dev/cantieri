@@ -25,7 +25,12 @@ namespace Web.GUI.Liquidazione
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.LiquidazioneDto)model;
-
+                    infoCodice.Text = "LIQ";
+                    infoModalita.Text = obj.Modalita;
+                    infoImporto.Text = obj.Importo.ToString();
+                    var fatturaVendita = obj.FatturaVendita;
+                    if (fatturaVendita != null)
+                        infoFattura.Text = "Fattura N. " + fatturaVendita.Numero;
                 }
             }
             catch (Exception ex)

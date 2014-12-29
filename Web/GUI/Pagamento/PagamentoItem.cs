@@ -25,7 +25,12 @@ namespace Web.GUI.Pagamento
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.PagamentoDto)model;
-
+                    infoCodice.Text = "PAG";
+                    infoModalita.Text = obj.Modalita;
+                    infoImporto.Text = obj.Importo.ToString();
+                    var fatturaAcquisto = obj.FatturaAcquisto;
+                    if (fatturaAcquisto != null)
+                        infoFattura.Text = "Fattura N. " + fatturaAcquisto.Numero;
                 }
             }
             catch (Exception ex)
