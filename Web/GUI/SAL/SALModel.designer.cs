@@ -161,8 +161,8 @@ namespace Web.GUI.SAL
             this.editLock.Size = new System.Drawing.Size(481, 30);
             this.editLock.TabIndex = 7;
             this.editLock.Text = "TemplateCheckBox";
-            this.editLock.TextFalse = "";
-            this.editLock.TextTrue = "";
+            this.editLock.TextFalse = "NON ATTIVO";
+            this.editLock.TextTrue = "ATTIVO";
             this.editLock.Value = null;
             // 
             // editTotaleAcquisti
