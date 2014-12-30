@@ -79,8 +79,8 @@ namespace Web.Dashboard
             try
             {
                 var dashboards = new List<Dashboard>();
-                var dashboardAzienda = new Dashboard("Aziende", "AZ", "Description...", "Images.dashboard.png", "", typeof(AziendaView));
-                var dashboardCommessa = new Dashboard("Commesse", "COMM", "Description...", "Images.dashboard.png", "", typeof(CommessaView));
+                var dashboardAzienda = new Dashboard("Aziende", "AZ", "Description...", "Images.dashboard.azienda1.png", "", typeof(AziendaView));
+                var dashboardCommessa = new Dashboard("Commesse", "COMM", "Description...", "Images.dashboard.commessa.png", "", typeof(CommessaView));
                 var dashboardFornitore = new Dashboard("Fornitori", "FORN", "Description...", "Images.dashboard.png", "", typeof(FornitoreView));
                 var dashboardCentroCosto = new Dashboard("Centri di costo", "CC", "Description...", "Images.dashboard.png", "", typeof(CentroCostoView));
                 var dashboardFatturaAcquisto = new Dashboard("Fatture acquisto", "FA", "Description...", "Images.dashboard.png", "", typeof(FatturaAcquistoView));

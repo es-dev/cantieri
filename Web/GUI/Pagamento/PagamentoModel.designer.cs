@@ -91,7 +91,7 @@ namespace Web.GUI.Pagamento
             this.editFatturaAcquisto.ReadOnly = false;
             this.editFatturaAcquisto.Required = false;
             this.editFatturaAcquisto.Size = new System.Drawing.Size(800, 30);
-            this.editFatturaAcquisto.TabIndex = 2;
+            this.editFatturaAcquisto.TabIndex = 0;
             this.editFatturaAcquisto.Text = "EditControl";
             this.editFatturaAcquisto.Value = null;
             this.editFatturaAcquisto.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editFatturaAcquisto_ComboConfirm);
@@ -115,7 +115,7 @@ namespace Web.GUI.Pagamento
             this.editModalita.ReadOnly = false;
             this.editModalita.Required = false;
             this.editModalita.Size = new System.Drawing.Size(798, 30);
-            this.editModalita.TabIndex = 3;
+            this.editModalita.TabIndex = 2;
             this.editModalita.Text = "EditControl";
             this.editModalita.Value = null;
             // 
@@ -137,7 +137,7 @@ namespace Web.GUI.Pagamento
             this.editData.ReadOnly = false;
             this.editData.Required = false;
             this.editData.Size = new System.Drawing.Size(798, 30);
-            this.editData.TabIndex = 8;
+            this.editData.TabIndex = 1;
             this.editData.Text = "EditControl";
             this.editData.Value = null;
             // 
@@ -159,7 +159,7 @@ namespace Web.GUI.Pagamento
             this.editScadenza.ReadOnly = false;
             this.editScadenza.Required = false;
             this.editScadenza.Size = new System.Drawing.Size(798, 30);
-            this.editScadenza.TabIndex = 8;
+            this.editScadenza.TabIndex = 4;
             this.editScadenza.Text = "EditControl";
             this.editScadenza.Value = null;
             // 
@@ -181,14 +181,12 @@ namespace Web.GUI.Pagamento
             this.editImporto.ReadOnly = false;
             this.editImporto.Required = false;
             this.editImporto.Size = new System.Drawing.Size(798, 30);
-            this.editImporto.TabIndex = 10;
+            this.editImporto.TabIndex = 3;
             this.editImporto.Text = "TemplateEditNumeric";
             this.editImporto.Value = null;
             // 
             // editEseguito
             // 
-            this.editEseguito.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.editEseguito.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.editEseguito.BackColor = System.Drawing.Color.Transparent;
             this.editEseguito.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
@@ -198,12 +196,12 @@ namespace Web.GUI.Pagamento
             this.editEseguito.Editing = false;
             this.editEseguito.Label = "Eseguito";
             this.editEseguito.LabelWidth = 175;
-            this.editEseguito.Location = new System.Drawing.Point(25, 313);
+            this.editEseguito.Location = new System.Drawing.Point(25, 310);
             this.editEseguito.Name = "editEseguito";
             this.editEseguito.ReadOnly = false;
             this.editEseguito.Required = false;
             this.editEseguito.Size = new System.Drawing.Size(481, 30);
-            this.editEseguito.TabIndex = 11;
+            this.editEseguito.TabIndex = 5;
             this.editEseguito.Text = "TemplateCheckBox";
             this.editEseguito.TextFalse = "";
             this.editEseguito.TextTrue = "";

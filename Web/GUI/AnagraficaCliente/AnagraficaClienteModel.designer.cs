@@ -105,7 +105,7 @@ namespace Web.GUI.AnagraficaCliente
             this.editIndirizzo.ReadOnly = false;
             this.editIndirizzo.Required = false;
             this.editIndirizzo.Size = new System.Drawing.Size(800, 30);
-            this.editIndirizzo.TabIndex = 5;
+            this.editIndirizzo.TabIndex = 1;
             this.editIndirizzo.Text = "EditControl";
             this.editIndirizzo.Value = null;
             // 
@@ -127,7 +127,7 @@ namespace Web.GUI.AnagraficaCliente
             this.editPartitaIVA.ReadOnly = false;
             this.editPartitaIVA.Required = false;
             this.editPartitaIVA.Size = new System.Drawing.Size(800, 30);
-            this.editPartitaIVA.TabIndex = 7;
+            this.editPartitaIVA.TabIndex = 9;
             this.editPartitaIVA.Text = "EditControl";
             this.editPartitaIVA.Value = null;
             // 
@@ -149,7 +149,7 @@ namespace Web.GUI.AnagraficaCliente
             this.editProvincia.ReadOnly = false;
             this.editProvincia.Required = false;
             this.editProvincia.Size = new System.Drawing.Size(800, 30);
-            this.editProvincia.TabIndex = 6;
+            this.editProvincia.TabIndex = 4;
             this.editProvincia.Text = "EditControl";
             this.editProvincia.Value = null;
             // 
@@ -171,7 +171,7 @@ namespace Web.GUI.AnagraficaCliente
             this.editComune.ReadOnly = false;
             this.editComune.Required = false;
             this.editComune.Size = new System.Drawing.Size(800, 30);
-            this.editComune.TabIndex = 5;
+            this.editComune.TabIndex = 3;
             this.editComune.Text = "EditControl";
             this.editComune.Value = null;
             // 
@@ -193,7 +193,7 @@ namespace Web.GUI.AnagraficaCliente
             this.editCAP.ReadOnly = false;
             this.editCAP.Required = false;
             this.editCAP.Size = new System.Drawing.Size(800, 30);
-            this.editCAP.TabIndex = 4;
+            this.editCAP.TabIndex = 2;
             this.editCAP.Text = "EditControl";
             this.editCAP.Value = null;
             // 
@@ -215,7 +215,7 @@ namespace Web.GUI.AnagraficaCliente
             this.editTelefono.ReadOnly = false;
             this.editTelefono.Required = false;
             this.editTelefono.Size = new System.Drawing.Size(800, 30);
-            this.editTelefono.TabIndex = 8;
+            this.editTelefono.TabIndex = 5;
             this.editTelefono.Text = "EditControl";
             this.editTelefono.Value = null;
             // 
@@ -237,7 +237,7 @@ namespace Web.GUI.AnagraficaCliente
             this.editFAX.ReadOnly = false;
             this.editFAX.Required = false;
             this.editFAX.Size = new System.Drawing.Size(800, 30);
-            this.editFAX.TabIndex = 9;
+            this.editFAX.TabIndex = 6;
             this.editFAX.Text = "EditControl";
             this.editFAX.Value = null;
             // 
@@ -259,7 +259,7 @@ namespace Web.GUI.AnagraficaCliente
             this.editMobile.ReadOnly = false;
             this.editMobile.Required = false;
             this.editMobile.Size = new System.Drawing.Size(800, 30);
-            this.editMobile.TabIndex = 10;
+            this.editMobile.TabIndex = 7;
             this.editMobile.Text = "EditControl";
             this.editMobile.Value = null;
             // 
@@ -281,7 +281,7 @@ namespace Web.GUI.AnagraficaCliente
             this.editEmail.ReadOnly = false;
             this.editEmail.Required = false;
             this.editEmail.Size = new System.Drawing.Size(800, 30);
-            this.editEmail.TabIndex = 11;
+            this.editEmail.TabIndex = 8;
             this.editEmail.Text = "EditControl";
             this.editEmail.Value = null;
             // 
@@ -303,7 +303,7 @@ namespace Web.GUI.AnagraficaCliente
             this.editRagioneSociale.ReadOnly = false;
             this.editRagioneSociale.Required = false;
             this.editRagioneSociale.Size = new System.Drawing.Size(800, 30);
-            this.editRagioneSociale.TabIndex = 4;
+            this.editRagioneSociale.TabIndex = 0;
             this.editRagioneSociale.Text = "EditControl";
             this.editRagioneSociale.Value = null;
             // 
@@ -325,7 +325,7 @@ namespace Web.GUI.AnagraficaCliente
             this.editCodice.ReadOnly = false;
             this.editCodice.Required = false;
             this.editCodice.Size = new System.Drawing.Size(800, 30);
-            this.editCodice.TabIndex = 12;
+            this.editCodice.TabIndex = 10;
             this.editCodice.Text = "EditControl";
             this.editCodice.Value = null;
             this.Controls.SetChildIndex(this.container, 0);

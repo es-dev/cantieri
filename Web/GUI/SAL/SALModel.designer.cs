@@ -91,7 +91,7 @@ namespace Web.GUI.SAL
             this.editCommessa.ReadOnly = false;
             this.editCommessa.Required = false;
             this.editCommessa.Size = new System.Drawing.Size(800, 30);
-            this.editCommessa.TabIndex = 2;
+            this.editCommessa.TabIndex = 0;
             this.editCommessa.Text = "EditControl";
             this.editCommessa.Value = null;
             this.editCommessa.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editCommessa_ComboConfirm);
@@ -115,7 +115,7 @@ namespace Web.GUI.SAL
             this.editData.ReadOnly = false;
             this.editData.Required = false;
             this.editData.Size = new System.Drawing.Size(481, 30);
-            this.editData.TabIndex = 3;
+            this.editData.TabIndex = 1;
             this.editData.Text = "EditControl";
             this.editData.Value = null;
             // 
@@ -137,7 +137,7 @@ namespace Web.GUI.SAL
             this.editDenominazione.ReadOnly = false;
             this.editDenominazione.Required = false;
             this.editDenominazione.Size = new System.Drawing.Size(798, 30);
-            this.editDenominazione.TabIndex = 6;
+            this.editDenominazione.TabIndex = 5;
             this.editDenominazione.Text = "EditControl";
             this.editDenominazione.Value = null;
             // 
@@ -159,7 +159,7 @@ namespace Web.GUI.SAL
             this.editLock.ReadOnly = false;
             this.editLock.Required = false;
             this.editLock.Size = new System.Drawing.Size(481, 30);
-            this.editLock.TabIndex = 7;
+            this.editLock.TabIndex = 4;
             this.editLock.Text = "TemplateCheckBox";
             this.editLock.TextFalse = "NON ATTIVO";
             this.editLock.TextTrue = "ATTIVO";
@@ -183,7 +183,7 @@ namespace Web.GUI.SAL
             this.editTotaleAcquisti.ReadOnly = false;
             this.editTotaleAcquisti.Required = false;
             this.editTotaleAcquisti.Size = new System.Drawing.Size(798, 30);
-            this.editTotaleAcquisti.TabIndex = 8;
+            this.editTotaleAcquisti.TabIndex = 2;
             this.editTotaleAcquisti.Text = "TemplateEditNumeric";
             this.editTotaleAcquisti.Value = null;
             // 
@@ -205,7 +205,7 @@ namespace Web.GUI.SAL
             this.editTotaleVendite.ReadOnly = false;
             this.editTotaleVendite.Required = false;
             this.editTotaleVendite.Size = new System.Drawing.Size(798, 30);
-            this.editTotaleVendite.TabIndex = 9;
+            this.editTotaleVendite.TabIndex = 3;
             this.editTotaleVendite.Text = "TemplateEditNumeric";
             this.editTotaleVendite.Value = null;
             this.Controls.SetChildIndex(this.container, 0);

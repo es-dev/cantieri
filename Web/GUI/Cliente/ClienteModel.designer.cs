@@ -108,7 +108,7 @@ namespace Web.GUI.Cliente
             this.editEmail.ReadOnly = false;
             this.editEmail.Required = false;
             this.editEmail.Size = new System.Drawing.Size(798, 30);
-            this.editEmail.TabIndex = 11;
+            this.editEmail.TabIndex = 10;
             this.editEmail.Text = "EditControl";
             this.editEmail.Value = null;
             // 
@@ -130,7 +130,7 @@ namespace Web.GUI.Cliente
             this.editMobile.ReadOnly = false;
             this.editMobile.Required = false;
             this.editMobile.Size = new System.Drawing.Size(798, 30);
-            this.editMobile.TabIndex = 10;
+            this.editMobile.TabIndex = 9;
             this.editMobile.Text = "EditControl";
             this.editMobile.Value = null;
             // 
@@ -152,7 +152,7 @@ namespace Web.GUI.Cliente
             this.editFAX.ReadOnly = false;
             this.editFAX.Required = false;
             this.editFAX.Size = new System.Drawing.Size(798, 30);
-            this.editFAX.TabIndex = 9;
+            this.editFAX.TabIndex = 8;
             this.editFAX.Text = "EditControl";
             this.editFAX.Value = null;
             // 
@@ -174,7 +174,7 @@ namespace Web.GUI.Cliente
             this.editTelefono.ReadOnly = false;
             this.editTelefono.Required = false;
             this.editTelefono.Size = new System.Drawing.Size(798, 30);
-            this.editTelefono.TabIndex = 8;
+            this.editTelefono.TabIndex = 7;
             this.editTelefono.Text = "EditControl";
             this.editTelefono.Value = null;
             // 
@@ -262,7 +262,7 @@ namespace Web.GUI.Cliente
             this.editPartitaIVA.ReadOnly = false;
             this.editPartitaIVA.Required = false;
             this.editPartitaIVA.Size = new System.Drawing.Size(798, 30);
-            this.editPartitaIVA.TabIndex = 7;
+            this.editPartitaIVA.TabIndex = 11;
             this.editPartitaIVA.Text = "EditControl";
             this.editPartitaIVA.Value = null;
             // 
@@ -284,7 +284,7 @@ namespace Web.GUI.Cliente
             this.editIndirizzo.ReadOnly = false;
             this.editIndirizzo.Required = false;
             this.editIndirizzo.Size = new System.Drawing.Size(798, 30);
-            this.editIndirizzo.TabIndex = 5;
+            this.editIndirizzo.TabIndex = 3;
             this.editIndirizzo.Text = "EditControl";
             this.editIndirizzo.Value = null;
             // 
@@ -306,7 +306,7 @@ namespace Web.GUI.Cliente
             this.editRagioneSociale.ReadOnly = false;
             this.editRagioneSociale.Required = false;
             this.editRagioneSociale.Size = new System.Drawing.Size(798, 30);
-            this.editRagioneSociale.TabIndex = 4;
+            this.editRagioneSociale.TabIndex = 2;
             this.editRagioneSociale.Text = "EditControl";
             this.editRagioneSociale.Value = null;
             // 
@@ -329,7 +329,7 @@ namespace Web.GUI.Cliente
             this.editCommessa.ReadOnly = false;
             this.editCommessa.Required = false;
             this.editCommessa.Size = new System.Drawing.Size(800, 30);
-            this.editCommessa.TabIndex = 2;
+            this.editCommessa.TabIndex = 0;
             this.editCommessa.Text = "EditControl";
             this.editCommessa.Value = null;
             this.editCommessa.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editCommessa_ComboConfirm);
@@ -354,7 +354,7 @@ namespace Web.GUI.Cliente
             this.editCodiceCliente.ReadOnly = false;
             this.editCodiceCliente.Required = false;
             this.editCodiceCliente.Size = new System.Drawing.Size(798, 30);
-            this.editCodiceCliente.TabIndex = 12;
+            this.editCodiceCliente.TabIndex = 1;
             this.editCodiceCliente.Text = "EditControl";
             this.editCodiceCliente.Value = null;
             this.editCodiceCliente.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editCodiceCliente_ComboConfirm);

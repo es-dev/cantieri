@@ -99,7 +99,7 @@ namespace Web.GUI.FatturaVendita
             this.editDescrizione.ReadOnly = false;
             this.editDescrizione.Required = false;
             this.editDescrizione.Size = new System.Drawing.Size(800, 30);
-            this.editDescrizione.TabIndex = 6;
+            this.editDescrizione.TabIndex = 4;
             this.editDescrizione.Text = "EditControl";
             this.editDescrizione.Value = null;
             // 
@@ -121,7 +121,7 @@ namespace Web.GUI.FatturaVendita
             this.editTipoPagamento.ReadOnly = false;
             this.editTipoPagamento.Required = false;
             this.editTipoPagamento.Size = new System.Drawing.Size(800, 30);
-            this.editTipoPagamento.TabIndex = 5;
+            this.editTipoPagamento.TabIndex = 3;
             this.editTipoPagamento.Text = "EditControl";
             this.editTipoPagamento.Value = null;
             // 
@@ -143,7 +143,7 @@ namespace Web.GUI.FatturaVendita
             this.editNumero.ReadOnly = false;
             this.editNumero.Required = false;
             this.editNumero.Size = new System.Drawing.Size(800, 30);
-            this.editNumero.TabIndex = 4;
+            this.editNumero.TabIndex = 2;
             this.editNumero.Text = "EditControl";
             this.editNumero.Value = null;
             // 
@@ -165,7 +165,7 @@ namespace Web.GUI.FatturaVendita
             this.editData.ReadOnly = false;
             this.editData.Required = false;
             this.editData.Size = new System.Drawing.Size(800, 30);
-            this.editData.TabIndex = 3;
+            this.editData.TabIndex = 1;
             this.editData.Text = "EditControl";
             this.editData.Value = null;
             // 
@@ -188,7 +188,7 @@ namespace Web.GUI.FatturaVendita
             this.editCliente.ReadOnly = false;
             this.editCliente.Required = false;
             this.editCliente.Size = new System.Drawing.Size(800, 30);
-            this.editCliente.TabIndex = 2;
+            this.editCliente.TabIndex = 0;
             this.editCliente.Text = "EditControl";
             this.editCliente.Value = null;
             this.editCliente.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editCliente_ComboConfirm);
@@ -212,7 +212,7 @@ namespace Web.GUI.FatturaVendita
             this.editSaldo.ReadOnly = false;
             this.editSaldo.Required = false;
             this.editSaldo.Size = new System.Drawing.Size(800, 30);
-            this.editSaldo.TabIndex = 10;
+            this.editSaldo.TabIndex = 8;
             this.editSaldo.Text = "TemplateEditNumeric";
             this.editSaldo.Value = null;
             // 
@@ -234,7 +234,7 @@ namespace Web.GUI.FatturaVendita
             this.editTotale.ReadOnly = false;
             this.editTotale.Required = false;
             this.editTotale.Size = new System.Drawing.Size(800, 30);
-            this.editTotale.TabIndex = 9;
+            this.editTotale.TabIndex = 7;
             this.editTotale.Text = "TemplateEditNumeric";
             this.editTotale.Value = null;
             // 
@@ -256,7 +256,7 @@ namespace Web.GUI.FatturaVendita
             this.editIVA.ReadOnly = false;
             this.editIVA.Required = false;
             this.editIVA.Size = new System.Drawing.Size(800, 30);
-            this.editIVA.TabIndex = 8;
+            this.editIVA.TabIndex = 6;
             this.editIVA.Text = "TemplateEditNumeric";
             this.editIVA.Value = null;
             // 
@@ -278,7 +278,7 @@ namespace Web.GUI.FatturaVendita
             this.editImponibile.ReadOnly = false;
             this.editImponibile.Required = false;
             this.editImponibile.Size = new System.Drawing.Size(800, 30);
-            this.editImponibile.TabIndex = 7;
+            this.editImponibile.TabIndex = 5;
             this.editImponibile.Text = "TemplateEditNumeric";
             this.editImponibile.Value = null;
             this.Controls.SetChildIndex(this.container, 0);

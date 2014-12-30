@@ -78,7 +78,7 @@ namespace Web.GUI.AnagraficaArticolo
             this.editDescrizione.ReadOnly = false;
             this.editDescrizione.Required = false;
             this.editDescrizione.Size = new System.Drawing.Size(800, 30);
-            this.editDescrizione.TabIndex = 5;
+            this.editDescrizione.TabIndex = 1;
             this.editDescrizione.Text = "EditControl";
             this.editDescrizione.Value = null;
             // 
@@ -100,7 +100,7 @@ namespace Web.GUI.AnagraficaArticolo
             this.editCodice.ReadOnly = false;
             this.editCodice.Required = false;
             this.editCodice.Size = new System.Drawing.Size(800, 30);
-            this.editCodice.TabIndex = 4;
+            this.editCodice.TabIndex = 0;
             this.editCodice.Text = "EditControl";
             this.editCodice.Value = null;
             this.Controls.SetChildIndex(this.container, 0);
