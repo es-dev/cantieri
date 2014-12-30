@@ -62,7 +62,7 @@ namespace Web.GUI.Pagamento
             {
                 var obj = (WcfService.Dto.PagamentoDto)model;
                 obj.Data = editData.Value;
-                //obj.Eseguito = editEseguito.Value;
+                obj.Eseguito = (bool)editEseguito.Value;
                 obj.Importo = editImporto.Value;
                 obj.Modalita = editModalita.Value;
                 obj.Scadenza = editScadenza.Value;

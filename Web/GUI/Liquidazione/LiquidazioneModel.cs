@@ -38,7 +38,7 @@ namespace Web.GUI.Liquidazione
                     var obj = (WcfService.Dto.LiquidazioneDto)model;
                     editData.Value = obj.Data;
                     editEseguito.Value = obj.Eseguito;
-                    //editImporto.Value = obj.Importo;
+                    editImporto.Value = obj.Importo;
                     editModalita.Value = obj.Modalita;
                     editScadenza.Value = obj.Scadenza;
                     var fatturaVendita = obj.FatturaVendita;
@@ -61,8 +61,8 @@ namespace Web.GUI.Liquidazione
             {
                 var obj = (WcfService.Dto.LiquidazioneDto)model;
                 obj.Data = editData.Value;
-                //obj.Eseguito = editEseguito.Value;
-                //obj.Importo = editImporto.Value;
+                obj.Eseguito = (bool)editEseguito.Value;
+                obj.Importo = editImporto.Value;
                 obj.Modalita = editModalita.Value;
                 obj.Scadenza = editScadenza.Value;
                 obj.FatturaVenditaId = (int)editFatturaVendita.Id;
