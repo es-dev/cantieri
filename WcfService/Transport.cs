@@ -490,7 +490,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public PagamentoDto(int _id, int _fatturaAcquistoId, DateTime? _data, string _modalita, decimal? _importo, DateTime? _scadenza, bool _eseguito, FatturaAcquistoDto _fatturaAcquisto)
+		public PagamentoDto(int _id, int _fatturaAcquistoId, DateTime? _data, string _modalita, decimal? _importo, DateTime? _scadenza, bool? _eseguito, FatturaAcquistoDto _fatturaAcquisto)
 		{
 			this.Id = _id;
 			this.FatturaAcquistoId = _fatturaAcquistoId;
@@ -524,7 +524,7 @@ namespace WcfService.Dto
 		public virtual DateTime? Scadenza { get;set; }
 
 		[DataMember]
-		public virtual bool Eseguito { get;set; }
+		public virtual bool? Eseguito { get;set; }
 
 		[DataMember]
 		public virtual FatturaAcquistoDto FatturaAcquisto { get;set; }
@@ -605,7 +605,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public LiquidazioneDto(int _id, int _fatturaVenditaId, DateTime? _data, string _modalita, decimal? _importo, DateTime? _scadenza, bool _eseguito, FatturaVenditaDto _fatturaVendita)
+		public LiquidazioneDto(int _id, int _fatturaVenditaId, DateTime? _data, string _modalita, decimal? _importo, DateTime? _scadenza, bool? _eseguito, FatturaVenditaDto _fatturaVendita)
 		{
 			this.Id = _id;
 			this.FatturaVenditaId = _fatturaVenditaId;
@@ -639,7 +639,7 @@ namespace WcfService.Dto
 		public virtual DateTime? Scadenza { get;set; }
 
 		[DataMember]
-		public virtual bool Eseguito { get;set; }
+		public virtual bool? Eseguito { get;set; }
 
 		[DataMember]
 		public virtual FatturaVenditaDto FatturaVendita { get;set; }
@@ -782,7 +782,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public SALDto(int _id, int _commessaId, DateTime? _data, decimal? _totaleAcquisti, decimal? _totaleVendite, bool _lock, string _denominazione, CommessaDto _commessa)
+		public SALDto(int _id, int _commessaId, DateTime? _data, decimal? _totaleAcquisti, decimal? _totaleVendite, bool? _lock, string _denominazione, CommessaDto _commessa)
 		{
 			this.Id = _id;
 			this.CommessaId = _commessaId;
@@ -813,7 +813,7 @@ namespace WcfService.Dto
 		public virtual decimal? TotaleVendite { get;set; }
 
 		[DataMember]
-		public virtual bool Lock { get;set; }
+		public virtual bool? Lock { get;set; }
 
 		[DataMember]
 		public virtual string Denominazione { get;set; }

@@ -102,8 +102,8 @@ namespace DataLayer
 			}
 		}
 		
-		private bool _eseguito;
-		public virtual bool Eseguito
+		private bool? _eseguito;
+		public virtual bool? Eseguito
 		{
 			get
 			{

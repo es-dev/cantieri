@@ -89,8 +89,8 @@ namespace DataLayer
 			}
 		}
 		
-		private bool _lock;
-		public virtual bool Lock
+		private bool? _lock;
+		public virtual bool? Lock
 		{
 			get
 			{
