@@ -27,7 +27,7 @@ namespace Web.GUI.AnagraficaCliente
                     var obj = (WcfService.Dto.AnagraficaClienteDto)model;
                     infoRagioneSociale.Text = obj.RagioneSociale;
                     infoCodice.Text = obj.Codice;
-                    infoPartitaIVA.Text = obj.PIva;
+                    infoPartitaIVA.Text = "P.IVA" + obj.PIva;
                 }
             }
             catch (Exception ex)

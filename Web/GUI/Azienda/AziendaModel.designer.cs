@@ -38,12 +38,18 @@ namespace Web.GUI.Azienda
             this.editProvincia = new Library.Template.Controls.TemplateEditText();
             this.editPartitaIVA = new Library.Template.Controls.TemplateEditText();
             this.editNumeroDipendenti = new Library.Template.Controls.TemplateEditNumeric();
+            this.editEmail = new Library.Template.Controls.TemplateEditText();
+            this.editFAX = new Library.Template.Controls.TemplateEditText();
+            this.editTelefono = new Library.Template.Controls.TemplateEditText();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.SuspendLayout();
             // 
             // container
             // 
+            this.container.Controls.Add(this.editTelefono);
+            this.container.Controls.Add(this.editFAX);
+            this.container.Controls.Add(this.editEmail);
             this.container.Controls.Add(this.editNumeroDipendenti);
             this.container.Controls.Add(this.editPartitaIVA);
             this.container.Controls.Add(this.editProvincia);
@@ -60,6 +66,9 @@ namespace Web.GUI.Azienda
             this.container.Controls.SetChildIndex(this.editProvincia, 0);
             this.container.Controls.SetChildIndex(this.editPartitaIVA, 0);
             this.container.Controls.SetChildIndex(this.editNumeroDipendenti, 0);
+            this.container.Controls.SetChildIndex(this.editEmail, 0);
+            this.container.Controls.SetChildIndex(this.editFAX, 0);
+            this.container.Controls.SetChildIndex(this.editTelefono, 0);
             // 
             // infoSubtitle
             // 
@@ -220,7 +229,7 @@ namespace Web.GUI.Azienda
             this.editNumeroDipendenti.Editing = false;
             this.editNumeroDipendenti.Label = "Numero dipendenti";
             this.editNumeroDipendenti.LabelWidth = 175;
-            this.editNumeroDipendenti.Location = new System.Drawing.Point(25, 375);
+            this.editNumeroDipendenti.Location = new System.Drawing.Point(25, 495);
             this.editNumeroDipendenti.Name = "editNumeroDipendenti";
             this.editNumeroDipendenti.ReadOnly = false;
             this.editNumeroDipendenti.Required = false;
@@ -228,6 +237,72 @@ namespace Web.GUI.Azienda
             this.editNumeroDipendenti.TabIndex = 6;
             this.editNumeroDipendenti.Text = "TemplateEditNumeric";
             this.editNumeroDipendenti.Value = null;
+            // 
+            // editEmail
+            // 
+            this.editEmail.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editEmail.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editEmail.BackColor = System.Drawing.Color.Transparent;
+            this.editEmail.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editEmail.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editEmail.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editEmail.Changed = true;
+            this.editEmail.Editing = false;
+            this.editEmail.Label = "Email";
+            this.editEmail.LabelWidth = 175;
+            this.editEmail.Location = new System.Drawing.Point(25, 454);
+            this.editEmail.Name = "editEmail";
+            this.editEmail.ReadOnly = false;
+            this.editEmail.Required = false;
+            this.editEmail.Size = new System.Drawing.Size(781, 30);
+            this.editEmail.TabIndex = 11;
+            this.editEmail.Text = "EditControl";
+            this.editEmail.Value = null;
+            // 
+            // editFAX
+            // 
+            this.editFAX.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editFAX.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editFAX.BackColor = System.Drawing.Color.Transparent;
+            this.editFAX.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editFAX.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editFAX.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editFAX.Changed = true;
+            this.editFAX.Editing = false;
+            this.editFAX.Label = "FAX";
+            this.editFAX.LabelWidth = 175;
+            this.editFAX.Location = new System.Drawing.Point(25, 411);
+            this.editFAX.Name = "editFAX";
+            this.editFAX.ReadOnly = false;
+            this.editFAX.Required = false;
+            this.editFAX.Size = new System.Drawing.Size(781, 30);
+            this.editFAX.TabIndex = 9;
+            this.editFAX.Text = "EditControl";
+            this.editFAX.Value = null;
+            // 
+            // editTelefono
+            // 
+            this.editTelefono.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editTelefono.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editTelefono.BackColor = System.Drawing.Color.Transparent;
+            this.editTelefono.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editTelefono.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editTelefono.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editTelefono.Changed = true;
+            this.editTelefono.Editing = false;
+            this.editTelefono.Label = "Telefono";
+            this.editTelefono.LabelWidth = 175;
+            this.editTelefono.Location = new System.Drawing.Point(25, 368);
+            this.editTelefono.Name = "editTelefono";
+            this.editTelefono.ReadOnly = false;
+            this.editTelefono.Required = false;
+            this.editTelefono.Size = new System.Drawing.Size(781, 30);
+            this.editTelefono.TabIndex = 8;
+            this.editTelefono.Text = "EditControl";
+            this.editTelefono.Value = null;
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
@@ -245,6 +320,9 @@ namespace Web.GUI.Azienda
         private Library.Template.Controls.TemplateEditText editComune;
         private Library.Template.Controls.TemplateEditText editCAP;
         private Library.Template.Controls.TemplateEditNumeric editNumeroDipendenti;
+        private Library.Template.Controls.TemplateEditText editTelefono;
+        private Library.Template.Controls.TemplateEditText editFAX;
+        private Library.Template.Controls.TemplateEditText editEmail;
 
 
     }

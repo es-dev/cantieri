@@ -26,7 +26,7 @@ namespace Web.GUI.Cliente
                 {
                     var obj = (WcfService.Dto.ClienteDto)model;
                     infoRagioneSociale.Text = obj.RagioneSociale;
-                    infoPartitaIVA.Text = obj.PIva;
+                    infoPartitaIVA.Text ="P.IVA" +obj.PIva;
                     infoCodice.Text = obj.CodiceCliente;
                     var commessa = obj.Commessa;
                     if (commessa != null)

@@ -187,6 +187,8 @@ namespace Web.GUI.Pagamento
             // 
             // editEseguito
             // 
+            this.editEseguito.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.editEseguito.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.editEseguito.BackColor = System.Drawing.Color.Transparent;
             this.editEseguito.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
@@ -200,11 +202,11 @@ namespace Web.GUI.Pagamento
             this.editEseguito.Name = "editEseguito";
             this.editEseguito.ReadOnly = false;
             this.editEseguito.Required = false;
-            this.editEseguito.Size = new System.Drawing.Size(481, 30);
+            this.editEseguito.Size = new System.Drawing.Size(798, 30);
             this.editEseguito.TabIndex = 5;
             this.editEseguito.Text = "TemplateCheckBox";
-            this.editEseguito.TextFalse = "";
-            this.editEseguito.TextTrue = "";
+            this.editEseguito.TextFalse = "No";
+            this.editEseguito.TextTrue = "Si";
             this.editEseguito.Value = null;
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);

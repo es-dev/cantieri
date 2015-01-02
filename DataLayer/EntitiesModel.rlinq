@@ -34,6 +34,15 @@
         <orm:field name="_dipendenti" property="Dipendenti" uniqueId="2f09d16a-870f-47cc-b64d-62cbcf01da6a" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="Dipendenti" sql-type="int" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         </orm:field>
+        <orm:field name="_telefono" property="Telefono" uniqueId="41aea0cb-fe80-4bea-8d48-560a194fa0dd" type="System.String">
+          <orm:column name="Telefono" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_fax" property="Fax" uniqueId="4b691d1d-8557-4101-bc89-edbda95879e4" type="System.String">
+          <orm:column name="Fax" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_email" property="Email" uniqueId="3a11106c-50f5-4fea-a238-c1ff1b62a3d8" type="System.String">
+          <orm:column name="Email" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
         <orm:field name="_commessas" property="Commessas" behavior="readwrite" uniqueId="966c5bf1-e84b-4658-a843-ef38d0bb7093" type="DataLayer.Commessa">
           <orm:collection element-class="DataLayer.Commessa" inverse-field="_azienda" order-by="" uniqueId="9529a813-1327-451c-bfdc-62fcf2c3ea6a" />
         </orm:field>
@@ -635,6 +644,9 @@
         <orm:column name="Provincia" sql-type="varchar" nullable="true" length="2" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="PIva" sql-type="varchar" nullable="true" length="11" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="Dipendenti" sql-type="int" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:column name="Telefono" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="Fax" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="Email" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
       </orm:table>
       <orm:table name="Commessa">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
@@ -876,6 +888,9 @@
       <Property Id="a3e4768b-bc9e-4560-9f73-714501c1a525" name="Provincia" label="Provincia : String" fieldName="_provincia" />
       <Property Id="3c4d82b8-36fa-43ab-b7ce-36c0c2f6b5c9" name="PIva" label="PIva : String" fieldName="_pIva" />
       <Property Id="2f09d16a-870f-47cc-b64d-62cbcf01da6a" name="Dipendenti" type="Int32" label="Dipendenti : Int32" nullable="true" fieldName="_dipendenti" />
+      <Property Id="41aea0cb-fe80-4bea-8d48-560a194fa0dd" name="Telefono" label="Telefono : String" fieldName="_telefono" />
+      <Property Id="4b691d1d-8557-4101-bc89-edbda95879e4" name="Fax" label="Fax : String" fieldName="_fax" />
+      <Property Id="3a11106c-50f5-4fea-a238-c1ff1b62a3d8" name="Email" label="Email : String" fieldName="_email" />
       <navigationalProperties>
         <classHasNavigationalProperties Id="265c7d9c-c78e-44bb-9804-cd1228ad49e6">
           <NavigationalProperty Id="966c5bf1-e84b-4658-a843-ef38d0bb7093" name="Commessas" type="IList&lt;Commessa&gt;" label="Commessas : IList&lt;Commessa&gt;" nullable="true" kind="Persistent" fieldName="_commessas" isDependent="false" isManaged="false" />
