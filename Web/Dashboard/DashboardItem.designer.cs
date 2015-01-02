@@ -49,7 +49,7 @@ namespace Web.Dashboard
             this.panelLeft.Controls.Add(this.infoImage);
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(83, 99);
+            this.panelLeft.Size = new System.Drawing.Size(83, 105);
             this.panelLeft.TabIndex = 0;
             // 
             // infoCodice
@@ -57,7 +57,7 @@ namespace Web.Dashboard
             this.infoCodice.BackColor = System.Drawing.Color.Silver;
             this.infoCodice.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoCodice.ForeColor = System.Drawing.Color.DimGray;
-            this.infoCodice.Location = new System.Drawing.Point(0, 60);
+            this.infoCodice.Location = new System.Drawing.Point(0, 66);
             this.infoCodice.Name = "infoCodice";
             this.infoCodice.Size = new System.Drawing.Size(83, 37);
             this.infoCodice.TabIndex = 2;
@@ -67,9 +67,9 @@ namespace Web.Dashboard
             // infoImage
             // 
             this.infoImage.BackColor = System.Drawing.Color.Transparent;
-            this.infoImage.Location = new System.Drawing.Point(18, 4);
+            this.infoImage.Location = new System.Drawing.Point(10, 1);
             this.infoImage.Name = "infoImage";
-            this.infoImage.Size = new System.Drawing.Size(48, 48);
+            this.infoImage.Size = new System.Drawing.Size(64, 63);
             this.infoImage.SizeMode = Gizmox.WebGUI.Forms.PictureBoxSizeMode.StretchImage;
             this.infoImage.TabIndex = 1;
             this.infoImage.TabStop = false;
@@ -95,7 +95,7 @@ namespace Web.Dashboard
             this.infoDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.infoDescription.Location = new System.Drawing.Point(95, 28);
             this.infoDescription.Name = "infoDescription";
-            this.infoDescription.Size = new System.Drawing.Size(309, 69);
+            this.infoDescription.Size = new System.Drawing.Size(306, 70);
             this.infoDescription.TabIndex = 1;
             this.infoDescription.Text = "Description";
             // 
@@ -105,8 +105,8 @@ namespace Web.Dashboard
             this.Controls.Add(this.infoDescription);
             this.Controls.Add(this.infoTitle);
             this.Controls.Add(this.panelLeft);
-            this.Size = new System.Drawing.Size(407, 99);
-            this.ItemClick += new TemplateItem.ItemClickHandler(this.DashboardItem_ItemClick);
+            this.Size = new System.Drawing.Size(407, 105);
+            this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.DashboardItem_ItemClick);
             this.panelLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.ResumeLayout(false);

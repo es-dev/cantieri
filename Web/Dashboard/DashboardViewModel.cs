@@ -79,20 +79,20 @@ namespace Web.Dashboard
             try
             {
                 var dashboards = new List<Dashboard>();
-                var dashboardAzienda = new Dashboard("Aziende", "AZ", "Description...", "Images.dashboard.azienda1.png", "", typeof(AziendaView));
-                var dashboardCommessa = new Dashboard("Commesse", "COMM", "Description...", "Images.dashboard.commessa.png", "", typeof(CommessaView));
-                var dashboardFornitore = new Dashboard("Fornitori", "FORN", "Description...", "Images.dashboard.png", "", typeof(FornitoreView));
-                var dashboardCentroCosto = new Dashboard("Centri di costo", "CC", "Description...", "Images.dashboard.png", "", typeof(CentroCostoView));
-                var dashboardFatturaAcquisto = new Dashboard("Fatture acquisto", "FA", "Description...", "Images.dashboard.png", "", typeof(FatturaAcquistoView));
-                var dashboardArticolo = new Dashboard("Articoli", "ART", "Description...", "Images.dashboard.png", "", typeof(ArticoloView));
-                var dashboardPagamento = new Dashboard("Pagamenti", "PAG", "Description...", "Images.dashboard.png", "", typeof(PagamentoView));
-                var dashboardCliente = new Dashboard("Clienti", "CL", "Description...", "Images.dashboard.png", "", typeof(ClienteView));
-                var dashboardFatturaVendita = new Dashboard("Fatture vendita", "FV", "Description...", "Images.dashboard.png", "", typeof(FatturaVenditaView));
-                var dashboardLiquidazione = new Dashboard("Liquidazioni", "LIQ", "Description...", "Images.dashboard.png", "", typeof(LiquidazioneView));
-                var dashboardSAL = new Dashboard("SAL", "SAL", "Description...", "Images.dashboard.png", "", typeof(SALView));
-                var dashboardAnagraficaFornitore = new Dashboard("Anagrafiche fornitori", "AF", "Description...", "Images.dashboard.png", "", typeof(AnagraficaFornitoreView));
-                var dashboardAnagraficaCliente = new Dashboard("Anagrafiche clienti", "AC", "Description...", "Images.dashboard.png", "", typeof(AnagraficaClienteView));
-                var dashboardAnagraficaArticolo = new Dashboard("Anagrafiche articoli", "AA", "Description...", "Images.dashboard.png", "", typeof(AnagraficaArticoloView));
+                var dashboardAzienda = new Dashboard("Aziende", "AZ", "Definisci la tua azienda, inserendo il logo aziendale, l'intestazione e i dati commerciali...", "Images.dashboard.azienda.png", "", typeof(AziendaView));
+                var dashboardCommessa = new Dashboard("Commesse", "COMM", "Visualizza le tue commesse, verifica i bilanci e il margine operativo...", "Images.dashboard.commessa.png", "", typeof(CommessaView));
+                var dashboardFornitore = new Dashboard("Fornitori", "FORN", "Specifica i fornitori per le commesse inserite nel sistema...", "Images.dashboard.fornitore.png", "", typeof(FornitoreView));
+                var dashboardCentroCosto = new Dashboard("Centri di costo", "CC", "Definisci i centri di costo per organizzare il tuo lavoro e raggruppare i flussi economici...", "Images.dashboard.centrocosto.png", "", typeof(CentroCostoView));
+                var dashboardFatturaAcquisto = new Dashboard("Fatture di acquisto", "FA", "Inserisci le fatture di acquisto per i fornitori...", "Images.dashboard.fatturaacquisto.png", "", typeof(FatturaAcquistoView));
+                var dashboardArticolo = new Dashboard("Articoli", "ART", "Inserisci gli articoli per le fattura di acquisto...", "Images.dashboard.articolo.png", "", typeof(ArticoloView));
+                var dashboardPagamento = new Dashboard("Pagamenti", "PAG", "Gestisci i pagamenti per le fattura inserite, controllando le scadenze e gli importi...", "Images.dashboard.pagamento.png", "", typeof(PagamentoView));
+                var dashboardCliente = new Dashboard("Clienti", "CL", "Specifica i clienti per le commessa inserite nel sistema, definendo gli importi attribuiti...", "Images.dashboard.cliente.png", "", typeof(ClienteView));
+                var dashboardFatturaVendita = new Dashboard("Fatture di vendita", "FV", "Inserisci le fatture di vendita i clienti delle commesse...", "Images.dashboard.fatturavendita.png", "", typeof(FatturaVenditaView));
+                var dashboardLiquidazione = new Dashboard("Liquidazioni", "LIQ", "Gestisci le liquidazioni corrispondenti alle fatture di vendita per le commesse...", "Images.dashboard.liquidazione.png", "", typeof(LiquidazioneView));
+                var dashboardSAL = new Dashboard("SAL", "SAL", "Crea uno Stato di Avanzamento Lavori (SAL) e controlla i bilanci delle tue commesse...", "Images.dashboard.SAL.png", "", typeof(SALView));
+                var dashboardAnagraficaFornitore = new Dashboard("Anagrafiche fornitori", "AF", "Archivia i fornitori verso i quali effettui l'approvviggionamento delle risorse...", "Images.dashboard.anagraficafornitore.png", "", typeof(AnagraficaFornitoreView));
+                var dashboardAnagraficaCliente = new Dashboard("Anagrafiche clienti", "AC", "Archivia i clienti verso i quali esegui le commesse dei lavori assegnati...", "Images.dashboard.anagraficacliente.png", "", typeof(AnagraficaClienteView));
+                var dashboardAnagraficaArticolo = new Dashboard("Anagrafiche articoli", "AA", "Archivia gli articoli e i prodotti acquistati per una gestione rapida delle movimentazioni...", "Images.dashboard.anagraficaarticolo.png", "", typeof(AnagraficaArticoloView));
                 dashboards.Add(dashboardAzienda);
                 dashboards.Add(dashboardCommessa);
                 dashboards.Add(dashboardFornitore);
