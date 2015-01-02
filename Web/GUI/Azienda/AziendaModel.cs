@@ -43,6 +43,9 @@ namespace Web.GUI.Azienda
                     editNumeroDipendenti.Value = obj.Dipendenti;
                     editPartitaIVA.Value = obj.PIva;
                     editProvincia.Value = obj.Provincia;
+                    editTelefono.Value = obj.Telefono;
+                    editFAX.Value = obj.Fax;
+                    editEmail.Value = obj.Email;
                 }
             }
             catch (Exception ex)
@@ -63,6 +66,9 @@ namespace Web.GUI.Azienda
                 obj.Indirizzo = editIndirizzo.Value;
                 obj.PIva = editPartitaIVA.Value;
                 obj.Provincia = editProvincia.Value;
+                obj.Telefono = editTelefono.Value;
+                obj.Fax = editFAX.Value;
+                obj.Email = editEmail.Value;
             }
             catch (Exception ex)
             {

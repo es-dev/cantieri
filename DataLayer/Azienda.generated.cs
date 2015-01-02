@@ -128,6 +128,45 @@ namespace DataLayer
 			}
 		}
 		
+		private string _telefono;
+		public virtual string Telefono
+		{
+			get
+			{
+				return this._telefono;
+			}
+			set
+			{
+				this._telefono = value;
+			}
+		}
+		
+		private string _fax;
+		public virtual string Fax
+		{
+			get
+			{
+				return this._fax;
+			}
+			set
+			{
+				this._fax = value;
+			}
+		}
+		
+		private string _email;
+		public virtual string Email
+		{
+			get
+			{
+				return this._email;
+			}
+			set
+			{
+				this._email = value;
+			}
+		}
+		
 		private IList<Commessa> _commessas = new List<Commessa>();
 		public virtual IList<Commessa> Commessas
 		{

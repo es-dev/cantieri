@@ -102,6 +102,9 @@ namespace WcfService.Assemblers
 			entity.Provincia = dto.Provincia;
 			entity.PIva = dto.PIva;
 			entity.Dipendenti = dto.Dipendenti;
+			entity.Telefono = dto.Telefono;
+			entity.Fax = dto.Fax;
+			entity.Email = dto.Email;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -120,6 +123,9 @@ namespace WcfService.Assemblers
 			dto.Provincia = entity.Provincia;
 			dto.PIva = entity.PIva;
 			dto.Dipendenti = entity.Dipendenti;
+			dto.Telefono = entity.Telefono;
+			dto.Fax = entity.Fax;
+			dto.Email = entity.Email;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
