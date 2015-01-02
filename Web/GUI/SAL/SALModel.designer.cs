@@ -114,7 +114,7 @@ namespace Web.GUI.SAL
             this.editData.Name = "editData";
             this.editData.ReadOnly = false;
             this.editData.Required = false;
-            this.editData.Size = new System.Drawing.Size(481, 30);
+            this.editData.Size = new System.Drawing.Size(798, 30);
             this.editData.TabIndex = 1;
             this.editData.Text = "EditControl";
             this.editData.Value = null;
@@ -158,7 +158,7 @@ namespace Web.GUI.SAL
             this.editLock.Name = "editLock";
             this.editLock.ReadOnly = false;
             this.editLock.Required = false;
-            this.editLock.Size = new System.Drawing.Size(481, 30);
+            this.editLock.Size = new System.Drawing.Size(798, 30);
             this.editLock.TabIndex = 4;
             this.editLock.Text = "TemplateCheckBox";
             this.editLock.TextFalse = "NON ATTIVO";
