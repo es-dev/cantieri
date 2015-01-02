@@ -69,9 +69,9 @@ namespace Web.GUI.Cliente
             this.panelLeft.BackColor = System.Drawing.Color.Gainsboro;
             this.panelLeft.Controls.Add(this.infoCodice);
             this.panelLeft.Controls.Add(this.infoImage);
-            this.panelLeft.Location = new System.Drawing.Point(1, 0);
+            this.panelLeft.Location = new System.Drawing.Point(2, 2);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(83, 93);
+            this.panelLeft.Size = new System.Drawing.Size(83, 89);
             this.panelLeft.TabIndex = 0;
             // 
             // infoCommesssa
@@ -121,6 +121,11 @@ namespace Web.GUI.Cliente
             this.Controls.Add(this.panelLeft);
             this.Size = new System.Drawing.Size(407, 93);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.ClienteItem_ItemClick);
+            this.Controls.SetChildIndex(this.container, 0);
+            this.Controls.SetChildIndex(this.panelLeft, 0);
+            this.Controls.SetChildIndex(this.infoCommesssa, 0);
+            this.Controls.SetChildIndex(this.infoPartitaIVA, 0);
+            this.Controls.SetChildIndex(this.infoRagioneSociale, 0);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.ResumeLayout(false);

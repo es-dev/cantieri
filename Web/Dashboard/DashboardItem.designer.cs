@@ -47,9 +47,9 @@ namespace Web.Dashboard
             this.panelLeft.BackColor = System.Drawing.Color.Gainsboro;
             this.panelLeft.Controls.Add(this.infoCodice);
             this.panelLeft.Controls.Add(this.infoImage);
-            this.panelLeft.Location = new System.Drawing.Point(0, 0);
+            this.panelLeft.Location = new System.Drawing.Point(2, 2);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(83, 105);
+            this.panelLeft.Size = new System.Drawing.Size(83, 101);
             this.panelLeft.TabIndex = 0;
             // 
             // infoCodice
@@ -107,6 +107,10 @@ namespace Web.Dashboard
             this.Controls.Add(this.panelLeft);
             this.Size = new System.Drawing.Size(407, 105);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.DashboardItem_ItemClick);
+            this.Controls.SetChildIndex(this.container, 0);
+            this.Controls.SetChildIndex(this.panelLeft, 0);
+            this.Controls.SetChildIndex(this.infoTitle, 0);
+            this.Controls.SetChildIndex(this.infoDescription, 0);
             this.panelLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.ResumeLayout(false);
