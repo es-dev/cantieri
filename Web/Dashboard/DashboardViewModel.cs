@@ -80,8 +80,8 @@ namespace Web.Dashboard
             {
                 var dashboards = new List<Dashboard>();
                 var dashboardAzienda = new Dashboard("Aziende", "AZ", "Definisci la tua azienda, inserisci il logo aziendale, l'intestazione e i dati commerciali...", "Images.dashboard.azienda.png", "", typeof(AziendaView));
-                var dashboardCommessa = new Dashboard("Commesse", "COMM", "Visualizza le tue commesse, verifica i bilanci e il margine operativo mediante strumenti grafici e analisi statistiche...", "Images.dashboard.commessa.png", "", typeof(CommessaView));
-                var dashboardFornitore = new Dashboard("Fornitori", "FORN", "Specifica i fornitori per le commesse inserite nel sistema, inserisci i dati identificativi e i dati di fornitura...", "Images.dashboard.fornitore.png", "", typeof(FornitoreView));
+                var dashboardCommessa = new Dashboard("Commesse", "COM", "Visualizza le tue commesse, verifica i bilanci e il margine operativo mediante strumenti grafici e analisi statistiche...", "Images.dashboard.commessa.png", "", typeof(CommessaView));
+                var dashboardFornitore = new Dashboard("Fornitori", "FOR", "Specifica i fornitori per le commesse inserite nel sistema, inserisci i dati identificativi e i dati di fornitura...", "Images.dashboard.fornitore.png", "", typeof(FornitoreView));
                 var dashboardCentroCosto = new Dashboard("Centri di costo", "CC", "Definisci i centri di costo per organizzare al meglio il tuo lavoro e per raggruppare i flussi economici in voci di costo separate...", "Images.dashboard.centrocosto.png", "", typeof(CentroCostoView));
                 var dashboardFatturaAcquisto = new Dashboard("Fatture di acquisto", "FA", "Inserisci le fatture di acquisto per i fornitori, specificando i prodotti acquistati e i costi relativi...", "Images.dashboard.fatturaacquisto.png", "", typeof(FatturaAcquistoView));
                 var dashboardArticolo = new Dashboard("Articoli", "ART", "Inserisci gli articoli per le fattura di acquisto, specificandone le quantità, i costi e gli eventuali sconti relativi...", "Images.dashboard.articolo.png", "", typeof(ArticoloView));
