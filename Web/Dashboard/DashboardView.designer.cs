@@ -122,6 +122,10 @@ namespace Web.Dashboard
             this.btnSendBug.Size = new System.Drawing.Size(100, 72);
             this.btnSendBug.TabIndex = 2;
             this.btnSendBug.TextButton = "Segnala un bug al team";
+            // 
+            // DashboardView
+            // 
+            this.OpenedSpace += new Library.Interfaces.OpenSpaceHandler(this.DashboardView_OpenedSpace);
             this.Controls.SetChildIndex(this.txtSearch, 0);
             this.Controls.SetChildIndex(this.btnOrderBy, 0);
             this.Controls.SetChildIndex(this.btnAdvancedSearch, 0);
