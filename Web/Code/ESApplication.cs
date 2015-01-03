@@ -13,8 +13,8 @@ namespace Web.Code
         {
             try
             {
-                view.Title = "ENTERPRISE MANAGER - ES";
-                view.Version = "Prototipo 1 - rev. alfa";
+                view.Title = "ES.CANTIERI - GESTIONE COMMESSE";
+                view.Version = "rev. beta1";
             }
             catch (Exception ex)
             {

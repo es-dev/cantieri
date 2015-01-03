@@ -40,6 +40,10 @@ namespace Web.Dashboard
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.SuspendLayout();
             // 
+            // container
+            // 
+            this.container.BackColor = System.Drawing.Color.Transparent;
+            // 
             // panelLeft
             // 
             this.panelLeft.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
@@ -91,6 +95,7 @@ namespace Web.Dashboard
             this.infoDescription.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.infoDescription.BackColor = System.Drawing.Color.Transparent;
             this.infoDescription.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.infoDescription.Location = new System.Drawing.Point(95, 28);

@@ -22,8 +22,6 @@ namespace Web.GUI.CentroCosto
             {
                 Take = 10;
                 ViewModel = new CentroCostoViewModel(this);
-                TitleSpace = "ENTERPRISE MANAGER - ESD";
-                Title = "CENTRI DI COSTO";
             }
             catch (Exception ex)
             {

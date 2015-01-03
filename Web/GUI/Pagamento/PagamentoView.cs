@@ -22,8 +22,6 @@ namespace Web.GUI.Pagamento
             {
                 Take = 10;
                 ViewModel = new PagamentoViewModel(this);
-                TitleSpace = "ENTERPRISE MANAGER - ESD";
-                Title = "PAGAMENTI";
             }
             catch (Exception ex)
             {

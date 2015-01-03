@@ -22,8 +22,6 @@ namespace Web.GUI.Articolo
             {
                 Take = 10;
                 ViewModel = new ArticoloViewModel(this);
-                TitleSpace = "ENTERPRISE MANAGER - ESD";
-                Title = "ARTICOLI";
             }
             catch (Exception ex)
             {

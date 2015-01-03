@@ -22,8 +22,6 @@ namespace Web.GUI.SAL
             {
                 Take = 10;
                 ViewModel = new SALViewModel(this);
-                TitleSpace = "ENTERPRISE MANAGER - ESD";
-                Title = "SAL";
             }
             catch (Exception ex)
             {

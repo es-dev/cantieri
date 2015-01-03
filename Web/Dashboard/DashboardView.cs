@@ -22,7 +22,6 @@ namespace Web.Dashboard
             {
                 Take = 10;
                 ViewModel = new DashboardViewModel(this);
-                TitleSpace = "ENTERPRISE MANAGER";
                 Title = "DASHBOARD";
                 Adding = false;
             }

@@ -22,8 +22,6 @@ namespace Web.GUI.AnagraficaCliente
             {
                 Take = 10;
                 ViewModel = new AnagraficaClienteViewModel(this);
-                TitleSpace = "ENTERPRISE MANAGER - ESD";
-                Title = "ANAGRAFICHE CLIENTI";
             }
             catch (Exception ex)
             {

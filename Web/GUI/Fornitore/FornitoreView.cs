@@ -22,8 +22,6 @@ namespace Web.GUI.Fornitore
             {
                 Take = 10;
                 ViewModel = new FornitoreViewModel(this);
-                TitleSpace = "ENTERPRISE MANAGER - ESD";
-                Title = "FORNITORI";
             }
             catch (Exception ex)
             {

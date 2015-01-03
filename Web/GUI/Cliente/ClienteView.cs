@@ -22,8 +22,6 @@ namespace Web.GUI.Cliente
             {
                 Take = 10;
                 ViewModel = new ClienteViewModel(this);
-                TitleSpace = "ENTERPRISE MANAGER - ESD";
-                Title = "CLIENTI";
             }
             catch (Exception ex)
             {

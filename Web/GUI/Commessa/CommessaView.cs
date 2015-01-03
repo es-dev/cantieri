@@ -22,8 +22,6 @@ namespace Web.GUI.Commessa
             {
                 Take = 10;
                 ViewModel = new CommessaViewModel(this);
-                TitleSpace = "ENTERPRISE MANAGER - ESD";
-                Title = "COMMESSE";
             }
             catch (Exception ex)
             {

@@ -22,8 +22,6 @@ namespace Web.GUI.AnagraficaArticolo
             {
                 Take = 10;
                 ViewModel = new AnagraficaArticoloViewModel(this);
-                TitleSpace = "ENTERPRISE MANAGER - ESD";
-                Title = "ANAGRAFICHE ARTICOLI";
             }
             catch (Exception ex)
             {

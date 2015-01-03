@@ -22,8 +22,6 @@ namespace Web.GUI.FatturaAcquisto
             {
                 Take = 10;
                 ViewModel = new FatturaAcquistoViewModel(this);
-                TitleSpace = "ENTERPRISE MANAGER - ESD";
-                Title = "FATTURE ACQUISTI";
             }
             catch (Exception ex)
             {

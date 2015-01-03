@@ -22,8 +22,6 @@ namespace Web.GUI.Liquidazione
             {
                 Take = 10;
                 ViewModel = new LiquidazioneViewModel(this);
-                TitleSpace = "ENTERPRISE MANAGER - ESD";
-                Title = "LIQUIDAZIONI";
             }
             catch (Exception ex)
             {

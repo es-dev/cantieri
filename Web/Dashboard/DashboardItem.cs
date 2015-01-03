@@ -70,6 +70,7 @@ namespace Web.Dashboard
                         if (type != null)
                         {
                             var space = (ISpace)Activator.CreateInstance(type);
+                            space.Title = objDto.Title.ToUpper();
                             AddSpace(space);
                         }
                     }

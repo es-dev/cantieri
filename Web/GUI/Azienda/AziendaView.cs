@@ -22,8 +22,6 @@ namespace Web.GUI.Azienda
             {
                 Take = 10;
                 ViewModel = new AziendaViewModel(this);
-                TitleSpace = "ENTERPRISE MANAGER - ESD";
-                Title = "AZIENDE";
             }
             catch (Exception ex)
             {
