@@ -36,6 +36,7 @@ namespace Web.GUI.Azienda
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AziendaDto)model;
+                    editCodice.Value = obj.Codice;
                     editDenominazione.Value = obj.Denominazione;
                     editCAP.Value = obj.CAP;
                     editComune.Value = obj.Comune;
@@ -59,6 +60,7 @@ namespace Web.GUI.Azienda
             try
             {
                 var obj = (WcfService.Dto.AziendaDto)model;
+                obj.Codice = editCodice.Value;
                 obj.Denominazione = editDenominazione.Value;
                 obj.CAP = editCAP.Value;
                 obj.Comune = editComune.Value;
@@ -76,5 +78,6 @@ namespace Web.GUI.Azienda
             }
         }
 
+   
 	}
 }

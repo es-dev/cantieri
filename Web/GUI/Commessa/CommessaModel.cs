@@ -37,6 +37,7 @@ namespace Web.GUI.Commessa
                 {
                     var obj = (WcfService.Dto.CommessaDto)model;
                     editDenominazione.Value = obj.Denominazione;
+                    editCodice.Value = obj.Codice;
                     editCAP.Value = obj.CAP;
                     editComune.Value = obj.Comune;
                     editIndirizzo.Value = obj.Indirizzo;
@@ -69,6 +70,7 @@ namespace Web.GUI.Commessa
             {
                 var obj = (WcfService.Dto.CommessaDto)model;
                 obj.Denominazione = editDenominazione.Value;
+                obj.Codice = editCodice.Value;
                 obj.CAP = editCAP.Value;
                 obj.Comune = editComune.Value;
                 obj.Indirizzo = editIndirizzo.Value;

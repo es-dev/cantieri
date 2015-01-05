@@ -37,12 +37,14 @@ namespace Web.GUI.SAL
             this.editLock = new Library.Template.Controls.TemplateEditCheckBox();
             this.editTotaleAcquisti = new Library.Template.Controls.TemplateEditDecimal();
             this.editTotaleVendite = new Library.Template.Controls.TemplateEditDecimal();
+            this.editCodice = new Library.Template.Controls.TemplateEditCombo();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.SuspendLayout();
             // 
             // container
             // 
+            this.container.Controls.Add(this.editCodice);
             this.container.Controls.Add(this.editTotaleVendite);
             this.container.Controls.Add(this.editTotaleAcquisti);
             this.container.Controls.Add(this.editLock);
@@ -57,6 +59,7 @@ namespace Web.GUI.SAL
             this.container.Controls.SetChildIndex(this.editLock, 0);
             this.container.Controls.SetChildIndex(this.editTotaleAcquisti, 0);
             this.container.Controls.SetChildIndex(this.editTotaleVendite, 0);
+            this.container.Controls.SetChildIndex(this.editCodice, 0);
             // 
             // infoSubtitle
             // 
@@ -85,7 +88,7 @@ namespace Web.GUI.SAL
             this.editCommessa.Editing = false;
             this.editCommessa.Label = "Commessa";
             this.editCommessa.LabelWidth = 175;
-            this.editCommessa.Location = new System.Drawing.Point(25, 75);
+            this.editCommessa.Location = new System.Drawing.Point(23, 75);
             this.editCommessa.Model = null;
             this.editCommessa.Name = "editCommessa";
             this.editCommessa.ReadOnly = false;
@@ -110,12 +113,12 @@ namespace Web.GUI.SAL
             this.editData.Editing = false;
             this.editData.Label = "Data";
             this.editData.LabelWidth = 175;
-            this.editData.Location = new System.Drawing.Point(25, 118);
+            this.editData.Location = new System.Drawing.Point(23, 171);
             this.editData.Name = "editData";
             this.editData.ReadOnly = false;
             this.editData.Required = false;
-            this.editData.Size = new System.Drawing.Size(798, 30);
-            this.editData.TabIndex = 1;
+            this.editData.Size = new System.Drawing.Size(800, 30);
+            this.editData.TabIndex = 2;
             this.editData.Text = "EditControl";
             this.editData.Value = null;
             // 
@@ -132,12 +135,12 @@ namespace Web.GUI.SAL
             this.editDenominazione.Editing = false;
             this.editDenominazione.Label = "Denominazione";
             this.editDenominazione.LabelWidth = 175;
-            this.editDenominazione.Location = new System.Drawing.Point(25, 290);
+            this.editDenominazione.Location = new System.Drawing.Point(23, 363);
             this.editDenominazione.Name = "editDenominazione";
             this.editDenominazione.ReadOnly = false;
             this.editDenominazione.Required = false;
-            this.editDenominazione.Size = new System.Drawing.Size(798, 30);
-            this.editDenominazione.TabIndex = 5;
+            this.editDenominazione.Size = new System.Drawing.Size(800, 30);
+            this.editDenominazione.TabIndex = 6;
             this.editDenominazione.Text = "EditControl";
             this.editDenominazione.Value = null;
             // 
@@ -154,12 +157,12 @@ namespace Web.GUI.SAL
             this.editLock.Editing = false;
             this.editLock.Label = "Lock";
             this.editLock.LabelWidth = 175;
-            this.editLock.Location = new System.Drawing.Point(25, 247);
+            this.editLock.Location = new System.Drawing.Point(23, 315);
             this.editLock.Name = "editLock";
             this.editLock.ReadOnly = false;
             this.editLock.Required = false;
-            this.editLock.Size = new System.Drawing.Size(798, 30);
-            this.editLock.TabIndex = 4;
+            this.editLock.Size = new System.Drawing.Size(800, 30);
+            this.editLock.TabIndex = 5;
             this.editLock.Text = "TemplateCheckBox";
             this.editLock.TextFalse = "NON ATTIVO";
             this.editLock.TextTrue = "ATTIVO";
@@ -178,12 +181,12 @@ namespace Web.GUI.SAL
             this.editTotaleAcquisti.Editing = false;
             this.editTotaleAcquisti.Label = "Totale acquisti";
             this.editTotaleAcquisti.LabelWidth = 175;
-            this.editTotaleAcquisti.Location = new System.Drawing.Point(25, 161);
+            this.editTotaleAcquisti.Location = new System.Drawing.Point(23, 219);
             this.editTotaleAcquisti.Name = "editTotaleAcquisti";
             this.editTotaleAcquisti.ReadOnly = false;
             this.editTotaleAcquisti.Required = false;
-            this.editTotaleAcquisti.Size = new System.Drawing.Size(798, 30);
-            this.editTotaleAcquisti.TabIndex = 2;
+            this.editTotaleAcquisti.Size = new System.Drawing.Size(800, 30);
+            this.editTotaleAcquisti.TabIndex = 3;
             this.editTotaleAcquisti.Text = "TemplateEditNumeric";
             this.editTotaleAcquisti.Value = null;
             // 
@@ -200,14 +203,37 @@ namespace Web.GUI.SAL
             this.editTotaleVendite.Editing = false;
             this.editTotaleVendite.Label = "Totale vendite";
             this.editTotaleVendite.LabelWidth = 175;
-            this.editTotaleVendite.Location = new System.Drawing.Point(25, 204);
+            this.editTotaleVendite.Location = new System.Drawing.Point(23, 267);
             this.editTotaleVendite.Name = "editTotaleVendite";
             this.editTotaleVendite.ReadOnly = false;
             this.editTotaleVendite.Required = false;
-            this.editTotaleVendite.Size = new System.Drawing.Size(798, 30);
-            this.editTotaleVendite.TabIndex = 3;
+            this.editTotaleVendite.Size = new System.Drawing.Size(800, 30);
+            this.editTotaleVendite.TabIndex = 4;
             this.editTotaleVendite.Text = "TemplateEditNumeric";
             this.editTotaleVendite.Value = null;
+            // 
+            // editCodice
+            // 
+            this.editCodice.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editCodice.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editCodice.BackColor = System.Drawing.Color.Transparent;
+            this.editCodice.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editCodice.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editCodice.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editCodice.Changed = true;
+            this.editCodice.Editing = false;
+            this.editCodice.Label = "Codice";
+            this.editCodice.LabelWidth = 175;
+            this.editCodice.Location = new System.Drawing.Point(23, 123);
+            this.editCodice.Model = null;
+            this.editCodice.Name = "editCodice";
+            this.editCodice.ReadOnly = false;
+            this.editCodice.Required = false;
+            this.editCodice.Size = new System.Drawing.Size(800, 30);
+            this.editCodice.TabIndex = 1;
+            this.editCodice.Text = "EditControl";
+            this.editCodice.Value = null;
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
@@ -224,6 +250,7 @@ namespace Web.GUI.SAL
         private Library.Template.Controls.TemplateEditCombo editCommessa;
         private Library.Template.Controls.TemplateEditDecimal editTotaleVendite;
         private Library.Template.Controls.TemplateEditDecimal editTotaleAcquisti;
+        private Library.Template.Controls.TemplateEditCombo editCodice;
 
 
     }
