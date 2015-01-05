@@ -105,6 +105,7 @@ namespace WcfService.Assemblers
 			entity.Telefono = dto.Telefono;
 			entity.Fax = dto.Fax;
 			entity.Email = dto.Email;
+			entity.Codice = dto.Codice;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -126,6 +127,7 @@ namespace WcfService.Assemblers
 			dto.Telefono = entity.Telefono;
 			dto.Fax = entity.Fax;
 			dto.Email = entity.Email;
+			dto.Codice = entity.Codice;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -197,6 +199,7 @@ namespace WcfService.Assemblers
 			entity.Importo = dto.Importo;
 			entity.Margine = dto.Margine;
 			entity.Stato = dto.Stato;
+			entity.Codice = dto.Codice;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -222,6 +225,7 @@ namespace WcfService.Assemblers
 			dto.Importo = entity.Importo;
 			dto.Margine = entity.Margine;
 			dto.Stato = entity.Stato;
+			dto.Codice = entity.Codice;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -304,7 +308,7 @@ namespace WcfService.Assemblers
 			entity.Fax = dto.Fax;
 			entity.Email = dto.Email;
 			entity.PIva = dto.PIva;
-			entity.CodiceFornitore = dto.CodiceFornitore;
+			entity.Codice = dto.Codice;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -328,7 +332,7 @@ namespace WcfService.Assemblers
 			dto.Fax = entity.Fax;
 			dto.Email = entity.Email;
 			dto.PIva = entity.PIva;
-			dto.CodiceFornitore = entity.CodiceFornitore;
+			dto.Codice = entity.Codice;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -399,7 +403,7 @@ namespace WcfService.Assemblers
 			entity.Fax = dto.Fax;
 			entity.Email = dto.Email;
 			entity.PIva = dto.PIva;
-			entity.CodiceCliente = dto.CodiceCliente;
+			entity.Codice = dto.Codice;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -421,7 +425,7 @@ namespace WcfService.Assemblers
 			dto.Fax = entity.Fax;
 			dto.Email = entity.Email;
 			dto.PIva = entity.PIva;
-			dto.CodiceCliente = entity.CodiceCliente;
+			dto.Codice = entity.Codice;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -1123,6 +1127,7 @@ namespace WcfService.Assemblers
 			entity.TotaleVendite = dto.TotaleVendite;
 			entity.Lock = dto.Lock;
 			entity.Denominazione = dto.Denominazione;
+			entity.Codice = dto.Codice;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1140,6 +1145,7 @@ namespace WcfService.Assemblers
 			dto.TotaleVendite = entity.TotaleVendite;
 			dto.Lock = entity.Lock;
 			dto.Denominazione = entity.Denominazione;
+			dto.Codice = entity.Codice;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }

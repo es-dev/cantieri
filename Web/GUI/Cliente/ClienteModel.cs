@@ -52,7 +52,7 @@ namespace Web.GUI.Cliente
                         editCommessa.Model = commessa;
                         editCommessa.Value = commessa.Denominazione;
                     }
-                    editCodiceCliente.Value = obj.CodiceCliente;
+                    editCodiceCliente.Value = obj.Codice;
 
                 }
             }
@@ -77,7 +77,7 @@ namespace Web.GUI.Cliente
                 obj.Mobile = editMobile.Value;
                 obj.Email = editEmail.Value;
                 obj.PIva = editPartitaIVA.Value;
-                obj.CodiceCliente = editCodiceCliente.Value;
+                obj.Codice = editCodiceCliente.Value;
                 obj.Id = (int)editCommessa.Id; //todo: da verificare
                 obj.Commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
             }

@@ -43,6 +43,7 @@
         <orm:field name="_email" property="Email" uniqueId="3a11106c-50f5-4fea-a238-c1ff1b62a3d8" type="System.String">
           <orm:column name="Email" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
+        <orm:field name="_codice" property="Codice" uniqueId="82ff84f9-fb2b-43b6-bcd2-f85017940777" type="System.String" />
         <orm:field name="_commessas" property="Commessas" behavior="readwrite" uniqueId="966c5bf1-e84b-4658-a843-ef38d0bb7093" type="DataLayer.Commessa">
           <orm:collection element-class="DataLayer.Commessa" inverse-field="_azienda" order-by="" uniqueId="9529a813-1327-451c-bfdc-62fcf2c3ea6a" />
         </orm:field>
@@ -100,6 +101,7 @@
         <orm:field name="_stato" property="Stato" uniqueId="9c5b0516-8f4a-4f66-ac25-4f9f39550e64" type="System.String">
           <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
+        <orm:field name="_codice" property="Codice" uniqueId="0b5a2c32-e2e4-41e6-a9ed-b771f32731cb" type="System.String" />
         <orm:field name="_azienda" property="Azienda" behavior="readwrite" uniqueId="494444a6-ccb0-494c-a6a4-5a308aeb4152" type="DataLayer.Azienda">
           <orm:reference uniqueId="9529a813-1327-451c-bfdc-62fcf2c3ea6a" association-name="CommessaHasAzienda">
             <orm:sharedfield name="_aziendaId" target-class="DataLayer.Azienda" target-field="_id" />
@@ -164,8 +166,8 @@
         <orm:field name="_pIva" property="PIva" uniqueId="d1bb9712-68b2-4620-aa34-ed500baa263c" type="System.String">
           <orm:column name="PIva" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_codiceFornitore" property="CodiceFornitore" uniqueId="5534e8fc-5f84-4390-9eee-749b30ab8a0d" type="System.String">
-          <orm:column name="CodiceFornitore" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        <orm:field name="_codice" property="Codice" uniqueId="5534e8fc-5f84-4390-9eee-749b30ab8a0d" type="System.String">
+          <orm:column name="Codice" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_commessa" property="Commessa" behavior="readwrite" uniqueId="791cabb3-ef72-40a8-b4a7-3ca133c6521c" type="DataLayer.Commessa">
           <orm:reference uniqueId="032d408c-e267-47d7-bbd9-3cb51d71d72d" association-name="FornitoreHasCommessa">
@@ -219,8 +221,8 @@
         <orm:field name="_pIva" property="PIva" uniqueId="5bafbccf-c05f-4922-9f1e-d1ac6527766f" type="System.String">
           <orm:column name="PIva" sql-type="varchar" nullable="true" length="11" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_codiceCliente" property="CodiceCliente" uniqueId="1d5cde1d-271e-4ddb-8eac-172d1b35bb71" type="System.String">
-          <orm:column name="CodiceCliente" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        <orm:field name="_codice" property="Codice" uniqueId="1d5cde1d-271e-4ddb-8eac-172d1b35bb71" type="System.String">
+          <orm:column name="Codice" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_commessa" property="Commessa" behavior="readwrite" uniqueId="d2449fe8-a609-403e-8779-406be42f82eb" type="DataLayer.Commessa">
           <orm:reference uniqueId="2e7765b0-82e3-4978-a0c4-56bb3098179a" association-name="ClienteHasCommessa">
@@ -604,6 +606,7 @@
         <orm:field name="_denominazione" property="Denominazione" uniqueId="2d2c0b19-361b-40de-8806-6d1a6f07afa6" type="System.String">
           <orm:column name="Denominazione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
+        <orm:field name="_codice" property="Codice" uniqueId="ea76c4de-3ac9-4dfd-a6de-3475e701f853" type="System.String" />
         <orm:field name="_commessa" property="Commessa" behavior="readwrite" uniqueId="e55844cd-9b80-4324-bf18-6a976401423f" type="DataLayer.Commessa">
           <orm:reference uniqueId="5e538b05-7df0-4fbd-9e24-1297d12e5678" association-name="SALHasCommessa">
             <orm:sharedfield name="_commessaId" target-class="DataLayer.Commessa" target-field="_id" />
@@ -735,7 +738,7 @@
         <orm:column name="Fax" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="Email" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="PIva" sql-type="varchar" nullable="true" length="11" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
-        <orm:column name="CodiceCliente" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        <orm:column name="Codice" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
       </orm:table>
       <orm:table name="FatturaVendita">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
@@ -828,7 +831,7 @@
         <orm:column name="Fax" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="Email" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="PIva" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
-        <orm:column name="CodiceFornitore" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        <orm:column name="Codice" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         <orm:index name="idx_Fornitore_CommessaId">
           <orm:columnMapping>
@@ -891,6 +894,7 @@
       <Property Id="41aea0cb-fe80-4bea-8d48-560a194fa0dd" name="Telefono" label="Telefono : String" fieldName="_telefono" />
       <Property Id="4b691d1d-8557-4101-bc89-edbda95879e4" name="Fax" label="Fax : String" fieldName="_fax" />
       <Property Id="3a11106c-50f5-4fea-a238-c1ff1b62a3d8" name="Email" label="Email : String" fieldName="_email" />
+      <Property Id="82ff84f9-fb2b-43b6-bcd2-f85017940777" name="Codice" label="Codice : String" fieldName="_codice" />
       <navigationalProperties>
         <classHasNavigationalProperties Id="265c7d9c-c78e-44bb-9804-cd1228ad49e6">
           <NavigationalProperty Id="966c5bf1-e84b-4658-a843-ef38d0bb7093" name="Commessas" type="IList&lt;Commessa&gt;" label="Commessas : IList&lt;Commessa&gt;" nullable="true" kind="Persistent" fieldName="_commessas" isDependent="false" isManaged="false" />
@@ -913,6 +917,7 @@
       <Property Id="ac5ca902-5e96-4a4c-ad21-6c0acf3e49fa" name="Importo" type="Decimal" label="Importo : Decimal" nullable="true" fieldName="_importo" />
       <Property Id="da5c5631-da28-413e-bc18-0a610a7fe701" name="Margine" type="Decimal" label="Margine : Decimal" nullable="true" fieldName="_margine" />
       <Property Id="9c5b0516-8f4a-4f66-ac25-4f9f39550e64" name="Stato" label="Stato : String" fieldName="_stato" />
+      <Property Id="0b5a2c32-e2e4-41e6-a9ed-b771f32731cb" name="Codice" label="Codice : String" fieldName="_codice" />
       <AssociationTargets>
         <Association Id="9529a813-1327-451c-bfdc-62fcf2c3ea6a" SourceMultiplicity="ZeroOne" name="CommessaHasAzienda">
           <DomainClassMoniker name="/EntitiesModel/Azienda" />
@@ -954,7 +959,7 @@
       <Property Id="cd718fa4-2b28-47c0-bf63-f2f68c60b763" name="Fax" label="Fax : String" fieldName="_fax" />
       <Property Id="a93efbac-026b-4529-ac1a-6f973b758be0" name="Email" label="Email : String" fieldName="_email" />
       <Property Id="d1bb9712-68b2-4620-aa34-ed500baa263c" name="PIva" label="PIva : String" fieldName="_pIva" />
-      <Property Id="5534e8fc-5f84-4390-9eee-749b30ab8a0d" name="CodiceFornitore" label="CodiceFornitore : String" fieldName="_codiceFornitore" />
+      <Property Id="5534e8fc-5f84-4390-9eee-749b30ab8a0d" name="Codice" label="Codice : String" fieldName="_codice" />
       <AssociationTargets>
         <Association Id="032d408c-e267-47d7-bbd9-3cb51d71d72d" SourceMultiplicity="ZeroOne" name="FornitoreHasCommessa">
           <DomainClassMoniker name="/EntitiesModel/Commessa" />
@@ -991,7 +996,7 @@
       <Property Id="4561dc69-e69e-4187-a1b3-2d68dff69f94" name="Fax" label="Fax : String" fieldName="_fax" />
       <Property Id="7e366140-c536-477b-b997-e728ae697bbe" name="Email" label="Email : String" fieldName="_email" />
       <Property Id="5bafbccf-c05f-4922-9f1e-d1ac6527766f" name="PIva" label="PIva : String" fieldName="_pIva" />
-      <Property Id="1d5cde1d-271e-4ddb-8eac-172d1b35bb71" name="CodiceCliente" label="CodiceCliente : String" fieldName="_codiceCliente" />
+      <Property Id="1d5cde1d-271e-4ddb-8eac-172d1b35bb71" name="Codice" label="Codice : String" fieldName="_codice" />
       <AssociationTargets>
         <Association Id="2e7765b0-82e3-4978-a0c4-56bb3098179a" SourceMultiplicity="One" TargetMultiplicity="ZeroOne" name="ClienteHasCommessa">
           <DomainClassMoniker name="/EntitiesModel/Commessa" />
@@ -1215,6 +1220,7 @@
       <Property Id="e50f8b5c-1bbb-4bf2-8405-c3f9f88429f5" name="TotaleVendite" type="Decimal" label="TotaleVendite : Decimal" nullable="true" fieldName="_totaleVendite" />
       <Property Id="01eb4d3f-25f4-427c-bf7f-402c86a3f2ad" name="Lock" type="Boolean" label="Lock : Boolean" nullable="true" fieldName="_lock" />
       <Property Id="2d2c0b19-361b-40de-8806-6d1a6f07afa6" name="Denominazione" label="Denominazione : String" fieldName="_denominazione" />
+      <Property Id="ea76c4de-3ac9-4dfd-a6de-3475e701f853" name="Codice" label="Codice : String" fieldName="_codice" />
       <AssociationTargets>
         <Association Id="5e538b05-7df0-4fbd-9e24-1297d12e5678" SourceMultiplicity="ZeroOne" name="SALHasCommessa">
           <DomainClassMoniker name="/EntitiesModel/Commessa" />

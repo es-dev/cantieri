@@ -28,7 +28,7 @@ namespace Web.GUI.Cliente
                     infoImage.Image = "Images.dashboard.cliente.png";
                     infoRagioneSociale.Text = obj.RagioneSociale;
                     infoPartitaIVA.Text ="P.IVA" +obj.PIva;
-                    infoCodice.Text = obj.CodiceCliente;
+                    infoCodice.Text = obj.Codice;
                     var commessa = obj.Commessa;
                     if (commessa != null)
                     {

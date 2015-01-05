@@ -53,7 +53,7 @@ namespace Web.GUI.Fornitore
                         editCommessa.Value = commessa.Denominazione;
                     }
                     editCentroCosto.Value = obj.CodiceCentroCosto;
-                    editCodiceFornitore.Value = obj.CodiceFornitore;
+                    editCodiceFornitore.Value = obj.Codice;
                 }
             }
             catch (Exception ex)
@@ -77,7 +77,7 @@ namespace Web.GUI.Fornitore
                 obj.Mobile = editMobile.Value;
                 obj.Email = editEmail.Value;
                 obj.PIva = editPartitaIVA.Value;
-                obj.CodiceFornitore = editCodiceFornitore.Value;
+                obj.Codice = editCodiceFornitore.Value;
                 obj.CodiceCentroCosto = editCentroCosto.Value;
                 obj.CommessaId = (int)editCommessa.Id;
                 obj.Commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
