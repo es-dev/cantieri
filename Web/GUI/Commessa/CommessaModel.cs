@@ -95,6 +95,7 @@ namespace Web.GUI.Commessa
             try
             {
                 var view = new Azienda.AziendaView();
+                view.Title = "SELEZIONA UN'AZIENDA";
                 editAzienda.Show(view);
             }
             catch (Exception ex)
