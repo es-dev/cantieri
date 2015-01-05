@@ -25,6 +25,7 @@ namespace Web.GUI.Cliente
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.ClienteDto)model;
+                    infoImage.Image = "Images.dashboard.cliente.png";
                     infoRagioneSociale.Text = obj.RagioneSociale;
                     infoPartitaIVA.Text ="P.IVA" +obj.PIva;
                     infoCodice.Text = obj.CodiceCliente;

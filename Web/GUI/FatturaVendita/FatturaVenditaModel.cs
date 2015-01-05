@@ -21,7 +21,7 @@ namespace Web.GUI.FatturaVendita
         {
             try
             {
-                
+                infoSubtitleImage.Image = "Images.dashboard.fatturavendita.png";
             }
             catch (Exception ex)
             {
@@ -85,6 +85,7 @@ namespace Web.GUI.FatturaVendita
             try
             {
                 var view = new Cliente.ClienteView();
+                view.Title = "SELEZIONA UN CLIENTE";
                 editCliente.Show(view);
             }
             catch (Exception ex)

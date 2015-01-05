@@ -25,6 +25,7 @@ namespace Web.GUI.Pagamento
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.PagamentoDto)model;
+                    infoImage.Image = "Images.dashboard.pagamento.png";
                     infoCodice.Text = "PAG";
                     infoModalita.Text = obj.Modalita;
                     infoImporto.Text = (obj.Importo != null ? obj.Importo.Value.ToString("0.00") : "Non Impostata"); //oppure ti fai una funzione GetData

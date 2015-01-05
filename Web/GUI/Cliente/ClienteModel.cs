@@ -21,7 +21,7 @@ namespace Web.GUI.Cliente
         {
             try
             {
-                
+                infoSubtitleImage.Image = "Images.dashboard.cliente.png";
             }
             catch (Exception ex)
             {
@@ -92,6 +92,7 @@ namespace Web.GUI.Cliente
             try
             {
                 var view = new Commessa.CommessaView();
+                view.Title = "SELEZIONA UNA COMMESSA";
                 editCommessa.Show(view);
             }
             catch (Exception ex)
@@ -119,6 +120,7 @@ namespace Web.GUI.Cliente
             try
             {
                 var view = new AnagraficaCliente.AnagraficaClienteView();
+                view.Title = "SELEZIONA UN CLIENTE DALL'ANAGRAFICA CLIENTI";
                 editCodiceCliente.Show(view);
             }
             catch (Exception ex)

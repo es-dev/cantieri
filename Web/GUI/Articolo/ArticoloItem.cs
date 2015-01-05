@@ -25,6 +25,7 @@ namespace Web.GUI.Articolo
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.ArticoloDto)model;
+                    infoImage.Image = "Images.dashboard.articolo.png";
                     infoCodice.Text = "CA";
                     infoCodiceArticolo.Text = obj.Codice;
                     infoDescrizione.Text = obj.Descrizione;

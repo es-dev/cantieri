@@ -21,7 +21,7 @@ namespace Web.GUI.Pagamento
         {
             try
             {
-                
+                infoSubtitleImage.Image = "Images.dashboard.pagamento.png";
             }
             catch (Exception ex)
             {
@@ -81,6 +81,7 @@ namespace Web.GUI.Pagamento
             try
             {
                 var view = new FatturaAcquisto.FatturaAcquistoView();
+                view.Title = "SELEZIONA LA FATTURA DI ACQUISTO";
                 editFatturaAcquisto.Show(view);
             }
             catch (Exception ex)

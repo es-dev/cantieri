@@ -21,7 +21,7 @@ namespace Web.GUI.AnagraficaFornitore
         {
             try
             {
-                
+                infoSubtitleImage.Image = "Images.dashboard.anagraficafornitore.png";
             }
             catch (Exception ex)
             {

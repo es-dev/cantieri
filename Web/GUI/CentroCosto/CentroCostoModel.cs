@@ -21,7 +21,8 @@ namespace Web.GUI.CentroCosto
         {
             try
             {
-                
+                infoSubtitleImage.Image = "Images.dashboard.centrocosto.png";
+
             }
             catch (Exception ex)
             {

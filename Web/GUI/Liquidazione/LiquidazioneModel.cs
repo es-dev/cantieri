@@ -21,7 +21,7 @@ namespace Web.GUI.Liquidazione
         {
             try
             {
-                
+                infoSubtitleImage.Image = "Images.dashboard.liquidazione.png";
             }
             catch (Exception ex)
             {
@@ -79,6 +79,7 @@ namespace Web.GUI.Liquidazione
             try
             {
                 var view = new FatturaVendita.FatturaVenditaView();
+                view.Title = "SELEZIONA LA FATTURA DI VENDITA";
                 editFatturaVendita.Show(view);
 
             }

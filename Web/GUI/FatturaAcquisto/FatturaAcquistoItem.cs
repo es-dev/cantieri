@@ -25,6 +25,7 @@ namespace Web.GUI.FatturaAcquisto
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.FatturaAcquistoDto)model;
+                    infoImage.Image = "Images.dashboard.fatturaacquisto.png";
                     infoCodice.Text = "FA";
                     infoNumero.Text = obj.Numero;
                     infoData.Text = (obj.Data!=null? obj.Data.Value.ToString("dd/MM/yyyy"):"Non Impostata"); //oppure ti fai una funzione GetData
@@ -48,7 +49,7 @@ namespace Web.GUI.FatturaAcquisto
                 if (item != null)
                 {
                     var space = new FatturaAcquistoModel();
-                    space.Title = "DETTAGLI FATTURA ACQUISTO";
+                    space.Title = "DETTAGLI FATTURA DI ACQUISTO";
                     AddSpace(space);
                 }
             }

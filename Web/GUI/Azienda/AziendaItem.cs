@@ -25,6 +25,7 @@ namespace Web.GUI.Azienda
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AziendaDto)model;
+                    infoImage.Image = "Images.dashboard.azienda.png";
                     infoDenominazione.Text = obj.Denominazione;
                     infoIndirizzo.Text = obj.Indirizzo + " " + obj.CAP + " " + obj.Comune + " (" + obj.Provincia + ")";
                 }

@@ -21,7 +21,7 @@ namespace Web.GUI.Fornitore
         {
             try
             {
-                
+                infoSubtitleImage.Image = "Images.dashboard.fornitore.png";
             }
             catch (Exception ex)
             {
@@ -93,6 +93,7 @@ namespace Web.GUI.Fornitore
             try
             {
                 var view = new Commessa.CommessaView();
+                view.Title = "SELEZIONA UNA COMMESSA";
                 editCommessa.Show(view);
             }
             catch (Exception ex)
@@ -119,6 +120,7 @@ namespace Web.GUI.Fornitore
             try
             {
                 var view = new CentroCosto.CentroCostoView();
+                view.Title = "SELEZIONA UN CENTRO DI COSTO";
                 editCentroCosto.Show(view);
             }
             catch (Exception ex)
@@ -146,6 +148,7 @@ namespace Web.GUI.Fornitore
             try
             {
                 var view = new AnagraficaFornitore.AnagraficaFornitoreView();
+                view.Title = "SELEZIONA UN FORNITORE DALL'ANAGRAFICA FORNITORI";
                 editCodiceFornitore.Show(view);
             }
             catch (Exception ex)

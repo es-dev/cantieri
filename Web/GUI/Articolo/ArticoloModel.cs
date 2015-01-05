@@ -21,7 +21,7 @@ namespace Web.GUI.Articolo
         {
             try
             {
-                
+                infoSubtitleImage.Image = "Images.dashboard.articolo.png";
             }
             catch (Exception ex)
             {
@@ -85,6 +85,7 @@ namespace Web.GUI.Articolo
             try
             {
                 var view = new FatturaAcquisto.FatturaAcquistoView();
+                view.Title = "SELEZIONA LA FATTURA DI ACQUISTO";
                 editFatturaAcquisto.Show(view);
             }
             catch (Exception ex)
@@ -112,8 +113,8 @@ namespace Web.GUI.Articolo
             try
             {
                 var view = new AnagraficaArticolo.AnagraficaArticoloView();
+                view.Title = "SELEZIONA UN ARTICOLO";
                 editCodiceArticolo.Show(view);
-
             }
             catch (Exception ex)
             {

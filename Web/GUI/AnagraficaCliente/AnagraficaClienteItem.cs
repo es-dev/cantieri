@@ -25,6 +25,7 @@ namespace Web.GUI.AnagraficaCliente
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AnagraficaClienteDto)model;
+                    infoImage.Image = "Images.dashboard.anagraficacliente.png";
                     infoRagioneSociale.Text = obj.RagioneSociale;
                     infoCodice.Text = obj.Codice;
                     infoPartitaIVA.Text = "P.IVA" + obj.PIva;

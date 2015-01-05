@@ -21,7 +21,7 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                
+                infoSubtitleImage.Image = "Images.dashboard.commessa.png";
             }
             catch (Exception ex)
             {

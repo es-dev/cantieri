@@ -25,6 +25,7 @@ namespace Web.GUI.FatturaVendita
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.FatturaVenditaDto)model;
+                    infoImage.Image = "Images.dashboard.fatturavendita.png";
                     infoCodice.Text = "FV";
                     infoNumero.Text = obj.Numero;
                     infoData.Text = (obj.Data != null ? obj.Data.Value.ToString("dd/MM/yyyy") : "Non Impostata");
@@ -47,7 +48,7 @@ namespace Web.GUI.FatturaVendita
                 if (item != null)
                 {
                     var space = new FatturaVenditaModel();
-                    space.Title = "DETTAGLI FATTURA VENDITA";
+                    space.Title = "DETTAGLI FATTURA DI VENDITA";
                     AddSpace(space);
                 }
             }

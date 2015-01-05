@@ -34,7 +34,7 @@ namespace Web.GUI.FatturaVendita
             try
             {
                 var space = new FatturaVenditaModel();
-                space.Title = "NUOVA FATTURA VENDITA";
+                space.Title = "NUOVA FATTURA DI VENDITA";
                 space.Model = new WcfService.Dto.FatturaVenditaDto();
                 AddSpace(space);
             }

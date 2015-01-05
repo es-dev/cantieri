@@ -25,6 +25,7 @@ namespace Web.GUI.AnagraficaFornitore
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AnagraficaFornitoreDto)model;
+                    infoImage.Image = "Images.dashboard.anagraficafornitore.png";
                     infoRagioneSociale.Text = obj.RagioneSociale;
                     infoCodice.Text = obj.Codice;
                     infoPartitaIVA.Text = "P.IVA" + obj.PIva;

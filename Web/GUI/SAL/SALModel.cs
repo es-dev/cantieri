@@ -21,7 +21,7 @@ namespace Web.GUI.SAL
         {
             try
             {
-                
+                infoSubtitleImage.Image = "Images.dashboard.SAL.png";
             }
             catch (Exception ex)
             {
@@ -80,6 +80,7 @@ namespace Web.GUI.SAL
             try
             {
                 var view = new Commessa.CommessaView();
+                view.Title = "SELEZIONA UNA COMMESSA";
                 editCommessa.Show(view);
             }
             catch (Exception ex)

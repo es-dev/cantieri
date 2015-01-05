@@ -25,6 +25,7 @@ namespace Web.GUI.Commessa
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.CommessaDto)model;
+                    infoImage.Image = "Images.dashboard.commessa.png";
                     infoDenominazione.Text = obj.Denominazione;
                     infoDescrizione.Text = obj.Descrizione;
                     var azienda = obj.Azienda;

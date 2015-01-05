@@ -25,6 +25,7 @@ namespace Web.GUI.SAL
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.SALDto)model;
+                    infoImage.Image = "Images.dashboard.SAL.png";
                     infoDenominazione.Text = obj.Denominazione;
                     infoData.Text = obj.Data.ToString();
                     var commessa = obj.Commessa;

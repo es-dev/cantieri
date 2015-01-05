@@ -21,7 +21,7 @@ namespace Web.GUI.Azienda
         {
             try
             {
-                
+                infoSubtitleImage.Image = "Images.dashboard.azienda.png";
             }
             catch (Exception ex)
             {

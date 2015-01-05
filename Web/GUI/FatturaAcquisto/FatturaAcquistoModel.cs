@@ -21,7 +21,7 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                
+                infoSubtitleImage.Image = "Images.dashboard.fatturaacquisto.png";
             }
             catch (Exception ex)
             {
@@ -85,6 +85,7 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 var view = new Fornitore.FornitoreView();
+                view.Title = "SELEZIONA UN FORNITORE";
                 editFornitore.Show(view);
             }
             catch (Exception ex)
