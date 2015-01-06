@@ -557,6 +557,7 @@ namespace WcfService.Assemblers
 			entity.IVA = dto.IVA;
 			entity.Totale = dto.Totale;
 			entity.Saldo = dto.Saldo;
+			entity.ScadenzaPagamento = dto.ScadenzaPagamento;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -577,6 +578,7 @@ namespace WcfService.Assemblers
 			dto.IVA = entity.IVA;
 			dto.Totale = entity.Totale;
 			dto.Saldo = entity.Saldo;
+			dto.ScadenzaPagamento = entity.ScadenzaPagamento;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -728,10 +730,8 @@ namespace WcfService.Assemblers
 			entity.Id = dto.Id;
 			entity.FatturaAcquistoId = dto.FatturaAcquistoId;
 			entity.Data = dto.Data;
-			entity.Modalita = dto.Modalita;
 			entity.Importo = dto.Importo;
-			entity.Scadenza = dto.Scadenza;
-			entity.Eseguito = dto.Eseguito;
+			entity.Note = dto.Note;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -745,10 +745,8 @@ namespace WcfService.Assemblers
 			dto.Id = entity.Id;
 			dto.FatturaAcquistoId = entity.FatturaAcquistoId;
 			dto.Data = entity.Data;
-			dto.Modalita = entity.Modalita;
 			dto.Importo = entity.Importo;
-			dto.Scadenza = entity.Scadenza;
-			dto.Eseguito = entity.Eseguito;
+			dto.Note = entity.Note;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -808,6 +806,7 @@ namespace WcfService.Assemblers
 			entity.IVA = dto.IVA;
 			entity.Totale = dto.Totale;
 			entity.Saldo = dto.Saldo;
+			entity.ScadenzaPagamento = dto.ScadenzaPagamento;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -828,6 +827,7 @@ namespace WcfService.Assemblers
 			dto.IVA = entity.IVA;
 			dto.Totale = entity.Totale;
 			dto.Saldo = entity.Saldo;
+			dto.ScadenzaPagamento = entity.ScadenzaPagamento;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -890,10 +890,8 @@ namespace WcfService.Assemblers
 			entity.Id = dto.Id;
 			entity.FatturaVenditaId = dto.FatturaVenditaId;
 			entity.Data = dto.Data;
-			entity.Modalita = dto.Modalita;
 			entity.Importo = dto.Importo;
-			entity.Scadenza = dto.Scadenza;
-			entity.Eseguito = dto.Eseguito;
+			entity.Note = dto.Note;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -907,10 +905,8 @@ namespace WcfService.Assemblers
 			dto.Id = entity.Id;
 			dto.FatturaVenditaId = entity.FatturaVenditaId;
 			dto.Data = entity.Data;
-			dto.Modalita = entity.Modalita;
 			dto.Importo = entity.Importo;
-			dto.Scadenza = entity.Scadenza;
-			dto.Eseguito = entity.Eseguito;
+			dto.Note = entity.Note;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }

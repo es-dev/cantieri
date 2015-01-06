@@ -27,7 +27,7 @@ namespace Web.GUI.Liquidazione
                     var obj = (WcfService.Dto.LiquidazioneDto)model;
                     infoImage.Image = "Images.dashboard.liquidazione.png";
                     infoCodice.Text = "LIQ";
-                    infoModalita.Text = obj.Modalita;
+                    infoNote.Text = obj.Note;
                     infoImporto.Text = obj.Importo.ToString();
                     var fatturaVendita = obj.FatturaVendita;
                     if (fatturaVendita != null)

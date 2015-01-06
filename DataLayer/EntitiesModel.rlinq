@@ -289,6 +289,9 @@
         <orm:field name="_saldo" property="Saldo" uniqueId="e5e1062e-5d4b-43fa-8cf3-d90e9be00047" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="Saldo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
+        <orm:field name="_scadenzaPagamento" property="ScadenzaPagamento" uniqueId="fe96bee5-92bf-410e-b97e-c2f4602dd6a9" type="System.String">
+          <orm:column name="ScadenzaPagamento" sql-type="varchar(max)" nullable="false" length="0" scale="0" ado-type="" />
+        </orm:field>
         <orm:field name="_fornitore" property="Fornitore" behavior="readwrite" uniqueId="a72fb4b6-40c4-458b-8b90-6997eaf59ce5" type="DataLayer.Fornitore">
           <orm:reference uniqueId="9133edb8-9422-4c9c-a7d6-77def2077659" association-name="FatturaHasFornitore">
             <orm:sharedfield name="_fornitoreId" target-class="DataLayer.Fornitore" target-field="_id" />
@@ -372,17 +375,11 @@
         <orm:field name="_data" property="Data" uniqueId="df9f1369-fe4d-4820-b339-57d78c04ea08" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="dta" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
-        <orm:field name="_modalita" property="Modalita" uniqueId="e005bac1-fe9d-4ee5-997d-15d6c31bd2aa" type="System.String">
-          <orm:column name="Modalita" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        </orm:field>
         <orm:field name="_importo" property="Importo" uniqueId="b92c07db-3de2-4fb9-abc8-dd019de790fe" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
-        <orm:field name="_scadenza" property="Scadenza" uniqueId="648fd8e5-140c-4d0d-94c1-9cffd6aa88fd" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="Scadenza" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
-        </orm:field>
-        <orm:field name="_eseguito" property="Eseguito" uniqueId="02c30564-e432-4fb1-8db9-960a806cafcd" type="System.Nullable`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="Eseguito" sql-type="tinyint" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.OneZero2BooleanConverter" ado-type="Bit" />
+        <orm:field name="_note" property="Note" uniqueId="e43a1c83-fb78-4f3e-a5e6-92ce5ff31f40" type="System.String">
+          <orm:column name="Note " sql-type="varchar(max)" nullable="false" length="0" scale="0" ado-type="" />
         </orm:field>
         <orm:field name="_fatturaAcquisto" property="FatturaAcquisto" behavior="readwrite" uniqueId="f717ab9e-9083-481c-afb9-aff821782252" type="DataLayer.FatturaAcquisto">
           <orm:reference uniqueId="c5b7ccac-23e7-4d05-9ef1-626f304fefdf" association-name="PagamentoHasFatturaAcquisto">
@@ -433,6 +430,9 @@
         <orm:field name="_saldo" property="Saldo" uniqueId="c94e8574-a634-4781-83ba-d0b98bbd5850" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="Saldo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
+        <orm:field name="_scadenzaPagamento" property="ScadenzaPagamento" uniqueId="63c1ecc9-ab59-4605-8420-5ff8e7f3fca4" type="System.String">
+          <orm:column name="ScadenzaPagamento" sql-type="varchar(max)" nullable="false" length="0" scale="0" ado-type="" />
+        </orm:field>
         <orm:field name="_cliente" property="Cliente" behavior="readwrite" uniqueId="1d9a256b-bc28-4168-89ff-c7bf05be68de" type="DataLayer.Cliente">
           <orm:reference uniqueId="17987c58-2c27-4bba-b919-b1e4679a2b98" association-name="FatturaVenditaHasCliente">
             <orm:sharedfield name="_clienteId" target-class="DataLayer.Cliente" target-field="_id" />
@@ -464,17 +464,11 @@
         <orm:field name="_data" property="Data" uniqueId="829daa33-34a7-421e-93cd-1a61ac1c74dc" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="dta" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
-        <orm:field name="_modalita" property="Modalita" uniqueId="80dc1956-dfff-4539-b507-f2e06ca80bb1" type="System.String">
-          <orm:column name="Modalita" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        </orm:field>
         <orm:field name="_importo" property="Importo" uniqueId="77fb2dd4-f370-4013-a71c-9c13fe10586c" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
-        <orm:field name="_scadenza" property="Scadenza" uniqueId="3d257538-9769-4cc8-8655-f6485c023d73" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="Scadenza" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
-        </orm:field>
-        <orm:field name="_eseguito" property="Eseguito" uniqueId="251d00ad-f3c5-4a85-bf57-928408852d74" type="System.Nullable`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="Eseguito" sql-type="tinyint" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.OneZero2BooleanConverter" ado-type="Bit" />
+        <orm:field name="_note" property="Note" uniqueId="e42d928e-5114-4623-a661-bccb3bb4d136" type="System.String">
+          <orm:column name="Note " sql-type="varchar(max)" nullable="false" length="0" scale="0" ado-type="" />
         </orm:field>
         <orm:field name="_fatturaVendita" property="FatturaVendita" behavior="readwrite" uniqueId="f442223b-ae9c-4200-bc51-86d2e364dc58" type="DataLayer.FatturaVendita">
           <orm:reference uniqueId="3d93d254-2a67-4e4a-8665-f0d72e57af0f" association-name="LiquidazioneHasFatturaVendita">
@@ -689,6 +683,7 @@
         <orm:column name="Totale" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="Saldo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="FornitoreId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:column name="ScadenzaPagamento" sql-type="varchar(max)" nullable="false" length="0" scale="0" ado-type="" />
         <orm:index name="idx_FtturaAcquisto_FornitoreId">
           <orm:columnMapping>
             <orm:column name="FornitoreId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -715,11 +710,9 @@
       <orm:table name="Pagamento">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
         <orm:column name="dta" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
-        <orm:column name="Modalita" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
-        <orm:column name="Scadenza" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
-        <orm:column name="Eseguito" sql-type="tinyint" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.OneZero2BooleanConverter" ado-type="Bit" />
         <orm:column name="FatturaAcquistoId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:column name="Note " sql-type="varchar(max)" nullable="false" length="0" scale="0" ado-type="" />
         <orm:index name="idx_Pgamento_FatturaAcquistoId">
           <orm:columnMapping>
             <orm:column name="FatturaAcquistoId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -751,6 +744,7 @@
         <orm:column name="Totale" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="Saldo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="ClienteId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:column name="ScadenzaPagamento" sql-type="varchar(max)" nullable="false" length="0" scale="0" ado-type="" />
         <orm:index name="idx_FatturaVendita_ClienteId">
           <orm:columnMapping>
             <orm:column name="ClienteId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -760,11 +754,9 @@
       <orm:table name="Liquidazione">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
         <orm:column name="dta" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
-        <orm:column name="Modalita" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
-        <orm:column name="Scadenza" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
-        <orm:column name="Eseguito" sql-type="tinyint" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.OneZero2BooleanConverter" ado-type="Bit" />
         <orm:column name="FatturaVenditaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:column name="Note " sql-type="varchar(max)" nullable="false" length="0" scale="0" ado-type="" />
         <orm:index name="idx_Lqdazione_FatturaVenditaId">
           <orm:columnMapping>
             <orm:column name="FatturaVenditaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -1032,6 +1024,7 @@
       <Property Id="ca86fab8-a6d3-499b-bcb5-1f4dec785a32" name="IVA" type="Decimal" label="IVA : Decimal" nullable="true" fieldName="_iVA" />
       <Property Id="72b951fa-df05-44cd-b2ac-a774a0f00e18" name="Totale" type="Decimal" label="Totale : Decimal" nullable="true" fieldName="_totale" />
       <Property Id="e5e1062e-5d4b-43fa-8cf3-d90e9be00047" name="Saldo" type="Decimal" label="Saldo : Decimal" nullable="true" fieldName="_saldo" />
+      <Property Id="fe96bee5-92bf-410e-b97e-c2f4602dd6a9" name="ScadenzaPagamento" label="ScadenzaPagamento : String" fieldName="_scadenzaPagamento" />
       <AssociationTargets>
         <Association Id="9133edb8-9422-4c9c-a7d6-77def2077659" SourceMultiplicity="ZeroOne" name="FatturaHasFornitore">
           <DomainClassMoniker name="/EntitiesModel/Fornitore" />
@@ -1095,10 +1088,8 @@
       <Property Id="91e46e1d-4567-4c13-9f26-915a1382ee92" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
       <Property Id="9f9411d0-3e46-4ac4-97af-60e82d303ba2" name="FatturaAcquistoId" type="Int32" label="FatturaAcquistoId : Int32" fieldName="_fatturaAcquistoId" />
       <Property Id="df9f1369-fe4d-4820-b339-57d78c04ea08" name="Data" type="DateTime" label="Data : DateTime" nullable="true" fieldName="_data" />
-      <Property Id="e005bac1-fe9d-4ee5-997d-15d6c31bd2aa" name="Modalita" label="Modalita : String" fieldName="_modalita" />
       <Property Id="b92c07db-3de2-4fb9-abc8-dd019de790fe" name="Importo" type="Decimal" label="Importo : Decimal" nullable="true" fieldName="_importo" />
-      <Property Id="648fd8e5-140c-4d0d-94c1-9cffd6aa88fd" name="Scadenza" type="DateTime" label="Scadenza : DateTime" nullable="true" fieldName="_scadenza" />
-      <Property Id="02c30564-e432-4fb1-8db9-960a806cafcd" name="Eseguito" type="Boolean" label="Eseguito : Boolean" nullable="true" fieldName="_eseguito" />
+      <Property Id="e43a1c83-fb78-4f3e-a5e6-92ce5ff31f40" name="Note" label="Note : String" fieldName="_note" />
       <AssociationTargets>
         <Association Id="c5b7ccac-23e7-4d05-9ef1-626f304fefdf" SourceMultiplicity="ZeroOne" name="PagamentoHasFatturaAcquisto">
           <DomainClassMoniker name="/EntitiesModel/FatturaAcquisto" />
@@ -1131,6 +1122,7 @@
       <Property Id="ca135076-c343-4acd-b4a9-7b2afe75bf31" name="IVA" type="Decimal" label="IVA : Decimal" nullable="true" fieldName="_iVA" />
       <Property Id="5deb339c-0f66-4d81-9566-b3ac991013ef" name="Totale" type="Decimal" label="Totale : Decimal" nullable="true" fieldName="_totale" />
       <Property Id="c94e8574-a634-4781-83ba-d0b98bbd5850" name="Saldo" type="Decimal" label="Saldo : Decimal" nullable="true" fieldName="_saldo" />
+      <Property Id="63c1ecc9-ab59-4605-8420-5ff8e7f3fca4" name="ScadenzaPagamento" label="ScadenzaPagamento : String" fieldName="_scadenzaPagamento" />
       <AssociationTargets>
         <Association Id="17987c58-2c27-4bba-b919-b1e4679a2b98" SourceMultiplicity="ZeroOne" name="FatturaVenditaHasCliente">
           <DomainClassMoniker name="/EntitiesModel/Cliente" />
@@ -1159,10 +1151,8 @@
       <Property Id="e4ebe46f-0535-427b-869f-3e1f8afe5759" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
       <Property Id="8b02f20d-45f7-4e9b-8600-059d653133c7" name="FatturaVenditaId" type="Int32" label="FatturaVenditaId : Int32" fieldName="_fatturaVenditaId" />
       <Property Id="829daa33-34a7-421e-93cd-1a61ac1c74dc" name="Data" type="DateTime" label="Data : DateTime" nullable="true" fieldName="_data" />
-      <Property Id="80dc1956-dfff-4539-b507-f2e06ca80bb1" name="Modalita" label="Modalita : String" fieldName="_modalita" />
       <Property Id="77fb2dd4-f370-4013-a71c-9c13fe10586c" name="Importo" type="Decimal" label="Importo : Decimal" nullable="true" fieldName="_importo" />
-      <Property Id="3d257538-9769-4cc8-8655-f6485c023d73" name="Scadenza" type="DateTime" label="Scadenza : DateTime" nullable="true" fieldName="_scadenza" />
-      <Property Id="251d00ad-f3c5-4a85-bf57-928408852d74" name="Eseguito" type="Boolean" label="Eseguito : Boolean" nullable="true" fieldName="_eseguito" />
+      <Property Id="e42d928e-5114-4623-a661-bccb3bb4d136" name="Note" label="Note : String" fieldName="_note" />
       <AssociationTargets>
         <Association Id="3d93d254-2a67-4e4a-8665-f0d72e57af0f" SourceMultiplicity="ZeroOne" name="LiquidazioneHasFatturaVendita">
           <DomainClassMoniker name="/EntitiesModel/FatturaVendita" />

@@ -63,19 +63,6 @@ namespace DataLayer
 			}
 		}
 		
-		private string _modalita;
-		public virtual string Modalita
-		{
-			get
-			{
-				return this._modalita;
-			}
-			set
-			{
-				this._modalita = value;
-			}
-		}
-		
 		private decimal? _importo;
 		public virtual decimal? Importo
 		{
@@ -89,29 +76,16 @@ namespace DataLayer
 			}
 		}
 		
-		private DateTime? _scadenza;
-		public virtual DateTime? Scadenza
+		private string _note;
+		public virtual string Note
 		{
 			get
 			{
-				return this._scadenza;
+				return this._note;
 			}
 			set
 			{
-				this._scadenza = value;
-			}
-		}
-		
-		private bool? _eseguito;
-		public virtual bool? Eseguito
-		{
-			get
-			{
-				return this._eseguito;
-			}
-			set
-			{
-				this._eseguito = value;
+				this._note = value;
 			}
 		}
 		

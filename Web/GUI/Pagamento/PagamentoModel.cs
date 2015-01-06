@@ -37,10 +37,8 @@ namespace Web.GUI.Pagamento
                 {
                     var obj = (WcfService.Dto.PagamentoDto)model;
                     editData.Value = obj.Data;
-                    editEseguito.Value = obj.Eseguito;
+                    editNote.Value = obj.Note;
                     editImporto.Value = obj.Importo;
-                    editModalita.Value = obj.Modalita;
-                    editScadenza.Value = obj.Scadenza;
                     var fatturaAcquisto = obj.FatturaAcquisto;
                     if (fatturaAcquisto != null)
                     {
@@ -62,13 +60,10 @@ namespace Web.GUI.Pagamento
             {
                 var obj = (WcfService.Dto.PagamentoDto)model;
                 obj.Data = editData.Value;
-                obj.Eseguito = (bool)editEseguito.Value;
                 obj.Importo = editImporto.Value;
-                obj.Modalita = editModalita.Value;
-                obj.Scadenza = editScadenza.Value;
+                obj.Note = editNote.Value;
                 obj.FatturaAcquistoId = (int)editFatturaAcquisto.Id;
                 obj.FatturaAcquisto = (WcfService.Dto.FatturaAcquistoDto)editFatturaAcquisto.Model;
-
             }
             catch (Exception ex)
             {

@@ -380,7 +380,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public FatturaAcquistoDto(int _id, int _fornitoreId, DateTime? _data, string _numero, string _tipoPagamento, string _descrizione, decimal? _imponibile, decimal? _iVA, decimal? _totale, decimal? _saldo, FornitoreDto _fornitore, IList<ArticoloDto> _articolos, IList<PagamentoDto> _pagamentos)
+		public FatturaAcquistoDto(int _id, int _fornitoreId, DateTime? _data, string _numero, string _tipoPagamento, string _descrizione, decimal? _imponibile, decimal? _iVA, decimal? _totale, decimal? _saldo, string _scadenzaPagamento, FornitoreDto _fornitore, IList<ArticoloDto> _articolos, IList<PagamentoDto> _pagamentos)
 		{
 			this.Id = _id;
 			this.FornitoreId = _fornitoreId;
@@ -392,6 +392,7 @@ namespace WcfService.Dto
 			this.IVA = _iVA;
 			this.Totale = _totale;
 			this.Saldo = _saldo;
+			this.ScadenzaPagamento = _scadenzaPagamento;
 			this.Fornitore = _fornitore;
 			this.Articolos = _articolos;
 			this.Pagamentos = _pagamentos;
@@ -429,6 +430,9 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual decimal? Saldo { get;set; }
+
+		[DataMember]
+		public virtual string ScadenzaPagamento { get;set; }
 
 		[DataMember]
 		public virtual FornitoreDto Fornitore { get;set; }
@@ -510,15 +514,13 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public PagamentoDto(int _id, int _fatturaAcquistoId, DateTime? _data, string _modalita, decimal? _importo, DateTime? _scadenza, bool? _eseguito, FatturaAcquistoDto _fatturaAcquisto)
+		public PagamentoDto(int _id, int _fatturaAcquistoId, DateTime? _data, decimal? _importo, string _note, FatturaAcquistoDto _fatturaAcquisto)
 		{
 			this.Id = _id;
 			this.FatturaAcquistoId = _fatturaAcquistoId;
 			this.Data = _data;
-			this.Modalita = _modalita;
 			this.Importo = _importo;
-			this.Scadenza = _scadenza;
-			this.Eseguito = _eseguito;
+			this.Note = _note;
 			this.FatturaAcquisto = _fatturaAcquisto;
 		}
 		
@@ -535,16 +537,10 @@ namespace WcfService.Dto
 		public virtual DateTime? Data { get;set; }
 
 		[DataMember]
-		public virtual string Modalita { get;set; }
-
-		[DataMember]
 		public virtual decimal? Importo { get;set; }
 
 		[DataMember]
-		public virtual DateTime? Scadenza { get;set; }
-
-		[DataMember]
-		public virtual bool? Eseguito { get;set; }
+		public virtual string Note { get;set; }
 
 		[DataMember]
 		public virtual FatturaAcquistoDto FatturaAcquisto { get;set; }
@@ -560,7 +556,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public FatturaVenditaDto(int _id, int _clienteId, DateTime? _data, string _numero, string _tipoPagamento, string _descrizione, decimal? _imponibile, decimal? _iVA, decimal? _totale, decimal? _saldo, ClienteDto _cliente, IList<LiquidazioneDto> _liquidaziones)
+		public FatturaVenditaDto(int _id, int _clienteId, DateTime? _data, string _numero, string _tipoPagamento, string _descrizione, decimal? _imponibile, decimal? _iVA, decimal? _totale, decimal? _saldo, string _scadenzaPagamento, ClienteDto _cliente, IList<LiquidazioneDto> _liquidaziones)
 		{
 			this.Id = _id;
 			this.ClienteId = _clienteId;
@@ -572,6 +568,7 @@ namespace WcfService.Dto
 			this.IVA = _iVA;
 			this.Totale = _totale;
 			this.Saldo = _saldo;
+			this.ScadenzaPagamento = _scadenzaPagamento;
 			this.Cliente = _cliente;
 			this.Liquidaziones = _liquidaziones;
 		}
@@ -610,6 +607,9 @@ namespace WcfService.Dto
 		public virtual decimal? Saldo { get;set; }
 
 		[DataMember]
+		public virtual string ScadenzaPagamento { get;set; }
+
+		[DataMember]
 		public virtual ClienteDto Cliente { get;set; }
 
 		[DataMember]
@@ -625,15 +625,13 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public LiquidazioneDto(int _id, int _fatturaVenditaId, DateTime? _data, string _modalita, decimal? _importo, DateTime? _scadenza, bool? _eseguito, FatturaVenditaDto _fatturaVendita)
+		public LiquidazioneDto(int _id, int _fatturaVenditaId, DateTime? _data, decimal? _importo, string _note, FatturaVenditaDto _fatturaVendita)
 		{
 			this.Id = _id;
 			this.FatturaVenditaId = _fatturaVenditaId;
 			this.Data = _data;
-			this.Modalita = _modalita;
 			this.Importo = _importo;
-			this.Scadenza = _scadenza;
-			this.Eseguito = _eseguito;
+			this.Note = _note;
 			this.FatturaVendita = _fatturaVendita;
 		}
 		
@@ -650,16 +648,10 @@ namespace WcfService.Dto
 		public virtual DateTime? Data { get;set; }
 
 		[DataMember]
-		public virtual string Modalita { get;set; }
-
-		[DataMember]
 		public virtual decimal? Importo { get;set; }
 
 		[DataMember]
-		public virtual DateTime? Scadenza { get;set; }
-
-		[DataMember]
-		public virtual bool? Eseguito { get;set; }
+		public virtual string Note { get;set; }
 
 		[DataMember]
 		public virtual FatturaVenditaDto FatturaVendita { get;set; }

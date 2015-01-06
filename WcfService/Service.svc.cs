@@ -1059,8 +1059,8 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var pagamenti = (from q in ef.Pagamentos select q);
                 if (search != null)
-                    pagamenti = (from q in pagamenti where q.Modalita.StartsWith(search) select q); //todo: da verificare
-                pagamenti = (from q in pagamenti orderby q.Modalita select q);
+                    pagamenti = (from q in pagamenti where q.Note.Contains(search) select q); //todo: da verificare
+                pagamenti = (from q in pagamenti orderby q.Note select q);
                 return pagamenti;
             }
             catch (Exception ex)
@@ -1515,8 +1515,8 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var liquidazioni = (from q in ef.Liquidaziones select q);
                 if (search != null)
-                    liquidazioni = (from q in liquidazioni where q.Modalita.StartsWith(search) select q);  //todo: da verificare
-                liquidazioni = (from q in liquidazioni orderby q.Modalita select q);
+                    liquidazioni = (from q in liquidazioni where q.Note.Contains(search) select q);  //todo: da verificare
+                liquidazioni = (from q in liquidazioni orderby q.Note select q);
                 return liquidazioni;
             }
             catch (Exception ex)

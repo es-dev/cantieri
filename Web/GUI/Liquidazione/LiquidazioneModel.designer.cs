@@ -31,32 +31,28 @@ namespace Web.GUI.Liquidazione
 		private void InitializeComponent()
 		{
             this.clientStorage1 = new Gizmox.WebGUI.Forms.Client.ClientStorage();
-            this.editScadenza = new Library.Template.Controls.TemplateEditData();
             this.editData = new Library.Template.Controls.TemplateEditData();
-            this.editModalita = new Library.Template.Controls.TemplateEditText();
             this.editFatturaVendita = new Library.Template.Controls.TemplateEditCombo();
             this.editImporto = new Library.Template.Controls.TemplateEditDecimal();
-            this.editEseguito = new Library.Template.Controls.TemplateEditCheckBox();
+            this.textBox1 = new Library.Controls.TextBox();
+            this.editNote = new Library.Template.Controls.TemplateEditText();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.SuspendLayout();
             // 
             // container
             // 
-            this.container.Controls.Add(this.editEseguito);
+            this.container.Controls.Add(this.editNote);
             this.container.Controls.Add(this.editImporto);
             this.container.Controls.Add(this.editFatturaVendita);
-            this.container.Controls.Add(this.editModalita);
             this.container.Controls.Add(this.editData);
-            this.container.Controls.Add(this.editScadenza);
+            this.container.TabIndex = 0;
             this.container.Controls.SetChildIndex(this.infoSubtitleImage, 0);
             this.container.Controls.SetChildIndex(this.infoSubtitle, 0);
-            this.container.Controls.SetChildIndex(this.editScadenza, 0);
             this.container.Controls.SetChildIndex(this.editData, 0);
-            this.container.Controls.SetChildIndex(this.editModalita, 0);
             this.container.Controls.SetChildIndex(this.editFatturaVendita, 0);
             this.container.Controls.SetChildIndex(this.editImporto, 0);
-            this.container.Controls.SetChildIndex(this.editEseguito, 0);
+            this.container.Controls.SetChildIndex(this.editNote, 0);
             // 
             // infoSubtitle
             // 
@@ -72,28 +68,6 @@ namespace Web.GUI.Liquidazione
             this.clientStorage1.MajorVersion = ((ushort)(1));
             this.clientStorage1.MinorVersion = ((ushort)(0));
             // 
-            // editScadenza
-            // 
-            this.editScadenza.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editScadenza.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editScadenza.BackColor = System.Drawing.Color.Transparent;
-            this.editScadenza.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editScadenza.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editScadenza.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editScadenza.Changed = true;
-            this.editScadenza.Editing = false;
-            this.editScadenza.Label = "Scadenza";
-            this.editScadenza.LabelWidth = 175;
-            this.editScadenza.Location = new System.Drawing.Point(25, 263);
-            this.editScadenza.Name = "editScadenza";
-            this.editScadenza.ReadOnly = false;
-            this.editScadenza.Required = false;
-            this.editScadenza.Size = new System.Drawing.Size(798, 30);
-            this.editScadenza.TabIndex = 4;
-            this.editScadenza.Text = "EditControl";
-            this.editScadenza.Value = null;
-            // 
             // editData
             // 
             this.editData.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
@@ -107,7 +81,7 @@ namespace Web.GUI.Liquidazione
             this.editData.Editing = false;
             this.editData.Label = "Data";
             this.editData.LabelWidth = 175;
-            this.editData.Location = new System.Drawing.Point(25, 122);
+            this.editData.Location = new System.Drawing.Point(25, 119);
             this.editData.Name = "editData";
             this.editData.ReadOnly = false;
             this.editData.Required = false;
@@ -115,28 +89,6 @@ namespace Web.GUI.Liquidazione
             this.editData.TabIndex = 1;
             this.editData.Text = "EditControl";
             this.editData.Value = null;
-            // 
-            // editModalita
-            // 
-            this.editModalita.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editModalita.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editModalita.BackColor = System.Drawing.Color.Transparent;
-            this.editModalita.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editModalita.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editModalita.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editModalita.Changed = true;
-            this.editModalita.Editing = false;
-            this.editModalita.Label = "Modalità";
-            this.editModalita.LabelWidth = 175;
-            this.editModalita.Location = new System.Drawing.Point(25, 169);
-            this.editModalita.Name = "editModalita";
-            this.editModalita.ReadOnly = false;
-            this.editModalita.Required = false;
-            this.editModalita.Size = new System.Drawing.Size(798, 30);
-            this.editModalita.TabIndex = 2;
-            this.editModalita.Text = "EditControl";
-            this.editModalita.Value = null;
             // 
             // editFatturaVendita
             // 
@@ -176,38 +128,50 @@ namespace Web.GUI.Liquidazione
             this.editImporto.Editing = false;
             this.editImporto.Label = "Importo";
             this.editImporto.LabelWidth = 175;
-            this.editImporto.Location = new System.Drawing.Point(25, 216);
+            this.editImporto.Location = new System.Drawing.Point(25, 163);
             this.editImporto.Name = "editImporto";
             this.editImporto.ReadOnly = false;
             this.editImporto.Required = false;
             this.editImporto.Size = new System.Drawing.Size(798, 30);
-            this.editImporto.TabIndex = 3;
+            this.editImporto.TabIndex = 2;
             this.editImporto.Text = "TemplateEditNumeric";
             this.editImporto.Value = null;
             // 
-            // editEseguito
+            // textBox1
             // 
-            this.editEseguito.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.textBox1.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.textBox1.BackColor = System.Drawing.Color.Transparent;
+            this.textBox1.Behavior = Library.Controls.TextBox.TypeBehavior.Text;
+            this.textBox1.Location = new System.Drawing.Point(0, 0);
+            this.textBox1.Mask = "---";
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = false;
+            this.textBox1.Size = new System.Drawing.Size(340, 30);
+            this.textBox1.TabIndex = 1000;
+            this.textBox1.Text = null;
+            this.textBox1.Value = null;
+            // 
+            // editNote
+            // 
+            this.editNote.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editEseguito.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editEseguito.BackColor = System.Drawing.Color.Transparent;
-            this.editEseguito.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editEseguito.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editEseguito.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editEseguito.Changed = true;
-            this.editEseguito.Editing = false;
-            this.editEseguito.Label = "Eseguito";
-            this.editEseguito.LabelWidth = 175;
-            this.editEseguito.Location = new System.Drawing.Point(25, 310);
-            this.editEseguito.Name = "editEseguito";
-            this.editEseguito.ReadOnly = false;
-            this.editEseguito.Required = false;
-            this.editEseguito.Size = new System.Drawing.Size(798, 30);
-            this.editEseguito.TabIndex = 5;
-            this.editEseguito.Text = "TemplateCheckBox";
-            this.editEseguito.TextFalse = "No";
-            this.editEseguito.TextTrue = "Si";
-            this.editEseguito.Value = null;
+            this.editNote.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editNote.BackColor = System.Drawing.Color.Transparent;
+            this.editNote.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editNote.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editNote.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editNote.Changed = true;
+            this.editNote.Editing = false;
+            this.editNote.Label = "Note";
+            this.editNote.LabelWidth = 175;
+            this.editNote.Location = new System.Drawing.Point(25, 207);
+            this.editNote.Name = "editNote";
+            this.editNote.ReadOnly = false;
+            this.editNote.Required = false;
+            this.editNote.Size = new System.Drawing.Size(798, 30);
+            this.editNote.TabIndex = 3;
+            this.editNote.Text = "EditControl";
+            this.editNote.Value = null;
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
@@ -219,11 +183,10 @@ namespace Web.GUI.Liquidazione
 
         private Gizmox.WebGUI.Forms.Client.ClientStorage clientStorage1;
         private Library.Template.Controls.TemplateEditCombo editFatturaVendita;
-        private Library.Template.Controls.TemplateEditText editModalita;
         private Library.Template.Controls.TemplateEditData editData;
-        private Library.Template.Controls.TemplateEditData editScadenza;
         private Library.Template.Controls.TemplateEditDecimal editImporto;
-        private Library.Template.Controls.TemplateEditCheckBox editEseguito;
+        private Library.Template.Controls.TemplateEditText editNote;
+        private Library.Controls.TextBox textBox1;
 
 
     }

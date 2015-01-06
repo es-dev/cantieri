@@ -1,5 +1,6 @@
 ﻿using Library.Code;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,7 +31,7 @@ namespace BusinessLogic
             GG120=120
         }
 
-        public static IList<string> GetTipi(Type type)
+        public static ICollection GetTipi(Type type)
         {
             try
             {

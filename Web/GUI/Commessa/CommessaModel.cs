@@ -15,7 +15,28 @@ namespace Web.GUI.Commessa
         public CommessaModel()
 		{
 			InitializeComponent();
+            try
+            {
+                InitCombo();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
 		}
+
+        private void InitCombo()
+        {
+            try
+            {
+                var statiCommessa = BusinessLogic.Tipi.GetTipi(typeof(BusinessLogic.Tipi.StatoCommessa));
+                editStato.Items = statiCommessa;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 
         public override void BindViewSubTitle(object model)
         {

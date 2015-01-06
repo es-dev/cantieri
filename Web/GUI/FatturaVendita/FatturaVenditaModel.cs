@@ -15,7 +15,30 @@ namespace Web.GUI.FatturaVendita
         public FatturaVenditaModel()
 		{
 			InitializeComponent();
+            try
+            {
+                InitCombo();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
 		}
+
+        private void InitCombo()
+        {
+            try
+            {
+                var tipiPagamenti = BusinessLogic.Tipi.GetTipi(typeof(BusinessLogic.Tipi.TipoPagamento));
+                editTipoPagamento.Items = tipiPagamenti;
+                var scadenzaPagamenti = BusinessLogic.Tipi.GetTipi(typeof(BusinessLogic.Tipi.ScadenzaPagamento));
+                editScadenza.Items = scadenzaPagamenti;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 
         public override void BindViewSubTitle(object model)
         {

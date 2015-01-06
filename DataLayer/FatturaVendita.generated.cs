@@ -154,6 +154,19 @@ namespace DataLayer
 			}
 		}
 		
+		private string _scadenzaPagamento;
+		public virtual string ScadenzaPagamento
+		{
+			get
+			{
+				return this._scadenzaPagamento;
+			}
+			set
+			{
+				this._scadenzaPagamento = value;
+			}
+		}
+		
 		private Cliente _cliente;
 		public virtual Cliente Cliente
 		{
