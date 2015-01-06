@@ -28,7 +28,7 @@ namespace Web.GUI.AnagraficaCliente
                     infoImage.Image = "Images.dashboard.anagraficacliente.png";
                     infoRagioneSociale.Text = obj.RagioneSociale;
                     infoCodice.Text = obj.Codice;
-                    infoPartitaIVA.Text = "P.IVA" + obj.PIva;
+                    infoPartitaIVA.Text = "P.IVA " + obj.PIva;
                 }
             }
             catch (Exception ex)

@@ -28,7 +28,7 @@ namespace Web.GUI.AnagraficaFornitore
                     infoImage.Image = "Images.dashboard.anagraficafornitore.png";
                     infoRagioneSociale.Text = obj.RagioneSociale;
                     infoCodice.Text = obj.Codice;
-                    infoPartitaIVA.Text = "P.IVA" + obj.PIva;
+                    infoPartitaIVA.Text = "P.IVA " + obj.PIva;
                 }
             }
             catch (Exception ex)

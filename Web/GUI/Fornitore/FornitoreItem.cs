@@ -27,7 +27,7 @@ namespace Web.GUI.Fornitore
                     var obj = (WcfService.Dto.FornitoreDto)model;
                     infoImage.Image = "Images.dashboard.fornitore.png";
                     infoRagioneSociale.Text = obj.RagioneSociale;
-                    infoPartitaIVA.Text = "P.IVA" +obj.PIva;
+                    infoPartitaIVA.Text = "P.IVA " +obj.PIva;
                     infoCodice.Text = obj.Codice;
                     infoCentroCosto.Text = obj.CodiceCentroCosto;
                     var commessa= obj.Commessa;
