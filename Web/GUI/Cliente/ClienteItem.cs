@@ -27,7 +27,7 @@ namespace Web.GUI.Cliente
                     var obj = (WcfService.Dto.ClienteDto)model;
                     infoImage.Image = "Images.dashboard.cliente.png";
                     infoRagioneSociale.Text = obj.RagioneSociale;
-                    infoPartitaIVA.Text ="P.IVA" +obj.PIva;
+                    infoPartitaIVA.Text ="P.IVA " +obj.PIva;
                     infoCodice.Text = obj.Codice;
                     var commessa = obj.Commessa;
                     if (commessa != null)
