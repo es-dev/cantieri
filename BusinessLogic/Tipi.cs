@@ -26,9 +26,10 @@ namespace BusinessLogic
 
         public enum ScadenzaPagamento
         {
-            S1_30gg=30,
-            S2_60gg=60,
-            S3_120gg=120
+            GG30=30,
+            GG60=60,
+            GG90=90,
+            GG120=120
         }
 
         public static IList<string> GetNames(Type type)
