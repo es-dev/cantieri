@@ -13,7 +13,7 @@ namespace Web.Code
         {
             try
             {
-                view.Title = "ES.CANTIERI - GESTIONE COMMESSE";
+                view.Title = "GESTIONE COMMESSE";
                 view.Version = "rev. beta1";
             }
             catch (Exception ex)
