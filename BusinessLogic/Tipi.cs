@@ -26,16 +26,16 @@ namespace BusinessLogic
 
         public enum ScadenzaPagamento
         {
-            GG30=30,
-            GG60=60,
-            GG120=120
+            S1_30gg=30,
+            S2_60gg=60,
+            S3_120gg=120
         }
 
-        public static ICollection GetTipi(Type type)
+        public static IList<string> GetNames(Type type)
         {
             try
             {
-                string[] names=Enum.GetNames(type);
+                string[] names = Enum.GetNames(type);
                 return names.ToList();
             }
             catch (Exception ex)

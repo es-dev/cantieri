@@ -30,7 +30,6 @@ namespace Web.GUI.Liquidazione
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.clientStorage1 = new Gizmox.WebGUI.Forms.Client.ClientStorage();
             this.editData = new Library.Template.Controls.TemplateEditData();
             this.editFatturaVendita = new Library.Template.Controls.TemplateEditCombo();
             this.editImporto = new Library.Template.Controls.TemplateEditDecimal();
@@ -61,12 +60,6 @@ namespace Web.GUI.Liquidazione
             // infoSubtitleImage
             // 
             this.infoSubtitleImage.Location = new System.Drawing.Point(610, 3);
-            // 
-            // clientStorage1
-            // 
-            this.clientStorage1.Description = "";
-            this.clientStorage1.MajorVersion = ((ushort)(1));
-            this.clientStorage1.MinorVersion = ((ushort)(0));
             // 
             // editData
             // 
@@ -181,7 +174,6 @@ namespace Web.GUI.Liquidazione
 
 		#endregion
 
-        private Gizmox.WebGUI.Forms.Client.ClientStorage clientStorage1;
         private Library.Template.Controls.TemplateEditCombo editFatturaVendita;
         private Library.Template.Controls.TemplateEditData editData;
         private Library.Template.Controls.TemplateEditDecimal editImporto;

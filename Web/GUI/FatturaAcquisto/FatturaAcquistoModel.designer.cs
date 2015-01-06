@@ -30,7 +30,6 @@ namespace Web.GUI.FatturaAcquisto
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.clientStorage1 = new Gizmox.WebGUI.Forms.Client.ClientStorage();
             this.editFornitore = new Library.Template.Controls.TemplateEditCombo();
             this.editData = new Library.Template.Controls.TemplateEditData();
             this.editNumero = new Library.Template.Controls.TemplateEditText();
@@ -40,14 +39,14 @@ namespace Web.GUI.FatturaAcquisto
             this.editTotale = new Library.Template.Controls.TemplateEditDecimal();
             this.editSaldo = new Library.Template.Controls.TemplateEditDecimal();
             this.editTipoPagamento = new Library.Template.Controls.TemplateEditDropDown();
-            this.editScadenza = new Library.Template.Controls.TemplateEditDropDown();
+            this.editScadenzaPagamento = new Library.Template.Controls.TemplateEditDropDown();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.SuspendLayout();
             // 
             // container
             // 
-            this.container.Controls.Add(this.editScadenza);
+            this.container.Controls.Add(this.editScadenzaPagamento);
             this.container.Controls.Add(this.editTipoPagamento);
             this.container.Controls.Add(this.editSaldo);
             this.container.Controls.Add(this.editTotale);
@@ -68,7 +67,7 @@ namespace Web.GUI.FatturaAcquisto
             this.container.Controls.SetChildIndex(this.editTotale, 0);
             this.container.Controls.SetChildIndex(this.editSaldo, 0);
             this.container.Controls.SetChildIndex(this.editTipoPagamento, 0);
-            this.container.Controls.SetChildIndex(this.editScadenza, 0);
+            this.container.Controls.SetChildIndex(this.editScadenzaPagamento, 0);
             // 
             // infoSubtitle
             // 
@@ -77,12 +76,6 @@ namespace Web.GUI.FatturaAcquisto
             // infoSubtitleImage
             // 
             this.infoSubtitleImage.Location = new System.Drawing.Point(610, 3);
-            // 
-            // clientStorage1
-            // 
-            this.clientStorage1.Description = "";
-            this.clientStorage1.MajorVersion = ((ushort)(1));
-            this.clientStorage1.MinorVersion = ((ushort)(0));
             // 
             // editFornitore
             // 
@@ -274,6 +267,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editTipoPagamento.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editTipoPagamento.Changed = true;
             this.editTipoPagamento.Editing = false;
+            this.editTipoPagamento.Items = null;
             this.editTipoPagamento.Label = "Tipo pagamento";
             this.editTipoPagamento.LabelWidth = 175;
             this.editTipoPagamento.Location = new System.Drawing.Point(25, 207);
@@ -285,27 +279,28 @@ namespace Web.GUI.FatturaAcquisto
             this.editTipoPagamento.Text = "EditControl";
             this.editTipoPagamento.Value = null;
             // 
-            // editScadenza
+            // editScadenzaPagamento
             // 
-            this.editScadenza.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.editScadenzaPagamento.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editScadenza.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editScadenza.BackColor = System.Drawing.Color.Transparent;
-            this.editScadenza.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editScadenza.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editScadenza.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editScadenza.Changed = true;
-            this.editScadenza.Editing = false;
-            this.editScadenza.Label = "Scadenza";
-            this.editScadenza.LabelWidth = 175;
-            this.editScadenza.Location = new System.Drawing.Point(25, 251);
-            this.editScadenza.Name = "editScadenza";
-            this.editScadenza.ReadOnly = false;
-            this.editScadenza.Required = false;
-            this.editScadenza.Size = new System.Drawing.Size(798, 30);
-            this.editScadenza.TabIndex = 4;
-            this.editScadenza.Text = "EditControl";
-            this.editScadenza.Value = null;
+            this.editScadenzaPagamento.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editScadenzaPagamento.BackColor = System.Drawing.Color.Transparent;
+            this.editScadenzaPagamento.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editScadenzaPagamento.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editScadenzaPagamento.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editScadenzaPagamento.Changed = true;
+            this.editScadenzaPagamento.Editing = false;
+            this.editScadenzaPagamento.Items = null;
+            this.editScadenzaPagamento.Label = "Scadenza pagamento";
+            this.editScadenzaPagamento.LabelWidth = 175;
+            this.editScadenzaPagamento.Location = new System.Drawing.Point(25, 250);
+            this.editScadenzaPagamento.Name = "editScadenzaPagamento";
+            this.editScadenzaPagamento.ReadOnly = false;
+            this.editScadenzaPagamento.Required = false;
+            this.editScadenzaPagamento.Size = new System.Drawing.Size(798, 30);
+            this.editScadenzaPagamento.TabIndex = 4;
+            this.editScadenzaPagamento.Text = "EditControl";
+            this.editScadenzaPagamento.Value = null;
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
@@ -315,7 +310,6 @@ namespace Web.GUI.FatturaAcquisto
 
 		#endregion
 
-        private Gizmox.WebGUI.Forms.Client.ClientStorage clientStorage1;
         private Library.Template.Controls.TemplateEditText editDescrizione;
         private Library.Template.Controls.TemplateEditText editNumero;
         private Library.Template.Controls.TemplateEditData editData;
@@ -324,8 +318,8 @@ namespace Web.GUI.FatturaAcquisto
         private Library.Template.Controls.TemplateEditDecimal editTotale;
         private Library.Template.Controls.TemplateEditDecimal editIVA;
         private Library.Template.Controls.TemplateEditDecimal editImponibile;
-        private Library.Template.Controls.TemplateEditDropDown editScadenza;
         private Library.Template.Controls.TemplateEditDropDown editTipoPagamento;
+        private Library.Template.Controls.TemplateEditDropDown editScadenzaPagamento;
 
 
     }

@@ -30,7 +30,6 @@ namespace Web.GUI.CentroCosto
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.clientStorage1 = new Gizmox.WebGUI.Forms.Client.ClientStorage();
             this.editCodice = new Library.Template.Controls.TemplateEditText();
             this.editDenominazione = new Library.Template.Controls.TemplateEditText();
             this.container.SuspendLayout();
@@ -53,12 +52,6 @@ namespace Web.GUI.CentroCosto
             // infoSubtitleImage
             // 
             this.infoSubtitleImage.Location = new System.Drawing.Point(610, 3);
-            // 
-            // clientStorage1
-            // 
-            this.clientStorage1.Description = "";
-            this.clientStorage1.MajorVersion = ((ushort)(1));
-            this.clientStorage1.MinorVersion = ((ushort)(0));
             // 
             // editCodice
             // 
@@ -112,7 +105,6 @@ namespace Web.GUI.CentroCosto
 
 		#endregion
 
-        private Gizmox.WebGUI.Forms.Client.ClientStorage clientStorage1;
         private Library.Template.Controls.TemplateEditText editDenominazione;
         private Library.Template.Controls.TemplateEditText editCodice;
 

@@ -30,7 +30,6 @@ namespace Web.GUI.SAL
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.clientStorage1 = new Gizmox.WebGUI.Forms.Client.ClientStorage();
             this.editCommessa = new Library.Template.Controls.TemplateEditCombo();
             this.editData = new Library.Template.Controls.TemplateEditData();
             this.editDenominazione = new Library.Template.Controls.TemplateEditText();
@@ -68,12 +67,6 @@ namespace Web.GUI.SAL
             // infoSubtitleImage
             // 
             this.infoSubtitleImage.Location = new System.Drawing.Point(610, 3);
-            // 
-            // clientStorage1
-            // 
-            this.clientStorage1.Description = "";
-            this.clientStorage1.MajorVersion = ((ushort)(1));
-            this.clientStorage1.MinorVersion = ((ushort)(0));
             // 
             // editCommessa
             // 
@@ -243,7 +236,6 @@ namespace Web.GUI.SAL
 
 		#endregion
 
-        private Gizmox.WebGUI.Forms.Client.ClientStorage clientStorage1;
         private Library.Template.Controls.TemplateEditCheckBox editLock;
         private Library.Template.Controls.TemplateEditText editDenominazione;
         private Library.Template.Controls.TemplateEditData editData;

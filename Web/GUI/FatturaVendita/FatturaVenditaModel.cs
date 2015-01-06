@@ -1,3 +1,4 @@
+using BusinessLogic;
 using Library.Code;
 using Library.Template.MVVM;
 using System;
@@ -29,10 +30,10 @@ namespace Web.GUI.FatturaVendita
         {
             try
             {
-                var tipiPagamenti = BusinessLogic.Tipi.GetTipi(typeof(BusinessLogic.Tipi.TipoPagamento));
+                var tipiPagamenti = Tipi.GetNames(typeof(Tipi.TipoPagamento));
                 editTipoPagamento.Items = tipiPagamenti;
-                var scadenzaPagamenti = BusinessLogic.Tipi.GetTipi(typeof(BusinessLogic.Tipi.ScadenzaPagamento));
-                editScadenza.Items = scadenzaPagamenti;
+                var scadenzaPagamenti = Tipi.GetNames(typeof(Tipi.ScadenzaPagamento));
+                editScadenzaPagamento.Items = scadenzaPagamenti;
             }
             catch (Exception ex)
             {
@@ -66,6 +67,7 @@ namespace Web.GUI.FatturaVendita
                     editNumero.Value = obj.Numero;
                     editSaldo.Value = obj.Saldo;  
                     editTipoPagamento.Value = obj.TipoPagamento;
+                    editScadenzaPagamento.Value = obj.ScadenzaPagamento;
                     editTotale.Value = obj.Totale; 
                     var cliente = obj.Cliente;
                     if (cliente != null)
@@ -93,6 +95,7 @@ namespace Web.GUI.FatturaVendita
                 obj.Numero = editNumero.Value;
                 obj.Saldo = editSaldo.Value;
                 obj.TipoPagamento = editTipoPagamento.Value;
+                obj.ScadenzaPagamento = editScadenzaPagamento.Value;
                 obj.Totale = editTotale.Value;
                 obj.ClienteId = (int)editCliente.Id;
                 obj.Cliente = (WcfService.Dto.ClienteDto)editCliente.Model;

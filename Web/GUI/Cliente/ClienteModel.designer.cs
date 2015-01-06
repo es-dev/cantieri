@@ -30,7 +30,6 @@ namespace Web.GUI.Cliente
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.clientStorage1 = new Gizmox.WebGUI.Forms.Client.ClientStorage();
             this.editMobile = new Library.Template.Controls.TemplateEditText();
             this.editFAX = new Library.Template.Controls.TemplateEditText();
             this.editTelefono = new Library.Template.Controls.TemplateEditText();
@@ -83,12 +82,6 @@ namespace Web.GUI.Cliente
             // infoSubtitleImage
             // 
             this.infoSubtitleImage.Location = new System.Drawing.Point(610, 3);
-            // 
-            // clientStorage1
-            // 
-            this.clientStorage1.Description = "";
-            this.clientStorage1.MajorVersion = ((ushort)(1));
-            this.clientStorage1.MinorVersion = ((ushort)(0));
             // 
             // editMobile
             // 
@@ -368,7 +361,6 @@ namespace Web.GUI.Cliente
 
 		#endregion
 
-        private Gizmox.WebGUI.Forms.Client.ClientStorage clientStorage1;
         private Library.Template.Controls.TemplateEditCombo editCommessa;
         private Library.Template.Controls.TemplateEditText editRagioneSociale;
         private Library.Template.Controls.TemplateEditText editIndirizzo;

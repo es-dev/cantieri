@@ -1,3 +1,4 @@
+using BusinessLogic;
 using Library.Code;
 using Library.Template.MVVM;
 using System;
@@ -29,7 +30,7 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                var statiCommessa = BusinessLogic.Tipi.GetTipi(typeof(BusinessLogic.Tipi.StatoCommessa));
+                var statiCommessa = Tipi.GetNames(typeof(Tipi.StatoCommessa));
                 editStato.Items = statiCommessa;
             }
             catch (Exception ex)

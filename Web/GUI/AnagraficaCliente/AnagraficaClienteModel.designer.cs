@@ -30,7 +30,6 @@ namespace Web.GUI.AnagraficaCliente
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.clientStorage1 = new Gizmox.WebGUI.Forms.Client.ClientStorage();
             this.editIndirizzo = new Library.Template.Controls.TemplateEditText();
             this.editProvincia = new Library.Template.Controls.TemplateEditText();
             this.editComune = new Library.Template.Controls.TemplateEditText();
@@ -80,12 +79,6 @@ namespace Web.GUI.AnagraficaCliente
             // infoSubtitleImage
             // 
             this.infoSubtitleImage.Location = new System.Drawing.Point(610, 3);
-            // 
-            // clientStorage1
-            // 
-            this.clientStorage1.Description = "";
-            this.clientStorage1.MajorVersion = ((ushort)(1));
-            this.clientStorage1.MinorVersion = ((ushort)(0));
             // 
             // editIndirizzo
             // 
@@ -337,7 +330,6 @@ namespace Web.GUI.AnagraficaCliente
 
 		#endregion
 
-        private Gizmox.WebGUI.Forms.Client.ClientStorage clientStorage1;
         private Library.Template.Controls.TemplateEditText editMobile;
         private Library.Template.Controls.TemplateEditText editFAX;
         private Library.Template.Controls.TemplateEditText editTelefono;

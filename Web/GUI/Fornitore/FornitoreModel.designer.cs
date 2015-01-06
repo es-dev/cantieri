@@ -30,7 +30,6 @@ namespace Web.GUI.Fornitore
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.clientStorage1 = new Gizmox.WebGUI.Forms.Client.ClientStorage();
             this.editCommessa = new Library.Template.Controls.TemplateEditCombo();
             this.editCentroCosto = new Library.Template.Controls.TemplateEditCombo();
             this.editRagioneSociale = new Library.Template.Controls.TemplateEditText();
@@ -86,12 +85,6 @@ namespace Web.GUI.Fornitore
             // infoSubtitleImage
             // 
             this.infoSubtitleImage.Location = new System.Drawing.Point(589, 3);
-            // 
-            // clientStorage1
-            // 
-            this.clientStorage1.Description = "";
-            this.clientStorage1.MajorVersion = ((ushort)(1));
-            this.clientStorage1.MinorVersion = ((ushort)(0));
             // 
             // editCommessa
             // 
@@ -396,7 +389,6 @@ namespace Web.GUI.Fornitore
 
 		#endregion
 
-        private Gizmox.WebGUI.Forms.Client.ClientStorage clientStorage1;
         private Library.Template.Controls.TemplateEditCombo editCommessa;
         private Library.Template.Controls.TemplateEditText editRagioneSociale;
         private Library.Template.Controls.TemplateEditCombo editCentroCosto;

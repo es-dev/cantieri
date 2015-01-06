@@ -30,7 +30,6 @@ namespace Web.GUI.AnagraficaArticolo
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.clientStorage1 = new Gizmox.WebGUI.Forms.Client.ClientStorage();
             this.editDescrizione = new Library.Template.Controls.TemplateEditText();
             this.editCodice = new Library.Template.Controls.TemplateEditText();
             this.container.SuspendLayout();
@@ -53,12 +52,6 @@ namespace Web.GUI.AnagraficaArticolo
             // infoSubtitleImage
             // 
             this.infoSubtitleImage.Location = new System.Drawing.Point(610, 3);
-            // 
-            // clientStorage1
-            // 
-            this.clientStorage1.Description = "";
-            this.clientStorage1.MajorVersion = ((ushort)(1));
-            this.clientStorage1.MinorVersion = ((ushort)(0));
             // 
             // editDescrizione
             // 
@@ -112,7 +105,6 @@ namespace Web.GUI.AnagraficaArticolo
 
 		#endregion
 
-        private Gizmox.WebGUI.Forms.Client.ClientStorage clientStorage1;
         private Library.Template.Controls.TemplateEditText editCodice;
         private Library.Template.Controls.TemplateEditText editDescrizione;
 

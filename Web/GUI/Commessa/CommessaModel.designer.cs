@@ -30,8 +30,6 @@ namespace Web.GUI.Commessa
 		/// </summary>
 		private void InitializeComponent()
 		{
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CommessaModel));
-            this.clientStorage1 = new Gizmox.WebGUI.Forms.Client.ClientStorage();
             this.editAzienda = new Library.Template.Controls.TemplateEditCombo();
             this.editNumero = new Library.Template.Controls.TemplateEditText();
             this.editCreazione = new Library.Template.Controls.TemplateEditData();
@@ -93,12 +91,6 @@ namespace Web.GUI.Commessa
             // infoSubtitleImage
             // 
             this.infoSubtitleImage.Location = new System.Drawing.Point(589, 3);
-            // 
-            // clientStorage1
-            // 
-            this.clientStorage1.Description = "";
-            this.clientStorage1.MajorVersion = ((ushort)(1));
-            this.clientStorage1.MinorVersion = ((ushort)(0));
             // 
             // editAzienda
             // 
@@ -422,14 +414,14 @@ namespace Web.GUI.Commessa
             this.editStato.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editStato.Changed = true;
             this.editStato.Editing = false;
-            this.editStato.Items = ((System.Collections.ICollection)(resources.GetObject("editStato.Items")));
+            this.editStato.Items = null;
             this.editStato.Label = "Stato";
             this.editStato.LabelWidth = 175;
-            this.editStato.Location = new System.Drawing.Point(22, 502);
+            this.editStato.Location = new System.Drawing.Point(22, 501);
             this.editStato.Name = "editStato";
             this.editStato.ReadOnly = false;
             this.editStato.Required = false;
-            this.editStato.Size = new System.Drawing.Size(779, 30);
+            this.editStato.Size = new System.Drawing.Size(777, 30);
             this.editStato.TabIndex = 12;
             this.editStato.Text = "EditControl";
             this.editStato.Value = null;
@@ -442,7 +434,6 @@ namespace Web.GUI.Commessa
 
 		#endregion
 
-        private Gizmox.WebGUI.Forms.Client.ClientStorage clientStorage1;
         private Library.Template.Controls.TemplateEditText editNumero;
         private Library.Template.Controls.TemplateEditCombo editAzienda;
         private Library.Template.Controls.TemplateEditData editScadenza;

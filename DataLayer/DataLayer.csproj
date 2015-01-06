@@ -145,17 +145,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ESCantieriConnection%282014-10-24 22-55-27%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282014-11-08 22-42-57%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282014-12-06 18-34-40%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282014-12-09 23-08-06%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282014-12-14 15-03-51%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282014-12-14 18-08-32%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282014-12-29 13-52-17%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-01-02 16-12-20%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-01-03 00-20-51%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-01-05 12-42-04%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-01-05 12-50-13%29.rlinq.sql" />
     <Content Include="ESCantieriConnection%282015-01-06 15-50-16%29.rlinq.sql" />
   </ItemGroup>
   <ItemGroup>
