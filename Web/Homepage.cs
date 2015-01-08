@@ -101,7 +101,7 @@ namespace Web
             try
             {
                 SessionManager.Logout(Context);
-                Context.Redirect("login.aspx");
+                Context.Redirect("cantieri-login.aspx");
             }
             catch (Exception ex)
             {
