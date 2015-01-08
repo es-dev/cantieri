@@ -41,7 +41,6 @@ namespace Web
             this.lblTitleAccount = new Gizmox.WebGUI.Forms.Label();
             this.imgAccount = new Gizmox.WebGUI.Forms.PictureBox();
             this.panelAccount = new Gizmox.WebGUI.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.imgLogoESD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgAccount)).BeginInit();
             this.panelAccount.SuspendLayout();
@@ -205,11 +204,9 @@ namespace Web
             this.Controls.SetChildIndex(this.bntPortaleWebAziendale, 0);
             this.Controls.SetChildIndex(this.btnSupportoTecnico, 0);
             this.Controls.SetChildIndex(this.btnInformazioni, 0);
-            this.Controls.SetChildIndex(this.imgLogoESD, 0);
             this.Controls.SetChildIndex(this.infoTitle, 0);
             this.Controls.SetChildIndex(this.toolStrip, 0);
             this.Controls.SetChildIndex(this.panelAccount, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.imgLogoESD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgAccount)).EndInit();
             this.panelAccount.ResumeLayout(false);

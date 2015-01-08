@@ -83,7 +83,6 @@ namespace Web
             this.imgHTML5 = new Gizmox.WebGUI.Forms.PictureBox();
             this.pictureBox1 = new Gizmox.WebGUI.Forms.PictureBox();
             this.pictureBox2 = new Gizmox.WebGUI.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.imgLogoESD)).BeginInit();
             this.panelForgotPassword.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgSeparator4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgForgotPassword)).BeginInit();
@@ -775,14 +774,12 @@ namespace Web
             this.Controls.SetChildIndex(this.imgSeparator2, 0);
             this.Controls.SetChildIndex(this.btnSupportoTecnico, 0);
             this.Controls.SetChildIndex(this.btnInformazioni, 0);
-            this.Controls.SetChildIndex(this.imgLogoESD, 0);
             this.Controls.SetChildIndex(this.infoTitle, 0);
             this.Controls.SetChildIndex(this.toolStrip, 0);
             this.Controls.SetChildIndex(this.panelInfo, 0);
             this.Controls.SetChildIndex(this.panelInfoRegistrazione, 0);
             this.Controls.SetChildIndex(this.panelRquirements, 0);
             this.Controls.SetChildIndex(this.panelForgotPassword, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.imgLogoESD)).EndInit();
             this.panelForgotPassword.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgSeparator4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgForgotPassword)).EndInit();

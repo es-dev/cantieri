@@ -15,6 +15,10 @@ namespace Web.Code
             {
                 view.Title = "GESTIONE COMMESSE";
                 view.Version = "rev. beta1";
+                view.LogoAziendale = "Images.logoAziendale.png";
+                view.LogoESD = "Images.logoESD.png";
+                view.BackgroundImage = "Images.background.png";
+                
             }
             catch (Exception ex)
             {
