@@ -13,12 +13,12 @@ namespace Web.Code
         {
             try
             {
-                view.Title = "GESTIONE COMMESSE";
+                view.Title = "ES | GESTIONE CANTIERI";
                 view.Version = "rev. beta1";
-                view.LogoAziendale = "Images.logoAziendale.png";
+                view.LogoSoftware = "Images.logoSoftware.png";
                 view.LogoESD = "Images.logoESD.png";
                 view.BackgroundImage = "Images.background.png";
-                
+                view.UrlHomePortal = "http://www.3gcostruzioni.it";
             }
             catch (Exception ex)
             {

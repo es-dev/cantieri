@@ -83,6 +83,7 @@ namespace Web
             this.imgHTML5 = new Gizmox.WebGUI.Forms.PictureBox();
             this.pictureBox1 = new Gizmox.WebGUI.Forms.PictureBox();
             this.pictureBox2 = new Gizmox.WebGUI.Forms.PictureBox();
+            this.lblLoginFault = new Gizmox.WebGUI.Forms.Label();
             this.panelForgotPassword.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgSeparator4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgForgotPassword)).BeginInit();
@@ -130,7 +131,7 @@ namespace Web
             this.panelForgotPassword.Controls.Add(this.btnSendForgotPassword);
             this.panelForgotPassword.Controls.Add(this.lblTitleForgotPassword);
             this.panelForgotPassword.Controls.Add(this.imgForgotPassword);
-            this.panelForgotPassword.Location = new System.Drawing.Point(320, 350);
+            this.panelForgotPassword.Location = new System.Drawing.Point(320, 352);
             this.panelForgotPassword.Name = "panelForgotPassword";
             this.panelForgotPassword.Size = new System.Drawing.Size(433, 134);
             this.panelForgotPassword.TabIndex = 8;
@@ -480,6 +481,7 @@ namespace Web
             this.editPassword.Size = new System.Drawing.Size(411, 37);
             this.editPassword.TabIndex = 1;
             this.editPassword.UseSystemPasswordChar = true;
+            this.editPassword.EnterKeyDown += new Gizmox.WebGUI.Forms.KeyEventHandler(this.editPassword_EnterKeyDown);
             // 
             // editUsername
             // 
@@ -737,9 +739,22 @@ namespace Web
             this.pictureBox2.TabIndex = 11;
             this.pictureBox2.TabStop = false;
             // 
+            // lblLoginFault
+            // 
+            this.lblLoginFault.AutoSize = true;
+            this.lblLoginFault.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLoginFault.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblLoginFault.Location = new System.Drawing.Point(338, 395);
+            this.lblLoginFault.Name = "lblLoginFault";
+            this.lblLoginFault.Size = new System.Drawing.Size(665, 41);
+            this.lblLoginFault.TabIndex = 4;
+            this.lblLoginFault.Text = "Accesso non consentito!!!";
+            this.lblLoginFault.Visible = false;
+            // 
             // Login
             // 
             this.Controls.Add(this.panelForgotPassword);
+            this.Controls.Add(this.lblLoginFault);
             this.Controls.Add(this.panelRquirements);
             this.Controls.Add(this.panelInfoRegistrazione);
             this.Controls.Add(this.imgSeparator2);
@@ -779,6 +794,7 @@ namespace Web
             this.Controls.SetChildIndex(this.panelInfo, 0);
             this.Controls.SetChildIndex(this.panelInfoRegistrazione, 0);
             this.Controls.SetChildIndex(this.panelRquirements, 0);
+            this.Controls.SetChildIndex(this.lblLoginFault, 0);
             this.Controls.SetChildIndex(this.panelForgotPassword, 0);
             this.panelForgotPassword.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgSeparator4)).EndInit();
@@ -858,5 +874,6 @@ namespace Web
         private Gizmox.WebGUI.Forms.PictureBox imgHTML5;
         private Gizmox.WebGUI.Forms.PictureBox pictureBox1;
         private Gizmox.WebGUI.Forms.PictureBox pictureBox2;
+        private Gizmox.WebGUI.Forms.Label lblLoginFault;
 	}
 }

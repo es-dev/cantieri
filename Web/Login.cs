@@ -29,13 +29,35 @@ namespace Web
         {
             try
             {
-                SessionManager.Login(Context);
-                Context.Redirect("cantieri-homepage.aspx");
+                LoginApplication();
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void LoginApplication()
+        {
+            try
+            {
+                var username = editUsername.Text;
+                var password = editPassword.Text;
+                if (username == "admin" && password == "3g") //todo: da implementare profilazione utente
+                {
+                    SessionManager.Login(Context);
+                    Context.Redirect("cantieri-homepage.aspx");
+                }
+                else
+                {
+                    lblLoginFault.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            
         }
 
         private void btnRegistrazione_Click(object sender, EventArgs e)
@@ -127,6 +149,18 @@ namespace Web
             {
                 UtilityError.Write(ex);
             } 
+        }
+
+        private void editPassword_EnterKeyDown(object objSender, Gizmox.WebGUI.Forms.KeyEventArgs objArgs)
+        {
+            try
+            {
+                LoginApplication();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
         }		
 	}
 }
