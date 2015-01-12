@@ -29,6 +29,7 @@ namespace Web.GUI.AnagraficaCliente
                     infoRagioneSociale.Text = obj.RagioneSociale;
                     infoCodice.Text = obj.Codice;
                     infoPartitaIVA.Text = "P.IVA " + obj.PIva;
+                    infoIndirizzo.Text = obj.Indirizzo + " - " + obj.CAP + " - " + obj.Comune + " (" + obj.Provincia + ")";
                 }
             }
             catch (Exception ex)

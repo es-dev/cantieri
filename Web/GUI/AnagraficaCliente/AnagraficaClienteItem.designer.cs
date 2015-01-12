@@ -35,9 +35,16 @@ namespace Web.GUI.AnagraficaCliente
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
             this.infoRagioneSociale = new Gizmox.WebGUI.Forms.Label();
             this.infoPartitaIVA = new Gizmox.WebGUI.Forms.Label();
+            this.infoIndirizzo = new Gizmox.WebGUI.Forms.Label();
+            this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // container
+            // 
+            this.container.Controls.Add(this.infoPartitaIVA);
+            this.container.Controls.Add(this.infoIndirizzo);
             // 
             // infoCodice
             // 
@@ -92,16 +99,28 @@ namespace Web.GUI.AnagraficaCliente
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoPartitaIVA.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoPartitaIVA.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoPartitaIVA.Location = new System.Drawing.Point(93, 32);
+            this.infoPartitaIVA.Location = new System.Drawing.Point(94, 31);
             this.infoPartitaIVA.Name = "infoPartitaIVA";
-            this.infoPartitaIVA.Size = new System.Drawing.Size(309, 55);
+            this.infoPartitaIVA.Size = new System.Drawing.Size(309, 22);
             this.infoPartitaIVA.TabIndex = 1;
             this.infoPartitaIVA.Text = "Partita IVA";
+            // 
+            // infoIndirizzo
+            // 
+            this.infoIndirizzo.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.infoIndirizzo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoIndirizzo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.infoIndirizzo.Location = new System.Drawing.Point(91, 55);
+            this.infoIndirizzo.Name = "infoIndirizzo";
+            this.infoIndirizzo.Size = new System.Drawing.Size(312, 33);
+            this.infoIndirizzo.TabIndex = 1;
+            this.infoIndirizzo.Text = "Indirizzo";
             // 
             // AnagraficaClienteItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Controls.Add(this.infoPartitaIVA);
             this.Controls.Add(this.infoRagioneSociale);
             this.Controls.Add(this.panelLeft);
             this.Size = new System.Drawing.Size(407, 93);
@@ -109,7 +128,7 @@ namespace Web.GUI.AnagraficaCliente
             this.Controls.SetChildIndex(this.container, 0);
             this.Controls.SetChildIndex(this.panelLeft, 0);
             this.Controls.SetChildIndex(this.infoRagioneSociale, 0);
-            this.Controls.SetChildIndex(this.infoPartitaIVA, 0);
+            this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -123,5 +142,6 @@ namespace Web.GUI.AnagraficaCliente
         private Gizmox.WebGUI.Forms.Panel panelLeft;
         private Gizmox.WebGUI.Forms.Label infoRagioneSociale;
         private Gizmox.WebGUI.Forms.Label infoPartitaIVA;
+        private Gizmox.WebGUI.Forms.Label infoIndirizzo;
 	}
 }
