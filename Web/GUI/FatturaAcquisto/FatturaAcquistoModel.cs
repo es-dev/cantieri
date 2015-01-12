@@ -45,7 +45,9 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
+                var obj = (WcfService.Dto.FatturaAcquistoDto)model;
                 infoSubtitleImage.Image = "Images.dashboard.fatturaacquisto.png";
+                infoSubtitle.Text = obj.Numero;
             }
             catch (Exception ex)
             {

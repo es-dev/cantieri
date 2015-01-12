@@ -21,7 +21,9 @@ namespace Web.GUI.Azienda
         {
             try
             {
+                var obj = (WcfService.Dto.AziendaDto)model;
                 infoSubtitleImage.Image = "Images.dashboard.azienda.png";
+                infoSubtitle.Text = obj.Codice + " " + obj.Denominazione;
             }
             catch (Exception ex)
             {

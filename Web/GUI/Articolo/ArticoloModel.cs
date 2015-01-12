@@ -21,7 +21,9 @@ namespace Web.GUI.Articolo
         {
             try
             {
+                var obj = (WcfService.Dto.ArticoloDto)model;
                 infoSubtitleImage.Image = "Images.dashboard.articolo.png";
+                infoSubtitle.Text = obj.Codice;
             }
             catch (Exception ex)
             {
@@ -52,7 +54,7 @@ namespace Web.GUI.Articolo
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) 
             {
                 UtilityError.Write(ex);
             }

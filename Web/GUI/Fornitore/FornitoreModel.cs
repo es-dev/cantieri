@@ -21,7 +21,9 @@ namespace Web.GUI.Fornitore
         {
             try
             {
+                var obj = (WcfService.Dto.FornitoreDto)model;
                 infoSubtitleImage.Image = "Images.dashboard.fornitore.png";
+                infoSubtitle.Text = obj.Codice + " - " + obj.RagioneSociale;
             }
             catch (Exception ex)
             {
