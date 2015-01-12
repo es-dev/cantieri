@@ -32,7 +32,7 @@ namespace Web.GUI.Azienda
 		{
             this.editDenominazione = new Library.Template.Controls.TemplateEditText();
             this.editIndirizzo = new Library.Template.Controls.TemplateEditText();
-            this.editCAP = new Library.Template.Controls.TemplateEditText();
+            this.editCAP = new Library.Template.Controls.TemplateEditCap();
             this.editComune = new Library.Template.Controls.TemplateEditText();
             this.editProvincia = new Library.Template.Controls.TemplateEditText();
             this.editNumeroDipendenti = new Library.Template.Controls.TemplateEditNumeric();
@@ -334,7 +334,7 @@ namespace Web.GUI.Azienda
         private Library.Template.Controls.TemplateEditText editIndirizzo;
         private Library.Template.Controls.TemplateEditText editProvincia;
         private Library.Template.Controls.TemplateEditText editComune;
-        private Library.Template.Controls.TemplateEditText editCAP;
+        private Library.Template.Controls.TemplateEditCap editCAP;
         private Library.Template.Controls.TemplateEditNumeric editNumeroDipendenti;
         private Library.Template.Controls.TemplateEditText editTelefono;
         private Library.Template.Controls.TemplateEditText editFAX;
