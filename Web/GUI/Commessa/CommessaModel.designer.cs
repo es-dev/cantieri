@@ -36,7 +36,7 @@ namespace Web.GUI.Commessa
             this.editScadenza = new Library.Template.Controls.TemplateEditData();
             this.editProvincia = new Library.Template.Controls.TemplateEditText();
             this.editComune = new Library.Template.Controls.TemplateEditText();
-            this.editCAP = new Library.Template.Controls.TemplateEditText();
+            this.editCAP = new Library.Template.Controls.TemplateEditCap();
             this.editIndirizzo = new Library.Template.Controls.TemplateEditText();
             this.editDenominazione = new Library.Template.Controls.TemplateEditText();
             this.editDescrizione = new Library.Template.Controls.TemplateEditText();
@@ -442,7 +442,7 @@ namespace Web.GUI.Commessa
         private Library.Template.Controls.TemplateEditText editDescrizione;
         private Library.Template.Controls.TemplateEditText editDenominazione;
         private Library.Template.Controls.TemplateEditText editIndirizzo;
-        private Library.Template.Controls.TemplateEditText editCAP;
+        private Library.Template.Controls.TemplateEditCap editCAP;
         private Library.Template.Controls.TemplateEditText editComune;
         private Library.Template.Controls.TemplateEditText editProvincia;
         private Library.Template.Controls.TemplateEditDecimal editMargine;

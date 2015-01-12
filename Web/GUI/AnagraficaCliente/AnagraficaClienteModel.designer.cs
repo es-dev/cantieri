@@ -33,7 +33,7 @@ namespace Web.GUI.AnagraficaCliente
             this.editIndirizzo = new Library.Template.Controls.TemplateEditText();
             this.editProvincia = new Library.Template.Controls.TemplateEditText();
             this.editComune = new Library.Template.Controls.TemplateEditText();
-            this.editCAP = new Library.Template.Controls.TemplateEditText();
+            this.editCAP = new Library.Template.Controls.TemplateEditCap();
             this.editTelefono = new Library.Template.Controls.TemplateEditText();
             this.editFAX = new Library.Template.Controls.TemplateEditText();
             this.editMobile = new Library.Template.Controls.TemplateEditText();
@@ -333,7 +333,7 @@ namespace Web.GUI.AnagraficaCliente
         private Library.Template.Controls.TemplateEditText editMobile;
         private Library.Template.Controls.TemplateEditText editFAX;
         private Library.Template.Controls.TemplateEditText editTelefono;
-        private Library.Template.Controls.TemplateEditText editCAP;
+        private Library.Template.Controls.TemplateEditCap editCAP;
         private Library.Template.Controls.TemplateEditText editComune;
         private Library.Template.Controls.TemplateEditText editProvincia;
         private Library.Template.Controls.TemplateEditText editIndirizzo;
