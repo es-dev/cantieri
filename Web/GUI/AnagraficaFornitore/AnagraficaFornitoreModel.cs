@@ -60,7 +60,7 @@ namespace Web.GUI.AnagraficaFornitore
             try
             {
                 var obj = (WcfService.Dto.AnagraficaFornitoreDto)model;
-                obj.RagioneSociale = editRagioneSociale.Value;
+                obj.RagioneSociale = editRagioneSociale.Value.Trim();
                 obj.Indirizzo = editIndirizzo.Value;
                 obj.CAP = editCAP.Value;
                 obj.Comune = editComune.Value;

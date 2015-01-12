@@ -36,7 +36,7 @@ namespace Web.GUI.AnagraficaCliente
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AnagraficaClienteDto)model;
-                    editRagioneSociale.Value = obj.RagioneSociale;
+                    editRagioneSociale.Value = obj.RagioneSociale.Trim();
                     editIndirizzo.Value = obj.Indirizzo;
                     editCAP.Value = obj.CAP;
                     editComune.Value = obj.Comune;
