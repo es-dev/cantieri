@@ -61,18 +61,21 @@ namespace Web.GUI.AnagraficaFornitore
         {
             try
             {
-                var obj = (WcfService.Dto.AnagraficaFornitoreDto)model;
-                obj.RagioneSociale = editRagioneSociale.Value.Trim();
-                obj.Indirizzo = editIndirizzo.Value;
-                obj.CAP = editCAP.Value;
-                obj.Comune = editComune.Value;
-                obj.Provincia = editProvincia.Value;
-                obj.Telefono = editTelefono.Value;
-                obj.Fax = editFAX.Value;
-                obj.Mobile = editMobile.Value;
-                obj.Email = editEmail.Value;
-                obj.PIva = editPartitaIVA.Value;
-                obj.Codice = editCodice.Value;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.AnagraficaFornitoreDto)model;
+                    obj.RagioneSociale = editRagioneSociale.Value.Trim();
+                    obj.Indirizzo = editIndirizzo.Value;
+                    obj.CAP = editCAP.Value;
+                    obj.Comune = editComune.Value;
+                    obj.Provincia = editProvincia.Value;
+                    obj.Telefono = editTelefono.Value;
+                    obj.Fax = editFAX.Value;
+                    obj.Mobile = editMobile.Value;
+                    obj.Email = editEmail.Value;
+                    obj.PIva = editPartitaIVA.Value;
+                    obj.Codice = editCodice.Value;
+                }
             }
             catch (Exception ex)
             {
