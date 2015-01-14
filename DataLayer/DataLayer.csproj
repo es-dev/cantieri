@@ -106,7 +106,6 @@
     <Compile Include="Commessa.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
-    <Compile Include="CRUD.cs" />
     <Compile Include="EntitiesModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -127,7 +126,6 @@
     <Compile Include="Pagamento.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
-    <Compile Include="POCO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SAL.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
