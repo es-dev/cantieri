@@ -29,7 +29,7 @@ namespace Web.GUI.Cliente
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadClienti(skip, take);
+                var objs = wcf.LoadClienti(skip, take, search);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@ namespace Web.GUI.Cliente
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountClienti();
+                var count = wcf.CountClienti(search);
                 return count;
             }
             catch (Exception ex)

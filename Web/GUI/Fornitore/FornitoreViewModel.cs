@@ -29,7 +29,7 @@ namespace Web.GUI.Fornitore
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadFornitori(skip, take);
+                var objs = wcf.LoadFornitori(skip, take, search);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@ namespace Web.GUI.Fornitore
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountFornitori();
+                var count = wcf.CountFornitori(search);
                 return count;
             }
             catch (Exception ex)

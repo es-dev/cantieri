@@ -29,7 +29,7 @@ namespace Web.GUI.Commessa
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadCommesse(skip, take);
+                var objs = wcf.LoadCommesse(skip, take, search);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@ namespace Web.GUI.Commessa
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountCommesse();
+                var count = wcf.CountCommesse(search);
                 return count;
             }
             catch (Exception ex)

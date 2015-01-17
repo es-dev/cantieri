@@ -29,7 +29,7 @@ namespace Web.GUI.Azienda
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadAziende(skip, take);
+                var objs = wcf.LoadAziende(skip, take, search);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@ namespace Web.GUI.Azienda
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountAziende();
+                var count = wcf.CountAziende(search);
                 return count;
             }
             catch (Exception ex)

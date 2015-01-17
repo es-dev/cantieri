@@ -29,7 +29,7 @@ namespace Web.GUI.Liquidazione
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadLiquidazioni(skip, take);
+                var objs = wcf.LoadLiquidazioni(skip, take, search);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@ namespace Web.GUI.Liquidazione
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountLiquidazioni();
+                var count = wcf.CountLiquidazioni(search);
                 return count;
             }
             catch (Exception ex)

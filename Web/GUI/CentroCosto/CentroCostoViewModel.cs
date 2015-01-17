@@ -29,7 +29,7 @@ namespace Web.GUI.CentroCosto
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadCentriCosto(skip, take);
+                var objs = wcf.LoadCentriCosto(skip, take, search);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@ namespace Web.GUI.CentroCosto
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountCentriCosto();
+                var count = wcf.CountCentriCosto(search);
                 return count;
             }
             catch (Exception ex)

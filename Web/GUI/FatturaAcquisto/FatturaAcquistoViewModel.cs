@@ -29,7 +29,7 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadFattureAcquisto(skip, take);
+                var objs = wcf.LoadFattureAcquisto(skip, take, search);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountFattureAcquisto();
+                var count = wcf.CountFattureAcquisto(search);
                 return count;
             }
             catch (Exception ex)
