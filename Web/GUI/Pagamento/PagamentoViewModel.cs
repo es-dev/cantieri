@@ -29,7 +29,7 @@ namespace Web.GUI.Pagamento
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadPagamenti(skip, take);
+                var objs = wcf.LoadPagamenti(skip, take, search);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@ namespace Web.GUI.Pagamento
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountPagamenti();
+                var count = wcf.CountPagamenti(search);
                 return count;
             }
             catch (Exception ex)

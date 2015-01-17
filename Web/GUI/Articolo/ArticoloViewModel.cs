@@ -29,7 +29,7 @@ namespace Web.GUI.Articolo
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadArticoli(skip, take);
+                var objs = wcf.LoadArticoli(skip, take, search);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@ namespace Web.GUI.Articolo
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountArticoli();
+                var count = wcf.CountArticoli(search);
                 return count;
             }
             catch (Exception ex)
