@@ -24,7 +24,7 @@ namespace Web.GUI.SAL
             }
         }
 
-        public override void Load(int skip, int take)
+        public override void Load(int skip, int take, string search=null)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace Web.GUI.SAL
             }
         }
 
-        public override int GetCount()
+        public override int GetCount(string search=null)
         {
             try
             {

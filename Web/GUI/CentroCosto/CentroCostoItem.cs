@@ -27,7 +27,7 @@ namespace Web.GUI.CentroCosto
                     var obj = (WcfService.Dto.CentroCostoDto)model;
                     infoImage.Image = "Images.dashboard.centrocosto.png";
                     infoCodice.Text = "CC";
-                    infoCodiceCentroCosto.Text = "CENTRO D COSTO "+ obj.Codice;
+                    infoCodiceCentroCosto.Text = "CENTRO DI COSTO "+ obj.Codice;
                     infoDenominazione.Text = obj.Denominazione;
 
                 }

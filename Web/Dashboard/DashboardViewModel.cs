@@ -31,7 +31,7 @@ namespace Web.Dashboard
 
         }
 
-        public override void Load(int skip, int take)
+        public override void Load(int skip, int take, string search=null)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace Web.Dashboard
             }
         }
 
-        public override int GetCount()
+        public override int GetCount(string search=null)
         {
             try
             {

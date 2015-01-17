@@ -24,12 +24,12 @@ namespace Web.GUI.AnagraficaFornitore
             }
         }
 
-        public override void Load(int skip, int take)
+        public override void Load(int skip, int take, string search=null)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadAnagraficheFornitori(skip, take);
+                var objs = wcf.LoadAnagraficheFornitori(skip, take, search);
                 Load(objs);
             }
             catch (Exception ex)
@@ -38,12 +38,12 @@ namespace Web.GUI.AnagraficaFornitore
             }
         }
 
-        public override int GetCount()
+        public override int GetCount(string search=null)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountAnagraficheFornitori();
+                var count = wcf.CountAnagraficheFornitori(search);
                 return count;
             }
             catch (Exception ex)

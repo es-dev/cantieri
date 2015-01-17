@@ -145,7 +145,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var aziende = (from q in ef.Aziendas select q);
-                if (search != null)
+                if (search != null && search.Length > 0)
                     aziende = (from q in aziende where q.Denominazione.StartsWith(search) select q);
                 aziende = (from q in aziende orderby q.Denominazione select q);
                 return aziende;
@@ -297,7 +297,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var commesse = (from q in ef.Commessas select q);
-                if (search != null)
+                if (search != null && search.Length>0)
                     commesse = (from q in commesse where q.Denominazione.StartsWith(search) select q);
                 commesse = (from q in commesse orderby q.Denominazione select q);
                 return commesse;
@@ -450,7 +450,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var fornitori = (from q in ef.Fornitores select q);
-                if (search != null)
+                if (search != null && search.Length > 0)
                     fornitori = (from q in fornitori where q.PIva.StartsWith(search) select q);
                 fornitori = (from q in fornitori orderby q.PIva  select q);
                 return fornitori;
@@ -602,7 +602,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var centriCosto = (from q in ef.CentroCostos select q);
-                if (search != null)
+                if (search != null && search.Length>0)
                     centriCosto = (from q in centriCosto where q.Denominazione.StartsWith(search) select q);
                 centriCosto = (from q in centriCosto orderby q.Denominazione select q);
                 return centriCosto;
@@ -754,7 +754,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var fattureAcquisto = (from q in ef.FatturaAcquistos select q);
-                if (search != null)
+                if (search != null && search.Length>0)
                     fattureAcquisto = (from q in fattureAcquisto where q.Numero.StartsWith(search) select q);
                 fattureAcquisto = (from q in fattureAcquisto orderby q.Numero select q);
                 return fattureAcquisto;
@@ -906,7 +906,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var articoli = (from q in ef.Articolos select q);
-                if (search != null)
+                if (search != null && search.Length>0)
                     articoli = (from q in articoli where q.Codice.StartsWith(search) select q);
                 articoli = (from q in articoli orderby q.Codice select q);
                 return articoli;
@@ -1058,7 +1058,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var pagamenti = (from q in ef.Pagamentos select q);
-                if (search != null)
+                if (search != null && search.Length>0)
                     pagamenti = (from q in pagamenti where q.Note.Contains(search) select q); //todo: da verificare
                 pagamenti = (from q in pagamenti orderby q.Note select q);
                 return pagamenti;
@@ -1210,7 +1210,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var clienti = (from q in ef.Clientes select q);
-                if (search != null)
+                if (search != null && search.Length>0)
                     clienti = (from q in clienti where q.RagioneSociale.StartsWith(search) select q);
                 clienti = (from q in clienti orderby q.RagioneSociale select q);
                 return clienti;
@@ -1362,7 +1362,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var fattureVendita = (from q in ef.FatturaVenditas select q);
-                if (search != null)
+                if (search != null && search.Length > 0)
                     fattureVendita = (from q in fattureVendita where q.Numero.StartsWith(search) select q);
                 fattureVendita = (from q in fattureVendita orderby q.Numero select q);
                 return fattureVendita;
@@ -1514,7 +1514,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var liquidazioni = (from q in ef.Liquidaziones select q);
-                if (search != null)
+                if (search != null && search.Length > 0)
                     liquidazioni = (from q in liquidazioni where q.Note.Contains(search) select q);  //todo: da verificare
                 liquidazioni = (from q in liquidazioni orderby q.Note select q);
                 return liquidazioni;
@@ -1666,7 +1666,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var sals = (from q in ef.SALs select q);
-                //if (search != null)
+                //if (search != null && search.Length>0)
                 //    sals = (from q in sals where q.Denominazione.StartsWith(search) select q);
                 sals = (from q in sals orderby q.Id select q);
                 return sals;
@@ -1818,7 +1818,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var anagraficheFornitori = (from q in ef.AnagraficaFornitores select q);
-                if (search != null)
+                if (search != null && search.Length>0)
                     anagraficheFornitori = (from q in anagraficheFornitori where q.RagioneSociale.StartsWith(search) select q);
                 anagraficheFornitori = (from q in anagraficheFornitori orderby q.RagioneSociale select q);
                 return anagraficheFornitori;
@@ -1970,7 +1970,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var anagraficheClienti = (from q in ef.AnagraficaClientes select q);
-                if (search != null)
+                if (search != null && search.Length > 0)
                     anagraficheClienti = (from q in anagraficheClienti where q.RagioneSociale.StartsWith(search) select q);
                 anagraficheClienti = (from q in anagraficheClienti orderby q.RagioneSociale select q);
                 return anagraficheClienti;
@@ -2122,7 +2122,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var anagraficheArticoli = (from q in ef.AnagraficaArticolos select q);
-                if (search != null)
+                if (search != null && search.Length>0)
                     anagraficheArticoli = (from q in anagraficheArticoli where q.Codice.StartsWith(search) select q);
                 anagraficheArticoli = (from q in anagraficheArticoli orderby q.Codice select q);
                 return anagraficheArticoli;
