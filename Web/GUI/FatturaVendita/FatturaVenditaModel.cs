@@ -45,9 +45,12 @@ namespace Web.GUI.FatturaVendita
         {
             try
             {
-                var obj = (WcfService.Dto.FatturaVenditaDto)model;
-                infoSubtitleImage.Image = "Images.dashboard.fatturavendita.png";
-                infoSubtitle.Text = obj.Numero;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.FatturaVenditaDto)model;
+                    infoSubtitleImage.Image = "Images.dashboard.fatturavendita.png";
+                    infoSubtitle.Text = obj.Numero;
+                }
             }
             catch (Exception ex)
             {

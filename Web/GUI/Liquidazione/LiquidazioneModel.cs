@@ -21,7 +21,11 @@ namespace Web.GUI.Liquidazione
         {
             try
             {
-                infoSubtitleImage.Image = "Images.dashboard.liquidazione.png";
+                if (model != null)
+                {
+
+                    infoSubtitleImage.Image = "Images.dashboard.liquidazione.png";
+                }
             }
             catch (Exception ex)
             {

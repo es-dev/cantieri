@@ -21,9 +21,12 @@ namespace Web.GUI.Cliente
         {
             try
             {
-                var obj = (WcfService.Dto.ClienteDto)model;
-                infoSubtitleImage.Image = "Images.dashboard.cliente.png";
-                infoSubtitle.Text = obj.Codice + " - " + obj.RagioneSociale;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.ClienteDto)model;
+                    infoSubtitleImage.Image = "Images.dashboard.cliente.png";
+                    infoSubtitle.Text = obj.Codice + " - " + obj.RagioneSociale;
+                }
             }
             catch (Exception ex)
             {

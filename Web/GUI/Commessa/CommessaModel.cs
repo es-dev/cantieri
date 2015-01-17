@@ -43,9 +43,12 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                var obj = (WcfService.Dto.CommessaDto)model;
-                infoSubtitleImage.Image = "Images.dashboard.commessa.png";
-                infoSubtitle.Text = obj.Codice + " - " + obj.Denominazione;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.CommessaDto)model;
+                    infoSubtitleImage.Image = "Images.dashboard.commessa.png";
+                    infoSubtitle.Text = obj.Codice + " - " + obj.Denominazione;
+                }
             }
             catch (Exception ex)
             {
@@ -74,6 +77,12 @@ namespace Web.GUI.Commessa
                     editStato.Value = obj.Stato;
                     editImporto.Value = obj.Importo;
                     editMargine.Value = obj.Margine;
+                    editImportoAvanzamentoLavori.Value = obj.ImportoAvanzamento;
+                    editPercentualeAvanzamento.Value = obj.Percentuale;
+                    editEstremiContratto.Value = obj.EstremiContratto;
+                    editImportoPerizie.Value = obj.ImportoPerizie;
+                    editInizioLavori.Value = obj.InizioLavori;
+                    editFineLavori.Value = obj.FineLavori;
                     var azienda = obj.Azienda;
                     if (azienda != null)
                     {
@@ -109,6 +118,12 @@ namespace Web.GUI.Commessa
                     obj.Stato = editStato.Value;
                     obj.Importo = editImporto.Value;
                     obj.Margine = editMargine.Value;
+                    obj.ImportoAvanzamento = editImportoAvanzamentoLavori.Value;
+                    obj.Percentuale = editPercentualeAvanzamento.Value;
+                    obj.EstremiContratto = editEstremiContratto.Value;
+                    obj.ImportoPerizie = editImportoPerizie.Value;
+                    obj.InizioLavori = editInizioLavori.Value;
+                    obj.FineLavori = editFineLavori.Value;
                     obj.AziendaId = (int)editAzienda.Id;
                     obj.Azienda = (WcfService.Dto.AziendaDto)editAzienda.Model;
                 }

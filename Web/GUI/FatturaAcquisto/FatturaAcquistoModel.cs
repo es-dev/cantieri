@@ -45,15 +45,19 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                var obj = (WcfService.Dto.FatturaAcquistoDto)model;
-                infoSubtitleImage.Image = "Images.dashboard.fatturaacquisto.png";
-                infoSubtitle.Text = obj.Numero;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.FatturaAcquistoDto)model;
+                    infoSubtitleImage.Image = "Images.dashboard.fatturaacquisto.png";
+                    infoSubtitle.Text = obj.Numero;
+                }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
         }
+        
 
         public override void BindView(object model)  
         {
