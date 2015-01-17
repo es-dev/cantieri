@@ -232,6 +232,84 @@ namespace DataLayer
 			}
 		}
 		
+		private decimal? _importoAvanzamento;
+		public virtual decimal? ImportoAvanzamento
+		{
+			get
+			{
+				return this._importoAvanzamento;
+			}
+			set
+			{
+				this._importoAvanzamento = value;
+			}
+		}
+		
+		private decimal? _percentuale;
+		public virtual decimal? Percentuale
+		{
+			get
+			{
+				return this._percentuale;
+			}
+			set
+			{
+				this._percentuale = value;
+			}
+		}
+		
+		private string _estremiContratto;
+		public virtual string EstremiContratto
+		{
+			get
+			{
+				return this._estremiContratto;
+			}
+			set
+			{
+				this._estremiContratto = value;
+			}
+		}
+		
+		private decimal? _importoPerizie;
+		public virtual decimal? ImportoPerizie
+		{
+			get
+			{
+				return this._importoPerizie;
+			}
+			set
+			{
+				this._importoPerizie = value;
+			}
+		}
+		
+		private DateTime? _inizioLavori;
+		public virtual DateTime? InizioLavori
+		{
+			get
+			{
+				return this._inizioLavori;
+			}
+			set
+			{
+				this._inizioLavori = value;
+			}
+		}
+		
+		private DateTime? _fineLavori;
+		public virtual DateTime? FineLavori
+		{
+			get
+			{
+				return this._fineLavori;
+			}
+			set
+			{
+				this._fineLavori = value;
+			}
+		}
+		
 		private Azienda _azienda;
 		public virtual Azienda Azienda
 		{

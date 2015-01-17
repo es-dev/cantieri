@@ -101,7 +101,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public CommessaDto(int _id, int _aziendaId, string _numero, DateTime? _creazione, DateTime? _scadenza, string _descrizione, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _riferimento, decimal? _importo, decimal? _margine, string _stato, string _codice, AziendaDto _azienda, IList<FornitoreDto> _fornitores, IList<SALDto> _sALs)
+		public CommessaDto(int _id, int _aziendaId, string _numero, DateTime? _creazione, DateTime? _scadenza, string _descrizione, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _riferimento, decimal? _importo, decimal? _margine, string _stato, string _codice, decimal? _importoAvanzamento, decimal? _percentuale, string _estremiContratto, decimal? _importoPerizie, DateTime? _inizioLavori, DateTime? _fineLavori, AziendaDto _azienda, IList<FornitoreDto> _fornitores, IList<SALDto> _sALs)
 		{
 			this.Id = _id;
 			this.AziendaId = _aziendaId;
@@ -119,6 +119,12 @@ namespace WcfService.Dto
 			this.Margine = _margine;
 			this.Stato = _stato;
 			this.Codice = _codice;
+			this.ImportoAvanzamento = _importoAvanzamento;
+			this.Percentuale = _percentuale;
+			this.EstremiContratto = _estremiContratto;
+			this.ImportoPerizie = _importoPerizie;
+			this.InizioLavori = _inizioLavori;
+			this.FineLavori = _fineLavori;
 			this.Azienda = _azienda;
 			this.Fornitores = _fornitores;
 			this.SALs = _sALs;
@@ -174,6 +180,24 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual string Codice { get;set; }
+
+		[DataMember]
+		public virtual decimal? ImportoAvanzamento { get;set; }
+
+		[DataMember]
+		public virtual decimal? Percentuale { get;set; }
+
+		[DataMember]
+		public virtual string EstremiContratto { get;set; }
+
+		[DataMember]
+		public virtual decimal? ImportoPerizie { get;set; }
+
+		[DataMember]
+		public virtual DateTime? InizioLavori { get;set; }
+
+		[DataMember]
+		public virtual DateTime? FineLavori { get;set; }
 
 		[DataMember]
 		public virtual AziendaDto Azienda { get;set; }

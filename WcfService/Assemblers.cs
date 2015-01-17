@@ -200,6 +200,12 @@ namespace WcfService.Assemblers
 			entity.Margine = dto.Margine;
 			entity.Stato = dto.Stato;
 			entity.Codice = dto.Codice;
+			entity.ImportoAvanzamento = dto.ImportoAvanzamento;
+			entity.Percentuale = dto.Percentuale;
+			entity.EstremiContratto = dto.EstremiContratto;
+			entity.ImportoPerizie = dto.ImportoPerizie;
+			entity.InizioLavori = dto.InizioLavori;
+			entity.FineLavori = dto.FineLavori;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -226,6 +232,12 @@ namespace WcfService.Assemblers
 			dto.Margine = entity.Margine;
 			dto.Stato = entity.Stato;
 			dto.Codice = entity.Codice;
+			dto.ImportoAvanzamento = entity.ImportoAvanzamento;
+			dto.Percentuale = entity.Percentuale;
+			dto.EstremiContratto = entity.EstremiContratto;
+			dto.ImportoPerizie = entity.ImportoPerizie;
+			dto.InizioLavori = entity.InizioLavori;
+			dto.FineLavori = entity.FineLavori;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }

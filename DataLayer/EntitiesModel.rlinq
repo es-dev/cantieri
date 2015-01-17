@@ -48,8 +48,7 @@
           <orm:collection element-class="DataLayer.Commessa" inverse-field="_azienda" order-by="" uniqueId="9529a813-1327-451c-bfdc-62fcf2c3ea6a" />
         </orm:field>
       </orm:class>
-      <orm:class name="Commessa" uniqueId="e3447bbe-e1c7-4842-b2ae-fbc6a53dfdb1">
-        <orm:table name="Commessa" />
+      <orm:class name="Commessa" use-default-mapping="true" uniqueId="e3447bbe-e1c7-4842-b2ae-fbc6a53dfdb1">
         <orm:identity>
           <orm:key-generator name="autoinc">
             <orm:key-generator-member property-name="Id" />
@@ -63,7 +62,7 @@
           <orm:column name="AziendaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         </orm:field>
         <orm:field name="_numero" property="Numero" uniqueId="d723c940-39c4-4ab4-ab53-ebb6b782ee55" type="System.String">
-          <orm:column name="Numero" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+          <orm:column name="Numero" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_creazione" property="Creazione" uniqueId="c65d72af-9d98-4e86-810f-8f1bfbc44008" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="Creazione" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
@@ -72,25 +71,25 @@
           <orm:column name="Scadenza" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_descrizione" property="Descrizione" uniqueId="10cf8ede-a672-4cea-b729-db3a000c7732" type="System.String">
-          <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+          <orm:column name="Descrizione" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_denominazione" property="Denominazione" uniqueId="bfd977c7-eb59-45eb-9a9e-8c0faff12423" type="System.String">
-          <orm:column name="Denominazione" sql-type="varchar(max)" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+          <orm:column name="Denominazione" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_indirizzo" property="Indirizzo" uniqueId="ce9fbab8-8ba8-436e-ae46-a42ac1229818" type="System.String">
-          <orm:column name="Indirizzo" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+          <orm:column name="Indirizzo" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_cAP" property="CAP" uniqueId="ee324d4b-9cf5-4ce1-bd5d-e8c83193413f" type="System.String">
-          <orm:column name="CAP" sql-type="varchar" nullable="true" length="5" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+          <orm:column name="CAP" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_comune" property="Comune" uniqueId="c843a834-9eab-4aaf-a1a1-84261d728770" type="System.String">
-          <orm:column name="Comune" sql-type="varchar(max)" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+          <orm:column name="Comune" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_provincia" property="Provincia" uniqueId="77855470-6c48-40e0-abe1-7b2e2679e0c5" type="System.String">
-          <orm:column name="Provincia" sql-type="varchar" nullable="true" length="2" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+          <orm:column name="Provincia" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_riferimento" property="Riferimento" uniqueId="2b03da80-172a-4697-b131-32da03eef135" type="System.String">
-          <orm:column name="Riferimento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+          <orm:column name="Riferimento" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_importo" property="Importo" uniqueId="ac5ca902-5e96-4a4c-ad21-6c0acf3e49fa" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
@@ -99,9 +98,29 @@
           <orm:column name="Margine" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
         <orm:field name="_stato" property="Stato" uniqueId="9c5b0516-8f4a-4f66-ac25-4f9f39550e64" type="System.String">
-          <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+          <orm:column name="Stato" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_codice" property="Codice" uniqueId="0b5a2c32-e2e4-41e6-a9ed-b771f32731cb" type="System.String" />
+        <orm:field name="_codice" property="Codice" uniqueId="0b5a2c32-e2e4-41e6-a9ed-b771f32731cb" type="System.String">
+          <orm:column name="Codice" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_importoAvanzamento" property="ImportoAvanzamento" uniqueId="71b9babf-1e99-4db9-9d21-aebf6f31d5d5" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="ImportoAvanzamento" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        </orm:field>
+        <orm:field name="_percentuale" property="Percentuale" uniqueId="b4cb5b2d-23a7-420f-9f51-a44486f3d9ac" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Percentuale" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        </orm:field>
+        <orm:field name="_estremiContratto" property="EstremiContratto" uniqueId="d4ac84ac-ae01-4a27-8407-f67f56aede9d" type="System.String">
+          <orm:column name="EstremiContratto" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_importoPerizie" property="ImportoPerizie" uniqueId="c578a2e5-67ca-473e-9482-d8d5073f60c4" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="ImportoPerizie" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        </orm:field>
+        <orm:field name="_inizioLavori" property="InizioLavori" uniqueId="42e9ea85-6109-4aea-9b68-27548a766115" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="InizioLavori" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_fineLavori" property="FineLavori" uniqueId="66541415-acef-4f15-825e-c88b27208624" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="FineLavori" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        </orm:field>
         <orm:field name="_azienda" property="Azienda" behavior="readwrite" uniqueId="494444a6-ccb0-494c-a6a4-5a308aeb4152" type="DataLayer.Azienda">
           <orm:reference uniqueId="9529a813-1327-451c-bfdc-62fcf2c3ea6a" association-name="CommessaHasAzienda">
             <orm:sharedfield name="_aziendaId" target-class="DataLayer.Azienda" target-field="_id" />
@@ -300,16 +319,16 @@
             <orm:sharedfield name="_fornitoreId" target-class="DataLayer.Fornitore" target-field="_id" />
           </orm:reference>
         </orm:field>
+        <orm:field name="_centroCosto" property="CentroCosto" behavior="readwrite" uniqueId="b3fb004d-8bc0-4b48-8852-13ca483b50b0" type="DataLayer.CentroCosto">
+          <orm:reference uniqueId="8a1ec485-60f4-4ca4-8b26-6596dcdbd353" association-name="FatturaAcquistoHasCentroCosto">
+            <orm:sharedfield name="_centroCostoId" target-class="DataLayer.CentroCosto" target-field="_id" />
+          </orm:reference>
+        </orm:field>
         <orm:field name="_articolos" property="Articolos" behavior="readwrite" uniqueId="515d5967-162f-419b-96c0-b2634982ade5" type="DataLayer.Articolo">
           <orm:collection element-class="DataLayer.Articolo" inverse-field="_fattura" order-by="" uniqueId="41eee6d8-a5b7-4fea-b639-08b8ca83cdcf" />
         </orm:field>
         <orm:field name="_pagamentos" property="Pagamentos" behavior="readwrite" uniqueId="e729c44d-e2ae-4052-8ad4-1683d392a794" type="DataLayer.Pagamento">
           <orm:collection element-class="DataLayer.Pagamento" inverse-field="_fatturaAcquisto" order-by="" uniqueId="c5b7ccac-23e7-4d05-9ef1-626f304fefdf" />
-        </orm:field>
-        <orm:field name="_centroCosto" property="CentroCosto" behavior="readwrite" uniqueId="b3fb004d-8bc0-4b48-8852-13ca483b50b0" type="DataLayer.CentroCosto">
-          <orm:reference uniqueId="8a1ec485-60f4-4ca4-8b26-6596dcdbd353" association-name="FatturaAcquistoHasCentroCosto">
-            <orm:sharedfield name="_centroCostoId" target-class="DataLayer.CentroCosto" target-field="_id" />
-          </orm:reference>
         </orm:field>
         <orm:index name="idx_FtturaAcquisto_FornitoreId">
           <orm:columnMapping>
@@ -918,6 +937,12 @@
       <Property Id="da5c5631-da28-413e-bc18-0a610a7fe701" name="Margine" type="Decimal" label="Margine : Decimal" nullable="true" fieldName="_margine" />
       <Property Id="9c5b0516-8f4a-4f66-ac25-4f9f39550e64" name="Stato" label="Stato : String" fieldName="_stato" />
       <Property Id="0b5a2c32-e2e4-41e6-a9ed-b771f32731cb" name="Codice" label="Codice : String" fieldName="_codice" />
+      <Property Id="71b9babf-1e99-4db9-9d21-aebf6f31d5d5" name="ImportoAvanzamento" type="Decimal" label="ImportoAvanzamento : Decimal" nullable="true" fieldName="_importoAvanzamento" />
+      <Property Id="b4cb5b2d-23a7-420f-9f51-a44486f3d9ac" name="Percentuale" type="Decimal" label="Percentuale : Decimal" nullable="true" fieldName="_percentuale" />
+      <Property Id="d4ac84ac-ae01-4a27-8407-f67f56aede9d" name="EstremiContratto" label="EstremiContratto : String" fieldName="_estremiContratto" />
+      <Property Id="c578a2e5-67ca-473e-9482-d8d5073f60c4" name="ImportoPerizie" type="Decimal" label="ImportoPerizie : Decimal" nullable="true" fieldName="_importoPerizie" />
+      <Property Id="42e9ea85-6109-4aea-9b68-27548a766115" name="InizioLavori" type="DateTime" label="InizioLavori : DateTime" nullable="true" fieldName="_inizioLavori" />
+      <Property Id="66541415-acef-4f15-825e-c88b27208624" name="FineLavori" type="DateTime" label="FineLavori : DateTime" nullable="true" fieldName="_fineLavori" />
       <AssociationTargets>
         <Association Id="9529a813-1327-451c-bfdc-62fcf2c3ea6a" SourceMultiplicity="ZeroOne" name="CommessaHasAzienda">
           <DomainClassMoniker name="/EntitiesModel/Azienda" />
