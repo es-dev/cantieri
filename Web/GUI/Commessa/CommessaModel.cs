@@ -43,9 +43,12 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                var obj = (WcfService.Dto.CommessaDto)model;
-                infoSubtitleImage.Image = "Images.dashboard.commessa.png";
-                infoSubtitle.Text = obj.Codice + " - " + obj.Denominazione;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.CommessaDto)model;
+                    infoSubtitleImage.Image = "Images.dashboard.commessa.png";
+                    infoSubtitle.Text = obj.Codice + " - " + obj.Denominazione;
+                }
             }
             catch (Exception ex)
             {
