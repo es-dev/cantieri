@@ -54,7 +54,6 @@ namespace Web.GUI.Fornitore
                         editCommessa.Model = commessa;
                         editCommessa.Value = commessa.Denominazione;
                     }
-                    editCentroCosto.Value = obj.CodiceCentroCosto;
                     editCodiceFornitore.Value = obj.Codice;
                 }
             }
@@ -80,7 +79,6 @@ namespace Web.GUI.Fornitore
                 obj.Email = editEmail.Value;
                 obj.PIva = editPartitaIVA.Value;
                 obj.Codice = editCodiceFornitore.Value;
-                obj.CodiceCentroCosto = editCentroCosto.Value;
                 obj.CommessaId = (int)editCommessa.Id;
                 obj.Commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
             }
@@ -110,34 +108,6 @@ namespace Web.GUI.Fornitore
                 var commessa = (WcfService.Dto.CommessaDto)model;
                 if (commessa != null)
                     editCommessa.Value = commessa.Denominazione;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void editCentroCosto_ComboClick()
-        {
-            try
-            {
-                var view = new CentroCosto.CentroCostoView();
-                view.Title = "SELEZIONA UN CENTRO DI COSTO";
-                editCentroCosto.Show(view);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }      
-        
-        private void editCentroCosto_ComboConfirm(object model)
-        {
-            try
-            {
-                var centroCosto = (WcfService.Dto.CentroCostoDto)model;
-                if (centroCosto != null)
-                    editCentroCosto.Value = centroCosto.Denominazione;
             }
             catch (Exception ex)
             {

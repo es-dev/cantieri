@@ -50,19 +50,6 @@ namespace DataLayer
 			}
 		}
 		
-		private string _codiceCentroCosto;
-		public virtual string CodiceCentroCosto
-		{
-			get
-			{
-				return this._codiceCentroCosto;
-			}
-			set
-			{
-				this._codiceCentroCosto = value;
-			}
-		}
-		
 		private string _ragioneSociale;
 		public virtual string RagioneSociale
 		{

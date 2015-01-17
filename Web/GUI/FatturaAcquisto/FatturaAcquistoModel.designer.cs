@@ -40,12 +40,14 @@ namespace Web.GUI.FatturaAcquisto
             this.editSaldo = new Library.Template.Controls.TemplateEditDecimal();
             this.editTipoPagamento = new Library.Template.Controls.TemplateEditDropDown();
             this.editScadenzaPagamento = new Library.Template.Controls.TemplateEditDropDown();
+            this.editCentroCosto = new Library.Template.Controls.TemplateEditCombo();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.SuspendLayout();
             // 
             // container
             // 
+            this.container.Controls.Add(this.editCentroCosto);
             this.container.Controls.Add(this.editScadenzaPagamento);
             this.container.Controls.Add(this.editTipoPagamento);
             this.container.Controls.Add(this.editSaldo);
@@ -68,6 +70,7 @@ namespace Web.GUI.FatturaAcquisto
             this.container.Controls.SetChildIndex(this.editSaldo, 0);
             this.container.Controls.SetChildIndex(this.editTipoPagamento, 0);
             this.container.Controls.SetChildIndex(this.editScadenzaPagamento, 0);
+            this.container.Controls.SetChildIndex(this.editCentroCosto, 0);
             // 
             // infoSubtitle
             // 
@@ -301,6 +304,31 @@ namespace Web.GUI.FatturaAcquisto
             this.editScadenzaPagamento.TabIndex = 4;
             this.editScadenzaPagamento.Text = "EditControl";
             this.editScadenzaPagamento.Value = null;
+            // 
+            // editCentroCosto
+            // 
+            this.editCentroCosto.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editCentroCosto.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editCentroCosto.BackColor = System.Drawing.Color.Transparent;
+            this.editCentroCosto.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editCentroCosto.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editCentroCosto.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editCentroCosto.Changed = true;
+            this.editCentroCosto.Editing = false;
+            this.editCentroCosto.Label = "Centro di Costo";
+            this.editCentroCosto.LabelWidth = 175;
+            this.editCentroCosto.Location = new System.Drawing.Point(21, 513);
+            this.editCentroCosto.Model = null;
+            this.editCentroCosto.Name = "editCentroCosto";
+            this.editCentroCosto.ReadOnly = false;
+            this.editCentroCosto.Required = false;
+            this.editCentroCosto.Size = new System.Drawing.Size(800, 30);
+            this.editCentroCosto.TabIndex = 1;
+            this.editCentroCosto.Text = "EditControl";
+            this.editCentroCosto.Value = null;
+            this.editCentroCosto.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editCentroCosto_ComboConfirm);
+            this.editCentroCosto.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editCentroCosto_ComboClick);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
@@ -320,6 +348,7 @@ namespace Web.GUI.FatturaAcquisto
         private Library.Template.Controls.TemplateEditDecimal editImponibile;
         private Library.Template.Controls.TemplateEditDropDown editTipoPagamento;
         private Library.Template.Controls.TemplateEditDropDown editScadenzaPagamento;
+        private Library.Template.Controls.TemplateEditCombo editCentroCosto;
 
 
     }

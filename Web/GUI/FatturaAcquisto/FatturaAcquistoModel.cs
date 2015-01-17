@@ -70,7 +70,13 @@ namespace Web.GUI.FatturaAcquisto
                     editSaldo.Value = obj.Saldo; 
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editScadenzaPagamento.Value = obj.ScadenzaPagamento;
-                    editTotale.Value = obj.Totale; 
+                    editTotale.Value = obj.Totale;
+                    var centroCosto=obj.CentroCosto;
+                    if (centroCosto!=null)
+                    {
+                        editCentroCosto.Model = centroCosto;
+                        editCentroCosto.Value = centroCosto.Denominazione;
+                    }
                     var fornitore = obj.Fornitore;
                     if (fornitore != null)
                     {
@@ -99,6 +105,8 @@ namespace Web.GUI.FatturaAcquisto
                 obj.TipoPagamento = editTipoPagamento.Value;
                 obj.ScadenzaPagamento = editScadenzaPagamento.Value;
                 obj.Totale = editTotale.Value;
+                obj.CentroCostoId = (int)editCentroCosto.Id;
+                obj.CentroCosto = (WcfService.Dto.CentroCostoDto)editCentroCosto.Model;
                 obj.FornitoreId = (int)editFornitore.Id;
                 obj.Fornitore = (WcfService.Dto.FornitoreDto)editFornitore.Model;
             }
@@ -136,7 +144,33 @@ namespace Web.GUI.FatturaAcquisto
             }
         }
 
+        private void editCentroCosto_ComboClick()
+        {
+            try
+            {
+                var view = new CentroCosto.CentroCostoView();
+                view.Title = "SELEZIONA UN CENTRO DI COSTO";
+                editCentroCosto.Show(view);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 
+        private void editCentroCosto_ComboConfirm(object model)
+        {
+            try
+            {
+                var centroCosto = (WcfService.Dto.CentroCostoDto)model;
+                if (centroCosto != null)
+                    editCentroCosto.Value = centroCosto.Denominazione;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 
 	}
 }

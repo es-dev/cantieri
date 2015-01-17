@@ -297,7 +297,6 @@ namespace WcfService.Assemblers
 			
 			entity.Id = dto.Id;
 			entity.CommessaId = dto.CommessaId;
-			entity.CodiceCentroCosto = dto.CodiceCentroCosto;
 			entity.RagioneSociale = dto.RagioneSociale;
 			entity.Indirizzo = dto.Indirizzo;
 			entity.CAP = dto.CAP;
@@ -321,7 +320,6 @@ namespace WcfService.Assemblers
 			dto.DtoKey = KeyUtility.Instance.Convert(key);
 			dto.Id = entity.Id;
 			dto.CommessaId = entity.CommessaId;
-			dto.CodiceCentroCosto = entity.CodiceCentroCosto;
 			dto.RagioneSociale = entity.RagioneSociale;
 			dto.Indirizzo = entity.Indirizzo;
 			dto.CAP = entity.CAP;
@@ -511,6 +509,16 @@ namespace WcfService.Assemblers
 	
 	    public override void AssembleCollections(CentroCosto entity, CentroCostoDto dto)
 	    {
+			FatturaAcquistoAssembler fatturaAcquistoAssembler = new FatturaAcquistoAssembler();
+
+			dto.FatturaAcquistos = new List<FatturaAcquistoDto>();
+			foreach (FatturaAcquisto item in entity.FatturaAcquistos)
+			{
+				var dtoItem = fatturaAcquistoAssembler.Assemble(item);
+				dtoItem.CentroCosto = dto;
+				dto.FatturaAcquistos.Add(dtoItem);
+			}
+
 	    }
 	
 	}
@@ -558,6 +566,7 @@ namespace WcfService.Assemblers
 			entity.Totale = dto.Totale;
 			entity.Saldo = dto.Saldo;
 			entity.ScadenzaPagamento = dto.ScadenzaPagamento;
+			entity.CentroCostoId = dto.CentroCostoId;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -579,6 +588,7 @@ namespace WcfService.Assemblers
 			dto.Totale = entity.Totale;
 			dto.Saldo = entity.Saldo;
 			dto.ScadenzaPagamento = entity.ScadenzaPagamento;
+			dto.CentroCostoId = entity.CentroCostoId;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -587,6 +597,9 @@ namespace WcfService.Assemblers
 	    {
 			FornitoreAssembler fornitoreAssembler = new FornitoreAssembler();
 			dto.Fornitore = fornitoreAssembler.Assemble(entity.Fornitore);
+
+			CentroCostoAssembler centroCostoAssembler = new CentroCostoAssembler();
+			dto.CentroCosto = centroCostoAssembler.Assemble(entity.CentroCosto);
 
 	    }
 	

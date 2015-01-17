@@ -36,10 +36,14 @@ namespace Web.GUI.Fornitore
             this.infoRagioneSociale = new Gizmox.WebGUI.Forms.Label();
             this.infoPartitaIVA = new Gizmox.WebGUI.Forms.Label();
             this.infoCommesssa = new Gizmox.WebGUI.Forms.Label();
-            this.infoCentroCosto = new Gizmox.WebGUI.Forms.Label();
+            this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // container
+            // 
+            this.container.Controls.Add(this.infoCommesssa);
             // 
             // infoCodice
             // 
@@ -107,30 +111,15 @@ namespace Web.GUI.Fornitore
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoCommesssa.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoCommesssa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoCommesssa.Location = new System.Drawing.Point(97, 74);
+            this.infoCommesssa.Location = new System.Drawing.Point(96, 51);
             this.infoCommesssa.Name = "infoCommesssa";
-            this.infoCommesssa.Size = new System.Drawing.Size(309, 19);
+            this.infoCommesssa.Size = new System.Drawing.Size(309, 39);
             this.infoCommesssa.TabIndex = 1;
             this.infoCommesssa.Text = "Commessa";
-            // 
-            // infoCentroCosto
-            // 
-            this.infoCentroCosto.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.infoCentroCosto.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoCentroCosto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoCentroCosto.Location = new System.Drawing.Point(98, 52);
-            this.infoCentroCosto.Name = "infoCentroCosto";
-            this.infoCentroCosto.Size = new System.Drawing.Size(309, 19);
-            this.infoCentroCosto.TabIndex = 1;
-            this.infoCentroCosto.Text = "Centro di Costo";
             // 
             // FornitoreItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Controls.Add(this.infoCentroCosto);
-            this.Controls.Add(this.infoCommesssa);
             this.Controls.Add(this.infoPartitaIVA);
             this.Controls.Add(this.infoRagioneSociale);
             this.Controls.Add(this.panelLeft);
@@ -140,8 +129,7 @@ namespace Web.GUI.Fornitore
             this.Controls.SetChildIndex(this.panelLeft, 0);
             this.Controls.SetChildIndex(this.infoRagioneSociale, 0);
             this.Controls.SetChildIndex(this.infoPartitaIVA, 0);
-            this.Controls.SetChildIndex(this.infoCommesssa, 0);
-            this.Controls.SetChildIndex(this.infoCentroCosto, 0);
+            this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -156,6 +144,5 @@ namespace Web.GUI.Fornitore
         private Gizmox.WebGUI.Forms.Label infoRagioneSociale;
         private Gizmox.WebGUI.Forms.Label infoPartitaIVA;
         private Gizmox.WebGUI.Forms.Label infoCommesssa;
-        private Gizmox.WebGUI.Forms.Label infoCentroCosto;
 	}
 }

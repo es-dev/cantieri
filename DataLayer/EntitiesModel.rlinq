@@ -133,9 +133,6 @@
         <orm:field name="_commessaId" property="CommessaId" uniqueId="6aea14da-f977-4df2-899c-da7b4924412c" type="System.Int32">
           <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         </orm:field>
-        <orm:field name="_codiceCentroCosto" property="CodiceCentroCosto" uniqueId="f9e10a30-4d4c-4115-85d4-71e02dc66ffe" type="System.String">
-          <orm:column name="CodiceCentroCosto" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
-        </orm:field>
         <orm:field name="_ragioneSociale" property="RagioneSociale" uniqueId="aee1a186-c677-455c-a455-2651a246c17d" type="System.String">
           <orm:column name="RagioneSociale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
@@ -250,6 +247,9 @@
         <orm:field name="_denominazione" property="Denominazione" uniqueId="4041841b-68d2-4097-9247-744d80ec4009" type="System.String">
           <orm:column name="Denominazione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
+        <orm:field name="_fatturaAcquistos" property="FatturaAcquistos" behavior="readwrite" uniqueId="b63721c9-1aa9-4048-8095-acfa731c7985" type="DataLayer.FatturaAcquisto">
+          <orm:collection element-class="DataLayer.FatturaAcquisto" inverse-field="_centroCosto" order-by="" uniqueId="8a1ec485-60f4-4ca4-8b26-6596dcdbd353" />
+        </orm:field>
       </orm:class>
       <orm:class name="FatturaAcquisto" uniqueId="b521b513-ee0f-41cc-a6db-8bb57ccc71c1">
         <orm:table name="FatturaAcquisto" />
@@ -292,6 +292,9 @@
         <orm:field name="_scadenzaPagamento" property="ScadenzaPagamento" uniqueId="fe96bee5-92bf-410e-b97e-c2f4602dd6a9" type="System.String">
           <orm:column name="ScadenzaPagamento" sql-type="varchar(max)" nullable="false" length="0" scale="0" ado-type="" />
         </orm:field>
+        <orm:field name="_centroCostoId" property="CentroCostoId" uniqueId="48606d18-d853-49a5-8f31-1f3a062c481d" type="System.Int32">
+          <orm:column name="CentroCostoId" sql-type="int" nullable="false" length="0" scale="0" ado-type="" />
+        </orm:field>
         <orm:field name="_fornitore" property="Fornitore" behavior="readwrite" uniqueId="a72fb4b6-40c4-458b-8b90-6997eaf59ce5" type="DataLayer.Fornitore">
           <orm:reference uniqueId="9133edb8-9422-4c9c-a7d6-77def2077659" association-name="FatturaHasFornitore">
             <orm:sharedfield name="_fornitoreId" target-class="DataLayer.Fornitore" target-field="_id" />
@@ -302,6 +305,11 @@
         </orm:field>
         <orm:field name="_pagamentos" property="Pagamentos" behavior="readwrite" uniqueId="e729c44d-e2ae-4052-8ad4-1683d392a794" type="DataLayer.Pagamento">
           <orm:collection element-class="DataLayer.Pagamento" inverse-field="_fatturaAcquisto" order-by="" uniqueId="c5b7ccac-23e7-4d05-9ef1-626f304fefdf" />
+        </orm:field>
+        <orm:field name="_centroCosto" property="CentroCosto" behavior="readwrite" uniqueId="b3fb004d-8bc0-4b48-8852-13ca483b50b0" type="DataLayer.CentroCosto">
+          <orm:reference uniqueId="8a1ec485-60f4-4ca4-8b26-6596dcdbd353" association-name="FatturaAcquistoHasCentroCosto">
+            <orm:sharedfield name="_centroCostoId" target-class="DataLayer.CentroCosto" target-field="_id" />
+          </orm:reference>
         </orm:field>
         <orm:index name="idx_FtturaAcquisto_FornitoreId">
           <orm:columnMapping>
@@ -684,6 +692,7 @@
         <orm:column name="Saldo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="FornitoreId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         <orm:column name="ScadenzaPagamento" sql-type="varchar(max)" nullable="false" length="0" scale="0" ado-type="" />
+        <orm:column name="CentroCostoId" sql-type="int" nullable="false" length="0" scale="0" ado-type="" />
         <orm:index name="idx_FtturaAcquisto_FornitoreId">
           <orm:columnMapping>
             <orm:column name="FornitoreId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -812,7 +821,6 @@
       </orm:table>
       <orm:table name="Fornitore">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
-        <orm:column name="CodiceCentroCosto" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="RagioneSociale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Indirizzo" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="CAP" sql-type="varchar" nullable="true" length="5" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
@@ -940,7 +948,6 @@
     <DomainClass Id="6bd2fb4a-065e-4782-aff0-394e97a8c10e" name="Fornitore" namespace="DataLayer" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
       <Property Id="44999fa7-e64d-4e0d-8657-53e72e62af5d" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
       <Property Id="6aea14da-f977-4df2-899c-da7b4924412c" name="CommessaId" type="Int32" label="CommessaId : Int32" fieldName="_commessaId" />
-      <Property Id="f9e10a30-4d4c-4115-85d4-71e02dc66ffe" name="CodiceCentroCosto" label="CodiceCentroCosto : String" fieldName="_codiceCentroCosto" />
       <Property Id="aee1a186-c677-455c-a455-2651a246c17d" name="RagioneSociale" label="RagioneSociale : String" fieldName="_ragioneSociale" />
       <Property Id="ccdce8d8-da14-4202-8389-2893a2e5a52f" name="Indirizzo" label="Indirizzo : String" fieldName="_indirizzo" />
       <Property Id="16ba5d2b-ffc1-477c-9b53-3ee4ca99c593" name="CAP" label="CAP : String" fieldName="_cAP" />
@@ -1012,6 +1019,11 @@
       <Property Id="7dca4477-e6fb-43a3-ae40-b2e85330e96a" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
       <Property Id="f4bdd1f1-ce45-4547-adff-c0fb9157e411" name="Codice" label="Codice : String" fieldName="_codice" />
       <Property Id="4041841b-68d2-4097-9247-744d80ec4009" name="Denominazione" label="Denominazione : String" fieldName="_denominazione" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="395d7f39-c390-44df-892e-0a0b3364bf31">
+          <NavigationalProperty Id="b63721c9-1aa9-4048-8095-acfa731c7985" name="FatturaAcquistos" type="IList&lt;FatturaAcquisto&gt;" label="FatturaAcquistos : IList&lt;FatturaAcquisto&gt;" nullable="true" kind="Persistent" fieldName="_fatturaAcquistos" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
     </DomainClass>
     <DomainClass Id="b521b513-ee0f-41cc-a6db-8bb57ccc71c1" name="FatturaAcquisto" namespace="DataLayer" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
       <Property Id="ccc6cf8c-a658-4116-88ed-4951fecb0b12" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
@@ -1025,6 +1037,7 @@
       <Property Id="72b951fa-df05-44cd-b2ac-a774a0f00e18" name="Totale" type="Decimal" label="Totale : Decimal" nullable="true" fieldName="_totale" />
       <Property Id="e5e1062e-5d4b-43fa-8cf3-d90e9be00047" name="Saldo" type="Decimal" label="Saldo : Decimal" nullable="true" fieldName="_saldo" />
       <Property Id="fe96bee5-92bf-410e-b97e-c2f4602dd6a9" name="ScadenzaPagamento" label="ScadenzaPagamento : String" fieldName="_scadenzaPagamento" />
+      <Property Id="48606d18-d853-49a5-8f31-1f3a062c481d" name="CentroCostoId" type="Int32" label="CentroCostoId : Int32" fieldName="_centroCostoId" />
       <AssociationTargets>
         <Association Id="9133edb8-9422-4c9c-a7d6-77def2077659" SourceMultiplicity="ZeroOne" name="FatturaHasFornitore">
           <DomainClassMoniker name="/EntitiesModel/Fornitore" />
@@ -1039,6 +1052,19 @@
             </associationDefinesSourceProperty>
           </sourceNavigationalProperty>
         </Association>
+        <Association Id="8a1ec485-60f4-4ca4-8b26-6596dcdbd353" SourceMultiplicity="ZeroOne" name="FatturaAcquistoHasCentroCosto">
+          <DomainClassMoniker name="/EntitiesModel/CentroCosto" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="01eb07bd-c6e3-48a3-80ba-93a175af1cf1">
+              <NavigationalPropertyMoniker name="/EntitiesModel/CentroCosto/FatturaAcquistos" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="dd2977d0-eabf-46e3-9819-3d3da9ea4fd9">
+              <NavigationalPropertyMoniker name="/EntitiesModel/FatturaAcquisto/CentroCosto" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
       </AssociationTargets>
       <navigationalProperties>
         <classHasNavigationalProperties Id="be9f72d7-c767-4cf7-b751-7194890932de">
@@ -1049,6 +1075,9 @@
         </classHasNavigationalProperties>
         <classHasNavigationalProperties Id="a2cd828f-b3aa-4583-9df9-4854e7dec348">
           <NavigationalProperty Id="e729c44d-e2ae-4052-8ad4-1683d392a794" name="Pagamentos" type="IList&lt;Pagamento&gt;" label="Pagamentos : IList&lt;Pagamento&gt;" nullable="true" kind="Persistent" fieldName="_pagamentos" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="68f662bd-21d5-41b0-9fc8-d608cd0ee691">
+          <NavigationalProperty Id="b3fb004d-8bc0-4b48-8852-13ca483b50b0" name="CentroCosto" type="CentroCosto" label="CentroCosto : CentroCosto" nullable="true" kind="Persistent" fieldName="_centroCosto" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>

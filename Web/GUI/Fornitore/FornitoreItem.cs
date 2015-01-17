@@ -29,7 +29,6 @@ namespace Web.GUI.Fornitore
                     infoRagioneSociale.Text = obj.RagioneSociale;
                     infoPartitaIVA.Text = "P.IVA " +obj.PIva;
                     infoCodice.Text = obj.Codice;
-                    infoCentroCosto.Text = obj.CodiceCentroCosto;
                     var commessa= obj.Commessa;
                     if (commessa != null)
                     {
