@@ -61,18 +61,21 @@ namespace Web.GUI.Azienda
         {
             try
             {
-                var obj = (WcfService.Dto.AziendaDto)model;
-                obj.Codice = editCodice.Value;
-                obj.Denominazione = editDenominazione.Value;
-                obj.CAP = editCAP.Value;
-                obj.Comune = editComune.Value;
-                obj.Dipendenti = editNumeroDipendenti.Value;
-                obj.Indirizzo = editIndirizzo.Value;
-                obj.PIva = editPartitaIVA.Value;
-                obj.Provincia = editProvincia.Value;
-                obj.Telefono = editTelefono.Value;
-                obj.Fax = editFAX.Value;
-                obj.Email = editEmail.Value;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.AziendaDto)model;
+                    obj.Codice = editCodice.Value;
+                    obj.Denominazione = editDenominazione.Value;
+                    obj.CAP = editCAP.Value;
+                    obj.Comune = editComune.Value;
+                    obj.Dipendenti = editNumeroDipendenti.Value;
+                    obj.Indirizzo = editIndirizzo.Value;
+                    obj.PIva = editPartitaIVA.Value;
+                    obj.Provincia = editProvincia.Value;
+                    obj.Telefono = editTelefono.Value;
+                    obj.Fax = editFAX.Value;
+                    obj.Email = editEmail.Value;
+                }
             }
             catch (Exception ex)
             {

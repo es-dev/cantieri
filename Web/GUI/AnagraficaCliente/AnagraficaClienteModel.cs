@@ -21,9 +21,12 @@ namespace Web.GUI.AnagraficaCliente
         {
             try
             {
-                var obj = (WcfService.Dto.AnagraficaClienteDto)model;
-                infoSubtitleImage.Image = "Images.dashboard.anagraficacliente.png";
-                infoSubtitle.Text = obj.Codice + " - " + obj.RagioneSociale;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.AnagraficaClienteDto)model;
+                    infoSubtitleImage.Image = "Images.dashboard.anagraficacliente.png";
+                    infoSubtitle.Text = obj.Codice + " - " + obj.RagioneSociale;
+                }
             }
             catch (Exception ex)
             {
@@ -61,18 +64,21 @@ namespace Web.GUI.AnagraficaCliente
         {
             try
             {
-                var obj = (WcfService.Dto.AnagraficaClienteDto)model;
-                obj.RagioneSociale = editRagioneSociale.Value;
-                obj.Indirizzo = editIndirizzo.Value;
-                obj.CAP = editCAP.Value;
-                obj.Comune = editComune.Value;
-                obj.Provincia = editProvincia.Value;
-                obj.Telefono = editTelefono.Value;
-                obj.Fax = editFAX.Value;
-                obj.Mobile = editMobile.Value;
-                obj.Email = editEmail.Value;
-                obj.PIva = editPartitaIVA.Value;
-                obj.Codice = editCodice.Value;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.AnagraficaClienteDto)model;
+                    obj.RagioneSociale = editRagioneSociale.Value;
+                    obj.Indirizzo = editIndirizzo.Value;
+                    obj.CAP = editCAP.Value;
+                    obj.Comune = editComune.Value;
+                    obj.Provincia = editProvincia.Value;
+                    obj.Telefono = editTelefono.Value;
+                    obj.Fax = editFAX.Value;
+                    obj.Mobile = editMobile.Value;
+                    obj.Email = editEmail.Value;
+                    obj.PIva = editPartitaIVA.Value;
+                    obj.Codice = editCodice.Value;
+                }
             }
             catch (Exception ex)
             {

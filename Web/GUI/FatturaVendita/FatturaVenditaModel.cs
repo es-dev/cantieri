@@ -45,9 +45,12 @@ namespace Web.GUI.FatturaVendita
         {
             try
             {
-                var obj = (WcfService.Dto.FatturaVenditaDto)model;
-                infoSubtitleImage.Image = "Images.dashboard.fatturavendita.png";
-                infoSubtitle.Text = obj.Numero;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.FatturaVenditaDto)model;
+                    infoSubtitleImage.Image = "Images.dashboard.fatturavendita.png";
+                    infoSubtitle.Text = obj.Numero;
+                }
             }
             catch (Exception ex)
             {
@@ -89,18 +92,21 @@ namespace Web.GUI.FatturaVendita
         {
             try
             {
-                var obj = (WcfService.Dto.FatturaVenditaDto)model;
-                obj.Data = editData.Value;
-                obj.Descrizione = editDescrizione.Value;
-                obj.Imponibile = editImponibile.Value;
-                obj.IVA = editIVA.Value;
-                obj.Numero = editNumero.Value;
-                obj.Saldo = editSaldo.Value;
-                obj.TipoPagamento = editTipoPagamento.Value;
-                obj.ScadenzaPagamento = editScadenzaPagamento.Value;
-                obj.Totale = editTotale.Value;
-                obj.ClienteId = (int)editCliente.Id;
-                obj.Cliente = (WcfService.Dto.ClienteDto)editCliente.Model;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.FatturaVenditaDto)model;
+                    obj.Data = editData.Value;
+                    obj.Descrizione = editDescrizione.Value;
+                    obj.Imponibile = editImponibile.Value;
+                    obj.IVA = editIVA.Value;
+                    obj.Numero = editNumero.Value;
+                    obj.Saldo = editSaldo.Value;
+                    obj.TipoPagamento = editTipoPagamento.Value;
+                    obj.ScadenzaPagamento = editScadenzaPagamento.Value;
+                    obj.Totale = editTotale.Value;
+                    obj.ClienteId = (int)editCliente.Id;
+                    obj.Cliente = (WcfService.Dto.ClienteDto)editCliente.Model;
+                }
             }
             catch (Exception ex)
             {

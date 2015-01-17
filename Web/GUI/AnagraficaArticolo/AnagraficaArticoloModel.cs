@@ -21,9 +21,12 @@ namespace Web.GUI.AnagraficaArticolo
         {
             try
             {
-                var obj = (WcfService.Dto.AnagraficaArticoloDto)model;
-                infoSubtitleImage.Image = "Images.dashboard.anagraficaarticolo.png";
-                infoSubtitle.Text = obj.Codice;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.AnagraficaArticoloDto)model;
+                    infoSubtitleImage.Image = "Images.dashboard.anagraficaarticolo.png";
+                    infoSubtitle.Text = obj.Codice;
+                }
             }
             catch (Exception ex)
             {
@@ -52,9 +55,12 @@ namespace Web.GUI.AnagraficaArticolo
         {
             try
             {
-                var obj = (WcfService.Dto.AnagraficaArticoloDto)model;
-                obj.Codice = editCodice.Value;
-                obj.Descrizione = editDescrizione.Value;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.AnagraficaArticoloDto)model;
+                    obj.Codice = editCodice.Value;
+                    obj.Descrizione = editDescrizione.Value;
+                }
             }
             catch (Exception ex)
             {

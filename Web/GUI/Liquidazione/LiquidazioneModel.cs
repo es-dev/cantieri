@@ -21,7 +21,11 @@ namespace Web.GUI.Liquidazione
         {
             try
             {
-                infoSubtitleImage.Image = "Images.dashboard.liquidazione.png";
+                if (model != null)
+                {
+
+                    infoSubtitleImage.Image = "Images.dashboard.liquidazione.png";
+                }
             }
             catch (Exception ex)
             {
@@ -57,12 +61,15 @@ namespace Web.GUI.Liquidazione
         {
             try
             {
-                var obj = (WcfService.Dto.LiquidazioneDto)model;
-                obj.Data = editData.Value;
-                obj.Importo = editImporto.Value;
-                obj.Note = editNote.Value;
-                obj.FatturaVenditaId = (int)editFatturaVendita.Id;
-                obj.FatturaVendita = (WcfService.Dto.FatturaVenditaDto)editFatturaVendita.Model;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.LiquidazioneDto)model;
+                    obj.Data = editData.Value;
+                    obj.Importo = editImporto.Value;
+                    obj.Note = editNote.Value;
+                    obj.FatturaVenditaId = (int)editFatturaVendita.Id;
+                    obj.FatturaVendita = (WcfService.Dto.FatturaVenditaDto)editFatturaVendita.Model;
+                }
             }
             catch (Exception ex)
             {

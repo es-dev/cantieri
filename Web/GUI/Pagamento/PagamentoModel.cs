@@ -58,12 +58,15 @@ namespace Web.GUI.Pagamento
         {
             try
             {
-                var obj = (WcfService.Dto.PagamentoDto)model;
-                obj.Data = editData.Value;
-                obj.Importo = editImporto.Value;
-                obj.Note = editNote.Value;
-                obj.FatturaAcquistoId = (int)editFatturaAcquisto.Id;
-                obj.FatturaAcquisto = (WcfService.Dto.FatturaAcquistoDto)editFatturaAcquisto.Model;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.PagamentoDto)model;
+                    obj.Data = editData.Value;
+                    obj.Importo = editImporto.Value;
+                    obj.Note = editNote.Value;
+                    obj.FatturaAcquistoId = (int)editFatturaAcquisto.Id;
+                    obj.FatturaAcquisto = (WcfService.Dto.FatturaAcquistoDto)editFatturaAcquisto.Model;
+                }
             }
             catch (Exception ex)
             {
