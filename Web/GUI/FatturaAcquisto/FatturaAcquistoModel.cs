@@ -95,20 +95,23 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                var obj = (WcfService.Dto.FatturaAcquistoDto)model;
-                obj.Data = editData.Value;
-                obj.Descrizione = editDescrizione.Value;
-                obj.Imponibile = editImponibile.Value;
-                obj.IVA = editIVA.Value;
-                obj.Numero = editNumero.Value;
-                obj.Saldo = editSaldo.Value;
-                obj.TipoPagamento = editTipoPagamento.Value;
-                obj.ScadenzaPagamento = editScadenzaPagamento.Value;
-                obj.Totale = editTotale.Value;
-                obj.CentroCostoId = (int)editCentroCosto.Id;
-                obj.CentroCosto = (WcfService.Dto.CentroCostoDto)editCentroCosto.Model;
-                obj.FornitoreId = (int)editFornitore.Id;
-                obj.Fornitore = (WcfService.Dto.FornitoreDto)editFornitore.Model;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.FatturaAcquistoDto)model;
+                    obj.Data = editData.Value;
+                    obj.Descrizione = editDescrizione.Value;
+                    obj.Imponibile = editImponibile.Value;
+                    obj.IVA = editIVA.Value;
+                    obj.Numero = editNumero.Value;
+                    obj.Saldo = editSaldo.Value;
+                    obj.TipoPagamento = editTipoPagamento.Value;
+                    obj.ScadenzaPagamento = editScadenzaPagamento.Value;
+                    obj.Totale = editTotale.Value;
+                    obj.CentroCostoId = (int)editCentroCosto.Id;
+                    obj.CentroCosto = (WcfService.Dto.CentroCostoDto)editCentroCosto.Model;
+                    obj.FornitoreId = (int)editFornitore.Id;
+                    obj.Fornitore = (WcfService.Dto.FornitoreDto)editFornitore.Model;
+                }
             }
             catch (Exception ex)
             {

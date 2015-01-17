@@ -61,15 +61,18 @@ namespace Web.GUI.SAL
         {
             try
             {
-                var obj = (WcfService.Dto.SALDto)model;
-                obj.Data = editData.Value;
-                obj.Codice = editCodice.Value;
-                obj.TotaleAcquisti = editTotaleAcquisti.Value;
-                obj.TotaleVendite = editTotaleVendite.Value;
-                obj.Lock = editLock.Value;
-                obj.Denominazione = editDenominazione.Value;
-                obj.CommessaId = (int)editCommessa.Id;
-                obj.Commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.SALDto)model;
+                    obj.Data = editData.Value;
+                    obj.Codice = editCodice.Value;
+                    obj.TotaleAcquisti = editTotaleAcquisti.Value;
+                    obj.TotaleVendite = editTotaleVendite.Value;
+                    obj.Lock = editLock.Value;
+                    obj.Denominazione = editDenominazione.Value;
+                    obj.CommessaId = (int)editCommessa.Id;
+                    obj.Commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
+                }
             }
             catch (Exception ex)
             {

@@ -57,12 +57,15 @@ namespace Web.GUI.Liquidazione
         {
             try
             {
-                var obj = (WcfService.Dto.LiquidazioneDto)model;
-                obj.Data = editData.Value;
-                obj.Importo = editImporto.Value;
-                obj.Note = editNote.Value;
-                obj.FatturaVenditaId = (int)editFatturaVendita.Id;
-                obj.FatturaVendita = (WcfService.Dto.FatturaVenditaDto)editFatturaVendita.Model;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.LiquidazioneDto)model;
+                    obj.Data = editData.Value;
+                    obj.Importo = editImporto.Value;
+                    obj.Note = editNote.Value;
+                    obj.FatturaVenditaId = (int)editFatturaVendita.Id;
+                    obj.FatturaVendita = (WcfService.Dto.FatturaVenditaDto)editFatturaVendita.Model;
+                }
             }
             catch (Exception ex)
             {

@@ -67,20 +67,23 @@ namespace Web.GUI.Fornitore
         {
             try
             {
-                var obj = (WcfService.Dto.FornitoreDto)model;
-                obj.RagioneSociale = editRagioneSociale.Value;
-                obj.Indirizzo = editIndirizzo.Value;
-                obj.CAP = editCAP.Value;
-                obj.Comune = editComune.Value;
-                obj.Provincia = editProvincia.Value;
-                obj.Telefono = editTelefono.Value;
-                obj.Fax = editFAX.Value;
-                obj.Mobile = editMobile.Value;
-                obj.Email = editEmail.Value;
-                obj.PIva = editPartitaIVA.Value;
-                obj.Codice = editCodiceFornitore.Value;
-                obj.CommessaId = (int)editCommessa.Id;
-                obj.Commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.FornitoreDto)model;
+                    obj.RagioneSociale = editRagioneSociale.Value;
+                    obj.Indirizzo = editIndirizzo.Value;
+                    obj.CAP = editCAP.Value;
+                    obj.Comune = editComune.Value;
+                    obj.Provincia = editProvincia.Value;
+                    obj.Telefono = editTelefono.Value;
+                    obj.Fax = editFAX.Value;
+                    obj.Mobile = editMobile.Value;
+                    obj.Email = editEmail.Value;
+                    obj.PIva = editPartitaIVA.Value;
+                    obj.Codice = editCodiceFornitore.Value;
+                    obj.CommessaId = (int)editCommessa.Id;
+                    obj.Commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
+                }
             }
             catch (Exception ex)
             {

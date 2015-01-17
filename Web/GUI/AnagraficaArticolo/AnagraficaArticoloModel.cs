@@ -52,9 +52,12 @@ namespace Web.GUI.AnagraficaArticolo
         {
             try
             {
-                var obj = (WcfService.Dto.AnagraficaArticoloDto)model;
-                obj.Codice = editCodice.Value;
-                obj.Descrizione = editDescrizione.Value;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.AnagraficaArticoloDto)model;
+                    obj.Codice = editCodice.Value;
+                    obj.Descrizione = editDescrizione.Value;
+                }
             }
             catch (Exception ex)
             {

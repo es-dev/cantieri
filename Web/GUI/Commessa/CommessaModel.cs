@@ -92,23 +92,26 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                var obj = (WcfService.Dto.CommessaDto)model;
-                obj.Denominazione = editDenominazione.Value;
-                obj.Codice = editCodice.Value;
-                obj.CAP = editCAP.Value;
-                obj.Comune = editComune.Value;
-                obj.Indirizzo = editIndirizzo.Value;
-                obj.Provincia = editProvincia.Value;
-                obj.Creazione = editCreazione.Value;
-                obj.Descrizione = editDescrizione.Value;
-                obj.Numero = editNumero.Value;
-                obj.Riferimento = editRiferimento.Value;
-                obj.Scadenza = editScadenza.Value;
-                obj.Stato = editStato.Value;
-                obj.Importo = editImporto.Value;    
-                obj.Margine = editMargine.Value;    
-                obj.AziendaId = (int)editAzienda.Id;
-                obj.Azienda = (WcfService.Dto.AziendaDto)editAzienda.Model;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.CommessaDto)model;
+                    obj.Denominazione = editDenominazione.Value;
+                    obj.Codice = editCodice.Value;
+                    obj.CAP = editCAP.Value;
+                    obj.Comune = editComune.Value;
+                    obj.Indirizzo = editIndirizzo.Value;
+                    obj.Provincia = editProvincia.Value;
+                    obj.Creazione = editCreazione.Value;
+                    obj.Descrizione = editDescrizione.Value;
+                    obj.Numero = editNumero.Value;
+                    obj.Riferimento = editRiferimento.Value;
+                    obj.Scadenza = editScadenza.Value;
+                    obj.Stato = editStato.Value;
+                    obj.Importo = editImporto.Value;
+                    obj.Margine = editMargine.Value;
+                    obj.AziendaId = (int)editAzienda.Id;
+                    obj.Azienda = (WcfService.Dto.AziendaDto)editAzienda.Model;
+                }
             }
             catch (Exception ex)
             {

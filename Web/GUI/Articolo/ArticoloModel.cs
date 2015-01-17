@@ -64,17 +64,20 @@ namespace Web.GUI.Articolo
         {
             try
             {
-                var obj = (WcfService.Dto.ArticoloDto)model;
-                obj.Costo = editCosto.Value;
-                obj.Codice = editCodiceArticolo.Value;
-                obj.Descrizione = editDescrizione.Value;
-                obj.Importo = editImporto.Value;
-                obj.IVA = editIVA.Value;
-                obj.Quantita = editQuantita.Value;
-                obj.Sconto = editSconto.Value;
-                obj.Totale = editTotale.Value;
-                obj.FatturaId = (int)editFatturaAcquisto.Id;
-                obj.Fattura = (WcfService.Dto.FatturaAcquistoDto)editFatturaAcquisto.Model;
+                if (model != null)
+                {
+                    var obj = (WcfService.Dto.ArticoloDto)model;
+                    obj.Costo = editCosto.Value;
+                    obj.Codice = editCodiceArticolo.Value;
+                    obj.Descrizione = editDescrizione.Value;
+                    obj.Importo = editImporto.Value;
+                    obj.IVA = editIVA.Value;
+                    obj.Quantita = editQuantita.Value;
+                    obj.Sconto = editSconto.Value;
+                    obj.Totale = editTotale.Value;
+                    obj.FatturaId = (int)editFatturaAcquisto.Id;
+                    obj.Fattura = (WcfService.Dto.FatturaAcquistoDto)editFatturaAcquisto.Model;
+                }
             }
             catch (Exception ex)
             {
