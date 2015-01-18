@@ -43,7 +43,7 @@ namespace Web
             {
                 var username = editUsername.Text;
                 var password = editPassword.Text;
-                if (true)//todo:--> username == "admin" && password == "3g") //todo: da implementare profilazione utente
+                if (username == "admin" && password == "3g") //todo: da implementare profilazione utente
                 {
                     SessionManager.Login(Context);
                     Context.Redirect("cantieri-homepage.aspx");

@@ -204,7 +204,7 @@ namespace Web.GUI.Commessa
             this.editProvincia.Name = "editProvincia";
             this.editProvincia.ReadOnly = false;
             this.editProvincia.Required = false;
-            this.editProvincia.Size = new System.Drawing.Size(768, 30);
+            this.editProvincia.Size = new System.Drawing.Size(766, 30);
             this.editProvincia.TabIndex = 10;
             this.editProvincia.Text = "EditControl";
             this.editProvincia.Value = null;
@@ -226,7 +226,7 @@ namespace Web.GUI.Commessa
             this.editComune.Name = "editComune";
             this.editComune.ReadOnly = false;
             this.editComune.Required = false;
-            this.editComune.Size = new System.Drawing.Size(768, 30);
+            this.editComune.Size = new System.Drawing.Size(766, 30);
             this.editComune.TabIndex = 9;
             this.editComune.Text = "EditControl";
             this.editComune.Value = null;
@@ -248,7 +248,7 @@ namespace Web.GUI.Commessa
             this.editCAP.Name = "editCAP";
             this.editCAP.ReadOnly = false;
             this.editCAP.Required = false;
-            this.editCAP.Size = new System.Drawing.Size(768, 30);
+            this.editCAP.Size = new System.Drawing.Size(766, 30);
             this.editCAP.TabIndex = 8;
             this.editCAP.Text = "EditControl";
             this.editCAP.Value = null;
@@ -336,7 +336,7 @@ namespace Web.GUI.Commessa
             this.editRiferimento.Name = "editRiferimento";
             this.editRiferimento.ReadOnly = false;
             this.editRiferimento.Required = false;
-            this.editRiferimento.Size = new System.Drawing.Size(766, 30);
+            this.editRiferimento.Size = new System.Drawing.Size(764, 30);
             this.editRiferimento.TabIndex = 11;
             this.editRiferimento.Text = "EditControl";
             this.editRiferimento.Value = null;
@@ -358,7 +358,7 @@ namespace Web.GUI.Commessa
             this.editImporto.Name = "editImporto";
             this.editImporto.ReadOnly = false;
             this.editImporto.Required = false;
-            this.editImporto.Size = new System.Drawing.Size(766, 30);
+            this.editImporto.Size = new System.Drawing.Size(764, 30);
             this.editImporto.TabIndex = 13;
             this.editImporto.Text = "TemplateEditNumeric";
             this.editImporto.Value = null;
@@ -435,7 +435,7 @@ namespace Web.GUI.Commessa
             this.tabPage1.ForeColor = System.Drawing.Color.Black;
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(897, 220);
+            this.tabPage1.Size = new System.Drawing.Size(895, 220);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Luogo di esecuzione";
             // 
@@ -450,12 +450,14 @@ namespace Web.GUI.Commessa
             this.tabPage2.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(897, 217);
+            this.tabPage2.Size = new System.Drawing.Size(895, 220);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Dati contrattuali";
             // 
             // editInizioLavori
             // 
+            this.editInizioLavori.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.editInizioLavori.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.editInizioLavori.BackColor = System.Drawing.Color.Transparent;
             this.editInizioLavori.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
@@ -469,13 +471,15 @@ namespace Web.GUI.Commessa
             this.editInizioLavori.Name = "editInizioLavori";
             this.editInizioLavori.ReadOnly = false;
             this.editInizioLavori.Required = false;
-            this.editInizioLavori.Size = new System.Drawing.Size(481, 30);
+            this.editInizioLavori.Size = new System.Drawing.Size(764, 30);
             this.editInizioLavori.TabIndex = 16;
             this.editInizioLavori.Text = "EditControl";
             this.editInizioLavori.Value = null;
             // 
             // editFineLavori
             // 
+            this.editFineLavori.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.editFineLavori.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.editFineLavori.BackColor = System.Drawing.Color.Transparent;
             this.editFineLavori.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
@@ -489,13 +493,15 @@ namespace Web.GUI.Commessa
             this.editFineLavori.Name = "editFineLavori";
             this.editFineLavori.ReadOnly = false;
             this.editFineLavori.Required = false;
-            this.editFineLavori.Size = new System.Drawing.Size(481, 30);
+            this.editFineLavori.Size = new System.Drawing.Size(764, 30);
             this.editFineLavori.TabIndex = 15;
             this.editFineLavori.Text = "EditControl";
             this.editFineLavori.Value = null;
             // 
             // editEstremiContratto
             // 
+            this.editEstremiContratto.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.editEstremiContratto.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.editEstremiContratto.BackColor = System.Drawing.Color.Transparent;
             this.editEstremiContratto.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
@@ -509,7 +515,7 @@ namespace Web.GUI.Commessa
             this.editEstremiContratto.Name = "editEstremiContratto";
             this.editEstremiContratto.ReadOnly = false;
             this.editEstremiContratto.Required = false;
-            this.editEstremiContratto.Size = new System.Drawing.Size(756, 30);
+            this.editEstremiContratto.Size = new System.Drawing.Size(764, 30);
             this.editEstremiContratto.TabIndex = 14;
             this.editEstremiContratto.Text = "EditControl";
             this.editEstremiContratto.Value = null;
@@ -522,12 +528,14 @@ namespace Web.GUI.Commessa
             this.tabPage3.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.tabPage3.Location = new System.Drawing.Point(0, 0);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(897, 217);
+            this.tabPage3.Size = new System.Drawing.Size(895, 220);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Stato avanzamento lavori";
             // 
             // editPercentualeAvanzamento
             // 
+            this.editPercentualeAvanzamento.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.editPercentualeAvanzamento.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.editPercentualeAvanzamento.BackColor = System.Drawing.Color.Transparent;
             this.editPercentualeAvanzamento.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
@@ -541,7 +549,7 @@ namespace Web.GUI.Commessa
             this.editPercentualeAvanzamento.Name = "editPercentualeAvanzamento";
             this.editPercentualeAvanzamento.ReadOnly = false;
             this.editPercentualeAvanzamento.Required = false;
-            this.editPercentualeAvanzamento.Size = new System.Drawing.Size(481, 30);
+            this.editPercentualeAvanzamento.Size = new System.Drawing.Size(764, 30);
             this.editPercentualeAvanzamento.TabIndex = 1001;
             this.editPercentualeAvanzamento.Text = "TemplateEditNumeric";
             this.editPercentualeAvanzamento.Value = null;
@@ -563,7 +571,7 @@ namespace Web.GUI.Commessa
             this.editMargine.Name = "editMargine";
             this.editMargine.ReadOnly = false;
             this.editMargine.Required = false;
-            this.editMargine.Size = new System.Drawing.Size(766, 30);
+            this.editMargine.Size = new System.Drawing.Size(764, 30);
             this.editMargine.TabIndex = 14;
             this.editMargine.Text = "TemplateEditNumeric";
             this.editMargine.Value = null;
@@ -585,7 +593,7 @@ namespace Web.GUI.Commessa
             this.editImportoAvanzamentoLavori.Name = "editImportoAvanzamentoLavori";
             this.editImportoAvanzamentoLavori.ReadOnly = false;
             this.editImportoAvanzamentoLavori.Required = false;
-            this.editImportoAvanzamentoLavori.Size = new System.Drawing.Size(766, 30);
+            this.editImportoAvanzamentoLavori.Size = new System.Drawing.Size(764, 30);
             this.editImportoAvanzamentoLavori.TabIndex = 1000;
             this.editImportoAvanzamentoLavori.Text = "TemplateEditNumeric";
             this.editImportoAvanzamentoLavori.Value = null;
@@ -596,12 +604,14 @@ namespace Web.GUI.Commessa
             this.tabPage4.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.tabPage4.Location = new System.Drawing.Point(0, 0);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(897, 217);
+            this.tabPage4.Size = new System.Drawing.Size(895, 220);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Spese generali";
             // 
             // editImportoPerizie
             // 
+            this.editImportoPerizie.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.editImportoPerizie.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.editImportoPerizie.BackColor = System.Drawing.Color.Transparent;
             this.editImportoPerizie.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
