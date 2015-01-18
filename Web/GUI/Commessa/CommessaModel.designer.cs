@@ -44,7 +44,7 @@ namespace Web.GUI.Commessa
             this.editImporto = new Library.Template.Controls.TemplateEditDecimal();
             this.editCodice = new Library.Template.Controls.TemplateEditText();
             this.editStato = new Library.Template.Controls.TemplateEditDropDown();
-            this.orientationTabControl1 = new Gizmox.WebGUI.Forms.OrientationTabControl();
+            this.tabControl = new Gizmox.WebGUI.Forms.OrientationTabControl();
             this.tabPage1 = new Gizmox.WebGUI.Forms.TabPage();
             this.tabPage2 = new Gizmox.WebGUI.Forms.TabPage();
             this.editInizioLavori = new Library.Template.Controls.TemplateEditData();
@@ -59,8 +59,8 @@ namespace Web.GUI.Commessa
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.orientationTabControl1)).BeginInit();
-            this.orientationTabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
+            this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -69,7 +69,7 @@ namespace Web.GUI.Commessa
             // 
             // container
             // 
-            this.container.Controls.Add(this.orientationTabControl1);
+            this.container.Controls.Add(this.tabControl);
             this.container.Controls.Add(this.editStato);
             this.container.Controls.Add(this.editCodice);
             this.container.Controls.Add(this.editDescrizione);
@@ -86,7 +86,7 @@ namespace Web.GUI.Commessa
             this.container.Controls.SetChildIndex(this.editDescrizione, 0);
             this.container.Controls.SetChildIndex(this.editCodice, 0);
             this.container.Controls.SetChildIndex(this.editStato, 0);
-            this.container.Controls.SetChildIndex(this.orientationTabControl1, 0);
+            this.container.Controls.SetChildIndex(this.tabControl, 0);
             // 
             // infoSubtitle
             // 
@@ -182,7 +182,7 @@ namespace Web.GUI.Commessa
             this.editScadenza.Name = "editScadenza";
             this.editScadenza.ReadOnly = false;
             this.editScadenza.Required = false;
-            this.editScadenza.Size = new System.Drawing.Size(752, 30);
+            this.editScadenza.Size = new System.Drawing.Size(764, 30);
             this.editScadenza.TabIndex = 4;
             this.editScadenza.Text = "TemplateEditData";
             this.editScadenza.Value = null;
@@ -204,7 +204,7 @@ namespace Web.GUI.Commessa
             this.editProvincia.Name = "editProvincia";
             this.editProvincia.ReadOnly = false;
             this.editProvincia.Required = false;
-            this.editProvincia.Size = new System.Drawing.Size(756, 30);
+            this.editProvincia.Size = new System.Drawing.Size(768, 30);
             this.editProvincia.TabIndex = 10;
             this.editProvincia.Text = "EditControl";
             this.editProvincia.Value = null;
@@ -226,7 +226,7 @@ namespace Web.GUI.Commessa
             this.editComune.Name = "editComune";
             this.editComune.ReadOnly = false;
             this.editComune.Required = false;
-            this.editComune.Size = new System.Drawing.Size(756, 30);
+            this.editComune.Size = new System.Drawing.Size(768, 30);
             this.editComune.TabIndex = 9;
             this.editComune.Text = "EditControl";
             this.editComune.Value = null;
@@ -248,7 +248,7 @@ namespace Web.GUI.Commessa
             this.editCAP.Name = "editCAP";
             this.editCAP.ReadOnly = false;
             this.editCAP.Required = false;
-            this.editCAP.Size = new System.Drawing.Size(756, 30);
+            this.editCAP.Size = new System.Drawing.Size(768, 30);
             this.editCAP.TabIndex = 8;
             this.editCAP.Text = "EditControl";
             this.editCAP.Value = null;
@@ -270,7 +270,7 @@ namespace Web.GUI.Commessa
             this.editIndirizzo.Name = "editIndirizzo";
             this.editIndirizzo.ReadOnly = false;
             this.editIndirizzo.Required = false;
-            this.editIndirizzo.Size = new System.Drawing.Size(756, 30);
+            this.editIndirizzo.Size = new System.Drawing.Size(768, 30);
             this.editIndirizzo.TabIndex = 7;
             this.editIndirizzo.Text = "EditControl";
             this.editIndirizzo.Value = null;
@@ -336,7 +336,7 @@ namespace Web.GUI.Commessa
             this.editRiferimento.Name = "editRiferimento";
             this.editRiferimento.ReadOnly = false;
             this.editRiferimento.Required = false;
-            this.editRiferimento.Size = new System.Drawing.Size(754, 30);
+            this.editRiferimento.Size = new System.Drawing.Size(766, 30);
             this.editRiferimento.TabIndex = 11;
             this.editRiferimento.Text = "EditControl";
             this.editRiferimento.Value = null;
@@ -358,7 +358,7 @@ namespace Web.GUI.Commessa
             this.editImporto.Name = "editImporto";
             this.editImporto.ReadOnly = false;
             this.editImporto.Required = false;
-            this.editImporto.Size = new System.Drawing.Size(754, 30);
+            this.editImporto.Size = new System.Drawing.Size(766, 30);
             this.editImporto.TabIndex = 13;
             this.editImporto.Text = "TemplateEditNumeric";
             this.editImporto.Value = null;
@@ -408,20 +408,21 @@ namespace Web.GUI.Commessa
             this.editStato.Text = "EditControl";
             this.editStato.Value = null;
             // 
-            // orientationTabControl1
+            // tabControl
             // 
-            this.orientationTabControl1.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.tabControl.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.orientationTabControl1.Controls.Add(this.tabPage1);
-            this.orientationTabControl1.Controls.Add(this.tabPage2);
-            this.orientationTabControl1.Controls.Add(this.tabPage3);
-            this.orientationTabControl1.Controls.Add(this.tabPage4);
-            this.orientationTabControl1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.orientationTabControl1.Location = new System.Drawing.Point(20, 344);
-            this.orientationTabControl1.Name = "orientationTabControl1";
-            this.orientationTabControl1.SelectedIndex = 0;
-            this.orientationTabControl1.Size = new System.Drawing.Size(893, 250);
-            this.orientationTabControl1.TabIndex = 1001;
+            this.tabControl.Appearance = Gizmox.WebGUI.Forms.TabAppearance.Spread;
+            this.tabControl.Controls.Add(this.tabPage1);
+            this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Controls.Add(this.tabPage3);
+            this.tabControl.Controls.Add(this.tabPage4);
+            this.tabControl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl.Location = new System.Drawing.Point(10, 348);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(905, 250);
+            this.tabControl.TabIndex = 1000;
             // 
             // tabPage1
             // 
@@ -432,9 +433,9 @@ namespace Web.GUI.Commessa
             this.tabPage1.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.tabPage1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage1.ForeColor = System.Drawing.Color.Black;
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(883, 217);
+            this.tabPage1.Size = new System.Drawing.Size(897, 220);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Luogo di esecuzione";
             // 
@@ -449,7 +450,7 @@ namespace Web.GUI.Commessa
             this.tabPage2.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(883, 217);
+            this.tabPage2.Size = new System.Drawing.Size(897, 217);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Dati contrattuali";
             // 
@@ -521,7 +522,7 @@ namespace Web.GUI.Commessa
             this.tabPage3.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.tabPage3.Location = new System.Drawing.Point(0, 0);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(883, 217);
+            this.tabPage3.Size = new System.Drawing.Size(897, 217);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Stato avanzamento lavori";
             // 
@@ -562,7 +563,7 @@ namespace Web.GUI.Commessa
             this.editMargine.Name = "editMargine";
             this.editMargine.ReadOnly = false;
             this.editMargine.Required = false;
-            this.editMargine.Size = new System.Drawing.Size(754, 30);
+            this.editMargine.Size = new System.Drawing.Size(766, 30);
             this.editMargine.TabIndex = 14;
             this.editMargine.Text = "TemplateEditNumeric";
             this.editMargine.Value = null;
@@ -584,7 +585,7 @@ namespace Web.GUI.Commessa
             this.editImportoAvanzamentoLavori.Name = "editImportoAvanzamentoLavori";
             this.editImportoAvanzamentoLavori.ReadOnly = false;
             this.editImportoAvanzamentoLavori.Required = false;
-            this.editImportoAvanzamentoLavori.Size = new System.Drawing.Size(754, 30);
+            this.editImportoAvanzamentoLavori.Size = new System.Drawing.Size(766, 30);
             this.editImportoAvanzamentoLavori.TabIndex = 1000;
             this.editImportoAvanzamentoLavori.Text = "TemplateEditNumeric";
             this.editImportoAvanzamentoLavori.Value = null;
@@ -595,7 +596,7 @@ namespace Web.GUI.Commessa
             this.tabPage4.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.tabPage4.Location = new System.Drawing.Point(0, 0);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(883, 217);
+            this.tabPage4.Size = new System.Drawing.Size(897, 217);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Spese generali";
             // 
@@ -618,13 +619,17 @@ namespace Web.GUI.Commessa
             this.editImportoPerizie.TabIndex = 0;
             this.editImportoPerizie.Text = "TemplateEditNumeric";
             this.editImportoPerizie.Value = null;
+            // 
+            // CommessaModel
+            // 
+            this.Load += new System.EventHandler(this.CommessaModel_Load);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
             this.panelCommands.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.orientationTabControl1)).EndInit();
-            this.orientationTabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tabControl)).EndInit();
+            this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
@@ -649,7 +654,7 @@ namespace Web.GUI.Commessa
         private Library.Template.Controls.TemplateEditDecimal editImporto;
         private Library.Template.Controls.TemplateEditText editCodice;
         private Library.Template.Controls.TemplateEditDropDown editStato;
-        private Gizmox.WebGUI.Forms.OrientationTabControl orientationTabControl1;
+        private Gizmox.WebGUI.Forms.OrientationTabControl tabControl;
         private Gizmox.WebGUI.Forms.TabPage tabPage1;
         private Gizmox.WebGUI.Forms.TabPage tabPage2;
         private Gizmox.WebGUI.Forms.TabPage tabPage3;

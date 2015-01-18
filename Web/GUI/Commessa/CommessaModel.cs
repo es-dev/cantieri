@@ -162,5 +162,29 @@ namespace Web.GUI.Commessa
             }
         }
 
+        private void CommessaModel_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                SetLayoutTabs();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void SetLayoutTabs()
+        {
+            try
+            {
+                tabControl.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
 	}
 }
