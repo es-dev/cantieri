@@ -36,6 +36,7 @@ namespace Web.GUI.Pagamento
             this.editNote = new Library.Template.Controls.TemplateEditText();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
+            this.panelCommands.SuspendLayout();
             this.SuspendLayout();
             // 
             // container
@@ -97,7 +98,7 @@ namespace Web.GUI.Pagamento
             this.editData.Editing = false;
             this.editData.Label = "Data";
             this.editData.LabelWidth = 175;
-            this.editData.Location = new System.Drawing.Point(25, 123);
+            this.editData.Location = new System.Drawing.Point(25, 119);
             this.editData.Name = "editData";
             this.editData.ReadOnly = false;
             this.editData.Required = false;
@@ -119,7 +120,7 @@ namespace Web.GUI.Pagamento
             this.editImporto.Editing = false;
             this.editImporto.Label = "Importo";
             this.editImporto.LabelWidth = 175;
-            this.editImporto.Location = new System.Drawing.Point(27, 165);
+            this.editImporto.Location = new System.Drawing.Point(25, 163);
             this.editImporto.Name = "editImporto";
             this.editImporto.ReadOnly = false;
             this.editImporto.Required = false;
@@ -141,7 +142,7 @@ namespace Web.GUI.Pagamento
             this.editNote.Editing = false;
             this.editNote.Label = "Note";
             this.editNote.LabelWidth = 175;
-            this.editNote.Location = new System.Drawing.Point(27, 207);
+            this.editNote.Location = new System.Drawing.Point(25, 207);
             this.editNote.Name = "editNote";
             this.editNote.ReadOnly = false;
             this.editNote.Required = false;
@@ -149,9 +150,11 @@ namespace Web.GUI.Pagamento
             this.editNote.TabIndex = 3;
             this.editNote.Text = "EditControl";
             this.editNote.Value = null;
+            this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
+            this.panelCommands.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
