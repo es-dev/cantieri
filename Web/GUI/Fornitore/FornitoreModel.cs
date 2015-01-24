@@ -55,7 +55,7 @@ namespace Web.GUI.Fornitore
                     if (commessa != null)
                     {
                         editCommessa.Model = commessa;
-                        editCommessa.Value = commessa.Denominazione;
+                        editCommessa.Value = "("+ commessa.Codice + ") - " +commessa.Denominazione;
                     }
                     editCodiceFornitore.Value = obj.Codice;
                 }
@@ -113,7 +113,7 @@ namespace Web.GUI.Fornitore
             {
                 var commessa = (WcfService.Dto.CommessaDto)model;
                 if (commessa != null)
-                    editCommessa.Value = commessa.Denominazione;
+                    editCommessa.Value = "(" + commessa.Codice + ") - " + commessa.Denominazione;
             }
             catch (Exception ex)
             {

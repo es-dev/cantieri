@@ -75,15 +75,15 @@
           <classShapeMoniker Id="7af17dae-3e00-4038-a760-bb4045ad2587" />
         </nodes>
       </associationConnector>
-      <classShape Id="cce16530-50d5-4eee-b9b1-799c8e87ce10" absoluteBounds="5.375, 12.125, 1.875, 3.4934847005208329">
+      <classShape Id="cce16530-50d5-4eee-b9b1-799c8e87ce10" absoluteBounds="5.625, 12.125, 1.875, 3.6857861328125008">
         <DomainClassMoniker name="/EntitiesModel/Articolo" />
         <nestedChildShapes>
-          <elementListCompartment Id="c95d5639-a09f-4cf6-901e-269418dc70d6" absoluteBounds="5.3900000000000006, 12.635, 1.8450000000000002, 2.172403971354167" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
-          <elementListCompartment Id="026336af-b85c-44ac-9fb3-e62d10f57476" absoluteBounds="5.3900000000000006, 14.817403971354167, 1.8450000000000002, 0.2493896484375" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
-          <elementListCompartment Id="42f943e8-d779-40eb-8f1f-20d0bee3f3f2" absoluteBounds="5.3900000000000006, 15.076793619791665, 1.8450000000000002, 0.44169108072916696" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
+          <elementListCompartment Id="c95d5639-a09f-4cf6-901e-269418dc70d6" absoluteBounds="5.6400000000000006, 12.635, 1.8450000000000002, 2.364705403645833" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+          <elementListCompartment Id="026336af-b85c-44ac-9fb3-e62d10f57476" absoluteBounds="5.64, 15.009705403645832, 1.8450000000000002, 0.2493896484375" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+          <elementListCompartment Id="42f943e8-d779-40eb-8f1f-20d0bee3f3f2" absoluteBounds="5.64, 15.269095052083333, 1.8450000000000002, 0.44169108072916696" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
         </nestedChildShapes>
       </classShape>
-      <associationConnector edgePoints="[(5.375 : 13.8524959309896); (5 : 13.8524959309896)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <associationConnector edgePoints="[(5.625 : 13.8524959309896); (5 : 13.8524959309896)]" fixedFrom="Algorithm" fixedTo="Algorithm">
         <AssociationMoniker Id="41eee6d8-a5b7-4fea-b639-08b8ca83cdcf" />
         <relativeChildShapes />
         <nodes>
@@ -123,7 +123,7 @@
           <classShapeMoniker Id="4aa2e29c-bf29-424e-a54c-ce88003c6d5e" />
         </nodes>
       </associationConnector>
-      <associationConnector edgePoints="[(8.875 : 8.75); (8.875 : 7.94538899739583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <associationConnector edgePoints="[(8.875 : 8.75); (8.875 : 7.94538899739583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
         <AssociationMoniker Id="17987c58-2c27-4bba-b919-b1e4679a2b98" />
         <relativeChildShapes />
         <nodes>
@@ -131,7 +131,7 @@
           <classShapeMoniker Id="9da21472-7ed5-4573-808d-b2b7eef132b4" />
         </nodes>
       </associationConnector>
-      <associationConnector edgePoints="[(11.5 : 11.1409887695312); (10.125 : 11.1409887695312)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <associationConnector edgePoints="[(11.5 : 11.1409887695312); (10.125 : 11.1409887695312)]" fixedFrom="NotFixed" fixedTo="NotFixed">
         <AssociationMoniker Id="3d93d254-2a67-4e4a-8665-f0d72e57af0f" />
         <relativeChildShapes />
         <nodes>
@@ -179,7 +179,7 @@
           <elementListCompartment Id="98020849-f1e8-48b4-aa44-518736b2ec9c" absoluteBounds="10.89, 6.6056835937499994, 1.4700000000000002, 0.2493896484375" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
         </nestedChildShapes>
       </classShape>
-      <associationConnector edgePoints="[(5.9375 : 7.625); (5.9375 : 6.93570475260417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <associationConnector edgePoints="[(5.9375 : 7.625); (5.9375 : 6.93570475260417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
         <AssociationMoniker Id="5e538b05-7df0-4fbd-9e24-1297d12e5678" />
         <relativeChildShapes />
         <nodes>

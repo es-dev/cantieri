@@ -55,7 +55,7 @@ namespace Web.GUI.Cliente
                     if (commessa != null)
                     {
                         editCommessa.Model = commessa;
-                        editCommessa.Value = commessa.Denominazione;
+                        editCommessa.Value = "(" + commessa.Codice + ") - " + commessa.Denominazione;
                     }
                     editCodiceCliente.Value = obj.Codice;
 
@@ -115,7 +115,7 @@ namespace Web.GUI.Cliente
             {
                 var commessa = (WcfService.Dto.CommessaDto)model;
                 if (commessa != null)
-                    editCommessa.Value = commessa.Denominazione;
+                    editCommessa.Value = "(" + commessa.Codice + ") - " + commessa.Denominazione;
             }
             catch (Exception ex)
             {

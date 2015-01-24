@@ -683,6 +683,7 @@ namespace WcfService.Assemblers
 			entity.Importo = dto.Importo;
 			entity.IVA = dto.IVA;
 			entity.Totale = dto.Totale;
+			entity.PrezzoUnitario = dto.PrezzoUnitario;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -703,6 +704,7 @@ namespace WcfService.Assemblers
 			dto.Importo = entity.Importo;
 			dto.IVA = entity.IVA;
 			dto.Totale = entity.Totale;
+			dto.PrezzoUnitario = entity.PrezzoUnitario;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }

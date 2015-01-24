@@ -30,7 +30,6 @@ namespace Web.GUI.FatturaAcquisto
                     infoNumero.Text = obj.Numero;
                     infoData.Text = (obj.Data!=null? obj.Data.Value.ToString("dd/MM/yyyy"):"Non Impostata"); //oppure ti fai una funzione GetData
                     // ricorda che bool?, datetime?, e tutte le variabili con xxx? accettano il valore null, quindi vanno controllate e accedi al valore, se non sono nulle, con .Value
-                    infoDescrizione.Text = obj.Descrizione;
                     var centroCosto=obj.CentroCosto;
                     if (centroCosto != null)
                     {

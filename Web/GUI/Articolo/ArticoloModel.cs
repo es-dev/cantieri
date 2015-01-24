@@ -44,6 +44,7 @@ namespace Web.GUI.Articolo
                     editCosto.Value = obj.Costo;
                     editCodiceArticolo.Value = obj.Codice;
                     editDescrizione.Value = obj.Descrizione;
+                    editPrezzounitario.Value = obj.PrezzoUnitario;
                     editImporto.Value = obj.Importo;
                     editIVA.Value = obj.IVA;
                     editQuantita.Value = obj.Quantita;
@@ -72,6 +73,7 @@ namespace Web.GUI.Articolo
                     var obj = (WcfService.Dto.ArticoloDto)model;
                     obj.Costo = editCosto.Value;
                     obj.Codice = editCodiceArticolo.Value;
+                    obj.PrezzoUnitario = editPrezzounitario.Value;
                     obj.Descrizione = editDescrizione.Value;
                     obj.Importo = editImporto.Value;
                     obj.IVA = editIVA.Value;

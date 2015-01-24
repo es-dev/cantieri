@@ -374,6 +374,9 @@
         <orm:field name="_totale" property="Totale" uniqueId="f2360461-6b2f-47ae-8a9c-ae4699054885" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="Totale" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
+        <orm:field name="_prezzoUnitario" property="PrezzoUnitario" uniqueId="f4222b8a-723f-4659-8140-c9a54dee1666" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="PrezzoUnitario" sql-type="numeric" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
         <orm:field name="_fattura" property="Fattura" behavior="readwrite" uniqueId="58ab2dc7-6dfd-49b4-9d0a-4bc30dc32b47" type="DataLayer.FatturaAcquisto">
           <orm:reference uniqueId="41eee6d8-a5b7-4fea-b639-08b8ca83cdcf" association-name="ArticoloHasFattura">
             <orm:sharedfield name="_fatturaId" target-class="DataLayer.FatturaAcquisto" target-field="_id" />
@@ -729,6 +732,7 @@
         <orm:column name="IVA" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="Totale" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="FatturaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:column name="PrezzoUnitario" sql-type="numeric" nullable="true" length="0" scale="0" ado-type="" />
         <orm:index name="idx_Articolo_FatturaId">
           <orm:columnMapping>
             <orm:column name="FatturaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -1117,6 +1121,7 @@
       <Property Id="f8ecc98c-ec34-45e6-9df4-534c43d5c9c2" name="Importo" type="Decimal" label="Importo : Decimal" nullable="true" fieldName="_importo" />
       <Property Id="cbd1c917-cd5e-4f07-bbe7-67d85802478f" name="IVA" type="Decimal" label="IVA : Decimal" nullable="true" fieldName="_iVA" />
       <Property Id="f2360461-6b2f-47ae-8a9c-ae4699054885" name="Totale" type="Decimal" label="Totale : Decimal" nullable="true" fieldName="_totale" />
+      <Property Id="f4222b8a-723f-4659-8140-c9a54dee1666" name="PrezzoUnitario" type="Decimal" label="PrezzoUnitario : Decimal" nullable="true" fieldName="_prezzoUnitario" />
       <AssociationTargets>
         <Association Id="41eee6d8-a5b7-4fea-b639-08b8ca83cdcf" SourceMultiplicity="ZeroOne" name="ArticoloHasFattura">
           <DomainClassMoniker name="/EntitiesModel/FatturaAcquisto" />

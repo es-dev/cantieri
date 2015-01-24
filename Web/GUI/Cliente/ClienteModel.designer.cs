@@ -44,6 +44,7 @@ namespace Web.GUI.Cliente
             this.editPartitaIVA = new Library.Template.Controls.TemplateEditPartitaIva();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
+            this.panelCommands.SuspendLayout();
             this.SuspendLayout();
             // 
             // container
@@ -295,7 +296,7 @@ namespace Web.GUI.Cliente
             this.editCodiceCliente.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editCodiceCliente.Changed = true;
             this.editCodiceCliente.Editing = false;
-            this.editCodiceCliente.Label = "Cliente";
+            this.editCodiceCliente.Label = "Codice cliente";
             this.editCodiceCliente.LabelWidth = 175;
             this.editCodiceCliente.Location = new System.Drawing.Point(25, 118);
             this.editCodiceCliente.Model = null;
@@ -352,9 +353,11 @@ namespace Web.GUI.Cliente
             this.editPartitaIVA.TabIndex = 11;
             this.editPartitaIVA.Text = "TemplateEditPartitaIva";
             this.editPartitaIVA.Value = "---";
+            this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
+            this.panelCommands.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}

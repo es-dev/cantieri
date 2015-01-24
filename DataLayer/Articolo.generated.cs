@@ -154,6 +154,19 @@ namespace DataLayer
 			}
 		}
 		
+		private decimal? _prezzoUnitario;
+		public virtual decimal? PrezzoUnitario
+		{
+			get
+			{
+				return this._prezzoUnitario;
+			}
+			set
+			{
+				this._prezzoUnitario = value;
+			}
+		}
+		
 		private FatturaAcquisto _fattura;
 		public virtual FatturaAcquisto Fattura
 		{
