@@ -43,6 +43,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editCentroCosto = new Library.Template.Controls.TemplateEditCombo();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
+            this.panelCommands.SuspendLayout();
             this.SuspendLayout();
             // 
             // container
@@ -192,6 +193,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editImponibile.TabIndex = 6;
             this.editImponibile.Text = "TemplateEditNumeric";
             this.editImponibile.Value = null;
+            this.editImponibile.Leave += new System.EventHandler(this.editImponibileIVA_Leave);
             // 
             // editIVA
             // 
@@ -214,6 +216,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editIVA.TabIndex = 7;
             this.editIVA.Text = "TemplateEditNumeric";
             this.editIVA.Value = null;
+            this.editIVA.Leave += new System.EventHandler(this.editImponibileIVA_Leave);
             // 
             // editTotale
             // 
@@ -329,9 +332,11 @@ namespace Web.GUI.FatturaAcquisto
             this.editCentroCosto.Value = null;
             this.editCentroCosto.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editCentroCosto_ComboConfirm);
             this.editCentroCosto.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editCentroCosto_ComboClick);
+            this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
+            this.panelCommands.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}

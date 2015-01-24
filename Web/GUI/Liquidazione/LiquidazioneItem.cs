@@ -47,7 +47,7 @@ namespace Web.GUI.Liquidazione
                 if (item != null)
                 {
                     var space = new LiquidazioneModel();
-                    space.Title = "DETTAGLI LIQUIDAZIONE";
+                    space.Title = "DETTAGLI INCASSO";
                     AddSpace(space);
                 }
             }
