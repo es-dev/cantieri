@@ -632,7 +632,6 @@ namespace Web.GUI.Commessa
             // 
             // CommessaModel
             // 
-            this.Load += new System.EventHandler(this.CommessaModel_Load);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
