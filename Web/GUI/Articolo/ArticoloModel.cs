@@ -149,5 +149,60 @@ namespace Web.GUI.Articolo
             }
         }
 
+        private void editQuantitaPrezzoUnitario_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                var quantita = (decimal)editQuantita.Value;
+                var prezzoUnitario = (decimal)editPrezzounitario.Value;
+                if (quantita != null && prezzoUnitario != null)
+                {
+                    var importo = BusinessLogic.Articolo.GetImporto(quantita, prezzoUnitario);
+                    editImporto.Value = importo;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
+        }
+
+        private void editImportoSconto_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                var importo = (decimal)editImporto.Value;
+                var sconto = (decimal)editSconto.Value;
+                if (importo != null && sconto != null)
+                {
+                    var costo = BusinessLogic.Articolo.GetCosto(importo, sconto);
+                    editCosto.Value = costo;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editCostoIVA_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                var costo = (decimal)editCosto.Value;
+                var iva = (decimal)editIVA.Value;
+                if (costo != null && iva != null)
+                {
+                    var totale = BusinessLogic.Articolo.GetTotale(costo, iva);
+                    editTotale.Value = totale;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
 	}
 }

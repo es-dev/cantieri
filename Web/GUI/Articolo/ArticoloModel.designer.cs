@@ -124,6 +124,7 @@ namespace Web.GUI.Articolo
             this.editQuantita.TabIndex = 3;
             this.editQuantita.Text = "TemplateEditNumeric";
             this.editQuantita.Value = null;
+            this.editQuantita.Leave += new System.EventHandler(this.editQuantitaPrezzoUnitario_Leave);
             // 
             // editDescrizione
             // 
@@ -168,6 +169,7 @@ namespace Web.GUI.Articolo
             this.editSconto.TabIndex = 6;
             this.editSconto.Text = "TemplateEditNumeric";
             this.editSconto.Value = null;
+            this.editSconto.Leave += new System.EventHandler(this.editImportoSconto_Leave);
             // 
             // editCosto
             // 
@@ -190,6 +192,7 @@ namespace Web.GUI.Articolo
             this.editCosto.TabIndex = 7;
             this.editCosto.Text = "TemplateEditNumeric";
             this.editCosto.Value = null;
+            this.editCosto.Leave += new System.EventHandler(this.editCostoIVA_Leave);
             // 
             // editImporto
             // 
@@ -212,6 +215,7 @@ namespace Web.GUI.Articolo
             this.editImporto.TabIndex = 5;
             this.editImporto.Text = "TemplateEditNumeric";
             this.editImporto.Value = null;
+            this.editImporto.Leave += new System.EventHandler(this.editImportoSconto_Leave);
             // 
             // editIVA
             // 
@@ -234,6 +238,7 @@ namespace Web.GUI.Articolo
             this.editIVA.TabIndex = 8;
             this.editIVA.Text = "TemplateEditNumeric";
             this.editIVA.Value = null;
+            this.editIVA.Leave += new System.EventHandler(this.editCostoIVA_Leave);
             // 
             // editTotale
             // 
@@ -303,6 +308,7 @@ namespace Web.GUI.Articolo
             this.editPrezzounitario.TabIndex = 4;
             this.editPrezzounitario.Text = "EditControl";
             this.editPrezzounitario.Value = null;
+            this.editPrezzounitario.Leave += new System.EventHandler(this.editQuantitaPrezzoUnitario_Leave);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);

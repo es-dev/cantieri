@@ -66,6 +66,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Articolo.cs" />
     <Compile Include="Fattura.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tipi.cs" />

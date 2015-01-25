@@ -13,11 +13,7 @@ namespace BusinessLogic
         {
             try
             {
-                decimal totale = 0;
-                if (imponibile != null)
-                    totale += imponibile;
-                if (iva != null)
-                    totale += iva;
+                decimal totale = imponibile + iva;
                 return totale;
             }
             catch (Exception ex)
