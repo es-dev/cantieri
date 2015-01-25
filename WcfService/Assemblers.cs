@@ -676,7 +676,7 @@ namespace WcfService.Assemblers
 	        }
 			
 			entity.Id = dto.Id;
-			entity.FatturaId = dto.FatturaId;
+			entity.FatturaAcquistoId = dto.FatturaAcquistoId;
 			entity.Codice = dto.Codice;
 			entity.Descrizione = dto.Descrizione;
 			entity.Quantita = dto.Quantita;
@@ -697,7 +697,7 @@ namespace WcfService.Assemblers
 			ObjectKey key = KeyUtility.Instance.Create(entity);
 			dto.DtoKey = KeyUtility.Instance.Convert(key);
 			dto.Id = entity.Id;
-			dto.FatturaId = entity.FatturaId;
+			dto.FatturaAcquistoId = entity.FatturaAcquistoId;
 			dto.Codice = entity.Codice;
 			dto.Descrizione = entity.Descrizione;
 			dto.Quantita = entity.Quantita;

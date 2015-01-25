@@ -945,7 +945,7 @@ namespace WcfService
                     var fattureAcquistoId = (from f in QueryFattureAcquisto(search) select f.Id).ToList();
                     articoli = (from q in articoli
                                 where q.Codice.StartsWith(search) || q.Descrizione.Contains(search) ||
-                                    fattureAcquistoId.Contains(q.FatturaId)
+                                    fattureAcquistoId.Contains(q.FatturaAcquistoId)
                                 select q);
                 }
                 articoli = (from q in articoli orderby q.Codice select q);

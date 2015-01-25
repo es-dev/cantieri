@@ -67,8 +67,9 @@ namespace Web.GUI.Liquidazione
                     obj.Data = editData.Value;
                     obj.Importo = editImporto.Value;
                     obj.Note = editNote.Value;
-                    obj.FatturaVenditaId = (int)editFatturaVendita.Id;
-                    obj.FatturaVendita = (WcfService.Dto.FatturaVenditaDto)editFatturaVendita.Model;
+                    var fatturaVendita = (WcfService.Dto.FatturaVenditaDto)editFatturaVendita.Model;
+                    if(fatturaVendita!=null)
+                        obj.FatturaVenditaId = fatturaVendita.Id;
                 }
             }
             catch (Exception ex)

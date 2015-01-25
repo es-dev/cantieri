@@ -85,8 +85,9 @@ namespace Web.GUI.Cliente
                     obj.Email = editEmail.Value;
                     obj.PIva = editPartitaIVA.Value;
                     obj.Codice = editCodiceCliente.Value;
-                    obj.Id = (int)editCommessa.Id; //todo: da verificare
-                    obj.Commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
+                    var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
+                    if (commessa != null)
+                        obj.Id = commessa.Id;
                 }
             }
             catch (Exception ex)

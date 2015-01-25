@@ -104,8 +104,9 @@ namespace Web.GUI.FatturaVendita
                     obj.TipoPagamento = editTipoPagamento.Value;
                     obj.ScadenzaPagamento = editScadenzaPagamento.Value;
                     obj.Totale = editTotale.Value;
-                    obj.ClienteId = (int)editCliente.Id;
-                    obj.Cliente = (WcfService.Dto.ClienteDto)editCliente.Model;
+                    var cliente = (WcfService.Dto.ClienteDto)editCliente.Model;
+                    if(cliente!=null)
+                        obj.ClienteId = cliente.Id;
                 }
             }
             catch (Exception ex)

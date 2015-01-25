@@ -70,7 +70,7 @@ namespace Web.GUI.AnagraficaFornitore
                     var ragioneSociale = editRagioneSociale.Value;
                     if (ragioneSociale != null)
                        ragioneSociale= ragioneSociale.Trim();
-                    obj.RagioneSociale = ragioneSociale; //editRagioneSociale.Value.Trim();
+                    obj.RagioneSociale = ragioneSociale; 
                     obj.Indirizzo = editIndirizzo.Value;
                     obj.CAP = editCAP.Value;
                     obj.Comune = editComune.Value;

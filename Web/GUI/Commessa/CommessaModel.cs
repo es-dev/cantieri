@@ -127,8 +127,9 @@ namespace Web.GUI.Commessa
                     obj.ImportoPerizie = editImportoPerizie.Value;
                     obj.InizioLavori = editInizioLavori.Value;
                     obj.FineLavori = editFineLavori.Value;
-                    obj.AziendaId = (int)editAzienda.Id;
-                    obj.Azienda = (WcfService.Dto.AziendaDto)editAzienda.Model;
+                    var azienda = (WcfService.Dto.AziendaDto)editAzienda.Model;
+                    if(azienda!=null)
+                        obj.AziendaId = azienda.Id;
                 }
             }
             catch (Exception ex)

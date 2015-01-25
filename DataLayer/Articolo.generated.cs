@@ -37,16 +37,16 @@ namespace DataLayer
 			}
 		}
 		
-		private int _fatturaId;
-		public virtual int FatturaId
+		private int _fatturaAcquistoId;
+		public virtual int FatturaAcquistoId
 		{
 			get
 			{
-				return this._fatturaId;
+				return this._fatturaAcquistoId;
 			}
 			set
 			{
-				this._fatturaId = value;
+				this._fatturaAcquistoId = value;
 			}
 		}
 		
@@ -76,8 +76,8 @@ namespace DataLayer
 			}
 		}
 		
-		private int? _quantita;
-		public virtual int? Quantita
+		private decimal? _quantita;
+		public virtual decimal? Quantita
 		{
 			get
 			{

@@ -31,7 +31,6 @@ namespace Web.GUI.Articolo
 		private void InitializeComponent()
 		{
             this.editFatturaAcquisto = new Library.Template.Controls.TemplateEditCombo();
-            this.editQuantita = new Library.Template.Controls.TemplateEditNumeric();
             this.editDescrizione = new Library.Template.Controls.TemplateEditText();
             this.editSconto = new Library.Template.Controls.TemplateEditDecimal();
             this.editCosto = new Library.Template.Controls.TemplateEditDecimal();
@@ -40,6 +39,7 @@ namespace Web.GUI.Articolo
             this.editTotale = new Library.Template.Controls.TemplateEditDecimal();
             this.editCodiceArticolo = new Library.Template.Controls.TemplateEditCombo();
             this.editPrezzounitario = new Library.Template.Controls.TemplateEditDecimal();
+            this.editQuantita = new Library.Template.Controls.TemplateEditDecimal();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -47,6 +47,7 @@ namespace Web.GUI.Articolo
             // 
             // container
             // 
+            this.container.Controls.Add(this.editQuantita);
             this.container.Controls.Add(this.editPrezzounitario);
             this.container.Controls.Add(this.editCodiceArticolo);
             this.container.Controls.Add(this.editTotale);
@@ -55,12 +56,10 @@ namespace Web.GUI.Articolo
             this.container.Controls.Add(this.editCosto);
             this.container.Controls.Add(this.editSconto);
             this.container.Controls.Add(this.editDescrizione);
-            this.container.Controls.Add(this.editQuantita);
             this.container.Controls.Add(this.editFatturaAcquisto);
             this.container.Controls.SetChildIndex(this.infoSubtitleImage, 0);
             this.container.Controls.SetChildIndex(this.infoSubtitle, 0);
             this.container.Controls.SetChildIndex(this.editFatturaAcquisto, 0);
-            this.container.Controls.SetChildIndex(this.editQuantita, 0);
             this.container.Controls.SetChildIndex(this.editDescrizione, 0);
             this.container.Controls.SetChildIndex(this.editSconto, 0);
             this.container.Controls.SetChildIndex(this.editCosto, 0);
@@ -69,6 +68,7 @@ namespace Web.GUI.Articolo
             this.container.Controls.SetChildIndex(this.editTotale, 0);
             this.container.Controls.SetChildIndex(this.editCodiceArticolo, 0);
             this.container.Controls.SetChildIndex(this.editPrezzounitario, 0);
+            this.container.Controls.SetChildIndex(this.editQuantita, 0);
             // 
             // infoSubtitle
             // 
@@ -102,29 +102,6 @@ namespace Web.GUI.Articolo
             this.editFatturaAcquisto.Value = null;
             this.editFatturaAcquisto.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editFatturaAcquisto_ComboConfirm);
             this.editFatturaAcquisto.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editFatturaAcquisto_ComboClick);
-            // 
-            // editQuantita
-            // 
-            this.editQuantita.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editQuantita.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editQuantita.BackColor = System.Drawing.Color.Transparent;
-            this.editQuantita.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editQuantita.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editQuantita.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editQuantita.Changed = true;
-            this.editQuantita.Editing = false;
-            this.editQuantita.Label = "Quantità";
-            this.editQuantita.LabelWidth = 175;
-            this.editQuantita.Location = new System.Drawing.Point(25, 201);
-            this.editQuantita.Name = "editQuantita";
-            this.editQuantita.ReadOnly = false;
-            this.editQuantita.Required = false;
-            this.editQuantita.Size = new System.Drawing.Size(796, 30);
-            this.editQuantita.TabIndex = 3;
-            this.editQuantita.Text = "TemplateEditNumeric";
-            this.editQuantita.Value = null;
-            this.editQuantita.Leave += new System.EventHandler(this.editQuantitaPrezzoUnitario_Leave);
             // 
             // editDescrizione
             // 
@@ -309,6 +286,28 @@ namespace Web.GUI.Articolo
             this.editPrezzounitario.Text = "EditControl";
             this.editPrezzounitario.Value = null;
             this.editPrezzounitario.Leave += new System.EventHandler(this.editQuantitaPrezzoUnitario_Leave);
+            // 
+            // editQuantita
+            // 
+            this.editQuantita.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editQuantita.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editQuantita.BackColor = System.Drawing.Color.Transparent;
+            this.editQuantita.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editQuantita.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editQuantita.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editQuantita.Changed = true;
+            this.editQuantita.Editing = false;
+            this.editQuantita.Label = "Quantità";
+            this.editQuantita.LabelWidth = 175;
+            this.editQuantita.Location = new System.Drawing.Point(25, 201);
+            this.editQuantita.Name = "editQuantita";
+            this.editQuantita.ReadOnly = false;
+            this.editQuantita.Required = false;
+            this.editQuantita.Size = new System.Drawing.Size(796, 30);
+            this.editQuantita.TabIndex = 3;
+            this.editQuantita.Text = "EditControl";
+            this.editQuantita.Value = null;
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
@@ -321,7 +320,6 @@ namespace Web.GUI.Articolo
 		#endregion
 
         private Library.Template.Controls.TemplateEditText editDescrizione;
-        private Library.Template.Controls.TemplateEditNumeric editQuantita;
         private Library.Template.Controls.TemplateEditCombo editFatturaAcquisto;
         private Library.Template.Controls.TemplateEditDecimal editTotale;
         private Library.Template.Controls.TemplateEditDecimal editIVA;
@@ -330,6 +328,7 @@ namespace Web.GUI.Articolo
         private Library.Template.Controls.TemplateEditDecimal editSconto;
         private Library.Template.Controls.TemplateEditCombo editCodiceArticolo;
         private Library.Template.Controls.TemplateEditDecimal editPrezzounitario;
+        private Library.Template.Controls.TemplateEditDecimal editQuantita;
 
 
     }

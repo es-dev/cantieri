@@ -111,10 +111,12 @@ namespace Web.GUI.FatturaAcquisto
                     obj.TipoPagamento = editTipoPagamento.Value;
                     obj.ScadenzaPagamento = editScadenzaPagamento.Value;
                     obj.Totale = editTotale.Value;
-                    obj.CentroCostoId = (int)editCentroCosto.Id;
-                    obj.CentroCosto = (WcfService.Dto.CentroCostoDto)editCentroCosto.Model;
-                    obj.FornitoreId = (int)editFornitore.Id;
-                    obj.Fornitore = (WcfService.Dto.FornitoreDto)editFornitore.Model;
+                    var centroCosto = (WcfService.Dto.CentroCostoDto)editCentroCosto.Model;
+                    if(centroCosto!=null)
+                        obj.CentroCostoId = centroCosto.Id;
+                    var fornitore = (WcfService.Dto.FornitoreDto)editFornitore.Model;
+                    if(fornitore!=null)
+                        obj.FornitoreId = fornitore.Id;
                 }
             }
             catch (Exception ex)

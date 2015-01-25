@@ -80,8 +80,9 @@ namespace Web.GUI.Articolo
                     obj.Quantita = editQuantita.Value;
                     obj.Sconto = editSconto.Value;
                     obj.Totale = editTotale.Value;
-                    obj.FatturaId = (int)editFatturaAcquisto.Id;
-                    obj.Fattura = (WcfService.Dto.FatturaAcquistoDto)editFatturaAcquisto.Model;
+                    var fatturaAcquisto = (WcfService.Dto.FatturaAcquistoDto)editFatturaAcquisto.Model;
+                    if(fatturaAcquisto!=null)
+                        obj.FatturaAcquistoId = fatturaAcquisto.Id;
                 }
             }
             catch (Exception ex)

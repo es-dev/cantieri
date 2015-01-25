@@ -70,8 +70,9 @@ namespace Web.GUI.SAL
                     obj.TotaleVendite = editTotaleVendite.Value;
                     obj.Lock = editLock.Value;
                     obj.Denominazione = editDenominazione.Value;
-                    obj.CommessaId = (int)editCommessa.Id;
-                    obj.Commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
+                    var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
+                    if(commessa!=null)
+                        obj.CommessaId = commessa.Id;
                 }
             }
             catch (Exception ex)

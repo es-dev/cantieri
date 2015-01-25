@@ -491,10 +491,10 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public ArticoloDto(int _id, int _fatturaId, string _codice, string _descrizione, int? _quantita, decimal? _sconto, decimal? _costo, decimal? _importo, decimal? _iVA, decimal? _totale, decimal? _prezzoUnitario, FatturaAcquistoDto _fattura)
+		public ArticoloDto(int _id, int _fatturaAcquistoId, string _codice, string _descrizione, decimal? _quantita, decimal? _sconto, decimal? _costo, decimal? _importo, decimal? _iVA, decimal? _totale, decimal? _prezzoUnitario, FatturaAcquistoDto _fattura)
 		{
 			this.Id = _id;
-			this.FatturaId = _fatturaId;
+			this.FatturaAcquistoId = _fatturaAcquistoId;
 			this.Codice = _codice;
 			this.Descrizione = _descrizione;
 			this.Quantita = _quantita;
@@ -514,7 +514,7 @@ namespace WcfService.Dto
 		public virtual int Id { get;set; }
 
 		[DataMember]
-		public virtual int FatturaId { get;set; }
+		public virtual int FatturaAcquistoId { get;set; }
 
 		[DataMember]
 		public virtual string Codice { get;set; }
@@ -523,7 +523,7 @@ namespace WcfService.Dto
 		public virtual string Descrizione { get;set; }
 
 		[DataMember]
-		public virtual int? Quantita { get;set; }
+		public virtual decimal? Quantita { get;set; }
 
 		[DataMember]
 		public virtual decimal? Sconto { get;set; }

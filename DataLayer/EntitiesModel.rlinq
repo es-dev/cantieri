@@ -121,7 +121,9 @@
         <orm:field name="_fineLavori" property="FineLavori" uniqueId="66541415-acef-4f15-825e-c88b27208624" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="FineLavori" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
-        <orm:field name="_oggetto" property="Oggetto" uniqueId="2a06d18e-66f3-4a3e-8a5e-b646e67135d0" type="System.String" />
+        <orm:field name="_oggetto" property="Oggetto" uniqueId="2a06d18e-66f3-4a3e-8a5e-b646e67135d0" type="System.String">
+          <orm:column name="Oggetto" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
         <orm:field name="_azienda" property="Azienda" behavior="readwrite" uniqueId="494444a6-ccb0-494c-a6a4-5a308aeb4152" type="DataLayer.Azienda">
           <orm:reference uniqueId="9529a813-1327-451c-bfdc-62fcf2c3ea6a" association-name="CommessaHasAzienda">
             <orm:sharedfield name="_aziendaId" target-class="DataLayer.Azienda" target-field="_id" />
@@ -348,8 +350,8 @@
         <orm:field name="_id" property="Id" uniqueId="7a59fa5e-3ed7-4ba9-aaa3-120b1e70c5cc" type="System.Int32">
           <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
         </orm:field>
-        <orm:field name="_fatturaId" property="FatturaId" uniqueId="acd284b3-5574-46f7-9896-812e37d1e8e7" type="System.Int32">
-          <orm:column name="FatturaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:field name="_fatturaAcquistoId" property="FatturaAcquistoId" uniqueId="acd284b3-5574-46f7-9896-812e37d1e8e7" type="System.Int32">
+          <orm:column name="FatturaAcquistoId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         </orm:field>
         <orm:field name="_codice" property="Codice" uniqueId="eff79142-85f8-4b53-ab14-d5c099179eb2" type="System.String">
           <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
@@ -357,8 +359,8 @@
         <orm:field name="_descrizione" property="Descrizione" uniqueId="1f694a5a-479a-4937-bf3b-c7e6fe55a798" type="System.String">
           <orm:column name="Descrizione" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_quantita" property="Quantita" uniqueId="7e0652f1-f3b3-415e-9097-2c95c2d9a2d0" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="Quantita" sql-type="int" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:field name="_quantita" property="Quantita" uniqueId="7e0652f1-f3b3-415e-9097-2c95c2d9a2d0" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Quantita" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="Int32" />
         </orm:field>
         <orm:field name="_sconto" property="Sconto" uniqueId="a643b73a-9766-4b51-94ad-36c81aee5d3d" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="Sconto" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
@@ -376,16 +378,16 @@
           <orm:column name="Totale" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
         <orm:field name="_prezzoUnitario" property="PrezzoUnitario" uniqueId="f4222b8a-723f-4659-8140-c9a54dee1666" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="PrezzoUnitario" sql-type="numeric" nullable="true" length="0" scale="0" ado-type="" />
+          <orm:column name="PrezzoUnitario" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         </orm:field>
         <orm:field name="_fattura" property="Fattura" behavior="readwrite" uniqueId="58ab2dc7-6dfd-49b4-9d0a-4bc30dc32b47" type="DataLayer.FatturaAcquisto">
           <orm:reference uniqueId="41eee6d8-a5b7-4fea-b639-08b8ca83cdcf" association-name="ArticoloHasFattura">
-            <orm:sharedfield name="_fatturaId" target-class="DataLayer.FatturaAcquisto" target-field="_id" />
+            <orm:sharedfield name="_fatturaAcquistoId" target-class="DataLayer.FatturaAcquisto" target-field="_id" />
           </orm:reference>
         </orm:field>
         <orm:index name="idx_Articolo_FatturaId">
           <orm:columnMapping>
-            <orm:column name="FatturaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+            <orm:column name="FatturaAcquistoId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
           </orm:columnMapping>
         </orm:index>
       </orm:class>
@@ -727,17 +729,17 @@
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
         <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Descrizione" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
-        <orm:column name="Quantita" sql-type="int" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:column name="Quantita" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="Int32" />
         <orm:column name="Sconto" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="Costo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="IVA" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="Totale" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
-        <orm:column name="FatturaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
-        <orm:column name="PrezzoUnitario" sql-type="numeric" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="FatturaAcquistoId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:column name="PrezzoUnitario" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         <orm:index name="idx_Articolo_FatturaId">
           <orm:columnMapping>
-            <orm:column name="FatturaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+            <orm:column name="FatturaAcquistoId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
           </orm:columnMapping>
         </orm:index>
       </orm:table>
@@ -1115,10 +1117,10 @@
     </DomainClass>
     <DomainClass Id="50d8cde8-72ca-4f97-bde9-f98174397799" name="Articolo" namespace="DataLayer" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
       <Property Id="7a59fa5e-3ed7-4ba9-aaa3-120b1e70c5cc" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
-      <Property Id="acd284b3-5574-46f7-9896-812e37d1e8e7" name="FatturaId" type="Int32" label="FatturaId : Int32" fieldName="_fatturaId" />
+      <Property Id="acd284b3-5574-46f7-9896-812e37d1e8e7" name="FatturaAcquistoId" type="Int32" label="FatturaAcquistoId : Int32" fieldName="_fatturaAcquistoId" />
       <Property Id="eff79142-85f8-4b53-ab14-d5c099179eb2" name="Codice" label="Codice : String" fieldName="_codice" />
       <Property Id="1f694a5a-479a-4937-bf3b-c7e6fe55a798" name="Descrizione" label="Descrizione : String" fieldName="_descrizione" />
-      <Property Id="7e0652f1-f3b3-415e-9097-2c95c2d9a2d0" name="Quantita" type="Int32" label="Quantita : Int32" nullable="true" fieldName="_quantita" />
+      <Property Id="7e0652f1-f3b3-415e-9097-2c95c2d9a2d0" name="Quantita" type="Decimal" label="Quantita : Decimal" nullable="true" fieldName="_quantita" />
       <Property Id="a643b73a-9766-4b51-94ad-36c81aee5d3d" name="Sconto" type="Decimal" label="Sconto : Decimal" nullable="true" fieldName="_sconto" />
       <Property Id="6b259077-cb13-4d72-b29f-524a1ec60394" name="Costo" type="Decimal" label="Costo : Decimal" nullable="true" fieldName="_costo" />
       <Property Id="f8ecc98c-ec34-45e6-9df4-534c43d5c9c2" name="Importo" type="Decimal" label="Importo : Decimal" nullable="true" fieldName="_importo" />

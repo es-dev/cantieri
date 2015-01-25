@@ -64,8 +64,9 @@ namespace Web.GUI.Pagamento
                     obj.Data = editData.Value;
                     obj.Importo = editImporto.Value;
                     obj.Note = editNote.Value;
-                    obj.FatturaAcquistoId = (int)editFatturaAcquisto.Id;
-                    obj.FatturaAcquisto = (WcfService.Dto.FatturaAcquistoDto)editFatturaAcquisto.Model;
+                    var fatturaAcquisto = (WcfService.Dto.FatturaAcquistoDto)editFatturaAcquisto.Model;
+                    if(fatturaAcquisto!=null)
+                        obj.FatturaAcquistoId = fatturaAcquisto.Id;
                 }
             }
             catch (Exception ex)
