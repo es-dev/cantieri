@@ -66,6 +66,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calcoli.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tipi.cs" />
   </ItemGroup>
