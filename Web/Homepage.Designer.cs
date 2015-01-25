@@ -200,7 +200,6 @@ namespace Web
             // 
             // Homepage
             // 
-            this.AutoScroll = true;
             this.Controls.Add(this.panelAccount);
             this.Text = "Homepage | Enterprise Manager";
             this.Load += new System.EventHandler(this.Homepage_Load);

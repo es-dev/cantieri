@@ -776,7 +776,6 @@ namespace Web
             // 
             // Login
             // 
-            this.AutoScroll = true;
             this.Text = "Login | Enterprise Manager";
             this.Controls.SetChildIndex(this.container, 0);
             this.Controls.SetChildIndex(this.bntPortaleWebAziendale, 0);

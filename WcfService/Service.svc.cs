@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using Library.Code;
+using System.Linq.Expressions;
 
 namespace WcfService
 {
@@ -146,12 +147,24 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var aziende = (from q in ef.Aziendas select q);
                 if (search != null && search.Length > 0)
-                    aziende = (from q in aziende
-                               where q.Codice.StartsWith(search) || q.Denominazione.Contains(search) || q.Comune.StartsWith(search) || q.Indirizzo.Contains(search) ||
-                                   q.Provincia.StartsWith(search)
-                               select q);
+                    aziende = aziende.Where(SearchAzienda(search));
+
                 aziende = (from q in aziende orderby q.Denominazione select q);
                 return aziende;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private Expression<Func<DataLayer.Azienda, bool>> SearchAzienda(string search)
+        {
+            try
+            {
+                return q=> q.Codice.StartsWith(search) || q.Denominazione.Contains(search) || q.Comune.StartsWith(search) || q.Indirizzo.Contains(search) ||
+                                   q.Provincia.StartsWith(search);
             }
             catch (Exception ex)
             {
@@ -301,13 +314,25 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var commesse = (from q in ef.Commessas select q);
                 if (search != null && search.Length > 0)
-                    commesse = (from q in commesse
-                                where q.Codice.StartsWith(search) || q.Denominazione.Contains(search) || q.Comune.StartsWith(search) ||
-                                    q.Descrizione.Contains(search) || q.Indirizzo.Contains(search) || q.Numero.StartsWith(search) || q.Provincia.StartsWith(search) ||
-                                    q.Riferimento.Contains(search) || q.Stato.StartsWith(search)
-                                select q);
+                    commesse = commesse.Where(SearchCommessa(search)); 
                 commesse = (from q in commesse orderby q.Denominazione select q);
                 return commesse;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private Expression<Func<DataLayer.Commessa, bool>> SearchCommessa(string search)
+        {
+            try
+            {
+                return q => q.Codice.StartsWith(search) || q.Denominazione.Contains(search) || q.Comune.StartsWith(search) ||
+                                    q.Descrizione.Contains(search) || q.Indirizzo.Contains(search) || q.Numero.StartsWith(search) || q.Provincia.StartsWith(search) ||
+                                    q.Riferimento.Contains(search) || q.Stato.StartsWith(search);
+
             }
             catch (Exception ex)
             {
@@ -459,9 +484,8 @@ namespace WcfService
                 var fornitori = (from q in ef.Fornitores select q);
                 if (search != null && search.Length > 0)
                     fornitori = (from q in fornitori
-                                 where q.Codice.StartsWith(search) || q.PIva.StartsWith(search) ||
-                                     q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
-                                     q.Comune.StartsWith(search) || q.Provincia.StartsWith(search)
+                                 where SearchFornitore(search, q) /*||
+                                     SearchCommessa(search,q.Commessa)*/
                                  select q);
                 fornitori = (from q in fornitori orderby q.PIva  select q);
                 return fornitori;
@@ -471,6 +495,22 @@ namespace WcfService
                 UtilityError.Write(ex);
             }
             return null;
+        }
+
+        private bool SearchFornitore(string search, DataLayer.Fornitore q)
+        {
+            try
+            {
+                return q.Codice.StartsWith(search) || q.PIva.StartsWith(search) ||
+                                     q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
+                                     q.Comune.StartsWith(search) || q.Provincia.StartsWith(search);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
         }
         #endregion
         #endregion
@@ -613,10 +653,24 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var centriCosto = (from q in ef.CentroCostos select q);
-                if (search != null && search.Length>0)
-                    centriCosto = (from q in centriCosto where q.Codice.StartsWith(search) || q.Denominazione.Contains(search) select q);
+                if (search != null && search.Length > 0)
+                    centriCosto = centriCosto.Where(SearchCentroCosto(search));
+
                 centriCosto = (from q in centriCosto orderby q.Denominazione select q);
                 return centriCosto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private Expression<Func< DataLayer.CentroCosto, bool>> SearchCentroCosto(string search)
+        {
+            try
+            {
+                return q => q.Codice.StartsWith(search) || q.Denominazione.Contains(search);
             }
             catch (Exception ex)
             {
@@ -765,8 +819,12 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var fattureAcquisto = (from q in ef.FatturaAcquistos select q);
-                if (search != null && search.Length>0)
-                    fattureAcquisto = (from q in fattureAcquisto where q.Numero.StartsWith(search) || q.Descrizione.Contains(search) || q.TipoPagamento.StartsWith(search) select q);
+                if (search != null && search.Length > 0)
+                    fattureAcquisto = (from q in fattureAcquisto
+                                       where SearchFatturaAcquisto(search, q) ||
+                                       SearchFornitore(search,q.Fornitore) /*||
+                                       SearchCommessa(search, q.Fornitore.Commessa)*/
+                                       select q);
                 fattureAcquisto = (from q in fattureAcquisto orderby q.Numero select q);
                 return fattureAcquisto;
             }
@@ -775,6 +833,20 @@ namespace WcfService
                 UtilityError.Write(ex);
             }
             return null;
+        }
+
+        private bool SearchFatturaAcquisto(string search, DataLayer.FatturaAcquisto q)
+        {
+            try
+            {
+                return q.Numero.StartsWith(search) || q.Descrizione.Contains(search) || q.TipoPagamento.StartsWith(search);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
         }
         #endregion
         #endregion
@@ -917,10 +989,24 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var articoli = (from q in ef.Articolos select q);
-                if (search != null && search.Length>0)
-                    articoli = (from q in articoli where q.Codice.StartsWith(search) || q.Descrizione.Contains(search) select q);
+                if (search != null && search.Length > 0)
+                    articoli = articoli.Where(SearchArticolo(search));
+
                 articoli = (from q in articoli orderby q.Codice select q);
                 return articoli;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private Expression<Func<DataLayer.Articolo, bool>> SearchArticolo(string search)
+        {
+            try
+            {
+                return q => q.Codice.StartsWith(search) || q.Descrizione.Contains(search);
             }
             catch (Exception ex)
             {
@@ -1070,7 +1156,7 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var pagamenti = (from q in ef.Pagamentos select q);
                 if (search != null && search.Length>0)
-                    pagamenti = (from q in pagamenti where q.Note.Contains(search) select q); 
+                    pagamenti = (from q in pagamenti where SearchPagamento(search, q) select q); 
                 pagamenti = (from q in pagamenti orderby q.Note select q);
                 return pagamenti;
             }
@@ -1079,6 +1165,20 @@ namespace WcfService
                 UtilityError.Write(ex);
             }
             return null;
+        }
+
+        private bool SearchPagamento(string search, DataLayer.Pagamento q)
+        {
+            try
+            {
+                return q.Note.Contains(search);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
         }
         #endregion
         #endregion
@@ -1221,13 +1321,27 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var clienti = (from q in ef.Clientes select q);
-                if (search != null && search.Length>0)
-                    clienti = (from q in clienti where q.Codice.StartsWith(search) || q.PIva.StartsWith(search) ||
-                                              q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
-                                              q.Comune.StartsWith(search) || q.Provincia.StartsWith(search)
-                                          select q);
+                if (search != null && search.Length > 0)
+                    clienti = clienti.Where(SearchCliente(search));//.Union(clienti.Where(SearchCommessa(search)));
+
                 clienti = (from q in clienti orderby q.RagioneSociale select q);
                 return clienti;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+
+        private Expression<Func<DataLayer.Cliente, bool>> SearchCliente(string search)
+        {
+            try
+            {
+                return q => q.Codice.StartsWith(search) || q.PIva.StartsWith(search) ||
+                                                   q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
+                                                   q.Comune.StartsWith(search) || q.Provincia.StartsWith(search);
             }
             catch (Exception ex)
             {
@@ -1377,7 +1491,10 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var fattureVendita = (from q in ef.FatturaVenditas select q);
                 if (search != null && search.Length > 0)
-                    fattureVendita = (from q in fattureVendita where q.Numero.StartsWith(search) || q.Descrizione.Contains(search) || q.TipoPagamento.StartsWith(search) select q);
+                    fattureVendita = (from q in fattureVendita where SearchFatturaVendita(search, q) /*|| 
+                                      SearchCliente(search, q.Cliente) ||
+                                      SearchCommessa(search, q.Cliente.Commessa)*/
+                                      select q);
                 fattureVendita = (from q in fattureVendita orderby q.Numero select q);
                 return fattureVendita;
             }
@@ -1386,6 +1503,20 @@ namespace WcfService
                 UtilityError.Write(ex);
             }
             return null;
+        }
+
+        private bool SearchFatturaVendita(string search, DataLayer.FatturaVendita q)
+        {
+            try
+            {
+                return q.Numero.StartsWith(search) || q.Descrizione.Contains(search) || q.TipoPagamento.StartsWith(search);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
         }
         #endregion
         #endregion
@@ -1529,7 +1660,7 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var liquidazioni = (from q in ef.Liquidaziones select q);
                 if (search != null && search.Length > 0)
-                    liquidazioni = (from q in liquidazioni where q.Note.Contains(search) select q);  
+                    liquidazioni = (from q in liquidazioni where SearchLiquidazione(search, q) select q);  
                 liquidazioni = (from q in liquidazioni orderby q.Note select q);
                 return liquidazioni;
             }
@@ -1538,6 +1669,20 @@ namespace WcfService
                 UtilityError.Write(ex);
             }
             return null;
+        }
+
+        private bool SearchLiquidazione(string search, DataLayer.Liquidazione q)
+        {
+            try
+            {
+                return q.Note.Contains(search);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
         }
         #endregion
         #endregion
@@ -1681,7 +1826,7 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var sals = (from q in ef.SALs select q);
                 if (search != null && search.Length>0)
-                    sals = (from q in sals where q.Codice.StartsWith(search) || q.Denominazione.StartsWith(search) select q);
+                    sals = (from q in sals where SearchSAL(search, q) select q);
                 sals = (from q in sals orderby q.Id select q);
                 return sals;
             }
@@ -1690,6 +1835,20 @@ namespace WcfService
                 UtilityError.Write(ex);
             }
             return null;
+        }
+
+        private bool SearchSAL(string search, DataLayer.SAL q)
+        {
+            try
+            {
+                return q.Codice.StartsWith(search) || q.Denominazione.StartsWith(search);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
         }
         #endregion
         #endregion
@@ -1833,13 +1992,25 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var anagraficheFornitori = (from q in ef.AnagraficaFornitores select q);
                 if (search != null && search.Length > 0)
-                    anagraficheFornitori = (from q in anagraficheFornitori
-                                            where q.Codice.StartsWith(search) || q.PIva.StartsWith(search) ||
-                                                q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
-                                                q.Comune.StartsWith(search) || q.Provincia.StartsWith(search)
-                                            select q);
+                    anagraficheFornitori = anagraficheFornitori.Where(SearchAnagraficaFornitore(search));
+
                 anagraficheFornitori = (from q in anagraficheFornitori orderby q.RagioneSociale select q);
                 return anagraficheFornitori;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private Expression<Func<DataLayer.AnagraficaFornitore,bool>> SearchAnagraficaFornitore(string search)
+        {
+            try
+            {
+                return q=> q.Codice.StartsWith(search) || q.PIva.StartsWith(search) ||
+                                                                q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
+                                                                q.Comune.StartsWith(search) || q.Provincia.StartsWith(search);
             }
             catch (Exception ex)
             {
@@ -1989,13 +2160,25 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var anagraficheClienti = (from q in ef.AnagraficaClientes select q);
                 if (search != null && search.Length > 0)
-                    anagraficheClienti = (from q in anagraficheClienti
-                                          where q.Codice.StartsWith(search) || q.PIva.StartsWith(search) ||
-                                              q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
-                                              q.Comune.StartsWith(search) || q.Provincia.StartsWith(search)
-                                          select q);
+                    anagraficheClienti = anagraficheClienti.Where(SearchAnagraficaCliente(search));
+
                 anagraficheClienti = (from q in anagraficheClienti orderby q.RagioneSociale select q);
                 return anagraficheClienti;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private Expression<Func<DataLayer.AnagraficaCliente, bool>> SearchAnagraficaCliente(string search)
+        {
+            try
+            {
+                return q=>q.Codice.StartsWith(search) || q.PIva.StartsWith(search) ||
+                                              q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
+                                              q.Comune.StartsWith(search) || q.Provincia.StartsWith(search);
             }
             catch (Exception ex)
             {
@@ -2145,9 +2328,22 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var anagraficheArticoli = (from q in ef.AnagraficaArticolos select q);
                 if (search != null && search.Length > 0)
-                    anagraficheArticoli = (from q in anagraficheArticoli where q.Codice.StartsWith(search) || q.Descrizione.Contains(search) select q);
+                    anagraficheArticoli = anagraficheArticoli.Where(SearchAnagraficaArticolo(search));
                 anagraficheArticoli = (from q in anagraficheArticoli orderby q.Codice select q);
                 return anagraficheArticoli;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private Expression<Func<DataLayer.AnagraficaArticolo,bool>> SearchAnagraficaArticolo(string search)
+        {
+            try
+            {
+                return q=> q.Codice.StartsWith(search) || q.Descrizione.Contains(search);
             }
             catch (Exception ex)
             {
