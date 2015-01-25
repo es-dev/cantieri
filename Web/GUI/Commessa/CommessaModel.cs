@@ -81,6 +81,7 @@ namespace Web.GUI.Commessa
                     editImportoAvanzamentoLavori.Value = obj.ImportoAvanzamento;
                     editPercentualeAvanzamento.Value = obj.Percentuale;
                     editEstremiContratto.Value = obj.EstremiContratto;
+                    editOggetto.Value = obj.Oggetto;
                     editImportoPerizie.Value = obj.ImportoPerizie;
                     editInizioLavori.Value = obj.InizioLavori;
                     editFineLavori.Value = obj.FineLavori;
@@ -122,6 +123,7 @@ namespace Web.GUI.Commessa
                     obj.ImportoAvanzamento = editImportoAvanzamentoLavori.Value;
                     obj.Percentuale = editPercentualeAvanzamento.Value;
                     obj.EstremiContratto = editEstremiContratto.Value;
+                    obj.Oggetto = editOggetto.Value;
                     obj.ImportoPerizie = editImportoPerizie.Value;
                     obj.InizioLavori = editInizioLavori.Value;
                     obj.FineLavori = editFineLavori.Value;

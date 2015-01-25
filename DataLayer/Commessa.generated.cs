@@ -310,6 +310,19 @@ namespace DataLayer
 			}
 		}
 		
+		private string _oggetto;
+		public virtual string Oggetto
+		{
+			get
+			{
+				return this._oggetto;
+			}
+			set
+			{
+				this._oggetto = value;
+			}
+		}
+		
 		private Azienda _azienda;
 		public virtual Azienda Azienda
 		{

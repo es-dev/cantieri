@@ -129,38 +129,11 @@
   <data name="imgForgotPassword.Image" xml:space="preserve">
     <value>forgotpassword.png</value>
   </data>
-  <data name="imgSeparator1.Image" xml:space="preserve">
-    <value>separator_vr.png</value>
-  </data>
-  <data name="btnCloseRegistrazione.Image" xml:space="preserve">
-    <value>metrostyle.black.Undo.png</value>
-  </data>
-  <data name="btnSendRegistrazione.Image" xml:space="preserve">
-    <value>metrostyle.lightblue.Navigation-Right.png</value>
-  </data>
-  <data name="imgRegistrazione.Image" xml:space="preserve">
-    <value>signup.png</value>
-  </data>
-  <data name="imgSeparator3.Image" xml:space="preserve">
-    <value>separator_vr.png</value>
-  </data>
-  <data name="imgSeparator2.Image" xml:space="preserve">
-    <value>separator_vr.png</value>
-  </data>
   <data name="btnLogin.Image" xml:space="preserve">
     <value>metrostyle.lightblue.Navigation-Right.png</value>
   </data>
-  <data name="imgLogin.Image" xml:space="preserve">
-    <value>locker.png</value>
-  </data>
-  <data name="lblMessageEnterpriseManager.Text" xml:space="preserve">
-    <value>Con Enterprise Manager puoi accedere a tutte le funzionalità previste per il sistema software, gestire la struttura degli archivi, effettuare la manutenzione, controllare le procedure e le attività in corso...</value>
-  </data>
-  <data name="imgSeparator5.Image" xml:space="preserve">
-    <value>separator_vr.png</value>
-  </data>
-  <data name="imgSeparator6.Image" xml:space="preserve">
-    <value>separator_vr.png</value>
+  <data name="pictureBox2.Image" xml:space="preserve">
+    <value>separator_hb.png</value>
   </data>
   <data name="imgIExplorer.Image" xml:space="preserve">
     <value>iexplorer.png</value>
@@ -174,10 +147,37 @@
   <data name="imgHTML5.Image" xml:space="preserve">
     <value>html5.png</value>
   </data>
+  <data name="imgSeparator6.Image" xml:space="preserve">
+    <value>separator_vr.png</value>
+  </data>
+  <data name="imgLogin.Image" xml:space="preserve">
+    <value>locker.png</value>
+  </data>
+  <data name="imgSeparator3.Image" xml:space="preserve">
+    <value>separator_vr.png</value>
+  </data>
   <data name="pictureBox1.Image" xml:space="preserve">
     <value>separator_ht.png</value>
   </data>
-  <data name="pictureBox2.Image" xml:space="preserve">
-    <value>separator_hb.png</value>
+  <data name="imgSeparator2.Image" xml:space="preserve">
+    <value>separator_vr.png</value>
+  </data>
+  <data name="imgSeparator1.Image" xml:space="preserve">
+    <value>separator_vr.png</value>
+  </data>
+  <data name="btnCloseRegistrazione.Image" xml:space="preserve">
+    <value>metrostyle.black.Undo.png</value>
+  </data>
+  <data name="btnSendRegistrazione.Image" xml:space="preserve">
+    <value>metrostyle.lightblue.Navigation-Right.png</value>
+  </data>
+  <data name="imgRegistrazione.Image" xml:space="preserve">
+    <value>signup.png</value>
+  </data>
+  <data name="imgSeparator5.Image" xml:space="preserve">
+    <value>separator_vr.png</value>
+  </data>
+  <data name="lblMessageEnterpriseManager.Text" xml:space="preserve">
+    <value>Con Enterprise Manager puoi accedere a tutte le funzionalità previste per il sistema software, gestire la struttura degli archivi, effettuare la manutenzione, controllare le procedure e le attività in corso...</value>
   </data>
 </root>

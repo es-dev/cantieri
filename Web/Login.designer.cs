@@ -84,6 +84,7 @@ namespace Web
             this.pictureBox1 = new Gizmox.WebGUI.Forms.PictureBox();
             this.pictureBox2 = new Gizmox.WebGUI.Forms.PictureBox();
             this.lblLoginFault = new Gizmox.WebGUI.Forms.Label();
+            this.container.SuspendLayout();
             this.panelForgotPassword.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgSeparator4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgForgotPassword)).BeginInit();
@@ -105,6 +106,28 @@ namespace Web
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
+            // 
+            // container
+            // 
+            this.container.Controls.Add(this.panelForgotPassword);
+            this.container.Controls.Add(this.btnLogin);
+            this.container.Controls.Add(this.lblView);
+            this.container.Controls.Add(this.lblLoginFault);
+            this.container.Controls.Add(this.lblLogin);
+            this.container.Controls.Add(this.pictureBox2);
+            this.container.Controls.Add(this.panelRquirements);
+            this.container.Controls.Add(this.editPassword);
+            this.container.Controls.Add(this.imgLogin);
+            this.container.Controls.Add(this.panelInfoRegistrazione);
+            this.container.Controls.Add(this.pictureBox1);
+            this.container.Controls.Add(this.imgSeparator2);
+            this.container.Controls.Add(this.lblUsername);
+            this.container.Controls.Add(this.panelRegistrazione);
+            this.container.Controls.Add(this.panelEnterpriseManager);
+            this.container.Controls.Add(this.editUsername);
+            this.container.Controls.Add(this.lblPassword);
+            this.container.Controls.Add(this.btnForgotPassword);
+            this.container.MinimumSize = new System.Drawing.Size(1024, 659);
             // 
             // btnRegistrazione
             // 
@@ -131,7 +154,7 @@ namespace Web
             this.panelForgotPassword.Controls.Add(this.btnSendForgotPassword);
             this.panelForgotPassword.Controls.Add(this.lblTitleForgotPassword);
             this.panelForgotPassword.Controls.Add(this.imgForgotPassword);
-            this.panelForgotPassword.Location = new System.Drawing.Point(320, 352);
+            this.panelForgotPassword.Location = new System.Drawing.Point(320, 268);
             this.panelForgotPassword.Name = "panelForgotPassword";
             this.panelForgotPassword.Size = new System.Drawing.Size(433, 134);
             this.panelForgotPassword.TabIndex = 8;
@@ -231,7 +254,7 @@ namespace Web
             this.panelRegistrazione.Controls.Add(this.lblNome);
             this.panelRegistrazione.Controls.Add(this.lblTitleRegistrazione);
             this.panelRegistrazione.Controls.Add(this.imgRegistrazione);
-            this.panelRegistrazione.Location = new System.Drawing.Point(411, 503);
+            this.panelRegistrazione.Location = new System.Drawing.Point(411, 422);
             this.panelRegistrazione.Name = "panelRegistrazione";
             this.panelRegistrazione.Size = new System.Drawing.Size(603, 208);
             this.panelRegistrazione.TabIndex = 8;
@@ -427,7 +450,7 @@ namespace Web
             // imgSeparator2
             // 
             this.imgSeparator2.Image = new Gizmox.WebGUI.Common.Resources.ImageResourceHandle(resources.GetString("imgSeparator2.Image"));
-            this.imgSeparator2.Location = new System.Drawing.Point(298, 173);
+            this.imgSeparator2.Location = new System.Drawing.Point(293, 92);
             this.imgSeparator2.Name = "imgSeparator2";
             this.imgSeparator2.Size = new System.Drawing.Size(7, 273);
             this.imgSeparator2.SizeMode = Gizmox.WebGUI.Forms.PictureBoxSizeMode.StretchImage;
@@ -440,7 +463,7 @@ namespace Web
             this.btnForgotPassword.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Flat;
             this.btnForgotPassword.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnForgotPassword.ForeColor = System.Drawing.Color.SteelBlue;
-            this.btnForgotPassword.Location = new System.Drawing.Point(612, 327);
+            this.btnForgotPassword.Location = new System.Drawing.Point(612, 243);
             this.btnForgotPassword.Name = "btnForgotPassword";
             this.btnForgotPassword.Size = new System.Drawing.Size(141, 23);
             this.btnForgotPassword.TabIndex = 7;
@@ -453,7 +476,7 @@ namespace Web
             this.btnLogin.ForeColor = System.Drawing.Color.SteelBlue;
             this.btnLogin.Image = new Gizmox.WebGUI.Common.Resources.ImageResourceHandle(resources.GetString("btnLogin.Image"));
             this.btnLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLogin.Location = new System.Drawing.Point(612, 410);
+            this.btnLogin.Location = new System.Drawing.Point(612, 340);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(141, 49);
             this.btnLogin.TabIndex = 6;
@@ -465,9 +488,9 @@ namespace Web
             this.lblPassword.BackColor = System.Drawing.Color.Transparent;
             this.lblPassword.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblPassword.Location = new System.Drawing.Point(347, 323);
+            this.lblPassword.Location = new System.Drawing.Point(347, 239);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(270, 29);
+            this.lblPassword.Size = new System.Drawing.Size(265, 29);
             this.lblPassword.TabIndex = 4;
             this.lblPassword.Text = "Password";
             // 
@@ -475,7 +498,7 @@ namespace Web
             // 
             this.editPassword.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.editPassword.ForeColor = System.Drawing.Color.SteelBlue;
-            this.editPassword.Location = new System.Drawing.Point(342, 355);
+            this.editPassword.Location = new System.Drawing.Point(342, 269);
             this.editPassword.Name = "editPassword";
             this.editPassword.PasswordChar = '*';
             this.editPassword.Size = new System.Drawing.Size(411, 37);
@@ -487,7 +510,7 @@ namespace Web
             // 
             this.editUsername.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.editUsername.ForeColor = System.Drawing.Color.SteelBlue;
-            this.editUsername.Location = new System.Drawing.Point(342, 281);
+            this.editUsername.Location = new System.Drawing.Point(342, 197);
             this.editUsername.Name = "editUsername";
             this.editUsername.Size = new System.Drawing.Size(411, 37);
             this.editUsername.TabIndex = 0;
@@ -497,7 +520,7 @@ namespace Web
             this.lblUsername.BackColor = System.Drawing.Color.Transparent;
             this.lblUsername.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblUsername.Location = new System.Drawing.Point(342, 250);
+            this.lblUsername.Location = new System.Drawing.Point(342, 166);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(411, 29);
             this.lblUsername.TabIndex = 4;
@@ -507,7 +530,7 @@ namespace Web
             // 
             this.lblLogin.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
-            this.lblLogin.Location = new System.Drawing.Point(340, 173);
+            this.lblLogin.Location = new System.Drawing.Point(335, 92);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(665, 41);
             this.lblLogin.TabIndex = 4;
@@ -517,7 +540,7 @@ namespace Web
             // 
             this.imgLogin.BackColor = System.Drawing.Color.Transparent;
             this.imgLogin.Image = new Gizmox.WebGUI.Common.Resources.ImageResourceHandle(resources.GetString("imgLogin.Image"));
-            this.imgLogin.Location = new System.Drawing.Point(99, 173);
+            this.imgLogin.Location = new System.Drawing.Point(94, 92);
             this.imgLogin.Name = "imgLogin";
             this.imgLogin.Size = new System.Drawing.Size(192, 192);
             this.imgLogin.SizeMode = Gizmox.WebGUI.Forms.PictureBoxSizeMode.StretchImage;
@@ -528,7 +551,7 @@ namespace Web
             // 
             this.lblView.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblView.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblView.Location = new System.Drawing.Point(105, 105);
+            this.lblView.Location = new System.Drawing.Point(100, 24);
             this.lblView.Name = "lblView";
             this.lblView.Size = new System.Drawing.Size(208, 47);
             this.lblView.TabIndex = 4;
@@ -596,7 +619,7 @@ namespace Web
             this.panelInfoRegistrazione.Controls.Add(this.lblRegistrazione);
             this.panelInfoRegistrazione.Controls.Add(this.imgSeparator3);
             this.panelInfoRegistrazione.Controls.Add(this.lblDescrizioneRegistrazione);
-            this.panelInfoRegistrazione.Location = new System.Drawing.Point(713, 644);
+            this.panelInfoRegistrazione.Location = new System.Drawing.Point(713, 554);
             this.panelInfoRegistrazione.Name = "panelInfoRegistrazione";
             this.panelInfoRegistrazione.Size = new System.Drawing.Size(301, 99);
             this.panelInfoRegistrazione.TabIndex = 9;
@@ -611,7 +634,7 @@ namespace Web
             this.panelEnterpriseManager.Controls.Add(this.lblTitleEnterpriseManager);
             this.panelEnterpriseManager.Controls.Add(this.btnManualEnterpriseManager);
             this.panelEnterpriseManager.Controls.Add(this.lblMessageEnterpriseManager);
-            this.panelEnterpriseManager.Location = new System.Drawing.Point(9, 507);
+            this.panelEnterpriseManager.Location = new System.Drawing.Point(9, 426);
             this.panelEnterpriseManager.Name = "panelEnterpriseManager";
             this.panelEnterpriseManager.Size = new System.Drawing.Size(390, 141);
             this.panelEnterpriseManager.TabIndex = 10;
@@ -668,7 +691,7 @@ namespace Web
             this.panelRquirements.Controls.Add(this.lblTitleRquirements);
             this.panelRquirements.Controls.Add(this.imgSeparator6);
             this.panelRquirements.Controls.Add(this.lblMessageRquirements);
-            this.panelRquirements.Location = new System.Drawing.Point(713, 506);
+            this.panelRquirements.Location = new System.Drawing.Point(713, 416);
             this.panelRquirements.Name = "panelRquirements";
             this.panelRquirements.Size = new System.Drawing.Size(301, 129);
             this.panelRquirements.TabIndex = 9;
@@ -721,7 +744,7 @@ namespace Web
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = new Gizmox.WebGUI.Common.Resources.ImageResourceHandle(resources.GetString("pictureBox1.Image"));
-            this.pictureBox1.Location = new System.Drawing.Point(70, 488);
+            this.pictureBox1.Location = new System.Drawing.Point(65, 402);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(715, 20);
             this.pictureBox1.SizeMode = Gizmox.WebGUI.Forms.PictureBoxSizeMode.StretchImage;
@@ -732,7 +755,7 @@ namespace Web
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = new Gizmox.WebGUI.Common.Resources.ImageResourceHandle(resources.GetString("pictureBox2.Image"));
-            this.pictureBox2.Location = new System.Drawing.Point(70, 131);
+            this.pictureBox2.Location = new System.Drawing.Point(65, 50);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(715, 19);
             this.pictureBox2.SizeMode = Gizmox.WebGUI.Forms.PictureBoxSizeMode.StretchImage;
@@ -744,58 +767,25 @@ namespace Web
             this.lblLoginFault.AutoSize = true;
             this.lblLoginFault.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLoginFault.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblLoginFault.Location = new System.Drawing.Point(338, 395);
+            this.lblLoginFault.Location = new System.Drawing.Point(342, 311);
             this.lblLoginFault.Name = "lblLoginFault";
-            this.lblLoginFault.Size = new System.Drawing.Size(665, 41);
+            this.lblLoginFault.Size = new System.Drawing.Size(225, 25);
             this.lblLoginFault.TabIndex = 4;
             this.lblLoginFault.Text = "Accesso non consentito!!!";
             this.lblLoginFault.Visible = false;
             // 
             // Login
             // 
-            this.Controls.Add(this.panelForgotPassword);
-            this.Controls.Add(this.lblLoginFault);
-            this.Controls.Add(this.panelRquirements);
-            this.Controls.Add(this.panelInfoRegistrazione);
-            this.Controls.Add(this.imgSeparator2);
-            this.Controls.Add(this.btnForgotPassword);
-            this.Controls.Add(this.lblView);
-            this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.lblPassword);
-            this.Controls.Add(this.editPassword);
-            this.Controls.Add(this.editUsername);
-            this.Controls.Add(this.imgLogin);
-            this.Controls.Add(this.lblUsername);
-            this.Controls.Add(this.lblLogin);
-            this.Controls.Add(this.panelEnterpriseManager);
-            this.Controls.Add(this.panelRegistrazione);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.pictureBox2);
+            this.AutoScroll = true;
             this.Text = "Login | Enterprise Manager";
-            this.Controls.SetChildIndex(this.pictureBox2, 0);
-            this.Controls.SetChildIndex(this.pictureBox1, 0);
-            this.Controls.SetChildIndex(this.panelRegistrazione, 0);
-            this.Controls.SetChildIndex(this.panelEnterpriseManager, 0);
-            this.Controls.SetChildIndex(this.lblLogin, 0);
-            this.Controls.SetChildIndex(this.lblUsername, 0);
-            this.Controls.SetChildIndex(this.imgLogin, 0);
-            this.Controls.SetChildIndex(this.editUsername, 0);
-            this.Controls.SetChildIndex(this.editPassword, 0);
-            this.Controls.SetChildIndex(this.lblPassword, 0);
-            this.Controls.SetChildIndex(this.btnLogin, 0);
-            this.Controls.SetChildIndex(this.lblView, 0);
-            this.Controls.SetChildIndex(this.btnForgotPassword, 0);
+            this.Controls.SetChildIndex(this.container, 0);
             this.Controls.SetChildIndex(this.bntPortaleWebAziendale, 0);
-            this.Controls.SetChildIndex(this.imgSeparator2, 0);
             this.Controls.SetChildIndex(this.btnSupportoTecnico, 0);
             this.Controls.SetChildIndex(this.btnInformazioni, 0);
             this.Controls.SetChildIndex(this.infoTitle, 0);
             this.Controls.SetChildIndex(this.toolStrip, 0);
             this.Controls.SetChildIndex(this.panelInfo, 0);
-            this.Controls.SetChildIndex(this.panelInfoRegistrazione, 0);
-            this.Controls.SetChildIndex(this.panelRquirements, 0);
-            this.Controls.SetChildIndex(this.lblLoginFault, 0);
-            this.Controls.SetChildIndex(this.panelForgotPassword, 0);
+            this.container.ResumeLayout(false);
             this.panelForgotPassword.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgSeparator4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgForgotPassword)).EndInit();

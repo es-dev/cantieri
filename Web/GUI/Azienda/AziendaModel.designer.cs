@@ -38,8 +38,8 @@ namespace Web.GUI.Azienda
             this.editNumeroDipendenti = new Library.Template.Controls.TemplateEditNumeric();
             this.editFAX = new Library.Template.Controls.TemplateEditText();
             this.editTelefono = new Library.Template.Controls.TemplateEditText();
-            this.editEmail = new Library.Template.Controls.TemplateEditEmail();
-            this.editPartitaIVA = new Library.Template.Controls.TemplateEditPartitaIva();
+            this.editEmail = new Library.Template.Controls.editEmail();
+            this.editPartitaIVA = new Library.Template.Controls.editPartitaIVA();
             this.editCodice = new Library.Template.Controls.TemplateEditText();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
@@ -338,8 +338,8 @@ namespace Web.GUI.Azienda
         private Library.Template.Controls.TemplateEditNumeric editNumeroDipendenti;
         private Library.Template.Controls.TemplateEditText editTelefono;
         private Library.Template.Controls.TemplateEditText editFAX;
-        private Library.Template.Controls.TemplateEditPartitaIva editPartitaIVA;
-        private Library.Template.Controls.TemplateEditEmail editEmail;
+        private Library.Template.Controls.editPartitaIVA editPartitaIVA;
+        private Library.Template.Controls.editEmail editEmail;
         private Library.Template.Controls.TemplateEditText editCodice;
 
 

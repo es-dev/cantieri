@@ -121,6 +121,7 @@
         <orm:field name="_fineLavori" property="FineLavori" uniqueId="66541415-acef-4f15-825e-c88b27208624" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="FineLavori" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
+        <orm:field name="_oggetto" property="Oggetto" uniqueId="2a06d18e-66f3-4a3e-8a5e-b646e67135d0" type="System.String" />
         <orm:field name="_azienda" property="Azienda" behavior="readwrite" uniqueId="494444a6-ccb0-494c-a6a4-5a308aeb4152" type="DataLayer.Azienda">
           <orm:reference uniqueId="9529a813-1327-451c-bfdc-62fcf2c3ea6a" association-name="CommessaHasAzienda">
             <orm:sharedfield name="_aziendaId" target-class="DataLayer.Azienda" target-field="_id" />
@@ -691,6 +692,7 @@
         <orm:column name="Margine" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="AziendaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:column name="Oggetto" sql-type="varchar" nullable="true" length="255" scale="0" ado-type="" />
         <orm:index name="idx_Commessa_AziendaId">
           <orm:columnMapping>
             <orm:column name="AziendaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -947,6 +949,7 @@
       <Property Id="c578a2e5-67ca-473e-9482-d8d5073f60c4" name="ImportoPerizie" type="Decimal" label="ImportoPerizie : Decimal" nullable="true" fieldName="_importoPerizie" />
       <Property Id="42e9ea85-6109-4aea-9b68-27548a766115" name="InizioLavori" type="DateTime" label="InizioLavori : DateTime" nullable="true" fieldName="_inizioLavori" />
       <Property Id="66541415-acef-4f15-825e-c88b27208624" name="FineLavori" type="DateTime" label="FineLavori : DateTime" nullable="true" fieldName="_fineLavori" />
+      <Property Id="2a06d18e-66f3-4a3e-8a5e-b646e67135d0" name="Oggetto" label="Oggetto : String" fieldName="_oggetto" />
       <AssociationTargets>
         <Association Id="9529a813-1327-451c-bfdc-62fcf2c3ea6a" SourceMultiplicity="ZeroOne" name="CommessaHasAzienda">
           <DomainClassMoniker name="/EntitiesModel/Azienda" />

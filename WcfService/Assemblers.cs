@@ -206,6 +206,7 @@ namespace WcfService.Assemblers
 			entity.ImportoPerizie = dto.ImportoPerizie;
 			entity.InizioLavori = dto.InizioLavori;
 			entity.FineLavori = dto.FineLavori;
+			entity.Oggetto = dto.Oggetto;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -238,6 +239,7 @@ namespace WcfService.Assemblers
 			dto.ImportoPerizie = entity.ImportoPerizie;
 			dto.InizioLavori = entity.InizioLavori;
 			dto.FineLavori = entity.FineLavori;
+			dto.Oggetto = entity.Oggetto;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }

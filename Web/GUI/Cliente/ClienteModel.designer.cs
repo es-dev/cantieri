@@ -40,8 +40,8 @@ namespace Web.GUI.Cliente
             this.editRagioneSociale = new Library.Template.Controls.TemplateEditText();
             this.editCommessa = new Library.Template.Controls.TemplateEditCombo();
             this.editCodiceCliente = new Library.Template.Controls.TemplateEditCombo();
-            this.editEmail = new Library.Template.Controls.TemplateEditEmail();
-            this.editPartitaIVA = new Library.Template.Controls.TemplateEditPartitaIva();
+            this.editEmail = new Library.Template.Controls.editEmail();
+            this.editPartitaIVA = new Library.Template.Controls.editPartitaIVA();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -374,8 +374,8 @@ namespace Web.GUI.Cliente
         private Library.Template.Controls.TemplateEditText editFAX;
         private Library.Template.Controls.TemplateEditText editMobile;
         private Library.Template.Controls.TemplateEditCombo editCodiceCliente;
-        private Library.Template.Controls.TemplateEditPartitaIva editPartitaIVA;
-        private Library.Template.Controls.TemplateEditEmail editEmail;
+        private Library.Template.Controls.editPartitaIVA editPartitaIVA;
+        private Library.Template.Controls.editEmail editEmail;
 
 
     }

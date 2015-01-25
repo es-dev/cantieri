@@ -50,6 +50,10 @@ namespace Web
             // 
             this.btnAccount.Click += new System.EventHandler(this.btnAccount_Click);
             // 
+            // container
+            // 
+            this.container.MinimumSize = new System.Drawing.Size(1024, 659);
+            // 
             // editStatoConnessione
             // 
             this.editStatoConnessione.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -196,9 +200,11 @@ namespace Web
             // 
             // Homepage
             // 
+            this.AutoScroll = true;
             this.Controls.Add(this.panelAccount);
             this.Text = "Homepage | Enterprise Manager";
             this.Load += new System.EventHandler(this.Homepage_Load);
+            this.Controls.SetChildIndex(this.container, 0);
             this.Controls.SetChildIndex(this.panelInfo, 0);
             this.Controls.SetChildIndex(this.btnAccount, 0);
             this.Controls.SetChildIndex(this.bntPortaleWebAziendale, 0);
