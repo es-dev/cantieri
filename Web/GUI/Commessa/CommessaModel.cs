@@ -39,6 +39,7 @@ namespace Web.GUI.Commessa
             }
         }
 
+        
         public override void BindViewSubTitle(object model)
         {
             try
@@ -162,6 +163,17 @@ namespace Web.GUI.Commessa
             }
         }
 
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectedTab = tabPage1;
+        }
+
+       
         
 
 	}
