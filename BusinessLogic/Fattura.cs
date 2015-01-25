@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
-    public class Calcoli
+    public class Fattura
     {
-        public static decimal? GetTotaleFatturaAcquisto(decimal? imponibile, decimal? iva)
+        public static decimal GetTotale(decimal imponibile, decimal iva)
         {
             try
             {
-                decimal? totale = 0;
+                decimal totale = 0;
                 if (imponibile != null)
                     totale += imponibile;
                 if (iva != null)

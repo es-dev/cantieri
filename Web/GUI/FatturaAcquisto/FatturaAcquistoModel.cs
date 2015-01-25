@@ -183,9 +183,9 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                var imponibile = editImponibile.Value;
-                var iva = editIVA.Value;
-                var totale = BusinessLogic.Calcoli.GetTotaleFatturaAcquisto(imponibile, iva);
+                var imponibile = (decimal)editImponibile.Value;
+                var iva = (decimal)editIVA.Value;
+                var totale = BusinessLogic.Fattura.GetTotale(imponibile, iva);
                 editTotale.Value = totale;
                 //prelievo valori da grafica in variabili var xxx = editControl.Value
                 //invio i dati a BL per calcolo e restituzione valori  ver tot = BL.GetXXXXXX
