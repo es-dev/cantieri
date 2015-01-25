@@ -116,7 +116,7 @@ namespace Web.GUI.FatturaAcquisto
             this.infoFornitore.ForeColor = System.Drawing.Color.DarkRed;
             this.infoFornitore.Location = new System.Drawing.Point(246, 70);
             this.infoFornitore.Name = "infoFornitore";
-            this.infoFornitore.Size = new System.Drawing.Size(150, 17);
+            this.infoFornitore.Size = new System.Drawing.Size(150, 20);
             this.infoFornitore.TabIndex = 1;
             this.infoFornitore.Text = "Fornitore";
             this.infoFornitore.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -130,7 +130,7 @@ namespace Web.GUI.FatturaAcquisto
             this.infoCentroCosto.ForeColor = System.Drawing.Color.DarkRed;
             this.infoCentroCosto.Location = new System.Drawing.Point(91, 70);
             this.infoCentroCosto.Name = "infoCentroCosto";
-            this.infoCentroCosto.Size = new System.Drawing.Size(149, 17);
+            this.infoCentroCosto.Size = new System.Drawing.Size(149, 20);
             this.infoCentroCosto.TabIndex = 1;
             this.infoCentroCosto.Text = "Centro di Costo";
             // 

@@ -31,7 +31,10 @@ namespace Web.GUI.FatturaVendita
                     if (obj.Numero != null)
                         numero = obj.Numero;
                     infoNumero.Text = "Fattura N. " + numero;
-                    infoData.Text = (obj.Data != null ? obj.Data.Value.ToString("dd/MM/yyyy") : "Non Impostata");
+                    var data = "N/D";
+                    if (obj.Data != null)
+                        data = obj.Data.Value.ToString("dd/MM/yyyy");
+                    infoData.Text = "Data: " + data;
                     //todo: da verificare--> infoDescrizione.Text = obj.Descrizione;
                     var cliente = obj.Cliente;
                     if (cliente != null)

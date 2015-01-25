@@ -41,7 +41,7 @@ namespace Web.GUI.Cliente
                     var commessa = obj.Commessa;
                     if (commessa != null)
                     {
-                        infoCommesssa.Text = "Commessa (" + commessa.Codice + ") " + commessa.Denominazione;
+                        infoCommesssa.Text = "Commessa (" + commessa.Codice + ") - " + commessa.Denominazione;
                     }
                 }
             }

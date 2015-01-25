@@ -79,13 +79,13 @@ namespace Web.GUI.FatturaAcquisto
                     if (centroCosto!=null)
                     {
                         editCentroCosto.Model = centroCosto;
-                        editCentroCosto.Value = centroCosto.Denominazione;
+                        editCentroCosto.Value = "(" + centroCosto.Codice + ") - " + centroCosto.Denominazione;
                     }
                     var fornitore = obj.Fornitore;
                     if (fornitore != null)
                     {
                         editFornitore.Model = fornitore;
-                        editFornitore.Value = fornitore.RagioneSociale;
+                        editFornitore.Value = "(" + fornitore.Codice + ") - " + fornitore.RagioneSociale;
                     }
                 }
             }
@@ -143,7 +143,7 @@ namespace Web.GUI.FatturaAcquisto
             {
                 var fornitore = (WcfService.Dto.FornitoreDto)model;
                 if (fornitore != null)
-                    editFornitore.Value = fornitore.RagioneSociale;
+                    editFornitore.Value = "(" + fornitore.Codice+ ") - " +fornitore.RagioneSociale;
             }
             catch (Exception ex)
             {
@@ -171,7 +171,7 @@ namespace Web.GUI.FatturaAcquisto
             {
                 var centroCosto = (WcfService.Dto.CentroCostoDto)model;
                 if (centroCosto != null)
-                    editCentroCosto.Value = centroCosto.Denominazione;
+                    editCentroCosto.Value = "(" + centroCosto.Codice + ") - " + centroCosto.Denominazione;
             }
             catch (Exception ex)
             {

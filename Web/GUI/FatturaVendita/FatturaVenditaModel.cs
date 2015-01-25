@@ -78,7 +78,7 @@ namespace Web.GUI.FatturaVendita
                     if (cliente != null)
                     {
                         editCliente.Model = cliente;
-                        editCliente.Value = cliente.RagioneSociale;
+                        editCliente.Value = "(" + cliente.Codice + ") - " + cliente.RagioneSociale;
                     }
                 }
             }
@@ -134,7 +134,7 @@ namespace Web.GUI.FatturaVendita
             {
                 var cliente = (WcfService.Dto.ClienteDto)model;
                 if (cliente != null)
-                    editCliente.Value = cliente.RagioneSociale;
+                    editCliente.Value = "(" + cliente.Codice + ") - " + cliente.RagioneSociale;
             }
             catch (Exception ex)
             {

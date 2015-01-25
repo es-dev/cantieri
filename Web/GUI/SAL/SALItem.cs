@@ -27,11 +27,14 @@ namespace Web.GUI.SAL
                     var obj = (WcfService.Dto.SALDto)model;
                     infoImage.Image = "Images.dashboard.SAL.png";
                     infoDenominazione.Text = obj.Denominazione;
-                    infoData.Text = obj.Data.ToString();
+                    var data = "N/D";
+                    if (obj.Data != null)
+                        data = obj.Data.Value.ToString("dd/MM/yyyy");
+                    infoData.Text = "Data: " + data;
                     var commessa = obj.Commessa;
                     if (commessa != null)
                     {
-                        infoCommesssa.Text = "Commessa (" + commessa.Codice + ") " + commessa.Denominazione;
+                        infoCommesssa.Text = "Commessa (" + commessa.Codice + ") - " + commessa.Denominazione;
                     }
 
                 }
