@@ -153,11 +153,11 @@ namespace Web.GUI.Articolo
         {
             try
             {
-                var quantita = (decimal)editQuantita.Value;
-                var prezzoUnitario = (decimal)editPrezzounitario.Value;
+                var quantita = editQuantita.Value;
+                var prezzoUnitario = editPrezzounitario.Value;
                 if (quantita != null && prezzoUnitario != null)
                 {
-                    var importo = BusinessLogic.Articolo.GetImporto(quantita, prezzoUnitario);
+                    var importo = BusinessLogic.Articolo.GetImporto((decimal)quantita, (decimal)prezzoUnitario);
                     editImporto.Value = importo;
                 }
             }
@@ -172,11 +172,12 @@ namespace Web.GUI.Articolo
         {
             try
             {
-                var importo = (decimal)editImporto.Value;
-                var sconto = (decimal)editSconto.Value;
+                var importo = editImporto.Value;
+                var sconto = editSconto.Value;
                 if (importo != null && sconto != null)
                 {
-                    var costo = BusinessLogic.Articolo.GetCosto(importo, sconto);
+                    //da una variabile decimal? puoi prelevare i valori dopo il controllo nullità, o mediante cast, o medinate .Value
+                    var costo = BusinessLogic.Articolo.GetCosto((decimal)importo, (decimal)sconto);
                     editCosto.Value = costo;
                 }
             }
@@ -190,11 +191,11 @@ namespace Web.GUI.Articolo
         {
             try
             {
-                var costo = (decimal)editCosto.Value;
-                var iva = (decimal)editIVA.Value;
+                var costo = editCosto.Value;
+                var iva = editIVA.Value;
                 if (costo != null && iva != null)
                 {
-                    var totale = BusinessLogic.Articolo.GetTotale(costo, iva);
+                    var totale = BusinessLogic.Articolo.GetTotale((decimal)costo, (decimal)iva);
                     editTotale.Value = totale;
                 }
             }
