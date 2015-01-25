@@ -44,34 +44,42 @@ namespace Web.GUI.Commessa
             this.editImporto = new Library.Template.Controls.TemplateEditDecimal();
             this.editCodice = new Library.Template.Controls.TemplateEditText();
             this.editStato = new Library.Template.Controls.TemplateEditDropDown();
-            this.tabControl = new Gizmox.WebGUI.Forms.OrientationTabControl();
-            this.tabPage1 = new Gizmox.WebGUI.Forms.TabPage();
-            this.tabPage2 = new Gizmox.WebGUI.Forms.TabPage();
             this.editInizioLavori = new Library.Template.Controls.TemplateEditData();
             this.editFineLavori = new Library.Template.Controls.TemplateEditData();
             this.editEstremiContratto = new Library.Template.Controls.TemplateEditText();
-            this.tabPage3 = new Gizmox.WebGUI.Forms.TabPage();
             this.editPercentualeAvanzamento = new Library.Template.Controls.TemplateEditDecimal();
             this.editMargine = new Library.Template.Controls.TemplateEditDecimal();
             this.editImportoAvanzamentoLavori = new Library.Template.Controls.TemplateEditDecimal();
-            this.tabPage4 = new Gizmox.WebGUI.Forms.TabPage();
             this.editImportoPerizie = new Library.Template.Controls.TemplateEditDecimal();
-            this.button1 = new Gizmox.WebGUI.Forms.Button();
+            this.label1 = new Gizmox.WebGUI.Forms.Label();
+            this.label2 = new Gizmox.WebGUI.Forms.Label();
+            this.label3 = new Gizmox.WebGUI.Forms.Label();
+            this.label4 = new Gizmox.WebGUI.Forms.Label();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
-            this.tabControl.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // container
             // 
-            this.container.Controls.Add(this.button1);
-            this.container.Controls.Add(this.tabControl);
+            this.container.Controls.Add(this.label4);
+            this.container.Controls.Add(this.editImportoPerizie);
+            this.container.Controls.Add(this.editPercentualeAvanzamento);
+            this.container.Controls.Add(this.label3);
+            this.container.Controls.Add(this.editMargine);
+            this.container.Controls.Add(this.editInizioLavori);
+            this.container.Controls.Add(this.editImportoAvanzamentoLavori);
+            this.container.Controls.Add(this.label2);
+            this.container.Controls.Add(this.editFineLavori);
+            this.container.Controls.Add(this.editIndirizzo);
+            this.container.Controls.Add(this.editEstremiContratto);
+            this.container.Controls.Add(this.editCAP);
+            this.container.Controls.Add(this.editRiferimento);
+            this.container.Controls.Add(this.editImporto);
+            this.container.Controls.Add(this.label1);
+            this.container.Controls.Add(this.editScadenza);
+            this.container.Controls.Add(this.editComune);
+            this.container.Controls.Add(this.editProvincia);
             this.container.Controls.Add(this.editStato);
             this.container.Controls.Add(this.editCodice);
             this.container.Controls.Add(this.editDescrizione);
@@ -79,6 +87,7 @@ namespace Web.GUI.Commessa
             this.container.Controls.Add(this.editCreazione);
             this.container.Controls.Add(this.editNumero);
             this.container.Controls.Add(this.editAzienda);
+            this.container.Size = new System.Drawing.Size(923, 986);
             this.container.Controls.SetChildIndex(this.infoSubtitleImage, 0);
             this.container.Controls.SetChildIndex(this.infoSubtitle, 0);
             this.container.Controls.SetChildIndex(this.editAzienda, 0);
@@ -88,16 +97,40 @@ namespace Web.GUI.Commessa
             this.container.Controls.SetChildIndex(this.editDescrizione, 0);
             this.container.Controls.SetChildIndex(this.editCodice, 0);
             this.container.Controls.SetChildIndex(this.editStato, 0);
-            this.container.Controls.SetChildIndex(this.tabControl, 0);
-            this.container.Controls.SetChildIndex(this.button1, 0);
+            this.container.Controls.SetChildIndex(this.editProvincia, 0);
+            this.container.Controls.SetChildIndex(this.editComune, 0);
+            this.container.Controls.SetChildIndex(this.editScadenza, 0);
+            this.container.Controls.SetChildIndex(this.label1, 0);
+            this.container.Controls.SetChildIndex(this.editImporto, 0);
+            this.container.Controls.SetChildIndex(this.editRiferimento, 0);
+            this.container.Controls.SetChildIndex(this.editCAP, 0);
+            this.container.Controls.SetChildIndex(this.editEstremiContratto, 0);
+            this.container.Controls.SetChildIndex(this.editIndirizzo, 0);
+            this.container.Controls.SetChildIndex(this.editFineLavori, 0);
+            this.container.Controls.SetChildIndex(this.label2, 0);
+            this.container.Controls.SetChildIndex(this.editImportoAvanzamentoLavori, 0);
+            this.container.Controls.SetChildIndex(this.editInizioLavori, 0);
+            this.container.Controls.SetChildIndex(this.editMargine, 0);
+            this.container.Controls.SetChildIndex(this.label3, 0);
+            this.container.Controls.SetChildIndex(this.editPercentualeAvanzamento, 0);
+            this.container.Controls.SetChildIndex(this.editImportoPerizie, 0);
+            this.container.Controls.SetChildIndex(this.label4, 0);
             // 
             // infoSubtitle
             // 
-            this.infoSubtitle.Location = new System.Drawing.Point(662, 3);
+            this.infoSubtitle.Location = new System.Drawing.Point(660, 3);
             // 
             // infoSubtitleImage
             // 
-            this.infoSubtitleImage.Location = new System.Drawing.Point(606, 3);
+            this.infoSubtitleImage.Location = new System.Drawing.Point(604, 3);
+            // 
+            // panelCommands
+            // 
+            this.panelCommands.Size = new System.Drawing.Size(101, 965);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(0, 893);
             // 
             // editAzienda
             // 
@@ -112,12 +145,12 @@ namespace Web.GUI.Commessa
             this.editAzienda.Editing = false;
             this.editAzienda.Label = "Azienda";
             this.editAzienda.LabelWidth = 175;
-            this.editAzienda.Location = new System.Drawing.Point(25, 75);
+            this.editAzienda.Location = new System.Drawing.Point(25, 62);
             this.editAzienda.Model = null;
             this.editAzienda.Name = "editAzienda";
             this.editAzienda.ReadOnly = false;
             this.editAzienda.Required = false;
-            this.editAzienda.Size = new System.Drawing.Size(798, 30);
+            this.editAzienda.Size = new System.Drawing.Size(796, 30);
             this.editAzienda.TabIndex = 0;
             this.editAzienda.Text = "EditControl";
             this.editAzienda.Value = null;
@@ -137,11 +170,11 @@ namespace Web.GUI.Commessa
             this.editNumero.Editing = false;
             this.editNumero.Label = "Numero";
             this.editNumero.LabelWidth = 175;
-            this.editNumero.Location = new System.Drawing.Point(25, 149);
+            this.editNumero.Location = new System.Drawing.Point(25, 136);
             this.editNumero.Name = "editNumero";
             this.editNumero.ReadOnly = false;
             this.editNumero.Required = false;
-            this.editNumero.Size = new System.Drawing.Size(798, 30);
+            this.editNumero.Size = new System.Drawing.Size(796, 30);
             this.editNumero.TabIndex = 2;
             this.editNumero.Text = "EditControl";
             this.editNumero.Value = null;
@@ -159,11 +192,11 @@ namespace Web.GUI.Commessa
             this.editCreazione.Editing = false;
             this.editCreazione.Label = "Creazione";
             this.editCreazione.LabelWidth = 175;
-            this.editCreazione.Location = new System.Drawing.Point(25, 186);
+            this.editCreazione.Location = new System.Drawing.Point(25, 173);
             this.editCreazione.Name = "editCreazione";
             this.editCreazione.ReadOnly = false;
             this.editCreazione.Required = false;
-            this.editCreazione.Size = new System.Drawing.Size(798, 30);
+            this.editCreazione.Size = new System.Drawing.Size(796, 30);
             this.editCreazione.TabIndex = 3;
             this.editCreazione.Text = "TemplateEditData";
             this.editCreazione.Value = null;
@@ -181,11 +214,11 @@ namespace Web.GUI.Commessa
             this.editScadenza.Editing = false;
             this.editScadenza.Label = "Scadenza";
             this.editScadenza.LabelWidth = 175;
-            this.editScadenza.Location = new System.Drawing.Point(10, 180);
+            this.editScadenza.Location = new System.Drawing.Point(25, 721);
             this.editScadenza.Name = "editScadenza";
             this.editScadenza.ReadOnly = false;
             this.editScadenza.Required = false;
-            this.editScadenza.Size = new System.Drawing.Size(800, 30);
+            this.editScadenza.Size = new System.Drawing.Size(796, 30);
             this.editScadenza.TabIndex = 5;
             this.editScadenza.Text = "TemplateEditData";
             this.editScadenza.Value = null;
@@ -203,11 +236,11 @@ namespace Web.GUI.Commessa
             this.editProvincia.Editing = false;
             this.editProvincia.Label = "Provincia";
             this.editProvincia.LabelWidth = 175;
-            this.editProvincia.Location = new System.Drawing.Point(10, 121);
+            this.editProvincia.Location = new System.Drawing.Point(25, 475);
             this.editProvincia.Name = "editProvincia";
             this.editProvincia.ReadOnly = false;
             this.editProvincia.Required = false;
-            this.editProvincia.Size = new System.Drawing.Size(798, 30);
+            this.editProvincia.Size = new System.Drawing.Size(796, 30);
             this.editProvincia.TabIndex = 3;
             this.editProvincia.Text = "EditControl";
             this.editProvincia.Value = null;
@@ -225,11 +258,11 @@ namespace Web.GUI.Commessa
             this.editComune.Editing = false;
             this.editComune.Label = "Comune";
             this.editComune.LabelWidth = 175;
-            this.editComune.Location = new System.Drawing.Point(10, 84);
+            this.editComune.Location = new System.Drawing.Point(25, 438);
             this.editComune.Name = "editComune";
             this.editComune.ReadOnly = false;
             this.editComune.Required = false;
-            this.editComune.Size = new System.Drawing.Size(798, 30);
+            this.editComune.Size = new System.Drawing.Size(796, 30);
             this.editComune.TabIndex = 2;
             this.editComune.Text = "EditControl";
             this.editComune.Value = null;
@@ -247,11 +280,11 @@ namespace Web.GUI.Commessa
             this.editCAP.Editing = false;
             this.editCAP.Label = "CAP";
             this.editCAP.LabelWidth = 175;
-            this.editCAP.Location = new System.Drawing.Point(10, 47);
+            this.editCAP.Location = new System.Drawing.Point(25, 401);
             this.editCAP.Name = "editCAP";
             this.editCAP.ReadOnly = false;
             this.editCAP.Required = false;
-            this.editCAP.Size = new System.Drawing.Size(798, 30);
+            this.editCAP.Size = new System.Drawing.Size(796, 30);
             this.editCAP.TabIndex = 1;
             this.editCAP.Text = "EditControl";
             this.editCAP.Value = null;
@@ -269,11 +302,11 @@ namespace Web.GUI.Commessa
             this.editIndirizzo.Editing = false;
             this.editIndirizzo.Label = "Indirizzo";
             this.editIndirizzo.LabelWidth = 175;
-            this.editIndirizzo.Location = new System.Drawing.Point(10, 10);
+            this.editIndirizzo.Location = new System.Drawing.Point(25, 364);
             this.editIndirizzo.Name = "editIndirizzo";
             this.editIndirizzo.ReadOnly = false;
             this.editIndirizzo.Required = false;
-            this.editIndirizzo.Size = new System.Drawing.Size(798, 30);
+            this.editIndirizzo.Size = new System.Drawing.Size(796, 30);
             this.editIndirizzo.TabIndex = 0;
             this.editIndirizzo.Text = "EditControl";
             this.editIndirizzo.Value = null;
@@ -291,11 +324,11 @@ namespace Web.GUI.Commessa
             this.editDenominazione.Editing = false;
             this.editDenominazione.Label = "Denominazione";
             this.editDenominazione.LabelWidth = 175;
-            this.editDenominazione.Location = new System.Drawing.Point(25, 223);
+            this.editDenominazione.Location = new System.Drawing.Point(25, 210);
             this.editDenominazione.Name = "editDenominazione";
             this.editDenominazione.ReadOnly = false;
             this.editDenominazione.Required = false;
-            this.editDenominazione.Size = new System.Drawing.Size(798, 30);
+            this.editDenominazione.Size = new System.Drawing.Size(796, 30);
             this.editDenominazione.TabIndex = 4;
             this.editDenominazione.Text = "EditControl";
             this.editDenominazione.Value = null;
@@ -313,11 +346,11 @@ namespace Web.GUI.Commessa
             this.editDescrizione.Editing = false;
             this.editDescrizione.Label = "Descrizione";
             this.editDescrizione.LabelWidth = 175;
-            this.editDescrizione.Location = new System.Drawing.Point(25, 260);
+            this.editDescrizione.Location = new System.Drawing.Point(25, 247);
             this.editDescrizione.Name = "editDescrizione";
             this.editDescrizione.ReadOnly = false;
             this.editDescrizione.Required = false;
-            this.editDescrizione.Size = new System.Drawing.Size(798, 30);
+            this.editDescrizione.Size = new System.Drawing.Size(796, 30);
             this.editDescrizione.TabIndex = 5;
             this.editDescrizione.Text = "EditControl";
             this.editDescrizione.Value = null;
@@ -335,11 +368,11 @@ namespace Web.GUI.Commessa
             this.editRiferimento.Editing = false;
             this.editRiferimento.Label = "Riferimento";
             this.editRiferimento.LabelWidth = 175;
-            this.editRiferimento.Location = new System.Drawing.Point(10, 10);
+            this.editRiferimento.Location = new System.Drawing.Point(25, 551);
             this.editRiferimento.Name = "editRiferimento";
             this.editRiferimento.ReadOnly = false;
             this.editRiferimento.Required = false;
-            this.editRiferimento.Size = new System.Drawing.Size(800, 30);
+            this.editRiferimento.Size = new System.Drawing.Size(796, 30);
             this.editRiferimento.TabIndex = 0;
             this.editRiferimento.Text = "EditControl";
             this.editRiferimento.Value = null;
@@ -357,11 +390,11 @@ namespace Web.GUI.Commessa
             this.editImporto.Editing = false;
             this.editImporto.Label = "Importo";
             this.editImporto.LabelWidth = 175;
-            this.editImporto.Location = new System.Drawing.Point(10, 44);
+            this.editImporto.Location = new System.Drawing.Point(25, 585);
             this.editImporto.Name = "editImporto";
             this.editImporto.ReadOnly = false;
             this.editImporto.Required = false;
-            this.editImporto.Size = new System.Drawing.Size(800, 30);
+            this.editImporto.Size = new System.Drawing.Size(796, 30);
             this.editImporto.TabIndex = 1;
             this.editImporto.Text = "TemplateEditNumeric";
             this.editImporto.Value = null;
@@ -379,11 +412,11 @@ namespace Web.GUI.Commessa
             this.editCodice.Editing = false;
             this.editCodice.Label = "Codice";
             this.editCodice.LabelWidth = 175;
-            this.editCodice.Location = new System.Drawing.Point(25, 112);
+            this.editCodice.Location = new System.Drawing.Point(25, 99);
             this.editCodice.Name = "editCodice";
             this.editCodice.ReadOnly = false;
             this.editCodice.Required = false;
-            this.editCodice.Size = new System.Drawing.Size(798, 30);
+            this.editCodice.Size = new System.Drawing.Size(796, 30);
             this.editCodice.TabIndex = 1;
             this.editCodice.Text = "EditControl";
             this.editCodice.Value = null;
@@ -402,61 +435,14 @@ namespace Web.GUI.Commessa
             this.editStato.Items = null;
             this.editStato.Label = "Stato";
             this.editStato.LabelWidth = 175;
-            this.editStato.Location = new System.Drawing.Point(25, 297);
+            this.editStato.Location = new System.Drawing.Point(25, 284);
             this.editStato.Name = "editStato";
             this.editStato.ReadOnly = false;
             this.editStato.Required = false;
-            this.editStato.Size = new System.Drawing.Size(798, 30);
+            this.editStato.Size = new System.Drawing.Size(796, 30);
             this.editStato.TabIndex = 6;
             this.editStato.Text = "EditControl";
             this.editStato.Value = null;
-            // 
-            // tabControl
-            // 
-            this.tabControl.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.tabControl.Appearance = Gizmox.WebGUI.Forms.TabAppearance.Navigation;
-            this.tabControl.Controls.Add(this.tabPage1);
-            this.tabControl.Controls.Add(this.tabPage2);
-            this.tabControl.Controls.Add(this.tabPage3);
-            this.tabControl.Controls.Add(this.tabPage4);
-            this.tabControl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl.Location = new System.Drawing.Point(10, 348);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(903, 250);
-            this.tabControl.TabIndex = 7;
-            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.editIndirizzo);
-            this.tabPage1.Controls.Add(this.editCAP);
-            this.tabPage1.Controls.Add(this.editComune);
-            this.tabPage1.Controls.Add(this.editProvincia);
-            this.tabPage1.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
-            this.tabPage1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabPage1.ForeColor = System.Drawing.Color.Black;
-            this.tabPage1.Location = new System.Drawing.Point(4, 26);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(893, 220);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Luogo di esecuzione";
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.editInizioLavori);
-            this.tabPage2.Controls.Add(this.editFineLavori);
-            this.tabPage2.Controls.Add(this.editEstremiContratto);
-            this.tabPage2.Controls.Add(this.editRiferimento);
-            this.tabPage2.Controls.Add(this.editImporto);
-            this.tabPage2.Controls.Add(this.editScadenza);
-            this.tabPage2.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(895, 220);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Dati contrattuali";
             // 
             // editInizioLavori
             // 
@@ -471,11 +457,11 @@ namespace Web.GUI.Commessa
             this.editInizioLavori.Editing = false;
             this.editInizioLavori.Label = "Inizio lavori";
             this.editInizioLavori.LabelWidth = 175;
-            this.editInizioLavori.Location = new System.Drawing.Point(10, 112);
+            this.editInizioLavori.Location = new System.Drawing.Point(25, 653);
             this.editInizioLavori.Name = "editInizioLavori";
             this.editInizioLavori.ReadOnly = false;
             this.editInizioLavori.Required = false;
-            this.editInizioLavori.Size = new System.Drawing.Size(800, 30);
+            this.editInizioLavori.Size = new System.Drawing.Size(796, 30);
             this.editInizioLavori.TabIndex = 3;
             this.editInizioLavori.Text = "EditControl";
             this.editInizioLavori.Value = null;
@@ -493,11 +479,11 @@ namespace Web.GUI.Commessa
             this.editFineLavori.Editing = false;
             this.editFineLavori.Label = "Fine lavori";
             this.editFineLavori.LabelWidth = 175;
-            this.editFineLavori.Location = new System.Drawing.Point(10, 146);
+            this.editFineLavori.Location = new System.Drawing.Point(25, 687);
             this.editFineLavori.Name = "editFineLavori";
             this.editFineLavori.ReadOnly = false;
             this.editFineLavori.Required = false;
-            this.editFineLavori.Size = new System.Drawing.Size(800, 30);
+            this.editFineLavori.Size = new System.Drawing.Size(796, 30);
             this.editFineLavori.TabIndex = 4;
             this.editFineLavori.Text = "EditControl";
             this.editFineLavori.Value = null;
@@ -515,26 +501,14 @@ namespace Web.GUI.Commessa
             this.editEstremiContratto.Editing = false;
             this.editEstremiContratto.Label = "Estremi del contratto";
             this.editEstremiContratto.LabelWidth = 175;
-            this.editEstremiContratto.Location = new System.Drawing.Point(10, 78);
+            this.editEstremiContratto.Location = new System.Drawing.Point(25, 619);
             this.editEstremiContratto.Name = "editEstremiContratto";
             this.editEstremiContratto.ReadOnly = false;
             this.editEstremiContratto.Required = false;
-            this.editEstremiContratto.Size = new System.Drawing.Size(800, 30);
+            this.editEstremiContratto.Size = new System.Drawing.Size(796, 30);
             this.editEstremiContratto.TabIndex = 2;
             this.editEstremiContratto.Text = "EditControl";
             this.editEstremiContratto.Value = null;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.editPercentualeAvanzamento);
-            this.tabPage3.Controls.Add(this.editMargine);
-            this.tabPage3.Controls.Add(this.editImportoAvanzamentoLavori);
-            this.tabPage3.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
-            this.tabPage3.Location = new System.Drawing.Point(0, 0);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(895, 220);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Stato avanzamento lavori";
             // 
             // editPercentualeAvanzamento
             // 
@@ -549,11 +523,11 @@ namespace Web.GUI.Commessa
             this.editPercentualeAvanzamento.Editing = false;
             this.editPercentualeAvanzamento.Label = "Percentuale avanzamento";
             this.editPercentualeAvanzamento.LabelWidth = 175;
-            this.editPercentualeAvanzamento.Location = new System.Drawing.Point(10, 46);
+            this.editPercentualeAvanzamento.Location = new System.Drawing.Point(25, 827);
             this.editPercentualeAvanzamento.Name = "editPercentualeAvanzamento";
             this.editPercentualeAvanzamento.ReadOnly = false;
             this.editPercentualeAvanzamento.Required = false;
-            this.editPercentualeAvanzamento.Size = new System.Drawing.Size(800, 30);
+            this.editPercentualeAvanzamento.Size = new System.Drawing.Size(796, 30);
             this.editPercentualeAvanzamento.TabIndex = 1;
             this.editPercentualeAvanzamento.Text = "TemplateEditNumeric";
             this.editPercentualeAvanzamento.Value = null;
@@ -571,11 +545,11 @@ namespace Web.GUI.Commessa
             this.editMargine.Editing = false;
             this.editMargine.Label = "Margine";
             this.editMargine.LabelWidth = 175;
-            this.editMargine.Location = new System.Drawing.Point(10, 82);
+            this.editMargine.Location = new System.Drawing.Point(25, 863);
             this.editMargine.Name = "editMargine";
             this.editMargine.ReadOnly = false;
             this.editMargine.Required = false;
-            this.editMargine.Size = new System.Drawing.Size(800, 30);
+            this.editMargine.Size = new System.Drawing.Size(796, 30);
             this.editMargine.TabIndex = 2;
             this.editMargine.Text = "TemplateEditNumeric";
             this.editMargine.Value = null;
@@ -593,24 +567,14 @@ namespace Web.GUI.Commessa
             this.editImportoAvanzamentoLavori.Editing = false;
             this.editImportoAvanzamentoLavori.Label = "Importo avanzamento lavori";
             this.editImportoAvanzamentoLavori.LabelWidth = 175;
-            this.editImportoAvanzamentoLavori.Location = new System.Drawing.Point(10, 10);
+            this.editImportoAvanzamentoLavori.Location = new System.Drawing.Point(25, 791);
             this.editImportoAvanzamentoLavori.Name = "editImportoAvanzamentoLavori";
             this.editImportoAvanzamentoLavori.ReadOnly = false;
             this.editImportoAvanzamentoLavori.Required = false;
-            this.editImportoAvanzamentoLavori.Size = new System.Drawing.Size(800, 30);
+            this.editImportoAvanzamentoLavori.Size = new System.Drawing.Size(796, 30);
             this.editImportoAvanzamentoLavori.TabIndex = 0;
             this.editImportoAvanzamentoLavori.Text = "TemplateEditNumeric";
             this.editImportoAvanzamentoLavori.Value = null;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.editImportoPerizie);
-            this.tabPage4.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
-            this.tabPage4.Location = new System.Drawing.Point(0, 0);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(895, 220);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Spese generali";
             // 
             // editImportoPerizie
             // 
@@ -625,34 +589,80 @@ namespace Web.GUI.Commessa
             this.editImportoPerizie.Editing = false;
             this.editImportoPerizie.Label = "Importo perizie";
             this.editImportoPerizie.LabelWidth = 175;
-            this.editImportoPerizie.Location = new System.Drawing.Point(10, 10);
+            this.editImportoPerizie.Location = new System.Drawing.Point(25, 937);
             this.editImportoPerizie.Name = "editImportoPerizie";
             this.editImportoPerizie.ReadOnly = false;
             this.editImportoPerizie.Required = false;
-            this.editImportoPerizie.Size = new System.Drawing.Size(800, 30);
+            this.editImportoPerizie.Size = new System.Drawing.Size(796, 30);
             this.editImportoPerizie.TabIndex = 0;
             this.editImportoPerizie.Text = "TemplateEditNumeric";
             this.editImportoPerizie.Value = null;
             // 
-            // button1
+            // label1
             // 
-            this.button1.Location = new System.Drawing.Point(832, 339);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1000;
-            this.button1.Text = "button1";
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.label1.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.label1.BackColor = System.Drawing.Color.Gainsboro;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.DarkRed;
+            this.label1.Location = new System.Drawing.Point(12, 329);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(889, 30);
+            this.label1.TabIndex = 1001;
+            this.label1.Text = "LUOGO DI ESECUZIONE";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.label2.BackColor = System.Drawing.Color.Gainsboro;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.DarkRed;
+            this.label2.Location = new System.Drawing.Point(12, 515);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(889, 30);
+            this.label2.TabIndex = 1001;
+            this.label2.Text = "DATI CONTRATTUALI";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.label3.BackColor = System.Drawing.Color.Gainsboro;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.DarkRed;
+            this.label3.Location = new System.Drawing.Point(12, 758);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(889, 30);
+            this.label3.TabIndex = 1001;
+            this.label3.Text = "STATO AVANZAMENTO LAVORI";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.label4.BackColor = System.Drawing.Color.Gainsboro;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.DarkRed;
+            this.label4.Location = new System.Drawing.Point(12, 904);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(889, 30);
+            this.label4.TabIndex = 1001;
+            this.label4.Text = "SPESE GENERALI";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // CommessaModel
+            // 
+            this.Location = new System.Drawing.Point(0, -168);
+            this.Size = new System.Drawing.Size(1024, 1033);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
             this.panelCommands.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tabControl)).EndInit();
-            this.tabControl.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
@@ -673,11 +683,6 @@ namespace Web.GUI.Commessa
         private Library.Template.Controls.TemplateEditDecimal editImporto;
         private Library.Template.Controls.TemplateEditText editCodice;
         private Library.Template.Controls.TemplateEditDropDown editStato;
-        private Gizmox.WebGUI.Forms.OrientationTabControl tabControl;
-        private Gizmox.WebGUI.Forms.TabPage tabPage1;
-        private Gizmox.WebGUI.Forms.TabPage tabPage2;
-        private Gizmox.WebGUI.Forms.TabPage tabPage3;
-        private Gizmox.WebGUI.Forms.TabPage tabPage4;
         private Library.Template.Controls.TemplateEditDecimal editMargine;
         private Library.Template.Controls.TemplateEditDecimal editImportoAvanzamentoLavori;
         private Library.Template.Controls.TemplateEditText editEstremiContratto;
@@ -685,7 +690,10 @@ namespace Web.GUI.Commessa
         private Library.Template.Controls.TemplateEditData editFineLavori;
         private Library.Template.Controls.TemplateEditDecimal editPercentualeAvanzamento;
         private Library.Template.Controls.TemplateEditDecimal editImportoPerizie;
-        private Gizmox.WebGUI.Forms.Button button1;
+        private Gizmox.WebGUI.Forms.Label label4;
+        private Gizmox.WebGUI.Forms.Label label3;
+        private Gizmox.WebGUI.Forms.Label label2;
+        private Gizmox.WebGUI.Forms.Label label1;
 
 
     }

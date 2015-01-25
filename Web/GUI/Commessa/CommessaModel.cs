@@ -168,12 +168,7 @@ namespace Web.GUI.Commessa
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            tabControl.SelectedTab = tabPage1;
-        }
-
-       
+          
         
 
 	}

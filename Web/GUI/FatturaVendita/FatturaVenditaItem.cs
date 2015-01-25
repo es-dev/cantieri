@@ -29,7 +29,7 @@ namespace Web.GUI.FatturaVendita
                     infoCodice.Text = "FV";
                     infoNumero.Text = obj.Numero;
                     infoData.Text = (obj.Data != null ? obj.Data.Value.ToString("dd/MM/yyyy") : "Non Impostata");
-                    infoDescrizione.Text = obj.Descrizione;
+                    //todo: da verificare--> infoDescrizione.Text = obj.Descrizione;
                     var cliente = obj.Cliente;
                     if (cliente != null)
                         infoCliente.Text = cliente.RagioneSociale;
