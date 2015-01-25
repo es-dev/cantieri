@@ -104,7 +104,7 @@ namespace Web.GUI.FatturaAcquisto
             this.panelLeft.Controls.Add(this.infoImage);
             this.panelLeft.Location = new System.Drawing.Point(2, 2);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(83, 89);
+            this.panelLeft.Size = new System.Drawing.Size(83, 96);
             this.panelLeft.TabIndex = 0;
             // 
             // infoFornitore
@@ -139,7 +139,7 @@ namespace Web.GUI.FatturaAcquisto
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.infoNumero);
-            this.Size = new System.Drawing.Size(407, 93);
+            this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.FatturaAcquistoItem_ItemClick);
             this.Controls.SetChildIndex(this.container, 0);
             this.Controls.SetChildIndex(this.infoNumero, 0);

@@ -57,7 +57,7 @@ namespace Web.GUI.AnagraficaArticolo
             this.infoCodice.BackColor = System.Drawing.Color.Silver;
             this.infoCodice.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoCodice.ForeColor = System.Drawing.Color.DimGray;
-            this.infoCodice.Location = new System.Drawing.Point(0, 60);
+            this.infoCodice.Location = new System.Drawing.Point(0, 62);
             this.infoCodice.Name = "infoCodice";
             this.infoCodice.Size = new System.Drawing.Size(83, 33);
             this.infoCodice.TabIndex = 2;
@@ -95,7 +95,7 @@ namespace Web.GUI.AnagraficaArticolo
             this.panelLeft.Controls.Add(this.infoImage);
             this.panelLeft.Location = new System.Drawing.Point(2, 2);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(83, 89);
+            this.panelLeft.Size = new System.Drawing.Size(83, 96);
             this.panelLeft.TabIndex = 0;
             // 
             // AnagraficaArticoloItem
@@ -104,7 +104,7 @@ namespace Web.GUI.AnagraficaArticolo
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.infoCodiceArticolo);
             this.Controls.Add(this.infoDescrizione);
-            this.Size = new System.Drawing.Size(407, 93);
+            this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.AnagraficaArticoloItem_ItemClick);
             this.Controls.SetChildIndex(this.container, 0);
             this.Controls.SetChildIndex(this.infoDescrizione, 0);

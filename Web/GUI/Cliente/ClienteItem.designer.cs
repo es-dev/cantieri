@@ -71,7 +71,7 @@ namespace Web.GUI.Cliente
             this.panelLeft.Controls.Add(this.infoImage);
             this.panelLeft.Location = new System.Drawing.Point(2, 2);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(83, 89);
+            this.panelLeft.Size = new System.Drawing.Size(83, 96);
             this.panelLeft.TabIndex = 0;
             // 
             // infoCommesssa
@@ -109,7 +109,7 @@ namespace Web.GUI.Cliente
             this.infoRagioneSociale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.infoRagioneSociale.Location = new System.Drawing.Point(91, 2);
             this.infoRagioneSociale.Name = "infoRagioneSociale";
-            this.infoRagioneSociale.Size = new System.Drawing.Size(309, 30);
+            this.infoRagioneSociale.Size = new System.Drawing.Size(308, 30);
             this.infoRagioneSociale.TabIndex = 1;
             this.infoRagioneSociale.Text = "RAGIONE SOCIALE";
             // 
@@ -120,7 +120,7 @@ namespace Web.GUI.Cliente
             this.Controls.Add(this.infoPartitaIVA);
             this.Controls.Add(this.infoCommesssa);
             this.Controls.Add(this.panelLeft);
-            this.Size = new System.Drawing.Size(407, 93);
+            this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.ClienteItem_ItemClick);
             this.Controls.SetChildIndex(this.container, 0);
             this.Controls.SetChildIndex(this.panelLeft, 0);

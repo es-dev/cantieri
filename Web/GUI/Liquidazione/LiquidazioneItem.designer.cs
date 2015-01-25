@@ -78,7 +78,7 @@ namespace Web.GUI.Liquidazione
             this.panelLeft.Controls.Add(this.infoImage);
             this.panelLeft.Location = new System.Drawing.Point(2, 2);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(83, 89);
+            this.panelLeft.Size = new System.Drawing.Size(83, 96);
             this.panelLeft.TabIndex = 0;
             // 
             // infoNote
@@ -102,7 +102,7 @@ namespace Web.GUI.Liquidazione
             this.infoFattura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.infoFattura.Location = new System.Drawing.Point(97, 1);
             this.infoFattura.Name = "infoFattura";
-            this.infoFattura.Size = new System.Drawing.Size(305, 30);
+            this.infoFattura.Size = new System.Drawing.Size(301, 30);
             this.infoFattura.TabIndex = 1;
             this.infoFattura.Text = "FATTURA";
             // 
@@ -124,7 +124,7 @@ namespace Web.GUI.Liquidazione
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.panelLeft);
-            this.Size = new System.Drawing.Size(407, 93);
+            this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.LiquidazioneItem_ItemClick);
             this.Controls.SetChildIndex(this.container, 0);
             this.Controls.SetChildIndex(this.panelLeft, 0);

@@ -44,6 +44,7 @@ namespace Web.GUI.Fornitore
             // container
             // 
             this.container.Controls.Add(this.infoCommesssa);
+            this.container.Size = new System.Drawing.Size(408, 93);
             // 
             // infoCodice
             // 
@@ -76,7 +77,7 @@ namespace Web.GUI.Fornitore
             this.panelLeft.Controls.Add(this.infoImage);
             this.panelLeft.Location = new System.Drawing.Point(2, 2);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(83, 89);
+            this.panelLeft.Size = new System.Drawing.Size(83, 96);
             this.panelLeft.TabIndex = 0;
             // 
             // infoRagioneSociale
@@ -87,7 +88,7 @@ namespace Web.GUI.Fornitore
             this.infoRagioneSociale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.infoRagioneSociale.Location = new System.Drawing.Point(91, 2);
             this.infoRagioneSociale.Name = "infoRagioneSociale";
-            this.infoRagioneSociale.Size = new System.Drawing.Size(305, 30);
+            this.infoRagioneSociale.Size = new System.Drawing.Size(306, 30);
             this.infoRagioneSociale.TabIndex = 1;
             this.infoRagioneSociale.Text = "RAGIONE SOCIALE";
             // 
@@ -100,7 +101,7 @@ namespace Web.GUI.Fornitore
             this.infoPartitaIVA.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.infoPartitaIVA.Location = new System.Drawing.Point(91, 36);
             this.infoPartitaIVA.Name = "infoPartitaIVA";
-            this.infoPartitaIVA.Size = new System.Drawing.Size(305, 25);
+            this.infoPartitaIVA.Size = new System.Drawing.Size(306, 25);
             this.infoPartitaIVA.TabIndex = 1;
             this.infoPartitaIVA.Text = "Partita IVA";
             // 
@@ -111,9 +112,9 @@ namespace Web.GUI.Fornitore
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoCommesssa.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoCommesssa.ForeColor = System.Drawing.Color.DarkRed;
-            this.infoCommesssa.Location = new System.Drawing.Point(91, 71);
+            this.infoCommesssa.Location = new System.Drawing.Point(92, 64);
             this.infoCommesssa.Name = "infoCommesssa";
-            this.infoCommesssa.Size = new System.Drawing.Size(305, 19);
+            this.infoCommesssa.Size = new System.Drawing.Size(314, 28);
             this.infoCommesssa.TabIndex = 1;
             this.infoCommesssa.Text = "Commessa";
             this.infoCommesssa.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -124,7 +125,7 @@ namespace Web.GUI.Fornitore
             this.Controls.Add(this.infoPartitaIVA);
             this.Controls.Add(this.infoRagioneSociale);
             this.Controls.Add(this.panelLeft);
-            this.Size = new System.Drawing.Size(407, 93);
+            this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.FornitoreItem_ItemClick);
             this.Controls.SetChildIndex(this.container, 0);
             this.Controls.SetChildIndex(this.panelLeft, 0);

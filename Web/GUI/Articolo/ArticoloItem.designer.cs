@@ -71,7 +71,7 @@ namespace Web.GUI.Articolo
             this.panelLeft.Controls.Add(this.infoImage);
             this.panelLeft.Location = new System.Drawing.Point(2, 2);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(83, 89);
+            this.panelLeft.Size = new System.Drawing.Size(83, 96);
             this.panelLeft.TabIndex = 0;
             // 
             // infoCodiceArticolo
@@ -121,7 +121,7 @@ namespace Web.GUI.Articolo
             this.Controls.Add(this.infoDescrizione);
             this.Controls.Add(this.infoCodiceArticolo);
             this.Controls.Add(this.panelLeft);
-            this.Size = new System.Drawing.Size(407, 93);
+            this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.ArticoloItem_ItemClick);
             this.Controls.SetChildIndex(this.container, 0);
             this.Controls.SetChildIndex(this.panelLeft, 0);
