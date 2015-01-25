@@ -26,12 +26,21 @@ namespace Web.GUI.Articolo
                 {
                     var obj = (WcfService.Dto.ArticoloDto)model;
                     infoImage.Image = "Images.dashboard.articolo.png";
-                    infoCodice.Text = "CA";
-                    infoCodiceArticolo.Text = obj.Codice;
-                    infoDescrizione.Text = obj.Descrizione;
+                    infoCodice.Text = "ART";
+                    var codiceArticolo = "Non definito";
+                    if (obj.Codice != null)
+                        codiceArticolo = obj.Codice;
+                    infoCodiceArticolo.Text = codiceArticolo;
+                    var descrizione = "Descrizione non inserita";
+                    if (obj.Descrizione != null)
+                        descrizione = obj.Descrizione;
+                    infoDescrizione.Text = descrizione;
                     var fattura = obj.Fattura;
+                    var numeroFattura = "N/D";
                     if (fattura != null)
-                        infoFattura.Text = "Fattura N. " + fattura.Numero;
+                        if (fattura.Numero != null)
+                            numeroFattura = fattura.Numero;
+                    infoFattura.Text = "Fattura N. " + numeroFattura;
                 }
             }
             catch (Exception ex)

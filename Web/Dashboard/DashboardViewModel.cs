@@ -88,7 +88,7 @@ namespace Web.Dashboard
                 var dashboardPagamento = new Dashboard("Pagamenti", "PAG", "Gestisci i pagamenti per le fattura inserite, controllando le scadenze, le passività e gli importi in dare/avere...", "Images.dashboard.pagamento.png", "", typeof(PagamentoView));
                 var dashboardCliente = new Dashboard("Clienti", "CL", "Specifica i clienti per le commesse inserite nel sistema, definisci gli importi attribuiti ai vari SAL...", "Images.dashboard.cliente.png", "", typeof(ClienteView));
                 var dashboardFatturaVendita = new Dashboard("Fatture di vendita", "FV", "Inserisci le fatture di vendita per i clienti delle commesse, gestisci i pagamenti e il conto economico...", "Images.dashboard.fatturavendita.png", "", typeof(FatturaVenditaView));
-                var dashboardLiquidazione = new Dashboard("Liquidazioni", "LIQ", "Gestisci le liquidazioni corrispondenti alle fatture di vendita per le commesse inserite nel sistema, visualizza i movimenti in dare/avere...", "Images.dashboard.liquidazione.png", "", typeof(LiquidazioneView));
+                var dashboardIncassi = new Dashboard("Incassi", "INC", "Gestisci gli incassi corrispondenti alle fatture di vendita per le commesse inserite nel sistema, visualizza i movimenti in dare/avere...", "Images.dashboard.liquidazione.png", "", typeof(LiquidazioneView));
                 var dashboardSAL = new Dashboard("SAL", "SAL", "Crea uno Stato di Avanzamento Lavori (SAL) e controlla i bilanci delle tue commesse, evidenziando i movimenti in attivo/passivo...", "Images.dashboard.SAL.png", "", typeof(SALView));
                 var dashboardAnagraficaFornitore = new Dashboard("Anagrafiche fornitori", "AF", "Archivia i fornitori verso i quali effettui l'approvviggionamento delle risorse per una rapida gestione degli archivi...", "Images.dashboard.anagraficafornitore.png", "", typeof(AnagraficaFornitoreView));
                 var dashboardAnagraficaCliente = new Dashboard("Anagrafiche clienti", "AC", "Archivia i clienti verso i quali esegui le commesse dei lavori assegnati  per una rapida gestione degli storici...", "Images.dashboard.anagraficacliente.png", "", typeof(AnagraficaClienteView));
@@ -102,7 +102,7 @@ namespace Web.Dashboard
                 dashboards.Add(dashboardPagamento);
                 dashboards.Add(dashboardCliente);
                 dashboards.Add(dashboardFatturaVendita);
-                dashboards.Add(dashboardLiquidazione);
+                dashboards.Add(dashboardIncassi);
                 dashboards.Add(dashboardSAL);
                 dashboards.Add(dashboardAnagraficaFornitore);
                 dashboards.Add(dashboardAnagraficaCliente);

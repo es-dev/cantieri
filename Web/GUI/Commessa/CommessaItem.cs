@@ -26,7 +26,13 @@ namespace Web.GUI.Commessa
                 {
                     var obj = (WcfService.Dto.CommessaDto)model;
                     infoImage.Image = "Images.dashboard.commessa.png";
-                    infoDenominazione.Text = obj.Denominazione;
+                    var codice = "N/D";
+                    var denominazione = "Non definito";
+                    if (obj.Codice != null)
+                        codice = obj.Codice;
+                    if (obj.Denominazione != null)
+                        denominazione = obj.Denominazione;
+                    infoDenominazione.Text = codice + " - " + denominazione;
                     infoDescrizione.Text = obj.Descrizione;
                     var azienda = obj.Azienda;
                     if (azienda != null)

@@ -179,5 +179,19 @@ namespace Web.GUI.FatturaAcquisto
             }
         }
 
+        private void editImponibileIVA_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                //prelievo valori da grafica in variabili var xxx = editControl.Value
+                //invio i dati a BL per calcolo e restituzione valori  ver tot = BL.GetXXXXXX
+                //impostazione dei dati in grafica  editControl.Value = tot
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
 	}
 }

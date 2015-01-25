@@ -85,7 +85,7 @@ namespace Web.GUI.Fornitore
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoRagioneSociale.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoRagioneSociale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
-            this.infoRagioneSociale.Location = new System.Drawing.Point(95, -3);
+            this.infoRagioneSociale.Location = new System.Drawing.Point(91, 2);
             this.infoRagioneSociale.Name = "infoRagioneSociale";
             this.infoRagioneSociale.Size = new System.Drawing.Size(305, 30);
             this.infoRagioneSociale.TabIndex = 1;
@@ -98,9 +98,9 @@ namespace Web.GUI.Fornitore
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoPartitaIVA.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoPartitaIVA.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoPartitaIVA.Location = new System.Drawing.Point(98, 27);
+            this.infoPartitaIVA.Location = new System.Drawing.Point(91, 36);
             this.infoPartitaIVA.Name = "infoPartitaIVA";
-            this.infoPartitaIVA.Size = new System.Drawing.Size(309, 25);
+            this.infoPartitaIVA.Size = new System.Drawing.Size(305, 25);
             this.infoPartitaIVA.TabIndex = 1;
             this.infoPartitaIVA.Text = "Partita IVA";
             // 
@@ -110,12 +110,13 @@ namespace Web.GUI.Fornitore
             | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoCommesssa.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoCommesssa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoCommesssa.Location = new System.Drawing.Point(96, 51);
+            this.infoCommesssa.ForeColor = System.Drawing.Color.DarkRed;
+            this.infoCommesssa.Location = new System.Drawing.Point(91, 71);
             this.infoCommesssa.Name = "infoCommesssa";
-            this.infoCommesssa.Size = new System.Drawing.Size(309, 39);
+            this.infoCommesssa.Size = new System.Drawing.Size(305, 19);
             this.infoCommesssa.TabIndex = 1;
             this.infoCommesssa.Text = "Commessa";
+            this.infoCommesssa.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // FornitoreItem
             // 

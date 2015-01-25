@@ -86,7 +86,7 @@ namespace Web.GUI.AnagraficaCliente
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoRagioneSociale.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoRagioneSociale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
-            this.infoRagioneSociale.Location = new System.Drawing.Point(90, 2);
+            this.infoRagioneSociale.Location = new System.Drawing.Point(91, 2);
             this.infoRagioneSociale.Name = "infoRagioneSociale";
             this.infoRagioneSociale.Size = new System.Drawing.Size(305, 30);
             this.infoRagioneSociale.TabIndex = 1;
@@ -97,9 +97,9 @@ namespace Web.GUI.AnagraficaCliente
             this.infoPartitaIVA.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoPartitaIVA.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoPartitaIVA.ForeColor = System.Drawing.Color.DarkRed;
-            this.infoPartitaIVA.Location = new System.Drawing.Point(98, 69);
+            this.infoPartitaIVA.Location = new System.Drawing.Point(91, 71);
             this.infoPartitaIVA.Name = "infoPartitaIVA";
-            this.infoPartitaIVA.Size = new System.Drawing.Size(300, 20);
+            this.infoPartitaIVA.Size = new System.Drawing.Size(305, 20);
             this.infoPartitaIVA.TabIndex = 1;
             this.infoPartitaIVA.Text = "Partita IVA";
             this.infoPartitaIVA.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -112,7 +112,7 @@ namespace Web.GUI.AnagraficaCliente
             this.infoIndirizzo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.infoIndirizzo.Location = new System.Drawing.Point(91, 31);
             this.infoIndirizzo.Name = "infoIndirizzo";
-            this.infoIndirizzo.Size = new System.Drawing.Size(303, 33);
+            this.infoIndirizzo.Size = new System.Drawing.Size(305, 33);
             this.infoIndirizzo.TabIndex = 1;
             this.infoIndirizzo.Text = "Indirizzo";
             // 

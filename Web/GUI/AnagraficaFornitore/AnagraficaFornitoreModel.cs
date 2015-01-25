@@ -67,7 +67,10 @@ namespace Web.GUI.AnagraficaFornitore
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AnagraficaFornitoreDto)model;
-                    obj.RagioneSociale = editRagioneSociale.Value.Trim();
+                    var ragioneSociale = editRagioneSociale.Value;
+                    if (ragioneSociale != null)
+                       ragioneSociale= ragioneSociale.Trim();
+                    obj.RagioneSociale = ragioneSociale; //editRagioneSociale.Value.Trim();
                     obj.Indirizzo = editIndirizzo.Value;
                     obj.CAP = editCAP.Value;
                     obj.Comune = editComune.Value;

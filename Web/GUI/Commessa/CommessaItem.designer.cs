@@ -91,20 +91,21 @@ namespace Web.GUI.Commessa
             this.infoAzienda.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.infoAzienda.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoAzienda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoAzienda.Location = new System.Drawing.Point(205, 72);
+            this.infoAzienda.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.infoAzienda.ForeColor = System.Drawing.Color.DarkRed;
+            this.infoAzienda.Location = new System.Drawing.Point(91, 72);
             this.infoAzienda.Name = "infoAzienda";
-            this.infoAzienda.Size = new System.Drawing.Size(202, 18);
+            this.infoAzienda.Size = new System.Drawing.Size(305, 18);
             this.infoAzienda.TabIndex = 1;
             this.infoAzienda.Text = "Azienda";
+            this.infoAzienda.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // infoDescrizione
             // 
             this.infoDescrizione.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoDescrizione.Location = new System.Drawing.Point(93, 36);
+            this.infoDescrizione.Location = new System.Drawing.Point(91, 36);
             this.infoDescrizione.Name = "infoDescrizione";
-            this.infoDescrizione.Size = new System.Drawing.Size(314, 36);
+            this.infoDescrizione.Size = new System.Drawing.Size(305, 36);
             this.infoDescrizione.TabIndex = 2;
             this.infoDescrizione.Text = "Descrizione";
             // 

@@ -46,9 +46,9 @@ namespace Web.GUI.CentroCosto
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoDenominazione.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoDenominazione.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoDenominazione.Location = new System.Drawing.Point(94, 32);
+            this.infoDenominazione.Location = new System.Drawing.Point(91, 32);
             this.infoDenominazione.Name = "infoDenominazione";
-            this.infoDenominazione.Size = new System.Drawing.Size(309, 55);
+            this.infoDenominazione.Size = new System.Drawing.Size(305, 55);
             this.infoDenominazione.TabIndex = 1;
             this.infoDenominazione.Text = "Denominazione";
             // 
@@ -80,7 +80,7 @@ namespace Web.GUI.CentroCosto
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoCodiceCentroCosto.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoCodiceCentroCosto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
-            this.infoCodiceCentroCosto.Location = new System.Drawing.Point(92, 4);
+            this.infoCodiceCentroCosto.Location = new System.Drawing.Point(91, 4);
             this.infoCodiceCentroCosto.Name = "infoCodiceCentroCosto";
             this.infoCodiceCentroCosto.Size = new System.Drawing.Size(305, 30);
             this.infoCodiceCentroCosto.TabIndex = 1;

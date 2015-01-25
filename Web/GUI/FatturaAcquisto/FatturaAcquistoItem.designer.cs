@@ -35,7 +35,6 @@ namespace Web.GUI.FatturaAcquisto
             this.infoImage = new Gizmox.WebGUI.Forms.PictureBox();
             this.infoNumero = new Gizmox.WebGUI.Forms.Label();
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
-            this.infoDescrizione = new Gizmox.WebGUI.Forms.Label();
             this.infoFornitore = new Gizmox.WebGUI.Forms.Label();
             this.infoCentroCosto = new Gizmox.WebGUI.Forms.Label();
             this.container.SuspendLayout();
@@ -46,7 +45,6 @@ namespace Web.GUI.FatturaAcquisto
             // container
             // 
             this.container.Controls.Add(this.infoCentroCosto);
-            this.container.Controls.Add(this.infoDescrizione);
             this.container.Controls.Add(this.infoFornitore);
             this.container.Controls.Add(this.infoData);
             // 
@@ -57,9 +55,9 @@ namespace Web.GUI.FatturaAcquisto
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoData.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoData.Location = new System.Drawing.Point(92, 70);
+            this.infoData.Location = new System.Drawing.Point(91, 51);
             this.infoData.Name = "infoData";
-            this.infoData.Size = new System.Drawing.Size(116, 20);
+            this.infoData.Size = new System.Drawing.Size(305, 19);
             this.infoData.TabIndex = 1;
             this.infoData.Text = "Data";
             // 
@@ -109,19 +107,6 @@ namespace Web.GUI.FatturaAcquisto
             this.panelLeft.Size = new System.Drawing.Size(83, 89);
             this.panelLeft.TabIndex = 0;
             // 
-            // infoDescrizione
-            // 
-            this.infoDescrizione.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.infoDescrizione.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoDescrizione.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoDescrizione.Location = new System.Drawing.Point(92, 31);
-            this.infoDescrizione.Name = "infoDescrizione";
-            this.infoDescrizione.Size = new System.Drawing.Size(309, 20);
-            this.infoDescrizione.TabIndex = 1;
-            this.infoDescrizione.Text = "Descrizione";
-            // 
             // infoFornitore
             // 
             this.infoFornitore.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
@@ -129,9 +114,9 @@ namespace Web.GUI.FatturaAcquisto
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoFornitore.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoFornitore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoFornitore.Location = new System.Drawing.Point(92, 51);
+            this.infoFornitore.Location = new System.Drawing.Point(91, 31);
             this.infoFornitore.Name = "infoFornitore";
-            this.infoFornitore.Size = new System.Drawing.Size(309, 20);
+            this.infoFornitore.Size = new System.Drawing.Size(305, 19);
             this.infoFornitore.TabIndex = 1;
             this.infoFornitore.Text = "Fornitore";
             // 
@@ -141,12 +126,13 @@ namespace Web.GUI.FatturaAcquisto
             | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoCentroCosto.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoCentroCosto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoCentroCosto.Location = new System.Drawing.Point(209, 70);
+            this.infoCentroCosto.ForeColor = System.Drawing.Color.DarkRed;
+            this.infoCentroCosto.Location = new System.Drawing.Point(91, 70);
             this.infoCentroCosto.Name = "infoCentroCosto";
-            this.infoCentroCosto.Size = new System.Drawing.Size(197, 19);
+            this.infoCentroCosto.Size = new System.Drawing.Size(305, 20);
             this.infoCentroCosto.TabIndex = 1;
             this.infoCentroCosto.Text = "Centro di Costo";
+            this.infoCentroCosto.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // FatturaAcquistoItem
             // 
@@ -172,7 +158,6 @@ namespace Web.GUI.FatturaAcquisto
         private Gizmox.WebGUI.Forms.PictureBox infoImage;
         private Gizmox.WebGUI.Forms.Label infoNumero;
         private Gizmox.WebGUI.Forms.Panel panelLeft;
-        private Gizmox.WebGUI.Forms.Label infoDescrizione;
         private Gizmox.WebGUI.Forms.Label infoFornitore;
         private Gizmox.WebGUI.Forms.Label infoCentroCosto;
 	}

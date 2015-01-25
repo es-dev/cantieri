@@ -41,7 +41,7 @@ namespace Web.GUI.AnagraficaCliente
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AnagraficaClienteDto)model;
-                    editRagioneSociale.Value = obj.RagioneSociale.Trim();
+                    editRagioneSociale.Value = obj.RagioneSociale;
                     editIndirizzo.Value = obj.Indirizzo;
                     editCAP.Value = obj.CAP;
                     editComune.Value = obj.Comune;
@@ -67,7 +67,10 @@ namespace Web.GUI.AnagraficaCliente
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AnagraficaClienteDto)model;
-                    obj.RagioneSociale = editRagioneSociale.Value;
+                    var ragioneSociale = editRagioneSociale.Value;
+                    if (ragioneSociale != null)
+                        ragioneSociale = ragioneSociale.Trim();
+                    obj.RagioneSociale = ragioneSociale;
                     obj.Indirizzo = editIndirizzo.Value;
                     obj.CAP = editCAP.Value;
                     obj.Comune = editComune.Value;

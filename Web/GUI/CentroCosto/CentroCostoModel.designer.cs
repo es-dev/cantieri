@@ -34,6 +34,7 @@ namespace Web.GUI.CentroCosto
             this.editDenominazione = new Library.Template.Controls.TemplateEditText();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
+            this.panelCommands.SuspendLayout();
             this.SuspendLayout();
             // 
             // container
@@ -88,7 +89,7 @@ namespace Web.GUI.CentroCosto
             this.editDenominazione.Editing = false;
             this.editDenominazione.Label = "Denominazione";
             this.editDenominazione.LabelWidth = 175;
-            this.editDenominazione.Location = new System.Drawing.Point(25, 127);
+            this.editDenominazione.Location = new System.Drawing.Point(25, 122);
             this.editDenominazione.Name = "editDenominazione";
             this.editDenominazione.ReadOnly = false;
             this.editDenominazione.Required = false;
@@ -96,9 +97,11 @@ namespace Web.GUI.CentroCosto
             this.editDenominazione.TabIndex = 1;
             this.editDenominazione.Text = "EditControl";
             this.editDenominazione.Value = null;
+            this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
+            this.panelCommands.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
