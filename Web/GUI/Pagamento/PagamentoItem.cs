@@ -28,7 +28,12 @@ namespace Web.GUI.Pagamento
                     infoImage.Image = "Images.dashboard.pagamento.png";
                     infoCodice.Text = "PAG";
                     infoNote.Text = obj.Note;
-                    infoImporto.Text = (obj.Importo != null ? obj.Importo.Value.ToString("0.00") : "Non Impostata"); //oppure ti fai una funzione GetData
+                    var importo = "N/D";
+                    if (obj.Importo != null)
+                        importo = obj.Importo.Value.ToString("0.00");
+                    infoImporto.Text = "Importo: " + importo;
+
+                    //infoImporto.Text = (obj.Importo != null ? obj.Importo.Value.ToString("0.00") : "Non Impostata"); //oppure ti fai una funzione GetData
                     var fatturaAcquisto = obj.FatturaAcquisto;
                     if (fatturaAcquisto != null)
                         infoFattura.Text = "Fattura N. " + fatturaAcquisto.Numero;

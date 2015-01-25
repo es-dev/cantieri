@@ -55,9 +55,9 @@ namespace Web.GUI.FatturaAcquisto
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoData.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoData.Location = new System.Drawing.Point(91, 51);
+            this.infoData.Location = new System.Drawing.Point(91, 31);
             this.infoData.Name = "infoData";
-            this.infoData.Size = new System.Drawing.Size(305, 19);
+            this.infoData.Size = new System.Drawing.Size(305, 17);
             this.infoData.TabIndex = 1;
             this.infoData.Text = "Data";
             // 
@@ -113,12 +113,13 @@ namespace Web.GUI.FatturaAcquisto
             | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoFornitore.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoFornitore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoFornitore.Location = new System.Drawing.Point(91, 31);
+            this.infoFornitore.ForeColor = System.Drawing.Color.DarkRed;
+            this.infoFornitore.Location = new System.Drawing.Point(246, 70);
             this.infoFornitore.Name = "infoFornitore";
-            this.infoFornitore.Size = new System.Drawing.Size(305, 19);
+            this.infoFornitore.Size = new System.Drawing.Size(150, 17);
             this.infoFornitore.TabIndex = 1;
             this.infoFornitore.Text = "Fornitore";
+            this.infoFornitore.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // infoCentroCosto
             // 
@@ -129,10 +130,9 @@ namespace Web.GUI.FatturaAcquisto
             this.infoCentroCosto.ForeColor = System.Drawing.Color.DarkRed;
             this.infoCentroCosto.Location = new System.Drawing.Point(91, 70);
             this.infoCentroCosto.Name = "infoCentroCosto";
-            this.infoCentroCosto.Size = new System.Drawing.Size(305, 20);
+            this.infoCentroCosto.Size = new System.Drawing.Size(149, 17);
             this.infoCentroCosto.TabIndex = 1;
             this.infoCentroCosto.Text = "Centro di Costo";
-            this.infoCentroCosto.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // FatturaAcquistoItem
             // 

@@ -31,7 +31,7 @@ namespace Web.GUI.SAL
                     var commessa = obj.Commessa;
                     if (commessa != null)
                     {
-                        infoCommesssa.Text = commessa.Denominazione;
+                        infoCommesssa.Text = "Commessa (" + commessa.Codice + ") " + commessa.Denominazione;
                     }
 
                 }

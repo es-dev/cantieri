@@ -28,7 +28,18 @@ namespace Web.GUI.Azienda
                     infoCodice.Text = obj.Codice;
                     infoImage.Image = "Images.dashboard.azienda.png";
                     infoDenominazione.Text = obj.Denominazione;
-                    infoIndirizzo.Text = obj.Indirizzo + " " + obj.CAP + " " + obj.Comune + " (" + obj.Provincia + ")";
+                    var indirizzo = "Non definito";
+                    if (obj.Indirizzo != null)
+                    {
+                        indirizzo = obj.Indirizzo;
+                        if (obj.CAP != null)
+                            indirizzo += " - " + obj.CAP;
+                        if (obj.Comune != null)
+                            indirizzo += " - " + obj.Comune;
+                        if (obj.Provincia != null)
+                            indirizzo += " (" + obj.Provincia + ")";
+                    }
+                    infoIndirizzo.Text = indirizzo; // obj.Indirizzo + " - " + obj.CAP + " - " + obj.Comune + " (" + obj.Provincia + ")";
                 }
             }
             catch (Exception ex)

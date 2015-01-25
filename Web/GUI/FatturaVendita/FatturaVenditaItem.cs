@@ -27,7 +27,10 @@ namespace Web.GUI.FatturaVendita
                     var obj = (WcfService.Dto.FatturaVenditaDto)model;
                     infoImage.Image = "Images.dashboard.fatturavendita.png";
                     infoCodice.Text = "FV";
-                    infoNumero.Text = obj.Numero;
+                    var numero = "N/D";
+                    if (obj.Numero != null)
+                        numero = obj.Numero;
+                    infoNumero.Text = "Fattura N. " + numero;
                     infoData.Text = (obj.Data != null ? obj.Data.Value.ToString("dd/MM/yyyy") : "Non Impostata");
                     //todo: da verificare--> infoDescrizione.Text = obj.Descrizione;
                     var cliente = obj.Cliente;

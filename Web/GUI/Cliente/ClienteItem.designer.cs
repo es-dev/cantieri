@@ -83,7 +83,7 @@ namespace Web.GUI.Cliente
             this.infoCommesssa.ForeColor = System.Drawing.Color.DarkRed;
             this.infoCommesssa.Location = new System.Drawing.Point(91, 71);
             this.infoCommesssa.Name = "infoCommesssa";
-            this.infoCommesssa.Size = new System.Drawing.Size(309, 19);
+            this.infoCommesssa.Size = new System.Drawing.Size(305, 19);
             this.infoCommesssa.TabIndex = 1;
             this.infoCommesssa.Text = "Commessa";
             this.infoCommesssa.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -97,7 +97,7 @@ namespace Web.GUI.Cliente
             this.infoPartitaIVA.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.infoPartitaIVA.Location = new System.Drawing.Point(91, 32);
             this.infoPartitaIVA.Name = "infoPartitaIVA";
-            this.infoPartitaIVA.Size = new System.Drawing.Size(309, 25);
+            this.infoPartitaIVA.Size = new System.Drawing.Size(305, 25);
             this.infoPartitaIVA.TabIndex = 1;
             this.infoPartitaIVA.Text = "Partita IVA";
             // 
@@ -109,7 +109,7 @@ namespace Web.GUI.Cliente
             this.infoRagioneSociale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.infoRagioneSociale.Location = new System.Drawing.Point(91, 2);
             this.infoRagioneSociale.Name = "infoRagioneSociale";
-            this.infoRagioneSociale.Size = new System.Drawing.Size(308, 30);
+            this.infoRagioneSociale.Size = new System.Drawing.Size(305, 30);
             this.infoRagioneSociale.TabIndex = 1;
             this.infoRagioneSociale.Text = "RAGIONE SOCIALE";
             // 

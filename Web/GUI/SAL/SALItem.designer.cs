@@ -93,9 +93,9 @@ namespace Web.GUI.SAL
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoData.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoData.Location = new System.Drawing.Point(93, 32);
+            this.infoData.Location = new System.Drawing.Point(91, 32);
             this.infoData.Name = "infoData";
-            this.infoData.Size = new System.Drawing.Size(309, 20);
+            this.infoData.Size = new System.Drawing.Size(305, 20);
             this.infoData.TabIndex = 1;
             this.infoData.Text = "Data";
             // 
@@ -105,10 +105,10 @@ namespace Web.GUI.SAL
             | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoCommesssa.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoCommesssa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoCommesssa.Location = new System.Drawing.Point(92, 72);
+            this.infoCommesssa.ForeColor = System.Drawing.Color.DarkRed;
+            this.infoCommesssa.Location = new System.Drawing.Point(91, 71);
             this.infoCommesssa.Name = "infoCommesssa";
-            this.infoCommesssa.Size = new System.Drawing.Size(309, 19);
+            this.infoCommesssa.Size = new System.Drawing.Size(305, 19);
             this.infoCommesssa.TabIndex = 1;
             this.infoCommesssa.Text = "Commessa";
             this.infoCommesssa.TextAlign = System.Drawing.ContentAlignment.TopRight;

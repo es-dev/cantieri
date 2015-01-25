@@ -27,7 +27,11 @@ namespace Web.GUI.AnagraficaArticolo
                     var obj = (WcfService.Dto.AnagraficaArticoloDto)model;
                     infoImage.Image = "Images.dashboard.anagraficaarticolo.png";
                     infoCodice.Text = "CA";
-                    infoCodiceArticolo.Text = "CODICE ARTICOLO "+obj.Codice;
+                    var codiceArticolo = "N/D";
+                    if (obj.Codice != null)
+                        codiceArticolo = obj.Codice;
+                    infoCodiceArticolo.Text = "CODICE ARTICOLO: " + codiceArticolo;
+
                     infoDescrizione.Text = obj.Descrizione;
                 }
             }

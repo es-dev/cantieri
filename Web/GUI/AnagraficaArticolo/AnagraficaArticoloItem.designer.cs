@@ -44,7 +44,7 @@ namespace Web.GUI.AnagraficaArticolo
             this.infoDescrizione.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.infoDescrizione.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoDescrizione.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoDescrizione.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.infoDescrizione.Location = new System.Drawing.Point(91, 32);
             this.infoDescrizione.Name = "infoDescrizione";

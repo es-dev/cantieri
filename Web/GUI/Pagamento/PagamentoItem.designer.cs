@@ -54,9 +54,9 @@ namespace Web.GUI.Pagamento
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoImporto.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoImporto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoImporto.Location = new System.Drawing.Point(92, 70);
+            this.infoImporto.Location = new System.Drawing.Point(91, 71);
             this.infoImporto.Name = "infoImporto";
-            this.infoImporto.Size = new System.Drawing.Size(309, 20);
+            this.infoImporto.Size = new System.Drawing.Size(305, 18);
             this.infoImporto.TabIndex = 1;
             this.infoImporto.Text = "Importo";
             this.infoImporto.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -89,9 +89,9 @@ namespace Web.GUI.Pagamento
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoFattura.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoFattura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
-            this.infoFattura.Location = new System.Drawing.Point(84, 1);
+            this.infoFattura.Location = new System.Drawing.Point(91, 2);
             this.infoFattura.Name = "infoFattura";
-            this.infoFattura.Size = new System.Drawing.Size(314, 30);
+            this.infoFattura.Size = new System.Drawing.Size(305, 30);
             this.infoFattura.TabIndex = 1;
             this.infoFattura.Text = "FATTURA";
             // 
@@ -114,9 +114,9 @@ namespace Web.GUI.Pagamento
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoNote.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoNote.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoNote.Location = new System.Drawing.Point(92, 32);
+            this.infoNote.Location = new System.Drawing.Point(91, 32);
             this.infoNote.Name = "infoNote";
-            this.infoNote.Size = new System.Drawing.Size(309, 38);
+            this.infoNote.Size = new System.Drawing.Size(305, 36);
             this.infoNote.TabIndex = 1;
             this.infoNote.Text = "Note";
             // 

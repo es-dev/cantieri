@@ -51,7 +51,7 @@ namespace Web.GUI.AnagraficaFornitore
             this.infoPartitaIVA.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoPartitaIVA.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoPartitaIVA.ForeColor = System.Drawing.Color.DarkRed;
-            this.infoPartitaIVA.Location = new System.Drawing.Point(91, 72);
+            this.infoPartitaIVA.Location = new System.Drawing.Point(91, 71);
             this.infoPartitaIVA.Name = "infoPartitaIVA";
             this.infoPartitaIVA.Size = new System.Drawing.Size(305, 18);
             this.infoPartitaIVA.TabIndex = 1;

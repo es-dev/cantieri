@@ -28,7 +28,10 @@ namespace Web.GUI.Liquidazione
                     infoImage.Image = "Images.dashboard.liquidazione.png";
                     infoCodice.Text = "LIQ";
                     infoNote.Text = obj.Note;
-                    infoImporto.Text = obj.Importo.ToString();
+                    var importo = "N/D";
+                    if (obj.Importo != null)
+                        importo = obj.Importo.Value.ToString("0.00");
+                    infoImporto.Text ="Importo: " + importo;
                     var fatturaVendita = obj.FatturaVendita;
                     if (fatturaVendita != null)
                         infoFattura.Text = "Fattura N. " + fatturaVendita.Numero;

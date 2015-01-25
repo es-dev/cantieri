@@ -95,7 +95,7 @@ namespace Web.GUI.Articolo
             this.infoDescrizione.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.infoDescrizione.Location = new System.Drawing.Point(91, 33);
             this.infoDescrizione.Name = "infoDescrizione";
-            this.infoDescrizione.Size = new System.Drawing.Size(305, 19);
+            this.infoDescrizione.Size = new System.Drawing.Size(305, 38);
             this.infoDescrizione.TabIndex = 1;
             this.infoDescrizione.Text = "Descrizione";
             // 
@@ -107,9 +107,9 @@ namespace Web.GUI.Articolo
             this.infoFattura.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoFattura.ForeColor = System.Drawing.Color.DarkRed;
             this.infoFattura.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.infoFattura.Location = new System.Drawing.Point(91, 70);
+            this.infoFattura.Location = new System.Drawing.Point(91, 71);
             this.infoFattura.Name = "infoFattura";
-            this.infoFattura.Size = new System.Drawing.Size(305, 19);
+            this.infoFattura.Size = new System.Drawing.Size(305, 20);
             this.infoFattura.TabIndex = 1;
             this.infoFattura.Text = "Fattura";
             this.infoFattura.TextAlign = System.Drawing.ContentAlignment.TopRight;

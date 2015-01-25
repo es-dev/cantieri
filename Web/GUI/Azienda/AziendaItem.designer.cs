@@ -46,9 +46,9 @@ namespace Web.GUI.Azienda
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoIndirizzo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoIndirizzo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoIndirizzo.Location = new System.Drawing.Point(94, 32);
+            this.infoIndirizzo.Location = new System.Drawing.Point(91, 32);
             this.infoIndirizzo.Name = "infoIndirizzo";
-            this.infoIndirizzo.Size = new System.Drawing.Size(309, 55);
+            this.infoIndirizzo.Size = new System.Drawing.Size(305, 55);
             this.infoIndirizzo.TabIndex = 1;
             this.infoIndirizzo.Text = "Indirizzo";
             // 
