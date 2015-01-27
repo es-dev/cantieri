@@ -44,7 +44,7 @@ namespace Web.Dashboard
                     var space = (ISpace)Activator.CreateInstance(type);
                     var viewModel = space.ViewModel;
                     item.Count = viewModel.GetCount(); 
-                    item.CountVisible = true;
+                    //item.CountVisible = true;
                 }
             }
             catch (Exception ex)
