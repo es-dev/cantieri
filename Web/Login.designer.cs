@@ -109,25 +109,24 @@ namespace Web
             // 
             // container
             // 
+            this.container.Controls.Add(this.panelInfoRegistrazione);
+            this.container.Controls.Add(this.panelRquirements);
+            this.container.Controls.Add(this.panelEnterpriseManager);
             this.container.Controls.Add(this.panelForgotPassword);
             this.container.Controls.Add(this.btnLogin);
             this.container.Controls.Add(this.lblView);
             this.container.Controls.Add(this.lblLoginFault);
             this.container.Controls.Add(this.lblLogin);
             this.container.Controls.Add(this.pictureBox2);
-            this.container.Controls.Add(this.panelRquirements);
             this.container.Controls.Add(this.editPassword);
             this.container.Controls.Add(this.imgLogin);
-            this.container.Controls.Add(this.panelInfoRegistrazione);
             this.container.Controls.Add(this.pictureBox1);
             this.container.Controls.Add(this.imgSeparator2);
             this.container.Controls.Add(this.lblUsername);
             this.container.Controls.Add(this.panelRegistrazione);
-            this.container.Controls.Add(this.panelEnterpriseManager);
             this.container.Controls.Add(this.editUsername);
             this.container.Controls.Add(this.lblPassword);
             this.container.Controls.Add(this.btnForgotPassword);
-            this.container.MinimumSize = new System.Drawing.Size(1024, 659);
             // 
             // btnRegistrazione
             // 
@@ -254,7 +253,7 @@ namespace Web
             this.panelRegistrazione.Controls.Add(this.lblNome);
             this.panelRegistrazione.Controls.Add(this.lblTitleRegistrazione);
             this.panelRegistrazione.Controls.Add(this.imgRegistrazione);
-            this.panelRegistrazione.Location = new System.Drawing.Point(411, 422);
+            this.panelRegistrazione.Location = new System.Drawing.Point(411, 441);
             this.panelRegistrazione.Name = "panelRegistrazione";
             this.panelRegistrazione.Size = new System.Drawing.Size(603, 208);
             this.panelRegistrazione.TabIndex = 8;
