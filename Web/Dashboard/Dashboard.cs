@@ -14,8 +14,9 @@ namespace Web.Dashboard
         public string Image = null;
         public string Group = null;
         public Type TypeSpace = null;
+        public bool CountVisible = false;
 
-        public Dashboard(string title, string subTitle, string description, string image, string group, Type typeSpace)
+        public Dashboard(string title, string subTitle, string description, string image, string group, Type typeSpace, bool countVisible=true)
         {
             try
             {
@@ -25,6 +26,7 @@ namespace Web.Dashboard
                 this.Image = image;
                 this.Group = group;
                 this.TypeSpace = typeSpace;
+                this.CountVisible = countVisible;
             }
             catch (Exception ex)
             {

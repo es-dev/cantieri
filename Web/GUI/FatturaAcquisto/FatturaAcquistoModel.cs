@@ -202,5 +202,7 @@ namespace Web.GUI.FatturaAcquisto
             }
         }
 
+
+
 	}
 }
