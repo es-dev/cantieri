@@ -106,7 +106,7 @@ namespace Web.GUI.Pagamento
             this.editData.ReadOnly = false;
             this.editData.Required = false;
             this.editData.Size = new System.Drawing.Size(798, 30);
-            this.editData.TabIndex = 1;
+            this.editData.TabIndex = 2;
             this.editData.Text = "EditControl";
             this.editData.Value = null;
             // 
@@ -150,7 +150,7 @@ namespace Web.GUI.Pagamento
             this.editNote.ReadOnly = false;
             this.editNote.Required = false;
             this.editNote.Size = new System.Drawing.Size(798, 30);
-            this.editNote.TabIndex = 3;
+            this.editNote.TabIndex = 4;
             this.editNote.Text = "EditControl";
             this.editNote.Value = null;
             // 
@@ -172,7 +172,7 @@ namespace Web.GUI.Pagamento
             this.editCodice.ReadOnly = false;
             this.editCodice.Required = false;
             this.editCodice.Size = new System.Drawing.Size(798, 30);
-            this.editCodice.TabIndex = 3;
+            this.editCodice.TabIndex = 1;
             this.editCodice.Text = "EditControl";
             this.editCodice.Value = null;
             this.Controls.SetChildIndex(this.panelCommands, 0);

@@ -31,10 +31,8 @@ namespace Web.GUI.Liquidazione
                     var importo = "N/D";
                     if (obj.Importo != null)
                         importo = obj.Importo.Value.ToString("0.00");
-                    infoImporto.Text ="Importo: " + importo;
-                    var fatturaVendita = obj.FatturaVendita;
-                    if (fatturaVendita != null)
-                        infoFattura.Text = "Fattura N. " + fatturaVendita.Numero;
+                    infoImporto.Text = "Importo: " + importo;
+                    infoLiquidazione.Text = "Incasso N. " + obj.Codice;
                 }
             }
             catch (Exception ex)

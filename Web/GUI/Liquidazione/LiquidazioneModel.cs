@@ -40,6 +40,7 @@ namespace Web.GUI.Liquidazione
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.LiquidazioneDto)model;
+                    editCodice.Value = obj.Codice;
                     editData.Value = obj.Data;
                     editImporto.Value = obj.Importo;
                     editNote.Value = obj.Note;
@@ -64,6 +65,7 @@ namespace Web.GUI.Liquidazione
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.LiquidazioneDto)model;
+                    obj.Codice = editCodice.Value;
                     obj.Data = editData.Value;
                     obj.Importo = editImporto.Value;
                     obj.Note = editNote.Value;
@@ -99,12 +101,42 @@ namespace Web.GUI.Liquidazione
             {
                 var fatturaVendita = (WcfService.Dto.FatturaVenditaDto)model;
                 if (fatturaVendita != null)
+                {
                     editFatturaVendita.Value = fatturaVendita.Numero;
+                    var obj = (WcfService.Dto.LiquidazioneDto)Model;
+                    if (obj != null && obj.Id == 0)
+                    {
+                        var codice = GetCodice(fatturaVendita);
+                        editCodice.Value = codice;
+                    }
+                }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private string GetCodice(WcfService.Dto.FatturaVenditaDto fatturaVendita)
+        {
+            try
+            {
+                if (fatturaVendita != null)
+                {
+                    var numeroFattura = fatturaVendita.Numero;
+                    var progressivo = 1;
+                    var liquidazioni = fatturaVendita.Liquidaziones;
+                    if (liquidazioni != null)
+                        progressivo = liquidazioni.Count + 1;
+                    var codice = numeroFattura + "/" + DateTime.Today.Year.ToString() + "/" + progressivo.ToString("000");  //numerofattura/anno/progressivo
+                    return codice;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
 
 	}
