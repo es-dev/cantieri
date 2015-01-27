@@ -89,6 +89,19 @@ namespace DataLayer
 			}
 		}
 		
+		private string _codice;
+		public virtual string Codice
+		{
+			get
+			{
+				return this._codice;
+			}
+			set
+			{
+				this._codice = value;
+			}
+		}
+		
 		private FatturaAcquisto _fatturaAcquisto;
 		public virtual FatturaAcquisto FatturaAcquisto
 		{

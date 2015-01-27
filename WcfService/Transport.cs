@@ -556,13 +556,14 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public PagamentoDto(int _id, int _fatturaAcquistoId, DateTime? _data, decimal? _importo, string _note, FatturaAcquistoDto _fatturaAcquisto)
+		public PagamentoDto(int _id, int _fatturaAcquistoId, DateTime? _data, decimal? _importo, string _note, string _codice, FatturaAcquistoDto _fatturaAcquisto)
 		{
 			this.Id = _id;
 			this.FatturaAcquistoId = _fatturaAcquistoId;
 			this.Data = _data;
 			this.Importo = _importo;
 			this.Note = _note;
+			this.Codice = _codice;
 			this.FatturaAcquisto = _fatturaAcquisto;
 		}
 		
@@ -583,6 +584,9 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual string Note { get;set; }
+
+		[DataMember]
+		public virtual string Codice { get;set; }
 
 		[DataMember]
 		public virtual FatturaAcquistoDto FatturaAcquisto { get;set; }

@@ -32,11 +32,7 @@ namespace Web.GUI.Pagamento
                     if (obj.Importo != null)
                         importo = obj.Importo.Value.ToString("0.00");
                     infoImporto.Text = "Importo: " + importo;
-
-                    //infoImporto.Text = (obj.Importo != null ? obj.Importo.Value.ToString("0.00") : "Non Impostata"); //oppure ti fai una funzione GetData
-                    var fatturaAcquisto = obj.FatturaAcquisto;
-                    if (fatturaAcquisto != null)
-                        infoFattura.Text = "Fattura N. " + fatturaAcquisto.Numero;
+                    infoPagamento.Text = "Pagamento N. " + obj.Codice;
                 }
             }
             catch (Exception ex)

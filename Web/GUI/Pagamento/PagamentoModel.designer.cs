@@ -34,6 +34,7 @@ namespace Web.GUI.Pagamento
             this.editData = new Library.Template.Controls.TemplateEditData();
             this.editImporto = new Library.Template.Controls.TemplateEditDecimal();
             this.editNote = new Library.Template.Controls.TemplateEditText();
+            this.editCodice = new Library.Template.Controls.TemplateEditText();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -41,6 +42,7 @@ namespace Web.GUI.Pagamento
             // 
             // container
             // 
+            this.container.Controls.Add(this.editCodice);
             this.container.Controls.Add(this.editNote);
             this.container.Controls.Add(this.editImporto);
             this.container.Controls.Add(this.editData);
@@ -51,6 +53,7 @@ namespace Web.GUI.Pagamento
             this.container.Controls.SetChildIndex(this.editData, 0);
             this.container.Controls.SetChildIndex(this.editImporto, 0);
             this.container.Controls.SetChildIndex(this.editNote, 0);
+            this.container.Controls.SetChildIndex(this.editCodice, 0);
             // 
             // infoSubtitle
             // 
@@ -98,7 +101,7 @@ namespace Web.GUI.Pagamento
             this.editData.Editing = false;
             this.editData.Label = "Data";
             this.editData.LabelWidth = 175;
-            this.editData.Location = new System.Drawing.Point(25, 119);
+            this.editData.Location = new System.Drawing.Point(25, 163);
             this.editData.Name = "editData";
             this.editData.ReadOnly = false;
             this.editData.Required = false;
@@ -120,7 +123,7 @@ namespace Web.GUI.Pagamento
             this.editImporto.Editing = false;
             this.editImporto.Label = "Importo";
             this.editImporto.LabelWidth = 175;
-            this.editImporto.Location = new System.Drawing.Point(25, 163);
+            this.editImporto.Location = new System.Drawing.Point(25, 207);
             this.editImporto.Name = "editImporto";
             this.editImporto.ReadOnly = false;
             this.editImporto.Required = false;
@@ -142,7 +145,7 @@ namespace Web.GUI.Pagamento
             this.editNote.Editing = false;
             this.editNote.Label = "Note";
             this.editNote.LabelWidth = 175;
-            this.editNote.Location = new System.Drawing.Point(25, 207);
+            this.editNote.Location = new System.Drawing.Point(25, 251);
             this.editNote.Name = "editNote";
             this.editNote.ReadOnly = false;
             this.editNote.Required = false;
@@ -150,6 +153,28 @@ namespace Web.GUI.Pagamento
             this.editNote.TabIndex = 3;
             this.editNote.Text = "EditControl";
             this.editNote.Value = null;
+            // 
+            // editCodice
+            // 
+            this.editCodice.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editCodice.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editCodice.BackColor = System.Drawing.Color.Transparent;
+            this.editCodice.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editCodice.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editCodice.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editCodice.Changed = true;
+            this.editCodice.Editing = false;
+            this.editCodice.Label = "Codice";
+            this.editCodice.LabelWidth = 175;
+            this.editCodice.Location = new System.Drawing.Point(25, 119);
+            this.editCodice.Name = "editCodice";
+            this.editCodice.ReadOnly = false;
+            this.editCodice.Required = false;
+            this.editCodice.Size = new System.Drawing.Size(798, 30);
+            this.editCodice.TabIndex = 3;
+            this.editCodice.Text = "EditControl";
+            this.editCodice.Value = null;
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
@@ -165,6 +190,7 @@ namespace Web.GUI.Pagamento
         private Library.Template.Controls.TemplateEditCombo editFatturaAcquisto;
         private Library.Template.Controls.TemplateEditDecimal editImporto;
         private Library.Template.Controls.TemplateEditText editNote;
+        private Library.Template.Controls.TemplateEditText editCodice;
 
 
     }

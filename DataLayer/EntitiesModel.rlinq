@@ -416,6 +416,7 @@
         <orm:field name="_note" property="Note" uniqueId="e43a1c83-fb78-4f3e-a5e6-92ce5ff31f40" type="System.String">
           <orm:column name="Note " sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
+        <orm:field name="_codice" property="Codice" uniqueId="c203ea2f-a1ca-4359-86b8-16fb3d714659" type="System.String" />
         <orm:field name="_fatturaAcquisto" property="FatturaAcquisto" behavior="readwrite" uniqueId="f717ab9e-9083-481c-afb9-aff821782252" type="DataLayer.FatturaAcquisto">
           <orm:reference uniqueId="c5b7ccac-23e7-4d05-9ef1-626f304fefdf" association-name="PagamentoHasFatturaAcquisto">
             <orm:sharedfield name="_fatturaAcquistoId" target-class="DataLayer.FatturaAcquisto" target-field="_id" />
@@ -754,6 +755,7 @@
         <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="FatturaAcquistoId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         <orm:column name="Note " sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="Codice" sql-type="varchar" nullable="true" length="255" scale="0" ado-type="" />
         <orm:index name="idx_Pgamento_FatturaAcquistoId">
           <orm:columnMapping>
             <orm:column name="FatturaAcquistoId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -1160,6 +1162,7 @@
       <Property Id="df9f1369-fe4d-4820-b339-57d78c04ea08" name="Data" type="DateTime" label="Data : DateTime" nullable="true" fieldName="_data" />
       <Property Id="b92c07db-3de2-4fb9-abc8-dd019de790fe" name="Importo" type="Decimal" label="Importo : Decimal" nullable="true" fieldName="_importo" />
       <Property Id="e43a1c83-fb78-4f3e-a5e6-92ce5ff31f40" name="Note" label="Note : String" fieldName="_note" />
+      <Property Id="c203ea2f-a1ca-4359-86b8-16fb3d714659" name="Codice" label="Codice : String" fieldName="_codice" />
       <AssociationTargets>
         <Association Id="c5b7ccac-23e7-4d05-9ef1-626f304fefdf" SourceMultiplicity="ZeroOne" name="PagamentoHasFatturaAcquisto">
           <DomainClassMoniker name="/EntitiesModel/FatturaAcquisto" />

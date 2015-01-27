@@ -33,7 +33,7 @@ namespace Web.GUI.Pagamento
             this.infoImporto = new Gizmox.WebGUI.Forms.Label();
             this.infoCodice = new Gizmox.WebGUI.Forms.Label();
             this.infoImage = new Gizmox.WebGUI.Forms.PictureBox();
-            this.infoFattura = new Gizmox.WebGUI.Forms.Label();
+            this.infoPagamento = new Gizmox.WebGUI.Forms.Label();
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
             this.infoNote = new Gizmox.WebGUI.Forms.Label();
             this.container.SuspendLayout();
@@ -44,7 +44,7 @@ namespace Web.GUI.Pagamento
             // container
             // 
             this.container.Controls.Add(this.infoNote);
-            this.container.Controls.Add(this.infoFattura);
+            this.container.Controls.Add(this.infoPagamento);
             this.container.Controls.Add(this.infoImporto);
             // 
             // infoImporto
@@ -83,17 +83,17 @@ namespace Web.GUI.Pagamento
             this.infoImage.TabIndex = 1;
             this.infoImage.TabStop = false;
             // 
-            // infoFattura
+            // infoPagamento
             // 
-            this.infoFattura.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.infoPagamento.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.infoFattura.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoFattura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
-            this.infoFattura.Location = new System.Drawing.Point(91, 2);
-            this.infoFattura.Name = "infoFattura";
-            this.infoFattura.Size = new System.Drawing.Size(305, 30);
-            this.infoFattura.TabIndex = 1;
-            this.infoFattura.Text = "FATTURA";
+            this.infoPagamento.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoPagamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.infoPagamento.Location = new System.Drawing.Point(91, 2);
+            this.infoPagamento.Name = "infoPagamento";
+            this.infoPagamento.Size = new System.Drawing.Size(305, 30);
+            this.infoPagamento.TabIndex = 1;
+            this.infoPagamento.Text = "PAGAMENTO";
             // 
             // panelLeft
             // 
@@ -140,7 +140,7 @@ namespace Web.GUI.Pagamento
         private Gizmox.WebGUI.Forms.Label infoImporto;
         private Gizmox.WebGUI.Forms.Label infoCodice;
         private Gizmox.WebGUI.Forms.PictureBox infoImage;
-        private Gizmox.WebGUI.Forms.Label infoFattura;
+        private Gizmox.WebGUI.Forms.Label infoPagamento;
         private Gizmox.WebGUI.Forms.Panel panelLeft;
         private Gizmox.WebGUI.Forms.Label infoNote;
 	}

@@ -761,6 +761,7 @@ namespace WcfService.Assemblers
 			entity.Data = dto.Data;
 			entity.Importo = dto.Importo;
 			entity.Note = dto.Note;
+			entity.Codice = dto.Codice;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -776,6 +777,7 @@ namespace WcfService.Assemblers
 			dto.Data = entity.Data;
 			dto.Importo = entity.Importo;
 			dto.Note = entity.Note;
+			dto.Codice = entity.Codice;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
