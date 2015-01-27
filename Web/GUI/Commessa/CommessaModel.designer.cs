@@ -699,6 +699,7 @@ namespace Web.GUI.Commessa
             // 
             this.btnFornitori.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.btnFornitori.BackColor = System.Drawing.Color.Transparent;
+            this.btnFornitori.Enabled = false;
             this.btnFornitori.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnFornitori.ImageButton = "";
             this.btnFornitori.ImageSeparator = "Images.separator_ht_small.png";
@@ -712,6 +713,7 @@ namespace Web.GUI.Commessa
             // 
             this.btnPagamenti.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.btnPagamenti.BackColor = System.Drawing.Color.Transparent;
+            this.btnPagamenti.Enabled = false;
             this.btnPagamenti.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnPagamenti.ImageButton = "";
             this.btnPagamenti.ImageSeparator = "Images.separator_ht_small.png";
@@ -725,6 +727,7 @@ namespace Web.GUI.Commessa
             // 
             this.btnLiquidazioni.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.btnLiquidazioni.BackColor = System.Drawing.Color.Transparent;
+            this.btnLiquidazioni.Enabled = false;
             this.btnLiquidazioni.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnLiquidazioni.ImageButton = "";
             this.btnLiquidazioni.ImageSeparator = "Images.separator_ht_small.png";
@@ -738,6 +741,7 @@ namespace Web.GUI.Commessa
             // 
             this.btnSAL.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.btnSAL.BackColor = System.Drawing.Color.Transparent;
+            this.btnSAL.Enabled = false;
             this.btnSAL.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnSAL.ImageButton = "";
             this.btnSAL.ImageSeparator = "Images.separator_ht_small.png";

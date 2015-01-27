@@ -83,8 +83,8 @@ namespace Web.Dashboard
             {
                 var dashboards = new List<Dashboard>();
                 var dashboardConfigurazione = new Dashboard("Configurazione", "CONF", "...", "Images.dashboard.configurazione.png", "", typeof(DashboardConfigurazioneView), false);
-                var dashboardAnagrafiche = new Dashboard("Anagrafiche", "ANAG", "Inserisci le anagrafiche di clienti, fornitori ed articoli per una rapida gestione degli archivi...", "Images.dashboard.anagrafiche.png", "", typeof(DashboardAnagraficheView), false);
-                var dashboardLavori = new Dashboard("Lavori", "LAV", "Gestisci le commesse di lavoro, inserisci tutti i dati e verifica lo stato di avanzamento dei lavori...", "Images.dashboard.commesse.png", "", typeof(DashboardLavoriView), false);
+                var dashboardAnagrafiche = new Dashboard("Anagrafiche", "ANAG", "Inserisci le anagrafiche di clienti, fornitori ed articoli per una rapida gestione degli archivi...", "Images.dashboard.anagrafica.png", "", typeof(DashboardAnagraficheView), false);
+                var dashboardLavori = new Dashboard("Lavori", "LAV", "Gestisci le commesse di lavoro, inserisci tutti i dati e verifica lo stato di avanzamento dei lavori...", "Images.dashboard.lavoro.png", "", typeof(DashboardLavoriView), false);
 
                 dashboards.Add(dashboardConfigurazione);
                 dashboards.Add(dashboardAnagrafiche);
