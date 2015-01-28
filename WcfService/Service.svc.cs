@@ -773,6 +773,36 @@ namespace WcfService
             }
             return null;
         }
+        public IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquistoCommessa(Dto.CommessaDto commessa)
+        {
+            try
+            {
+                var fattureAcquisto = QueryFattureAcquistoCommessa(commessa);
+                var engine = new Assemblers.FatturaAcquistoAssembler();
+                var fattureAcquistoDto = new List<Dto.FatturaAcquistoDto>();
+                foreach (var fatturaAcquisto in fattureAcquisto)
+                {
+                    var fatturaAcquistoDto = engine.Assemble(fatturaAcquisto);
+                    engine.AssembleNavigational(fatturaAcquisto, fatturaAcquistoDto);
+                    fattureAcquistoDto.Add(fatturaAcquistoDto);
+                }
+                return fattureAcquistoDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private static IQueryable<DataLayer.FatturaAcquisto> QueryFattureAcquistoCommessa(Dto.CommessaDto commessa)
+        {
+            var ef = new DataLayer.EntitiesModel();
+            var fornitoriCommessa = (from q in ef.Fornitores where q.CommessaId == commessa.Id select q);
+            var fornitoriCommessaId = (from q in fornitoriCommessa select q.Id);
+            var fattureAcquisto = (from q in ef.FatturaAcquistos where fornitoriCommessaId.Contains(q.FornitoreId) select q);
+            return fattureAcquisto;
+        }
 
         private IQueryable<DataLayer.FatturaAcquisto> QueryFattureAcquisto(string search)
         {

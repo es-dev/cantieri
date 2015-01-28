@@ -41,7 +41,6 @@ namespace Web.GUI.SAL
                     editTotaleAcquisti.Value = obj.TotaleAcquisti;
                     editTotaleVendite.Value = obj.TotaleVendite;
                     editTotaleIncassi.Value = obj.TotaleIncassi;
-                    editTotalePagamenti.Value = obj.TotalePagamenti;
                     editLock.Value = obj.Lock;
                     editDenominazione.Value = obj.Denominazione;
                     var commessa = obj.Commessa;
@@ -50,6 +49,9 @@ namespace Web.GUI.SAL
                         editCommessa.Model = commessa;
                         editCommessa.Value = commessa.Denominazione;
                     }
+                    decimal pagamenti = GetPagamenti(obj);
+                    if(pagamenti !=null)
+                        editTotalePagamenti.Value = pagamenti;// obj.TotalePagamenti;
                 }
             }
             catch (Exception ex)
@@ -112,6 +114,25 @@ namespace Web.GUI.SAL
                 UtilityError.Write(ex);
             }
         }
+        private decimal GetPagamenti(WcfService.Dto.SALDto obj) 
+        {
+            try
+            {
+                ////todo: va nel viewModel che poi richiama BL???... e qui devo richiamare solo il viewModel???????????
+                //var pagamenti = 0;
+                //var wcf = new WcfService.Service();
+                //var fattureAcquisto = wcf.ReadFattureAcquistoCommessa(obj.Commessa); 
+                //if (fattureAcquisto != null)
+                //    pagamenti = BusinessLogic.SAL.GetTotalePagamenti(fattureAcquisto);
+                //return pagamenti;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
 
 	}
 }

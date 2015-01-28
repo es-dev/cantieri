@@ -144,6 +144,10 @@ namespace WcfService
 
         [OperationContract]
         int CountFattureAcquisto(string search = null);
+
+        [OperationContract]
+        IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquistoCommessa(Dto.CommessaDto commessa);
+
         #endregion
         #endregion
 
