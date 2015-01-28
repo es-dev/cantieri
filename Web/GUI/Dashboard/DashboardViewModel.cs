@@ -82,9 +82,9 @@ namespace Web.GUI.Dashboard
             try
             {
                 var dashboards = new List<Dashboard>();
-                var dashboardConfigurazione = new Dashboard("Configurazione", "CONF", "...", "Images.dashboard.configurazione.png", "", typeof(DashboardConfigurazioneView), false);
-                var dashboardAnagrafiche = new Dashboard("Anagrafiche", "ANAG", "Inserisci le anagrafiche di clienti, fornitori ed articoli per una rapida gestione degli archivi...", "Images.dashboard.anagrafica.png", "", typeof(DashboardAnagraficheView), false);
-                var dashboardLavori = new Dashboard("Lavori", "LAV", "Gestisci le commesse di lavoro, inserisci tutti i dati e verifica lo stato di avanzamento dei lavori...", "Images.dashboard.lavoro.png", "", typeof(DashboardLavoriView), false);
+                var dashboardConfigurazione = new Dashboard("Configurazione", "CONF", "Definisci le aziende che vuoi gestire nel sistema Enterprise Manager e configura i parametri principali come i Centri di Costo, le impostazioni generali...", "Images.dashboard.configurazione.png", "", typeof(DashboardConfigurazioneView), false);
+                var dashboardAnagrafiche = new Dashboard("Anagrafiche", "ANAG", "Inserisci le anagrafiche di clienti, dei fornitori ed articoli per una rapida gestione degli archivi...", "Images.dashboard.anagrafica.png", "", typeof(DashboardAnagraficheView), false);
+                var dashboardLavori = new Dashboard("Lavori", "LAV", "Gestisci le commesse di lavorazione, inserisci tutti i dati e verifica lo stato di avanzamento dei lavori...", "Images.dashboard.lavoro.png", "", typeof(DashboardLavoriView), false);
 
                 dashboards.Add(dashboardConfigurazione);
                 dashboards.Add(dashboardAnagrafiche);
