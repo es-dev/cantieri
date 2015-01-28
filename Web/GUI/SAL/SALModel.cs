@@ -41,18 +41,15 @@ namespace Web.GUI.SAL
                     editTotaleAcquisti.Value = obj.TotaleAcquisti;
                     editTotaleVendite.Value = obj.TotaleVendite;
                     editTotaleIncassi.Value = obj.TotaleIncassi;
-                    editLock.Value = obj.Lock;
                     editDenominazione.Value = obj.Denominazione;
-                    //editTotalePagamenti.Value = obj.TotalePagamenti;
+                    editTotalePagamenti.Value = obj.TotalePagamenti;
+                    infoStato.Text = obj.Stato;
                     var commessa = obj.Commessa;
                     if (commessa != null)
                     {
                         editCommessa.Model = commessa;
                         editCommessa.Value = commessa.Denominazione;
                     }
-                    decimal pagamenti = GetPagamenti(obj);
-                    if (pagamenti != null)
-                        editTotalePagamenti.Value = pagamenti;// obj.TotalePagamenti;
                 }
             }
             catch (Exception ex)
@@ -74,8 +71,8 @@ namespace Web.GUI.SAL
                     obj.TotaleVendite = editTotaleVendite.Value;
                     obj.TotaleIncassi = editTotaleIncassi.Value;
                     obj.TotalePagamenti = editTotalePagamenti.Value;
-                    obj.Lock = editLock.Value;
                     obj.Denominazione = editDenominazione.Value;
+                    obj.Stato = infoStato.Text;
                     var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
                     if(commessa!=null)
                         obj.CommessaId = commessa.Id;
@@ -108,30 +105,91 @@ namespace Web.GUI.SAL
             {
                 var commessa = (WcfService.Dto.CommessaDto)model;
                 if (commessa != null)
+                {
                     editCommessa.Value = commessa.Denominazione;
+                    CalcolaTotali();
+                }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
         }
-        private decimal GetPagamenti(WcfService.Dto.SALDto obj) 
+
+        private void CalcolaTotali()
         {
             try
             {
-                //todo: va nel viewModel che poi richiama BL???... e qui devo richiamare solo il viewModel???????????
-                decimal pagamenti = 0;
-                var wcf = new WcfService.Service();
-                var fattureAcquisto = wcf.ReadFattureAcquistoCommessa(obj.Commessa);
-                if (fattureAcquisto != null)
-                    pagamenti = BusinessLogic.SAL.GetTotalePagamenti(fattureAcquisto);
-                return pagamenti;
+                //prelevo i dati dalla grafica, commessa da editCommessa e la data da editData
+                //se ho i dati disponibili inizio il calcolo parzializzato
+                var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
+                var data = editData.Value;
+                if (commessa != null && data != null)
+                {
+                    var fornitori = commessa.Fornitores;
+                    var cliente = commessa.Cliente;
+
+                    CalcolaTotaliFatture(fornitori, cliente, data.Value);
+                    CalcoloTotalePagamenti(fornitori, cliente, data.Value);
+
+                    //sviluppo i vari totali granularizzando fino ai pagamenti e liquidazione e conservando i totali per fornitore, fattura - cliente, fattura
+                    //alla fine imposto i valori nelle editXXX
+                    //considero poi la commessa e il margine, valuto il margine operativo = importo commessa - somma fatture acquisto e valuto lock = (margineoperativo < margine)
+                    //in stato riporto una descrizione combinando l'andamento e riportando i totali fatture, totali incassi e situazione margine operativo
+
+                    //spostare le funzioni di calcolo nella business logic una volta che dalla grafica hai i modelli Dto
+                }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
-            return 0;
+        }
+
+        private void CalcoloTotalePagamenti(IList<WcfService.Dto.FornitoreDto> fornitori, WcfService.Dto.ClienteDto cliente, DateTime data)
+        {
+            try
+            {
+                var totalePagamenti = BusinessLogic.SAL.GetTotalePagamenti(fornitori, data);
+                var totaleIncassi = BusinessLogic.SAL.GetTotaleIncassi(cliente, data);
+                editTotalePagamenti.Value = totalePagamenti;
+                editTotaleIncassi.Value = totaleIncassi;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+       
+
+        private void CalcolaTotaliFatture(IList<WcfService.Dto.FornitoreDto> fornitori, WcfService.Dto.ClienteDto cliente, DateTime data)
+        {
+            try
+            {
+                var totaleAcquisti= BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, data);
+                var totaleVendite = BusinessLogic.SAL.GetTotaleFattureVendita(cliente, data);
+
+                editTotaleAcquisti.Value= totaleAcquisti;
+                editTotaleVendite.Value = totaleVendite;
+                //assegni a controlli grafici edit
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editData_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
         }
 
 

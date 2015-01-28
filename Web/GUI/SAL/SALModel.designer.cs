@@ -33,7 +33,6 @@ namespace Web.GUI.SAL
             this.editCommessa = new Library.Template.Controls.TemplateEditCombo();
             this.editData = new Library.Template.Controls.TemplateEditData();
             this.editDenominazione = new Library.Template.Controls.TemplateEditText();
-            this.editLock = new Library.Template.Controls.TemplateEditCheckBox();
             this.editTotaleAcquisti = new Library.Template.Controls.TemplateEditDecimal();
             this.editTotaleVendite = new Library.Template.Controls.TemplateEditDecimal();
             this.editCodice = new Library.Template.Controls.TemplateEditText();
@@ -41,6 +40,9 @@ namespace Web.GUI.SAL
             this.lblPagamenti = new Gizmox.WebGUI.Forms.Label();
             this.editTotalePagamenti = new Library.Template.Controls.TemplateEditDecimal();
             this.editTotaleIncassi = new Library.Template.Controls.TemplateEditDecimal();
+            this.lblStato = new Gizmox.WebGUI.Forms.Label();
+            this.infoStato = new Gizmox.WebGUI.Forms.Label();
+            this.lblAndamento = new Gizmox.WebGUI.Forms.Label();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -48,6 +50,9 @@ namespace Web.GUI.SAL
             // 
             // container
             // 
+            this.container.Controls.Add(this.lblAndamento);
+            this.container.Controls.Add(this.infoStato);
+            this.container.Controls.Add(this.lblStato);
             this.container.Controls.Add(this.editTotaleIncassi);
             this.container.Controls.Add(this.editTotalePagamenti);
             this.container.Controls.Add(this.lblPagamenti);
@@ -55,7 +60,6 @@ namespace Web.GUI.SAL
             this.container.Controls.Add(this.editCodice);
             this.container.Controls.Add(this.editTotaleVendite);
             this.container.Controls.Add(this.editTotaleAcquisti);
-            this.container.Controls.Add(this.editLock);
             this.container.Controls.Add(this.editDenominazione);
             this.container.Controls.Add(this.editData);
             this.container.Controls.Add(this.editCommessa);
@@ -64,7 +68,6 @@ namespace Web.GUI.SAL
             this.container.Controls.SetChildIndex(this.editCommessa, 0);
             this.container.Controls.SetChildIndex(this.editData, 0);
             this.container.Controls.SetChildIndex(this.editDenominazione, 0);
-            this.container.Controls.SetChildIndex(this.editLock, 0);
             this.container.Controls.SetChildIndex(this.editTotaleAcquisti, 0);
             this.container.Controls.SetChildIndex(this.editTotaleVendite, 0);
             this.container.Controls.SetChildIndex(this.editCodice, 0);
@@ -72,6 +75,9 @@ namespace Web.GUI.SAL
             this.container.Controls.SetChildIndex(this.lblPagamenti, 0);
             this.container.Controls.SetChildIndex(this.editTotalePagamenti, 0);
             this.container.Controls.SetChildIndex(this.editTotaleIncassi, 0);
+            this.container.Controls.SetChildIndex(this.lblStato, 0);
+            this.container.Controls.SetChildIndex(this.infoStato, 0);
+            this.container.Controls.SetChildIndex(this.lblAndamento, 0);
             // 
             // infoSubtitle
             // 
@@ -94,7 +100,7 @@ namespace Web.GUI.SAL
             this.editCommessa.Editing = false;
             this.editCommessa.Label = "Commessa";
             this.editCommessa.LabelWidth = 175;
-            this.editCommessa.Location = new System.Drawing.Point(23, 75);
+            this.editCommessa.Location = new System.Drawing.Point(25, 75);
             this.editCommessa.Model = null;
             this.editCommessa.Name = "editCommessa";
             this.editCommessa.ReadOnly = false;
@@ -119,7 +125,7 @@ namespace Web.GUI.SAL
             this.editData.Editing = false;
             this.editData.Label = "Data";
             this.editData.LabelWidth = 175;
-            this.editData.Location = new System.Drawing.Point(23, 219);
+            this.editData.Location = new System.Drawing.Point(25, 204);
             this.editData.Name = "editData";
             this.editData.ReadOnly = false;
             this.editData.Required = false;
@@ -127,6 +133,7 @@ namespace Web.GUI.SAL
             this.editData.TabIndex = 2;
             this.editData.Text = "EditControl";
             this.editData.Value = null;
+            this.editData.Leave += new System.EventHandler(this.editData_Leave);
             // 
             // editDenominazione
             // 
@@ -141,7 +148,7 @@ namespace Web.GUI.SAL
             this.editDenominazione.Editing = false;
             this.editDenominazione.Label = "Denominazione";
             this.editDenominazione.LabelWidth = 175;
-            this.editDenominazione.Location = new System.Drawing.Point(23, 171);
+            this.editDenominazione.Location = new System.Drawing.Point(25, 161);
             this.editDenominazione.Name = "editDenominazione";
             this.editDenominazione.ReadOnly = false;
             this.editDenominazione.Required = false;
@@ -149,30 +156,6 @@ namespace Web.GUI.SAL
             this.editDenominazione.TabIndex = 6;
             this.editDenominazione.Text = "EditControl";
             this.editDenominazione.Value = null;
-            // 
-            // editLock
-            // 
-            this.editLock.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editLock.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editLock.BackColor = System.Drawing.Color.Transparent;
-            this.editLock.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editLock.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editLock.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editLock.Changed = true;
-            this.editLock.Editing = false;
-            this.editLock.Label = "Lock";
-            this.editLock.LabelWidth = 175;
-            this.editLock.Location = new System.Drawing.Point(23, 267);
-            this.editLock.Name = "editLock";
-            this.editLock.ReadOnly = false;
-            this.editLock.Required = false;
-            this.editLock.Size = new System.Drawing.Size(798, 30);
-            this.editLock.TabIndex = 5;
-            this.editLock.Text = "TemplateCheckBox";
-            this.editLock.TextFalse = "NON ATTIVO";
-            this.editLock.TextTrue = "ATTIVO";
-            this.editLock.Value = null;
             // 
             // editTotaleAcquisti
             // 
@@ -185,9 +168,9 @@ namespace Web.GUI.SAL
             this.editTotaleAcquisti.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editTotaleAcquisti.Changed = true;
             this.editTotaleAcquisti.Editing = false;
-            this.editTotaleAcquisti.Label = "Totale acquisti";
+            this.editTotaleAcquisti.Label = "Acquisti fornitori";
             this.editTotaleAcquisti.LabelWidth = 175;
-            this.editTotaleAcquisti.Location = new System.Drawing.Point(23, 363);
+            this.editTotaleAcquisti.Location = new System.Drawing.Point(25, 290);
             this.editTotaleAcquisti.Name = "editTotaleAcquisti";
             this.editTotaleAcquisti.ReadOnly = false;
             this.editTotaleAcquisti.Required = false;
@@ -207,9 +190,9 @@ namespace Web.GUI.SAL
             this.editTotaleVendite.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editTotaleVendite.Changed = true;
             this.editTotaleVendite.Editing = false;
-            this.editTotaleVendite.Label = "Totale vendite";
+            this.editTotaleVendite.Label = "Fatture al cliente";
             this.editTotaleVendite.LabelWidth = 175;
-            this.editTotaleVendite.Location = new System.Drawing.Point(23, 507);
+            this.editTotaleVendite.Location = new System.Drawing.Point(25, 333);
             this.editTotaleVendite.Name = "editTotaleVendite";
             this.editTotaleVendite.ReadOnly = false;
             this.editTotaleVendite.Required = false;
@@ -231,7 +214,7 @@ namespace Web.GUI.SAL
             this.editCodice.Editing = false;
             this.editCodice.Label = "Codice";
             this.editCodice.LabelWidth = 175;
-            this.editCodice.Location = new System.Drawing.Point(23, 123);
+            this.editCodice.Location = new System.Drawing.Point(25, 118);
             this.editCodice.Name = "editCodice";
             this.editCodice.ReadOnly = false;
             this.editCodice.Required = false;
@@ -247,11 +230,11 @@ namespace Web.GUI.SAL
             this.lblFatturato.BackColor = System.Drawing.Color.Gainsboro;
             this.lblFatturato.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFatturato.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblFatturato.Location = new System.Drawing.Point(12, 315);
+            this.lblFatturato.Location = new System.Drawing.Point(13, 247);
             this.lblFatturato.Name = "lblFatturato";
             this.lblFatturato.Size = new System.Drawing.Size(887, 30);
             this.lblFatturato.TabIndex = 1001;
-            this.lblFatturato.Text = "FATTURATO";
+            this.lblFatturato.Text = "TOTALE FATTURATO";
             this.lblFatturato.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblPagamenti
@@ -261,11 +244,11 @@ namespace Web.GUI.SAL
             this.lblPagamenti.BackColor = System.Drawing.Color.Gainsboro;
             this.lblPagamenti.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPagamenti.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblPagamenti.Location = new System.Drawing.Point(12, 459);
+            this.lblPagamenti.Location = new System.Drawing.Point(13, 376);
             this.lblPagamenti.Name = "lblPagamenti";
             this.lblPagamenti.Size = new System.Drawing.Size(887, 30);
             this.lblPagamenti.TabIndex = 1001;
-            this.lblPagamenti.Text = "PAGAMENTI";
+            this.lblPagamenti.Text = "TOTALE  PAGAMENTI";
             this.lblPagamenti.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // editTotalePagamenti
@@ -279,9 +262,9 @@ namespace Web.GUI.SAL
             this.editTotalePagamenti.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editTotalePagamenti.Changed = true;
             this.editTotalePagamenti.Editing = false;
-            this.editTotalePagamenti.Label = "Totale pagamenti";
+            this.editTotalePagamenti.Label = "Pagamenti fornitori";
             this.editTotalePagamenti.LabelWidth = 175;
-            this.editTotalePagamenti.Location = new System.Drawing.Point(23, 555);
+            this.editTotalePagamenti.Location = new System.Drawing.Point(25, 419);
             this.editTotalePagamenti.Name = "editTotalePagamenti";
             this.editTotalePagamenti.ReadOnly = false;
             this.editTotalePagamenti.Required = false;
@@ -301,9 +284,9 @@ namespace Web.GUI.SAL
             this.editTotaleIncassi.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editTotaleIncassi.Changed = true;
             this.editTotaleIncassi.Editing = false;
-            this.editTotaleIncassi.Label = "Totale incassi";
+            this.editTotaleIncassi.Label = "Incassi cliente";
             this.editTotaleIncassi.LabelWidth = 175;
-            this.editTotaleIncassi.Location = new System.Drawing.Point(23, 411);
+            this.editTotaleIncassi.Location = new System.Drawing.Point(25, 462);
             this.editTotaleIncassi.Name = "editTotaleIncassi";
             this.editTotaleIncassi.ReadOnly = false;
             this.editTotaleIncassi.Required = false;
@@ -311,6 +294,39 @@ namespace Web.GUI.SAL
             this.editTotaleIncassi.TabIndex = 3;
             this.editTotaleIncassi.Text = "TemplateEditNumeric";
             this.editTotaleIncassi.Value = null;
+            // 
+            // lblStato
+            // 
+            this.lblStato.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStato.ForeColor = System.Drawing.Color.Gray;
+            this.lblStato.Location = new System.Drawing.Point(25, 548);
+            this.lblStato.Name = "lblStato";
+            this.lblStato.Size = new System.Drawing.Size(175, 30);
+            this.lblStato.TabIndex = 1002;
+            this.lblStato.Text = "Stato";
+            // 
+            // infoStato
+            // 
+            this.infoStato.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoStato.Location = new System.Drawing.Point(202, 548);
+            this.infoStato.Name = "infoStato";
+            this.infoStato.Size = new System.Drawing.Size(621, 30);
+            this.infoStato.TabIndex = 1003;
+            this.infoStato.Text = "---";
+            // 
+            // lblAndamento
+            // 
+            this.lblAndamento.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.lblAndamento.BackColor = System.Drawing.Color.Gainsboro;
+            this.lblAndamento.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAndamento.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblAndamento.Location = new System.Drawing.Point(13, 505);
+            this.lblAndamento.Name = "lblAndamento";
+            this.lblAndamento.Size = new System.Drawing.Size(887, 30);
+            this.lblAndamento.TabIndex = 1001;
+            this.lblAndamento.Text = "ANDAMENTO DEL LAVORO";
+            this.lblAndamento.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
@@ -322,7 +338,6 @@ namespace Web.GUI.SAL
 
 		#endregion
 
-        private Library.Template.Controls.TemplateEditCheckBox editLock;
         private Library.Template.Controls.TemplateEditText editDenominazione;
         private Library.Template.Controls.TemplateEditData editData;
         private Library.Template.Controls.TemplateEditCombo editCommessa;
@@ -333,6 +348,9 @@ namespace Web.GUI.SAL
         private Gizmox.WebGUI.Forms.Label lblFatturato;
         private Library.Template.Controls.TemplateEditDecimal editTotaleIncassi;
         private Library.Template.Controls.TemplateEditDecimal editTotalePagamenti;
+        private Gizmox.WebGUI.Forms.Label lblAndamento;
+        private Gizmox.WebGUI.Forms.Label infoStato;
+        private Gizmox.WebGUI.Forms.Label lblStato;
 
 
     }
