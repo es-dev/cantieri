@@ -184,7 +184,7 @@ namespace Web.GUI.SAL
         {
             try
             {
-
+                CalcolaTotali();
             }
             catch (Exception ex)
             {
