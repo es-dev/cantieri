@@ -155,10 +155,6 @@
       <Project>{67131adf-23de-46cf-888b-9afd6f648405}</Project>
       <Name>ES.Library</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
-      <Project>{881d148a-d78c-4663-9865-8972dc7270b2}</Project>
-      <Name>BusinessLogic</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">
       <Project>{0bc0a297-ec61-40d6-91f9-c81e9bda4697}</Project>
       <Name>DataLayer</Name>

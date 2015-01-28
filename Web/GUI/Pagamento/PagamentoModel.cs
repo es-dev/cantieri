@@ -102,7 +102,7 @@ namespace Web.GUI.Pagamento
                     var obj = (WcfService.Dto.PagamentoDto)Model;
                     if (obj!=null && obj.Id==0)
                     {
-                        var codice = GetCodice(fatturaAcquisto);
+                        var codice = BusinessLogic.Pagamento.GetCodice(fatturaAcquisto);
                         editCodice.Value = codice;
                     }
                 }
@@ -113,27 +113,7 @@ namespace Web.GUI.Pagamento
             }
         }
 
-        private string GetCodice(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto)
-        {
-            try
-            {
-                if (fatturaAcquisto != null)
-                {
-                    var numeroFattura = fatturaAcquisto.Numero;
-                    var progressivo = 1;
-                    var pagamenti = fatturaAcquisto.Pagamentos;
-                    if (pagamenti != null)
-                        progressivo = pagamenti.Count + 1;
-                    var codice = numeroFattura + "/" + DateTime.Today.Year.ToString() + "/" + progressivo.ToString("000");  //numerofattura/anno/progressivo
-                    return codice;
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
+        
        
 
 	}

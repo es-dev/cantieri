@@ -106,7 +106,7 @@ namespace Web.GUI.Liquidazione
                     var obj = (WcfService.Dto.LiquidazioneDto)Model;
                     if (obj != null && obj.Id == 0)
                     {
-                        var codice = GetCodice(fatturaVendita);
+                        var codice = BusinessLogic.Liquidazione.GetCodice(fatturaVendita);
                         editCodice.Value = codice;
                     }
                 }
@@ -117,27 +117,7 @@ namespace Web.GUI.Liquidazione
             }
         }
 
-        private string GetCodice(WcfService.Dto.FatturaVenditaDto fatturaVendita)
-        {
-            try
-            {
-                if (fatturaVendita != null)
-                {
-                    var numeroFattura = fatturaVendita.Numero;
-                    var progressivo = 1;
-                    var liquidazioni = fatturaVendita.Liquidaziones;
-                    if (liquidazioni != null)
-                        progressivo = liquidazioni.Count + 1;
-                    var codice = numeroFattura + "/" + DateTime.Today.Year.ToString() + "/" + progressivo.ToString("000");  //numerofattura/anno/progressivo
-                    return codice;
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
+       
 
 	}
 }
