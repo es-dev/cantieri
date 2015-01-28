@@ -1,7 +1,7 @@
 using Library.Template.MVVM;
 using System.Drawing;
 
-namespace Web.DashboardConfigurazione
+namespace Web.GUI.Dashboard.Configurazione
 {
     partial class DashboardConfigurazioneItem
 	{

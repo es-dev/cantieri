@@ -5,10 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Web.Dashboard;
-using Web.DashboardAnagrafiche;
-using Web.DashboardLavori;
-using Web.DashboardConfigurazione;
+using Web.GUI.Dashboard;
 using Web.GUI.AnagraficaArticolo;
 using Web.GUI.AnagraficaCliente;
 using Web.GUI.AnagraficaFornitore;
@@ -24,12 +21,12 @@ using Web.GUI.Liquidazione;
 using Web.GUI.Pagamento;
 using Web.GUI.SAL;
 
-namespace Web.Dashboard
+namespace Web.GUI.Dashboard.Configurazione
 {
-    public class DashboardViewModel: TemplateViewModel<Dashboard, DashboardItem>
+    public class DashboardConfigurazioneViewModel : TemplateViewModel<DashboardConfigurazione, DashboardConfigurazioneItem>
     {
-
-        public DashboardViewModel(ISpace space) : base(space) 
+        
+        public DashboardConfigurazioneViewModel(ISpace space) : base(space) 
         {
 
         }
@@ -61,8 +58,8 @@ namespace Web.Dashboard
             }
             return 0;
         }
-        
-        private IList<Dashboard> LoadDashboards(int skip, int take)
+
+        private IList<DashboardConfigurazione> LoadDashboards(int skip, int take)
         {
             try
             {
@@ -77,18 +74,16 @@ namespace Web.Dashboard
             return null;
         }
 
-        private IQueryable<Dashboard> QueryDashboards()
+        private IQueryable<DashboardConfigurazione> QueryDashboards()
         {
             try
             {
-                var dashboards = new List<Dashboard>();
-                var dashboardConfigurazione = new Dashboard("Configurazione", "CONF", "...", "Images.dashboard.configurazione.png", "", typeof(DashboardConfigurazioneView), false);
-                var dashboardAnagrafiche = new Dashboard("Anagrafiche", "ANAG", "Inserisci le anagrafiche di clienti, fornitori ed articoli per una rapida gestione degli archivi...", "Images.dashboard.anagrafica.png", "", typeof(DashboardAnagraficheView), false);
-                var dashboardLavori = new Dashboard("Lavori", "LAV", "Gestisci le commesse di lavoro, inserisci tutti i dati e verifica lo stato di avanzamento dei lavori...", "Images.dashboard.lavoro.png", "", typeof(DashboardLavoriView), false);
-
-                dashboards.Add(dashboardConfigurazione);
-                dashboards.Add(dashboardAnagrafiche);
-                dashboards.Add(dashboardLavori);
+                var dashboards = new List<DashboardConfigurazione>();
+                var dashboardAzienda = new DashboardConfigurazione("Aziende", "AZ", "Definisci la tua azienda, inserisci il logo aziendale, l'intestazione e i dati commerciali...", "Images.dashboard.azienda.png", "", typeof(AziendaView));
+                var dashboardCentroCosto = new DashboardConfigurazione("Centri di costo", "CC", "Definisci i centri di costo per organizzare al meglio il tuo lavoro e per raggruppare i flussi economici in voci di costo separate...", "Images.dashboard.centrocosto.png", "", typeof(CentroCostoView));
+                
+                dashboards.Add(dashboardAzienda);
+                dashboards.Add(dashboardCentroCosto);
 
                 var query = dashboards.AsQueryable();
                 return query;

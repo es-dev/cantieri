@@ -5,13 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Web.Dashboard;
-using Web.DashboardConfigurazione;
+using Web.GUI.Dashboard;
+using Web.GUI.Dashboard.Configurazione;
 using Web.GUI.AnagraficaArticolo;
 using Web.GUI.AnagraficaCliente;
 using Web.GUI.AnagraficaFornitore;
 
-namespace Web.DashboardAnagrafiche
+namespace Web.GUI.Dashboard.Anagrafiche
 {
     public class DashboardAnagraficheViewModel: TemplateViewModel<DashboardAnagrafiche, DashboardAnagraficheItem>
     {

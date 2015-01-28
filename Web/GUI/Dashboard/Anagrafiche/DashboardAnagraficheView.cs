@@ -8,7 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 
-namespace Web.DashboardAnagrafiche
+namespace Web.GUI.Dashboard.Anagrafiche
 {
 	public partial class DashboardAnagraficheView : TemplateView
 	{

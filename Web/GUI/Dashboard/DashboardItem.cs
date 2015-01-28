@@ -8,7 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 
-namespace Web.Dashboard
+namespace Web.GUI.Dashboard
 {
 	public partial class DashboardItem : TemplateItem
 	{

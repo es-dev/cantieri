@@ -8,11 +8,11 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 
-namespace Web.DashboardConfigurazione
+namespace Web.GUI.Dashboard.Anagrafiche
 {
-	public partial class DashboardConfigurazioneItem : TemplateItem
+	public partial class DashboardAnagraficheItem : TemplateItem
 	{
-        public DashboardConfigurazioneItem()
+        public DashboardAnagraficheItem()
         {
             InitializeComponent();
         }
@@ -23,7 +23,7 @@ namespace Web.DashboardConfigurazione
             {
                 if (model != null)
                 {
-                    var objDto = (DashboardConfigurazione)model;
+                    var objDto = (DashboardAnagrafiche)model;
                     infoTitle.Text = objDto.Title;
                     infoCodice.Text = objDto.SubTitle;
                     infoDescription.Text = objDto.Description;
@@ -43,7 +43,7 @@ namespace Web.DashboardConfigurazione
             {
                 if (model != null)
                 {
-                    var objDto = (DashboardConfigurazione)model;
+                    var objDto = (DashboardAnagrafiche)model;
                     objDto.Title = infoTitle.Text;
                     objDto.SubTitle = infoCodice.Text;
                     objDto.Description = infoDescription.Text;
@@ -57,13 +57,13 @@ namespace Web.DashboardConfigurazione
             }
         }
 
-        private void DashboardConfigurazioneItem_ItemClick(IItem item)
+        private void DashboardAnagraficheItem_ItemClick(IItem item)
         {
             try
             {
                 if (item != null)
                 {
-                    var objDto = (DashboardConfigurazione)item.Model;
+                    var objDto = (DashboardAnagrafiche)item.Model;
                     if (objDto != null)
                     {
                         var type = objDto.TypeSpace;

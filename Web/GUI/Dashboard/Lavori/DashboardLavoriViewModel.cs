@@ -5,8 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Web.Dashboard;
-using Web.DashboardConfigurazione;
+using Web.GUI.Dashboard;
+using Web.GUI.Dashboard.Configurazione;
 using Web.GUI.AnagraficaArticolo;
 using Web.GUI.AnagraficaCliente;
 using Web.GUI.AnagraficaFornitore;
@@ -22,7 +22,7 @@ using Web.GUI.Liquidazione;
 using Web.GUI.Pagamento;
 using Web.GUI.SAL;
 
-namespace Web.DashboardLavori
+namespace Web.GUI.Dashboard.Lavori
 {
     public class DashboardLavoriViewModel : TemplateViewModel<DashboardLavori, DashboardLavoriItem>
     {

@@ -1,9 +1,9 @@
 using Library.Template.MVVM;
 using System.Drawing;
 
-namespace Web.DashboardAnagrafiche
+namespace Web.GUI.Dashboard
 {
-    partial class DashboardAnagraficheItem
+	partial class DashboardItem
 	{
 	        /// <summary>
 	        /// Required designer variable.
@@ -104,15 +104,14 @@ namespace Web.DashboardAnagrafiche
             this.infoDescription.TabIndex = 1;
             this.infoDescription.Text = "Description";
             // 
-            // DashboardAnagraficheItem
+            // DashboardItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.infoDescription);
             this.Controls.Add(this.infoTitle);
             this.Controls.Add(this.panelLeft);
-            this.CountVisible = true;
             this.Size = new System.Drawing.Size(407, 105);
-            this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.DashboardAnagraficheItem_ItemClick);
+            this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.DashboardItem_ItemClick);
             this.Controls.SetChildIndex(this.container, 0);
             this.Controls.SetChildIndex(this.panelLeft, 0);
             this.Controls.SetChildIndex(this.infoTitle, 0);

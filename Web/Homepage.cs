@@ -8,7 +8,7 @@ using System.Text;
 using Gizmox.WebGUI.Common;
 using Gizmox.WebGUI.Forms;
 using Web.Code;
-using Web.Dashboard;
+using Web.GUI.Dashboard;
 using Library.Code;
 using Library.Template.Forms;
 

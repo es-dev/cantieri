@@ -1,7 +1,7 @@
 using Library.Template.MVVM;
 using System.Drawing;
 
-namespace Web.DashboardLavori
+namespace Web.GUI.Dashboard.Lavori
 {
     partial class DashboardLavoriItem
 	{

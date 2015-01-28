@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Web.DashboardConfigurazione
+namespace Web.GUI.Dashboard
 {
-    public class DashboardConfigurazione
+    public class Dashboard
     {
         public string Title = null;
         public string SubTitle = null;
@@ -16,7 +16,7 @@ namespace Web.DashboardConfigurazione
         public Type TypeSpace = null;
         public bool CountVisible = false;
 
-        public DashboardConfigurazione(string title, string subTitle, string description, string image, string group, Type typeSpace, bool countVisible = true)
+        public Dashboard(string title, string subTitle, string description, string image, string group, Type typeSpace, bool countVisible=true)
         {
             try
             {

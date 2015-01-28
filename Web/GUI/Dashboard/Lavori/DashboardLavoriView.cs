@@ -8,7 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 
-namespace Web.DashboardLavori
+namespace Web.GUI.Dashboard.Lavori
 {
 	public partial class DashboardLavoriView : TemplateView
 	{

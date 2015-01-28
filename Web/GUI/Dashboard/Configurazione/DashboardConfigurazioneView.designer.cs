@@ -1,8 +1,8 @@
 using System.Drawing;
 
-namespace Web.Dashboard
+namespace Web.GUI.Dashboard.Configurazione
 {
-	partial class DashboardView
+    partial class DashboardConfigurazioneView
 	{
 	        /// <summary>
 	        /// Required designer variable.
@@ -125,7 +125,7 @@ namespace Web.Dashboard
             // 
             // DashboardView
             // 
-            this.OpenedSpace += new Library.Interfaces.OpenSpaceHandler(this.DashboardView_OpenedSpace);
+            this.OpenedSpace += new Library.Interfaces.OpenSpaceHandler(this.DashboardConfigurazioneView_OpenedSpace);
             this.Controls.SetChildIndex(this.txtSearch, 0);
             this.Controls.SetChildIndex(this.btnOrderBy, 0);
             this.Controls.SetChildIndex(this.btnAdvancedSearch, 0);

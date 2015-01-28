@@ -8,11 +8,11 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 
-namespace Web.Dashboard
+namespace Web.GUI.Dashboard.Configurazione
 {
-	public partial class DashboardView : TemplateView
+	public partial class DashboardConfigurazioneView : TemplateView
 	{
-        public DashboardView()
+        public DashboardConfigurazioneView()
 		{
 			InitializeComponent();
 		}
@@ -22,7 +22,7 @@ namespace Web.Dashboard
             try
             {
                 Take = 10;
-                ViewModel = new DashboardViewModel(this);
+                ViewModel = new DashboardConfigurazioneViewModel(this);
                 Title = "DASHBOARD";
                 Adding = false;
             }
@@ -39,12 +39,12 @@ namespace Web.Dashboard
                 var items = Items;
                 foreach(TemplateItem item in items)
                 {
-                    var model = (Dashboard)item.Model;
+                    var model = (DashboardConfigurazione)item.Model;
                     var type = model.TypeSpace;
                     var space = (ISpace)Activator.CreateInstance(type);
                     var viewModel = space.ViewModel;
                     item.Count = viewModel.GetCount(); 
-                    //item.CountVisible = true;
+                    item.CountVisible = true;
                 }
             }
             catch (Exception ex)
@@ -66,7 +66,7 @@ namespace Web.Dashboard
             }
         }
 
-        private void DashboardView_OpenedSpace()
+        private void DashboardConfigurazioneView_OpenedSpace()
         {
             try
             {
