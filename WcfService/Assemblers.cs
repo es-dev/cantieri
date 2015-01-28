@@ -1157,6 +1157,8 @@ namespace WcfService.Assemblers
 			entity.Lock = dto.Lock;
 			entity.Denominazione = dto.Denominazione;
 			entity.Codice = dto.Codice;
+			entity.TotaleIncassi = dto.TotaleIncassi;
+			entity.TotalePagamenti = dto.TotalePagamenti;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1175,6 +1177,8 @@ namespace WcfService.Assemblers
 			dto.Lock = entity.Lock;
 			dto.Denominazione = entity.Denominazione;
 			dto.Codice = entity.Codice;
+			dto.TotaleIncassi = entity.TotaleIncassi;
+			dto.TotalePagamenti = entity.TotalePagamenti;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }

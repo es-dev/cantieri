@@ -128,6 +128,32 @@ namespace DataLayer
 			}
 		}
 		
+		private decimal? _totaleIncassi;
+		public virtual decimal? TotaleIncassi
+		{
+			get
+			{
+				return this._totaleIncassi;
+			}
+			set
+			{
+				this._totaleIncassi = value;
+			}
+		}
+		
+		private decimal? _totalePagamenti;
+		public virtual decimal? TotalePagamenti
+		{
+			get
+			{
+				return this._totalePagamenti;
+			}
+			set
+			{
+				this._totalePagamenti = value;
+			}
+		}
+		
 		private Commessa _commessa;
 		public virtual Commessa Commessa
 		{

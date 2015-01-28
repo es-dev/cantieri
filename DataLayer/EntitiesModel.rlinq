@@ -640,6 +640,12 @@
         <orm:field name="_codice" property="Codice" uniqueId="ea76c4de-3ac9-4dfd-a6de-3475e701f853" type="System.String">
           <orm:column name="Codice" sql-type="varchar" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
+        <orm:field name="_totaleIncassi" property="TotaleIncassi" uniqueId="94d3c2ab-f95a-491c-be14-5af0792e4922" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="TotaleIncassi" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        </orm:field>
+        <orm:field name="_totalePagamenti" property="TotalePagamenti" uniqueId="85d770b4-665a-4fb8-813a-d5e15cfc10bd" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="TotalePagamenti" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        </orm:field>
         <orm:field name="_commessa" property="Commessa" behavior="readwrite" uniqueId="e55844cd-9b80-4324-bf18-6a976401423f" type="DataLayer.Commessa">
           <orm:reference uniqueId="5e538b05-7df0-4fbd-9e24-1297d12e5678" association-name="SALHasCommessa">
             <orm:sharedfield name="_commessaId" target-class="DataLayer.Commessa" target-field="_id" />
@@ -817,6 +823,8 @@
         <orm:column name="Denominazione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         <orm:column name="Codice" sql-type="varchar" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="TotalePagamenti" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        <orm:column name="TotaleIncassi" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         <orm:index name="idx_SAL_CommessaId">
           <orm:columnMapping>
             <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -1287,6 +1295,8 @@
       <Property Id="01eb4d3f-25f4-427c-bf7f-402c86a3f2ad" name="Lock" type="Boolean" label="Lock : Boolean" nullable="true" fieldName="_lock" />
       <Property Id="2d2c0b19-361b-40de-8806-6d1a6f07afa6" name="Denominazione" label="Denominazione : String" fieldName="_denominazione" />
       <Property Id="ea76c4de-3ac9-4dfd-a6de-3475e701f853" name="Codice" label="Codice : String" fieldName="_codice" />
+      <Property Id="94d3c2ab-f95a-491c-be14-5af0792e4922" name="TotaleIncassi" type="Decimal" label="TotaleIncassi : Decimal" nullable="true" fieldName="_totaleIncassi" />
+      <Property Id="85d770b4-665a-4fb8-813a-d5e15cfc10bd" name="TotalePagamenti" type="Decimal" label="TotalePagamenti : Decimal" nullable="true" fieldName="_totalePagamenti" />
       <AssociationTargets>
         <Association Id="5e538b05-7df0-4fbd-9e24-1297d12e5678" SourceMultiplicity="ZeroOne" name="SALHasCommessa">
           <DomainClassMoniker name="/EntitiesModel/Commessa" />

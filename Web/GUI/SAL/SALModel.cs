@@ -40,6 +40,8 @@ namespace Web.GUI.SAL
                     editCodice.Value = obj.Codice;
                     editTotaleAcquisti.Value = obj.TotaleAcquisti;
                     editTotaleVendite.Value = obj.TotaleVendite;
+                    editTotaleIncassi.Value = obj.TotaleIncassi;
+                    editTotalePagamenti.Value = obj.TotalePagamenti;
                     editLock.Value = obj.Lock;
                     editDenominazione.Value = obj.Denominazione;
                     var commessa = obj.Commessa;
@@ -48,7 +50,6 @@ namespace Web.GUI.SAL
                         editCommessa.Model = commessa;
                         editCommessa.Value = commessa.Denominazione;
                     }
-
                 }
             }
             catch (Exception ex)
@@ -68,6 +69,8 @@ namespace Web.GUI.SAL
                     obj.Codice = editCodice.Value;
                     obj.TotaleAcquisti = editTotaleAcquisti.Value;
                     obj.TotaleVendite = editTotaleVendite.Value;
+                    obj.TotaleIncassi = editTotaleIncassi.Value;
+                    obj.TotalePagamenti = editTotalePagamenti.Value;
                     obj.Lock = editLock.Value;
                     obj.Denominazione = editDenominazione.Value;
                     var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;

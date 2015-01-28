@@ -844,7 +844,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public SALDto(int _id, int _commessaId, DateTime? _data, decimal? _totaleAcquisti, decimal? _totaleVendite, bool? _lock, string _denominazione, string _codice, CommessaDto _commessa)
+		public SALDto(int _id, int _commessaId, DateTime? _data, decimal? _totaleAcquisti, decimal? _totaleVendite, bool? _lock, string _denominazione, string _codice, decimal? _totaleIncassi, decimal? _totalePagamenti, CommessaDto _commessa)
 		{
 			this.Id = _id;
 			this.CommessaId = _commessaId;
@@ -854,6 +854,8 @@ namespace WcfService.Dto
 			this.Lock = _lock;
 			this.Denominazione = _denominazione;
 			this.Codice = _codice;
+			this.TotaleIncassi = _totaleIncassi;
+			this.TotalePagamenti = _totalePagamenti;
 			this.Commessa = _commessa;
 		}
 		
@@ -883,6 +885,12 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual string Codice { get;set; }
+
+		[DataMember]
+		public virtual decimal? TotaleIncassi { get;set; }
+
+		[DataMember]
+		public virtual decimal? TotalePagamenti { get;set; }
 
 		[DataMember]
 		public virtual CommessaDto Commessa { get;set; }
