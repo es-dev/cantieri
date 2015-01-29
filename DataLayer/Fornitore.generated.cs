@@ -206,12 +206,12 @@ namespace DataLayer
 			}
 		}
 		
-		private IList<FatturaAcquisto> _fatturas = new List<FatturaAcquisto>();
-		public virtual IList<FatturaAcquisto> Fatturas
+		private IList<FatturaAcquisto> _fatturaAcquistos = new List<FatturaAcquisto>();
+		public virtual IList<FatturaAcquisto> FatturaAcquistos
 		{
 			get
 			{
-				return this._fatturas;
+				return this._fatturaAcquistos;
 			}
 		}
 		

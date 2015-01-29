@@ -102,7 +102,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public CommessaDto(int _id, int _aziendaId, string _numero, DateTime? _creazione, DateTime? _scadenza, string _descrizione, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _riferimento, decimal? _importo, decimal? _margine, string _stato, string _codice, decimal? _importoAvanzamento, decimal? _percentuale, string _estremiContratto, decimal? _importoPerizie, DateTime? _inizioLavori, DateTime? _fineLavori, string _oggetto, AziendaDto _azienda, IList<FornitoreDto> _fornitores, IList<SALDto> _sALs, ClienteDto _cliente)
+		public CommessaDto(int _id, int _aziendaId, string _numero, DateTime? _creazione, DateTime? _scadenza, string _descrizione, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _riferimento, decimal? _importo, decimal? _margine, string _stato, string _oggetto, string _codice, decimal? _importoAvanzamento, decimal? _percentuale, string _estremiContratto, decimal? _importoPerizie, DateTime? _inizioLavori, DateTime? _fineLavori, AziendaDto _azienda, IList<FornitoreDto> _fornitores, IList<SALDto> _sALs, ClienteDto _cliente)
 		{
 			this.Id = _id;
 			this.AziendaId = _aziendaId;
@@ -119,6 +119,7 @@ namespace WcfService.Dto
 			this.Importo = _importo;
 			this.Margine = _margine;
 			this.Stato = _stato;
+			this.Oggetto = _oggetto;
 			this.Codice = _codice;
 			this.ImportoAvanzamento = _importoAvanzamento;
 			this.Percentuale = _percentuale;
@@ -126,7 +127,6 @@ namespace WcfService.Dto
 			this.ImportoPerizie = _importoPerizie;
 			this.InizioLavori = _inizioLavori;
 			this.FineLavori = _fineLavori;
-			this.Oggetto = _oggetto;
 			this.Azienda = _azienda;
 			this.Fornitores = _fornitores;
 			this.SALs = _sALs;
@@ -182,6 +182,9 @@ namespace WcfService.Dto
 		public virtual string Stato { get;set; }
 
 		[DataMember]
+		public virtual string Oggetto { get;set; }
+
+		[DataMember]
 		public virtual string Codice { get;set; }
 
 		[DataMember]
@@ -201,9 +204,6 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual DateTime? FineLavori { get;set; }
-
-		[DataMember]
-		public virtual string Oggetto { get;set; }
 
 		[DataMember]
 		public virtual AziendaDto Azienda { get;set; }
@@ -228,7 +228,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public FornitoreDto(int _id, int _commessaId, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, string _codice, CommessaDto _commessa, IList<FatturaAcquistoDto> _fatturas)
+		public FornitoreDto(int _id, int _commessaId, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, string _codice, CommessaDto _commessa, IList<FatturaAcquistoDto> _fatturaAcquistos)
 		{
 			this.Id = _id;
 			this.CommessaId = _commessaId;
@@ -244,7 +244,7 @@ namespace WcfService.Dto
 			this.PIva = _pIva;
 			this.Codice = _codice;
 			this.Commessa = _commessa;
-			this.Fatturas = _fatturas;
+			this.FatturaAcquistos = _fatturaAcquistos;
 		}
 		
 		[DataMember]
@@ -293,7 +293,7 @@ namespace WcfService.Dto
 		public virtual CommessaDto Commessa { get;set; }
 
 		[DataMember]
-		public virtual IList<FatturaAcquistoDto> Fatturas { get;set; }
+		public virtual IList<FatturaAcquistoDto> FatturaAcquistos { get;set; }
 
 	}
 	
@@ -405,8 +405,8 @@ namespace WcfService.Dto
 	}
 	
 	[DataContract(IsReference = true)]
-	[KnownType(typeof(FornitoreDto))]
 	[KnownType(typeof(CentroCostoDto))]
+	[KnownType(typeof(FornitoreDto))]
 	[KnownType(typeof(ArticoloDto))]
 	[KnownType(typeof(PagamentoDto))]
 	public partial class FatturaAcquistoDto : IDtoWithKey
@@ -415,7 +415,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public FatturaAcquistoDto(int _id, int _fornitoreId, DateTime? _data, string _numero, string _tipoPagamento, string _descrizione, decimal? _imponibile, decimal? _iVA, decimal? _totale, decimal? _saldo, string _scadenzaPagamento, int _centroCostoId, FornitoreDto _fornitore, CentroCostoDto _centroCosto, IList<ArticoloDto> _articolos, IList<PagamentoDto> _pagamentos)
+		public FatturaAcquistoDto(int _id, int _fornitoreId, DateTime? _data, string _numero, string _tipoPagamento, string _descrizione, decimal? _imponibile, decimal? _iVA, decimal? _totale, decimal? _saldo, string _scadenzaPagamento, int _centroCostoId, CentroCostoDto _centroCosto, FornitoreDto _fornitore, IList<ArticoloDto> _articolos, IList<PagamentoDto> _pagamentos)
 		{
 			this.Id = _id;
 			this.FornitoreId = _fornitoreId;
@@ -429,8 +429,8 @@ namespace WcfService.Dto
 			this.Saldo = _saldo;
 			this.ScadenzaPagamento = _scadenzaPagamento;
 			this.CentroCostoId = _centroCostoId;
-			this.Fornitore = _fornitore;
 			this.CentroCosto = _centroCosto;
+			this.Fornitore = _fornitore;
 			this.Articolos = _articolos;
 			this.Pagamentos = _pagamentos;
 		}
@@ -475,10 +475,10 @@ namespace WcfService.Dto
 		public virtual int CentroCostoId { get;set; }
 
 		[DataMember]
-		public virtual FornitoreDto Fornitore { get;set; }
+		public virtual CentroCostoDto CentroCosto { get;set; }
 
 		[DataMember]
-		public virtual CentroCostoDto CentroCosto { get;set; }
+		public virtual FornitoreDto Fornitore { get;set; }
 
 		[DataMember]
 		public virtual IList<ArticoloDto> Articolos { get;set; }

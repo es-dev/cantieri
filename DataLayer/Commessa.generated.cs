@@ -219,6 +219,19 @@ namespace DataLayer
 			}
 		}
 		
+		private string _oggetto;
+		public virtual string Oggetto
+		{
+			get
+			{
+				return this._oggetto;
+			}
+			set
+			{
+				this._oggetto = value;
+			}
+		}
+		
 		private string _codice;
 		public virtual string Codice
 		{
@@ -307,19 +320,6 @@ namespace DataLayer
 			set
 			{
 				this._fineLavori = value;
-			}
-		}
-		
-		private string _oggetto;
-		public virtual string Oggetto
-		{
-			get
-			{
-				return this._oggetto;
-			}
-			set
-			{
-				this._oggetto = value;
 			}
 		}
 		

@@ -14,17 +14,16 @@ namespace BusinessLogic
             try
             {
                 decimal totale = 0;
-                var fattureAcquisto = fornitore.Fatturas;
-                if (fattureAcquisto != null)
+                if (fornitore != null)
                 {
-                    var totaleImponibile = (from q in fattureAcquisto where q.Data <= data select q.Imponibile).Sum();
-                    totale = (decimal)totaleImponibile;
-                    
-                    //fattureAcquisto = (from q in fattureAcquisto where q.Data <= data select q).ToList();
-                    //foreach (var fatturaAcquisto in fattureAcquisto)
-                    //    totale += (decimal)fatturaAcquisto.Imponibile;
+                    var fattureAcquisto = fornitore.FatturaAcquistos;
+                    if (fattureAcquisto != null)
+                    {
+                        var totaleImponibile = (from q in fattureAcquisto where q.Imponibile!=null && q.Data <= data select q.Imponibile).Sum();
+                        totale = (decimal)totaleImponibile;
+                    }
+                    return totale;
                 }
-                return totale;
             }
             catch (Exception ex)
             {
@@ -33,21 +32,24 @@ namespace BusinessLogic
             return 0;
         }
 
-        internal static decimal GetTotalePagamentiFornitore(WcfService.Dto.FornitoreDto fornitore, DateTime data)
+        internal static decimal GetTotalePagamenti(WcfService.Dto.FornitoreDto fornitore, DateTime data)
         {
             try
             {
                 decimal totale = 0;
-                var fattureAcquisto = fornitore.Fatturas;
-                if (fattureAcquisto != null)
+                if (fornitore != null)
                 {
-                    foreach(var fatturaAcquisto in fattureAcquisto)
+                    var fattureAcquisto = fornitore.FatturaAcquistos;
+                    if (fattureAcquisto != null)
                     {
-                        var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(fatturaAcquisto, data);
-                        totale += totalePagamenti;
+                        foreach (var fatturaAcquisto in fattureAcquisto)
+                        {
+                            var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(fatturaAcquisto, data);
+                            totale += totalePagamenti;
+                        }
                     }
+                    return totale;
                 }
-                return totale;
             }
             catch (Exception ex)
             {

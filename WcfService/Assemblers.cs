@@ -199,6 +199,7 @@ namespace WcfService.Assemblers
 			entity.Importo = dto.Importo;
 			entity.Margine = dto.Margine;
 			entity.Stato = dto.Stato;
+			entity.Oggetto = dto.Oggetto;
 			entity.Codice = dto.Codice;
 			entity.ImportoAvanzamento = dto.ImportoAvanzamento;
 			entity.Percentuale = dto.Percentuale;
@@ -206,7 +207,6 @@ namespace WcfService.Assemblers
 			entity.ImportoPerizie = dto.ImportoPerizie;
 			entity.InizioLavori = dto.InizioLavori;
 			entity.FineLavori = dto.FineLavori;
-			entity.Oggetto = dto.Oggetto;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -232,6 +232,7 @@ namespace WcfService.Assemblers
 			dto.Importo = entity.Importo;
 			dto.Margine = entity.Margine;
 			dto.Stato = entity.Stato;
+			dto.Oggetto = entity.Oggetto;
 			dto.Codice = entity.Codice;
 			dto.ImportoAvanzamento = entity.ImportoAvanzamento;
 			dto.Percentuale = entity.Percentuale;
@@ -239,7 +240,6 @@ namespace WcfService.Assemblers
 			dto.ImportoPerizie = entity.ImportoPerizie;
 			dto.InizioLavori = entity.InizioLavori;
 			dto.FineLavori = entity.FineLavori;
-			dto.Oggetto = entity.Oggetto;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -363,12 +363,12 @@ namespace WcfService.Assemblers
 	    {
 			FatturaAcquistoAssembler fatturaAcquistoAssembler = new FatturaAcquistoAssembler();
 
-			dto.Fatturas = new List<FatturaAcquistoDto>();
-			foreach (FatturaAcquisto item in entity.Fatturas)
+			dto.FatturaAcquistos = new List<FatturaAcquistoDto>();
+			foreach (FatturaAcquisto item in entity.FatturaAcquistos)
 			{
 				var dtoItem = fatturaAcquistoAssembler.Assemble(item);
 				dtoItem.Fornitore = dto;
-				dto.Fatturas.Add(dtoItem);
+				dto.FatturaAcquistos.Add(dtoItem);
 			}
 
 	    }
@@ -612,11 +612,11 @@ namespace WcfService.Assemblers
 	
 	    public override void AssembleReferences(FatturaAcquisto entity, FatturaAcquistoDto dto)
 	    {
-			FornitoreAssembler fornitoreAssembler = new FornitoreAssembler();
-			dto.Fornitore = fornitoreAssembler.Assemble(entity.Fornitore);
-
 			CentroCostoAssembler centroCostoAssembler = new CentroCostoAssembler();
 			dto.CentroCosto = centroCostoAssembler.Assemble(entity.CentroCosto);
+
+			FornitoreAssembler fornitoreAssembler = new FornitoreAssembler();
+			dto.Fornitore = fornitoreAssembler.Assemble(entity.Fornitore);
 
 	    }
 	

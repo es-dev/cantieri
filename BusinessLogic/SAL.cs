@@ -15,12 +15,15 @@ namespace BusinessLogic
             try
             {
                 decimal totale = 0;
-                foreach (var fornitore in fornitori)
+                if (fornitori != null)
                 {
-                    var totaleFattureAcquisto = BusinessLogic.Fornitore.GetTotaleFatture(fornitore, data);
-                    totale += totaleFattureAcquisto;
+                    foreach (var fornitore in fornitori)
+                    {
+                        var totaleFatture = BusinessLogic.Fornitore.GetTotaleFatture(fornitore, data);
+                        totale += totaleFatture;
+                    }
+                    return totale;
                 }
-                return totale;
             }
             catch (Exception ex)
             {
@@ -34,10 +37,12 @@ namespace BusinessLogic
             try
             {
                 decimal totale = 0;
-                var totaleFatturaVendita = BusinessLogic.Cliente.GetTotaleFatture(cliente, data);
-                totale = totaleFatturaVendita;
-
-                return totale;
+                if (cliente != null)
+                {
+                    var totaleFattura = BusinessLogic.Cliente.GetTotaleFatture(cliente, data);
+                    totale = totaleFattura;
+                    return totale;
+                }
             }
             catch (Exception ex)
             {
@@ -51,12 +56,15 @@ namespace BusinessLogic
             try
             {
                 decimal totale = 0;
-                foreach (var fornitore in fornitori)
+                if (fornitori != null)
                 {
-                    var totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamentiFornitore(fornitore, data);
-                    totale += totalePagamenti;
+                    foreach (var fornitore in fornitori)
+                    {
+                        var totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamenti(fornitore, data);
+                        totale += totalePagamenti;
+                    }
+                    return totale;
                 }
-                return totale;
             }
             catch (Exception ex)
             {
@@ -70,13 +78,12 @@ namespace BusinessLogic
             try
             {
                 decimal totale = 0;
-                var fattureVendita = cliente.FatturaVenditas;
-                foreach (var fatturaVendita in fattureVendita)
+                if (cliente != null)
                 {
-                    var totaleIncassi = BusinessLogic.Fattura.GetTotaleIncassi(fatturaVendita, data);
-                    totale += totaleIncassi;
+                    var totaleIncassi = BusinessLogic.Cliente.GetTotaleIncassi(cliente, data);
+                    totale = totaleIncassi;
+                    return totale;
                 }
-                return totale;
             }
             catch (Exception ex)
             {

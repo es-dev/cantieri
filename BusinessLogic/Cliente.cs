@@ -14,15 +14,37 @@ namespace BusinessLogic
             try
             {
                 decimal totale = 0;
-                var fattureVendita = cliente.FatturaVenditas;
-                if (fattureVendita != null)
+                if (cliente != null)
                 {
-                    var totaleImponibile = (from q in fattureVendita where q.Data <= data select q.Imponibile).Sum();
-                    totale = (decimal)totaleImponibile;
+                    var fattureVendita = cliente.FatturaVenditas;
+                    if (fattureVendita != null)
+                    {
+                        var totaleImponibile = (from q in fattureVendita where q.Data <= data select q.Imponibile).Sum();
+                        totale = (decimal)totaleImponibile;
+                        return totale;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
 
-                    //fattureVendita = (from q in cliente.FatturaVenditas where q.Data <= data select q);
-                    //foreach (var fatturaVendita in fattureVendita)
-                    //    totale += (decimal)fatturaVendita.Imponibile;
+        internal static decimal GetTotaleIncassi(WcfService.Dto.ClienteDto cliente, DateTime data)
+        {
+            try
+            {
+                decimal totale = 0;
+                if (cliente != null)
+                {
+                    var fattureVendita = cliente.FatturaVenditas;
+                    foreach (var fatturaVendita in fattureVendita)
+                    {
+                        var totaleIncassi = BusinessLogic.Fattura.GetTotaleIncassi(fatturaVendita, data);
+                        totale += totaleIncassi;
+                    }
                     return totale;
                 }
             }

@@ -180,19 +180,6 @@ namespace DataLayer
 			}
 		}
 		
-		private Fornitore _fornitore;
-		public virtual Fornitore Fornitore
-		{
-			get
-			{
-				return this._fornitore;
-			}
-			set
-			{
-				this._fornitore = value;
-			}
-		}
-		
 		private CentroCosto _centroCosto;
 		public virtual CentroCosto CentroCosto
 		{
@@ -203,6 +190,19 @@ namespace DataLayer
 			set
 			{
 				this._centroCosto = value;
+			}
+		}
+		
+		private Fornitore _fornitore;
+		public virtual Fornitore Fornitore
+		{
+			get
+			{
+				return this._fornitore;
+			}
+			set
+			{
+				this._fornitore = value;
 			}
 		}
 		
