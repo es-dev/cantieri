@@ -138,7 +138,7 @@
         <orm:field name="_sALs" property="SALs" behavior="readwrite" uniqueId="0dbed7e3-e3c6-46cc-a388-6ceb266c16ee" type="DataLayer.SAL">
           <orm:collection element-class="DataLayer.SAL" inverse-field="_commessa" order-by="" uniqueId="5e538b05-7df0-4fbd-9e24-1297d12e5678" />
         </orm:field>
-        <orm:field name="_cliente" property="Cliente" behavior="readwrite" uniqueId="79287f10-5284-4cb0-b062-dc2a545a0738" type="DataLayer.Cliente">
+        <orm:field name="_cliente" property="Cliente" behavior="readwrite" uniqueId="ce61cd10-8023-4084-af65-30e0edeb7143" type="DataLayer.Cliente">
           <orm:inversereference inverse-field="_commessa" uniqueId="2e7765b0-82e3-4978-a0c4-56bb3098179a" />
         </orm:field>
         <orm:index name="idx_Commessa_AziendaId">
@@ -650,6 +650,9 @@
         <orm:field name="_totalePagamenti" property="TotalePagamenti" uniqueId="85d770b4-665a-4fb8-813a-d5e15cfc10bd" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="TotalePagamenti" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         </orm:field>
+        <orm:field name="_stato" property="Stato" uniqueId="0cf55796-426e-4c02-9488-55adf97b8d30" type="System.String">
+          <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
         <orm:field name="_commessa" property="Commessa" behavior="readwrite" uniqueId="e55844cd-9b80-4324-bf18-6a976401423f" type="DataLayer.Commessa">
           <orm:reference uniqueId="5e538b05-7df0-4fbd-9e24-1297d12e5678" association-name="SALHasCommessa">
             <orm:sharedfield name="_commessaId" target-class="DataLayer.Commessa" target-field="_id" />
@@ -829,6 +832,7 @@
         <orm:column name="Codice" sql-type="varchar" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="TotalePagamenti" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         <orm:column name="TotaleIncassi" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:index name="idx_SAL_CommessaId">
           <orm:columnMapping>
             <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -999,8 +1003,8 @@
         <classHasNavigationalProperties Id="b9630218-4869-4e18-8d23-4771cafd5800">
           <NavigationalProperty Id="0dbed7e3-e3c6-46cc-a388-6ceb266c16ee" name="SALs" type="IList&lt;SAL&gt;" label="SALs : IList&lt;SAL&gt;" nullable="true" kind="Persistent" fieldName="_sALs" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
-        <classHasNavigationalProperties Id="acb07701-2dec-4570-80ed-da0649225000">
-          <NavigationalProperty Id="79287f10-5284-4cb0-b062-dc2a545a0738" name="Cliente" type="Cliente" label="Cliente : Cliente" nullable="true" kind="Persistent" fieldName="_cliente" isDependent="false" isManaged="true" />
+        <classHasNavigationalProperties Id="7a1ee165-2f1b-4413-a6d5-d5bc5c0a3710">
+          <NavigationalProperty Id="ce61cd10-8023-4084-af65-30e0edeb7143" name="Cliente" type="Cliente" label="Cliente : Cliente" nullable="true" kind="Persistent" fieldName="_cliente" isDependent="false" isManaged="true" />
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
@@ -1059,7 +1063,7 @@
         <Association Id="2e7765b0-82e3-4978-a0c4-56bb3098179a" SourceMultiplicity="One" TargetMultiplicity="ZeroOne" name="ClienteHasCommessa">
           <DomainClassMoniker name="/EntitiesModel/Commessa" />
           <targetNavigationalProperty>
-            <associationDefinesTargetProperty Id="58424242-ab9d-47b1-a290-7772343b248d">
+            <associationDefinesTargetProperty Id="e6e84d24-e4ba-4a54-bd1b-acff8cebd5d8">
               <NavigationalPropertyMoniker name="/EntitiesModel/Commessa/Cliente" />
             </associationDefinesTargetProperty>
           </targetNavigationalProperty>
@@ -1309,6 +1313,7 @@
       <Property Id="ea76c4de-3ac9-4dfd-a6de-3475e701f853" name="Codice" label="Codice : String" fieldName="_codice" />
       <Property Id="94d3c2ab-f95a-491c-be14-5af0792e4922" name="TotaleIncassi" type="Decimal" label="TotaleIncassi : Decimal" nullable="true" fieldName="_totaleIncassi" />
       <Property Id="85d770b4-665a-4fb8-813a-d5e15cfc10bd" name="TotalePagamenti" type="Decimal" label="TotalePagamenti : Decimal" nullable="true" fieldName="_totalePagamenti" />
+      <Property Id="0cf55796-426e-4c02-9488-55adf97b8d30" name="Stato" label="Stato : String" fieldName="_stato" />
       <AssociationTargets>
         <Association Id="5e538b05-7df0-4fbd-9e24-1297d12e5678" SourceMultiplicity="ZeroOne" name="SALHasCommessa">
           <DomainClassMoniker name="/EntitiesModel/Commessa" />

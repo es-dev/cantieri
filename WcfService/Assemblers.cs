@@ -249,6 +249,9 @@ namespace WcfService.Assemblers
 			AziendaAssembler aziendaAssembler = new AziendaAssembler();
 			dto.Azienda = aziendaAssembler.Assemble(entity.Azienda);
 
+			ClienteAssembler clienteAssembler = new ClienteAssembler();
+			dto.Cliente = clienteAssembler.Assemble(entity.Cliente);
+
 	    }
 	
 	    public override void AssembleCollections(Commessa entity, CommessaDto dto)
@@ -1159,6 +1162,7 @@ namespace WcfService.Assemblers
 			entity.Codice = dto.Codice;
 			entity.TotaleIncassi = dto.TotaleIncassi;
 			entity.TotalePagamenti = dto.TotalePagamenti;
+			entity.Stato = dto.Stato;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1179,6 +1183,7 @@ namespace WcfService.Assemblers
 			dto.Codice = entity.Codice;
 			dto.TotaleIncassi = entity.TotaleIncassi;
 			dto.TotalePagamenti = entity.TotalePagamenti;
+			dto.Stato = entity.Stato;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }

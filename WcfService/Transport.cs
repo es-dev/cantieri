@@ -95,13 +95,14 @@ namespace WcfService.Dto
 	[KnownType(typeof(AziendaDto))]
 	[KnownType(typeof(FornitoreDto))]
 	[KnownType(typeof(SALDto))]
+	[KnownType(typeof(ClienteDto))]
 	public partial class CommessaDto : IDtoWithKey
 	{
 		public CommessaDto()
 		{
 		}
 		
-		public CommessaDto(int _id, int _aziendaId, string _numero, DateTime? _creazione, DateTime? _scadenza, string _descrizione, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _riferimento, decimal? _importo, decimal? _margine, string _stato, string _codice, decimal? _importoAvanzamento, decimal? _percentuale, string _estremiContratto, decimal? _importoPerizie, DateTime? _inizioLavori, DateTime? _fineLavori, string _oggetto, AziendaDto _azienda, IList<FornitoreDto> _fornitores, IList<SALDto> _sALs)
+		public CommessaDto(int _id, int _aziendaId, string _numero, DateTime? _creazione, DateTime? _scadenza, string _descrizione, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _riferimento, decimal? _importo, decimal? _margine, string _stato, string _codice, decimal? _importoAvanzamento, decimal? _percentuale, string _estremiContratto, decimal? _importoPerizie, DateTime? _inizioLavori, DateTime? _fineLavori, string _oggetto, AziendaDto _azienda, IList<FornitoreDto> _fornitores, IList<SALDto> _sALs, ClienteDto _cliente)
 		{
 			this.Id = _id;
 			this.AziendaId = _aziendaId;
@@ -129,6 +130,7 @@ namespace WcfService.Dto
 			this.Azienda = _azienda;
 			this.Fornitores = _fornitores;
 			this.SALs = _sALs;
+			this.Cliente = _cliente;
 		}
 		
 		[DataMember]
@@ -211,6 +213,9 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual IList<SALDto> SALs { get;set; }
+
+		[DataMember]
+		public virtual ClienteDto Cliente { get;set; }
 
 	}
 	
@@ -844,7 +849,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public SALDto(int _id, int _commessaId, DateTime? _data, decimal? _totaleAcquisti, decimal? _totaleVendite, bool? _lock, string _denominazione, string _codice, decimal? _totaleIncassi, decimal? _totalePagamenti, CommessaDto _commessa)
+		public SALDto(int _id, int _commessaId, DateTime? _data, decimal? _totaleAcquisti, decimal? _totaleVendite, bool? _lock, string _denominazione, string _codice, decimal? _totaleIncassi, decimal? _totalePagamenti, string _stato, CommessaDto _commessa)
 		{
 			this.Id = _id;
 			this.CommessaId = _commessaId;
@@ -856,6 +861,7 @@ namespace WcfService.Dto
 			this.Codice = _codice;
 			this.TotaleIncassi = _totaleIncassi;
 			this.TotalePagamenti = _totalePagamenti;
+			this.Stato = _stato;
 			this.Commessa = _commessa;
 		}
 		
@@ -891,6 +897,9 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual decimal? TotalePagamenti { get;set; }
+
+		[DataMember]
+		public virtual string Stato { get;set; }
 
 		[DataMember]
 		public virtual CommessaDto Commessa { get;set; }

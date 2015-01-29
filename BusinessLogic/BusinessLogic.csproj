@@ -67,7 +67,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Articolo.cs" />
+    <Compile Include="Cliente.cs" />
     <Compile Include="Fattura.cs" />
+    <Compile Include="Fornitore.cs" />
     <Compile Include="Liquidazione.cs" />
     <Compile Include="Pagamento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
