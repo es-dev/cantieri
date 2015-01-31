@@ -82,20 +82,13 @@ namespace Web.GUI.Dashboard
             try
             {
                 var dashboards = new List<Dashboard>();
-                var dashboardConfigurazione = new Dashboard("Configurazioni", "CONF", "Definisci le aziende che vuoi gestire nel sistema Enterprise Manager e configura i parametri principali come i Centri di Costo, le impostazioni generali...", "Images.dashboard.configurazione.png", "", typeof(DashboardConfigurazioneView), false);
-                var dashboardAnagrafiche = new Dashboard("Anagrafiche", "ANAG", "Inserisci le anagrafiche dei clienti, dei fornitori e degli articoli. Con un archivio strutturato potrai gestire i tuoi dati ed accedere facilmente alle informazioni...", "Images.dashboard.anagrafica.png", "", typeof(DashboardAnagraficheView), false);
                 var dashboardLavori = new Dashboard("Lavori e commesse", "LAV", "Gestisci i tuoi lavori e le commesse di lavorazione, inserisci i dati contrattuali, i fornitori, i pagamenti. Gestisci le scadenze ed effettua i SAL per una verifica dello stato di avanzamento dei lavori...", "Images.dashboard.lavoro.png", "", typeof(DashboardLavoriView), false);
+                var dashboardAnagrafiche = new Dashboard("Anagrafiche", "ANAG", "Inserisci le anagrafiche dei clienti, dei fornitori e degli articoli. Con un archivio strutturato potrai gestire i tuoi dati ed accedere facilmente alle informazioni...", "Images.dashboard.anagrafica.png", "", typeof(DashboardAnagraficheView), false);
+                var dashboardConfigurazione = new Dashboard("Configurazioni", "CONF", "Definisci le aziende che vuoi gestire nel sistema Enterprise Manager e configura i parametri principali come i Centri di Costo, le impostazioni generali...", "Images.dashboard.configurazione.png", "", typeof(DashboardConfigurazioneView), false);
 
-                var dashboardPagamento = new Dashboard("Pagamenti", "PAG", "Gestisci i pagamenti per le fattura inserite, controllando le scadenze, le passività e gli importi in dare/avere...", "Images.dashboard.pagamento.png", "", typeof(PagamentoView));
-                var dashboardIncassi = new Dashboard("Incassi", "INC", "Gestisci gli incassi corrispondenti alle fatture di vendita per le commesse inserite nel sistema, visualizza i movimenti in dare/avere...", "Images.dashboard.liquidazione.png", "", typeof(LiquidazioneView));
-                var dashboardSAL = new Dashboard("SAL", "SAL", "Crea uno Stato di Avanzamento Lavori (SAL) e controlla i bilanci delle tue commesse, evidenziando i movimenti in attivo/passivo...", "Images.dashboard.SAL.png", "", typeof(SALView));
-
+                dashboards.Add(dashboardLavori);
                 dashboards.Add(dashboardConfigurazione);
                 dashboards.Add(dashboardAnagrafiche);
-                dashboards.Add(dashboardLavori);
-                dashboards.Add(dashboardPagamento);
-                dashboards.Add(dashboardIncassi);
-                dashboards.Add(dashboardSAL);
 
                 var query = dashboards.AsQueryable();
                 return query;

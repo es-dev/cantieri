@@ -35,7 +35,8 @@ namespace WcfService.Assemblers
 	    where TEntity : class
 	{
 	    public abstract TDto Assemble(TEntity domainEntity);
-	    public abstract TEntity Assemble(TEntity entity, TDto dto);
+	   
+        public abstract TEntity Assemble(TEntity entity, TDto dto);
 	
 	    public void AssembleNavigational(TEntity entity, TDto dto)
 	    {

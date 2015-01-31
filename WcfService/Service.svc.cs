@@ -99,8 +99,8 @@ namespace WcfService
             {
                 var aziende = QueryAziende(search);
                 aziende = (from q in aziende select q).Skip(skip).Take(take);
-                var engine = new Assemblers.AziendaAssembler();
-                var aziendeDto = engine.Assemble(aziende);
+
+                var aziendeDto = UtilityPOCO.Assemble<Dto.AziendaDto>(aziende);
                 return aziendeDto;
             }
             catch (Exception ex)
@@ -249,14 +249,8 @@ namespace WcfService
             {
                 var commesse = QueryCommesse(search);
                 commesse = (from q in commesse select q).Skip(skip).Take(take);
-                var engine = new Assemblers.CommessaAssembler();
-                var commesseDto = new List<Dto.CommessaDto>();
-                foreach (var commessa in commesse)
-                {
-                    var commessaDto = engine.Assemble(commessa);
-                    engine.AssembleNavigational(commessa, commessaDto);
-                    commesseDto.Add(commessaDto);
-                }
+
+                var commesseDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commesse);
                 return commesseDto;
             }
             catch (Exception ex)
@@ -265,6 +259,7 @@ namespace WcfService
             }
             return null;
         }
+        
 
         public int CountCommesse(string search = null)
         {
@@ -408,15 +403,8 @@ namespace WcfService
             {
                 var fornitori = QueryFornitori(search);
                 fornitori = (from q in fornitori select q).Skip(skip).Take(take);
-                var engine = new Assemblers.FornitoreAssembler();
-                var fornitoriDto = new List<Dto.FornitoreDto>();
-                foreach (var fornitore in fornitori)
-                {
-                    var fornitoreDto = engine.Assemble(fornitore);
-                    engine.AssembleNavigational(fornitore, fornitoreDto);
-                    fornitoriDto.Add(fornitoreDto);
-                }
 
+                var fornitoriDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitori);
                 return fornitoriDto;
             }
             catch (Exception ex)
@@ -571,14 +559,8 @@ namespace WcfService
             {
                 var centriCosto = QueryCentriCosto(search);
                 centriCosto = (from q in centriCosto select q).Skip(skip).Take(take);
-                var engine = new Assemblers.CentroCostoAssembler();
-                var centriCostoDto = new List<Dto.CentroCostoDto>();
-                foreach (var centroCosto in centriCosto)
-                {
-                    var centroCostoDto = engine.Assemble(centroCosto);
-                    engine.AssembleNavigational(centroCosto, centroCostoDto);
-                    centriCostoDto.Add(centroCostoDto);
-                }
+
+                var centriCostoDto = UtilityPOCO.Assemble<Dto.CentroCostoDto>(centriCosto);
                 return centriCostoDto;
             }
             catch (Exception ex)
@@ -727,14 +709,8 @@ namespace WcfService
             {
                 var fattureAcquisto = QueryFattureAcquisto(search);
                 fattureAcquisto = (from q in fattureAcquisto select q).Skip(skip).Take(take);
-                var engine = new Assemblers.FatturaAcquistoAssembler();
-                var fattureAcquistoDto = new List<Dto.FatturaAcquistoDto>();
-                foreach (var fatturaAcquisto in fattureAcquisto)
-                {
-                    var fatturaAcquistoDto = engine.Assemble(fatturaAcquisto);
-                    engine.AssembleNavigational(fatturaAcquisto, fatturaAcquistoDto);
-                    fattureAcquistoDto.Add(fatturaAcquistoDto);
-                }
+
+                var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
                 return fattureAcquistoDto;
             }
             catch (Exception ex)
@@ -778,14 +754,8 @@ namespace WcfService
             try
             {
                 var fattureAcquisto = QueryFattureAcquistoCommessa(commessa);
-                var engine = new Assemblers.FatturaAcquistoAssembler();
-                var fattureAcquistoDto = new List<Dto.FatturaAcquistoDto>();
-                foreach (var fatturaAcquisto in fattureAcquisto)
-                {
-                    var fatturaAcquistoDto = engine.Assemble(fatturaAcquisto);
-                    engine.AssembleNavigational(fatturaAcquisto, fatturaAcquistoDto);
-                    fattureAcquistoDto.Add(fatturaAcquistoDto);
-                }
+
+                var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
                 return fattureAcquistoDto;
             }
             catch (Exception ex)
@@ -917,14 +887,8 @@ namespace WcfService
             {
                 var articoli = QueryArticoli(search);
                 articoli = (from q in articoli select q).Skip(skip).Take(take);
-                var engine = new Assemblers.ArticoloAssembler();
-                var articoliDto = new List<Dto.ArticoloDto>();
-                foreach (var articolo in articoli)
-                {
-                    var articoloDto = engine.Assemble(articolo);
-                    engine.AssembleNavigational(articolo, articoloDto);
-                    articoliDto.Add(articoloDto);
-                }
+
+                var articoliDto = UtilityPOCO.Assemble<Dto.ArticoloDto>(articoli);
                 return articoliDto;
             }
             catch (Exception ex)
@@ -1077,14 +1041,8 @@ namespace WcfService
             {
                 var pagamenti = QueryPagamenti(search);
                 pagamenti = (from q in pagamenti select q).Skip(skip).Take(take);
-                var engine = new Assemblers.PagamentoAssembler();
-                var pagamentiDto = new List<Dto.PagamentoDto>();
-                foreach (var pagamento in pagamenti)
-                {
-                    var pagamentoDto = engine.Assemble(pagamento);
-                    engine.AssembleNavigational(pagamento, pagamentoDto);
-                    pagamentiDto.Add(pagamentoDto);
-                }
+
+                var pagamentiDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamenti);
                 return pagamentiDto;
             }
             catch (Exception ex)
@@ -1237,14 +1195,8 @@ namespace WcfService
             {
                 var clienti = QueryClienti(search);
                 clienti = (from q in clienti select q).Skip(skip).Take(take);
-                var engine = new Assemblers.ClienteAssembler();
-                var clientiDto = new List<Dto.ClienteDto>();
-                foreach (var cliente in clienti)
-                {
-                    var clienteDto = engine.Assemble(cliente);
-                    engine.AssembleNavigational(cliente, clienteDto);
-                    clientiDto.Add(clienteDto);
-                }
+
+                var clientiDto = UtilityPOCO.Assemble<Dto.ClienteDto>(clienti);
                 return clientiDto;
             }
             catch (Exception ex)
@@ -1400,14 +1352,8 @@ namespace WcfService
             {
                 var fattureVendita = QueryFattureVendita(search);
                 fattureVendita = (from q in fattureVendita select q).Skip(skip).Take(take);
-                var engine = new Assemblers.FatturaVenditaAssembler();
-                var fattureVenditaDto = new List<Dto.FatturaVenditaDto>();
-                foreach (var fatturaVendita in fattureVendita)
-                {
-                    var fatturaVenditaDto = engine.Assemble(fatturaVendita);
-                    engine.AssembleNavigational(fatturaVendita, fatturaVenditaDto);
-                    fattureVenditaDto.Add(fatturaVenditaDto);
-                }
+
+                var fattureVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fattureVendita);
                 return fattureVenditaDto;
             }
             catch (Exception ex)
@@ -1560,14 +1506,8 @@ namespace WcfService
             {
                 var liquidazioni = QueryLiquidazioni(search);
                 liquidazioni = (from q in liquidazioni select q).Skip(skip).Take(take);
-                var engine = new Assemblers.LiquidazioneAssembler();
-                var liquidazioniDto = new List<Dto.LiquidazioneDto>();
-                foreach (var liquidazione in liquidazioni)
-                {
-                    var liquidazioneDto = engine.Assemble(liquidazione);
-                    engine.AssembleNavigational(liquidazione, liquidazioneDto);
-                    liquidazioniDto.Add(liquidazioneDto);
-                }
+
+                var liquidazioniDto = UtilityPOCO.Assemble<Dto.LiquidazioneDto>(liquidazioni);
                 return liquidazioniDto;
             }
             catch (Exception ex)
@@ -1720,14 +1660,8 @@ namespace WcfService
             {
                 var sals = QuerySALs(search);
                 sals = (from q in sals select q).Skip(skip).Take(take);
-                var engine = new Assemblers.SALAssembler();
-                var salsDto = new List<Dto.SALDto>();
-                foreach (var sal in sals)
-                {
-                    var salDto = engine.Assemble(sal);
-                    engine.AssembleNavigational(sal, salDto);
-                    salsDto.Add(salDto);
-                }
+
+                var salsDto = UtilityPOCO.Assemble<Dto.SALDto>(sals);
                 return salsDto;
             }
             catch (Exception ex)
@@ -1880,14 +1814,8 @@ namespace WcfService
             {
                 var anagraficheFornitori = QueryAnagraficheFornitori(search);
                 anagraficheFornitori = (from q in anagraficheFornitori select q).Skip(skip).Take(take);
-                var engine = new Assemblers.AnagraficaFornitoreAssembler();
-                var anagraficheFornitoriDto = new List<Dto.AnagraficaFornitoreDto>();
-                foreach (var anagraficaFornitore in anagraficheFornitori)
-                {
-                    var anagraficaFornitoreDto = engine.Assemble(anagraficaFornitore);
-                    engine.AssembleNavigational(anagraficaFornitore, anagraficaFornitoreDto);
-                    anagraficheFornitoriDto.Add(anagraficaFornitoreDto);
-                }
+
+                var anagraficheFornitoriDto = UtilityPOCO.Assemble<Dto.AnagraficaFornitoreDto>(anagraficheFornitori);
                 return anagraficheFornitoriDto;
             }
             catch (Exception ex)
@@ -2039,14 +1967,8 @@ namespace WcfService
             {
                 var anagraficheClienti = QueryAnagraficheClienti(search);
                 anagraficheClienti = (from q in anagraficheClienti select q).Skip(skip).Take(take);
-                var engine = new Assemblers.AnagraficaClienteAssembler();
-                var anagraficheClientiDto = new List<Dto.AnagraficaClienteDto>();
-                foreach (var anagraficaCliente in anagraficheClienti)
-                {
-                    var anagraficaClienteDto = engine.Assemble(anagraficaCliente);
-                    engine.AssembleNavigational(anagraficaCliente, anagraficaClienteDto);
-                    anagraficheClientiDto.Add(anagraficaClienteDto);
-                }
+
+                var anagraficheClientiDto = UtilityPOCO.Assemble<Dto.AnagraficaClienteDto>(anagraficheClienti);
                 return anagraficheClientiDto;
             }
             catch (Exception ex)
@@ -2196,14 +2118,8 @@ namespace WcfService
             {
                 var anagraficheArticoli = QueryAnagraficheArticoli(search);
                 anagraficheArticoli = (from q in anagraficheArticoli select q).Skip(skip).Take(take);
-                var engine = new Assemblers.AnagraficaArticoloAssembler();
-                var anagraficheArticoliDto = new List<Dto.AnagraficaArticoloDto>();
-                foreach (var anagraficaArticolo in anagraficheArticoli)
-                {
-                    var anagraficaArticoloDto = engine.Assemble(anagraficaArticolo);
-                    engine.AssembleNavigational(anagraficaArticolo, anagraficaArticoloDto);
-                    anagraficheArticoliDto.Add(anagraficaArticoloDto);
-                }
+
+                var anagraficheArticoliDto = UtilityPOCO.Assemble<Dto.AnagraficaArticoloDto>(anagraficheArticoli);
                 return anagraficheArticoliDto;
             }
             catch (Exception ex)
