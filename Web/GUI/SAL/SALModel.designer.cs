@@ -41,8 +41,9 @@ namespace Web.GUI.SAL
             this.editTotalePagamenti = new Library.Template.Controls.TemplateEditDecimal();
             this.editTotaleIncassi = new Library.Template.Controls.TemplateEditDecimal();
             this.lblStato = new Gizmox.WebGUI.Forms.Label();
-            this.infoStato = new Gizmox.WebGUI.Forms.Label();
+            this.editStato = new Gizmox.WebGUI.Forms.Label();
             this.lblAndamento = new Gizmox.WebGUI.Forms.Label();
+            this.btnCalcoloSAL = new Library.Controls.ButtonSeparatorV();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -51,7 +52,7 @@ namespace Web.GUI.SAL
             // container
             // 
             this.container.Controls.Add(this.lblAndamento);
-            this.container.Controls.Add(this.infoStato);
+            this.container.Controls.Add(this.editStato);
             this.container.Controls.Add(this.lblStato);
             this.container.Controls.Add(this.editTotaleIncassi);
             this.container.Controls.Add(this.editTotalePagamenti);
@@ -76,7 +77,7 @@ namespace Web.GUI.SAL
             this.container.Controls.SetChildIndex(this.editTotalePagamenti, 0);
             this.container.Controls.SetChildIndex(this.editTotaleIncassi, 0);
             this.container.Controls.SetChildIndex(this.lblStato, 0);
-            this.container.Controls.SetChildIndex(this.infoStato, 0);
+            this.container.Controls.SetChildIndex(this.editStato, 0);
             this.container.Controls.SetChildIndex(this.lblAndamento, 0);
             // 
             // infoSubtitle
@@ -86,6 +87,15 @@ namespace Web.GUI.SAL
             // infoSubtitleImage
             // 
             this.infoSubtitleImage.Location = new System.Drawing.Point(610, 3);
+            // 
+            // panelCommands
+            // 
+            this.panelCommands.Controls.Add(this.btnCalcoloSAL);
+            this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnDelete, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnCalcoloSAL, 0);
             // 
             // editCommessa
             // 
@@ -301,18 +311,20 @@ namespace Web.GUI.SAL
             this.lblStato.ForeColor = System.Drawing.Color.Gray;
             this.lblStato.Location = new System.Drawing.Point(25, 548);
             this.lblStato.Name = "lblStato";
-            this.lblStato.Size = new System.Drawing.Size(175, 30);
+            this.lblStato.Size = new System.Drawing.Size(163, 30);
             this.lblStato.TabIndex = 1002;
             this.lblStato.Text = "Stato";
             // 
-            // infoStato
+            // editStato
             // 
-            this.infoStato.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoStato.Location = new System.Drawing.Point(202, 548);
-            this.infoStato.Name = "infoStato";
-            this.infoStato.Size = new System.Drawing.Size(621, 30);
-            this.infoStato.TabIndex = 1003;
-            this.infoStato.Text = "---";
+            this.editStato.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editStato.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editStato.Location = new System.Drawing.Point(199, 548);
+            this.editStato.Name = "editStato";
+            this.editStato.Size = new System.Drawing.Size(621, 49);
+            this.editStato.TabIndex = 1003;
+            this.editStato.Text = "---";
             // 
             // lblAndamento
             // 
@@ -327,6 +339,20 @@ namespace Web.GUI.SAL
             this.lblAndamento.TabIndex = 1001;
             this.lblAndamento.Text = "ANDAMENTO DEL LAVORO";
             this.lblAndamento.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnCalcoloSAL
+            // 
+            this.btnCalcoloSAL.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.btnCalcoloSAL.BackColor = System.Drawing.Color.Transparent;
+            this.btnCalcoloSAL.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.btnCalcoloSAL.ImageButton = "";
+            this.btnCalcoloSAL.ImageSeparator = "Images.separator_ht_small.png";
+            this.btnCalcoloSAL.Location = new System.Drawing.Point(0, 217);
+            this.btnCalcoloSAL.Name = "btnCalcoloSAL";
+            this.btnCalcoloSAL.Size = new System.Drawing.Size(100, 72);
+            this.btnCalcoloSAL.TabIndex = 1002;
+            this.btnCalcoloSAL.TextButton = "Calcolo SAL";
+            this.btnCalcoloSAL.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnCalcoloSAL_Click);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
@@ -349,8 +375,9 @@ namespace Web.GUI.SAL
         private Library.Template.Controls.TemplateEditDecimal editTotaleIncassi;
         private Library.Template.Controls.TemplateEditDecimal editTotalePagamenti;
         private Gizmox.WebGUI.Forms.Label lblAndamento;
-        private Gizmox.WebGUI.Forms.Label infoStato;
+        private Gizmox.WebGUI.Forms.Label editStato;
         private Gizmox.WebGUI.Forms.Label lblStato;
+        private Library.Controls.ButtonSeparatorV btnCalcoloSAL;
 
 
     }

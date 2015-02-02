@@ -43,7 +43,7 @@ namespace Web.GUI.SAL
                     editTotaleIncassi.Value = obj.TotaleIncassi;
                     editDenominazione.Value = obj.Denominazione;
                     editTotalePagamenti.Value = obj.TotalePagamenti;
-                    infoStato.Text = obj.Stato;
+                    editStato.Text = obj.Stato; //todo: realizzare un controllo di stato che accetta impostazioni di info, warning, alert con immagine
                     var commessa = obj.Commessa;
                     if (commessa != null)
                     {
@@ -72,7 +72,7 @@ namespace Web.GUI.SAL
                     obj.TotaleIncassi = editTotaleIncassi.Value;
                     obj.TotalePagamenti = editTotalePagamenti.Value;
                     obj.Denominazione = editDenominazione.Value;
-                    obj.Stato = infoStato.Text;
+                    obj.Stato = editStato.Text;
                     var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
                     if(commessa!=null)
                         obj.CommessaId = commessa.Id;
@@ -120,8 +120,6 @@ namespace Web.GUI.SAL
         {
             try
             {
-                //prelevo i dati dalla grafica, commessa da editCommessa e la data da editData
-                //se ho i dati disponibili inizio il calcolo parzializzato
                 var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
                 var data = editData.Value;
                 if (commessa != null && data != null)
@@ -129,15 +127,39 @@ namespace Web.GUI.SAL
                     var fornitori = commessa.Fornitores;
                     var cliente = commessa.Cliente;
 
-                    CalcolaTotaliFatture(fornitori, cliente, data.Value);
-                    CalcoloTotalePagamenti(fornitori, cliente, data.Value);
+                    var totaleAcquisti = BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, data.Value);
+                    var totaleVendite = BusinessLogic.SAL.GetTotaleFattureVendita(cliente, data.Value);
+                    var totalePagamenti = BusinessLogic.SAL.GetTotalePagamenti(fornitori, data.Value);
+                    var totaleIncassi = BusinessLogic.SAL.GetTotaleIncassi(cliente, data.Value);
 
-                    //sviluppo i vari totali granularizzando fino ai pagamenti e liquidazione e conservando i totali per fornitore, fattura - cliente, fattura
-                    //alla fine imposto i valori nelle editXXX
-                    //considero poi la commessa e il margine, valuto il margine operativo = importo commessa - somma fatture acquisto e valuto lock = (margineoperativo < margine)
-                    //in stato riporto una descrizione combinando l'andamento e riportando i totali fatture, totali incassi e situazione margine operativo
+                    var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
+                    var margine = UtilityValidation.GetDecimal(commessa.Margine);
+                    var margineOperativo = importoLavori - totaleAcquisti;
 
-                    //spostare le funzioni di calcolo nella business logic una volta che dalla grafica hai i modelli Dto
+                    var stato = "";
+                    var foreColor = Color.Blue;
+                    var backColor = Color.Transparent;
+                    if (margineOperativo < 0)
+                    {
+                        stato = "Andamento del lavoro critico. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta al valore critico di " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
+                        foreColor = Color.White;
+                        backColor = Color.Red;
+                    }
+                    else if (margineOperativo < margine)
+                    {
+                        stato = "Andamento del lavoro negativo. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta ad un valore inferiore pari a " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
+                        foreColor = Color.Red;
+                    }
+                    else if (margineOperativo >= margine)
+                        stato = "Andamento del lavoro positivo. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta a valori superiori pari a " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
+                    editStato.ForeColor = foreColor;
+                    editStato.BackColor = backColor;
+                    
+                    editStato.Text = stato;
+                    editTotaleAcquisti.Value = totaleAcquisti;
+                    editTotaleVendite.Value = totaleVendite;
+                    editTotalePagamenti.Value = totalePagamenti;
+                    editTotaleIncassi.Value = totaleIncassi;
                 }
             }
             catch (Exception ex)
@@ -146,33 +168,12 @@ namespace Web.GUI.SAL
             }
         }
 
-        private void CalcoloTotalePagamenti(IList<WcfService.Dto.FornitoreDto> fornitori, WcfService.Dto.ClienteDto cliente, DateTime data)
-        {
-            try
-            {
-                var totalePagamenti = BusinessLogic.SAL.GetTotalePagamenti(fornitori, data);
-                var totaleIncassi = BusinessLogic.SAL.GetTotaleIncassi(cliente, data);
-                editTotalePagamenti.Value = totalePagamenti;
-                editTotaleIncassi.Value = totaleIncassi;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
        
-
-        private void CalcolaTotaliFatture(IList<WcfService.Dto.FornitoreDto> fornitori, WcfService.Dto.ClienteDto cliente, DateTime data)
+        private void editData_Leave(object sender, EventArgs e)
         {
             try
             {
-                var totaleAcquisti= BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, data);
-                var totaleVendite = BusinessLogic.SAL.GetTotaleFattureVendita(cliente, data);
-
-                editTotaleAcquisti.Value= totaleAcquisti;
-                editTotaleVendite.Value = totaleVendite;
-                //assegni a controlli grafici edit
+                CalcolaTotali();
             }
             catch (Exception ex)
             {
@@ -180,7 +181,7 @@ namespace Web.GUI.SAL
             }
         }
 
-        private void editData_Leave(object sender, EventArgs e)
+        private void btnCalcoloSAL_Click(object sender, EventArgs e)
         {
             try
             {

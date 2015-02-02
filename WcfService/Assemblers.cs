@@ -35,8 +35,7 @@ namespace WcfService.Assemblers
 	    where TEntity : class
 	{
 	    public abstract TDto Assemble(TEntity domainEntity);
-	   
-        public abstract TEntity Assemble(TEntity entity, TDto dto);
+	    public abstract TEntity Assemble(TEntity entity, TDto dto);
 	
 	    public void AssembleNavigational(TEntity entity, TDto dto)
 	    {
@@ -1158,7 +1157,6 @@ namespace WcfService.Assemblers
 			entity.Data = dto.Data;
 			entity.TotaleAcquisti = dto.TotaleAcquisti;
 			entity.TotaleVendite = dto.TotaleVendite;
-			entity.Lock = dto.Lock;
 			entity.Denominazione = dto.Denominazione;
 			entity.Codice = dto.Codice;
 			entity.TotaleIncassi = dto.TotaleIncassi;
@@ -1179,7 +1177,6 @@ namespace WcfService.Assemblers
 			dto.Data = entity.Data;
 			dto.TotaleAcquisti = entity.TotaleAcquisti;
 			dto.TotaleVendite = entity.TotaleVendite;
-			dto.Lock = entity.Lock;
 			dto.Denominazione = entity.Denominazione;
 			dto.Codice = entity.Codice;
 			dto.TotaleIncassi = entity.TotaleIncassi;

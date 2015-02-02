@@ -89,19 +89,6 @@ namespace DataLayer
 			}
 		}
 		
-		private bool? _lock;
-		public virtual bool? Lock
-		{
-			get
-			{
-				return this._lock;
-			}
-			set
-			{
-				this._lock = value;
-			}
-		}
-		
 		private string _denominazione;
 		public virtual string Denominazione
 		{

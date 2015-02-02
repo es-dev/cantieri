@@ -103,6 +103,9 @@
         <orm:field name="_stato" property="Stato" uniqueId="9c5b0516-8f4a-4f66-ac25-4f9f39550e64" type="System.String">
           <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
+        <orm:field name="_oggetto" property="Oggetto" uniqueId="2a06d18e-66f3-4a3e-8a5e-b646e67135d0" type="System.String">
+          <orm:column name="Oggetto" sql-type="varchar" nullable="true" length="255" scale="0" ado-type="" />
+        </orm:field>
         <orm:field name="_codice" property="Codice" uniqueId="0b5a2c32-e2e4-41e6-a9ed-b771f32731cb" type="System.String" />
         <orm:field name="_importoAvanzamento" property="ImportoAvanzamento" uniqueId="71b9babf-1e99-4db9-9d21-aebf6f31d5d5" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" />
         <orm:field name="_percentuale" property="Percentuale" uniqueId="b4cb5b2d-23a7-420f-9f51-a44486f3d9ac" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" />
@@ -110,9 +113,6 @@
         <orm:field name="_importoPerizie" property="ImportoPerizie" uniqueId="c578a2e5-67ca-473e-9482-d8d5073f60c4" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" />
         <orm:field name="_inizioLavori" property="InizioLavori" uniqueId="42e9ea85-6109-4aea-9b68-27548a766115" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" />
         <orm:field name="_fineLavori" property="FineLavori" uniqueId="66541415-acef-4f15-825e-c88b27208624" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" />
-        <orm:field name="_oggetto" property="Oggetto" uniqueId="2a06d18e-66f3-4a3e-8a5e-b646e67135d0" type="System.String">
-          <orm:column name="Oggetto" sql-type="varchar" nullable="true" length="255" scale="0" ado-type="" />
-        </orm:field>
         <orm:field name="_azienda" property="Azienda" behavior="readwrite" uniqueId="494444a6-ccb0-494c-a6a4-5a308aeb4152" type="DataLayer.Azienda">
           <orm:reference uniqueId="9529a813-1327-451c-bfdc-62fcf2c3ea6a" association-name="CommessaHasAzienda">
             <orm:sharedfield name="_aziendaId" target-class="DataLayer.Azienda" target-field="_id" />
@@ -314,16 +314,16 @@
             <orm:sharedfield name="_centroCostoId" target-class="DataLayer.CentroCosto" target-field="_id" />
           </orm:reference>
         </orm:field>
+        <orm:field name="_fornitore" property="Fornitore" behavior="readwrite" uniqueId="a72fb4b6-40c4-458b-8b90-6997eaf59ce5" type="DataLayer.Fornitore">
+          <orm:reference uniqueId="9133edb8-9422-4c9c-a7d6-77def2077659" association-name="FatturaAcquistoHasFornitore">
+            <orm:sharedfield name="_fornitoreId" target-class="DataLayer.Fornitore" target-field="_id" />
+          </orm:reference>
+        </orm:field>
         <orm:field name="_articolos" property="Articolos" behavior="readwrite" uniqueId="515d5967-162f-419b-96c0-b2634982ade5" type="DataLayer.Articolo">
           <orm:collection element-class="DataLayer.Articolo" inverse-field="_fattura" order-by="" uniqueId="41eee6d8-a5b7-4fea-b639-08b8ca83cdcf" />
         </orm:field>
         <orm:field name="_pagamentos" property="Pagamentos" behavior="readwrite" uniqueId="e729c44d-e2ae-4052-8ad4-1683d392a794" type="DataLayer.Pagamento">
           <orm:collection element-class="DataLayer.Pagamento" inverse-field="_fatturaAcquisto" order-by="" uniqueId="c5b7ccac-23e7-4d05-9ef1-626f304fefdf" />
-        </orm:field>
-        <orm:field name="_fornitore" property="Fornitore" behavior="readwrite" uniqueId="a72fb4b6-40c4-458b-8b90-6997eaf59ce5" type="DataLayer.Fornitore">
-          <orm:reference uniqueId="9133edb8-9422-4c9c-a7d6-77def2077659" association-name="FatturaAcquistoHasFornitore">
-            <orm:sharedfield name="_fornitoreId" target-class="DataLayer.Fornitore" target-field="_id" />
-          </orm:reference>
         </orm:field>
         <orm:index name="idx_FtturaAcquisto_FornitoreId">
           <orm:columnMapping>
@@ -621,9 +621,6 @@
         <orm:field name="_totaleVendite" property="TotaleVendite" uniqueId="e50f8b5c-1bbb-4bf2-8405-c3f9f88429f5" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="TotaleVendite" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
-        <orm:field name="_lock" property="Lock" uniqueId="01eb4d3f-25f4-427c-bf7f-402c86a3f2ad" type="System.Nullable`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="lck" sql-type="tinyint" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.OneZero2BooleanConverter" ado-type="Bit" />
-        </orm:field>
         <orm:field name="_denominazione" property="Denominazione" uniqueId="2d2c0b19-361b-40de-8806-6d1a6f07afa6" type="System.String">
           <orm:column name="Denominazione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
@@ -812,7 +809,6 @@
         <orm:column name="dta" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         <orm:column name="TotaleAcquisti" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="TotaleVendite" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
-        <orm:column name="lck" sql-type="tinyint" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.OneZero2BooleanConverter" ado-type="Bit" />
         <orm:column name="Denominazione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         <orm:column name="Codice" sql-type="varchar" nullable="true" length="0" scale="0" ado-type="" />
@@ -1294,7 +1290,6 @@
       <Property Id="b1b806c6-eae5-4001-a8e4-49734c1315c7" name="Data" type="DateTime" label="Data : DateTime" nullable="true" fieldName="_data" />
       <Property Id="be14a63c-72d7-4cb1-a081-fe04c8a6b5c3" name="TotaleAcquisti" type="Decimal" label="TotaleAcquisti : Decimal" nullable="true" fieldName="_totaleAcquisti" />
       <Property Id="e50f8b5c-1bbb-4bf2-8405-c3f9f88429f5" name="TotaleVendite" type="Decimal" label="TotaleVendite : Decimal" nullable="true" fieldName="_totaleVendite" />
-      <Property Id="01eb4d3f-25f4-427c-bf7f-402c86a3f2ad" name="Lock" type="Boolean" label="Lock : Boolean" nullable="true" fieldName="_lock" />
       <Property Id="2d2c0b19-361b-40de-8806-6d1a6f07afa6" name="Denominazione" label="Denominazione : String" fieldName="_denominazione" />
       <Property Id="ea76c4de-3ac9-4dfd-a6de-3475e701f853" name="Codice" label="Codice : String" fieldName="_codice" />
       <Property Id="94d3c2ab-f95a-491c-be14-5af0792e4922" name="TotaleIncassi" type="Decimal" label="TotaleIncassi : Decimal" nullable="true" fieldName="_totaleIncassi" />
