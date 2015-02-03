@@ -127,15 +127,18 @@ namespace Web.GUI.SAL
                     var fornitori = commessa.Fornitores;
                     var cliente = commessa.Cliente;
 
+                    //lettura totali da Business Logic
                     var totaleAcquisti = BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, data.Value);
                     var totaleVendite = BusinessLogic.SAL.GetTotaleFattureVendita(cliente, data.Value);
                     var totalePagamenti = BusinessLogic.SAL.GetTotalePagamenti(fornitori, data.Value);
                     var totaleIncassi = BusinessLogic.SAL.GetTotaleIncassi(cliente, data.Value);
 
+                    //calcolo e verifica margine operativo = importoLavori - totaleAcquisti
                     var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
                     var margine = UtilityValidation.GetDecimal(commessa.Margine);
                     var margineOperativo = importoLavori - totaleAcquisti;
 
+                    //valutazione dell'andamento del lavoro
                     var stato = "";
                     var foreColor = Color.Blue;
                     var backColor = Color.Transparent;
@@ -155,6 +158,7 @@ namespace Web.GUI.SAL
                     editStato.ForeColor = foreColor;
                     editStato.BackColor = backColor;
                     
+                    //binding dati in GUI
                     editStato.Text = stato;
                     editTotaleAcquisti.Value = totaleAcquisti;
                     editTotaleVendite.Value = totaleVendite;
