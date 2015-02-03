@@ -1,4 +1,5 @@
 using Library.Code;
+using Library.Code.Enum;
 using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace Web.GUI.SAL
                     editTotaleIncassi.Value = obj.TotaleIncassi;
                     editDenominazione.Value = obj.Denominazione;
                     editTotalePagamenti.Value = obj.TotalePagamenti;
-                    editStato.Text = obj.Stato; //todo: realizzare un controllo di stato che accetta impostazioni di info, warning, alert con immagine
+                    editStato.Value = obj.Stato; 
                     var commessa = obj.Commessa;
                     if (commessa != null)
                     {
@@ -72,7 +73,7 @@ namespace Web.GUI.SAL
                     obj.TotaleIncassi = editTotaleIncassi.Value;
                     obj.TotalePagamenti = editTotalePagamenti.Value;
                     obj.Denominazione = editDenominazione.Value;
-                    obj.Stato = editStato.Text;
+                    obj.Stato = editStato.Value;
                     var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
                     if(commessa!=null)
                         obj.CommessaId = commessa.Id;
@@ -139,27 +140,26 @@ namespace Web.GUI.SAL
                     var margineOperativo = importoLavori - totaleAcquisti;
 
                     //valutazione dell'andamento del lavoro
-                    var stato = "";
-                    var foreColor = Color.Blue;
-                    var backColor = Color.Transparent;
+                    var messaggio = "";
+                    TypeStato stato = TypeStato.None;
                     if (margineOperativo < 0)
                     {
-                        stato = "Andamento del lavoro critico. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta al valore critico di " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
-                        foreColor = Color.White;
-                        backColor = Color.Red;
+                        messaggio = "Andamento del lavoro critico. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta al valore critico di " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
+                        stato = TypeStato.Critical;
                     }
                     else if (margineOperativo < margine)
                     {
-                        stato = "Andamento del lavoro negativo. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta ad un valore inferiore pari a " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
-                        foreColor = Color.Red;
+                        messaggio = "Andamento del lavoro negativo. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta ad un valore inferiore pari a " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
+                        stato = TypeStato.Warning;
                     }
                     else if (margineOperativo >= margine)
-                        stato = "Andamento del lavoro positivo. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta a valori superiori pari a " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
-                    editStato.ForeColor = foreColor;
-                    editStato.BackColor = backColor;
-                    
+                    {
+                        messaggio = "Andamento del lavoro positivo. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta a valori superiori pari a " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
+                        stato = TypeStato.Normal;
+                    }
                     //binding dati in GUI
-                    editStato.Text = stato;
+                    editStato.Value = stato.ToString() + " | " + messaggio;
+
                     editTotaleAcquisti.Value = totaleAcquisti;
                     editTotaleVendite.Value = totaleVendite;
                     editTotalePagamenti.Value = totalePagamenti;
