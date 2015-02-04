@@ -71,7 +71,6 @@ namespace Web.GUI.FatturaAcquisto
                     editImponibile.Value = obj.Imponibile; 
                     editIVA.Value = obj.IVA;               
                     editNumero.Value = obj.Numero;
-                    editSaldo.Value = obj.Saldo; 
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editScadenzaPagamento.Value = obj.ScadenzaPagamento;
                     editTotale.Value = obj.Totale;
@@ -107,7 +106,6 @@ namespace Web.GUI.FatturaAcquisto
                     obj.Imponibile = editImponibile.Value;
                     obj.IVA = editIVA.Value;
                     obj.Numero = editNumero.Value;
-                    obj.Saldo = editSaldo.Value;
                     obj.TipoPagamento = editTipoPagamento.Value;
                     obj.ScadenzaPagamento = editScadenzaPagamento.Value;
                     obj.Totale = editTotale.Value;

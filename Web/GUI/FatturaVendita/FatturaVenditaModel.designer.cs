@@ -34,7 +34,6 @@ namespace Web.GUI.FatturaVendita
             this.editNumero = new Library.Template.Controls.TemplateEditText();
             this.editData = new Library.Template.Controls.TemplateEditData();
             this.editCliente = new Library.Template.Controls.TemplateEditCombo();
-            this.editSaldo = new Library.Template.Controls.TemplateEditDecimal();
             this.editTotale = new Library.Template.Controls.TemplateEditDecimal();
             this.editIVA = new Library.Template.Controls.TemplateEditDecimal();
             this.editImponibile = new Library.Template.Controls.TemplateEditDecimal();
@@ -42,6 +41,7 @@ namespace Web.GUI.FatturaVendita
             this.editTipoPagamento = new Library.Template.Controls.TemplateEditDropDown();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
+            this.panelCommands.SuspendLayout();
             this.SuspendLayout();
             // 
             // container
@@ -51,7 +51,6 @@ namespace Web.GUI.FatturaVendita
             this.container.Controls.Add(this.editImponibile);
             this.container.Controls.Add(this.editIVA);
             this.container.Controls.Add(this.editTotale);
-            this.container.Controls.Add(this.editSaldo);
             this.container.Controls.Add(this.editCliente);
             this.container.Controls.Add(this.editData);
             this.container.Controls.Add(this.editNumero);
@@ -62,7 +61,6 @@ namespace Web.GUI.FatturaVendita
             this.container.Controls.SetChildIndex(this.editNumero, 0);
             this.container.Controls.SetChildIndex(this.editData, 0);
             this.container.Controls.SetChildIndex(this.editCliente, 0);
-            this.container.Controls.SetChildIndex(this.editSaldo, 0);
             this.container.Controls.SetChildIndex(this.editTotale, 0);
             this.container.Controls.SetChildIndex(this.editIVA, 0);
             this.container.Controls.SetChildIndex(this.editImponibile, 0);
@@ -167,28 +165,6 @@ namespace Web.GUI.FatturaVendita
             this.editCliente.Value = null;
             this.editCliente.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editCliente_ComboConfirm);
             this.editCliente.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editCliente_ComboClick);
-            // 
-            // editSaldo
-            // 
-            this.editSaldo.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editSaldo.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editSaldo.BackColor = System.Drawing.Color.Transparent;
-            this.editSaldo.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editSaldo.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editSaldo.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editSaldo.Changed = true;
-            this.editSaldo.Editing = false;
-            this.editSaldo.Label = "Saldo";
-            this.editSaldo.LabelWidth = 175;
-            this.editSaldo.Location = new System.Drawing.Point(25, 507);
-            this.editSaldo.Name = "editSaldo";
-            this.editSaldo.ReadOnly = false;
-            this.editSaldo.Required = false;
-            this.editSaldo.Size = new System.Drawing.Size(800, 30);
-            this.editSaldo.TabIndex = 8;
-            this.editSaldo.Text = "TemplateEditNumeric";
-            this.editSaldo.Value = null;
             // 
             // editTotale
             // 
@@ -301,9 +277,11 @@ namespace Web.GUI.FatturaVendita
             this.editTipoPagamento.TabIndex = 3;
             this.editTipoPagamento.Text = "EditControl";
             this.editTipoPagamento.Value = null;
+            this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
+            this.panelCommands.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
@@ -317,7 +295,6 @@ namespace Web.GUI.FatturaVendita
         private Library.Template.Controls.TemplateEditDecimal editImponibile;
         private Library.Template.Controls.TemplateEditDecimal editIVA;
         private Library.Template.Controls.TemplateEditDecimal editTotale;
-        private Library.Template.Controls.TemplateEditDecimal editSaldo;
         private Library.Template.Controls.TemplateEditDropDown editTipoPagamento;
         private Library.Template.Controls.TemplateEditDropDown editScadenzaPagamento;
 

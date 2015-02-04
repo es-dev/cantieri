@@ -37,7 +37,6 @@ namespace Web.GUI.FatturaAcquisto
             this.editImponibile = new Library.Template.Controls.TemplateEditDecimal();
             this.editIVA = new Library.Template.Controls.TemplateEditDecimal();
             this.editTotale = new Library.Template.Controls.TemplateEditDecimal();
-            this.editSaldo = new Library.Template.Controls.TemplateEditDecimal();
             this.editTipoPagamento = new Library.Template.Controls.TemplateEditDropDown();
             this.editScadenzaPagamento = new Library.Template.Controls.TemplateEditDropDown();
             this.editCentroCosto = new Library.Template.Controls.TemplateEditCombo();
@@ -51,7 +50,6 @@ namespace Web.GUI.FatturaAcquisto
             this.container.Controls.Add(this.editCentroCosto);
             this.container.Controls.Add(this.editScadenzaPagamento);
             this.container.Controls.Add(this.editTipoPagamento);
-            this.container.Controls.Add(this.editSaldo);
             this.container.Controls.Add(this.editTotale);
             this.container.Controls.Add(this.editIVA);
             this.container.Controls.Add(this.editImponibile);
@@ -68,7 +66,6 @@ namespace Web.GUI.FatturaAcquisto
             this.container.Controls.SetChildIndex(this.editImponibile, 0);
             this.container.Controls.SetChildIndex(this.editIVA, 0);
             this.container.Controls.SetChildIndex(this.editTotale, 0);
-            this.container.Controls.SetChildIndex(this.editSaldo, 0);
             this.container.Controls.SetChildIndex(this.editTipoPagamento, 0);
             this.container.Controls.SetChildIndex(this.editScadenzaPagamento, 0);
             this.container.Controls.SetChildIndex(this.editCentroCosto, 0);
@@ -240,28 +237,6 @@ namespace Web.GUI.FatturaAcquisto
             this.editTotale.Text = "TemplateEditNumeric";
             this.editTotale.Value = null;
             // 
-            // editSaldo
-            // 
-            this.editSaldo.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editSaldo.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editSaldo.BackColor = System.Drawing.Color.Transparent;
-            this.editSaldo.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editSaldo.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editSaldo.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editSaldo.Changed = true;
-            this.editSaldo.Editing = false;
-            this.editSaldo.Label = "Saldo";
-            this.editSaldo.LabelWidth = 175;
-            this.editSaldo.Location = new System.Drawing.Point(25, 495);
-            this.editSaldo.Name = "editSaldo";
-            this.editSaldo.ReadOnly = false;
-            this.editSaldo.Required = false;
-            this.editSaldo.Size = new System.Drawing.Size(798, 30);
-            this.editSaldo.TabIndex = 10;
-            this.editSaldo.Text = "TemplateEditNumeric";
-            this.editSaldo.Value = null;
-            // 
             // editTipoPagamento
             // 
             this.editTipoPagamento.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
@@ -347,7 +322,6 @@ namespace Web.GUI.FatturaAcquisto
         private Library.Template.Controls.TemplateEditText editNumero;
         private Library.Template.Controls.TemplateEditData editData;
         private Library.Template.Controls.TemplateEditCombo editFornitore;
-        private Library.Template.Controls.TemplateEditDecimal editSaldo;
         private Library.Template.Controls.TemplateEditDecimal editTotale;
         private Library.Template.Controls.TemplateEditDecimal editIVA;
         private Library.Template.Controls.TemplateEditDecimal editImponibile;

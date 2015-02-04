@@ -102,6 +102,32 @@ namespace DataLayer
 			}
 		}
 		
+		private string _tipoPagamento;
+		public virtual string TipoPagamento
+		{
+			get
+			{
+				return this._tipoPagamento;
+			}
+			set
+			{
+				this._tipoPagamento = value;
+			}
+		}
+		
+		private string _descrizione;
+		public virtual string Descrizione
+		{
+			get
+			{
+				return this._descrizione;
+			}
+			set
+			{
+				this._descrizione = value;
+			}
+		}
+		
 		private FatturaAcquisto _fatturaAcquisto;
 		public virtual FatturaAcquisto FatturaAcquisto
 		{

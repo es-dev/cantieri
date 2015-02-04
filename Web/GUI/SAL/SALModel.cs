@@ -158,7 +158,7 @@ namespace Web.GUI.SAL
                         stato = TypeStato.Normal;
                     }
                     //binding dati in GUI
-                    editStato.Value = stato.ToString() + " | " + messaggio;
+                    editStato.Value = stato.ToString() + " | " + messaggio;  //todo: da migliorare creando una classe StatoMessaggio oppure utilizzando editStato.ValueStato = stato
 
                     editTotaleAcquisti.Value = totaleAcquisti;
                     editTotaleVendite.Value = totaleVendite;

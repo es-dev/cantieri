@@ -15,13 +15,17 @@ namespace BusinessLogic
         {
             Assegno,
             Bonifico,
-            Contanti
+            Carta,
+            Contanti,
+            RIBA,
+            RID
         }
 
         public enum StatoCommessa
         {
             Aperta,
-            Chiusa
+            Chiusa,
+            Sospesa,
         }
 
         public enum ScadenzaPagamento

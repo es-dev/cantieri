@@ -141,19 +141,6 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal? _saldo;
-		public virtual decimal? Saldo
-		{
-			get
-			{
-				return this._saldo;
-			}
-			set
-			{
-				this._saldo = value;
-			}
-		}
-		
 		private string _scadenzaPagamento;
 		public virtual string ScadenzaPagamento
 		{
