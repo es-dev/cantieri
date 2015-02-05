@@ -140,7 +140,7 @@ namespace Web.GUI.SAL
             this.editData.TabIndex = 2;
             this.editData.Text = "EditControl";
             this.editData.Value = null;
-            this.editData.Leave += new System.EventHandler(this.editData_Leave);
+            this.editData.Confirm += new Library.Template.Controls.TemplateEditData.ConfirmHanlder(this.editData_Confirm);
             // 
             // editDenominazione
             // 

@@ -125,12 +125,12 @@ namespace WcfService
             return 0;
         }
 
-        public Dto.AziendaDto ReadAzienda(object Id)
+        public Dto.AziendaDto ReadAzienda(object id)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var azienda = wcf.ReadAzienda("Id=" + Id);
+                var azienda = wcf.ReadAzienda("Id=" + id);
                 return azienda;
             }
             catch (Exception ex)
@@ -276,13 +276,14 @@ namespace WcfService
             return 0;
         }
 
-        public Dto.CommessaDto ReadCommessa(object Id)
+        public Dto.CommessaDto ReadCommessa(object id)
         {
             try
             {
-                var wcf = new EntitiesModelService();
-                var commessa = wcf.ReadCommessa("Id=" + Id);
-                return commessa;
+                var ef = new DataLayer.EntitiesModel();
+                var commessa = (from q in ef.Commessas where q.Id == (int)id select q).FirstOrDefault();
+                var commessaDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commessa);
+                return commessaDto;
             }
             catch (Exception ex)
             {
@@ -429,12 +430,12 @@ namespace WcfService
             return 0;
         }
 
-        public Dto.FornitoreDto ReadFornitore(object Id)
+        public Dto.FornitoreDto ReadFornitore(object id)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var fornitore = wcf.ReadFornitore("Id=" + Id);
+                var fornitore = wcf.ReadFornitore("Id=" + id);
                 return fornitore;
             }
             catch (Exception ex)
@@ -585,12 +586,12 @@ namespace WcfService
             return 0;
         }
 
-        public Dto.CentroCostoDto ReadCentroCosto(object Id)
+        public Dto.CentroCostoDto ReadCentroCosto(object id)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var centroCosto = wcf.ReadCentroCosto("Id=" + Id);
+                var centroCosto = wcf.ReadCentroCosto("Id=" + id);
                 return centroCosto;
             }
             catch (Exception ex)
@@ -735,12 +736,12 @@ namespace WcfService
             return 0;
         }
 
-        public Dto.FatturaAcquistoDto ReadFatturaAcquisto(object Id)
+        public Dto.FatturaAcquistoDto ReadFatturaAcquisto(object id)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var fatturaAcquisto = wcf.ReadFatturaAcquisto("Id=" + Id);
+                var fatturaAcquisto = wcf.ReadFatturaAcquisto("Id=" + id);
                 return fatturaAcquisto;
             }
             catch (Exception ex)
@@ -913,12 +914,12 @@ namespace WcfService
             return 0;
         }
 
-        public Dto.ArticoloDto ReadArticolo(object Id)
+        public Dto.ArticoloDto ReadArticolo(object id)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var articolo = wcf.ReadArticolo("Id=" + Id);
+                var articolo = wcf.ReadArticolo("Id=" + id);
                 return articolo;
             }
             catch (Exception ex)
@@ -1067,12 +1068,12 @@ namespace WcfService
             return 0;
         }
 
-        public Dto.PagamentoDto ReadPagamento(object Id)
+        public Dto.PagamentoDto ReadPagamento(object id)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var pagamento = wcf.ReadPagamento("Id=" + Id);
+                var pagamento = wcf.ReadPagamento("Id=" + id);
                 return pagamento;
             }
             catch (Exception ex)
@@ -1221,12 +1222,12 @@ namespace WcfService
             return 0;
         }
 
-        public Dto.ClienteDto ReadCliente(object Id)
+        public Dto.ClienteDto ReadCliente(object id)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var cliente = wcf.ReadCliente("Id=" + Id);
+                var cliente = wcf.ReadCliente("Id=" + id);
                 return cliente;
             }
             catch (Exception ex)
@@ -1378,12 +1379,12 @@ namespace WcfService
             return 0;
         }
 
-        public Dto.FatturaVenditaDto ReadFatturaVendita(object Id)
+        public Dto.FatturaVenditaDto ReadFatturaVendita(object id)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var fatturaVendita = wcf.ReadFatturaVendita("Id=" + Id);
+                var fatturaVendita = wcf.ReadFatturaVendita("Id=" + id);
                 return fatturaVendita;
             }
             catch (Exception ex)
@@ -1532,12 +1533,12 @@ namespace WcfService
             return 0;
         }
 
-        public Dto.LiquidazioneDto ReadLiquidazione(object Id)
+        public Dto.LiquidazioneDto ReadLiquidazione(object id)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var liquidazione = wcf.ReadLiquidazione("Id=" + Id);
+                var liquidazione = wcf.ReadLiquidazione("Id=" + id);
                 return liquidazione;
             }
             catch (Exception ex)
@@ -1686,12 +1687,12 @@ namespace WcfService
             return 0;
         }
 
-        public Dto.SALDto ReadSAL(object Id)
+        public Dto.SALDto ReadSAL(object id)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var SAL = wcf.ReadSAL("Id=" + Id);
+                var SAL = wcf.ReadSAL("Id=" + id);
                 return SAL;
             }
             catch (Exception ex)
@@ -1840,12 +1841,12 @@ namespace WcfService
             return 0;
         }
 
-        public Dto.AnagraficaFornitoreDto ReadAnagraficaFornitore(object Id)
+        public Dto.AnagraficaFornitoreDto ReadAnagraficaFornitore(object id)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var anagraficaFornitore = wcf.ReadAnagraficaFornitore("Id=" + Id);
+                var anagraficaFornitore = wcf.ReadAnagraficaFornitore("Id=" + id);
                 return anagraficaFornitore;
             }
             catch (Exception ex)
@@ -1993,12 +1994,12 @@ namespace WcfService
             return 0;
         }
 
-        public Dto.AnagraficaClienteDto ReadAnagraficaCliente(object Id)
+        public Dto.AnagraficaClienteDto ReadAnagraficaCliente(object id)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var anagraficaCliente = wcf.ReadAnagraficaCliente("Id=" + Id);
+                var anagraficaCliente = wcf.ReadAnagraficaCliente("Id=" + id);
                 return anagraficaCliente;
             }
             catch (Exception ex)
@@ -2144,12 +2145,12 @@ namespace WcfService
             return 0;
         }
 
-        public Dto.AnagraficaArticoloDto ReadAnagraficaArticolo(object Id)
+        public Dto.AnagraficaArticoloDto ReadAnagraficaArticolo(object id)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var anagraficaArticolo = wcf.ReadAnagraficaArticolo("Id=" + Id);
+                var anagraficaArticolo = wcf.ReadAnagraficaArticolo("Id=" + id);
                 return anagraficaArticolo;
             }
             catch (Exception ex)

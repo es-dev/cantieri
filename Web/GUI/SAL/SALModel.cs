@@ -121,10 +121,12 @@ namespace Web.GUI.SAL
         {
             try
             {
-                var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
+                var commessaId = editCommessa.Id;
                 var data = editData.Value;
-                if (commessa != null && data != null)
+                if (commessaId != null && data != null)
                 {
+                    var viewModelCommessa = new Commessa.CommessaViewModel(this);
+                    var commessa = (WcfService.Dto.CommessaDto)viewModelCommessa.Read(commessaId);
                     var fornitori = commessa.Fornitores;
                     var cliente = commessa.Cliente;
 
@@ -172,8 +174,8 @@ namespace Web.GUI.SAL
             }
         }
 
-       
-        private void editData_Leave(object sender, EventArgs e)
+              
+        private void btnCalcoloSAL_Click(object sender, EventArgs e)
         {
             try
             {
@@ -185,7 +187,7 @@ namespace Web.GUI.SAL
             }
         }
 
-        private void btnCalcoloSAL_Click(object sender, EventArgs e)
+        private void editData_Confirm(DateTime? value)
         {
             try
             {
