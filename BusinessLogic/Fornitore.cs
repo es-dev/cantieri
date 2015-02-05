@@ -19,7 +19,7 @@ namespace BusinessLogic
                     var fattureAcquisto = fornitore.FatturaAcquistos;
                     if (fattureAcquisto != null)
                     {
-                        var totaleImponibile = (from q in fattureAcquisto where q.Imponibile!=null && q.Data <= data select q.Imponibile).Sum();
+                        var totaleImponibile = (from q in fattureAcquisto where q.Totale != null && q.Data <= data select q.Totale).Sum();
                         totale = (decimal)totaleImponibile;
                     }
                     return totale;
