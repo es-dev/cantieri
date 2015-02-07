@@ -1,5 +1,6 @@
 using Library.Code;
 using Library.Code.Enum;
+using Library.Template.Controls;
 using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
@@ -142,26 +143,10 @@ namespace Web.GUI.SAL
                     var margineOperativo = importoLavori - totaleAcquisti;
 
                     //valutazione dell'andamento del lavoro
-                    var messaggio = "";
-                    TypeStato stato = TypeStato.None;
-                    if (margineOperativo < 0)
-                    {
-                        messaggio = "Andamento del lavoro critico. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta al valore critico di " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
-                        stato = TypeStato.Critical;
-                    }
-                    else if (margineOperativo < margine)
-                    {
-                        messaggio = "Andamento del lavoro negativo. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta ad un valore inferiore pari a " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
-                        stato = TypeStato.Warning;
-                    }
-                    else if (margineOperativo >= margine)
-                    {
-                        messaggio = "Andamento del lavoro positivo. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta a valori superiori pari a " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
-                        stato = TypeStato.Normal;
-                    }
+                    var stato = GetStatoDescrizione(importoLavori, margine, margineOperativo);
+                   
                     //binding dati in GUI
-                    editStato.Value = stato.ToString() + " | " + messaggio;  //todo: da migliorare creando una classe StatoMessaggio oppure utilizzando editStato.ValueStato = stato
-
+                    editStato.Value = stato.ToString();
                     editTotaleAcquisti.Value = totaleAcquisti;
                     editTotaleVendite.Value = totaleVendite;
                     editTotalePagamenti.Value = totalePagamenti;
@@ -172,6 +157,37 @@ namespace Web.GUI.SAL
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private StatoDescrizione GetStatoDescrizione(decimal importoLavori, decimal margine, decimal margineOperativo)
+        {
+            try
+            {
+                var descrizione = "";
+                var stato = TypeStato.None;
+                if (margineOperativo < 0)
+                {
+                    descrizione = "Andamento del lavoro critico. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta al valore critico di " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
+                    stato = TypeStato.Critical;
+                }
+                else if (margineOperativo < margine)
+                {
+                    descrizione = "Andamento del lavoro negativo. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta ad un valore inferiore pari a " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
+                    stato = TypeStato.Warning;
+                }
+                else if (margineOperativo >= margine)
+                {
+                    descrizione = "Andamento del lavoro positivo. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta a valori superiori pari a " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
+                    stato = TypeStato.Normal;
+                }
+                var statoDescrizione = new StatoDescrizione(stato, descrizione);
+                return statoDescrizione;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
 
               
