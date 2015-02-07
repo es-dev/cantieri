@@ -216,49 +216,23 @@ namespace Web.GUI.FatturaAcquisto
                 var imponibile = editImponibile.Value;
                 var iva = editIVA.Value;
                 var data = editData.Value;
+                var scadenzaPagamento = editScadenzaPagamento.Value;
+                var today= DateTime.Today;
 
                 if (imponibile != null && iva != null && data!=null)
                 {
                     //prelievo dati da DB
                     var obj = (WcfService.Dto.FatturaAcquistoDto)Model;
-                    var pagamenti = obj.Pagamentos;
                     
+                    var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, scadenzaPagamento);
                     var totaleFattura = BusinessLogic.Fattura.GetTotale((decimal)imponibile, (decimal)iva);
-                    var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, data.Value);  //ho la funzione a cui passo fattura direttamente
+                    var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj,today);  
 
                     //valutazione dell'andamento del lavoro
-                    var today= DateTime.Today;
-                    var scadenza = obj.Data; //+ objpagamento.scadenza
-                    var statoFattura = BusinessLogic.Tipi.StatoFattura.None;
-                    if (totalePagamenti >= totaleFattura)
-                        statoFattura = BusinessLogic.Tipi.StatoFattura.Pagata;
-                    else if (totalePagamenti < totaleFattura && today>scadenza)
-                        statoFattura = BusinessLogic.Tipi.StatoFattura.Pagata;
-                    else if (totalePagamenti < totaleFattura && today <= scadenza)
-                        statoFattura = BusinessLogic.Tipi.StatoFattura.Pagata;
-
-
-                    //var messaggio = "";
-                  //TypeStato stato = TypeStato.None;
-                  //  if (totalePagamenti < totaleFattura)
-                  //  {
-                  //      messaggio = "Andamento del lavoro critico. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta al valore critico di " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
-                  //      stato = TypeStato.Critical;
-                  //  }
-                  //  else if (margineOperativo < margine)
-                  //  {
-                  //      messaggio = "Andamento del lavoro negativo. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta ad un valore inferiore pari a " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
-                  //      stato = TypeStato.Warning;
-                  //  }
-                  //  else if (margineOperativo >= margine)
-                  //  {
-                  //      messaggio = "Andamento del lavoro positivo. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta a valori superiori pari a " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
-                  //      stato = TypeStato.Normal;
-                  //  }
+                    var stato = GetStato(today, scadenza, totaleFattura,totalePagamenti);
 
                     //binding dati in GUI
-                    //editStato.Value = stato.ToString() + " | " + messaggio;  //todo: da migliorare creando una classe StatoMessaggio oppure utilizzando editStato.ValueStato = stato
-
+                    editStato.Value = stato.ToString();
                     editTotale.Value = totaleFattura;
                     editTotalePagamenti.Value= totalePagamenti;
                 }
@@ -269,6 +243,39 @@ namespace Web.GUI.FatturaAcquisto
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private StatoDescrizione GetStato(DateTime today, DateTime scadenza, decimal totaleFattura, decimal totalePagamenti)
+        {
+
+            try
+            {
+                var descrizione = "";
+                var stato = TypeStato.None;
+                 if (totalePagamenti < totaleFattura && today>scadenza)
+                {
+                    descrizione = "La fattura rusilta insoluta. Il totale pagamenti (" + totalePagamenti.ToString("0.00€") + ") è inferiore al totale della fattura(" + totaleFattura.ToString("0.00€") + ") e la fattura risulta scaduta da " + (today.Subtract(scadenza).ToString("dd") + " giorni");
+                    stato = TypeStato.Critical;
+                }
+                else if (totalePagamenti < totaleFattura && today <= scadenza)
+                {
+                    descrizione = "La fattura rusilta in pagamento. Il totale pagamenti (" + totalePagamenti.ToString("0.00€") + ") è inferiore al totale della fattura(" + totaleFattura.ToString("0.00€") + ") e la fattura scade tra " + (scadenza.Subtract(today).ToString("dd")+ " giorni");
+                    stato = TypeStato.Warning;
+                }
+                else if(totalePagamenti >= totaleFattura)
+                {
+                    descrizione = "La fattura è stata pagata";
+                    stato = TypeStato.Normal;
+                }
+                var statoDescrizione = new StatoDescrizione(stato, descrizione);
+                return statoDescrizione;
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
 
 

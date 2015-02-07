@@ -68,5 +68,47 @@ namespace BusinessLogic
             }
             return 0;
         }
+
+        public static DateTime GetScadenza(DateTime data, string scadenzaPagamento)
+        {
+            try
+            {
+                var scadenza= new DateTime();
+
+                var tipoScadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
+
+                var _scadenzaPagamento = GetGiorni(tipoScadenzaPagamento);
+
+                scadenza= data.AddDays(_scadenzaPagamento);
+                return scadenza;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return DateTime.MinValue;
+        }
+
+        private static int GetGiorni(BusinessLogic.Tipi.ScadenzaPagamento tipoScadenzaPagamento)
+        {
+            try
+            {
+                var giorni = 0;
+                if (tipoScadenzaPagamento == Tipi.ScadenzaPagamento.GG120)
+                    giorni = 120;
+                else if (tipoScadenzaPagamento == Tipi.ScadenzaPagamento.GG90)
+                    giorni = 90;
+                else if (tipoScadenzaPagamento == Tipi.ScadenzaPagamento.GG60)
+                    giorni = 60;
+                else if (tipoScadenzaPagamento == Tipi.ScadenzaPagamento.GG30)
+                    giorni = 30;
+                return giorni;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
     }
 }

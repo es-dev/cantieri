@@ -141,7 +141,6 @@ namespace Web.GUI.SAL
             this.editData.Text = "EditControl";
             this.editData.Value = null;
             this.editData.Confirm += new Library.Template.Controls.TemplateEditData.ConfirmHanlder(this.editData_Confirm);
-            this.editData.Leave += new System.EventHandler(this.editData_Leave);
             // 
             // editDenominazione
             // 

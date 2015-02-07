@@ -45,8 +45,8 @@ namespace BusinessLogic
             Pagata, //fattura il cui totale pagamenti>=Totale fattura
             Insoluta, //fattura il cui totale pagamenti <totale fattura e today >scadenza=data fattura+ scadenza pagamento
             NonPagata, //fattura il cui totale pagamenti <totale fattura e today<=scadenza=data fattura+ scadenza pagamento
-
         }
+
         public static IList<string> GetNames(Type type)
         {
             try
@@ -60,5 +60,7 @@ namespace BusinessLogic
             }
             return null;
         }
+
+
     }
 }

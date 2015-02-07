@@ -125,7 +125,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editData.Editing = false;
             this.editData.Label = "Data";
             this.editData.LabelWidth = 175;
-            this.editData.Location = new System.Drawing.Point(25, 159);
+            this.editData.Location = new System.Drawing.Point(25, 153);
             this.editData.Name = "editData";
             this.editData.ReadOnly = false;
             this.editData.Required = false;
@@ -147,7 +147,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editNumero.Editing = false;
             this.editNumero.Label = "Numero";
             this.editNumero.LabelWidth = 175;
-            this.editNumero.Location = new System.Drawing.Point(25, 201);
+            this.editNumero.Location = new System.Drawing.Point(25, 192);
             this.editNumero.Name = "editNumero";
             this.editNumero.ReadOnly = false;
             this.editNumero.Required = false;
@@ -169,7 +169,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editDescrizione.Editing = false;
             this.editDescrizione.Label = "Descrizione";
             this.editDescrizione.LabelWidth = 175;
-            this.editDescrizione.Location = new System.Drawing.Point(25, 327);
+            this.editDescrizione.Location = new System.Drawing.Point(25, 309);
             this.editDescrizione.Name = "editDescrizione";
             this.editDescrizione.ReadOnly = false;
             this.editDescrizione.Required = false;
@@ -191,7 +191,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editImponibile.Editing = false;
             this.editImponibile.Label = "Imponibile";
             this.editImponibile.LabelWidth = 175;
-            this.editImponibile.Location = new System.Drawing.Point(25, 369);
+            this.editImponibile.Location = new System.Drawing.Point(25, 348);
             this.editImponibile.Name = "editImponibile";
             this.editImponibile.ReadOnly = false;
             this.editImponibile.Required = false;
@@ -214,7 +214,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editIVA.Editing = false;
             this.editIVA.Label = "IVA";
             this.editIVA.LabelWidth = 175;
-            this.editIVA.Location = new System.Drawing.Point(25, 411);
+            this.editIVA.Location = new System.Drawing.Point(25, 387);
             this.editIVA.Name = "editIVA";
             this.editIVA.ReadOnly = false;
             this.editIVA.Required = false;
@@ -237,7 +237,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editTotale.Editing = false;
             this.editTotale.Label = "Totale";
             this.editTotale.LabelWidth = 175;
-            this.editTotale.Location = new System.Drawing.Point(25, 453);
+            this.editTotale.Location = new System.Drawing.Point(25, 426);
             this.editTotale.Name = "editTotale";
             this.editTotale.ReadOnly = false;
             this.editTotale.Required = false;
@@ -260,7 +260,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editTipoPagamento.Items = null;
             this.editTipoPagamento.Label = "Tipo pagamento";
             this.editTipoPagamento.LabelWidth = 175;
-            this.editTipoPagamento.Location = new System.Drawing.Point(25, 243);
+            this.editTipoPagamento.Location = new System.Drawing.Point(25, 231);
             this.editTipoPagamento.Name = "editTipoPagamento";
             this.editTipoPagamento.ReadOnly = false;
             this.editTipoPagamento.Required = false;
@@ -283,7 +283,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editScadenzaPagamento.Items = null;
             this.editScadenzaPagamento.Label = "Scadenza pagamento";
             this.editScadenzaPagamento.LabelWidth = 175;
-            this.editScadenzaPagamento.Location = new System.Drawing.Point(25, 285);
+            this.editScadenzaPagamento.Location = new System.Drawing.Point(25, 270);
             this.editScadenzaPagamento.Name = "editScadenzaPagamento";
             this.editScadenzaPagamento.ReadOnly = false;
             this.editScadenzaPagamento.Required = false;
@@ -305,12 +305,12 @@ namespace Web.GUI.FatturaAcquisto
             this.editCentroCosto.Editing = false;
             this.editCentroCosto.Label = "Centro di Costo";
             this.editCentroCosto.LabelWidth = 175;
-            this.editCentroCosto.Location = new System.Drawing.Point(25, 117);
+            this.editCentroCosto.Location = new System.Drawing.Point(25, 114);
             this.editCentroCosto.Model = null;
             this.editCentroCosto.Name = "editCentroCosto";
             this.editCentroCosto.ReadOnly = false;
             this.editCentroCosto.Required = false;
-            this.editCentroCosto.Size = new System.Drawing.Size(800, 30);
+            this.editCentroCosto.Size = new System.Drawing.Size(798, 30);
             this.editCentroCosto.TabIndex = 1;
             this.editCentroCosto.Text = "EditControl";
             this.editCentroCosto.Value = null;
@@ -330,14 +330,14 @@ namespace Web.GUI.FatturaAcquisto
             this.editStato.Editing = false;
             this.editStato.Label = "Stato";
             this.editStato.LabelWidth = 175;
-            this.editStato.Location = new System.Drawing.Point(19, 579);
+            this.editStato.Location = new System.Drawing.Point(25, 543);
             this.editStato.Name = "editStato";
             this.editStato.ReadOnly = false;
             this.editStato.Required = false;
-            this.editStato.Size = new System.Drawing.Size(796, 30);
-            this.editStato.TabIndex = 1000;
+            this.editStato.Size = new System.Drawing.Size(798, 50);
+            this.editStato.TabIndex = 11;
             this.editStato.Text = "TemplateEditNumeric";
-            this.editStato.Value = "None | ";
+            this.editStato.Value = "None{;}";
             // 
             // lblAndamento
             // 
@@ -346,7 +346,7 @@ namespace Web.GUI.FatturaAcquisto
             this.lblAndamento.BackColor = System.Drawing.Color.Gainsboro;
             this.lblAndamento.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAndamento.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblAndamento.Location = new System.Drawing.Point(13, 495);
+            this.lblAndamento.Location = new System.Drawing.Point(13, 465);
             this.lblAndamento.Name = "lblAndamento";
             this.lblAndamento.Size = new System.Drawing.Size(887, 30);
             this.lblAndamento.TabIndex = 1001;
@@ -366,12 +366,12 @@ namespace Web.GUI.FatturaAcquisto
             this.editTotalePagamenti.Editing = false;
             this.editTotalePagamenti.Label = "Totale pagamenti";
             this.editTotalePagamenti.LabelWidth = 175;
-            this.editTotalePagamenti.Location = new System.Drawing.Point(19, 537);
+            this.editTotalePagamenti.Location = new System.Drawing.Point(25, 504);
             this.editTotalePagamenti.Name = "templateEditDecimal1";
             this.editTotalePagamenti.ReadOnly = false;
             this.editTotalePagamenti.Required = false;
             this.editTotalePagamenti.Size = new System.Drawing.Size(798, 30);
-            this.editTotalePagamenti.TabIndex = 9;
+            this.editTotalePagamenti.TabIndex = 10;
             this.editTotalePagamenti.Text = "TemplateEditNumeric";
             this.editTotalePagamenti.Value = null;
             this.Controls.SetChildIndex(this.panelCommands, 0);
