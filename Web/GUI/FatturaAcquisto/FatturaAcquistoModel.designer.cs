@@ -40,6 +40,9 @@ namespace Web.GUI.FatturaAcquisto
             this.editTipoPagamento = new Library.Template.Controls.TemplateEditDropDown();
             this.editScadenzaPagamento = new Library.Template.Controls.TemplateEditDropDown();
             this.editCentroCosto = new Library.Template.Controls.TemplateEditCombo();
+            this.editStato = new Library.Template.Controls.TemplateEditStato();
+            this.lblAndamento = new Gizmox.WebGUI.Forms.Label();
+            this.editTotalePagamenti = new Library.Template.Controls.TemplateEditDecimal();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -47,6 +50,9 @@ namespace Web.GUI.FatturaAcquisto
             // 
             // container
             // 
+            this.container.Controls.Add(this.editTotalePagamenti);
+            this.container.Controls.Add(this.lblAndamento);
+            this.container.Controls.Add(this.editStato);
             this.container.Controls.Add(this.editCentroCosto);
             this.container.Controls.Add(this.editScadenzaPagamento);
             this.container.Controls.Add(this.editTipoPagamento);
@@ -69,6 +75,9 @@ namespace Web.GUI.FatturaAcquisto
             this.container.Controls.SetChildIndex(this.editTipoPagamento, 0);
             this.container.Controls.SetChildIndex(this.editScadenzaPagamento, 0);
             this.container.Controls.SetChildIndex(this.editCentroCosto, 0);
+            this.container.Controls.SetChildIndex(this.editStato, 0);
+            this.container.Controls.SetChildIndex(this.lblAndamento, 0);
+            this.container.Controls.SetChildIndex(this.editTotalePagamenti, 0);
             // 
             // infoSubtitle
             // 
@@ -307,6 +316,64 @@ namespace Web.GUI.FatturaAcquisto
             this.editCentroCosto.Value = null;
             this.editCentroCosto.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editCentroCosto_ComboConfirm);
             this.editCentroCosto.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editCentroCosto_ComboClick);
+            // 
+            // editStato
+            // 
+            this.editStato.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editStato.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editStato.BackColor = System.Drawing.Color.Transparent;
+            this.editStato.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editStato.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editStato.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editStato.Changed = true;
+            this.editStato.Editing = false;
+            this.editStato.Label = "Stato";
+            this.editStato.LabelWidth = 175;
+            this.editStato.Location = new System.Drawing.Point(19, 579);
+            this.editStato.Name = "editStato";
+            this.editStato.ReadOnly = false;
+            this.editStato.Required = false;
+            this.editStato.Size = new System.Drawing.Size(796, 30);
+            this.editStato.TabIndex = 1000;
+            this.editStato.Text = "TemplateEditNumeric";
+            this.editStato.Value = "None | ";
+            // 
+            // lblAndamento
+            // 
+            this.lblAndamento.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.lblAndamento.BackColor = System.Drawing.Color.Gainsboro;
+            this.lblAndamento.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAndamento.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblAndamento.Location = new System.Drawing.Point(13, 495);
+            this.lblAndamento.Name = "lblAndamento";
+            this.lblAndamento.Size = new System.Drawing.Size(887, 30);
+            this.lblAndamento.TabIndex = 1001;
+            this.lblAndamento.Text = "SITUAZIONE PAGAMENTI";
+            this.lblAndamento.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // editTotalePagamenti
+            // 
+            this.editTotalePagamenti.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editTotalePagamenti.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editTotalePagamenti.BackColor = System.Drawing.Color.Transparent;
+            this.editTotalePagamenti.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editTotalePagamenti.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editTotalePagamenti.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editTotalePagamenti.Changed = true;
+            this.editTotalePagamenti.Editing = false;
+            this.editTotalePagamenti.Label = "Totale pagamenti";
+            this.editTotalePagamenti.LabelWidth = 175;
+            this.editTotalePagamenti.Location = new System.Drawing.Point(19, 537);
+            this.editTotalePagamenti.Name = "templateEditDecimal1";
+            this.editTotalePagamenti.ReadOnly = false;
+            this.editTotalePagamenti.Required = false;
+            this.editTotalePagamenti.Size = new System.Drawing.Size(798, 30);
+            this.editTotalePagamenti.TabIndex = 9;
+            this.editTotalePagamenti.Text = "TemplateEditNumeric";
+            this.editTotalePagamenti.Value = null;
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
@@ -328,6 +395,9 @@ namespace Web.GUI.FatturaAcquisto
         private Library.Template.Controls.TemplateEditDropDown editTipoPagamento;
         private Library.Template.Controls.TemplateEditDropDown editScadenzaPagamento;
         private Library.Template.Controls.TemplateEditCombo editCentroCosto;
+        private Library.Template.Controls.TemplateEditStato editStato;
+        private Gizmox.WebGUI.Forms.Label lblAndamento;
+        private Library.Template.Controls.TemplateEditDecimal editTotalePagamenti;
 
 
     }

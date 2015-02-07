@@ -121,16 +121,18 @@ namespace Web.GUI.SAL
         {
             try
             {
+                //prelievo dati da GUI
                 var commessaId = editCommessa.Id;
                 var data = editData.Value;
                 if (commessaId != null && data != null)
                 {
+                    //prelievo dati da DB
                     var viewModelCommessa = new Commessa.CommessaViewModel(this);
                     var commessa = (WcfService.Dto.CommessaDto)viewModelCommessa.Read(commessaId);
                     var fornitori = commessa.Fornitores;
                     var cliente = commessa.Cliente;
 
-                    //lettura totali da Business Logic
+                    //calcolo totali da Business Logic
                     var totaleAcquisti = BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, data.Value);
                     var totaleVendite = BusinessLogic.SAL.GetTotaleFattureVendita(cliente, data.Value);
                     var totalePagamenti = BusinessLogic.SAL.GetTotalePagamenti(fornitori, data.Value);
@@ -159,9 +161,9 @@ namespace Web.GUI.SAL
                         messaggio = "Andamento del lavoro positivo. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta a valori superiori pari a " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
                         stato = TypeStato.Normal;
                     }
+
                     //binding dati in GUI
                     editStato.Value = stato.ToString() + " | " + messaggio;  //todo: da migliorare creando una classe StatoMessaggio oppure utilizzando editStato.ValueStato = stato
-
                     editTotaleAcquisti.Value = totaleAcquisti;
                     editTotaleVendite.Value = totaleVendite;
                     editTotalePagamenti.Value = totalePagamenti;
@@ -188,6 +190,18 @@ namespace Web.GUI.SAL
         }
 
         private void editData_Confirm(DateTime? value)
+        {
+            try
+            {
+                CalcolaTotali();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editData_Leave(object sender, EventArgs e)
         {
             try
             {

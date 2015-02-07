@@ -46,7 +46,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        internal static decimal GetTotalePagamenti(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto, DateTime data)
+        public static decimal GetTotalePagamenti(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto, DateTime data)
         {
             try
             {

@@ -583,6 +583,8 @@ namespace WcfService.Assemblers
 			entity.Totale = dto.Totale;
 			entity.ScadenzaPagamento = dto.ScadenzaPagamento;
 			entity.CentroCostoId = dto.CentroCostoId;
+			entity.TotalePagamenti = dto.TotalePagamenti;
+			entity.Stato = dto.Stato;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -604,6 +606,8 @@ namespace WcfService.Assemblers
 			dto.Totale = entity.Totale;
 			dto.ScadenzaPagamento = entity.ScadenzaPagamento;
 			dto.CentroCostoId = entity.CentroCostoId;
+			dto.TotalePagamenti = entity.TotalePagamenti;
+			dto.Stato = entity.Stato;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }

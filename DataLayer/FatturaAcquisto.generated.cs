@@ -167,6 +167,32 @@ namespace DataLayer
 			}
 		}
 		
+		private decimal? _totalePagamenti;
+		public virtual decimal? TotalePagamenti
+		{
+			get
+			{
+				return this._totalePagamenti;
+			}
+			set
+			{
+				this._totalePagamenti = value;
+			}
+		}
+		
+		private string _stato;
+		public virtual string Stato
+		{
+			get
+			{
+				return this._stato;
+			}
+			set
+			{
+				this._stato = value;
+			}
+		}
+		
 		private CentroCosto _centroCosto;
 		public virtual CentroCosto CentroCosto
 		{
