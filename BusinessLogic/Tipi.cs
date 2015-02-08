@@ -13,6 +13,7 @@ namespace BusinessLogic
 
         public enum TipoPagamento
         {
+            None,
             Assegno,
             Bonifico,
             Carta,
@@ -23,6 +24,7 @@ namespace BusinessLogic
 
         public enum StatoCommessa
         {
+            None,
             Aperta,
             Chiusa,
             Sospesa,
@@ -30,10 +32,19 @@ namespace BusinessLogic
 
         public enum ScadenzaPagamento
         {
-            GG30=30,
+            None,
+            GG30 = 30,
             GG60=60,
             GG90=90,
             GG120=120
+        }
+
+        public enum StatoFattura
+        {
+            None,
+            Pagata, //fattura il cui totale pagamenti>=Totale fattura
+            Insoluta, //fattura il cui totale pagamenti <totale fattura e today >scadenza=data fattura+ scadenza pagamento
+            NonPagata, //fattura il cui totale pagamenti <totale fattura e today<=scadenza=data fattura+ scadenza pagamento
         }
 
         public static IList<string> GetNames(Type type)
@@ -49,5 +60,7 @@ namespace BusinessLogic
             }
             return null;
         }
+
+
     }
 }

@@ -306,6 +306,12 @@
         <orm:field name="_centroCostoId" property="CentroCostoId" uniqueId="48606d18-d853-49a5-8f31-1f3a062c481d" type="System.Int32">
           <orm:column name="CentroCostoId" sql-type="int" nullable="false" length="0" scale="0" ado-type="" />
         </orm:field>
+        <orm:field name="_totalePagamenti" property="TotalePagamenti" uniqueId="106a13f4-4f0b-418b-a315-7f4129822f28" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="TotalePagamenti" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        </orm:field>
+        <orm:field name="_stato" property="Stato" uniqueId="8bf1edd0-d2fa-4dda-b1e4-07e759a77230" type="System.String">
+          <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
         <orm:field name="_centroCosto" property="CentroCosto" behavior="readwrite" uniqueId="b3fb004d-8bc0-4b48-8852-13ca483b50b0" type="DataLayer.CentroCosto">
           <orm:reference uniqueId="8a1ec485-60f4-4ca4-8b26-6596dcdbd353" association-name="FatturaAcquistoHasCentroCosto">
             <orm:sharedfield name="_centroCostoId" target-class="DataLayer.CentroCosto" target-field="_id" />
@@ -719,6 +725,8 @@
         <orm:column name="FornitoreId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         <orm:column name="ScadenzaPagamento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="CentroCostoId" sql-type="int" nullable="false" length="0" scale="0" ado-type="" />
+        <orm:column name="TotalePagamenti" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:index name="idx_FtturaAcquisto_FornitoreId">
           <orm:columnMapping>
             <orm:column name="FornitoreId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -1088,6 +1096,8 @@
       <Property Id="72b951fa-df05-44cd-b2ac-a774a0f00e18" name="Totale" type="Decimal" label="Totale : Decimal" nullable="true" fieldName="_totale" />
       <Property Id="fe96bee5-92bf-410e-b97e-c2f4602dd6a9" name="ScadenzaPagamento" label="ScadenzaPagamento : String" fieldName="_scadenzaPagamento" />
       <Property Id="48606d18-d853-49a5-8f31-1f3a062c481d" name="CentroCostoId" type="Int32" label="CentroCostoId : Int32" fieldName="_centroCostoId" />
+      <Property Id="106a13f4-4f0b-418b-a315-7f4129822f28" name="TotalePagamenti" type="Decimal" label="TotalePagamenti : Decimal" nullable="true" fieldName="_totalePagamenti" />
+      <Property Id="8bf1edd0-d2fa-4dda-b1e4-07e759a77230" name="Stato" label="Stato : String" fieldName="_stato" />
       <AssociationTargets>
         <Association Id="9133edb8-9422-4c9c-a7d6-77def2077659" SourceMultiplicity="ZeroOne" name="FatturaAcquistoHasFornitore">
           <DomainClassMoniker name="/EntitiesModel/Fornitore" />

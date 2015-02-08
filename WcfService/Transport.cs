@@ -415,7 +415,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public FatturaAcquistoDto(int _id, int _fornitoreId, DateTime? _data, string _numero, string _tipoPagamento, string _descrizione, decimal? _imponibile, decimal? _iVA, decimal? _totale, string _scadenzaPagamento, int _centroCostoId, CentroCostoDto _centroCosto, FornitoreDto _fornitore, IList<ArticoloDto> _articolos, IList<PagamentoDto> _pagamentos)
+		public FatturaAcquistoDto(int _id, int _fornitoreId, DateTime? _data, string _numero, string _tipoPagamento, string _descrizione, decimal? _imponibile, decimal? _iVA, decimal? _totale, string _scadenzaPagamento, int _centroCostoId, decimal? _totalePagamenti, string _stato, CentroCostoDto _centroCosto, FornitoreDto _fornitore, IList<ArticoloDto> _articolos, IList<PagamentoDto> _pagamentos)
 		{
 			this.Id = _id;
 			this.FornitoreId = _fornitoreId;
@@ -428,6 +428,8 @@ namespace WcfService.Dto
 			this.Totale = _totale;
 			this.ScadenzaPagamento = _scadenzaPagamento;
 			this.CentroCostoId = _centroCostoId;
+			this.TotalePagamenti = _totalePagamenti;
+			this.Stato = _stato;
 			this.CentroCosto = _centroCosto;
 			this.Fornitore = _fornitore;
 			this.Articolos = _articolos;
@@ -469,6 +471,12 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual int CentroCostoId { get;set; }
+
+		[DataMember]
+		public virtual decimal? TotalePagamenti { get;set; }
+
+		[DataMember]
+		public virtual string Stato { get;set; }
 
 		[DataMember]
 		public virtual CentroCostoDto CentroCosto { get;set; }

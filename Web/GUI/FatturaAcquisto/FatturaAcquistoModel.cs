@@ -1,5 +1,6 @@
 using BusinessLogic;
 using Library.Code;
+using Library.Code.Enum;
 using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
@@ -74,6 +75,8 @@ namespace Web.GUI.FatturaAcquisto
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editScadenzaPagamento.Value = obj.ScadenzaPagamento;
                     editTotale.Value = obj.Totale;
+                    editTotalePagamenti.Value = obj.TotalePagamenti;
+                    editStato.Value = obj.Stato;
                     var centroCosto=obj.CentroCosto;
                     if (centroCosto!=null)
                     {
@@ -109,6 +112,8 @@ namespace Web.GUI.FatturaAcquisto
                     obj.TipoPagamento = editTipoPagamento.Value;
                     obj.ScadenzaPagamento = editScadenzaPagamento.Value;
                     obj.Totale = editTotale.Value;
+                    obj.TotalePagamenti = editTotalePagamenti.Value;
+                    obj.Stato = editStato.Value;
                     var centroCosto = (WcfService.Dto.CentroCostoDto)editCentroCosto.Model;
                     if(centroCosto!=null)
                         obj.CentroCostoId = centroCosto.Id;
@@ -183,13 +188,15 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                var imponibile = editImponibile.Value;
-                var iva = editIVA.Value;
-                if (imponibile != null && iva != null)
-                {
-                    var totale = BusinessLogic.Fattura.GetTotale((decimal)imponibile, (decimal)iva);
-                    editTotale.Value = totale;
-                }
+                CalcolaTotali();
+                
+                //var imponibile = editImponibile.Value;
+                //var iva = editIVA.Value;
+                //if (imponibile != null && iva != null)
+                //{
+                //    var totale = BusinessLogic.Fattura.GetTotale((decimal)imponibile, (decimal)iva);
+                //    editTotale.Value = totale;
+                //}
                 //prelievo valori da grafica in variabili var xxx = editControl.Value
                 //invio i dati a BL per calcolo e restituzione valori  ver tot = BL.GetXXXXXX
                 //impostazione dei dati in grafica  editControl.Value = tot
@@ -200,6 +207,78 @@ namespace Web.GUI.FatturaAcquisto
             }
         }
 
+        private void CalcolaTotali()
+        {
+            try
+            {
+                //prelievo dati da GUI
+
+                var imponibile = editImponibile.Value;
+                var iva = editIVA.Value;
+                var data = editData.Value;
+                var scadenzaPagamento = editScadenzaPagamento.Value;
+                var today= DateTime.Today;
+
+                if (imponibile != null && iva != null && data!=null)
+                {
+                    //prelievo dati da DB
+                    var obj = (WcfService.Dto.FatturaAcquistoDto)Model;
+
+                    var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
+                    var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, _scadenzaPagamento);
+                    var totaleFattura = BusinessLogic.Fattura.GetTotale((decimal)imponibile, (decimal)iva);
+                    var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj,today);  
+
+                    //valutazione dell'andamento del lavoro
+                    var stato = GetStato(today, scadenza, totaleFattura,totalePagamenti);
+
+                    //binding dati in GUI
+                    editStato.Value = stato.ToString();
+                    editTotale.Value = totaleFattura;
+                    editTotalePagamenti.Value= totalePagamenti;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private StatoDescrizione GetStato(DateTime today, DateTime scadenza, decimal totaleFattura, decimal totalePagamenti)
+        {
+
+            try
+            {
+                var descrizione = "";
+                var ritardo=BusinessLogic.Fattura.GetRitardo(today, scadenza); 
+                var stato = TypeStato.None;
+                 if (totalePagamenti < totaleFattura && today>scadenza)
+                {
+                    descrizione = "La fattura risulta insoluta. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a" + totaleFattura.ToString("0.00€") + ". La fattura risulta scaduta il  " + scadenza.ToString("dd/MM/aaaa") + "con un ritardo di pagamento pari a " + ritardo;
+                    stato = TypeStato.Critical;
+                }
+                else if (totalePagamenti < totaleFattura && today <= scadenza)
+                {
+                    descrizione = "La fattura risulta in pagamento. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura scade tra " + (scadenza.Subtract(today).ToString("dd") + " giorni");
+                    stato = TypeStato.Warning;
+                }
+                else if(totalePagamenti >= totaleFattura)
+                {
+                    descrizione = "La fattura è stata pagata";
+                    stato = TypeStato.Normal;
+                }
+                var statoDescrizione = new StatoDescrizione(stato, descrizione);
+                return statoDescrizione;
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
 
 
 	}

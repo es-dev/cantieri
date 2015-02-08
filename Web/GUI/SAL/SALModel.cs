@@ -143,7 +143,7 @@ namespace Web.GUI.SAL
                     var margineOperativo = importoLavori - totaleAcquisti;
 
                     //valutazione dell'andamento del lavoro
-                    var stato = GetStatoDescrizione(importoLavori, margine, margineOperativo);
+                    var stato = GetStato(importoLavori, margine, margineOperativo);
                    
                     //binding dati in GUI
                     editStato.Value = stato.ToString();
@@ -159,7 +159,7 @@ namespace Web.GUI.SAL
             }
         }
 
-        private StatoDescrizione GetStatoDescrizione(decimal importoLavori, decimal margine, decimal margineOperativo)
+        private StatoDescrizione GetStato(decimal importoLavori, decimal margine, decimal margineOperativo)
         {
             try
             {

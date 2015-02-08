@@ -44,7 +44,7 @@ namespace Web.GUI.Pagamento
                     if (fatturaAcquisto != null)
                     {
                         editFatturaAcquisto.Model = fatturaAcquisto;
-                        editFatturaAcquisto.Value = fatturaAcquisto.Numero;
+                        editFatturaAcquisto.Value = fatturaAcquisto.Numero +"/"+ fatturaAcquisto.Data.Value.Year.ToString();
                     }
 
                 }
@@ -98,7 +98,7 @@ namespace Web.GUI.Pagamento
                 var fatturaAcquisto = (WcfService.Dto.FatturaAcquistoDto)model;
                 if (fatturaAcquisto != null)
                 {
-                    editFatturaAcquisto.Value = fatturaAcquisto.Numero;
+                    editFatturaAcquisto.Value = fatturaAcquisto.Numero +"/"+ fatturaAcquisto.Data.Value.Year.ToString();
                     var obj = (WcfService.Dto.PagamentoDto)Model;
                     if (obj!=null && obj.Id==0)
                     {
