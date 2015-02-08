@@ -212,7 +212,7 @@ namespace Web.GUI.Fornitore
             }
         }
 
-        private StatoDescrizione GetStato(decimal totalePagamenti, decimal totaleFattura, IList<WcfService.Dto.FatturaAcquistoDto> fattureInsolute, IList<WcfService.Dto.FatturaAcquistoDto> fattureNonPagate)
+        private StatoDescrizione GetStato(decimal totaleFattura, decimal totalePagamenti, IList<WcfService.Dto.FatturaAcquistoDto> fattureInsolute, IList<WcfService.Dto.FatturaAcquistoDto> fattureNonPagate)
         {
             try
             {
@@ -225,7 +225,9 @@ namespace Web.GUI.Fornitore
 
                 if (totalePagamenti < totaleFattura && existFattureInsolute)
                 {
-                    descrizione = "Il fornitore risulta insoluta. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". Le fatture insolute sono " + listaFattureInsolute+ ", le fatture non pagate sono "+listaFattureNonPagate;
+                    descrizione = "Il fornitore risulta insoluto. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". Le fatture insolute sono " + listaFattureInsolute +".";
+                    if (existFattureNonPagate)
+                        descrizione += " Le fatture non pagate sono " + listaFattureNonPagate;
                     stato = TypeStato.Critical;
                 }
                 else if (totalePagamenti < totaleFattura && existFattureNonPagate && !existFattureInsolute)
@@ -257,7 +259,7 @@ namespace Web.GUI.Fornitore
                 {
                     if (listaFatture.Length >= 1)
                         listaFatture += ", ";
-                    var _fattura = fattura.Numero;
+                    var _fattura = fattura.Numero+ "/"+ fattura.Data.Value.Year.ToString();
                     listaFatture += _fattura;
                 }
                 return listaFatture;
