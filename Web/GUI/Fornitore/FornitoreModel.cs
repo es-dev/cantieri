@@ -44,7 +44,7 @@ namespace Web.GUI.Fornitore
                     editRagioneSociale.Value = obj.RagioneSociale;
                     editIndirizzo.Value = obj.Indirizzo;
                     editCAP.Value = obj.CAP;
-                    editComune.Value = new Library.Controls.ComuniProvince.Comune(obj.Comune, obj.Provincia);
+                    editComune.Value = new Library.Controls.ComuniProvince.Comune(obj.Comune, obj.CodiceCatastale, obj.Provincia);
                     editTelefono.Value = obj.Telefono;
                     editFAX.Value = obj.Fax;
                     editMobile.Value = obj.Mobile;
@@ -75,7 +75,8 @@ namespace Web.GUI.Fornitore
                     obj.RagioneSociale = editRagioneSociale.Value;
                     obj.Indirizzo = editIndirizzo.Value;
                     obj.CAP = editCAP.Value;
-                    obj.Comune = editComune.Value.DenominazioneCodiceCatastale;
+                    obj.Comune = editComune.Value.Denominazione;
+                    obj.CodiceCatastale = editComune.Value.CodiceCatastale;
                     obj.Provincia = editComune.Value.Provincia;
                     obj.Telefono = editTelefono.Value;
                     obj.Fax = editFAX.Value;
