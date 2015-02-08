@@ -106,15 +106,29 @@
         <orm:field name="_oggetto" property="Oggetto" uniqueId="2a06d18e-66f3-4a3e-8a5e-b646e67135d0" type="System.String">
           <orm:column name="Oggetto" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
-        <orm:field name="_codice" property="Codice" uniqueId="0b5a2c32-e2e4-41e6-a9ed-b771f32731cb" type="System.String" />
-        <orm:field name="_importoAvanzamento" property="ImportoAvanzamento" uniqueId="71b9babf-1e99-4db9-9d21-aebf6f31d5d5" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" />
-        <orm:field name="_percentuale" property="Percentuale" uniqueId="b4cb5b2d-23a7-420f-9f51-a44486f3d9ac" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" />
-        <orm:field name="_estremiContratto" property="EstremiContratto" uniqueId="d4ac84ac-ae01-4a27-8407-f67f56aede9d" type="System.String" />
-        <orm:field name="_importoPerizie" property="ImportoPerizie" uniqueId="c578a2e5-67ca-473e-9482-d8d5073f60c4" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" />
-        <orm:field name="_inizioLavori" property="InizioLavori" uniqueId="42e9ea85-6109-4aea-9b68-27548a766115" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" />
-        <orm:field name="_fineLavori" property="FineLavori" uniqueId="66541415-acef-4f15-825e-c88b27208624" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" />
         <orm:field name="_codiceCatastale" property="CodiceCatastale" uniqueId="ff00c1c8-b379-4ba7-81b6-a9751488f2b0" type="System.String">
           <orm:column name="CodiceCatastale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_codice" property="Codice" uniqueId="0b5a2c32-e2e4-41e6-a9ed-b771f32731cb" type="System.String">
+          <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_importoAvanzamento" property="ImportoAvanzamento" uniqueId="71b9babf-1e99-4db9-9d21-aebf6f31d5d5" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="ImportoAvanzamento" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        </orm:field>
+        <orm:field name="_percentuale" property="Percentuale" uniqueId="b4cb5b2d-23a7-420f-9f51-a44486f3d9ac" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Percentuale" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        </orm:field>
+        <orm:field name="_estremiContratto" property="EstremiContratto" uniqueId="d4ac84ac-ae01-4a27-8407-f67f56aede9d" type="System.String">
+          <orm:column name="EstremiContratto" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_importoPerizie" property="ImportoPerizie" uniqueId="c578a2e5-67ca-473e-9482-d8d5073f60c4" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="ImportoPerizie" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        </orm:field>
+        <orm:field name="_inizioLavori" property="InizioLavori" uniqueId="42e9ea85-6109-4aea-9b68-27548a766115" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="InizioLavori" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_fineLavori" property="FineLavori" uniqueId="66541415-acef-4f15-825e-c88b27208624" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="FineLavori" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
         <orm:field name="_azienda" property="Azienda" behavior="readwrite" uniqueId="494444a6-ccb0-494c-a6a4-5a308aeb4152" type="DataLayer.Azienda">
           <orm:reference uniqueId="9529a813-1327-451c-bfdc-62fcf2c3ea6a" association-name="CommessaHasAzienda">
@@ -418,9 +432,15 @@
         <orm:field name="_note" property="Note" uniqueId="e43a1c83-fb78-4f3e-a5e6-92ce5ff31f40" type="System.String">
           <orm:column name="Note " sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
-        <orm:field name="_codice" property="Codice" uniqueId="c203ea2f-a1ca-4359-86b8-16fb3d714659" type="System.String" />
-        <orm:field name="_tipoPagamento" property="TipoPagamento" uniqueId="847e9967-eadc-48f3-9cbd-7743b17273c8" type="System.String" />
-        <orm:field name="_descrizione" property="Descrizione" uniqueId="fc7ea997-bad5-4665-8fc7-6447aa26cdd9" type="System.String" />
+        <orm:field name="_codice" property="Codice" uniqueId="c203ea2f-a1ca-4359-86b8-16fb3d714659" type="System.String">
+          <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_tipoPagamento" property="TipoPagamento" uniqueId="847e9967-eadc-48f3-9cbd-7743b17273c8" type="System.String">
+          <orm:column name="TipoPagamento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_descrizione" property="Descrizione" uniqueId="fc7ea997-bad5-4665-8fc7-6447aa26cdd9" type="System.String">
+          <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
         <orm:field name="_fatturaAcquisto" property="FatturaAcquisto" behavior="readwrite" uniqueId="f717ab9e-9083-481c-afb9-aff821782252" type="DataLayer.FatturaAcquisto">
           <orm:reference uniqueId="c5b7ccac-23e7-4d05-9ef1-626f304fefdf" association-name="PagamentoHasFatturaAcquisto">
             <orm:sharedfield name="_fatturaAcquistoId" target-class="DataLayer.FatturaAcquisto" target-field="_id" />
@@ -507,9 +527,15 @@
         <orm:field name="_note" property="Note" uniqueId="e42d928e-5114-4623-a661-bccb3bb4d136" type="System.String">
           <orm:column name="Note " sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
-        <orm:field name="_codice" property="Codice" uniqueId="5dca0326-62de-45b9-8567-11ce131e9556" type="System.String" />
-        <orm:field name="_tipoPagamento" property="TipoPagamento" uniqueId="f6180a73-3dd3-4dd7-8b9a-4ea827169ac4" type="System.String" />
-        <orm:field name="_descrizione" property="Descrizione" uniqueId="d6beeed0-a88b-4e7b-a574-546e792554a5" type="System.String" />
+        <orm:field name="_codice" property="Codice" uniqueId="5dca0326-62de-45b9-8567-11ce131e9556" type="System.String">
+          <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_tipoPagamento" property="TipoPagamento" uniqueId="f6180a73-3dd3-4dd7-8b9a-4ea827169ac4" type="System.String">
+          <orm:column name="TipoPagamento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_descrizione" property="Descrizione" uniqueId="d6beeed0-a88b-4e7b-a574-546e792554a5" type="System.String">
+          <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
         <orm:field name="_fatturaVendita" property="FatturaVendita" behavior="readwrite" uniqueId="f442223b-ae9c-4200-bc51-86d2e364dc58" type="DataLayer.FatturaVendita">
           <orm:reference uniqueId="3d93d254-2a67-4e4a-8665-f0d72e57af0f" association-name="LiquidazioneHasFatturaVendita">
             <orm:sharedfield name="_fatturaVenditaId" target-class="DataLayer.FatturaVendita" target-field="_id" />
@@ -718,6 +744,13 @@
         <orm:column name="AziendaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         <orm:column name="Oggetto" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="CodiceCatastale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="FineLavori" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="Percentuale" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        <orm:column name="InizioLavori" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="ImportoPerizie" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        <orm:column name="ImportoAvanzamento" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        <orm:column name="EstremiContratto" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:index name="idx_Commessa_AziendaId">
           <orm:columnMapping>
             <orm:column name="AziendaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -822,6 +855,7 @@
         <orm:column name="Note " sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="TipoPagamento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:index name="idx_Lqdazione_FatturaVenditaId">
           <orm:columnMapping>
             <orm:column name="FatturaVenditaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />

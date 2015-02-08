@@ -769,7 +769,6 @@ namespace Web.GUI.Commessa
         private Library.Controls.ButtonSeparatorV btnSAL;
         private Library.Controls.ButtonSeparatorV btnLiquidazioni;
         private Library.Controls.ButtonSeparatorV btnPagamenti;
-        private Library.Template.Controls.TemplateEditComuneProvincia templateEditComuneProvincia1;
         private Library.Template.Controls.TemplateEditComuneProvincia editComune;
 
 
