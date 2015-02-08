@@ -223,8 +223,9 @@ namespace Web.GUI.FatturaAcquisto
                 {
                     //prelievo dati da DB
                     var obj = (WcfService.Dto.FatturaAcquistoDto)Model;
-                    
-                    var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, scadenzaPagamento);
+
+                    var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
+                    var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, _scadenzaPagamento);
                     var totaleFattura = BusinessLogic.Fattura.GetTotale((decimal)imponibile, (decimal)iva);
                     var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj,today);  
 
@@ -251,15 +252,16 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 var descrizione = "";
+                var ritardo=BusinessLogic.Fattura.GetRitardo(today, scadenza); 
                 var stato = TypeStato.None;
                  if (totalePagamenti < totaleFattura && today>scadenza)
                 {
-                    descrizione = "La fattura rusilta insoluta. Il totale pagamenti (" + totalePagamenti.ToString("0.00€") + ") è inferiore al totale della fattura(" + totaleFattura.ToString("0.00€") + ") e la fattura risulta scaduta da " + (today.Subtract(scadenza).ToString("dd") + " giorni");
+                    descrizione = "La fattura risulta insoluta. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a" + totaleFattura.ToString("0.00€") + ". La fattura risulta scaduta il  " + scadenza.ToString("dd/MM/aaaa") + "con un ritardo di pagamento pari a " + ritardo;
                     stato = TypeStato.Critical;
                 }
                 else if (totalePagamenti < totaleFattura && today <= scadenza)
                 {
-                    descrizione = "La fattura rusilta in pagamento. Il totale pagamenti (" + totalePagamenti.ToString("0.00€") + ") è inferiore al totale della fattura(" + totaleFattura.ToString("0.00€") + ") e la fattura scade tra " + (scadenza.Subtract(today).ToString("dd")+ " giorni");
+                    descrizione = "La fattura risulta in pagamento. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura scade tra " + (scadenza.Subtract(today).ToString("dd") + " giorni");
                     stato = TypeStato.Warning;
                 }
                 else if(totalePagamenti >= totaleFattura)

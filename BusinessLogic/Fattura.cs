@@ -69,17 +69,12 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static DateTime GetScadenza(DateTime data, string scadenzaPagamento)
+        public static DateTime GetScadenza(DateTime data, BusinessLogic.Tipi.ScadenzaPagamento scadenzaPagamento)
         {
             try
             {
-                var scadenza= new DateTime();
-
-                var tipoScadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
-
-                var _scadenzaPagamento = GetGiorni(tipoScadenzaPagamento);
-
-                scadenza= data.AddDays(_scadenzaPagamento);
+                var giorni = GetGiorni(scadenzaPagamento);
+                var scadenza= data.AddDays(giorni);
                 return scadenza;
             }
             catch (Exception ex)
@@ -109,6 +104,38 @@ namespace BusinessLogic
                 UtilityError.Write(ex);
             }
             return 0;
+        }
+
+        public static string GetRitardo(DateTime today, DateTime scadenza)
+        {
+            try
+            {
+                //definire la variabile della funzione ed inizializzarla al valore indefinito o nullo
+                string ritardo = null;
+
+                //devi analizzare i parametri passati alla funzione e ricavare la variabile di funzione (è consigliabile progettare al contrario se possibile
+
+                var giorniRitardo = today.Subtract(scadenza).TotalDays;
+
+
+                if (0 <= giorniRitardo && giorniRitardo <= 120)
+                    ritardo = giorniRitardo + " giorni";
+                else if (121 <= giorniRitardo && giorniRitardo <= 365)
+                    ritardo = giorniRitardo + " giorni"; // mesi???????? e come li ricavo?????mostro solo mesi?
+                else if (giorniRitardo > 365)
+                    ritardo = giorniRitardo + " giorni"; // anni???????? e come li ricavo?????mostro solo anni?
+
+                    //etc... finita la condizione mi preoccupo di ricavare i giorniRitardo procedendo indietro a salire
+
+
+                //devi ritornare la variabile della funzione
+                return ritardo;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
     }
 }
