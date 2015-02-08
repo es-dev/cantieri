@@ -44,8 +44,7 @@ namespace Web.GUI.Cliente
                     editRagioneSociale.Value = obj.RagioneSociale;
                     editIndirizzo.Value = obj.Indirizzo;
                     editCAP.Value = obj.CAP;
-                    editComune.Value = obj.Comune;
-                    editProvincia.Value = obj.Provincia;
+                    editComune.Value = new Library.Controls.ComuniProvince.Comune(obj.Comune, obj.Provincia);
                     editTelefono.Value = obj.Telefono;
                     editFAX.Value = obj.Fax;
                     editMobile.Value = obj.Mobile;
@@ -77,8 +76,8 @@ namespace Web.GUI.Cliente
                     obj.RagioneSociale = editRagioneSociale.Value;
                     obj.Indirizzo = editIndirizzo.Value;
                     obj.CAP = editCAP.Value;
-                    obj.Comune = editComune.Value;
-                    obj.Provincia = editProvincia.Value;
+                    obj.Comune = editComune.Value.DenominazioneCodiceCatastale;
+                    obj.Provincia = editComune.Value.Provincia;
                     obj.Telefono = editTelefono.Value;
                     obj.Fax = editFAX.Value;
                     obj.Mobile = editMobile.Value;
@@ -147,13 +146,12 @@ namespace Web.GUI.Cliente
                 {
                     editCodiceCliente.Value = anagraficaCliente.Codice;
                     editCAP.Value = anagraficaCliente.CAP;
-                    editComune.Value = anagraficaCliente.Comune;
+                    editComune.Value = new Library.Controls.ComuniProvince.Comune(anagraficaCliente.Comune, anagraficaCliente.Provincia);
                     editEmail.Value = anagraficaCliente.Email;
                     editFAX.Value = anagraficaCliente.Fax;
                     editIndirizzo.Value = anagraficaCliente.Indirizzo;
                     editMobile.Value = anagraficaCliente.Mobile;
                     editPartitaIVA.Value = anagraficaCliente.PIva;
-                    editProvincia.Value = anagraficaCliente.Provincia;
                     editRagioneSociale.Value = anagraficaCliente.RagioneSociale;
                     editTelefono.Value = anagraficaCliente.Telefono;
                 }
