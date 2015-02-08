@@ -1,4 +1,5 @@
 using Library.Code;
+using Library.Code.Enum;
 using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
@@ -50,6 +51,9 @@ namespace Web.GUI.Fornitore
                     editMobile.Value = obj.Mobile;
                     editEmail.Value = obj.Email;
                     editPartitaIVA.Value = obj.PIva;
+                    editTotaleFattureAcquisto.Value = obj.TotaleFattureAcquisto;
+                    editStato.Value = obj.Stato;
+                    editTotalePagamenti.Value = obj.TotalePagamenti;
                     var commessa = obj.Commessa;
                     if (commessa != null)
                     {
@@ -83,6 +87,9 @@ namespace Web.GUI.Fornitore
                     obj.Email = editEmail.Value;
                     obj.PIva = editPartitaIVA.Value;
                     obj.Codice = editCodiceFornitore.Value;
+                    obj.TotaleFattureAcquisto = editTotaleFattureAcquisto.Value;
+                    obj.Stato = editStato.Value;
+                    obj.TotalePagamenti = editTotalePagamenti.Value;
                     var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
                     if(commessa!=null)
                         obj.CommessaId = commessa.Id;
@@ -159,6 +166,109 @@ namespace Web.GUI.Fornitore
                 UtilityError.Write(ex);
             }
         }
+
+        private void btnCalcoloTotali_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CalcolaTotali();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
+        }
+
+        private void CalcolaTotali()
+        {
+            try
+            {
+                //prelievo dati da GUI -->non prelevo nnt da GUI
+                //prelievo dati DB
+                var obj = (WcfService.Dto.FornitoreDto)Model;
+                var fatture = obj.FatturaAcquistos;
+                var today= DateTime.Today;
+                if (fatture != null)
+                {
+                    var totaleFatture = BusinessLogic.Fornitore.GetTotaleFatture(obj, today);
+                    var totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamenti(obj, today);
+                    var fattureInsolute = BusinessLogic.Fornitore.GetFattureInsolute(fatture);
+                    var fattureNonPagate = BusinessLogic.Fornitore.GetFattureNonPagate(fatture);
+ 
+                    //valutazione dell'andamento del lavoro
+                    var stato = GetStato(totaleFatture, totalePagamenti, fattureInsolute, fattureNonPagate);
+
+                    ////binding dati in GUI
+                    editStato.Value = stato.ToString();
+                    editTotaleFattureAcquisto.Value = totaleFatture;
+                    editTotalePagamenti.Value= totalePagamenti;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private StatoDescrizione GetStato(decimal totalePagamenti, decimal totaleFattura, IList<WcfService.Dto.FatturaAcquistoDto> fattureInsolute, IList<WcfService.Dto.FatturaAcquistoDto> fattureNonPagate)
+        {
+            try
+            {
+                var descrizione = "";
+                var stato = TypeStato.None;
+                var existFattureInsolute = (fattureInsolute.Count >= 1);
+                var existFattureNonPagate = (fattureNonPagate.Count >= 1);
+                var listaFattureInsolute = GetListaFatture(fattureInsolute);
+                var listaFattureNonPagate = GetListaFatture(fattureNonPagate);
+
+                if (totalePagamenti < totaleFattura && existFattureInsolute)
+                {
+                    descrizione = "Il fornitore risulta insoluta. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". Le fatture insolute sono " + listaFattureInsolute+ ", le fatture non pagate sono "+listaFattureNonPagate;
+                    stato = TypeStato.Critical;
+                }
+                else if (totalePagamenti < totaleFattura && existFattureNonPagate && !existFattureInsolute)
+                {
+                    descrizione = "Il fornitore risulta non pagato. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". Le fatture non pagate sono " + listaFattureNonPagate;
+                    stato = TypeStato.Warning;
+                }
+                else if (totalePagamenti >= totaleFattura)
+                {
+                    descrizione = "Il fornitore risulta pagato. Tutte le fatture sono state saldate";  //non so se ha senso indicargli anche insolute o no!!!!! per ora NO
+                    stato = TypeStato.Normal;
+                }
+                var statoDescrizione = new StatoDescrizione(stato, descrizione);
+                return statoDescrizione;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private string GetListaFatture(IList<WcfService.Dto.FatturaAcquistoDto> fatture)
+        {
+            try
+            {
+                var listaFatture = "";
+                foreach(var fattura in fatture)
+                {
+                    if (listaFatture.Length >= 1)
+                        listaFatture += ", ";
+                    var _fattura = fattura.Numero;
+                    listaFatture += _fattura;
+                }
+                return listaFatture;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+
 
 
 	}

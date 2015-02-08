@@ -110,25 +110,20 @@ namespace BusinessLogic
         {
             try
             {
-                //definire la variabile della funzione ed inizializzarla al valore indefinito o nullo
                 string ritardo = null;
-
-                //devi analizzare i parametri passati alla funzione e ricavare la variabile di funzione (è consigliabile progettare al contrario se possibile
-
                 var giorniRitardo = today.Subtract(scadenza).TotalDays;
-
-
                 if (0 <= giorniRitardo && giorniRitardo <= 120)
-                    ritardo = giorniRitardo + " giorni";
-                else if (121 <= giorniRitardo && giorniRitardo <= 365)
-                    ritardo = giorniRitardo + " giorni"; // mesi???????? e come li ricavo?????mostro solo mesi?
+                    ritardo = giorniRitardo.ToString() + " giorni";
+                else if (120 < giorniRitardo && giorniRitardo <= 365)
+                {
+                    var mesiRitardo = (int)(giorniRitardo / 30) + 1;
+                    ritardo = mesiRitardo.ToString() + " mesi";    
+                }
                 else if (giorniRitardo > 365)
-                    ritardo = giorniRitardo + " giorni"; // anni???????? e come li ricavo?????mostro solo anni?
-
-                    //etc... finita la condizione mi preoccupo di ricavare i giorniRitardo procedendo indietro a salire
-
-
-                //devi ritornare la variabile della funzione
+                {
+                    var anniRitardo = (int)(giorniRitardo / 365);
+                    ritardo = anniRitardo.ToString() + " anni"; 
+                }
                 return ritardo;
             }
             catch (Exception ex)
@@ -137,5 +132,29 @@ namespace BusinessLogic
             }
             return null;
         }
+
+        public static Tipi.StatoFattura GetStato(DateTime today, DateTime scadenza, decimal totaleFattura, decimal totalePagamenti)
+        {
+            try
+            {
+                var stato = Tipi.StatoFattura.None;
+                if (totalePagamenti < totaleFattura && today > scadenza)
+                    stato = Tipi.StatoFattura.Insoluta;
+                else if (totalePagamenti < totaleFattura && today <= scadenza)
+                    stato = Tipi.StatoFattura.NonPagata;
+                else if (totalePagamenti >= totaleFattura)
+                    stato = Tipi.StatoFattura.Pagata;
+                
+                return stato;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return Tipi.StatoFattura.None;
+        }
+
+
+
     }
 }

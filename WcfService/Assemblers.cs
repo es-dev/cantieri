@@ -200,6 +200,7 @@ namespace WcfService.Assemblers
 			entity.Margine = dto.Margine;
 			entity.Stato = dto.Stato;
 			entity.Oggetto = dto.Oggetto;
+			entity.CodiceCatastale = dto.CodiceCatastale;
 			entity.Codice = dto.Codice;
 			entity.ImportoAvanzamento = dto.ImportoAvanzamento;
 			entity.Percentuale = dto.Percentuale;
@@ -233,6 +234,7 @@ namespace WcfService.Assemblers
 			dto.Margine = entity.Margine;
 			dto.Stato = entity.Stato;
 			dto.Oggetto = entity.Oggetto;
+			dto.CodiceCatastale = entity.CodiceCatastale;
 			dto.Codice = entity.Codice;
 			dto.ImportoAvanzamento = entity.ImportoAvanzamento;
 			dto.Percentuale = entity.Percentuale;
@@ -325,6 +327,10 @@ namespace WcfService.Assemblers
 			entity.Email = dto.Email;
 			entity.PIva = dto.PIva;
 			entity.Codice = dto.Codice;
+			entity.CodiceCatastale = dto.CodiceCatastale;
+			entity.TotaleFattureAcquisto = dto.TotaleFattureAcquisto;
+			entity.Stato = dto.Stato;
+			entity.TotalePagamenti = dto.TotalePagamenti;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -348,6 +354,10 @@ namespace WcfService.Assemblers
 			dto.Email = entity.Email;
 			dto.PIva = entity.PIva;
 			dto.Codice = entity.Codice;
+			dto.CodiceCatastale = entity.CodiceCatastale;
+			dto.TotaleFattureAcquisto = entity.TotaleFattureAcquisto;
+			dto.Stato = entity.Stato;
+			dto.TotalePagamenti = entity.TotalePagamenti;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -419,6 +429,7 @@ namespace WcfService.Assemblers
 			entity.Email = dto.Email;
 			entity.PIva = dto.PIva;
 			entity.Codice = dto.Codice;
+			entity.CodiceCatastale = dto.CodiceCatastale;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -441,6 +452,7 @@ namespace WcfService.Assemblers
 			dto.Email = entity.Email;
 			dto.PIva = entity.PIva;
 			dto.Codice = entity.Codice;
+			dto.CodiceCatastale = entity.CodiceCatastale;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -1012,6 +1024,7 @@ namespace WcfService.Assemblers
 			entity.Email = dto.Email;
 			entity.PIva = dto.PIva;
 			entity.Codice = dto.Codice;
+			entity.CodiceCatastale = dto.CodiceCatastale;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1034,6 +1047,7 @@ namespace WcfService.Assemblers
 			dto.Email = entity.Email;
 			dto.PIva = entity.PIva;
 			dto.Codice = entity.Codice;
+			dto.CodiceCatastale = entity.CodiceCatastale;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -1092,6 +1106,7 @@ namespace WcfService.Assemblers
 			entity.Email = dto.Email;
 			entity.PIva = dto.PIva;
 			entity.Codice = dto.Codice;
+			entity.CodiceCatastale = dto.CodiceCatastale;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1114,6 +1129,7 @@ namespace WcfService.Assemblers
 			dto.Email = entity.Email;
 			dto.PIva = entity.PIva;
 			dto.Codice = entity.Codice;
+			dto.CodiceCatastale = entity.CodiceCatastale;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }

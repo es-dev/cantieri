@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
-    class Fornitore
+    public class Fornitore
     {
-        internal static decimal GetTotaleFatture(WcfService.Dto.FornitoreDto fornitore, DateTime data)
+        public static decimal GetTotaleFatture(WcfService.Dto.FornitoreDto fornitore, DateTime data)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        internal static decimal GetTotalePagamenti(WcfService.Dto.FornitoreDto fornitore, DateTime data)
+        public static decimal GetTotalePagamenti(WcfService.Dto.FornitoreDto fornitore, DateTime data)
         {
             try
             {
@@ -56,6 +56,50 @@ namespace BusinessLogic
                 UtilityError.Write(ex);
             }
             return 0;
+        }
+
+        public static List<WcfService.Dto.FatturaAcquistoDto> GetFattureInsolute(IList<WcfService.Dto.FatturaAcquistoDto> fatture)
+        {
+            try
+            {
+                var fattureInsolute = new List<WcfService.Dto.FatturaAcquistoDto>();
+                foreach (var fattura in fatture)
+                {
+                    var data = fattura.Data;
+                    var scadenzaPagamento = fattura.ScadenzaPagamento;
+                    var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
+                    var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, _scadenzaPagamento);
+                    var today = DateTime.Today;
+                    var totaleFattura = fattura.Totale;
+                    var totalePagamenti = fattura.TotalePagamenti;
+                    if (totaleFattura != null && totalePagamenti != null)
+                    {
+                        var stato = BusinessLogic.Fattura.GetStato(today, scadenza, totaleFattura.Value, totalePagamenti.Value);
+
+                        if (stato == BusinessLogic.Tipi.StatoFattura.Insoluta)
+                            fattureInsolute.Add(fattura);
+                    }
+                }
+                return fattureInsolute;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public static List<WcfService.Dto.FatturaAcquistoDto> GetFattureNonPagate(IList<WcfService.Dto.FatturaAcquistoDto> fatture)
+        {
+            try
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
     }
 }

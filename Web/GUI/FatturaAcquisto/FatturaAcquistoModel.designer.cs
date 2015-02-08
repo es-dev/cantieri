@@ -43,6 +43,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editStato = new Library.Template.Controls.TemplateEditStato();
             this.lblAndamento = new Gizmox.WebGUI.Forms.Label();
             this.editTotalePagamenti = new Library.Template.Controls.TemplateEditDecimal();
+            this.btnCalcoloTotali = new Library.Controls.ButtonSeparatorV();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -86,6 +87,15 @@ namespace Web.GUI.FatturaAcquisto
             // infoSubtitleImage
             // 
             this.infoSubtitleImage.Location = new System.Drawing.Point(610, 3);
+            // 
+            // panelCommands
+            // 
+            this.panelCommands.Controls.Add(this.btnCalcoloTotali);
+            this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnDelete, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnCalcoloTotali, 0);
             // 
             // editFornitore
             // 
@@ -374,6 +384,20 @@ namespace Web.GUI.FatturaAcquisto
             this.editTotalePagamenti.TabIndex = 10;
             this.editTotalePagamenti.Text = "TemplateEditNumeric";
             this.editTotalePagamenti.Value = null;
+            // 
+            // btnCalcoloTotali
+            // 
+            this.btnCalcoloTotali.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.btnCalcoloTotali.BackColor = System.Drawing.Color.Transparent;
+            this.btnCalcoloTotali.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.btnCalcoloTotali.ImageButton = "";
+            this.btnCalcoloTotali.ImageSeparator = "Images.separator_ht_small.png";
+            this.btnCalcoloTotali.Location = new System.Drawing.Point(0, 217);
+            this.btnCalcoloTotali.Name = "btnCalcoloTotali";
+            this.btnCalcoloTotali.Size = new System.Drawing.Size(100, 72);
+            this.btnCalcoloTotali.TabIndex = 1002;
+            this.btnCalcoloTotali.TextButton = "Calcolo Totali";
+            this.btnCalcoloTotali.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnCalcoloTotali_Click);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
@@ -398,6 +422,7 @@ namespace Web.GUI.FatturaAcquisto
         private Library.Template.Controls.TemplateEditStato editStato;
         private Gizmox.WebGUI.Forms.Label lblAndamento;
         private Library.Template.Controls.TemplateEditDecimal editTotalePagamenti;
+        private Library.Controls.ButtonSeparatorV btnCalcoloTotali;
 
 
     }
