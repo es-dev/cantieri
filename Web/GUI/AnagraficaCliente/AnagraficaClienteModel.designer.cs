@@ -39,7 +39,7 @@ namespace Web.GUI.AnagraficaCliente
             this.editMobile = new Library.Template.Controls.TemplateEditText();
             this.editRagioneSociale = new Library.Template.Controls.TemplateEditText();
             this.editCodice = new Library.Template.Controls.TemplateEditText();
-            this.editPartitaIVA = new Library.Template.Controls.TemplateEditPartitaIva();
+            this.editPartitaIVA = new Library.Template.Controls.TemplateEditPartitaIVA();
             this.editEmail = new Library.Template.Controls.TemplateEditEmail();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
@@ -339,7 +339,7 @@ namespace Web.GUI.AnagraficaCliente
         private Library.Template.Controls.TemplateEditText editIndirizzo;
         private Library.Template.Controls.TemplateEditText editRagioneSociale;
         private Library.Template.Controls.TemplateEditText editCodice;
-        private Library.Template.Controls.TemplateEditPartitaIva editPartitaIVA;
+        private Library.Template.Controls.TemplateEditPartitaIVA editPartitaIVA;
         private Library.Template.Controls.TemplateEditEmail editEmail;
 
 
