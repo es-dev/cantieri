@@ -30,7 +30,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public AziendaDto(int _id, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _pIva, int? _dipendenti, string _telefono, string _fax, string _email, string _codice, IList<CommessaDto> _commessas)
+		public AziendaDto(int _id, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _pIva, int? _dipendenti, string _telefono, string _fax, string _email, string _codice, string _codiceCatastale, IList<CommessaDto> _commessas)
 		{
 			this.Id = _id;
 			this.Denominazione = _denominazione;
@@ -44,6 +44,7 @@ namespace WcfService.Dto
 			this.Fax = _fax;
 			this.Email = _email;
 			this.Codice = _codice;
+			this.CodiceCatastale = _codiceCatastale;
 			this.Commessas = _commessas;
 		}
 		
@@ -85,6 +86,9 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual string Codice { get;set; }
+
+		[DataMember]
+		public virtual string CodiceCatastale { get;set; }
 
 		[DataMember]
 		public virtual IList<CommessaDto> Commessas { get;set; }
@@ -232,7 +236,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public FornitoreDto(int _id, int _commessaId, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, string _codice, string _codiceCatastale, decimal? _totaleFattureAcquisto, string _stato, decimal? _totalePagamenti, CommessaDto _commessa, IList<FatturaAcquistoDto> _fatturaAcquistos)
+		public FornitoreDto(int _id, int _commessaId, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, string _codice, string _codiceCatastale, CommessaDto _commessa, IList<FatturaAcquistoDto> _fatturaAcquistos)
 		{
 			this.Id = _id;
 			this.CommessaId = _commessaId;
@@ -248,9 +252,6 @@ namespace WcfService.Dto
 			this.PIva = _pIva;
 			this.Codice = _codice;
 			this.CodiceCatastale = _codiceCatastale;
-			this.TotaleFattureAcquisto = _totaleFattureAcquisto;
-			this.Stato = _stato;
-			this.TotalePagamenti = _totalePagamenti;
 			this.Commessa = _commessa;
 			this.FatturaAcquistos = _fatturaAcquistos;
 		}
@@ -299,15 +300,6 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual string CodiceCatastale { get;set; }
-
-		[DataMember]
-		public virtual decimal? TotaleFattureAcquisto { get;set; }
-
-		[DataMember]
-		public virtual string Stato { get;set; }
-
-		[DataMember]
-		public virtual decimal? TotalePagamenti { get;set; }
 
 		[DataMember]
 		public virtual CommessaDto Commessa { get;set; }

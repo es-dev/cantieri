@@ -93,7 +93,25 @@ namespace BusinessLogic
         {
             try
             {
-                return null;
+                var fattureNonPagate = new List<WcfService.Dto.FatturaAcquistoDto>();
+                foreach (var fattura in fatture)
+                {
+                    var data = fattura.Data;
+                    var scadenzaPagamento = fattura.ScadenzaPagamento;
+                    var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
+                    var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, _scadenzaPagamento);
+                    var today = DateTime.Today;
+                    var totaleFattura = fattura.Totale;
+                    var totalePagamenti = fattura.TotalePagamenti;
+                    if (totaleFattura != null && totalePagamenti != null)
+                    {
+                        var stato = BusinessLogic.Fattura.GetStato(today, scadenza, totaleFattura.Value, totalePagamenti.Value);
+
+                        if (stato == BusinessLogic.Tipi.StatoFattura.NonPagata)
+                            fattureNonPagate.Add(fattura);
+                    }
+                }
+                return fattureNonPagate;
             }
             catch (Exception ex)
             {

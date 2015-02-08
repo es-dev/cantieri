@@ -67,7 +67,7 @@ namespace Web.GUI.Commessa
                     editDenominazione.Value = obj.Denominazione;
                     editCodice.Value = obj.Codice;
                     editCAP.Value = obj.CAP;
-                    editComune.Value = new Library.Controls.ComuniProvince.Comune(obj.Comune, obj.Provincia);
+                    editComune.Value = new Library.Controls.ComuniProvince.Comune(obj.Comune, obj.CodiceCatastale, obj.Provincia);
                     editIndirizzo.Value = obj.Indirizzo;
                     editCreazione.Value = obj.Creazione;
                     editDescrizione.Value = obj.Descrizione;
@@ -108,7 +108,8 @@ namespace Web.GUI.Commessa
                     obj.Denominazione = editDenominazione.Value;
                     obj.Codice = editCodice.Value;
                     obj.CAP = editCAP.Value;
-                    obj.Comune = editComune.Value.DenominazioneCodiceCatastale;
+                    obj.Comune = editComune.Value.Denominazione;
+                    obj.CodiceCatastale = editComune.Value.CodiceCatastale;
                     obj.Provincia = editComune.Value.Provincia;
                     obj.Indirizzo = editIndirizzo.Value;
                     obj.Creazione = editCreazione.Value;
