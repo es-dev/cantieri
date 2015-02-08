@@ -113,6 +113,9 @@
         <orm:field name="_importoPerizie" property="ImportoPerizie" uniqueId="c578a2e5-67ca-473e-9482-d8d5073f60c4" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" />
         <orm:field name="_inizioLavori" property="InizioLavori" uniqueId="42e9ea85-6109-4aea-9b68-27548a766115" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" />
         <orm:field name="_fineLavori" property="FineLavori" uniqueId="66541415-acef-4f15-825e-c88b27208624" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" />
+        <orm:field name="_codiceCatastale" property="CodiceCatastale" uniqueId="ff00c1c8-b379-4ba7-81b6-a9751488f2b0" type="System.String">
+          <orm:column name="CodiceCatastale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
         <orm:field name="_azienda" property="Azienda" behavior="readwrite" uniqueId="494444a6-ccb0-494c-a6a4-5a308aeb4152" type="DataLayer.Azienda">
           <orm:reference uniqueId="9529a813-1327-451c-bfdc-62fcf2c3ea6a" association-name="CommessaHasAzienda">
             <orm:sharedfield name="_aziendaId" target-class="DataLayer.Azienda" target-field="_id" />
@@ -180,6 +183,9 @@
         <orm:field name="_codice" property="Codice" uniqueId="5534e8fc-5f84-4390-9eee-749b30ab8a0d" type="System.String">
           <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
+        <orm:field name="_codiceCatastale" property="CodiceCatastale" uniqueId="24554c08-e24a-42e3-a991-f765e956c50f" type="System.String">
+          <orm:column name="CodiceCatastale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
         <orm:field name="_commessa" property="Commessa" behavior="readwrite" uniqueId="791cabb3-ef72-40a8-b4a7-3ca133c6521c" type="DataLayer.Commessa">
           <orm:reference uniqueId="032d408c-e267-47d7-bbd9-3cb51d71d72d" association-name="FornitoreHasCommessa">
             <orm:sharedfield name="_commessaId" target-class="DataLayer.Commessa" target-field="_id" />
@@ -234,6 +240,9 @@
         </orm:field>
         <orm:field name="_codice" property="Codice" uniqueId="1d5cde1d-271e-4ddb-8eac-172d1b35bb71" type="System.String">
           <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_codiceCatastale" property="CodiceCatastale" uniqueId="a6daf789-7658-4e9c-b1b9-3723c5e33772" type="System.String">
+          <orm:column name="CodiceCatastale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
         <orm:field name="_commessa" property="Commessa" behavior="readwrite" uniqueId="d2449fe8-a609-403e-8779-406be42f82eb" type="DataLayer.Commessa">
           <orm:reference uniqueId="2e7765b0-82e3-4978-a0c4-56bb3098179a" association-name="ClienteHasCommessa">
@@ -556,6 +565,9 @@
         <orm:field name="_codice" property="Codice" uniqueId="a361b66b-2d6f-4c95-96e2-dd093275942a" type="System.String">
           <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
+        <orm:field name="_codiceCatastale" property="CodiceCatastale" uniqueId="aad548af-167c-421f-8ac0-6da4fd0c1657" type="System.String">
+          <orm:column name="CodiceCatastale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
       </orm:class>
       <orm:class name="AnagraficaCliente" uniqueId="ecae24a4-5714-4038-a49d-a3603e1e9a84">
         <orm:table name="AnagraficaCliente" />
@@ -600,6 +612,9 @@
         </orm:field>
         <orm:field name="_codice" property="Codice" uniqueId="11862c95-d2f1-4cf4-905f-b84ece07e150" type="System.String">
           <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_codiceCatastale" property="CodiceCatastale" uniqueId="8fd6470f-a881-4708-bb1b-3be769248c0b" type="System.String">
+          <orm:column name="CodiceCatastale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
       </orm:class>
       <orm:class name="SAL" uniqueId="3526a02f-30f3-45ef-bc27-6002b0758f75">
@@ -702,6 +717,7 @@
         <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="AziendaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         <orm:column name="Oggetto" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="CodiceCatastale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:index name="idx_Commessa_AziendaId">
           <orm:columnMapping>
             <orm:column name="AziendaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -779,6 +795,7 @@
         <orm:column name="Email" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="PIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="CodiceCatastale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
       </orm:table>
       <orm:table name="FatturaVendita">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
@@ -841,6 +858,7 @@
         <orm:column name="Email" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="PIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="CodiceCatastale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
       </orm:table>
       <orm:table name="AnagraficaCliente">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
@@ -855,6 +873,7 @@
         <orm:column name="Email" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="PIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="CodiceCatastale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
       </orm:table>
       <orm:table name="AnagraficaArticolo">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
@@ -875,6 +894,7 @@
         <orm:column name="PIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:column name="CodiceCatastale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:index name="idx_Fornitore_CommessaId">
           <orm:columnMapping>
             <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -969,6 +989,7 @@
       <Property Id="42e9ea85-6109-4aea-9b68-27548a766115" name="InizioLavori" type="DateTime" label="InizioLavori : DateTime" nullable="true" fieldName="_inizioLavori" />
       <Property Id="66541415-acef-4f15-825e-c88b27208624" name="FineLavori" type="DateTime" label="FineLavori : DateTime" nullable="true" fieldName="_fineLavori" />
       <Property Id="2a06d18e-66f3-4a3e-8a5e-b646e67135d0" name="Oggetto" label="Oggetto : String" fieldName="_oggetto" />
+      <Property Id="ff00c1c8-b379-4ba7-81b6-a9751488f2b0" name="CodiceCatastale" label="CodiceCatastale : String" fieldName="_codiceCatastale" />
       <AssociationTargets>
         <Association Id="9529a813-1327-451c-bfdc-62fcf2c3ea6a" SourceMultiplicity="ZeroOne" name="CommessaHasAzienda">
           <DomainClassMoniker name="/EntitiesModel/Azienda" />
@@ -1013,6 +1034,7 @@
       <Property Id="a93efbac-026b-4529-ac1a-6f973b758be0" name="Email" label="Email : String" fieldName="_email" />
       <Property Id="d1bb9712-68b2-4620-aa34-ed500baa263c" name="PIva" label="PIva : String" fieldName="_pIva" />
       <Property Id="5534e8fc-5f84-4390-9eee-749b30ab8a0d" name="Codice" label="Codice : String" fieldName="_codice" />
+      <Property Id="24554c08-e24a-42e3-a991-f765e956c50f" name="CodiceCatastale" label="CodiceCatastale : String" fieldName="_codiceCatastale" />
       <AssociationTargets>
         <Association Id="032d408c-e267-47d7-bbd9-3cb51d71d72d" SourceMultiplicity="ZeroOne" name="FornitoreHasCommessa">
           <DomainClassMoniker name="/EntitiesModel/Commessa" />
@@ -1050,6 +1072,7 @@
       <Property Id="7e366140-c536-477b-b997-e728ae697bbe" name="Email" label="Email : String" fieldName="_email" />
       <Property Id="5bafbccf-c05f-4922-9f1e-d1ac6527766f" name="PIva" label="PIva : String" fieldName="_pIva" />
       <Property Id="1d5cde1d-271e-4ddb-8eac-172d1b35bb71" name="Codice" label="Codice : String" fieldName="_codice" />
+      <Property Id="a6daf789-7658-4e9c-b1b9-3723c5e33772" name="CodiceCatastale" label="CodiceCatastale : String" fieldName="_codiceCatastale" />
       <AssociationTargets>
         <Association Id="2e7765b0-82e3-4978-a0c4-56bb3098179a" SourceMultiplicity="One" TargetMultiplicity="ZeroOne" name="ClienteHasCommessa">
           <DomainClassMoniker name="/EntitiesModel/Commessa" />
@@ -1282,6 +1305,7 @@
       <Property Id="82f63353-5c7f-41d5-b8ba-f6d0c79bb575" name="Email" label="Email : String" fieldName="_email" />
       <Property Id="586230d3-0691-4dd2-8b3b-2808006a7580" name="PIva" label="PIva : String" fieldName="_pIva" />
       <Property Id="a361b66b-2d6f-4c95-96e2-dd093275942a" name="Codice" label="Codice : String" fieldName="_codice" />
+      <Property Id="aad548af-167c-421f-8ac0-6da4fd0c1657" name="CodiceCatastale" label="CodiceCatastale : String" fieldName="_codiceCatastale" />
     </DomainClass>
     <DomainClass Id="ecae24a4-5714-4038-a49d-a3603e1e9a84" name="AnagraficaCliente" namespace="DataLayer" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
       <Property Id="201daee6-3108-44d5-bd29-7ec815dc9a13" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
@@ -1296,6 +1320,7 @@
       <Property Id="3debd6af-5522-4a25-a2c1-ec108154ec5d" name="Email" label="Email : String" fieldName="_email" />
       <Property Id="eb8e8b82-725d-4c8e-8ddc-213a342e2e59" name="PIva" label="PIva : String" fieldName="_pIva" />
       <Property Id="11862c95-d2f1-4cf4-905f-b84ece07e150" name="Codice" label="Codice : String" fieldName="_codice" />
+      <Property Id="8fd6470f-a881-4708-bb1b-3be769248c0b" name="CodiceCatastale" label="CodiceCatastale : String" fieldName="_codiceCatastale" />
     </DomainClass>
     <DomainClass Id="3526a02f-30f3-45ef-bc27-6002b0758f75" name="SAL" namespace="DataLayer" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
       <Property Id="43f46d78-44da-4e5d-bbc2-f559f63fe653" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />

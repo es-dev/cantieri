@@ -39,8 +39,8 @@ namespace Web.GUI.Fornitore
             this.editMobile = new Library.Template.Controls.TemplateEditText();
             this.editCodiceFornitore = new Library.Template.Controls.TemplateEditCombo();
             this.editEmail = new Library.Template.Controls.TemplateEditEmail();
-            this.editPartitaIVA = new Library.Template.Controls.TemplateEditPartitaIVA();
-            this.editComune = new Library.Template.Controls.TemplateEditComune();
+            this.editPartitaIVA = new Library.Template.Controls.TemplateEditPartitaIva();
+            this.editComune = new Library.Template.Controls.TemplateEditComuneProvincia();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -347,9 +347,9 @@ namespace Web.GUI.Fornitore
         private Library.Template.Controls.TemplateEditText editTelefono;
         private Library.Template.Controls.TemplateEditCap editCAP;
         private Library.Template.Controls.TemplateEditCombo editCodiceFornitore;
-        private Library.Template.Controls.TemplateEditPartitaIVA editPartitaIVA;
+        private Library.Template.Controls.TemplateEditPartitaIva editPartitaIVA;
         private Library.Template.Controls.TemplateEditEmail editEmail;
-        private Library.Template.Controls.TemplateEditComune editComune;
+        private Library.Template.Controls.TemplateEditComuneProvincia editComune;
 
 
     }

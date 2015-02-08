@@ -180,6 +180,19 @@ namespace DataLayer
 			}
 		}
 		
+		private string _codiceCatastale;
+		public virtual string CodiceCatastale
+		{
+			get
+			{
+				return this._codiceCatastale;
+			}
+			set
+			{
+				this._codiceCatastale = value;
+			}
+		}
+		
 		private Commessa _commessa;
 		public virtual Commessa Commessa
 		{

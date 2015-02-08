@@ -38,8 +38,8 @@ namespace Web.GUI.AnagraficaFornitore
             this.editRagioneSociale = new Library.Template.Controls.TemplateEditText();
             this.editCodice = new Library.Template.Controls.TemplateEditText();
             this.editEmail = new Library.Template.Controls.TemplateEditEmail();
-            this.editPartitaIVA = new Library.Template.Controls.TemplateEditPartitaIVA();
-            this.editComune = new Library.Template.Controls.TemplateEditComune();
+            this.editPartitaIVA = new Library.Template.Controls.TemplateEditPartitaIva();
+            this.editComune = new Library.Template.Controls.TemplateEditComuneProvincia();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -315,9 +315,9 @@ namespace Web.GUI.AnagraficaFornitore
         private Library.Template.Controls.TemplateEditText editFAX;
         private Library.Template.Controls.TemplateEditText editMobile;
         private Library.Template.Controls.TemplateEditText editCodice;
-        private Library.Template.Controls.TemplateEditPartitaIVA editPartitaIVA;
+        private Library.Template.Controls.TemplateEditPartitaIva editPartitaIVA;
         private Library.Template.Controls.TemplateEditEmail editEmail;
-        private Library.Template.Controls.TemplateEditComune editComune;
+        private Library.Template.Controls.TemplateEditComuneProvincia editComune;
 
 
     }

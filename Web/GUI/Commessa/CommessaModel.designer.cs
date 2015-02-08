@@ -58,7 +58,7 @@ namespace Web.GUI.Commessa
             this.btnPagamenti = new Library.Controls.ButtonSeparatorV();
             this.btnLiquidazioni = new Library.Controls.ButtonSeparatorV();
             this.btnSAL = new Library.Controls.ButtonSeparatorV();
-            this.editComune = new Library.Template.Controls.TemplateEditComune();
+            this.editComune = new Library.Template.Controls.TemplateEditComuneProvincia();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -769,8 +769,8 @@ namespace Web.GUI.Commessa
         private Library.Controls.ButtonSeparatorV btnSAL;
         private Library.Controls.ButtonSeparatorV btnLiquidazioni;
         private Library.Controls.ButtonSeparatorV btnPagamenti;
-        private Library.Template.Controls.TemplateEditComune templateEditComuneProvincia1;
-        private Library.Template.Controls.TemplateEditComune editComune;
+        private Library.Template.Controls.TemplateEditComuneProvincia templateEditComuneProvincia1;
+        private Library.Template.Controls.TemplateEditComuneProvincia editComune;
 
 
     }

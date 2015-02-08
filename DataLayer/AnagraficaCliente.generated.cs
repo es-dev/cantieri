@@ -179,6 +179,19 @@ namespace DataLayer
 			}
 		}
 		
+		private string _codiceCatastale;
+		public virtual string CodiceCatastale
+		{
+			get
+			{
+				return this._codiceCatastale;
+			}
+			set
+			{
+				this._codiceCatastale = value;
+			}
+		}
+		
 	}
 }
 #pragma warning restore 1591
