@@ -114,5 +114,20 @@ namespace Web.GUI.Fornitore
             }
             return null;
         }
+
+        internal IEnumerable<FornitoreDto> ReadFornitori()
+        {
+            try
+            {
+                var wcf = new WcfService.Service();
+                var objs = wcf.ReadFornitori();
+                return objs;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }

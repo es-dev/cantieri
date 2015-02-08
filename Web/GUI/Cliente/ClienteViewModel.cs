@@ -114,5 +114,20 @@ namespace Web.GUI.Cliente
             }
             return null;
         }
+
+        internal IEnumerable<ClienteDto> ReadClienti()
+        {
+            try
+            {
+                var wcf = new WcfService.Service();
+                var objs = wcf.ReadClienti();
+                return objs;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }

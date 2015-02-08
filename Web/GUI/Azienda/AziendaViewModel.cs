@@ -114,5 +114,20 @@ namespace Web.GUI.Azienda
             }
             return null;
         }
+
+        internal IEnumerable<AziendaDto> ReadAziende()
+        {
+            try
+            {
+                var wcf = new WcfService.Service();
+                var objs = wcf.ReadAziende();
+                return objs;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }
