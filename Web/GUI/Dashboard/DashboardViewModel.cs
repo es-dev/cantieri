@@ -85,10 +85,12 @@ namespace Web.GUI.Dashboard
                 var dashboardLavori = new Dashboard("Lavori e commesse", "LAV", "Gestisci i tuoi lavori e le commesse di lavorazione, inserisci i dati contrattuali, i fornitori, i pagamenti. Gestisci le scadenze ed effettua i SAL per una verifica dello stato di avanzamento dei lavori...", "Images.dashboard.lavoro.png", "", typeof(DashboardLavoriView), false);
                 var dashboardAnagrafiche = new Dashboard("Anagrafiche", "ANAG", "Inserisci le anagrafiche dei clienti, dei fornitori e degli articoli. Con un archivio strutturato potrai gestire i tuoi dati ed accedere facilmente alle informazioni...", "Images.dashboard.anagrafica.png", "", typeof(DashboardAnagraficheView), false);
                 var dashboardConfigurazione = new Dashboard("Configurazioni", "CONF", "Definisci le aziende che vuoi gestire nel sistema Enterprise Manager e configura i parametri principali come i Centri di Costo, le impostazioni generali...", "Images.dashboard.configurazione.png", "", typeof(DashboardConfigurazioneView), false);
+                var dashboardTools= new Dashboard("Strumenti amministrativi", "TOOLS", "Controlla lo stato del tuo applicativo mediante una serie di strumenti per la verifica degli archivi, delle configurazioni e dell'integrità dei dati...", "Images.dashboard.tools.png", "", typeof(ToolsModel), false);
 
                 dashboards.Add(dashboardLavori);
                 dashboards.Add(dashboardConfigurazione);
                 dashboards.Add(dashboardAnagrafiche);
+                dashboards.Add(dashboardTools);
 
                 var query = dashboards.AsQueryable();
                 return query;
