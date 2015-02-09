@@ -260,7 +260,6 @@ namespace WcfService
             return null;
         }
         
-
         public int CountCommesse(string search = null)
         {
             try
@@ -472,7 +471,6 @@ namespace WcfService
             return null;
         }
 
-       
         #endregion
         #endregion
 
@@ -753,6 +751,7 @@ namespace WcfService
             }
             return null;
         }
+
         public IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquistoCommessa(Dto.CommessaDto commessa)
         {
             try
@@ -1266,9 +1265,6 @@ namespace WcfService
             }
             return null;
         }
-
-
-        
         #endregion
         #endregion
 
@@ -1422,8 +1418,6 @@ namespace WcfService
             }
             return null;
         }
-
-      
         #endregion
         #endregion
 
@@ -1730,8 +1724,6 @@ namespace WcfService
             }
             return null;
         }
-
-        
         #endregion
         #endregion
 

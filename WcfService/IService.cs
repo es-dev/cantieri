@@ -36,6 +36,9 @@ namespace WcfService
 
         [OperationContract]
         int CountAziende(string search = null);
+
+        [OperationContract]
+        Dto.AziendaDto ReadAzienda(object id);
         #endregion
         #endregion
 
@@ -63,6 +66,9 @@ namespace WcfService
 
         [OperationContract]
         int CountCommesse(string search = null);
+
+        [OperationContract]
+        Dto.CommessaDto ReadCommessa(object id);
         #endregion
         #endregion
 
@@ -90,6 +96,9 @@ namespace WcfService
 
         [OperationContract]
         int CountFornitori(string search = null);
+
+        [OperationContract]
+        Dto.FornitoreDto ReadFornitore(object id);
         #endregion
         #endregion
 
@@ -117,6 +126,9 @@ namespace WcfService
 
         [OperationContract]
         int CountCentriCosto(string search = null);
+
+        [OperationContract]
+        Dto.CentroCostoDto ReadCentroCosto(object id);
         #endregion
         #endregion
 
@@ -148,6 +160,8 @@ namespace WcfService
         [OperationContract]
         IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquistoCommessa(Dto.CommessaDto commessa);
 
+        [OperationContract]
+        Dto.FatturaAcquistoDto ReadFatturaAcquisto(object id);
         #endregion
         #endregion
 
@@ -175,6 +189,9 @@ namespace WcfService
 
         [OperationContract]
         int CountArticoli(string search = null);
+
+        [OperationContract]
+        Dto.ArticoloDto ReadArticolo(object id);
         #endregion
         #endregion
 
@@ -202,6 +219,9 @@ namespace WcfService
 
         [OperationContract]
         int CountPagamenti(string search = null);
+
+        [OperationContract]
+        Dto.PagamentoDto ReadPagamento(object id);
         #endregion
         #endregion
 
@@ -229,6 +249,9 @@ namespace WcfService
 
         [OperationContract]
         int CountClienti(string search = null);
+
+        [OperationContract]
+        Dto.ClienteDto ReadCliente(object id);
         #endregion
         #endregion
 
@@ -256,6 +279,9 @@ namespace WcfService
 
         [OperationContract]
         int CountFattureVendita(string search = null);
+
+        [OperationContract]
+        Dto.FatturaVenditaDto ReadFatturaVendita(object id);
         #endregion
         #endregion
 
@@ -283,6 +309,9 @@ namespace WcfService
 
         [OperationContract]
         int CountLiquidazioni(string search = null);
+        
+        [OperationContract]
+        Dto.LiquidazioneDto ReadLiquidazione(object id);
         #endregion
         #endregion
 
@@ -310,6 +339,9 @@ namespace WcfService
 
         [OperationContract]
         int CountSALs(string search = null);
+
+        [OperationContract]
+        Dto.SALDto ReadSAL(object id);
         #endregion
         #endregion
 
@@ -337,6 +369,9 @@ namespace WcfService
 
         [OperationContract]
         int CountAnagraficheFornitori(string search = null);
+
+        [OperationContract]
+        Dto.AnagraficaFornitoreDto ReadAnagraficaFornitore(object id);
         #endregion
         #endregion
 
@@ -364,6 +399,9 @@ namespace WcfService
 
         [OperationContract]
         int CountAnagraficheClienti(string search = null);
+
+        [OperationContract]
+        Dto.AnagraficaClienteDto ReadAnagraficaCliente(object id);
         #endregion
         #endregion
 
@@ -391,6 +429,9 @@ namespace WcfService
 
         [OperationContract]
         int CountAnagraficheArticoli(string search = null);
+        
+        [OperationContract]
+        Dto.AnagraficaArticoloDto ReadAnagraficaArticolo(object id);
         #endregion
         #endregion
 
