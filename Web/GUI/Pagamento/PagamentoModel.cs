@@ -1,3 +1,4 @@
+using BusinessLogic;
 using Library.Code;
 using Library.Template.MVVM;
 using System;
@@ -15,7 +16,28 @@ namespace Web.GUI.Pagamento
         public PagamentoModel()
 		{
 			InitializeComponent();
+            try
+            {
+                InitCombo();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
 		}
+        private void InitCombo()
+        {
+            try
+            {
+                var tipiPagamenti = Tipi.GetNames(typeof(Tipi.TipoPagamento));
+                editTipoPagamento.Items = tipiPagamenti;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
 
         public override void BindViewSubTitle(object model)
         {
@@ -40,13 +62,14 @@ namespace Web.GUI.Pagamento
                     editData.Value = obj.Data;
                     editNote.Value = obj.Note;
                     editImporto.Value = obj.Importo;
+                    editTipoPagamento.Value = obj.TipoPagamento;
+                    editDescrizione.Value = obj.Descrizione;
                     var fatturaAcquisto = obj.FatturaAcquisto;
                     if (fatturaAcquisto != null)
                     {
                         editFatturaAcquisto.Model = fatturaAcquisto;
                         editFatturaAcquisto.Value = fatturaAcquisto.Numero +"/"+ fatturaAcquisto.Data.Value.Year.ToString();
                     }
-
                 }
             }
             catch (Exception ex)
@@ -66,6 +89,8 @@ namespace Web.GUI.Pagamento
                     obj.Data = editData.Value;
                     obj.Importo = editImporto.Value;
                     obj.Note = editNote.Value;
+                    obj.Descrizione = editDescrizione.Value;
+                    obj.TipoPagamento = editTipoPagamento.Value;
                     var fatturaAcquisto = (WcfService.Dto.FatturaAcquistoDto)editFatturaAcquisto.Model;
                     if(fatturaAcquisto!=null)
                         obj.FatturaAcquistoId = fatturaAcquisto.Id;
@@ -112,9 +137,6 @@ namespace Web.GUI.Pagamento
                 UtilityError.Write(ex);
             }
         }
-
-        
-       
 
 	}
 }
