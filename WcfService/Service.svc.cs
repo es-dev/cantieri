@@ -1229,9 +1229,10 @@ namespace WcfService
         {
             try
             {
-                var wcf = new EntitiesModelService();
-                var cliente = wcf.ReadCliente("Id=" + id);
-                return cliente;
+                var ef = new DataLayer.EntitiesModel();
+                var cliente = (from q in ef.Clientes where q.Id == (int)id select q).FirstOrDefault();
+                var clienteDto = UtilityPOCO.Assemble<Dto.ClienteDto>(cliente);
+                return clienteDto;
             }
             catch (Exception ex)
             {
@@ -1386,9 +1387,10 @@ namespace WcfService
         {
             try
             {
-                var wcf = new EntitiesModelService();
-                var fatturaVendita = wcf.ReadFatturaVendita("Id=" + id);
-                return fatturaVendita;
+                var ef = new DataLayer.EntitiesModel();
+                var fatturaVendita = (from q in ef.FatturaVenditas where q.Id == (int)id select q).FirstOrDefault();
+                var fatturaVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fatturaVendita);
+                return fatturaVenditaDto;
             }
             catch (Exception ex)
             {

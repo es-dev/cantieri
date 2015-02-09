@@ -23,7 +23,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        internal static decimal GetTotaleIncassi(WcfService.Dto.FatturaVenditaDto fatturaVendita, DateTime data)
+        public static decimal GetTotaleIncassi(WcfService.Dto.FatturaVenditaDto fatturaVendita, DateTime data)
         {
             try
             {

@@ -227,14 +227,14 @@ namespace Web.GUI.Fornitore
                 {
                     if (existFattureInsolute) //condizione di non soluzione delle fatture, segalo le fatture insolute ed eventualmente quelle non pagate
                     {
-                        descrizione = "Il fornitore risulta insoluto. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". Le fatture insolute sono " + listaFattureInsolute;
+                        descrizione = "Il fornitore risulta insoluto. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale delle fatture pari a " + totaleFattura.ToString("0.00€") + ". Le fatture insolute sono " + listaFattureInsolute;
                         if (existFattureNonPagate)
                             descrizione += " Le fatture non pagate sono " + listaFattureNonPagate;
                         stato = TypeStato.Critical;
                     }
                     else //condizione di non pagamento (pagamenti nulli o non completi, se non completi segnalo le fatture non pagate)
                     {
-                        descrizione = "Il fornitore risulta non pagato. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€");
+                        descrizione = "Il fornitore risulta non pagato. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale delle fatture pari a " + totaleFattura.ToString("0.00€");
                         if (existFattureNonPagate)
                             descrizione += " Le fatture non pagate sono " + listaFattureNonPagate;
                         stato = TypeStato.Warning;

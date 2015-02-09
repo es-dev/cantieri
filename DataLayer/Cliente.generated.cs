@@ -193,6 +193,45 @@ namespace DataLayer
 			}
 		}
 		
+		private decimal? _totaleFattureVendita;
+		public virtual decimal? TotaleFattureVendita
+		{
+			get
+			{
+				return this._totaleFattureVendita;
+			}
+			set
+			{
+				this._totaleFattureVendita = value;
+			}
+		}
+		
+		private string _stato;
+		public virtual string Stato
+		{
+			get
+			{
+				return this._stato;
+			}
+			set
+			{
+				this._stato = value;
+			}
+		}
+		
+		private decimal? _totaleLiquidazioni;
+		public virtual decimal? TotaleLiquidazioni
+		{
+			get
+			{
+				return this._totaleLiquidazioni;
+			}
+			set
+			{
+				this._totaleLiquidazioni = value;
+			}
+		}
+		
 		private Commessa _commessa;
 		public virtual Commessa Commessa
 		{
