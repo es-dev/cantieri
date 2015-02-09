@@ -20,7 +20,7 @@ namespace BusinessLogic
                     if (fattureAcquisto != null)
                     {
                         var totaleImponibile = (from q in fattureAcquisto where q.Totale != null && q.Data <= data select q.Totale).Sum();
-                        totale = (decimal)totaleImponibile;
+                        totale = UtilityValidation.GetDecimal(totaleImponibile);
                     }
                     return totale;
                 }
@@ -71,14 +71,10 @@ namespace BusinessLogic
                     var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, _scadenzaPagamento);
                     var today = DateTime.Today;
                     var totaleFattura = UtilityValidation.GetDecimal(fattura.Totale);
-                    var totalePagamenti = fattura.TotalePagamenti;
-                    if (totaleFattura != null && totalePagamenti != null) //occorre procedere utilizzando le validazioni
-                    {
-                        var stato = BusinessLogic.Fattura.GetStato(today, scadenza, totaleFattura, totalePagamenti.Value);
-
-                        if (stato == BusinessLogic.Tipi.StatoFattura.Insoluta)
-                            fattureInsolute.Add(fattura);
-                    }
+                    var totalePagamenti = UtilityValidation.GetDecimal(fattura.TotalePagamenti);
+                    var stato = BusinessLogic.Fattura.GetStato(today, scadenza, totaleFattura, totalePagamenti);
+                    if (stato == BusinessLogic.Tipi.StatoFattura.Insoluta)
+                        fattureInsolute.Add(fattura);
                 }
                 return fattureInsolute;
             }
@@ -101,15 +97,11 @@ namespace BusinessLogic
                     var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
                     var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, _scadenzaPagamento);
                     var today = DateTime.Today;
-                    var totaleFattura = fattura.Totale;
-                    var totalePagamenti = fattura.TotalePagamenti;
-                    if (totaleFattura != null && totalePagamenti != null)
-                    {
-                        var stato = BusinessLogic.Fattura.GetStato(today, scadenza, totaleFattura.Value, totalePagamenti.Value);
-
-                        if (stato == BusinessLogic.Tipi.StatoFattura.NonPagata)
-                            fattureNonPagate.Add(fattura);
-                    }
+                    var totaleFattura = UtilityValidation.GetDecimal(fattura.Totale);
+                    var totalePagamenti = UtilityValidation.GetDecimal(fattura.TotalePagamenti);
+                    var stato = BusinessLogic.Fattura.GetStato(today, scadenza, totaleFattura, totalePagamenti);
+                    if (stato == BusinessLogic.Tipi.StatoFattura.NonPagata)
+                        fattureNonPagate.Add(fattura);
                 }
                 return fattureNonPagate;
             }
