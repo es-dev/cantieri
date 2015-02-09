@@ -1,5 +1,6 @@
 using BusinessLogic;
 using Library.Code;
+using Library.Code.Enum;
 using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
@@ -72,7 +73,9 @@ namespace Web.GUI.FatturaVendita
                     editNumero.Value = obj.Numero;
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editScadenzaPagamento.Value = obj.ScadenzaPagamento;
-                    editTotale.Value = obj.Totale; 
+                    editTotale.Value = obj.Totale;
+                    editTotaleIncassi.Value = obj.TotaleLiquidazioni;
+                    editStato.Value = obj.Stato;
                     var cliente = obj.Cliente;
                     if (cliente != null)
                     {
@@ -102,6 +105,8 @@ namespace Web.GUI.FatturaVendita
                     obj.TipoPagamento = editTipoPagamento.Value;
                     obj.ScadenzaPagamento = editScadenzaPagamento.Value;
                     obj.Totale = editTotale.Value;
+                    obj.TotaleLiquidazioni = editTotaleIncassi.Value;
+                    obj.Stato = editStato.Value;
                     var cliente = (WcfService.Dto.ClienteDto)editCliente.Model;
                     if(cliente!=null)
                         obj.ClienteId = cliente.Id;
@@ -168,10 +173,10 @@ namespace Web.GUI.FatturaVendita
                     var totaleIncassi= BusinessLogic.Fattura.GetTotaleIncassi(obj, today);
 
                     //valutazione dell'andamento del lavoro
-                    //var stato = GetStato(today, scadenza, totaleFattura, totaleIncassi);
+                    var stato = GetStato(today, scadenza, totaleFattura, totaleIncassi);
 
                     //binding dati in GUI
-                    //editStato.Value = stato.ToString();
+                    editStato.Value = stato.ToString();
                     editTotale.Value = totaleFattura;
                     editTotaleIncassi.Value = totaleIncassi;
                 }
@@ -180,6 +185,42 @@ namespace Web.GUI.FatturaVendita
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private StatoDescrizione GetStato(DateTime today, DateTime scadenza, decimal totaleFattura, decimal totaleIncassi)
+        {
+            try
+            {
+                var descrizione = "";
+                var ritardo = BusinessLogic.Fattura.GetRitardo(today, scadenza);
+                var stato = TypeStato.None;
+                var insoluta = (today > scadenza);
+                if (totaleIncassi < totaleFattura)
+                {
+                    if (insoluta)  // fattura insoluta
+                    {
+                        descrizione = "La fattura risulta insoluta. Il totale incassi pari a " + totaleIncassi.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura risulta scaduta il  " + scadenza.ToString("dd/MM/yyyy") + " con un ritardo di pagamento pari a " + ritardo;
+                        stato = TypeStato.Critical;
+                    }
+                    else  //fattura non pagata
+                    {
+                        descrizione = "La fattura risulta in pagamento. Il totale incassi pari a " + totaleIncassi.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura scade il  " + scadenza.ToString("dd/MM/yyyy");
+                        stato = TypeStato.Warning;
+                    }
+                }
+                else if (totaleIncassi >= totaleFattura)
+                {
+                    descrizione = "La fattura è stata pagata";
+                    stato = TypeStato.Normal;
+                }
+                var statoDescrizione = new StatoDescrizione(stato, descrizione);
+                return statoDescrizione;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
 
         private void editImponibileIVA_Leave(object sender, EventArgs e)

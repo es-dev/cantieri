@@ -330,7 +330,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public ClienteDto(int _id, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, string _codice, string _codiceCatastale, CommessaDto _commessa, IList<FatturaVenditaDto> _fatturaVenditas)
+		public ClienteDto(int _id, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, string _codice, string _codiceCatastale, decimal? _totaleFattureVendita, string _stato, decimal? _totaleLiquidazioni, CommessaDto _commessa, IList<FatturaVenditaDto> _fatturaVenditas)
 		{
 			this.Id = _id;
 			this.RagioneSociale = _ragioneSociale;
@@ -345,6 +345,9 @@ namespace WcfService.Dto
 			this.PIva = _pIva;
 			this.Codice = _codice;
 			this.CodiceCatastale = _codiceCatastale;
+			this.TotaleFattureVendita = _totaleFattureVendita;
+			this.Stato = _stato;
+			this.TotaleLiquidazioni = _totaleLiquidazioni;
 			this.Commessa = _commessa;
 			this.FatturaVenditas = _fatturaVenditas;
 		}
@@ -390,6 +393,15 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual string CodiceCatastale { get;set; }
+
+		[DataMember]
+		public virtual decimal? TotaleFattureVendita { get;set; }
+
+		[DataMember]
+		public virtual string Stato { get;set; }
+
+		[DataMember]
+		public virtual decimal? TotaleLiquidazioni { get;set; }
 
 		[DataMember]
 		public virtual CommessaDto Commessa { get;set; }
@@ -647,7 +659,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public FatturaVenditaDto(int _id, int _clienteId, DateTime? _data, string _numero, string _tipoPagamento, string _descrizione, decimal? _imponibile, decimal? _iVA, decimal? _totale, string _scadenzaPagamento, ClienteDto _cliente, IList<LiquidazioneDto> _liquidaziones)
+		public FatturaVenditaDto(int _id, int _clienteId, DateTime? _data, string _numero, string _tipoPagamento, string _descrizione, decimal? _imponibile, decimal? _iVA, decimal? _totale, string _scadenzaPagamento, string _stato, decimal? _totaleLiquidazioni, ClienteDto _cliente, IList<LiquidazioneDto> _liquidaziones)
 		{
 			this.Id = _id;
 			this.ClienteId = _clienteId;
@@ -659,6 +671,8 @@ namespace WcfService.Dto
 			this.IVA = _iVA;
 			this.Totale = _totale;
 			this.ScadenzaPagamento = _scadenzaPagamento;
+			this.Stato = _stato;
+			this.TotaleLiquidazioni = _totaleLiquidazioni;
 			this.Cliente = _cliente;
 			this.Liquidaziones = _liquidaziones;
 		}
@@ -695,6 +709,12 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual string ScadenzaPagamento { get;set; }
+
+		[DataMember]
+		public virtual string Stato { get;set; }
+
+		[DataMember]
+		public virtual decimal? TotaleLiquidazioni { get;set; }
 
 		[DataMember]
 		public virtual ClienteDto Cliente { get;set; }
