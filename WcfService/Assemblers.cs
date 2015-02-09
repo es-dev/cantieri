@@ -330,6 +330,9 @@ namespace WcfService.Assemblers
 			entity.PIva = dto.PIva;
 			entity.Codice = dto.Codice;
 			entity.CodiceCatastale = dto.CodiceCatastale;
+			entity.TotaleFattureAcquisto = dto.TotaleFattureAcquisto;
+			entity.Stato = dto.Stato;
+			entity.TotalePagamenti = dto.TotalePagamenti;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -354,6 +357,9 @@ namespace WcfService.Assemblers
 			dto.PIva = entity.PIva;
 			dto.Codice = entity.Codice;
 			dto.CodiceCatastale = entity.CodiceCatastale;
+			dto.TotaleFattureAcquisto = entity.TotaleFattureAcquisto;
+			dto.Stato = entity.Stato;
+			dto.TotalePagamenti = entity.TotalePagamenti;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }

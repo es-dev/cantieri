@@ -236,7 +236,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public FornitoreDto(int _id, int _commessaId, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, string _codice, string _codiceCatastale, CommessaDto _commessa, IList<FatturaAcquistoDto> _fatturaAcquistos)
+		public FornitoreDto(int _id, int _commessaId, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, string _codice, string _codiceCatastale, decimal? _totaleFattureAcquisto, string _stato, decimal? _totalePagamenti, CommessaDto _commessa, IList<FatturaAcquistoDto> _fatturaAcquistos)
 		{
 			this.Id = _id;
 			this.CommessaId = _commessaId;
@@ -252,6 +252,9 @@ namespace WcfService.Dto
 			this.PIva = _pIva;
 			this.Codice = _codice;
 			this.CodiceCatastale = _codiceCatastale;
+			this.TotaleFattureAcquisto = _totaleFattureAcquisto;
+			this.Stato = _stato;
+			this.TotalePagamenti = _totalePagamenti;
 			this.Commessa = _commessa;
 			this.FatturaAcquistos = _fatturaAcquistos;
 		}
@@ -300,6 +303,15 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual string CodiceCatastale { get;set; }
+
+		[DataMember]
+		public virtual decimal? TotaleFattureAcquisto { get;set; }
+
+		[DataMember]
+		public virtual string Stato { get;set; }
+
+		[DataMember]
+		public virtual decimal? TotalePagamenti { get;set; }
 
 		[DataMember]
 		public virtual CommessaDto Commessa { get;set; }

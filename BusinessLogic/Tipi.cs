@@ -46,6 +46,13 @@ namespace BusinessLogic
             Insoluta, //fattura il cui totale pagamenti <totale fattura e today >scadenza=data fattura+ scadenza pagamento
             NonPagata, //fattura il cui totale pagamenti <totale fattura e today<=scadenza=data fattura+ scadenza pagamento
         }
+        public enum StatoFornitore
+        {
+            None,
+            Pagato, //fornitore il cui totale pagamenti>=Totale fattura
+            Insoluto, //fornitore il cui totale pagamenti <totale fattura e....
+            NonPagato, //fornitore il cui totale pagamenti <totale fattura e....
+        }
 
         public static IList<string> GetNames(Type type)
         {
