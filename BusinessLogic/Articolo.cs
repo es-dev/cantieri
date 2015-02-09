@@ -28,7 +28,7 @@ namespace BusinessLogic
         {
             try
             {
-                decimal costo = importo * (1 - sconto/ 100);
+                decimal costo = importo * (1 - sconto/ (decimal)100);
                 return costo;
             }
             catch (Exception ex)

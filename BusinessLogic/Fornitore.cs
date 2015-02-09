@@ -58,24 +58,11 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static List<WcfService.Dto.FatturaAcquistoDto> GetFattureInsolute(IList<WcfService.Dto.FatturaAcquistoDto> fatture)
+        public static IList<WcfService.Dto.FatturaAcquistoDto> GetFattureInsolute(IList<WcfService.Dto.FatturaAcquistoDto> fatture)
         {
             try
             {
-                var fattureInsolute = new List<WcfService.Dto.FatturaAcquistoDto>();
-                foreach (var fattura in fatture)
-                {
-                    var data = fattura.Data;
-                    var scadenzaPagamento = fattura.ScadenzaPagamento;
-                    var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
-                    var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, _scadenzaPagamento);
-                    var today = DateTime.Today;
-                    var totaleFattura = UtilityValidation.GetDecimal(fattura.Totale);
-                    var totalePagamenti = UtilityValidation.GetDecimal(fattura.TotalePagamenti);
-                    var stato = BusinessLogic.Fattura.GetStato(today, scadenza, totaleFattura, totalePagamenti);
-                    if (stato == BusinessLogic.Tipi.StatoFattura.Insoluta)
-                        fattureInsolute.Add(fattura);
-                }
+                var fattureInsolute = GetFatture(fatture, Tipi.StatoFattura.Insoluta);
                 return fattureInsolute;
             }
             catch (Exception ex)
@@ -85,25 +72,28 @@ namespace BusinessLogic
             return null;
         }
 
-        public static List<WcfService.Dto.FatturaAcquistoDto> GetFattureNonPagate(IList<WcfService.Dto.FatturaAcquistoDto> fatture)
+       
+
+        public static IList<WcfService.Dto.FatturaAcquistoDto> GetFattureNonPagate(IList<WcfService.Dto.FatturaAcquistoDto> fatture)
         {
             try
             {
-                var fattureNonPagate = new List<WcfService.Dto.FatturaAcquistoDto>();
-                foreach (var fattura in fatture)
-                {
-                    var data = fattura.Data;
-                    var scadenzaPagamento = fattura.ScadenzaPagamento;
-                    var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
-                    var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, _scadenzaPagamento);
-                    var today = DateTime.Today;
-                    var totaleFattura = UtilityValidation.GetDecimal(fattura.Totale);
-                    var totalePagamenti = UtilityValidation.GetDecimal(fattura.TotalePagamenti);
-                    var stato = BusinessLogic.Fattura.GetStato(today, scadenza, totaleFattura, totalePagamenti);
-                    if (stato == BusinessLogic.Tipi.StatoFattura.NonPagata)
-                        fattureNonPagate.Add(fattura);
-                }
+                var fattureNonPagate = GetFatture(fatture, Tipi.StatoFattura.NonPagata);
                 return fattureNonPagate;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private static IList<WcfService.Dto.FatturaAcquistoDto> GetFatture(IList<WcfService.Dto.FatturaAcquistoDto> fatture, BusinessLogic.Tipi.StatoFattura stato)
+        {
+            try
+            {
+                var _fatture = (from q in fatture where BusinessLogic.Fattura.GetStato(q) == stato select q).ToList();
+                return _fatture;
             }
             catch (Exception ex)
             {

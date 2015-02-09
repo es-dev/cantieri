@@ -201,13 +201,13 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 //prelievo dati da GUI
-                var imponibile = editImponibile.Value;
-                var iva = editIVA.Value;
+                var imponibile = UtilityValidation.GetDecimal(editImponibile.Value);
+                var iva = UtilityValidation.GetDecimal(editIVA.Value);
                 var data = editData.Value;
                 var scadenzaPagamento = editScadenzaPagamento.Value;
                 var today= DateTime.Today;
 
-                if (imponibile != null && iva != null && data!=null)
+                if (data != null)
                 {
                     //prelievo dati da DB
                     var obj = (WcfService.Dto.FatturaAcquistoDto)Model;
@@ -215,15 +215,16 @@ namespace Web.GUI.FatturaAcquisto
                     var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
                     var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, _scadenzaPagamento);
                     var totaleFattura = BusinessLogic.Fattura.GetTotale((decimal)imponibile, (decimal)iva);
-                    var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj,today);  
+                    var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, today);
+                    var statoFattura = BusinessLogic.Fattura.GetStato(obj);
 
                     //valutazione dell'andamento del lavoro
-                    var stato = GetStato(today, scadenza, totaleFattura,totalePagamenti);
+                    var statoDescrizione = GetStatoDescrizione(today, scadenza, totaleFattura, totalePagamenti, statoFattura);
 
                     //binding dati in GUI
-                    editStato.Value = stato.ToString();
+                    editStato.Value = statoDescrizione.ToString();
                     editTotale.Value = totaleFattura;
-                    editTotalePagamenti.Value= totalePagamenti;
+                    editTotalePagamenti.Value = totalePagamenti;
                 }
             }
             catch (Exception ex)
@@ -232,28 +233,24 @@ namespace Web.GUI.FatturaAcquisto
             }
         }
 
-        private StatoDescrizione GetStato(DateTime today, DateTime scadenza, decimal totaleFattura, decimal totalePagamenti)
+        private StatoDescrizione GetStatoDescrizione(DateTime data, DateTime scadenza, decimal totaleFattura, decimal totalePagamenti, BusinessLogic.Tipi.StatoFattura statoFattura)
         {
             try
             {
-                var descrizione = "";
-                var ritardo = BusinessLogic.Fattura.GetRitardo(today, scadenza); 
                 var stato = TypeStato.None;
-                var insoluta = (today > scadenza);
-                if (totalePagamenti < totaleFattura)
+                var descrizione = "";
+                var ritardo = BusinessLogic.Fattura.GetRitardo(data, scadenza);
+                if (statoFattura == Tipi.StatoFattura.Insoluta)
                 {
-                    if (insoluta)  // fattura insoluta
-                    {
-                        descrizione = "La fattura risulta insoluta. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura risulta scaduta il  " + scadenza.ToString("dd/MM/yyyy") + " con un ritardo di pagamento pari a " + ritardo;
-                        stato = TypeStato.Critical;
-                    }
-                    else  //fattura non pagata
-                    {
-                        descrizione = "La fattura risulta in pagamento. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura scade il  " + scadenza.ToString("dd/MM/yyyy");
-                        stato = TypeStato.Warning;
-                    }
+                    descrizione = "La fattura risulta insoluta. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura risulta scaduta il  " + scadenza.ToString("dd/MM/yyyy") + " con un ritardo di pagamento pari a " + ritardo;
+                    stato = TypeStato.Critical;
                 }
-                else if (totalePagamenti >= totaleFattura)
+                else if (statoFattura == Tipi.StatoFattura.NonPagata)
+                {
+                    descrizione = "La fattura risulta in pagamento. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura scade il  " + scadenza.ToString("dd/MM/yyyy");
+                    stato = TypeStato.Warning;
+                }
+                else if (statoFattura == Tipi.StatoFattura.Pagata)
                 {
                     descrizione = "La fattura è stata pagata";
                     stato = TypeStato.Normal;
