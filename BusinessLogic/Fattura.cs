@@ -34,7 +34,7 @@ namespace BusinessLogic
                     if (incassi != null)
                     {
                         var totaleIncassi = (from q in incassi where q.Data <= data select q.Importo).Sum();
-                        totale = (decimal)totaleIncassi;
+                        totale = UtilityValidation.GetDecimal(totaleIncassi);
                     }
                     return totale;
                 }
@@ -57,7 +57,7 @@ namespace BusinessLogic
                     if (pagamenti != null)
                     {
                         var totalePagamenti = (from q in pagamenti where q.Data <= data select q.Importo).Sum();
-                        totale = (decimal)totalePagamenti;
+                        totale = UtilityValidation.GetDecimal(totalePagamenti);
                     }
                     return totale;
                 }
