@@ -70,11 +70,11 @@ namespace BusinessLogic
                     var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
                     var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, _scadenzaPagamento);
                     var today = DateTime.Today;
-                    var totaleFattura = fattura.Totale;
+                    var totaleFattura = UtilityValidation.GetDecimal(fattura.Totale);
                     var totalePagamenti = fattura.TotalePagamenti;
-                    if (totaleFattura != null && totalePagamenti != null)
+                    if (totaleFattura != null && totalePagamenti != null) //occorre procedere utilizzando le validazioni
                     {
-                        var stato = BusinessLogic.Fattura.GetStato(today, scadenza, totaleFattura.Value, totalePagamenti.Value);
+                        var stato = BusinessLogic.Fattura.GetStato(today, scadenza, totaleFattura, totalePagamenti.Value);
 
                         if (stato == BusinessLogic.Tipi.StatoFattura.Insoluta)
                             fattureInsolute.Add(fattura);

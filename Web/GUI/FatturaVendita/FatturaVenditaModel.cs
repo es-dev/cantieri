@@ -141,5 +141,58 @@ namespace Web.GUI.FatturaVendita
             }
         }
 
+        private void btnCalcoloTotali_Click(object sender, EventArgs e)
+        {
+            CalcolaTotali();
+        }
+
+        private void CalcolaTotali()
+        {
+            try
+            {
+                //prelievo dati da GUI
+                var imponibile = editImponibile.Value;
+                var iva = editIVA.Value;
+                var data = editData.Value;
+                var scadenzaPagamento = editScadenzaPagamento.Value;
+                var today = DateTime.Today;
+
+                if (imponibile != null && iva != null && data != null)
+                {
+                    //prelievo dati da DB
+                    var obj = (WcfService.Dto.FatturaVenditaDto)Model;
+
+                    var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
+                    var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, _scadenzaPagamento);
+                    var totaleFattura = BusinessLogic.Fattura.GetTotale((decimal)imponibile, (decimal)iva);
+                    var totaleIncassi= BusinessLogic.Fattura.GetTotaleIncassi(obj, today);
+
+                    //valutazione dell'andamento del lavoro
+                    //var stato = GetStato(today, scadenza, totaleFattura, totaleIncassi);
+
+                    //binding dati in GUI
+                    //editStato.Value = stato.ToString();
+                    editTotale.Value = totaleFattura;
+                    editTotaleIncassi.Value = totaleIncassi;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editImponibileIVA_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                CalcolaTotali();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
 	}
 }

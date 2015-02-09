@@ -154,6 +154,32 @@ namespace DataLayer
 			}
 		}
 		
+		private string _stato;
+		public virtual string Stato
+		{
+			get
+			{
+				return this._stato;
+			}
+			set
+			{
+				this._stato = value;
+			}
+		}
+		
+		private decimal? _totaleLiquidazioni;
+		public virtual decimal? TotaleLiquidazioni
+		{
+			get
+			{
+				return this._totaleLiquidazioni;
+			}
+			set
+			{
+				this._totaleLiquidazioni = value;
+			}
+		}
+		
 		private Cliente _cliente;
 		public virtual Cliente Cliente
 		{

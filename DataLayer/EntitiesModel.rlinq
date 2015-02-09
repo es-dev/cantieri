@@ -270,6 +270,15 @@
         <orm:field name="_codiceCatastale" property="CodiceCatastale" uniqueId="a6daf789-7658-4e9c-b1b9-3723c5e33772" type="System.String">
           <orm:column name="CodiceCatastale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
+        <orm:field name="_totaleFattureVendita" property="TotaleFattureVendita" uniqueId="acc3e0a3-a034-478e-9be6-c0d79be3695e" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="TotaleFattureVendita" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        </orm:field>
+        <orm:field name="_stato" property="Stato" uniqueId="be610589-c578-4cff-94ac-7cfb72f08be0" type="System.String">
+          <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_totaleLiquidazioni" property="TotaleLiquidazioni" uniqueId="2d49c392-549c-4557-9b66-b4b53c547a5b" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="TotaleLiquidazioni" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        </orm:field>
         <orm:field name="_commessa" property="Commessa" behavior="readwrite" uniqueId="d2449fe8-a609-403e-8779-406be42f82eb" type="DataLayer.Commessa">
           <orm:reference uniqueId="2e7765b0-82e3-4978-a0c4-56bb3098179a" association-name="ClienteHasCommessa">
             <orm:sharedfield name="_id" target-class="DataLayer.Commessa" target-field="_id" />
@@ -501,6 +510,12 @@
         </orm:field>
         <orm:field name="_scadenzaPagamento" property="ScadenzaPagamento" uniqueId="63c1ecc9-ab59-4605-8420-5ff8e7f3fca4" type="System.String">
           <orm:column name="ScadenzaPagamento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_stato" property="Stato" uniqueId="817dec37-96e3-4676-bde3-73ee34a3a3c4" type="System.String">
+          <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_totaleLiquidazioni" property="TotaleLiquidazioni" uniqueId="6efeb1bb-6c89-4ed6-af34-1cfaae2e0c73" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="TotaleLiquidazioni" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         </orm:field>
         <orm:field name="_cliente" property="Cliente" behavior="readwrite" uniqueId="1d9a256b-bc28-4168-89ff-c7bf05be68de" type="DataLayer.Cliente">
           <orm:reference uniqueId="17987c58-2c27-4bba-b919-b1e4679a2b98" association-name="FatturaVenditaHasCliente">
@@ -842,6 +857,9 @@
         <orm:column name="PIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="CodiceCatastale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="TotaleLiquidazioni" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        <orm:column name="TotaleFattureVendita" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
       </orm:table>
       <orm:table name="FatturaVendita">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
@@ -854,6 +872,8 @@
         <orm:column name="Totale" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="ClienteId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         <orm:column name="ScadenzaPagamento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="TotaleLiquidazioni" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:index name="idx_FatturaVendita_ClienteId">
           <orm:columnMapping>
             <orm:column name="ClienteId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -1127,6 +1147,9 @@
       <Property Id="5bafbccf-c05f-4922-9f1e-d1ac6527766f" name="PIva" label="PIva : String" fieldName="_pIva" />
       <Property Id="1d5cde1d-271e-4ddb-8eac-172d1b35bb71" name="Codice" label="Codice : String" fieldName="_codice" />
       <Property Id="a6daf789-7658-4e9c-b1b9-3723c5e33772" name="CodiceCatastale" label="CodiceCatastale : String" fieldName="_codiceCatastale" />
+      <Property Id="acc3e0a3-a034-478e-9be6-c0d79be3695e" name="TotaleFattureVendita" type="Decimal" label="TotaleFattureVendita : Decimal" nullable="true" fieldName="_totaleFattureVendita" />
+      <Property Id="be610589-c578-4cff-94ac-7cfb72f08be0" name="Stato" label="Stato : String" fieldName="_stato" />
+      <Property Id="2d49c392-549c-4557-9b66-b4b53c547a5b" name="TotaleLiquidazioni" type="Decimal" label="TotaleLiquidazioni : Decimal" nullable="true" fieldName="_totaleLiquidazioni" />
       <AssociationTargets>
         <Association Id="2e7765b0-82e3-4978-a0c4-56bb3098179a" SourceMultiplicity="One" TargetMultiplicity="ZeroOne" name="ClienteHasCommessa">
           <DomainClassMoniker name="/EntitiesModel/Commessa" />
@@ -1292,6 +1315,8 @@
       <Property Id="ca135076-c343-4acd-b4a9-7b2afe75bf31" name="IVA" type="Decimal" label="IVA : Decimal" nullable="true" fieldName="_iVA" />
       <Property Id="5deb339c-0f66-4d81-9566-b3ac991013ef" name="Totale" type="Decimal" label="Totale : Decimal" nullable="true" fieldName="_totale" />
       <Property Id="63c1ecc9-ab59-4605-8420-5ff8e7f3fca4" name="ScadenzaPagamento" label="ScadenzaPagamento : String" fieldName="_scadenzaPagamento" />
+      <Property Id="817dec37-96e3-4676-bde3-73ee34a3a3c4" name="Stato" label="Stato : String" fieldName="_stato" />
+      <Property Id="6efeb1bb-6c89-4ed6-af34-1cfaae2e0c73" name="TotaleLiquidazioni" type="Decimal" label="TotaleLiquidazioni : Decimal" nullable="true" fieldName="_totaleLiquidazioni" />
       <AssociationTargets>
         <Association Id="17987c58-2c27-4bba-b919-b1e4679a2b98" SourceMultiplicity="ZeroOne" name="FatturaVenditaHasCliente">
           <DomainClassMoniker name="/EntitiesModel/Cliente" />
