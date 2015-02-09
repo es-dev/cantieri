@@ -239,17 +239,21 @@ namespace Web.GUI.FatturaAcquisto
                 var descrizione = "";
                 var ritardo = BusinessLogic.Fattura.GetRitardo(today, scadenza); 
                 var stato = TypeStato.None;
-                 if (totalePagamenti < totaleFattura && today>scadenza)
+                var insoluta = (today > scadenza);
+                if (totalePagamenti < totaleFattura)
                 {
-                    descrizione = "La fattura risulta insoluta. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura risulta scaduta il  " + scadenza.ToString("dd/MM/yyyy") + " con un ritardo di pagamento pari a " + ritardo;
-                    stato = TypeStato.Critical;
+                    if (insoluta)  // fattura insoluta
+                    {
+                        descrizione = "La fattura risulta insoluta. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura risulta scaduta il  " + scadenza.ToString("dd/MM/yyyy") + " con un ritardo di pagamento pari a " + ritardo;
+                        stato = TypeStato.Critical;
+                    }
+                    else  //fattura non pagata
+                    {
+                        descrizione = "La fattura risulta in pagamento. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura scade il  " + scadenza.ToString("dd/MM/yyyy");
+                        stato = TypeStato.Warning;
+                    }
                 }
-                else if (totalePagamenti < totaleFattura && today <= scadenza)
-                {
-                    descrizione = "La fattura risulta in pagamento. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura scade il  " + scadenza.ToString("dd/MM/yyyy");
-                    stato = TypeStato.Warning;
-                }
-                else if(totalePagamenti >= totaleFattura)
+                else if (totalePagamenti >= totaleFattura)
                 {
                     descrizione = "La fattura è stata pagata";
                     stato = TypeStato.Normal;
