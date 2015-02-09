@@ -106,12 +106,12 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static string GetRitardo(DateTime today, DateTime scadenza)
+        public static string GetRitardo(DateTime data, DateTime scadenza)
         {
             try
             {
                 string ritardo = null;
-                var giorniRitardo = today.Subtract(scadenza).TotalDays;
+                var giorniRitardo = data.Subtract(scadenza).TotalDays;
                 if (0 <= giorniRitardo && giorniRitardo <= 120)
                     ritardo = giorniRitardo.ToString() + " giorni";
                 else if (120 < giorniRitardo && giorniRitardo <= 365)
@@ -133,18 +133,30 @@ namespace BusinessLogic
             return null;
         }
 
-        public static Tipi.StatoFattura GetStato(DateTime today, DateTime scadenza, decimal totaleFattura, decimal totalePagamenti)
+        public static Tipi.StatoFattura GetStato(WcfService.Dto.FatturaAcquistoDto fattura)
         {
             try
             {
+                var today = DateTime.Today;
+                var data = fattura.Data;
+                var scadenzaPagamento = fattura.ScadenzaPagamento;
+                var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
+                var scadenza = GetScadenza(data.Value, _scadenzaPagamento);
+                var totaleFattura = UtilityValidation.GetDecimal(fattura.Totale);
+                var totalePagamenti = GetTotalePagamenti(fattura, today);
+                
                 var stato = Tipi.StatoFattura.None;
-                if (totalePagamenti < totaleFattura && today > scadenza)
-                    stato = Tipi.StatoFattura.Insoluta;
-                else if (totalePagamenti < totaleFattura && today <= scadenza)
-                    stato = Tipi.StatoFattura.NonPagata;
+                var insoluta = (today > scadenza);
+                if (totalePagamenti < totaleFattura)
+                {
+                    if (insoluta)
+                        stato = Tipi.StatoFattura.Insoluta;
+                    else 
+                        stato = Tipi.StatoFattura.NonPagata;
+                }
                 else if (totalePagamenti >= totaleFattura)
                     stato = Tipi.StatoFattura.Pagata;
-                
+
                 return stato;
             }
             catch (Exception ex)
@@ -153,7 +165,6 @@ namespace BusinessLogic
             }
             return Tipi.StatoFattura.None;
         }
-
 
 
     }

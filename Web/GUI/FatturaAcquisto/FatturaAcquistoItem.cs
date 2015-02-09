@@ -30,20 +30,37 @@ namespace Web.GUI.FatturaAcquisto
                     var numero = "N/D";
                     if (obj.Numero != null)
                         numero = obj.Numero;
-                    infoNumero.Text ="Fattura N. "+ numero;
                     var data = "N/D";
                     if (obj.Data != null)
                         data = obj.Data.Value.ToString("dd/MM/yyyy");
-                    infoData.Text = "Data: " + data;
-                    // ricorda che bool?, datetime?, e tutte le variabili con xxx? accettano il valore null, quindi vanno controllate e accedi al valore, se non sono nulle, con .Value
-                    var centroCosto=obj.CentroCosto;
+                    infoNumeroData.Text = "Fattura N." + numero + " del " + data;
+                    var centroCosto = obj.CentroCosto;
                     if (centroCosto != null)
-                    {
                         infoCentroCosto.Text = centroCosto.Denominazione;
-                    }
                     var fornitore = obj.Fornitore;
                     if (fornitore != null)
                         infoFornitore.Text = fornitore.RagioneSociale;
+                    
+                    var totaleFattura = "N/D";
+                    if (obj.Totale != null)
+                        totaleFattura = obj.Totale.Value.ToString("0.00") + "€";
+                    var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, DateTime.Now);
+                    infoPagamentoTotale.Text = "Pagato " + totalePagamenti.ToString("0.00")+ "€ su un totale di " + totaleFattura;
+
+                    var stato=BusinessLogic.Fattura.GetStato(obj);
+                    if (stato == BusinessLogic.Tipi.StatoFattura.Pagata)
+                    {
+                        imgStato.Image = "Images.messageConfirm.png";
+                    }
+                    else if (stato == BusinessLogic.Tipi.StatoFattura.NonPagata)
+                    {
+                        imgStato.Image = "Images.messageQuestion.png";
+                    }
+                    else if (stato == BusinessLogic.Tipi.StatoFattura.Insoluta)
+                    {
+                        imgStato.Image = "Images.messageAlert.png";
+                    }
+
                 }
             }
             catch (Exception ex)
