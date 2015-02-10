@@ -192,6 +192,19 @@ namespace DataLayer
 			}
 		}
 		
+		private string _localita;
+		public virtual string Localita
+		{
+			get
+			{
+				return this._localita;
+			}
+			set
+			{
+				this._localita = value;
+			}
+		}
+		
 	}
 }
 #pragma warning restore 1591

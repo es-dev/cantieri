@@ -50,6 +50,7 @@ namespace Web.GUI.Cliente
                     editFAX.Value = obj.Fax;
                     editMobile.Value = obj.Mobile;
                     editEmail.Value = obj.Email;
+                    editLocalita.Value = obj.Localita;
                     editPartitaIVA.Value = obj.PIva;
                     editTotaleFattureVendita.Value = obj.TotaleFattureVendita;
                     editStato.Value = obj.Stato;
@@ -83,6 +84,7 @@ namespace Web.GUI.Cliente
                     obj.Comune = editComune.Value.Denominazione;
                     obj.CodiceCatastale = editComune.Value.CodiceCatastale;
                     obj.Provincia = editComune.Value.Provincia;
+                    obj.Localita = editLocalita.Value;
                     obj.Telefono = editTelefono.Value;
                     obj.Fax = editFAX.Value;
                     obj.Mobile = editMobile.Value;

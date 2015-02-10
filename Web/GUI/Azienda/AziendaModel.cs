@@ -46,6 +46,7 @@ namespace Web.GUI.Azienda
                     editCAP.Value = obj.CAP;
                     editComune.Value = new Library.Controls.ComuniProvince.Comune(obj.Comune, obj.CodiceCatastale, obj.Provincia);
                     editIndirizzo.Value = obj.Indirizzo;
+                    editLocalita.Value = obj.Localita;
                     editNumeroDipendenti.Value = obj.Dipendenti;
                     editPartitaIVA.Value = obj.PIva;
                     editTelefono.Value = obj.Telefono;
@@ -74,6 +75,7 @@ namespace Web.GUI.Azienda
                     obj.Provincia = editComune.Value.Provincia;
                     obj.Dipendenti = editNumeroDipendenti.Value;
                     obj.Indirizzo = editIndirizzo.Value;
+                    obj.Localita = editLocalita.Value;
                     obj.PIva = editPartitaIVA.Value;
                     obj.Telefono = editTelefono.Value;
                     obj.Fax = editFAX.Value;

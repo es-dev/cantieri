@@ -45,6 +45,7 @@ namespace Web.GUI.AnagraficaCliente
                     editIndirizzo.Value = obj.Indirizzo;
                     editCAP.Value = obj.CAP;
                     editComune.Value = new Library.Controls.ComuniProvince.Comune(obj.Comune, obj.CodiceCatastale, obj.Provincia);
+                    editLocalita.Value = obj.Localita;
                     editTelefono.Value = obj.Telefono;
                     editFAX.Value = obj.Fax;
                     editMobile.Value = obj.Mobile;
@@ -73,6 +74,7 @@ namespace Web.GUI.AnagraficaCliente
                     obj.Indirizzo = editIndirizzo.Value;
                     obj.CAP = editCAP.Value;
                     obj.Comune = editComune.Value.Denominazione;
+                    obj.Localita = editLocalita.Value;
                     obj.CodiceCatastale = editComune.Value.CodiceCatastale;
                     obj.Provincia = editComune.Value.Provincia;
                     obj.Telefono = editTelefono.Value;

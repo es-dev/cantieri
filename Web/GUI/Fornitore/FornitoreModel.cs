@@ -51,6 +51,7 @@ namespace Web.GUI.Fornitore
                     editMobile.Value = obj.Mobile;
                     editEmail.Value = obj.Email;
                     editPartitaIVA.Value = obj.PIva;
+                    editLocalita.Value = obj.Localita;
                     editTotaleFattureAcquisto.Value = obj.TotaleFattureAcquisto;
                     editStato.Value = obj.Stato;
                     editTotalePagamenti.Value = obj.TotalePagamenti;
@@ -86,6 +87,7 @@ namespace Web.GUI.Fornitore
                     obj.Fax = editFAX.Value;
                     obj.Mobile = editMobile.Value;
                     obj.Email = editEmail.Value;
+                    obj.Localita = editLocalita.Value;
                     obj.PIva = editPartitaIVA.Value;
                     obj.Codice = editCodiceFornitore.Value;
                     obj.TotaleFattureAcquisto = editTotaleFattureAcquisto.Value;
@@ -172,7 +174,8 @@ namespace Web.GUI.Fornitore
         {
             try
             {
-                CalcolaTotali();
+                if (Editing==true)
+                    CalcolaTotali();
             }
             catch (Exception ex)
             {
