@@ -1,3 +1,4 @@
+using BusinessLogic;
 using Library.Code;
 using Library.Template.MVVM;
 using System;
@@ -15,7 +16,27 @@ namespace Web.GUI.Liquidazione
         public LiquidazioneModel()
 		{
 			InitializeComponent();
-		}
+            try
+            {
+                InitCombo();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+        private void InitCombo()
+        {
+            try
+            {
+                var tipiPagamenti = Tipi.GetNames(typeof(Tipi.TipoPagamento));
+                editTipoPagamento.Items = tipiPagamenti;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 
         public override void BindViewSubTitle(object model)
         {
@@ -44,6 +65,8 @@ namespace Web.GUI.Liquidazione
                     editData.Value = obj.Data;
                     editImporto.Value = obj.Importo;
                     editNote.Value = obj.Note;
+                    editTipoPagamento.Value = obj.TipoPagamento;
+                    editDescrizione.Value = obj.Descrizione;
                     var fatturaVendita = obj.FatturaVendita;
                     if (fatturaVendita != null)
                     {
@@ -69,6 +92,8 @@ namespace Web.GUI.Liquidazione
                     obj.Data = editData.Value;
                     obj.Importo = editImporto.Value;
                     obj.Note = editNote.Value;
+                    obj.Descrizione = editDescrizione.Value;
+                    obj.TipoPagamento = editTipoPagamento.Value;
                     var fatturaVendita = (WcfService.Dto.FatturaVenditaDto)editFatturaVendita.Model;
                     if(fatturaVendita!=null)
                         obj.FatturaVenditaId = fatturaVendita.Id;
@@ -87,7 +112,6 @@ namespace Web.GUI.Liquidazione
                 var view = new FatturaVendita.FatturaVenditaView();
                 view.Title = "SELEZIONA LA FATTURA DI VENDITA";
                 editFatturaVendita.Show(view);
-
             }
             catch (Exception ex)
             {
@@ -116,8 +140,6 @@ namespace Web.GUI.Liquidazione
                 UtilityError.Write(ex);
             }
         }
-
-       
 
 	}
 }
