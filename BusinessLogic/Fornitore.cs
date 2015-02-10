@@ -72,8 +72,6 @@ namespace BusinessLogic
             return null;
         }
 
-       
-
         public static IList<WcfService.Dto.FatturaAcquistoDto> GetFattureNonPagate(IList<WcfService.Dto.FatturaAcquistoDto> fatture)
         {
             try

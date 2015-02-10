@@ -1,5 +1,6 @@
 ﻿using Library.Code;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -144,19 +145,8 @@ namespace BusinessLogic
                 var scadenza = GetScadenza(data.Value, _scadenzaPagamento);
                 var totaleFattura = UtilityValidation.GetDecimal(fattura.Totale);
                 var totalePagamenti = GetTotalePagamenti(fattura, today);
-                
-                var stato = Tipi.StatoFattura.None;
-                var insoluta = (today > scadenza);
-                if (totalePagamenti < totaleFattura)
-                {
-                    if (insoluta)
-                        stato = Tipi.StatoFattura.Insoluta;
-                    else 
-                        stato = Tipi.StatoFattura.NonPagata;
-                }
-                else if (totalePagamenti >= totaleFattura)
-                    stato = Tipi.StatoFattura.Pagata;
 
+                var stato = GetStato(today, scadenza, totaleFattura, totalePagamenti);
                 return stato;
             }
             catch (Exception ex)
@@ -166,6 +156,97 @@ namespace BusinessLogic
             return Tipi.StatoFattura.None;
         }
 
+        private static Tipi.StatoFattura GetStato(DateTime today, DateTime scadenza, decimal totaleFattura, decimal totalePagamentiIncassi)
+        {
+            try
+            {
+                var stato = Tipi.StatoFattura.None;
+                var insoluta = (today > scadenza);
+                if (totalePagamentiIncassi < totaleFattura)
+                {
+                    if (insoluta)
+                        stato = Tipi.StatoFattura.Insoluta;
+                    else
+                        stato = Tipi.StatoFattura.NonPagata;
+                }
+                else if (totalePagamentiIncassi >= totaleFattura)
+                    stato = Tipi.StatoFattura.Pagata;
+                return stato;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return Tipi.StatoFattura.None;
+            
+        }
+
+
+        public static Tipi.StatoFattura GetStato(WcfService.Dto.FatturaVenditaDto fattura)
+        {
+            try
+            {
+                var today = DateTime.Today;
+                var data = fattura.Data;
+                var scadenzaPagamento = fattura.ScadenzaPagamento;
+                var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
+                var scadenza = GetScadenza(data.Value, _scadenzaPagamento);
+                var totaleFattura = UtilityValidation.GetDecimal(fattura.Totale);
+                var totaleIncassi = GetTotaleIncassi(fattura, today);
+
+                var stato = GetStato(today, scadenza, totaleFattura, totaleIncassi);
+                return stato;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return Tipi.StatoFattura.None;
+        }
+
+        public static string GetLista(IList<WcfService.Dto.FatturaAcquistoDto> fatture)
+        {
+            try
+            {
+                var listaFatture = "";
+                foreach (var fattura in fatture)
+                {
+                    if (listaFatture.Length >= 1)
+                        listaFatture += ", ";
+                    var _fattura = fattura.Numero + "/" + fattura.Data.Value.Year.ToString();
+                    listaFatture += _fattura;
+                }
+                return listaFatture;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public static string GetLista(IList<WcfService.Dto.FatturaVenditaDto> fatture)
+        {
+            try
+            {
+                var listaFatture = "";
+                foreach (var fattura in fatture)
+                {
+                    if (listaFatture.Length >= 1)
+                        listaFatture += ", ";
+                    var _fattura = fattura.Numero + "/" + fattura.Data.Value.Year.ToString();
+                    listaFatture += _fattura;
+                }
+                return listaFatture;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        
 
     }
 }

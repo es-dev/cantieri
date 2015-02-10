@@ -220,8 +220,8 @@ namespace Web.GUI.Fornitore
                 var stato = TypeStato.None;
                 var existFattureInsolute = (fattureInsolute.Count >= 1);
                 var existFattureNonPagate = (fattureNonPagate.Count >= 1);
-                var listaFattureInsolute = GetListaFatture(fattureInsolute);
-                var listaFattureNonPagate = GetListaFatture(fattureNonPagate);
+                var listaFattureInsolute = BusinessLogic.Fattura.GetLista(fattureInsolute);
+                var listaFattureNonPagate = BusinessLogic.Fattura.GetLista(fattureNonPagate);
 
                 if (totalePagamenti < totaleFattura)
                 {
@@ -255,26 +255,7 @@ namespace Web.GUI.Fornitore
             return null;
         }
 
-        private string GetListaFatture(IList<WcfService.Dto.FatturaAcquistoDto> fatture)
-        {
-            try
-            {
-                var listaFatture = "";
-                foreach(var fattura in fatture)
-                {
-                    if (listaFatture.Length >= 1)
-                        listaFatture += ", ";
-                    var _fattura = fattura.Numero+ "/"+ fattura.Data.Value.Year.ToString();
-                    listaFatture += _fattura;
-                }
-                return listaFatture;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
+       
 
 
 

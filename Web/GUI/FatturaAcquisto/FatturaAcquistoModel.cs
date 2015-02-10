@@ -214,7 +214,7 @@ namespace Web.GUI.FatturaAcquisto
 
                     var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
                     var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, _scadenzaPagamento);
-                    var totaleFattura = BusinessLogic.Fattura.GetTotale((decimal)imponibile, (decimal)iva);
+                    var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
                     var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, today);
                     var statoFattura = BusinessLogic.Fattura.GetStato(obj);
 
@@ -267,7 +267,15 @@ namespace Web.GUI.FatturaAcquisto
 
         private void btnCalcoloTotali_Click(object sender, EventArgs e)
         {
-            CalcolaTotali();
+            try
+            {
+                CalcolaTotali();
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
         }
 
 

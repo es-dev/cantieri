@@ -199,10 +199,10 @@ namespace Web.GUI.Cliente
                     var fattureNonPagate = BusinessLogic.Cliente.GetFattureNonPagate(fatture);
 
                     //valutazione dell'andamento del lavoro
-                    var stato = GetStato(totaleFatture, totaleIncassi, fattureInsolute, fattureNonPagate);
+                    var statoDescrizione = GetStatoDescrizione(totaleFatture, totaleIncassi, fattureInsolute, fattureNonPagate);
 
                     ////binding dati in GUI
-                    editStato.Value = stato.ToString();
+                    editStato.Value = statoDescrizione.ToString();
                     editTotaleFattureVendita.Value = totaleFatture;
                     editTotaleIncassi.Value = totaleIncassi;
                 }
@@ -213,7 +213,7 @@ namespace Web.GUI.Cliente
             }
         }
 
-        private StatoDescrizione GetStato(decimal totaleFatture, decimal totaleIncassi, List<WcfService.Dto.FatturaVenditaDto> fattureInsolute, List<WcfService.Dto.FatturaVenditaDto> fattureNonPagate)
+        private StatoDescrizione GetStatoDescrizione(decimal totaleFatture, decimal totaleIncassi, IList<WcfService.Dto.FatturaVenditaDto> fattureInsolute, IList<WcfService.Dto.FatturaVenditaDto> fattureNonPagate)
         {
             try
             {
@@ -221,8 +221,8 @@ namespace Web.GUI.Cliente
                 var stato = TypeStato.None;
                 var existFattureInsolute = (fattureInsolute.Count >= 1);
                 var existFattureNonPagate = (fattureNonPagate.Count >= 1);
-                var listaFattureInsolute = GetListaFatture(fattureInsolute);
-                var listaFattureNonPagate = GetListaFatture(fattureNonPagate);
+                var listaFattureInsolute = BusinessLogic.Fattura.GetLista(fattureInsolute);
+                var listaFattureNonPagate = BusinessLogic.Fattura.GetLista(fattureNonPagate);
 
                 if (totaleIncassi < totaleFatture)
                 {
@@ -256,26 +256,7 @@ namespace Web.GUI.Cliente
             return null;
         }
 
-        private string GetListaFatture(List<WcfService.Dto.FatturaVenditaDto> fatture)
-        {
-            try
-            {
-                var listaFatture = "";
-                foreach (var fattura in fatture)
-                {
-                    if (listaFatture.Length >= 1)
-                        listaFatture += ", ";
-                    var _fattura = fattura.Numero + "/" + fattura.Data.Value.Year.ToString();
-                    listaFatture += _fattura;
-                }
-                return listaFatture;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
+        
 
 	}
 }
