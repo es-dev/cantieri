@@ -53,12 +53,13 @@ namespace Web.GUI.FatturaAcquisto
             // 
             // infoPagamentoTotale
             // 
-            this.infoPagamentoTotale.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.infoPagamentoTotale.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoPagamentoTotale.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoPagamentoTotale.ForeColor = System.Drawing.Color.DarkRed;
-            this.infoPagamentoTotale.Location = new System.Drawing.Point(95, 74);
+            this.infoPagamentoTotale.Location = new System.Drawing.Point(92, 77);
             this.infoPagamentoTotale.Name = "infoPagamentoTotale";
-            this.infoPagamentoTotale.Size = new System.Drawing.Size(275, 19);
+            this.infoPagamentoTotale.Size = new System.Drawing.Size(265, 16);
             this.infoPagamentoTotale.TabIndex = 1;
             this.infoPagamentoTotale.Text = "Pagato 0,00€ su un totale di 0,00€";
             this.infoPagamentoTotale.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -137,7 +138,7 @@ namespace Web.GUI.FatturaAcquisto
             // 
             this.imgStato.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.imgStato.BackColor = System.Drawing.Color.Transparent;
-            this.imgStato.Location = new System.Drawing.Point(373, 70);
+            this.imgStato.Location = new System.Drawing.Point(373, 74);
             this.imgStato.Name = "imgStato";
             this.imgStato.Size = new System.Drawing.Size(20, 20);
             this.imgStato.SizeMode = Gizmox.WebGUI.Forms.PictureBoxSizeMode.StretchImage;

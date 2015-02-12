@@ -1,3 +1,4 @@
+using BusinessLogic;
 using Library.Code;
 using Library.Interfaces;
 using Library.Template.MVVM;
@@ -41,8 +42,42 @@ namespace Web.GUI.Fornitore
                     var commessa = obj.Commessa;
                     if (commessa != null)
                     {
-                        infoCommesssa.Text ="Commessa ("+ commessa.Codice +") - "+ commessa.Denominazione;
+                        infoCommesssa.Text ="Commessa "+ commessa.Codice +" - "+ commessa.Denominazione;
                     }
+
+                    var today = DateTime.Today;
+                    var totaleFattureAcquisto = BusinessLogic.Fornitore.GetTotaleFatture(obj, today);
+                    var totaleFatture = totaleFattureAcquisto.ToString("0.00") + "€";
+
+                    var totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamenti(obj, today);
+                    infoPagamentoTotale.Text = "Pagato " + totalePagamenti.ToString("0.00") + "€ su un totale di " + totaleFatture;
+
+                    var fatture = obj.FatturaAcquistos;
+                    var fattureNonPagate = BusinessLogic.Fornitore.GetFattureNonPagate(fatture);
+                    var fattureInsolute = BusinessLogic.Fornitore.GetFattureInsolute(fatture);
+                    var listaFattureNonPagate = BusinessLogic.Fattura.GetLista(fattureNonPagate);
+                    var listaFattureInsolute = BusinessLogic.Fattura.GetLista(fattureInsolute);
+
+                    var stato = BusinessLogic.Fornitore.GetStato(obj);
+                    var image = "";
+                    var descrizione = "";
+                    if (stato == Tipi.StatoFornitore.Pagato)
+                    {
+                        image = "Images.messageConfirm.png";
+                        descrizione = "Fornitore pagato";
+                    }
+                    else if (stato == Tipi.StatoFornitore.NonPagato)
+                    {
+                        image = "Images.messageQuestion.png";
+                        descrizione = "Fornitore non pagato, le fatture non pagate sono " + listaFattureNonPagate;
+                    }
+                    else if (stato == Tipi.StatoFornitore.Insoluto)
+                    {
+                        image = "Images.messageAlert.png";
+                        descrizione = "Fornitore insoluto, le fatture insolute sono " + listaFattureInsolute;
+                    }
+                    toolTip.SetToolTip(imgStato, descrizione);
+                    imgStato.Image = image;
                 }
             }
             catch (Exception ex)

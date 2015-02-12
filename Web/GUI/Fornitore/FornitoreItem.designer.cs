@@ -36,13 +36,19 @@ namespace Web.GUI.Fornitore
             this.infoRagioneSociale = new Gizmox.WebGUI.Forms.Label();
             this.infoPartitaIVA = new Gizmox.WebGUI.Forms.Label();
             this.infoCommesssa = new Gizmox.WebGUI.Forms.Label();
+            this.imgStato = new Gizmox.WebGUI.Forms.PictureBox();
+            this.infoPagamentoTotale = new Gizmox.WebGUI.Forms.Label();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgStato)).BeginInit();
             this.SuspendLayout();
             // 
             // container
             // 
+            this.container.Controls.Add(this.infoPagamentoTotale);
+            this.container.Controls.Add(this.imgStato);
+            this.container.Controls.Add(this.infoPartitaIVA);
             this.container.Controls.Add(this.infoCommesssa);
             this.container.Size = new System.Drawing.Size(408, 93);
             // 
@@ -99,9 +105,9 @@ namespace Web.GUI.Fornitore
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoPartitaIVA.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoPartitaIVA.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoPartitaIVA.Location = new System.Drawing.Point(91, 36);
+            this.infoPartitaIVA.Location = new System.Drawing.Point(91, 28);
             this.infoPartitaIVA.Name = "infoPartitaIVA";
-            this.infoPartitaIVA.Size = new System.Drawing.Size(305, 25);
+            this.infoPartitaIVA.Size = new System.Drawing.Size(163, 17);
             this.infoPartitaIVA.TabIndex = 1;
             this.infoPartitaIVA.Text = "Partita IVA";
             // 
@@ -111,18 +117,40 @@ namespace Web.GUI.Fornitore
             | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoCommesssa.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoCommesssa.ForeColor = System.Drawing.Color.DarkRed;
-            this.infoCommesssa.Location = new System.Drawing.Point(91, 71);
+            this.infoCommesssa.ForeColor = System.Drawing.Color.Black;
+            this.infoCommesssa.Location = new System.Drawing.Point(91, 46);
             this.infoCommesssa.Name = "infoCommesssa";
-            this.infoCommesssa.Size = new System.Drawing.Size(305, 20);
+            this.infoCommesssa.Size = new System.Drawing.Size(295, 20);
             this.infoCommesssa.TabIndex = 1;
             this.infoCommesssa.Text = "Commessa";
-            this.infoCommesssa.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // imgStato
+            // 
+            this.imgStato.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.imgStato.BackColor = System.Drawing.Color.Transparent;
+            this.imgStato.Location = new System.Drawing.Point(375, 74);
+            this.imgStato.Name = "imgStato";
+            this.imgStato.Size = new System.Drawing.Size(20, 20);
+            this.imgStato.SizeMode = Gizmox.WebGUI.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgStato.TabIndex = 3;
+            this.imgStato.TabStop = false;
+            // 
+            // infoPagamentoTotale
+            // 
+            this.infoPagamentoTotale.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.infoPagamentoTotale.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoPagamentoTotale.ForeColor = System.Drawing.Color.DarkRed;
+            this.infoPagamentoTotale.Location = new System.Drawing.Point(94, 77);
+            this.infoPagamentoTotale.Name = "infoPagamentoTotale";
+            this.infoPagamentoTotale.Size = new System.Drawing.Size(265, 16);
+            this.infoPagamentoTotale.TabIndex = 1;
+            this.infoPagamentoTotale.Text = "Pagato 0,00€ su un totale di 0,00€";
+            this.infoPagamentoTotale.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // FornitoreItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Controls.Add(this.infoPartitaIVA);
             this.Controls.Add(this.infoRagioneSociale);
             this.Controls.Add(this.panelLeft);
             this.Size = new System.Drawing.Size(400, 100);
@@ -130,10 +158,10 @@ namespace Web.GUI.Fornitore
             this.Controls.SetChildIndex(this.container, 0);
             this.Controls.SetChildIndex(this.panelLeft, 0);
             this.Controls.SetChildIndex(this.infoRagioneSociale, 0);
-            this.Controls.SetChildIndex(this.infoPartitaIVA, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imgStato)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -146,5 +174,7 @@ namespace Web.GUI.Fornitore
         private Gizmox.WebGUI.Forms.Label infoRagioneSociale;
         private Gizmox.WebGUI.Forms.Label infoPartitaIVA;
         private Gizmox.WebGUI.Forms.Label infoCommesssa;
+        private Gizmox.WebGUI.Forms.Label infoPagamentoTotale;
+        private Gizmox.WebGUI.Forms.PictureBox imgStato;
 	}
 }

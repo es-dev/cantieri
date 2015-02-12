@@ -134,6 +134,25 @@ namespace BusinessLogic
             return null;
         }
 
+        public static string GetRitardo(WcfService.Dto.FatturaAcquistoDto fattura)
+        {
+            try
+            {
+                var today = DateTime.Today;
+                var scadenzaPagamento = fattura.ScadenzaPagamento;
+                var data = fattura.Data;
+                var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
+                var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, _scadenzaPagamento);
+                var ritardo = GetRitardo(today, scadenza);
+                return ritardo;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         public static Tipi.StatoFattura GetStato(WcfService.Dto.FatturaAcquistoDto fattura)
         {
             try

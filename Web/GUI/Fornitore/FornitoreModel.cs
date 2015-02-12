@@ -1,3 +1,4 @@
+using BusinessLogic;
 using Library.Code;
 using Library.Code.Enum;
 using Library.Template.MVVM;
@@ -174,7 +175,7 @@ namespace Web.GUI.Fornitore
         {
             try
             {
-                if (Editing==true)
+                if (Editing)
                     CalcolaTotali();
             }
             catch (Exception ex)
@@ -188,8 +189,6 @@ namespace Web.GUI.Fornitore
         {
             try
             {
-                //prelievo dati da GUI -->non prelevo nnt da GUI
-                //prelievo dati DB
                 var obj = (WcfService.Dto.FornitoreDto)Model;
                 var fatture = obj.FatturaAcquistos;
                 var today= DateTime.Today;
@@ -199,12 +198,11 @@ namespace Web.GUI.Fornitore
                     var totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamenti(obj, today);
                     var fattureInsolute = BusinessLogic.Fornitore.GetFattureInsolute(fatture);
                     var fattureNonPagate = BusinessLogic.Fornitore.GetFattureNonPagate(fatture);
- 
-                    //valutazione dell'andamento del lavoro
-                    var stato = GetStato(totaleFatture, totalePagamenti, fattureInsolute, fattureNonPagate);
+                    var statoFornitore = BusinessLogic.Fornitore.GetStato(obj);
 
-                    ////binding dati in GUI
-                    editStato.Value = stato.ToString();
+                    var statoDescrizione = GetStatoDescrizione(totaleFatture, totalePagamenti, fattureInsolute, fattureNonPagate, statoFornitore);
+
+                    editStato.Value = statoDescrizione.ToString();
                     editTotaleFattureAcquisto.Value = totaleFatture;
                     editTotalePagamenti.Value= totalePagamenti;
                 }
@@ -215,7 +213,8 @@ namespace Web.GUI.Fornitore
             }
         }
 
-        private StatoDescrizione GetStato(decimal totaleFattura, decimal totalePagamenti, IList<WcfService.Dto.FatturaAcquistoDto> fattureInsolute, IList<WcfService.Dto.FatturaAcquistoDto> fattureNonPagate)
+        private StatoDescrizione GetStatoDescrizione(decimal totaleFatture, decimal totalePagamenti, IList<WcfService.Dto.FatturaAcquistoDto> fattureInsolute, 
+            IList<WcfService.Dto.FatturaAcquistoDto> fattureNonPagate, Tipi.StatoFornitore statoFornitore)
         {
             try
             {
@@ -226,24 +225,21 @@ namespace Web.GUI.Fornitore
                 var listaFattureInsolute = BusinessLogic.Fattura.GetLista(fattureInsolute);
                 var listaFattureNonPagate = BusinessLogic.Fattura.GetLista(fattureNonPagate);
 
-                if (totalePagamenti < totaleFattura)
+                if (statoFornitore == Tipi.StatoFornitore.Insoluto) //condizione di non soluzione delle fatture, segnalo le fatture insolute ed eventualmente quelle non pagate
                 {
-                    if (existFattureInsolute) //condizione di non soluzione delle fatture, segalo le fatture insolute ed eventualmente quelle non pagate
-                    {
-                        descrizione = "Il fornitore risulta insoluto. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale delle fatture pari a " + totaleFattura.ToString("0.00€") + ". Le fatture insolute sono " + listaFattureInsolute;
-                        if (existFattureNonPagate)
-                            descrizione += " Le fatture non pagate sono " + listaFattureNonPagate;
-                        stato = TypeStato.Critical;
-                    }
-                    else //condizione di non pagamento (pagamenti nulli o non completi, se non completi segnalo le fatture non pagate)
-                    {
-                        descrizione = "Il fornitore risulta non pagato. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale delle fatture pari a " + totaleFattura.ToString("0.00€");
-                        if (existFattureNonPagate)
-                            descrizione += " Le fatture non pagate sono " + listaFattureNonPagate;
-                        stato = TypeStato.Warning;
-                    }
+                    descrizione = "Il fornitore risulta insoluto. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale delle fatture pari a " + totaleFatture.ToString("0.00€") + ". Le fatture insolute sono " + listaFattureInsolute;
+                    if (existFattureNonPagate)
+                        descrizione += " Le fatture non pagate sono " + listaFattureNonPagate;
+                    stato = TypeStato.Critical;
                 }
-                else if (totalePagamenti >= totaleFattura)
+                else if (statoFornitore == Tipi.StatoFornitore.NonPagato)
+                {
+                    descrizione = "Il fornitore risulta non pagato. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale delle fatture pari a " + totaleFatture.ToString("0.00€");
+                    if (existFattureNonPagate)
+                        descrizione += " Le fatture non pagate sono " + listaFattureNonPagate;
+                    stato = TypeStato.Warning;
+                }
+                else if (statoFornitore == Tipi.StatoFornitore.Pagato)
                 {
                     descrizione = "Il fornitore risulta pagato. Tutte le fatture sono state saldate";  //non so se ha senso indicargli anche insolute o no!!!!! per ora NO
                     stato = TypeStato.Normal;

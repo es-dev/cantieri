@@ -1,3 +1,4 @@
+using BusinessLogic;
 using Library.Code;
 using Library.Interfaces;
 using Library.Template.MVVM;
@@ -40,26 +41,35 @@ namespace Web.GUI.FatturaAcquisto
                     var fornitore = obj.Fornitore;
                     if (fornitore != null)
                         infoFornitore.Text = fornitore.RagioneSociale;
-                    
+
+                    var today = DateTime.Today;
                     var totaleFattura = "N/D";
                     if (obj.Totale != null)
                         totaleFattura = obj.Totale.Value.ToString("0.00") + "€";
-                    var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, DateTime.Now);
+                    var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, today);
                     infoPagamentoTotale.Text = "Pagato " + totalePagamenti.ToString("0.00")+ "€ su un totale di " + totaleFattura;
 
                     var stato=BusinessLogic.Fattura.GetStato(obj);
-                    if (stato == BusinessLogic.Tipi.StatoFattura.Pagata)
+                    var image = "";
+                    var descrizione = "";
+                    if (stato == Tipi.StatoFattura.Pagata)
                     {
-                        imgStato.Image = "Images.messageConfirm.png";
+                        image = "Images.messageConfirm.png";
+                        descrizione = "Fattura pagata";
                     }
-                    else if (stato == BusinessLogic.Tipi.StatoFattura.NonPagata)
+                    else if (stato == Tipi.StatoFattura.NonPagata)
                     {
-                        imgStato.Image = "Images.messageQuestion.png";
+                        image = "Images.messageQuestion.png";
+                        descrizione = "Fattura non pagata";
                     }
-                    else if (stato == BusinessLogic.Tipi.StatoFattura.Insoluta)
+                    else if (stato == Tipi.StatoFattura.Insoluta)
                     {
-                        imgStato.Image = "Images.messageAlert.png";
+                        image = "Images.messageAlert.png";
+                        var ritardo = BusinessLogic.Fattura.GetRitardo(obj);
+                        descrizione = "Fattura insoluta, scaduta da " + ritardo;
                     }
+                    toolTip.SetToolTip(imgStato, descrizione);
+                    imgStato.Image = image;
 
                 }
             }
