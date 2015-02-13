@@ -73,15 +73,15 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleIncassi(ClienteDto cliente, DateTime data)
+        public static decimal GetTotaleLiquidazioni(ClienteDto cliente, DateTime data)
         {
             try
             {
                 decimal totale = 0;
                 if (cliente != null)
                 {
-                    var totaleIncassi = BusinessLogic.Cliente.GetTotaleIncassi(cliente, data);
-                    totale = totaleIncassi;
+                    var totaleLiquidazioni = BusinessLogic.Cliente.GetTotaleLiquidazioni(cliente, data);
+                    totale = totaleLiquidazioni;
                     return totale;
                 }
             }

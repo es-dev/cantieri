@@ -115,16 +115,16 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal? _totaleIncassi;
-		public virtual decimal? TotaleIncassi
+		private decimal? _totaleLiquidazioni;
+		public virtual decimal? TotaleLiquidazioni
 		{
 			get
 			{
-				return this._totaleIncassi;
+				return this._totaleLiquidazioni;
 			}
 			set
 			{
-				this._totaleIncassi = value;
+				this._totaleLiquidazioni = value;
 			}
 		}
 		

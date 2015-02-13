@@ -1,3 +1,4 @@
+using BusinessLogic;
 using Library.Code;
 using Library.Interfaces;
 using Library.Template.MVVM;
@@ -40,9 +41,41 @@ namespace Web.GUI.Cliente
                     infoPartitaIVA.Text = "P.IVA " + pIva;
                     var commessa = obj.Commessa;
                     if (commessa != null)
-                    {
                         infoCommesssa.Text = "Commessa " + commessa.Codice + " - " + commessa.Denominazione;
+
+                    var today = DateTime.Today;
+                    var totaleFattureVendita = BusinessLogic.Cliente.GetTotaleFatture(obj, today);
+                    var totaleFatture = totaleFattureVendita.ToString("0.00") + "€";
+
+                    var totaleLiquidazioni = BusinessLogic.Cliente.GetTotaleLiquidazioni(obj, today);
+                    infoLiquidazioneTotale.Text = "Incassato " + totaleLiquidazioni.ToString("0.00") + "€ su un totale di " + totaleFatture;
+
+                    var fatture = obj.FatturaVenditas;
+                    var fattureNonLiquidate = BusinessLogic.Cliente.GetFattureNonLiquidate(fatture);
+                    var fattureInsolute = BusinessLogic.Cliente.GetFattureInsolute(fatture);
+                    var listaFattureNonLiquidate = BusinessLogic.Fattura.GetLista(fattureNonLiquidate);
+                    var listaFattureInsolute = BusinessLogic.Fattura.GetLista(fattureInsolute);
+
+                    var stato = BusinessLogic.Cliente.GetStato(obj);
+                    var image = "";
+                    var descrizione = "";
+                    if (stato == Tipi.StatoCliente.Liquidato)
+                    {
+                        image = "Images.messageConfirm.png";
+                        descrizione = "Cliente incassato";
                     }
+                    else if (stato == Tipi.StatoCliente.NonLiquidato)
+                    {
+                        image = "Images.messageQuestion.png";
+                        descrizione = "Cliente non incassato, le fatture non incassate sono " + listaFattureNonLiquidate;
+                    }
+                    else if (stato == Tipi.StatoCliente.Insoluto)
+                    {
+                        image = "Images.messageAlert.png";
+                        descrizione = "Cliente insoluto, le fatture insolute sono " + listaFattureInsolute;
+                    }
+                    toolTip.SetToolTip(imgStato, descrizione);
+                    imgStato.Image = image;
                 }
             }
             catch (Exception ex)

@@ -1207,7 +1207,7 @@ namespace WcfService.Assemblers
 			entity.TotaleVendite = dto.TotaleVendite;
 			entity.Denominazione = dto.Denominazione;
 			entity.Codice = dto.Codice;
-			entity.TotaleIncassi = dto.TotaleIncassi;
+			entity.TotaleLiquidazioni = dto.TotaleLiquidazioni;
 			entity.TotalePagamenti = dto.TotalePagamenti;
 			entity.Stato = dto.Stato;
 	        this.OnEntityAssembled(entity);
@@ -1227,7 +1227,7 @@ namespace WcfService.Assemblers
 			dto.TotaleVendite = entity.TotaleVendite;
 			dto.Denominazione = entity.Denominazione;
 			dto.Codice = entity.Codice;
-			dto.TotaleIncassi = entity.TotaleIncassi;
+			dto.TotaleLiquidazioni = entity.TotaleLiquidazioni;
 			dto.TotalePagamenti = entity.TotalePagamenti;
 			dto.Stato = entity.Stato;
 			this.OnDTOAssembled(dto); 

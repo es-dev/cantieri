@@ -32,7 +32,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleIncassi(WcfService.Dto.ClienteDto cliente, DateTime data)
+        public static decimal GetTotaleLiquidazioni(WcfService.Dto.ClienteDto cliente, DateTime data)
         {
             try
             {
@@ -42,8 +42,8 @@ namespace BusinessLogic
                     var fattureVendita = cliente.FatturaVenditas;
                     foreach (var fatturaVendita in fattureVendita)
                     {
-                        var totaleIncassi = BusinessLogic.Fattura.GetTotaleIncassi(fatturaVendita, data);
-                        totale += totaleIncassi;
+                        var totaleLiquidazioni = BusinessLogic.Fattura.GetTotaleLiquidazioni(fatturaVendita, data);
+                        totale += totaleLiquidazioni;
                     }
                     return totale;
                 }
@@ -69,12 +69,12 @@ namespace BusinessLogic
             return null;
         }
 
-        public static IList<WcfService.Dto.FatturaVenditaDto> GetFattureNonPagate(IList<WcfService.Dto.FatturaVenditaDto> fatture)
+        public static IList<WcfService.Dto.FatturaVenditaDto> GetFattureNonLiquidate(IList<WcfService.Dto.FatturaVenditaDto> fatture)
         {
             try
             {
-                var fattureNonPagate = GetFatture(fatture, Tipi.StatoFattura.NonPagata);
-                return fattureNonPagate;
+                var fattureNonLiquidate = GetFatture(fatture, Tipi.StatoFattura.NonPagata);
+                return fattureNonLiquidate;
             }
             catch (Exception ex)
             {
@@ -95,6 +95,44 @@ namespace BusinessLogic
                 UtilityError.Write(ex);
             }
             return null;
+        }
+
+        public static Tipi.StatoCliente GetStato(WcfService.Dto.ClienteDto cliente)
+        {
+            try
+            {
+                var today = DateTime.Today;
+                var totaleFatture = GetTotaleFatture(cliente, today);
+                var totaleLiquidazioni = GetTotaleLiquidazioni(cliente, today);
+                var fatture = cliente.FatturaVenditas;
+                var fattureInsolute = GetFattureInsolute(fatture);
+                var fattureNonLiquidate = GetFattureNonLiquidate(fatture);
+                var existFattureInsolute = (fattureInsolute.Count >= 1);
+                var existFattureNonPagate = (fattureNonLiquidate.Count >= 1);
+
+                var stato = Tipi.StatoCliente.None;
+                if (totaleLiquidazioni < totaleFatture)
+                {
+                    if (existFattureInsolute)
+                    {
+                        stato = Tipi.StatoCliente.Insoluto;
+                    }
+                    else
+                    {
+                        stato = Tipi.StatoCliente.NonLiquidato;
+                    }
+                }
+                else if (totaleLiquidazioni >= totaleFatture)
+                {
+                    stato = Tipi.StatoCliente.Liquidato;
+                }
+                return stato;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return Tipi.StatoCliente.None;
         }
 
     }

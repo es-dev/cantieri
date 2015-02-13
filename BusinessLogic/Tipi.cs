@@ -54,6 +54,14 @@ namespace BusinessLogic
             NonPagato, //fornitore il cui totale pagamenti <totale fattura e....
         }
 
+        public enum StatoCliente
+        {
+            None,
+            Liquidato, //cliente il cui totale incassi>=Totale fattura
+            Insoluto, //cliente il cui totale incassi <totale fattura e....
+            NonLiquidato, //cliente il cui totale incassi <totale fattura e....
+        }
+
         public static IList<string> GetNames(Type type)
         {
             try

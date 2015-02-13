@@ -717,8 +717,8 @@
         <orm:field name="_codice" property="Codice" uniqueId="ea76c4de-3ac9-4dfd-a6de-3475e701f853" type="System.String">
           <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
-        <orm:field name="_totaleIncassi" property="TotaleIncassi" uniqueId="94d3c2ab-f95a-491c-be14-5af0792e4922" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="TotaleIncassi" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        <orm:field name="_totaleLiquidazioni" property="TotaleLiquidazioni" uniqueId="94d3c2ab-f95a-491c-be14-5af0792e4922" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="TotaleLiquidazioni" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         </orm:field>
         <orm:field name="_totalePagamenti" property="TotalePagamenti" uniqueId="85d770b4-665a-4fb8-813a-d5e15cfc10bd" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="TotalePagamenti" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
@@ -925,7 +925,7 @@
         <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="TotalePagamenti" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
-        <orm:column name="TotaleIncassi" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        <orm:column name="TotaleLiquidazioni" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:index name="idx_SAL_CommessaId">
           <orm:columnMapping>
@@ -1439,7 +1439,7 @@
       <Property Id="e50f8b5c-1bbb-4bf2-8405-c3f9f88429f5" name="TotaleVendite" type="Decimal" label="TotaleVendite : Decimal" nullable="true" fieldName="_totaleVendite" />
       <Property Id="2d2c0b19-361b-40de-8806-6d1a6f07afa6" name="Denominazione" label="Denominazione : String" fieldName="_denominazione" />
       <Property Id="ea76c4de-3ac9-4dfd-a6de-3475e701f853" name="Codice" label="Codice : String" fieldName="_codice" />
-      <Property Id="94d3c2ab-f95a-491c-be14-5af0792e4922" name="TotaleIncassi" type="Decimal" label="TotaleIncassi : Decimal" nullable="true" fieldName="_totaleIncassi" />
+      <Property Id="94d3c2ab-f95a-491c-be14-5af0792e4922" name="TotaleLiquidazioni" type="Decimal" label="TotaleLiquidazioni : Decimal" nullable="true" fieldName="_totaleLiquidazioni" />
       <Property Id="85d770b4-665a-4fb8-813a-d5e15cfc10bd" name="TotalePagamenti" type="Decimal" label="TotalePagamenti : Decimal" nullable="true" fieldName="_totalePagamenti" />
       <Property Id="0cf55796-426e-4c02-9488-55adf97b8d30" name="Stato" label="Stato : String" fieldName="_stato" />
       <AssociationTargets>

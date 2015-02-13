@@ -19,8 +19,8 @@ namespace BusinessLogic
                     var fattureAcquisto = fornitore.FatturaAcquistos;
                     if (fattureAcquisto != null)
                     {
-                        var totaleImponibile = (from q in fattureAcquisto where q.Totale != null && q.Data <= data select q.Totale).Sum();
-                        totale = UtilityValidation.GetDecimal(totaleImponibile);
+                        var totaleFattura = (from q in fattureAcquisto where q.Totale != null && q.Data <= data select q.Totale).Sum();
+                        totale = UtilityValidation.GetDecimal(totaleFattura);
                     }
                     return totale;
                 }
@@ -106,16 +106,15 @@ namespace BusinessLogic
             try
             {
                 var today = DateTime.Today;
-                var stato = Tipi.StatoFornitore.None;
                 var totaleFatture = GetTotaleFatture(fornitore, today);
                 var totalePagamenti = GetTotalePagamenti(fornitore, today);
                 var fatture = fornitore.FatturaAcquistos;
                 var fattureInsolute = GetFattureInsolute(fatture);
                 var fattureNonPagate = GetFattureNonPagate(fatture);
-
                 var existFattureInsolute = (fattureInsolute.Count >= 1);
                 var existFattureNonPagate = (fattureNonPagate.Count >= 1);
 
+                var stato = Tipi.StatoFornitore.None;
                 if (totalePagamenti < totaleFatture)
                 {
                     if (existFattureInsolute) 

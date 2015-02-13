@@ -41,9 +41,7 @@ namespace Web.GUI.Fornitore
                     infoPartitaIVA.Text = "P.IVA " + pIva;
                     var commessa = obj.Commessa;
                     if (commessa != null)
-                    {
                         infoCommesssa.Text ="Commessa "+ commessa.Codice +" - "+ commessa.Denominazione;
-                    }
 
                     var today = DateTime.Today;
                     var totaleFattureAcquisto = BusinessLogic.Fornitore.GetTotaleFatture(obj, today);

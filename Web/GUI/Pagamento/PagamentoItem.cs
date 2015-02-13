@@ -32,7 +32,7 @@ namespace Web.GUI.Pagamento
                     if (obj.Importo != null)
                         importo = obj.Importo.Value.ToString("0.00");
                     infoImporto.Text = "Importo: " + importo + "€";
-                    infoPagamento.Text = "Pagamento N. " + obj.Codice;
+                    infoPagamento.Text = "Pagamento N." + obj.Codice;
                     var data = "N/D";
                     if (obj.Data != null)
                         data = "Pagato il " + obj.Data.Value.ToString("dd/MM/yyyy");

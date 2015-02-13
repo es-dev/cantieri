@@ -89,7 +89,7 @@ namespace Web.GUI.Dashboard.Lavori
                 var dashboardPagamento = new DashboardLavori("Pagamenti", "PAG", "Gestisci i pagamenti per le fattura inserite, controllando le scadenze, le passività e gli importi in dare/avere...", "Images.dashboard.pagamento.png", "", typeof(PagamentoView));
                 var dashboardCliente = new DashboardLavori("Clienti", "CL", "Specifica i clienti per le commesse inserite nel sistema, definisci gli importi attribuiti ai vari SAL...", "Images.dashboard.cliente.png", "", typeof(ClienteView));
                 var dashboardFatturaVendita = new DashboardLavori("Fatture di vendita", "FV", "Inserisci le fatture di vendita per i clienti delle commesse, gestisci i pagamenti e il conto economico...", "Images.dashboard.fatturavendita.png", "", typeof(FatturaVenditaView));
-                var dashboardIncassi = new DashboardLavori("Incassi", "INC", "Gestisci gli incassi corrispondenti alle fatture di vendita per le commesse inserite nel sistema, visualizza i movimenti in dare/avere...", "Images.dashboard.liquidazione.png", "", typeof(LiquidazioneView));
+                var dashboardLiquidazioni = new DashboardLavori("Incassi", "INC", "Gestisci gli incassi corrispondenti alle fatture di vendita per le commesse inserite nel sistema, visualizza i movimenti in dare/avere...", "Images.dashboard.liquidazione.png", "", typeof(LiquidazioneView));
                 var dashboardSAL = new DashboardLavori("SAL", "SAL", "Crea uno Stato di Avanzamento Lavori (SAL) e controlla i bilanci delle tue commesse, evidenziando i movimenti in attivo/passivo...", "Images.dashboard.SAL.png", "", typeof(SALView));
                
 
@@ -100,7 +100,7 @@ namespace Web.GUI.Dashboard.Lavori
                 dashboards.Add(dashboardPagamento);
                 dashboards.Add(dashboardCliente);
                 dashboards.Add(dashboardFatturaVendita);
-                dashboards.Add(dashboardIncassi);
+                dashboards.Add(dashboardLiquidazioni);
                 dashboards.Add(dashboardSAL);
 
                 var query = dashboards.AsQueryable();

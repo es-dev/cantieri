@@ -54,7 +54,7 @@ namespace Web.GUI.Cliente
                     editPartitaIVA.Value = obj.PIva;
                     editTotaleFattureVendita.Value = obj.TotaleFattureVendita;
                     editStato.Value = obj.Stato;
-                    editTotaleIncassi.Value = obj.TotaleLiquidazioni;
+                    editTotaleLiquidazioni.Value = obj.TotaleLiquidazioni;
                     var commessa = obj.Commessa;
                     if (commessa != null)
                     {
@@ -93,7 +93,7 @@ namespace Web.GUI.Cliente
                     obj.Codice = editCodiceCliente.Value;
                     obj.TotaleFattureVendita = editTotaleFattureVendita.Value;
                     obj.Stato = editStato.Value;
-                    obj.TotaleLiquidazioni = editTotaleIncassi.Value;
+                    obj.TotaleLiquidazioni = editTotaleLiquidazioni.Value;
                     var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
                     if (commessa != null)
                         obj.Id = commessa.Id;
@@ -196,17 +196,17 @@ namespace Web.GUI.Cliente
                 if (fatture != null)
                 {
                     var totaleFatture = BusinessLogic.Cliente.GetTotaleFatture(obj, today);
-                    var totaleIncassi = BusinessLogic.Cliente.GetTotaleIncassi(obj, today);
+                    var totaleLiquidazioni = BusinessLogic.Cliente.GetTotaleLiquidazioni(obj, today);
                     var fattureInsolute = BusinessLogic.Cliente.GetFattureInsolute(fatture);
-                    var fattureNonPagate = BusinessLogic.Cliente.GetFattureNonPagate(fatture);
+                    var fattureNonLiquidate = BusinessLogic.Cliente.GetFattureNonLiquidate(fatture);
 
                     //valutazione dell'andamento del lavoro
-                    var statoDescrizione = GetStatoDescrizione(totaleFatture, totaleIncassi, fattureInsolute, fattureNonPagate);
+                    var statoDescrizione = GetStatoDescrizione(totaleFatture, totaleLiquidazioni, fattureInsolute, fattureNonLiquidate);
 
                     ////binding dati in GUI
                     editStato.Value = statoDescrizione.ToString();
                     editTotaleFattureVendita.Value = totaleFatture;
-                    editTotaleIncassi.Value = totaleIncassi;
+                    editTotaleLiquidazioni.Value = totaleLiquidazioni;
                 }
             }
             catch (Exception ex)
@@ -215,37 +215,37 @@ namespace Web.GUI.Cliente
             }
         }
 
-        private StatoDescrizione GetStatoDescrizione(decimal totaleFatture, decimal totaleIncassi, IList<WcfService.Dto.FatturaVenditaDto> fattureInsolute, IList<WcfService.Dto.FatturaVenditaDto> fattureNonPagate)
+        private StatoDescrizione GetStatoDescrizione(decimal totaleFatture, decimal totaleLiquidazioni, IList<WcfService.Dto.FatturaVenditaDto> fattureInsolute, IList<WcfService.Dto.FatturaVenditaDto> fattureNonLiquidate)
         {
             try
             {
                 var descrizione = "";
                 var stato = TypeStato.None;
                 var existFattureInsolute = (fattureInsolute.Count >= 1);
-                var existFattureNonPagate = (fattureNonPagate.Count >= 1);
+                var existFattureNonLiquidate = (fattureNonLiquidate.Count >= 1);
                 var listaFattureInsolute = BusinessLogic.Fattura.GetLista(fattureInsolute);
-                var listaFattureNonPagate = BusinessLogic.Fattura.GetLista(fattureNonPagate);
+                var listaFattureNonLiquidate = BusinessLogic.Fattura.GetLista(fattureNonLiquidate);
 
-                if (totaleIncassi < totaleFatture)
+                if (totaleLiquidazioni < totaleFatture)
                 {
                     if (existFattureInsolute) //condizione di non soluzione delle fatture, segalo le fatture insolute ed eventualmente quelle non pagate
                     {
-                        descrizione = "Il fornitore risulta insoluto. Il totale incassi pari a " + totaleIncassi.ToString("0.00€") + " è inferiore al totale delle fatture pari a " + totaleFatture.ToString("0.00€") + ". Le fatture insolute sono " + listaFattureInsolute;
-                        if (existFattureNonPagate)
-                            descrizione += " Le fatture non pagate sono " + listaFattureNonPagate;
+                        descrizione = "Il cliente risulta insoluto. Il totale incassi pari a " + totaleLiquidazioni.ToString("0.00€") + " è inferiore al totale delle fatture pari a " + totaleFatture.ToString("0.00€") + ". Le fatture insolute sono " + listaFattureInsolute;
+                        if (existFattureNonLiquidate)
+                            descrizione += " Le fatture non liquidate sono " + listaFattureNonLiquidate;
                         stato = TypeStato.Critical;
                     }
                     else //condizione di non pagamento (pagamenti nulli o non completi, se non completi segnalo le fatture non pagate)
                     {
-                        descrizione = "Il fornitore risulta non pagato. Il totale incassi pari a " + totaleIncassi.ToString("0.00€") + " è inferiore al totale delle fatture pari a " + totaleFatture.ToString("0.00€");
-                        if (existFattureNonPagate)
-                            descrizione += " Le fatture non pagate sono " + listaFattureNonPagate;
+                        descrizione = "Il cliente risulta non liquidato. Il totale incassi pari a " + totaleLiquidazioni.ToString("0.00€") + " è inferiore al totale delle fatture pari a " + totaleFatture.ToString("0.00€");
+                        if (existFattureNonLiquidate)
+                            descrizione += " Le fatture non pagate sono " + listaFattureNonLiquidate;
                         stato = TypeStato.Warning;
                     }
                 }
-                else if (totaleIncassi >= totaleFatture)
+                else if (totaleLiquidazioni >= totaleFatture)
                 {
-                    descrizione = "Il fornitore risulta pagato. Tutte le fatture sono state saldate";  //non so se ha senso indicargli anche insolute o no!!!!! per ora NO
+                    descrizione = "Il cliente risulta liquidato. Tutte le fatture sono state saldate";  //non so se ha senso indicargli anche insolute o no!!!!! per ora NO
                     stato = TypeStato.Normal;
                 }
                 var statoDescrizione = new StatoDescrizione(stato, descrizione);

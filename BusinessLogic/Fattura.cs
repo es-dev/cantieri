@@ -24,18 +24,18 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleIncassi(WcfService.Dto.FatturaVenditaDto fatturaVendita, DateTime data)
+        public static decimal GetTotaleLiquidazioni(WcfService.Dto.FatturaVenditaDto fatturaVendita, DateTime data)
         {
             try
             {
                 decimal totale = 0;
                 if (fatturaVendita != null)
                 {
-                    var incassi = fatturaVendita.Liquidaziones;
-                    if (incassi != null)
+                    var liquidazioni = fatturaVendita.Liquidaziones;
+                    if (liquidazioni != null)
                     {
-                        var totaleIncassi = (from q in incassi where q.Data <= data select q.Importo).Sum();
-                        totale = UtilityValidation.GetDecimal(totaleIncassi);
+                        var totaleLiquidazioni = (from q in liquidazioni where q.Data <= data select q.Importo).Sum();
+                        totale = UtilityValidation.GetDecimal(totaleLiquidazioni);
                     }
                     return totale;
                 }
@@ -153,6 +153,25 @@ namespace BusinessLogic
             return null;
         }
 
+        public static string GetRitardo(WcfService.Dto.FatturaVenditaDto fattura)
+        {
+            try
+            {
+                var today = DateTime.Today;
+                var scadenzaPagamento = fattura.ScadenzaPagamento;
+                var data = fattura.Data;
+                var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
+                var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, _scadenzaPagamento);
+                var ritardo = GetRitardo(today, scadenza);
+                return ritardo;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         public static Tipi.StatoFattura GetStato(WcfService.Dto.FatturaAcquistoDto fattura)
         {
             try
@@ -164,7 +183,6 @@ namespace BusinessLogic
                 var scadenza = GetScadenza(data.Value, _scadenzaPagamento);
                 var totaleFattura = UtilityValidation.GetDecimal(fattura.Totale);
                 var totalePagamenti = GetTotalePagamenti(fattura, today);
-
                 var stato = GetStato(today, scadenza, totaleFattura, totalePagamenti);
                 return stato;
             }
@@ -175,20 +193,20 @@ namespace BusinessLogic
             return Tipi.StatoFattura.None;
         }
 
-        private static Tipi.StatoFattura GetStato(DateTime today, DateTime scadenza, decimal totaleFattura, decimal totalePagamentiIncassi)
+        private static Tipi.StatoFattura GetStato(DateTime today, DateTime scadenza, decimal totaleFattura, decimal totalePagamentiLiquidazioni)
         {
             try
             {
                 var stato = Tipi.StatoFattura.None;
                 var insoluta = (today > scadenza);
-                if (totalePagamentiIncassi < totaleFattura)
+                if (totalePagamentiLiquidazioni < totaleFattura)
                 {
                     if (insoluta)
                         stato = Tipi.StatoFattura.Insoluta;
                     else
                         stato = Tipi.StatoFattura.NonPagata;
                 }
-                else if (totalePagamentiIncassi >= totaleFattura)
+                else if (totalePagamentiLiquidazioni >= totaleFattura)
                     stato = Tipi.StatoFattura.Pagata;
                 return stato;
             }
@@ -211,9 +229,8 @@ namespace BusinessLogic
                 var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
                 var scadenza = GetScadenza(data.Value, _scadenzaPagamento);
                 var totaleFattura = UtilityValidation.GetDecimal(fattura.Totale);
-                var totaleIncassi = GetTotaleIncassi(fattura, today);
-
-                var stato = GetStato(today, scadenza, totaleFattura, totaleIncassi);
+                var totaleLiquidazioni = GetTotaleLiquidazioni(fattura, today);
+                var stato = GetStato(today, scadenza, totaleFattura, totaleLiquidazioni);
                 return stato;
             }
             catch (Exception ex)

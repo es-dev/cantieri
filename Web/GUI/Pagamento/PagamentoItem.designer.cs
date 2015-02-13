@@ -114,9 +114,9 @@ namespace Web.GUI.Pagamento
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoNote.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoNote.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoNote.Location = new System.Drawing.Point(91, 32);
+            this.infoNote.Location = new System.Drawing.Point(96, 32);
             this.infoNote.Name = "infoNote";
-            this.infoNote.Size = new System.Drawing.Size(305, 36);
+            this.infoNote.Size = new System.Drawing.Size(297, 34);
             this.infoNote.TabIndex = 1;
             this.infoNote.Text = "Note";
             // 
@@ -126,9 +126,9 @@ namespace Web.GUI.Pagamento
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoData.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoData.ForeColor = System.Drawing.Color.DarkRed;
-            this.infoData.Location = new System.Drawing.Point(84, 76);
+            this.infoData.Location = new System.Drawing.Point(96, 74);
             this.infoData.Name = "infoData";
-            this.infoData.Size = new System.Drawing.Size(169, 16);
+            this.infoData.Size = new System.Drawing.Size(154, 16);
             this.infoData.TabIndex = 1;
             this.infoData.Text = "Pagato il dd/MM/yyyy";
             // 

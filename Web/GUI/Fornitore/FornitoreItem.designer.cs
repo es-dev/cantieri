@@ -92,9 +92,9 @@ namespace Web.GUI.Fornitore
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoRagioneSociale.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoRagioneSociale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
-            this.infoRagioneSociale.Location = new System.Drawing.Point(91, 2);
+            this.infoRagioneSociale.Location = new System.Drawing.Point(89, 2);
             this.infoRagioneSociale.Name = "infoRagioneSociale";
-            this.infoRagioneSociale.Size = new System.Drawing.Size(305, 30);
+            this.infoRagioneSociale.Size = new System.Drawing.Size(305, 27);
             this.infoRagioneSociale.TabIndex = 1;
             this.infoRagioneSociale.Text = "RAGIONE SOCIALE";
             // 
@@ -107,7 +107,7 @@ namespace Web.GUI.Fornitore
             this.infoPartitaIVA.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.infoPartitaIVA.Location = new System.Drawing.Point(91, 28);
             this.infoPartitaIVA.Name = "infoPartitaIVA";
-            this.infoPartitaIVA.Size = new System.Drawing.Size(163, 17);
+            this.infoPartitaIVA.Size = new System.Drawing.Size(153, 15);
             this.infoPartitaIVA.TabIndex = 1;
             this.infoPartitaIVA.Text = "Partita IVA";
             // 

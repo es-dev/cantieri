@@ -34,16 +34,19 @@ namespace Web.GUI.FatturaVendita
             this.infoImage = new Gizmox.WebGUI.Forms.PictureBox();
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
             this.infoCliente = new Gizmox.WebGUI.Forms.Label();
-            this.infoNumero = new Gizmox.WebGUI.Forms.Label();
-            this.infoData = new Gizmox.WebGUI.Forms.Label();
+            this.infoNumeroData = new Gizmox.WebGUI.Forms.Label();
+            this.imgStato = new Gizmox.WebGUI.Forms.PictureBox();
+            this.infoLiquidazioneTotale = new Gizmox.WebGUI.Forms.Label();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgStato)).BeginInit();
             this.SuspendLayout();
             // 
             // container
             // 
-            this.container.Controls.Add(this.infoData);
+            this.container.Controls.Add(this.infoLiquidazioneTotale);
+            this.container.Controls.Add(this.imgStato);
             this.container.Controls.Add(this.infoCliente);
             // 
             // infoCodice
@@ -82,56 +85,66 @@ namespace Web.GUI.FatturaVendita
             // 
             // infoCliente
             // 
-            this.infoCliente.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.infoCliente.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoCliente.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoCliente.ForeColor = System.Drawing.Color.DarkRed;
-            this.infoCliente.Location = new System.Drawing.Point(91, 70);
+            this.infoCliente.ForeColor = System.Drawing.Color.Black;
+            this.infoCliente.Location = new System.Drawing.Point(93, 31);
             this.infoCliente.Name = "infoCliente";
             this.infoCliente.Size = new System.Drawing.Size(305, 20);
             this.infoCliente.TabIndex = 1;
             this.infoCliente.Text = "Cliente";
-            this.infoCliente.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // infoNumero
+            // infoNumeroData
             // 
-            this.infoNumero.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.infoNumeroData.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.infoNumero.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoNumero.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
-            this.infoNumero.Location = new System.Drawing.Point(91, 2);
-            this.infoNumero.Name = "infoNumero";
-            this.infoNumero.Size = new System.Drawing.Size(305, 30);
-            this.infoNumero.TabIndex = 1;
-            this.infoNumero.Text = "NUMERO";
+            this.infoNumeroData.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoNumeroData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.infoNumeroData.Location = new System.Drawing.Point(91, 2);
+            this.infoNumeroData.Name = "infoNumeroData";
+            this.infoNumeroData.Size = new System.Drawing.Size(305, 30);
+            this.infoNumeroData.TabIndex = 1;
+            this.infoNumeroData.Text = "NUMERO";
             // 
-            // infoData
+            // imgStato
             // 
-            this.infoData.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.imgStato.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.imgStato.BackColor = System.Drawing.Color.Transparent;
+            this.imgStato.Location = new System.Drawing.Point(374, 75);
+            this.imgStato.Name = "imgStato";
+            this.imgStato.Size = new System.Drawing.Size(20, 20);
+            this.imgStato.SizeMode = Gizmox.WebGUI.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgStato.TabIndex = 3;
+            this.imgStato.TabStop = false;
+            // 
+            // infoLiquidazioneTotale
+            // 
+            this.infoLiquidazioneTotale.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.infoData.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoData.Location = new System.Drawing.Point(91, 35);
-            this.infoData.Name = "infoData";
-            this.infoData.Size = new System.Drawing.Size(305, 20);
-            this.infoData.TabIndex = 1;
-            this.infoData.Text = "Data";
+            this.infoLiquidazioneTotale.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoLiquidazioneTotale.ForeColor = System.Drawing.Color.DarkRed;
+            this.infoLiquidazioneTotale.Location = new System.Drawing.Point(93, 78);
+            this.infoLiquidazioneTotale.Name = "infoLiquidazioneTotale";
+            this.infoLiquidazioneTotale.Size = new System.Drawing.Size(265, 16);
+            this.infoLiquidazioneTotale.TabIndex = 1;
+            this.infoLiquidazioneTotale.Text = "Incassato 0,00€ su un totale di 0,00€";
+            this.infoLiquidazioneTotale.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // FatturaVenditaItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Controls.Add(this.infoNumero);
+            this.Controls.Add(this.infoNumeroData);
             this.Controls.Add(this.panelLeft);
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.FatturaVenditaItem_ItemClick);
             this.Controls.SetChildIndex(this.container, 0);
             this.Controls.SetChildIndex(this.panelLeft, 0);
-            this.Controls.SetChildIndex(this.infoNumero, 0);
+            this.Controls.SetChildIndex(this.infoNumeroData, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imgStato)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -142,7 +155,8 @@ namespace Web.GUI.FatturaVendita
         private Gizmox.WebGUI.Forms.PictureBox infoImage;
         private Gizmox.WebGUI.Forms.Panel panelLeft;
         private Gizmox.WebGUI.Forms.Label infoCliente;
-        private Gizmox.WebGUI.Forms.Label infoNumero;
-        private Gizmox.WebGUI.Forms.Label infoData;
+        private Gizmox.WebGUI.Forms.Label infoNumeroData;
+        private Gizmox.WebGUI.Forms.Label infoLiquidazioneTotale;
+        private Gizmox.WebGUI.Forms.PictureBox imgStato;
 	}
 }

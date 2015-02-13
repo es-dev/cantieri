@@ -42,7 +42,7 @@ namespace Web.GUI.SAL
                     editCodice.Value = obj.Codice;
                     editTotaleAcquisti.Value = obj.TotaleAcquisti;
                     editTotaleVendite.Value = obj.TotaleVendite;
-                    editTotaleIncassi.Value = obj.TotaleIncassi;
+                    editTotaleLiquidazioni.Value = obj.TotaleLiquidazioni;
                     editDenominazione.Value = obj.Denominazione;
                     editTotalePagamenti.Value = obj.TotalePagamenti;
                     editStato.Value = obj.Stato; 
@@ -71,7 +71,7 @@ namespace Web.GUI.SAL
                     obj.Codice = editCodice.Value;
                     obj.TotaleAcquisti = editTotaleAcquisti.Value;
                     obj.TotaleVendite = editTotaleVendite.Value;
-                    obj.TotaleIncassi = editTotaleIncassi.Value;
+                    obj.TotaleLiquidazioni = editTotaleLiquidazioni.Value;
                     obj.TotalePagamenti = editTotalePagamenti.Value;
                     obj.Denominazione = editDenominazione.Value;
                     obj.Stato = editStato.Value;
@@ -135,7 +135,7 @@ namespace Web.GUI.SAL
                     var totaleAcquisti = BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, data.Value);
                     var totaleVendite = BusinessLogic.SAL.GetTotaleFattureVendita(cliente, data.Value);
                     var totalePagamenti = BusinessLogic.SAL.GetTotalePagamenti(fornitori, data.Value);
-                    var totaleIncassi = BusinessLogic.SAL.GetTotaleIncassi(cliente, data.Value);
+                    var totaleLiquidazioni = BusinessLogic.SAL.GetTotaleLiquidazioni(cliente, data.Value);
 
                     //calcolo e verifica margine operativo = importoLavori - totaleAcquisti
                     var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
@@ -150,7 +150,7 @@ namespace Web.GUI.SAL
                     editTotaleAcquisti.Value = totaleAcquisti;
                     editTotaleVendite.Value = totaleVendite;
                     editTotalePagamenti.Value = totalePagamenti;
-                    editTotaleIncassi.Value = totaleIncassi;
+                    editTotaleLiquidazioni.Value = totaleLiquidazioni;
                 }
             }
             catch (Exception ex)
