@@ -47,6 +47,7 @@ namespace Web.GUI.Cliente
             this.editTotaleFattureVendita = new Library.Template.Controls.TemplateEditDecimal();
             this.btnCalcoloTotali = new Library.Controls.ButtonSeparatorV();
             this.editLocalita = new Library.Template.Controls.TemplateEditText();
+            this.editNote = new Library.Template.Controls.TemplateEditText();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -54,6 +55,7 @@ namespace Web.GUI.Cliente
             // 
             // container
             // 
+            this.container.Controls.Add(this.editNote);
             this.container.Controls.Add(this.editLocalita);
             this.container.Controls.Add(this.editTotaleFattureVendita);
             this.container.Controls.Add(this.lblAndamento);
@@ -70,7 +72,7 @@ namespace Web.GUI.Cliente
             this.container.Controls.Add(this.editTelefono);
             this.container.Controls.Add(this.editFAX);
             this.container.Controls.Add(this.editMobile);
-            this.container.Size = new System.Drawing.Size(923, 707);
+            this.container.Size = new System.Drawing.Size(923, 768);
             this.container.TabIndex = 0;
             this.container.Controls.SetChildIndex(this.infoSubtitleImage, 0);
             this.container.Controls.SetChildIndex(this.infoSubtitle, 0);
@@ -90,6 +92,7 @@ namespace Web.GUI.Cliente
             this.container.Controls.SetChildIndex(this.lblAndamento, 0);
             this.container.Controls.SetChildIndex(this.editTotaleFattureVendita, 0);
             this.container.Controls.SetChildIndex(this.editLocalita, 0);
+            this.container.Controls.SetChildIndex(this.editNote, 0);
             // 
             // infoSubtitle
             // 
@@ -102,7 +105,7 @@ namespace Web.GUI.Cliente
             // panelCommands
             // 
             this.panelCommands.Controls.Add(this.btnCalcoloTotali);
-            this.panelCommands.Size = new System.Drawing.Size(101, 686);
+            this.panelCommands.Size = new System.Drawing.Size(101, 747);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
@@ -111,7 +114,7 @@ namespace Web.GUI.Cliente
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(0, 614);
+            this.btnDelete.Location = new System.Drawing.Point(0, 675);
             // 
             // editMobile
             // 
@@ -374,12 +377,12 @@ namespace Web.GUI.Cliente
             this.editTotaleLiquidazioni.Editing = false;
             this.editTotaleLiquidazioni.Label = "Totale incassi";
             this.editTotaleLiquidazioni.LabelWidth = 175;
-            this.editTotaleLiquidazioni.Location = new System.Drawing.Point(25, 607);
+            this.editTotaleLiquidazioni.Location = new System.Drawing.Point(25, 645);
             this.editTotaleLiquidazioni.Name = "editTotaleLiquidazioni";
             this.editTotaleLiquidazioni.ReadOnly = false;
             this.editTotaleLiquidazioni.Required = false;
             this.editTotaleLiquidazioni.Size = new System.Drawing.Size(796, 30);
-            this.editTotaleLiquidazioni.TabIndex = 13;
+            this.editTotaleLiquidazioni.TabIndex = 14;
             this.editTotaleLiquidazioni.Text = "TemplateEditNumeric";
             this.editTotaleLiquidazioni.Value = null;
             // 
@@ -396,12 +399,12 @@ namespace Web.GUI.Cliente
             this.editStato.Editing = false;
             this.editStato.Label = "Stato";
             this.editStato.LabelWidth = 175;
-            this.editStato.Location = new System.Drawing.Point(25, 645);
+            this.editStato.Location = new System.Drawing.Point(25, 683);
             this.editStato.Name = "editStato";
             this.editStato.ReadOnly = false;
             this.editStato.Required = false;
             this.editStato.Size = new System.Drawing.Size(796, 50);
-            this.editStato.TabIndex = 14;
+            this.editStato.TabIndex = 15;
             this.editStato.Text = "TemplateEditNumeric";
             this.editStato.Value = "None{;}";
             // 
@@ -412,7 +415,7 @@ namespace Web.GUI.Cliente
             this.lblAndamento.BackColor = System.Drawing.Color.Gainsboro;
             this.lblAndamento.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAndamento.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblAndamento.Location = new System.Drawing.Point(13, 531);
+            this.lblAndamento.Location = new System.Drawing.Point(13, 569);
             this.lblAndamento.Name = "lblAndamento";
             this.lblAndamento.Size = new System.Drawing.Size(881, 30);
             this.lblAndamento.TabIndex = 1001;
@@ -432,12 +435,12 @@ namespace Web.GUI.Cliente
             this.editTotaleFattureVendita.Editing = false;
             this.editTotaleFattureVendita.Label = "Totale fatture";
             this.editTotaleFattureVendita.LabelWidth = 175;
-            this.editTotaleFattureVendita.Location = new System.Drawing.Point(25, 569);
+            this.editTotaleFattureVendita.Location = new System.Drawing.Point(25, 607);
             this.editTotaleFattureVendita.Name = "editTotaleFattureVendita";
             this.editTotaleFattureVendita.ReadOnly = false;
             this.editTotaleFattureVendita.Required = false;
             this.editTotaleFattureVendita.Size = new System.Drawing.Size(796, 30);
-            this.editTotaleFattureVendita.TabIndex = 12;
+            this.editTotaleFattureVendita.TabIndex = 13;
             this.editTotaleFattureVendita.Text = "TemplateEditNumeric";
             this.editTotaleFattureVendita.Value = null;
             // 
@@ -477,9 +480,31 @@ namespace Web.GUI.Cliente
             this.editLocalita.Text = "EditControl";
             this.editLocalita.Value = null;
             // 
+            // editNote
+            // 
+            this.editNote.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editNote.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editNote.BackColor = System.Drawing.Color.Transparent;
+            this.editNote.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editNote.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editNote.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editNote.Changed = true;
+            this.editNote.Editing = false;
+            this.editNote.Label = "Note";
+            this.editNote.LabelWidth = 175;
+            this.editNote.Location = new System.Drawing.Point(25, 531);
+            this.editNote.Name = "editNote";
+            this.editNote.ReadOnly = false;
+            this.editNote.Required = false;
+            this.editNote.Size = new System.Drawing.Size(796, 30);
+            this.editNote.TabIndex = 12;
+            this.editNote.Text = "EditControl";
+            this.editNote.Value = null;
+            // 
             // ClienteModel
             // 
-            this.Size = new System.Drawing.Size(1024, 754);
+            this.Size = new System.Drawing.Size(1024, 815);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
@@ -508,6 +533,7 @@ namespace Web.GUI.Cliente
         private Library.Template.Controls.TemplateEditDecimal editTotaleLiquidazioni;
         private Library.Controls.ButtonSeparatorV btnCalcoloTotali;
         private Library.Template.Controls.TemplateEditText editLocalita;
+        private Library.Template.Controls.TemplateEditText editNote;
 
 
     }

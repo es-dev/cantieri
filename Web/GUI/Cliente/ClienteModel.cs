@@ -52,6 +52,7 @@ namespace Web.GUI.Cliente
                     editEmail.Value = obj.Email;
                     editLocalita.Value = obj.Localita;
                     editPartitaIVA.Value = obj.PIva;
+                    editNote.Value = obj.Note;
                     editTotaleFattureVendita.Value = obj.TotaleFattureVendita;
                     editStato.Value = obj.Stato;
                     editTotaleLiquidazioni.Value = obj.TotaleLiquidazioni;
@@ -90,6 +91,7 @@ namespace Web.GUI.Cliente
                     obj.Mobile = editMobile.Value;
                     obj.Email = editEmail.Value;
                     obj.PIva = editPartitaIVA.Value;
+                    obj.Note = editNote.Value;
                     obj.Codice = editCodiceCliente.Value;
                     obj.TotaleFattureVendita = editTotaleFattureVendita.Value;
                     obj.Stato = editStato.Value;

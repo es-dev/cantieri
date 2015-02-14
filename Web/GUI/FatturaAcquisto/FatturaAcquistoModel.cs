@@ -73,6 +73,7 @@ namespace Web.GUI.FatturaAcquisto
                     editNumero.Value = obj.Numero;
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editScadenzaPagamento.Value = obj.ScadenzaPagamento;
+                    editNote.Value = obj.Note;
                     editTotale.Value = obj.Totale;
                     editTotalePagamenti.Value = obj.TotalePagamenti;
                     editStato.Value = obj.Stato;
@@ -111,6 +112,7 @@ namespace Web.GUI.FatturaAcquisto
                     obj.TipoPagamento = editTipoPagamento.Value;
                     obj.ScadenzaPagamento = editScadenzaPagamento.Value;
                     obj.Totale = editTotale.Value;
+                    obj.Note = editNote.Value;
                     obj.TotalePagamenti = editTotalePagamenti.Value;
                     obj.Stato = editStato.Value;
                     var centroCosto = (WcfService.Dto.CentroCostoDto)editCentroCosto.Model;

@@ -41,6 +41,7 @@ namespace Web.GUI.SAL
                     var obj = (WcfService.Dto.SALDto)model;
                     editData.Value = obj.Data;
                     editCodice.Value = obj.Codice;
+                    editNote.Value = obj.Note;
                     editTotaleAcquisti.Value = obj.TotaleAcquisti;
                     editTotaleVendite.Value = obj.TotaleVendite;
                     editTotaleLiquidazioni.Value = obj.TotaleLiquidazioni;
@@ -70,6 +71,7 @@ namespace Web.GUI.SAL
                     var obj = (WcfService.Dto.SALDto)model;
                     obj.Data = editData.Value;
                     obj.Codice = editCodice.Value;
+                    obj.Note = editNote.Value;
                     obj.TotaleAcquisti = editTotaleAcquisti.Value;
                     obj.TotaleVendite = editTotaleVendite.Value;
                     obj.TotaleLiquidazioni = editTotaleLiquidazioni.Value;

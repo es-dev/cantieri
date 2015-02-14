@@ -52,6 +52,7 @@ namespace Web.GUI.AnagraficaCliente
                     editEmail.Value = obj.Email;
                     editPartitaIVA.Value = obj.PIva;
                     editCodice.Value = obj.Codice;
+                    editNote.Value = obj.Note;
                 }
             }
             catch (Exception ex)
@@ -83,6 +84,7 @@ namespace Web.GUI.AnagraficaCliente
                     obj.Email = editEmail.Value;
                     obj.PIva = editPartitaIVA.Value;
                     obj.Codice = editCodice.Value;
+                    obj.Note = editNote.Value;
                 }
             }
             catch (Exception ex)

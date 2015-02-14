@@ -32,18 +32,22 @@ namespace Web.GUI.AnagraficaArticolo
 		{
             this.editDescrizione = new Library.Template.Controls.TemplateEditText();
             this.editCodice = new Library.Template.Controls.TemplateEditText();
+            this.editNote = new Library.Template.Controls.TemplateEditText();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
+            this.panelCommands.SuspendLayout();
             this.SuspendLayout();
             // 
             // container
             // 
+            this.container.Controls.Add(this.editNote);
             this.container.Controls.Add(this.editCodice);
             this.container.Controls.Add(this.editDescrizione);
             this.container.Controls.SetChildIndex(this.infoSubtitleImage, 0);
             this.container.Controls.SetChildIndex(this.infoSubtitle, 0);
             this.container.Controls.SetChildIndex(this.editDescrizione, 0);
             this.container.Controls.SetChildIndex(this.editCodice, 0);
+            this.container.Controls.SetChildIndex(this.editNote, 0);
             // 
             // infoSubtitle
             // 
@@ -66,7 +70,7 @@ namespace Web.GUI.AnagraficaArticolo
             this.editDescrizione.Editing = false;
             this.editDescrizione.Label = "Descrizione";
             this.editDescrizione.LabelWidth = 175;
-            this.editDescrizione.Location = new System.Drawing.Point(25, 123);
+            this.editDescrizione.Location = new System.Drawing.Point(25, 120);
             this.editDescrizione.Name = "editDescrizione";
             this.editDescrizione.ReadOnly = false;
             this.editDescrizione.Required = false;
@@ -96,9 +100,33 @@ namespace Web.GUI.AnagraficaArticolo
             this.editCodice.TabIndex = 0;
             this.editCodice.Text = "EditControl";
             this.editCodice.Value = null;
+            // 
+            // editNote
+            // 
+            this.editNote.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editNote.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editNote.BackColor = System.Drawing.Color.Transparent;
+            this.editNote.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editNote.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editNote.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editNote.Changed = true;
+            this.editNote.Editing = false;
+            this.editNote.Label = "Note";
+            this.editNote.LabelWidth = 175;
+            this.editNote.Location = new System.Drawing.Point(25, 165);
+            this.editNote.Name = "editNote";
+            this.editNote.ReadOnly = false;
+            this.editNote.Required = false;
+            this.editNote.Size = new System.Drawing.Size(798, 30);
+            this.editNote.TabIndex = 2;
+            this.editNote.Text = "EditControl";
+            this.editNote.Value = null;
+            this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
+            this.panelCommands.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
@@ -107,6 +135,7 @@ namespace Web.GUI.AnagraficaArticolo
 
         private Library.Template.Controls.TemplateEditText editCodice;
         private Library.Template.Controls.TemplateEditText editDescrizione;
+        private Library.Template.Controls.TemplateEditText editNote;
 
 
     }

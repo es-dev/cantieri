@@ -76,6 +76,7 @@ namespace Web.GUI.Commessa
                     editRiferimento.Value = obj.Riferimento;
                     editScadenza.Value = obj.Scadenza;
                     editStato.Value = obj.Stato;
+                    editNote.Value = obj.Note;
                     editImporto.Value = obj.Importo;
                     editMargine.Value = obj.Margine;
                     editImportoAvanzamentoLavori.Value = obj.ImportoAvanzamento;
@@ -120,6 +121,7 @@ namespace Web.GUI.Commessa
                     obj.Riferimento = editRiferimento.Value;
                     obj.Scadenza = editScadenza.Value;
                     obj.Stato = editStato.Value;
+                    obj.Note = editNote.Value;
                     obj.Importo = editImporto.Value;
                     obj.Margine = editMargine.Value;
                     obj.ImportoAvanzamento = editImportoAvanzamentoLavori.Value;

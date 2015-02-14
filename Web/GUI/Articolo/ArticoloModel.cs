@@ -50,6 +50,7 @@ namespace Web.GUI.Articolo
                     editQuantita.Value = obj.Quantita;
                     editSconto.Value = obj.Sconto;
                     editTotale.Value = obj.Totale;
+                    editNote.Value = obj.Note;
                     var fatturaAcquisto = obj.Fattura;
                     if (fatturaAcquisto != null)
                     {
@@ -80,6 +81,7 @@ namespace Web.GUI.Articolo
                     obj.Quantita = editQuantita.Value;
                     obj.Sconto = editSconto.Value;
                     obj.Totale = editTotale.Value;
+                    obj.Note = editNote.Value;
                     var fatturaAcquisto = (WcfService.Dto.FatturaAcquistoDto)editFatturaAcquisto.Model;
                     if(fatturaAcquisto!=null)
                         obj.FatturaAcquistoId = fatturaAcquisto.Id;

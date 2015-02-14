@@ -180,6 +180,19 @@ namespace DataLayer
 			}
 		}
 		
+		private string _note;
+		public virtual string Note
+		{
+			get
+			{
+				return this._note;
+			}
+			set
+			{
+				this._note = value;
+			}
+		}
+		
 		private Cliente _cliente;
 		public virtual Cliente Cliente
 		{
