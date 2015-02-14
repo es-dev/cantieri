@@ -1,6 +1,7 @@
 using BusinessLogic;
 using Library.Code;
 using Library.Code.Enum;
+using Library.Controls;
 using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
@@ -26,8 +27,10 @@ namespace Web.GUI.Fornitore
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.FornitoreDto)model;
+                    var codice = UtilityValidation.GetStringND(obj.Codice);
+                    var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
+                    infoSubtitle.Text = codice + " - " + ragioneSociale;
                     infoSubtitleImage.Image = "Images.dashboard.fornitore.png";
-                    infoSubtitle.Text = obj.Codice + " - " + obj.RagioneSociale;
                 }
             }
             catch (Exception ex)
@@ -46,7 +49,7 @@ namespace Web.GUI.Fornitore
                     editRagioneSociale.Value = obj.RagioneSociale;
                     editIndirizzo.Value = obj.Indirizzo;
                     editCAP.Value = obj.CAP;
-                    editComune.Value = new Library.Controls.ComuniProvince.Comune(obj.Comune, obj.CodiceCatastale, obj.Provincia);
+                    editComune.Value = new ComuniProvince.Comune(obj.Comune, obj.CodiceCatastale, obj.Provincia);
                     editTelefono.Value = obj.Telefono;
                     editFAX.Value = obj.Fax;
                     editMobile.Value = obj.Mobile;
@@ -61,7 +64,7 @@ namespace Web.GUI.Fornitore
                     if (commessa != null)
                     {
                         editCommessa.Model = commessa;
-                        editCommessa.Value = "("+ commessa.Codice + ") - " +commessa.Denominazione;
+                        editCommessa.Value =  commessa.Codice + " - " +commessa.Denominazione;
                     }
                     editCodiceFornitore.Value = obj.Codice;
                 }
@@ -157,7 +160,7 @@ namespace Web.GUI.Fornitore
                 {
                     editCodiceFornitore.Value = anagraficaFornitore.Codice;
                     editCAP.Value = anagraficaFornitore.CAP;
-                    editComune.Value  = new Library.Controls.ComuniProvince.Comune(anagraficaFornitore.Comune, anagraficaFornitore.Provincia);
+                    editComune.Value  = new ComuniProvince.Comune(anagraficaFornitore.Comune, anagraficaFornitore.Provincia);
                     editEmail.Value = anagraficaFornitore.Email;
                     editFAX.Value = anagraficaFornitore.Fax;
                     editIndirizzo.Value = anagraficaFornitore.Indirizzo;
@@ -200,10 +203,9 @@ namespace Web.GUI.Fornitore
                     var fattureInsolute = BusinessLogic.Fornitore.GetFattureInsolute(fatture);
                     var fattureNonPagate = BusinessLogic.Fornitore.GetFattureNonPagate(fatture);
                     var statoFornitore = BusinessLogic.Fornitore.GetStato(obj);
+                    var stato = GetStato(totaleFatture, totalePagamenti, fattureInsolute, fattureNonPagate, statoFornitore);
 
-                    var statoDescrizione = GetStatoDescrizione(totaleFatture, totalePagamenti, fattureInsolute, fattureNonPagate, statoFornitore);
-
-                    editStato.Value = statoDescrizione.ToString();
+                    editStato.Value = stato.ToString();
                     editTotaleFattureAcquisto.Value = totaleFatture;
                     editTotalePagamenti.Value= totalePagamenti;
                 }
@@ -214,13 +216,13 @@ namespace Web.GUI.Fornitore
             }
         }
 
-        private StatoDescrizione GetStatoDescrizione(decimal totaleFatture, decimal totalePagamenti, IList<WcfService.Dto.FatturaAcquistoDto> fattureInsolute, 
+        private StateDescriptionImage GetStato(decimal totaleFatture, decimal totalePagamenti, IList<WcfService.Dto.FatturaAcquistoDto> fattureInsolute, 
             IList<WcfService.Dto.FatturaAcquistoDto> fattureNonPagate, Tipi.StatoFornitore statoFornitore)
         {
             try
             {
                 var descrizione = "";
-                var stato = TypeStato.None;
+                var stato = TypeState.None;
                 var existFattureInsolute = (fattureInsolute.Count >= 1);
                 var existFattureNonPagate = (fattureNonPagate.Count >= 1);
                 var listaFattureInsolute = BusinessLogic.Fattura.GetLista(fattureInsolute);
@@ -231,22 +233,22 @@ namespace Web.GUI.Fornitore
                     descrizione = "Il fornitore risulta insoluto. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale delle fatture pari a " + totaleFatture.ToString("0.00€") + ". Le fatture insolute sono " + listaFattureInsolute;
                     if (existFattureNonPagate)
                         descrizione += " Le fatture non pagate sono " + listaFattureNonPagate;
-                    stato = TypeStato.Critical;
+                    stato = TypeState.Critical;
                 }
                 else if (statoFornitore == Tipi.StatoFornitore.NonPagato)
                 {
                     descrizione = "Il fornitore risulta non pagato. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale delle fatture pari a " + totaleFatture.ToString("0.00€");
                     if (existFattureNonPagate)
                         descrizione += " Le fatture non pagate sono " + listaFattureNonPagate;
-                    stato = TypeStato.Warning;
+                    stato = TypeState.Warning;
                 }
                 else if (statoFornitore == Tipi.StatoFornitore.Pagato)
                 {
                     descrizione = "Il fornitore risulta pagato. Tutte le fatture sono state saldate";  //non so se ha senso indicargli anche insolute o no!!!!! per ora NO
-                    stato = TypeStato.Normal;
+                    stato = TypeState.Normal;
                 }
-                var statoDescrizione = new StatoDescrizione(stato, descrizione);
-                return statoDescrizione;
+                var _stato = new StateDescriptionImage(stato, descrizione);
+                return _stato;
             }
             catch (Exception ex)
             {

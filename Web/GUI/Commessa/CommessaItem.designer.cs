@@ -36,7 +36,7 @@ namespace Web.GUI.Commessa
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
             this.infoDescrizione = new Gizmox.WebGUI.Forms.Label();
             this.imgStato = new Gizmox.WebGUI.Forms.PictureBox();
-            this.infoStato = new Gizmox.WebGUI.Forms.Label();
+            this.infoStatoLavori = new Gizmox.WebGUI.Forms.Label();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
@@ -45,7 +45,7 @@ namespace Web.GUI.Commessa
             // 
             // container
             // 
-            this.container.Controls.Add(this.infoStato);
+            this.container.Controls.Add(this.infoStatoLavori);
             this.container.Controls.Add(this.imgStato);
             // 
             // infoCodice
@@ -114,18 +114,18 @@ namespace Web.GUI.Commessa
             this.imgStato.TabIndex = 3;
             this.imgStato.TabStop = false;
             // 
-            // infoStato
+            // infoStatoLavori
             // 
-            this.infoStato.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.infoStatoLavori.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.infoStato.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoStato.ForeColor = System.Drawing.Color.DarkRed;
-            this.infoStato.Location = new System.Drawing.Point(91, 75);
-            this.infoStato.Name = "infoStato";
-            this.infoStato.Size = new System.Drawing.Size(265, 16);
-            this.infoStato.TabIndex = 1;
-            this.infoStato.Text = "Scadenza lavori dd/MM/yyyy";
-            this.infoStato.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.infoStatoLavori.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoStatoLavori.ForeColor = System.Drawing.Color.DarkRed;
+            this.infoStatoLavori.Location = new System.Drawing.Point(91, 75);
+            this.infoStatoLavori.Name = "infoStatoLavori";
+            this.infoStatoLavori.Size = new System.Drawing.Size(265, 16);
+            this.infoStatoLavori.TabIndex = 1;
+            this.infoStatoLavori.Text = "Scadenza lavori dd/MM/yyyy";
+            this.infoStatoLavori.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // CommessaItem
             // 
@@ -154,7 +154,7 @@ namespace Web.GUI.Commessa
         private Gizmox.WebGUI.Forms.Label infoDenominazione;
         private Gizmox.WebGUI.Forms.Panel panelLeft;
         private Gizmox.WebGUI.Forms.Label infoDescrizione;
-        private Gizmox.WebGUI.Forms.Label infoStato;
+        private Gizmox.WebGUI.Forms.Label infoStatoLavori;
         private Gizmox.WebGUI.Forms.PictureBox imgStato;
 	}
 }

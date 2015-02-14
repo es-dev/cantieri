@@ -24,8 +24,10 @@ namespace Web.GUI.AnagraficaArticolo
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AnagraficaArticoloDto)model;
+                    var codice = UtilityValidation.GetStringND(obj.Codice);
+                    var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
+                    infoSubtitle.Text = codice + " - " + descrizione;
                     infoSubtitleImage.Image = "Images.dashboard.anagraficaarticolo.png";
-                    infoSubtitle.Text = obj.Codice;
                 }
             }
             catch (Exception ex)

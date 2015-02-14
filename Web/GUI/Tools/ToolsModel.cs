@@ -12,7 +12,7 @@ using System.Text;
 using System.Linq;
 using Web.Code;
 
-namespace Web.GUI.SAL
+namespace Web.GUI.Tools
 {
 	public partial class ToolsModel : TemplateModel
 	{

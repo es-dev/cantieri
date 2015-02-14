@@ -25,8 +25,10 @@ namespace Web.GUI.AnagraficaFornitore
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AnagraficaFornitoreDto)model;
+                    var codice = UtilityValidation.GetStringND(obj.Codice);
+                    var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
+                    infoSubtitle.Text = codice + " - " + ragioneSociale;
                     infoSubtitleImage.Image = "Images.dashboard.anagraficafornitore.png";
-                    infoSubtitle.Text = obj.Codice + " - " + obj.RagioneSociale;
                 }
             }
             catch (Exception ex)

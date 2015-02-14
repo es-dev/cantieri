@@ -1,5 +1,6 @@
 using BusinessLogic;
 using Library.Code;
+using Library.Code.Enum;
 using Library.Interfaces;
 using Library.Template.MVVM;
 using System;
@@ -8,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.FatturaVendita
@@ -26,53 +28,60 @@ namespace Web.GUI.FatturaVendita
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.FatturaVenditaDto)model;
-                    infoImage.Image = "Images.dashboard.fatturavendita.png";
-                    infoCodice.Text = "FV";
-                    var numero = "N/D";
-                    if (obj.Numero != null)
-                        numero = obj.Numero;
-                    var data = "N/D";
-                    if (obj.Data != null)
-                        data = obj.Data.Value.ToString("dd/MM/yyyy");
-                    infoNumeroData.Text = "Fattura N." + numero + " del " + data;
-                    var cliente = obj.Cliente;
-                    if (cliente != null)
-                        infoCliente.Text = cliente.RagioneSociale;
-
+                    var numero = UtilityValidation.GetStringND(obj.Numero);
+                    var data = UtilityValidation.GetDataND(obj.Data);
                     var today = DateTime.Today;
-                    var totaleFattura = "N/D";
-                    if (obj.Totale != null)
-                        totaleFattura = obj.Totale.Value.ToString("0.00") + "€";
-                    var totaleLiquidazioni = BusinessLogic.Fattura.GetTotaleLiquidazioni(obj, today);
-                    infoLiquidazioneTotale.Text = "Incassato " + totaleLiquidazioni.ToString("0.00") + "€ su un totale di " + totaleFattura;
+                    var totaleFattura = UtilityValidation.GetEuro(obj.Totale);
+                    var totaleLiquidazioni =UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotaleLiquidazioni(obj, today));
+                    var stato = GetStato(obj);
+                    var cliente = obj.Cliente;
 
-                    var stato = BusinessLogic.Fattura.GetStato(obj);
-                    var image = "";
-                    var descrizione = "";
-                    if (stato == Tipi.StatoFattura.Pagata)
-                    {
-                        image = "Images.messageConfirm.png";
-                        descrizione = "Fattura incassata";
-                    }
-                    else if (stato == Tipi.StatoFattura.NonPagata)
-                    {
-                        image = "Images.messageQuestion.png";
-                        descrizione = "Fattura non incassata";
-                    }
-                    else if (stato == Tipi.StatoFattura.Insoluta)
-                    {
-                        image = "Images.messageAlert.png";
-                        var ritardo = BusinessLogic.Fattura.GetRitardo(obj);
-                        descrizione = "Fattura insoluta, scaduta da " + ritardo;
-                    }
-                    toolTip.SetToolTip(imgStato, descrizione);
-                    imgStato.Image = image;
+                    infoImage.Image = "Images.dashboard.fatturavendita.png";
+                    infoCodice.Text = "FA";
+                    infoNumeroData.Text = "Fattura N." + numero + " del " + data;
+                    infoLiquidazioneTotale.Text = "Incassato " + totaleLiquidazioni +" su un totale di " + totaleFattura;
+                    infoCliente.Text = cliente.RagioneSociale;
+                    imgStato.Image = stato.Image;
+                    toolTip.SetToolTip(imgStato, stato.Description);
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private static DescriptionImage GetStato(FatturaVenditaDto fattura)
+        {
+            try
+            {
+                var image = "";
+                var descrizione = "";
+                var stato = BusinessLogic.Fattura.GetStato(fattura);
+                if (stato == Tipi.StatoFattura.Pagata)
+                {
+                    image = "Images.messageConfirm.png";
+                    descrizione = "Fattura incassata";
+                }
+                else if (stato == Tipi.StatoFattura.NonPagata)
+                {
+                    image = "Images.messageQuestion.png";
+                    descrizione = "Fattura non incassata";
+                }
+                else if (stato == Tipi.StatoFattura.Insoluta)
+                {
+                    image = "Images.messageAlert.png";
+                    var ritardo = BusinessLogic.Fattura.GetRitardo(fattura);
+                    descrizione = "Fattura insoluta, scaduta da " + ritardo;
+                }
+                var _stato = new DescriptionImage(descrizione, image);
+                return _stato;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
 
         private void FatturaVenditaItem_ItemClick(IItem item)

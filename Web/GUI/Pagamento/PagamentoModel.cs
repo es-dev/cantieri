@@ -8,7 +8,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
+using Web.GUI.FatturaAcquisto;
 
 namespace Web.GUI.Pagamento
 {
@@ -43,6 +45,10 @@ namespace Web.GUI.Pagamento
         {
             try
             {
+                var obj = (PagamentoDto)model;
+                var codice = UtilityValidation.GetStringND(obj.Codice);
+                var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
+                infoSubtitle.Text = codice + " - " + descrizione;
                 infoSubtitleImage.Image = "Images.dashboard.pagamento.png";
             }
             catch (Exception ex)
@@ -57,7 +63,7 @@ namespace Web.GUI.Pagamento
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.PagamentoDto)model;
+                    var obj = (PagamentoDto)model;
                     editCodice.Value = obj.Codice;
                     editData.Value = obj.Data;
                     editNote.Value = obj.Note;
@@ -84,14 +90,14 @@ namespace Web.GUI.Pagamento
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.PagamentoDto)model;
+                    var obj = (PagamentoDto)model;
                     obj.Codice = editCodice.Value;
                     obj.Data = editData.Value;
                     obj.Importo = editImporto.Value;
                     obj.Note = editNote.Value;
                     obj.Descrizione = editDescrizione.Value;
                     obj.TipoPagamento = editTipoPagamento.Value;
-                    var fatturaAcquisto = (WcfService.Dto.FatturaAcquistoDto)editFatturaAcquisto.Model;
+                    var fatturaAcquisto = (FatturaAcquistoDto)editFatturaAcquisto.Model;
                     if(fatturaAcquisto!=null)
                         obj.FatturaAcquistoId = fatturaAcquisto.Id;
                 }
@@ -120,11 +126,11 @@ namespace Web.GUI.Pagamento
         {
             try
             {
-                var fatturaAcquisto = (WcfService.Dto.FatturaAcquistoDto)model;
+                var fatturaAcquisto = (FatturaAcquistoDto)model;
                 if (fatturaAcquisto != null)
                 {
                     editFatturaAcquisto.Value = fatturaAcquisto.Numero +"/"+ fatturaAcquisto.Data.Value.Year.ToString();
-                    var obj = (WcfService.Dto.PagamentoDto)Model;
+                    var obj = (PagamentoDto)Model;
                     if (obj!=null && obj.Id==0)
                     {
                         var codice = BusinessLogic.Pagamento.GetCodice(fatturaAcquisto);
