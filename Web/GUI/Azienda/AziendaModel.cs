@@ -52,6 +52,7 @@ namespace Web.GUI.Azienda
                     editTelefono.Value = obj.Telefono;
                     editFAX.Value = obj.Fax;
                     editEmail.Value = obj.Email;
+                    editNote.Value = obj.Note;
                 }
             }
             catch (Exception ex)
@@ -80,6 +81,7 @@ namespace Web.GUI.Azienda
                     obj.Telefono = editTelefono.Value;
                     obj.Fax = editFAX.Value;
                     obj.Email = editEmail.Value;
+                    obj.Note = editNote.Value;
                 }
             }
             catch (Exception ex)

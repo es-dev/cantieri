@@ -32,6 +32,7 @@ namespace Web.GUI.CentroCosto
 		{
             this.editCodice = new Library.Template.Controls.TemplateEditText();
             this.editDenominazione = new Library.Template.Controls.TemplateEditText();
+            this.editNote = new Library.Template.Controls.TemplateEditText();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -39,12 +40,14 @@ namespace Web.GUI.CentroCosto
             // 
             // container
             // 
+            this.container.Controls.Add(this.editNote);
             this.container.Controls.Add(this.editDenominazione);
             this.container.Controls.Add(this.editCodice);
             this.container.Controls.SetChildIndex(this.infoSubtitleImage, 0);
             this.container.Controls.SetChildIndex(this.infoSubtitle, 0);
             this.container.Controls.SetChildIndex(this.editCodice, 0);
             this.container.Controls.SetChildIndex(this.editDenominazione, 0);
+            this.container.Controls.SetChildIndex(this.editNote, 0);
             // 
             // infoSubtitle
             // 
@@ -89,14 +92,36 @@ namespace Web.GUI.CentroCosto
             this.editDenominazione.Editing = false;
             this.editDenominazione.Label = "Denominazione";
             this.editDenominazione.LabelWidth = 175;
-            this.editDenominazione.Location = new System.Drawing.Point(25, 122);
+            this.editDenominazione.Location = new System.Drawing.Point(25, 113);
             this.editDenominazione.Name = "editDenominazione";
             this.editDenominazione.ReadOnly = false;
             this.editDenominazione.Required = false;
-            this.editDenominazione.Size = new System.Drawing.Size(800, 30);
+            this.editDenominazione.Size = new System.Drawing.Size(798, 30);
             this.editDenominazione.TabIndex = 1;
             this.editDenominazione.Text = "EditControl";
             this.editDenominazione.Value = null;
+            // 
+            // editNote
+            // 
+            this.editNote.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editNote.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editNote.BackColor = System.Drawing.Color.Transparent;
+            this.editNote.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editNote.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editNote.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editNote.Changed = true;
+            this.editNote.Editing = false;
+            this.editNote.Label = "Note";
+            this.editNote.LabelWidth = 175;
+            this.editNote.Location = new System.Drawing.Point(25, 151);
+            this.editNote.Name = "editNote";
+            this.editNote.ReadOnly = false;
+            this.editNote.Required = false;
+            this.editNote.Size = new System.Drawing.Size(798, 30);
+            this.editNote.TabIndex = 2;
+            this.editNote.Text = "EditControl";
+            this.editNote.Value = null;
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
@@ -110,6 +135,7 @@ namespace Web.GUI.CentroCosto
 
         private Library.Template.Controls.TemplateEditText editDenominazione;
         private Library.Template.Controls.TemplateEditText editCodice;
+        private Library.Template.Controls.TemplateEditText editNote;
 
 
     }

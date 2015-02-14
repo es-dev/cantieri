@@ -206,6 +206,19 @@ namespace DataLayer
 			}
 		}
 		
+		private string _note;
+		public virtual string Note
+		{
+			get
+			{
+				return this._note;
+			}
+			set
+			{
+				this._note = value;
+			}
+		}
+		
 		private IList<Commessa> _commessas = new List<Commessa>();
 		public virtual IList<Commessa> Commessas
 		{

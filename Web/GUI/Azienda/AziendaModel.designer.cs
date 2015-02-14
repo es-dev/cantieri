@@ -41,6 +41,7 @@ namespace Web.GUI.Azienda
             this.editCodice = new Library.Template.Controls.TemplateEditText();
             this.editComune = new Library.Template.Controls.TemplateEditComuneProvincia();
             this.editLocalita = new Library.Template.Controls.TemplateEditText();
+            this.editNote = new Library.Template.Controls.TemplateEditText();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -48,6 +49,7 @@ namespace Web.GUI.Azienda
             // 
             // container
             // 
+            this.container.Controls.Add(this.editNote);
             this.container.Controls.Add(this.editLocalita);
             this.container.Controls.Add(this.editComune);
             this.container.Controls.Add(this.editCodice);
@@ -72,6 +74,7 @@ namespace Web.GUI.Azienda
             this.container.Controls.SetChildIndex(this.editCodice, 0);
             this.container.Controls.SetChildIndex(this.editComune, 0);
             this.container.Controls.SetChildIndex(this.editLocalita, 0);
+            this.container.Controls.SetChildIndex(this.editNote, 0);
             // 
             // infoSubtitle
             // 
@@ -98,7 +101,7 @@ namespace Web.GUI.Azienda
             this.editDenominazione.Name = "editDenominazione";
             this.editDenominazione.ReadOnly = false;
             this.editDenominazione.Required = false;
-            this.editDenominazione.Size = new System.Drawing.Size(815, 30);
+            this.editDenominazione.Size = new System.Drawing.Size(813, 30);
             this.editDenominazione.TabIndex = 1;
             this.editDenominazione.Text = "EditControl";
             this.editDenominazione.Value = null;
@@ -120,7 +123,7 @@ namespace Web.GUI.Azienda
             this.editIndirizzo.Name = "editIndirizzo";
             this.editIndirizzo.ReadOnly = false;
             this.editIndirizzo.Required = false;
-            this.editIndirizzo.Size = new System.Drawing.Size(815, 30);
+            this.editIndirizzo.Size = new System.Drawing.Size(813, 30);
             this.editIndirizzo.TabIndex = 2;
             this.editIndirizzo.Text = "EditControl";
             this.editIndirizzo.Value = null;
@@ -142,7 +145,7 @@ namespace Web.GUI.Azienda
             this.editCAP.Name = "editCAP";
             this.editCAP.ReadOnly = false;
             this.editCAP.Required = false;
-            this.editCAP.Size = new System.Drawing.Size(815, 30);
+            this.editCAP.Size = new System.Drawing.Size(813, 30);
             this.editCAP.TabIndex = 3;
             this.editCAP.Text = "EditControl";
             this.editCAP.Value = null;
@@ -164,7 +167,7 @@ namespace Web.GUI.Azienda
             this.editNumeroDipendenti.Name = "editNumeroDipendenti";
             this.editNumeroDipendenti.ReadOnly = false;
             this.editNumeroDipendenti.Required = false;
-            this.editNumeroDipendenti.Size = new System.Drawing.Size(815, 30);
+            this.editNumeroDipendenti.Size = new System.Drawing.Size(813, 30);
             this.editNumeroDipendenti.TabIndex = 10;
             this.editNumeroDipendenti.Text = "TemplateEditNumeric";
             this.editNumeroDipendenti.Value = null;
@@ -186,7 +189,7 @@ namespace Web.GUI.Azienda
             this.editFAX.Name = "editFAX";
             this.editFAX.ReadOnly = false;
             this.editFAX.Required = false;
-            this.editFAX.Size = new System.Drawing.Size(815, 30);
+            this.editFAX.Size = new System.Drawing.Size(813, 30);
             this.editFAX.TabIndex = 7;
             this.editFAX.Text = "EditControl";
             this.editFAX.Value = null;
@@ -208,7 +211,7 @@ namespace Web.GUI.Azienda
             this.editTelefono.Name = "editTelefono";
             this.editTelefono.ReadOnly = false;
             this.editTelefono.Required = false;
-            this.editTelefono.Size = new System.Drawing.Size(815, 30);
+            this.editTelefono.Size = new System.Drawing.Size(813, 30);
             this.editTelefono.TabIndex = 6;
             this.editTelefono.Text = "EditControl";
             this.editTelefono.Value = null;
@@ -230,7 +233,7 @@ namespace Web.GUI.Azienda
             this.editEmail.Name = "editEmail";
             this.editEmail.ReadOnly = false;
             this.editEmail.Required = false;
-            this.editEmail.Size = new System.Drawing.Size(815, 30);
+            this.editEmail.Size = new System.Drawing.Size(813, 30);
             this.editEmail.TabIndex = 8;
             this.editEmail.Text = "TemplateEditEmail";
             this.editEmail.Value = null;
@@ -252,7 +255,7 @@ namespace Web.GUI.Azienda
             this.editPartitaIVA.Name = "editPartitaIVA";
             this.editPartitaIVA.ReadOnly = false;
             this.editPartitaIVA.Required = false;
-            this.editPartitaIVA.Size = new System.Drawing.Size(815, 30);
+            this.editPartitaIVA.Size = new System.Drawing.Size(813, 30);
             this.editPartitaIVA.TabIndex = 9;
             this.editPartitaIVA.Text = "TemplateEditPartitaIva";
             this.editPartitaIVA.Value = "---";
@@ -296,7 +299,7 @@ namespace Web.GUI.Azienda
             this.editComune.Name = "editComune";
             this.editComune.ReadOnly = false;
             this.editComune.Required = false;
-            this.editComune.Size = new System.Drawing.Size(815, 30);
+            this.editComune.Size = new System.Drawing.Size(813, 30);
             this.editComune.TabIndex = 4;
             this.editComune.Text = "EditControl";
             this.editComune.Value = null;
@@ -318,10 +321,32 @@ namespace Web.GUI.Azienda
             this.editLocalita.Name = "editLocalita";
             this.editLocalita.ReadOnly = false;
             this.editLocalita.Required = false;
-            this.editLocalita.Size = new System.Drawing.Size(815, 30);
+            this.editLocalita.Size = new System.Drawing.Size(813, 30);
             this.editLocalita.TabIndex = 5;
             this.editLocalita.Text = "EditControl";
             this.editLocalita.Value = null;
+            // 
+            // editNote
+            // 
+            this.editNote.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editNote.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editNote.BackColor = System.Drawing.Color.Transparent;
+            this.editNote.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editNote.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editNote.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editNote.Changed = true;
+            this.editNote.Editing = false;
+            this.editNote.Label = "Note";
+            this.editNote.LabelWidth = 175;
+            this.editNote.Location = new System.Drawing.Point(25, 548);
+            this.editNote.Name = "editNote";
+            this.editNote.ReadOnly = false;
+            this.editNote.Required = false;
+            this.editNote.Size = new System.Drawing.Size(813, 30);
+            this.editNote.TabIndex = 11;
+            this.editNote.Text = "EditControl";
+            this.editNote.Value = null;
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
@@ -344,6 +369,7 @@ namespace Web.GUI.Azienda
         private Library.Template.Controls.TemplateEditText editCodice;
         private Library.Template.Controls.TemplateEditComuneProvincia editComune;
         private Library.Template.Controls.TemplateEditText editLocalita;
+        private Library.Template.Controls.TemplateEditText editNote;
 
 
     }

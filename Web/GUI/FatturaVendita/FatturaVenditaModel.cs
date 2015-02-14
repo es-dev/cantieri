@@ -71,6 +71,7 @@ namespace Web.GUI.FatturaVendita
                     editNumero.Value = obj.Numero;
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editScadenzaPagamento.Value = obj.ScadenzaPagamento;
+                    editNote.Value = obj.Note;
                     editTotale.Value = obj.Totale;
                     editTotaleLiquidazioni.Value = obj.TotaleLiquidazioni;
                     editStato.Value = obj.Stato;
@@ -102,6 +103,7 @@ namespace Web.GUI.FatturaVendita
                     obj.Numero = editNumero.Value;
                     obj.TipoPagamento = editTipoPagamento.Value;
                     obj.ScadenzaPagamento = editScadenzaPagamento.Value;
+                    obj.Note = editNote.Value;
                     obj.Totale = editTotale.Value;
                     obj.TotaleLiquidazioni = editTotaleLiquidazioni.Value;
                     obj.Stato = editStato.Value;

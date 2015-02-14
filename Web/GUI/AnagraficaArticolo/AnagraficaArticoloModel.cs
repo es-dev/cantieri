@@ -43,6 +43,7 @@ namespace Web.GUI.AnagraficaArticolo
                     var obj = (WcfService.Dto.AnagraficaArticoloDto)model;
                     editCodice.Value = obj.Codice;
                     editDescrizione.Value = obj.Descrizione;
+                    editNote.Value = obj.Note;
                 }
             }
             catch (Exception ex)
@@ -60,6 +61,7 @@ namespace Web.GUI.AnagraficaArticolo
                     var obj = (WcfService.Dto.AnagraficaArticoloDto)model;
                     obj.Codice = editCodice.Value;
                     obj.Descrizione = editDescrizione.Value;
+                    obj.Note = editNote.Value;
                 }
             }
             catch (Exception ex)

@@ -53,6 +53,7 @@ namespace Web.GUI.Fornitore
                     editEmail.Value = obj.Email;
                     editPartitaIVA.Value = obj.PIva;
                     editLocalita.Value = obj.Localita;
+                    editNote.Value = obj.Note;
                     editTotaleFattureAcquisto.Value = obj.TotaleFattureAcquisto;
                     editStato.Value = obj.Stato;
                     editTotalePagamenti.Value = obj.TotalePagamenti;
@@ -91,6 +92,7 @@ namespace Web.GUI.Fornitore
                     obj.Localita = editLocalita.Value;
                     obj.PIva = editPartitaIVA.Value;
                     obj.Codice = editCodiceFornitore.Value;
+                    obj.Note = editNote.Value;
                     obj.TotaleFattureAcquisto = editTotaleFattureAcquisto.Value;
                     obj.Stato = editStato.Value;
                     obj.TotalePagamenti = editTotalePagamenti.Value;

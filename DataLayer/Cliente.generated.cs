@@ -245,6 +245,19 @@ namespace DataLayer
 			}
 		}
 		
+		private string _note;
+		public virtual string Note
+		{
+			get
+			{
+				return this._note;
+			}
+			set
+			{
+				this._note = value;
+			}
+		}
+		
 		private Commessa _commessa;
 		public virtual Commessa Commessa
 		{
