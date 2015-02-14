@@ -40,10 +40,10 @@ namespace Web.GUI.Fornitore
             this.editCodiceFornitore = new Library.Template.Controls.TemplateEditCombo();
             this.editEmail = new Library.Template.Controls.TemplateEditEmail();
             this.editPartitaIVA = new Library.Template.Controls.TemplateEditPartitaIva();
-            this.editComune = new Library.Template.Controls.TemplateEditComuneProvincia();
+            this.editComune = new Library.Template.Controls.TemplateEditCountry();
             this.editTotaleFattureAcquisto = new Library.Template.Controls.TemplateEditDecimal();
             this.lblAndamento = new Gizmox.WebGUI.Forms.Label();
-            this.editStato = new Library.Template.Controls.TemplateEditStato();
+            this.editStato = new Library.Template.Controls.TemplateEditState();
             this.btnCalcoloTotali = new Library.Controls.ButtonSeparatorV();
             this.editTotalePagamenti = new Library.Template.Controls.TemplateEditDecimal();
             this.editLocalita = new Library.Template.Controls.TemplateEditText();
@@ -525,8 +525,8 @@ namespace Web.GUI.Fornitore
         private Library.Template.Controls.TemplateEditCombo editCodiceFornitore;
         private Library.Template.Controls.TemplateEditPartitaIva editPartitaIVA;
         private Library.Template.Controls.TemplateEditEmail editEmail;
-        private Library.Template.Controls.TemplateEditComuneProvincia editComune;
-        private Library.Template.Controls.TemplateEditStato editStato;
+        private Library.Template.Controls.TemplateEditCountry editComune;
+        private Library.Template.Controls.TemplateEditState editStato;
         private Gizmox.WebGUI.Forms.Label lblAndamento;
         private Library.Template.Controls.TemplateEditDecimal editTotaleFattureAcquisto;
         private Library.Controls.ButtonSeparatorV btnCalcoloTotali;

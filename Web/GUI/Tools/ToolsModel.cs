@@ -87,7 +87,7 @@ namespace Web.GUI.Tools
             }
         }
 
-        private void CheckAnagraficheClienti(IList<ComuniProvince.Comune> comuni)
+        private void CheckAnagraficheClienti(IList<Countries.City> comuni)
         {
             try
             {
@@ -96,12 +96,12 @@ namespace Web.GUI.Tools
                 var anagraficheClienti= viewModel.ReadAnagraficheClienti();
                 foreach (var anagraficaCliente in anagraficheClienti)
                 {
-                    var comune = (from q in comuni where q.Denominazione == anagraficaCliente.Comune && q.Provincia == anagraficaCliente.Provincia select q).FirstOrDefault();
+                    var comune = (from q in comuni where q.Description == anagraficaCliente.Comune && q.County == anagraficaCliente.Provincia select q).FirstOrDefault();
                     if (comune != null)
                     {
-                        anagraficaCliente.Comune = comune.Denominazione;
-                        anagraficaCliente.CodiceCatastale = comune.CodiceCatastale;
-                        anagraficaCliente.Provincia = comune.Provincia;
+                        anagraficaCliente.Comune = comune.Description;
+                        anagraficaCliente.CodiceCatastale = comune.Code;
+                        anagraficaCliente.Provincia = comune.County;
                         viewModel.Save(anagraficaCliente, false);
                         AddLog("Anagrafica cliente " + anagraficaCliente.RagioneSociale + " aggiornata con successo ... OK");
                     }
@@ -121,7 +121,7 @@ namespace Web.GUI.Tools
 
         }
 
-        private void CheckAnagraficheFornitori(IList<ComuniProvince.Comune> comuni)
+        private void CheckAnagraficheFornitori(IList<Countries.City> comuni)
         {
             try
             {
@@ -130,12 +130,12 @@ namespace Web.GUI.Tools
                 var anagraficheFornitori = viewModel.ReadAnagraficheFornitori();
                 foreach (var anagraficaFornitore in anagraficheFornitori)
                 {
-                    var comune = (from q in comuni where q.Denominazione == anagraficaFornitore.Comune && q.Provincia == anagraficaFornitore.Provincia select q).FirstOrDefault();
+                    var comune = (from q in comuni where q.Description == anagraficaFornitore.Comune && q.County == anagraficaFornitore.Provincia select q).FirstOrDefault();
                     if (comune != null)
                     {
-                        anagraficaFornitore.Comune = comune.Denominazione;
-                        anagraficaFornitore.CodiceCatastale = comune.CodiceCatastale;
-                        anagraficaFornitore.Provincia = comune.Provincia;
+                        anagraficaFornitore.Comune = comune.Description;
+                        anagraficaFornitore.CodiceCatastale = comune.Code;
+                        anagraficaFornitore.Provincia = comune.County;
                         viewModel.Save(anagraficaFornitore, false);
                         AddLog("Anagrafica fornitore " + anagraficaFornitore.RagioneSociale + " aggiornata con successo ... OK");
                     }
@@ -154,7 +154,7 @@ namespace Web.GUI.Tools
 
         }
 
-        private void CheckFornitori(IList<ComuniProvince.Comune> comuni)
+        private void CheckFornitori(IList<Countries.City> comuni)
         {
             try
             {
@@ -163,12 +163,12 @@ namespace Web.GUI.Tools
                 var fornitori = viewModel.ReadFornitori();
                 foreach (var fornitore in fornitori)
                 {
-                    var comune = (from q in comuni where q.Denominazione == fornitore.Comune && q.Provincia == fornitore.Provincia select q).FirstOrDefault();
+                    var comune = (from q in comuni where q.Description == fornitore.Comune && q.County == fornitore.Provincia select q).FirstOrDefault();
                     if (comune != null)
                     {
-                        fornitore.Comune = comune.Denominazione;
-                        fornitore.CodiceCatastale = comune.CodiceCatastale;
-                        fornitore.Provincia = comune.Provincia;
+                        fornitore.Comune = comune.Description;
+                        fornitore.CodiceCatastale = comune.Code;
+                        fornitore.Provincia = comune.County;
                         viewModel.Save(fornitore, false);
                         AddLog("Fornitore " + fornitore.RagioneSociale + " aggiornato con successo ... OK");
                     }
@@ -187,7 +187,7 @@ namespace Web.GUI.Tools
 
         }
 
-        private void CheckClienti(IList<ComuniProvince.Comune> comuni)
+        private void CheckClienti(IList<Countries.City> comuni)
         {
             try
             {
@@ -196,12 +196,12 @@ namespace Web.GUI.Tools
                 var clienti = viewModel.ReadClienti();
                 foreach (var cliente in clienti)
                 {
-                    var comune = (from q in comuni where q.Denominazione == cliente.Comune && q.Provincia == cliente.Provincia select q).FirstOrDefault();
+                    var comune = (from q in comuni where q.Description == cliente.Comune && q.County == cliente.Provincia select q).FirstOrDefault();
                     if (comune != null)
                     {
-                        cliente.Comune = comune.Denominazione;
-                        cliente.CodiceCatastale = comune.CodiceCatastale;
-                        cliente.Provincia = comune.Provincia;
+                        cliente.Comune = comune.Description;
+                        cliente.CodiceCatastale = comune.Code;
+                        cliente.Provincia = comune.County;
                         viewModel.Save(cliente, false);
                         AddLog("Cliente " + cliente.RagioneSociale + " aggiornato con successo ... OK");
                     }
@@ -220,7 +220,7 @@ namespace Web.GUI.Tools
 
         }
 
-        private void CheckCommesse(IList<ComuniProvince.Comune> comuni)
+        private void CheckCommesse(IList<Countries.City> comuni)
         {
             try
             {
@@ -229,12 +229,12 @@ namespace Web.GUI.Tools
                 var commesse = viewModel.ReadCommesse();
                 foreach (var commessa in commesse)
                 {
-                    var comune = (from q in comuni where q.Denominazione == commessa.Comune && q.Provincia == commessa.Provincia select q).FirstOrDefault();
+                    var comune = (from q in comuni where q.Description == commessa.Comune && q.County == commessa.Provincia select q).FirstOrDefault();
                     if (comune != null)
                     {
-                        commessa.Comune = comune.Denominazione;
-                        commessa.CodiceCatastale = comune.CodiceCatastale;
-                        commessa.Provincia = comune.Provincia;
+                        commessa.Comune = comune.Description;
+                        commessa.CodiceCatastale = comune.Code;
+                        commessa.Provincia = comune.County;
                         viewModel.Save(commessa, false);
                         AddLog("Commessa " + commessa.Denominazione + " aggiornata con successo ... OK");
                     }
@@ -254,7 +254,7 @@ namespace Web.GUI.Tools
 
         }
 
-        private void CheckAziende(IList<ComuniProvince.Comune> comuni)
+        private void CheckAziende(IList<Countries.City> comuni)
         {
             try
             {
@@ -263,12 +263,12 @@ namespace Web.GUI.Tools
                 var aziende = viewModel.ReadAziende();
                 foreach (var azienda in aziende)
                 {
-                    var comune = (from q in comuni where q.Denominazione == azienda.Comune && q.Provincia == azienda.Provincia select q).FirstOrDefault();
+                    var comune = (from q in comuni where q.Description == azienda.Comune && q.County == azienda.Provincia select q).FirstOrDefault();
                     if (comune != null)
                     {
-                        azienda.Comune = comune.Denominazione;
-                        azienda.CodiceCatastale = comune.CodiceCatastale;
-                        azienda.Provincia = comune.Provincia;
+                        azienda.Comune = comune.Description;
+                        azienda.CodiceCatastale = comune.Code;
+                        azienda.Provincia = comune.County;
                         viewModel.Save(azienda, false);
                         AddLog("Azienda " + azienda.Denominazione + " aggiornata con successo ... OK");
                     }
@@ -301,12 +301,12 @@ namespace Web.GUI.Tools
             }
         }
 
-        private IList<ComuniProvince.Comune> ReadComuni()
+        private IList<Countries.City> ReadComuni()
         {
             try
             {
-                var comuniProvince = new ComuniProvince(this);
-                var comuni = comuniProvince.ReadComuni();
+                var comuniProvince = new Countries(this);
+                var comuni = comuniProvince.ReadCities();
                 return comuni;
             }
             catch (Exception ex)

@@ -107,16 +107,13 @@ namespace Web.GUI.FatturaVendita
                 {
                     var imponibile = UtilityValidation.GetDecimal(editImponibile.Value);
                     var iva = UtilityValidation.GetDecimal(editIVA.Value);
-                    var _scadenzaPagamento = editScadenzaPagamento.Value;
                     var today = DateTime.Today;
-                    var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(_scadenzaPagamento);
                     var scadenza = BusinessLogic.Fattura.GetScadenza(fatturaVendita);
                     var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
                     var totaleLiquidazioni = BusinessLogic.Fattura.GetTotaleLiquidazioni(fatturaVendita, today);
                     var statoFattura = BusinessLogic.Fattura.GetStato(fatturaVendita);
-
-                    var statoDescrizione = GetStato(today, scadenza, totaleFattura, totaleLiquidazioni, statoFattura);
-                    stato = statoDescrizione.ToString();
+                    var _stato = GetStato(today, scadenza, totaleFattura, totaleLiquidazioni, statoFattura);
+                    stato = _stato.ToString();
                 }
                 return stato;
             }

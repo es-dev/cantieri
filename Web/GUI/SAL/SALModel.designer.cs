@@ -31,7 +31,7 @@ namespace Web.GUI.SAL
 		private void InitializeComponent()
 		{
             this.editCommessa = new Library.Template.Controls.TemplateEditCombo();
-            this.editData = new Library.Template.Controls.TemplateEditData();
+            this.editData = new Library.Template.Controls.TemplateEditDate();
             this.editDenominazione = new Library.Template.Controls.TemplateEditText();
             this.editTotaleAcquisti = new Library.Template.Controls.TemplateEditDecimal();
             this.editTotaleVendite = new Library.Template.Controls.TemplateEditDecimal();
@@ -42,7 +42,7 @@ namespace Web.GUI.SAL
             this.editTotaleLiquidazioni = new Library.Template.Controls.TemplateEditDecimal();
             this.lblAndamento = new Gizmox.WebGUI.Forms.Label();
             this.btnCalcoloSAL = new Library.Controls.ButtonSeparatorV();
-            this.editStato = new Library.Template.Controls.TemplateEditStato();
+            this.editStato = new Library.Template.Controls.TemplateEditState();
             this.editNote = new Library.Template.Controls.TemplateEditText();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
@@ -149,7 +149,7 @@ namespace Web.GUI.SAL
             this.editData.TabIndex = 2;
             this.editData.Text = "EditControl";
             this.editData.Value = null;
-            this.editData.Confirm += new Library.Template.Controls.TemplateEditData.ConfirmHanlder(this.editData_Confirm);
+            this.editData.Confirm += new Library.Template.Controls.TemplateEditDate.ConfirmHanlder(this.editData_Confirm);
             // 
             // editDenominazione
             // 
@@ -398,7 +398,7 @@ namespace Web.GUI.SAL
 		#endregion
 
         private Library.Template.Controls.TemplateEditText editDenominazione;
-        private Library.Template.Controls.TemplateEditData editData;
+        private Library.Template.Controls.TemplateEditDate editData;
         private Library.Template.Controls.TemplateEditCombo editCommessa;
         private Library.Template.Controls.TemplateEditDecimal editTotaleVendite;
         private Library.Template.Controls.TemplateEditDecimal editTotaleAcquisti;
@@ -409,7 +409,7 @@ namespace Web.GUI.SAL
         private Library.Template.Controls.TemplateEditDecimal editTotalePagamenti;
         private Gizmox.WebGUI.Forms.Label lblAndamento;
         private Library.Controls.ButtonSeparatorV btnCalcoloSAL;
-        private Library.Template.Controls.TemplateEditStato editStato;
+        private Library.Template.Controls.TemplateEditState editStato;
         private Library.Template.Controls.TemplateEditText editNote;
 
 

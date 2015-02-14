@@ -31,7 +31,7 @@ namespace Web.GUI.Liquidazione
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.editData = new Library.Template.Controls.TemplateEditData();
+            this.editData = new Library.Template.Controls.TemplateEditDate();
             this.editFatturaVendita = new Library.Template.Controls.TemplateEditCombo();
             this.editImporto = new Library.Template.Controls.TemplateEditDecimal();
             this.textBox1 = new Library.Controls.TextBox();
@@ -255,7 +255,7 @@ namespace Web.GUI.Liquidazione
 		#endregion
 
         private Library.Template.Controls.TemplateEditCombo editFatturaVendita;
-        private Library.Template.Controls.TemplateEditData editData;
+        private Library.Template.Controls.TemplateEditDate editData;
         private Library.Template.Controls.TemplateEditDecimal editImporto;
         private Library.Template.Controls.TemplateEditText editNote;
         private Library.Controls.TextBox textBox1;

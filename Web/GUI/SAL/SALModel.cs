@@ -84,17 +84,13 @@ namespace Web.GUI.SAL
                     var today = DateTime.Today;
                     var data = sal.Data;
                     var fornitori = commessa.Fornitores;
-                    var cliente = commessa.Cliente;
                     var totaleAcquisti = BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, data.Value);
-                    var totaleVendite = BusinessLogic.SAL.GetTotaleFattureVendita(cliente, data.Value);
-                    var totalePagamenti = BusinessLogic.SAL.GetTotalePagamenti(fornitori, data.Value);
-                    var totaleLiquidazioni = BusinessLogic.SAL.GetTotaleLiquidazioni(cliente, data.Value);
-                    var statoSAL = BusinessLogic.SAL.GetStato(commessa, data.Value);
                     var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
                     var margine = UtilityValidation.GetDecimal(commessa.Margine);
                     var margineOperativo = importoLavori - totaleAcquisti;
-                    var statoDescrizione = GetStatoDescrizione(importoLavori, margine, margineOperativo, statoSAL);
-                    stato = statoDescrizione.ToString();
+                    var statoSAL = BusinessLogic.SAL.GetStato(commessa, data.Value);
+                    var _stato = GetStato(importoLavori, margine, margineOperativo, statoSAL);
+                    stato = _stato.ToString();
                 }
 
                 return stato;
@@ -284,23 +280,17 @@ namespace Web.GUI.SAL
                     var fornitori = commessa.Fornitores;
                     var cliente = commessa.Cliente;
 
-                    //lettura totali da Business Logic
                     var totaleAcquisti = BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, data.Value);
                     var totaleVendite = BusinessLogic.SAL.GetTotaleFattureVendita(cliente, data.Value);
                     var totalePagamenti = BusinessLogic.SAL.GetTotalePagamenti(fornitori, data.Value);
                     var totaleLiquidazioni = BusinessLogic.SAL.GetTotaleLiquidazioni(cliente, data.Value);
-                    var statoSAL = BusinessLogic.SAL.GetStato(commessa, data.Value);
-
-                    //calcolo e verifica margine operativo = importoLavori - totaleAcquisti
                     var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
                     var margine = UtilityValidation.GetDecimal(commessa.Margine);
                     var margineOperativo = importoLavori - totaleAcquisti;
-
-                    //valutazione dell'andamento del lavoro
-                    var statoDescrizione = GetStatoDescrizione(importoLavori, margine, margineOperativo, statoSAL);
+                    var statoSAL = BusinessLogic.SAL.GetStato(commessa, data.Value);
+                    var _stato = GetStato(importoLavori, margine, margineOperativo, statoSAL);
                    
-                    //binding dati in GUI
-                    editStato.Value = statoDescrizione.ToString();
+                    editStato.Value = _stato.ToString();
                     editTotaleAcquisti.Value = totaleAcquisti;
                     editTotaleVendite.Value = totaleVendite;
                     editTotalePagamenti.Value = totalePagamenti;
@@ -313,7 +303,7 @@ namespace Web.GUI.SAL
             }
         }
 
-        private StateDescriptionImage GetStatoDescrizione(decimal importoLavori, decimal margine, decimal margineOperativo, Tipi.StatoSAL statoSAL)
+        private StateDescriptionImage GetStato(decimal importoLavori, decimal margine, decimal margineOperativo, Tipi.StatoSAL statoSAL)
         {
             try
             {
@@ -338,8 +328,8 @@ namespace Web.GUI.SAL
                     descrizione = "Andamento del lavoro positivo. Il margine aziendale previsto è di " + _margine + " e il margine operativo si attesta a valori superiori pari a " + _margineOperativo + " per un importo lavori di " + _importoLavori;
                     stato = TypeState.Normal;
                 }
-                var statoDescrizione = new StateDescriptionImage(stato, descrizione);
-                return statoDescrizione;
+                var _stato = new StateDescriptionImage(stato, descrizione);
+                return _stato;
             }
             catch (Exception ex)
             {

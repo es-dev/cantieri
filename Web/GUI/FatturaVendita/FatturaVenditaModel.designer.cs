@@ -32,7 +32,7 @@ namespace Web.GUI.FatturaVendita
 		{
             this.editDescrizione = new Library.Template.Controls.TemplateEditText();
             this.editNumero = new Library.Template.Controls.TemplateEditText();
-            this.editData = new Library.Template.Controls.TemplateEditData();
+            this.editData = new Library.Template.Controls.TemplateEditDate();
             this.editCliente = new Library.Template.Controls.TemplateEditCombo();
             this.editTotale = new Library.Template.Controls.TemplateEditDecimal();
             this.editIVA = new Library.Template.Controls.TemplateEditDecimal();
@@ -41,7 +41,7 @@ namespace Web.GUI.FatturaVendita
             this.editTipoPagamento = new Library.Template.Controls.TemplateEditDropDown();
             this.editTotaleLiquidazioni = new Library.Template.Controls.TemplateEditDecimal();
             this.lblAndamento = new Gizmox.WebGUI.Forms.Label();
-            this.editStato = new Library.Template.Controls.TemplateEditStato();
+            this.editStato = new Library.Template.Controls.TemplateEditState();
             this.btnCalcoloTotali = new Library.Controls.ButtonSeparatorV();
             this.editNote = new Library.Template.Controls.TemplateEditText();
             this.container.SuspendLayout();
@@ -419,7 +419,7 @@ namespace Web.GUI.FatturaVendita
 		#endregion
 
         private Library.Template.Controls.TemplateEditCombo editCliente;
-        private Library.Template.Controls.TemplateEditData editData;
+        private Library.Template.Controls.TemplateEditDate editData;
         private Library.Template.Controls.TemplateEditText editNumero;
         private Library.Template.Controls.TemplateEditText editDescrizione;
         private Library.Template.Controls.TemplateEditDecimal editImponibile;
@@ -427,7 +427,7 @@ namespace Web.GUI.FatturaVendita
         private Library.Template.Controls.TemplateEditDecimal editTotale;
         private Library.Template.Controls.TemplateEditDropDown editTipoPagamento;
         private Library.Template.Controls.TemplateEditDropDown editScadenzaPagamento;
-        private Library.Template.Controls.TemplateEditStato editStato;
+        private Library.Template.Controls.TemplateEditState editStato;
         private Gizmox.WebGUI.Forms.Label lblAndamento;
         private Library.Template.Controls.TemplateEditDecimal editTotaleLiquidazioni;
         private Library.Controls.ButtonSeparatorV btnCalcoloTotali;

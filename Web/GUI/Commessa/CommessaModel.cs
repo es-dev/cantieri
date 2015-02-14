@@ -70,7 +70,7 @@ namespace Web.GUI.Commessa
                     editDenominazione.Value = obj.Denominazione;
                     editCodice.Value = obj.Codice;
                     editCAP.Value = obj.CAP;
-                    editComune.Value = new ComuniProvince.Comune(obj.Comune, obj.CodiceCatastale, obj.Provincia);
+                    editComune.Value = new Countries.City(obj.Comune, obj.CodiceCatastale, obj.Provincia);
                     editLocalita.Value = obj.Localita;
                     editIndirizzo.Value = obj.Indirizzo;
                     editCreazione.Value = obj.Creazione;
@@ -154,9 +154,9 @@ namespace Web.GUI.Commessa
                     obj.Denominazione = editDenominazione.Value;
                     obj.Codice = editCodice.Value;
                     obj.CAP = editCAP.Value;
-                    obj.Comune = editComune.Value.Denominazione;
-                    obj.CodiceCatastale = editComune.Value.CodiceCatastale;
-                    obj.Provincia = editComune.Value.Provincia;
+                    obj.Comune = editComune.Value.Description;
+                    obj.CodiceCatastale = editComune.Value.Code;
+                    obj.Provincia = editComune.Value.County;
                     obj.Localita = editLocalita.Value;
                     obj.Indirizzo = editIndirizzo.Value;
                     obj.Creazione = editCreazione.Value;

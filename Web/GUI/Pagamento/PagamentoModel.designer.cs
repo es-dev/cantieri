@@ -31,7 +31,7 @@ namespace Web.GUI.Pagamento
 		private void InitializeComponent()
 		{
             this.editFatturaAcquisto = new Library.Template.Controls.TemplateEditCombo();
-            this.editData = new Library.Template.Controls.TemplateEditData();
+            this.editData = new Library.Template.Controls.TemplateEditDate();
             this.editImporto = new Library.Template.Controls.TemplateEditDecimal();
             this.editNote = new Library.Template.Controls.TemplateEditText();
             this.editCodice = new Library.Template.Controls.TemplateEditText();
@@ -237,7 +237,7 @@ namespace Web.GUI.Pagamento
 
 		#endregion
 
-        private Library.Template.Controls.TemplateEditData editData;
+        private Library.Template.Controls.TemplateEditDate editData;
         private Library.Template.Controls.TemplateEditCombo editFatturaAcquisto;
         private Library.Template.Controls.TemplateEditDecimal editImporto;
         private Library.Template.Controls.TemplateEditText editNote;

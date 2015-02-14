@@ -39,7 +39,7 @@ namespace Web.GUI.AnagraficaCliente
             this.editCodice = new Library.Template.Controls.TemplateEditText();
             this.editPartitaIVA = new Library.Template.Controls.TemplateEditPartitaIva();
             this.editEmail = new Library.Template.Controls.TemplateEditEmail();
-            this.editComune = new Library.Template.Controls.TemplateEditComuneProvincia();
+            this.editComune = new Library.Template.Controls.TemplateEditCountry();
             this.editLocalita = new Library.Template.Controls.TemplateEditText();
             this.editNote = new Library.Template.Controls.TemplateEditText();
             this.container.SuspendLayout();
@@ -367,7 +367,7 @@ namespace Web.GUI.AnagraficaCliente
         private Library.Template.Controls.TemplateEditText editCodice;
         private Library.Template.Controls.TemplateEditPartitaIva editPartitaIVA;
         private Library.Template.Controls.TemplateEditEmail editEmail;
-        private Library.Template.Controls.TemplateEditComuneProvincia editComune;
+        private Library.Template.Controls.TemplateEditCountry editComune;
         private Library.Template.Controls.TemplateEditText editLocalita;
         private Library.Template.Controls.TemplateEditText editNote;
 

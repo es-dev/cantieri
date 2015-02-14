@@ -47,7 +47,7 @@ namespace Web.GUI.AnagraficaCliente
                     editRagioneSociale.Value = obj.RagioneSociale;
                     editIndirizzo.Value = obj.Indirizzo;
                     editCAP.Value = obj.CAP;
-                    editComune.Value = new ComuniProvince.Comune(obj.Comune, obj.CodiceCatastale, obj.Provincia);
+                    editComune.Value = new Countries.City(obj.Comune, obj.CodiceCatastale, obj.Provincia);
                     editLocalita.Value = obj.Localita;
                     editTelefono.Value = obj.Telefono;
                     editFAX.Value = obj.Fax;
@@ -74,10 +74,10 @@ namespace Web.GUI.AnagraficaCliente
                     obj.RagioneSociale = editRagioneSociale.Value;
                     obj.Indirizzo = editIndirizzo.Value;
                     obj.CAP = editCAP.Value;
-                    obj.Comune = editComune.Value.Denominazione;
+                    obj.Comune = editComune.Value.Description;
                     obj.Localita = editLocalita.Value;
-                    obj.CodiceCatastale = editComune.Value.CodiceCatastale;
-                    obj.Provincia = editComune.Value.Provincia;
+                    obj.CodiceCatastale = editComune.Value.Code;
+                    obj.Provincia = editComune.Value.County;
                     obj.Telefono = editTelefono.Value;
                     obj.Fax = editFAX.Value;
                     obj.Mobile = editMobile.Value;

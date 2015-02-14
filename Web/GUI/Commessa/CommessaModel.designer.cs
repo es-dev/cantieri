@@ -32,8 +32,8 @@ namespace Web.GUI.Commessa
 		{
             this.editAzienda = new Library.Template.Controls.TemplateEditCombo();
             this.editNumero = new Library.Template.Controls.TemplateEditText();
-            this.editCreazione = new Library.Template.Controls.TemplateEditData();
-            this.editScadenza = new Library.Template.Controls.TemplateEditData();
+            this.editCreazione = new Library.Template.Controls.TemplateEditDate();
+            this.editScadenza = new Library.Template.Controls.TemplateEditDate();
             this.editCAP = new Library.Template.Controls.TemplateEditCap();
             this.editIndirizzo = new Library.Template.Controls.TemplateEditText();
             this.editDenominazione = new Library.Template.Controls.TemplateEditText();
@@ -42,8 +42,8 @@ namespace Web.GUI.Commessa
             this.editImporto = new Library.Template.Controls.TemplateEditDecimal();
             this.editCodice = new Library.Template.Controls.TemplateEditText();
             this.editStato = new Library.Template.Controls.TemplateEditDropDown();
-            this.editInizioLavori = new Library.Template.Controls.TemplateEditData();
-            this.editFineLavori = new Library.Template.Controls.TemplateEditData();
+            this.editInizioLavori = new Library.Template.Controls.TemplateEditDate();
+            this.editFineLavori = new Library.Template.Controls.TemplateEditDate();
             this.editEstremiContratto = new Library.Template.Controls.TemplateEditText();
             this.editPercentualeAvanzamento = new Library.Template.Controls.TemplateEditDecimal();
             this.editMargine = new Library.Template.Controls.TemplateEditDecimal();
@@ -58,7 +58,7 @@ namespace Web.GUI.Commessa
             this.btnPagamenti = new Library.Controls.ButtonSeparatorV();
             this.btnLiquidazioni = new Library.Controls.ButtonSeparatorV();
             this.btnSAL = new Library.Controls.ButtonSeparatorV();
-            this.editComune = new Library.Template.Controls.TemplateEditComuneProvincia();
+            this.editComune = new Library.Template.Controls.TemplateEditCountry();
             this.editLocalita = new Library.Template.Controls.TemplateEditText();
             this.editNote = new Library.Template.Controls.TemplateEditText();
             this.btnCalcoloAvanzamentoLavori = new Library.Controls.ButtonSeparatorV();
@@ -811,8 +811,8 @@ namespace Web.GUI.Commessa
 
         private Library.Template.Controls.TemplateEditText editNumero;
         private Library.Template.Controls.TemplateEditCombo editAzienda;
-        private Library.Template.Controls.TemplateEditData editScadenza;
-        private Library.Template.Controls.TemplateEditData editCreazione;
+        private Library.Template.Controls.TemplateEditDate editScadenza;
+        private Library.Template.Controls.TemplateEditDate editCreazione;
         private Library.Template.Controls.TemplateEditText editRiferimento;
         private Library.Template.Controls.TemplateEditText editDescrizione;
         private Library.Template.Controls.TemplateEditText editDenominazione;
@@ -824,8 +824,8 @@ namespace Web.GUI.Commessa
         private Library.Template.Controls.TemplateEditDecimal editMargine;
         private Library.Template.Controls.TemplateEditDecimal editImportoAvanzamentoLavori;
         private Library.Template.Controls.TemplateEditText editEstremiContratto;
-        private Library.Template.Controls.TemplateEditData editInizioLavori;
-        private Library.Template.Controls.TemplateEditData editFineLavori;
+        private Library.Template.Controls.TemplateEditDate editInizioLavori;
+        private Library.Template.Controls.TemplateEditDate editFineLavori;
         private Library.Template.Controls.TemplateEditDecimal editPercentualeAvanzamento;
         private Library.Template.Controls.TemplateEditDecimal editImportoPerizie;
         private Gizmox.WebGUI.Forms.Label label4;
@@ -837,7 +837,7 @@ namespace Web.GUI.Commessa
         private Library.Controls.ButtonSeparatorV btnSAL;
         private Library.Controls.ButtonSeparatorV btnLiquidazioni;
         private Library.Controls.ButtonSeparatorV btnPagamenti;
-        private Library.Template.Controls.TemplateEditComuneProvincia editComune;
+        private Library.Template.Controls.TemplateEditCountry editComune;
         private Library.Template.Controls.TemplateEditText editLocalita;
         private Library.Template.Controls.TemplateEditText editNote;
         private Library.Controls.ButtonSeparatorV btnCalcoloAvanzamentoLavori;

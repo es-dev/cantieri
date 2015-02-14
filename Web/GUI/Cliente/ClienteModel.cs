@@ -49,7 +49,7 @@ namespace Web.GUI.Cliente
                     editRagioneSociale.Value = obj.RagioneSociale;
                     editIndirizzo.Value = obj.Indirizzo;
                     editCAP.Value = obj.CAP;
-                    editComune.Value = new ComuniProvince.Comune(obj.Comune, obj.CodiceCatastale, obj.Provincia);
+                    editComune.Value = new Countries.City(obj.Comune, obj.CodiceCatastale, obj.Provincia);
                     editTelefono.Value = obj.Telefono;
                     editFAX.Value = obj.Fax;
                     editMobile.Value = obj.Mobile;
@@ -113,8 +113,9 @@ namespace Web.GUI.Cliente
                     var totaleLiquidazioni = BusinessLogic.Cliente.GetTotaleLiquidazioni(cliente, today);
                     var fattureInsolute = BusinessLogic.Cliente.GetFattureInsolute(fatture);
                     var fattureNonLiquidate = BusinessLogic.Cliente.GetFattureNonLiquidate(fatture);
-                    var statoDescrizione = GetStato(totaleFatture, totaleLiquidazioni, fattureInsolute, fattureNonLiquidate);
-                    stato = statoDescrizione.ToString();
+                    var statoCliente = BusinessLogic.Cliente.GetStato(cliente);
+                    var _stato = GetStato(totaleFatture, totaleLiquidazioni, fattureInsolute, fattureNonLiquidate, statoCliente);
+                    stato = _stato.ToString();
                 }
                 return stato;
             }
@@ -157,9 +158,9 @@ namespace Web.GUI.Cliente
                     obj.RagioneSociale = editRagioneSociale.Value;
                     obj.Indirizzo = editIndirizzo.Value;
                     obj.CAP = editCAP.Value;
-                    obj.Comune = editComune.Value.Denominazione;
-                    obj.CodiceCatastale = editComune.Value.CodiceCatastale;
-                    obj.Provincia = editComune.Value.Provincia;
+                    obj.Comune = editComune.Value.Description;
+                    obj.CodiceCatastale = editComune.Value.Code;
+                    obj.Provincia = editComune.Value.County;
                     obj.Localita = editLocalita.Value;
                     obj.Telefono = editTelefono.Value;
                     obj.Fax = editFAX.Value;
@@ -234,7 +235,7 @@ namespace Web.GUI.Cliente
                 {
                     editCodiceCliente.Value = anagraficaCliente.Codice;
                     editCAP.Value = anagraficaCliente.CAP;
-                    editComune.Value = new Library.Controls.ComuniProvince.Comune(anagraficaCliente.Comune, anagraficaCliente.Provincia);
+                    editComune.Value = new Library.Controls.Countries.City(anagraficaCliente.Comune, anagraficaCliente.Provincia);
                     editEmail.Value = anagraficaCliente.Email;
                     editFAX.Value = anagraficaCliente.Fax;
                     editIndirizzo.Value = anagraficaCliente.Indirizzo;

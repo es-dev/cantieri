@@ -47,7 +47,7 @@ namespace Web.GUI.Azienda
                     editCodice.Value = obj.Codice;
                     editDenominazione.Value = obj.Denominazione;
                     editCAP.Value = obj.CAP;
-                    editComune.Value = new ComuniProvince.Comune(obj.Comune, obj.CodiceCatastale, obj.Provincia);
+                    editComune.Value = new Countries.City(obj.Comune, obj.CodiceCatastale, obj.Provincia);
                     editIndirizzo.Value = obj.Indirizzo;
                     editLocalita.Value = obj.Localita;
                     editNumeroDipendenti.Value = obj.Dipendenti;
@@ -74,9 +74,9 @@ namespace Web.GUI.Azienda
                     obj.Codice = editCodice.Value;
                     obj.Denominazione = editDenominazione.Value;
                     obj.CAP = editCAP.Value;
-                    obj.Comune = editComune.Value.Denominazione;
-                    obj.CodiceCatastale = editComune.Value.CodiceCatastale;
-                    obj.Provincia = editComune.Value.Provincia;
+                    obj.Comune = editComune.Value.Description;
+                    obj.CodiceCatastale = editComune.Value.Code;
+                    obj.Provincia = editComune.Value.County;
                     obj.Dipendenti = editNumeroDipendenti.Value;
                     obj.Indirizzo = editIndirizzo.Value;
                     obj.Localita = editLocalita.Value;

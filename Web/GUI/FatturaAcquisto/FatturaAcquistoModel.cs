@@ -114,17 +114,14 @@ namespace Web.GUI.FatturaAcquisto
                 else
                 {
                     var today = DateTime.Today;
-                    var _scadenzaPagamento = fatturaAcquisto.ScadenzaPagamento;
                     var imponibile = UtilityValidation.GetDecimal(fatturaAcquisto.Imponibile);
                     var iva = UtilityValidation.GetDecimal(fatturaAcquisto.IVA);
-                    var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(_scadenzaPagamento);
                     var scadenza = BusinessLogic.Fattura.GetScadenza(fatturaAcquisto);
                     var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
                     var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(fatturaAcquisto, today);
                     var statoFattura = BusinessLogic.Fattura.GetStato(fatturaAcquisto);
-
-                    var statoDescrizione = GetStato(today, scadenza, totaleFattura, totalePagamenti, statoFattura);
-                    stato = statoDescrizione.ToString();
+                    var _stato = GetStato(today, scadenza, totaleFattura, totalePagamenti, statoFattura);
+                    stato = _stato.ToString();
                 }
                 return stato;
             }
