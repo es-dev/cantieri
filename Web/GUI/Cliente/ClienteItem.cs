@@ -35,10 +35,18 @@ namespace Web.GUI.Cliente
                     if (obj.Codice != null)
                         codice = obj.Codice;
                     infoCodice.Text = codice;
-                    var pIva = "N/D";
-                    if (obj.PIva != null)
-                        pIva = obj.PIva;
-                    infoPartitaIVA.Text = "P.IVA " + pIva;
+                    var indirizzo = "Non definito";
+                    if (obj.Indirizzo != null)
+                    {
+                        indirizzo = obj.Indirizzo;
+                        if (obj.CAP != null)
+                            indirizzo += " - " + obj.CAP;
+                        if (obj.Comune != null)
+                            indirizzo += " - " + obj.Comune;
+                        if (obj.Provincia != null)
+                            indirizzo += " (" + obj.Provincia + ")";
+                    }
+                    infoIndirizzo.Text = indirizzo;
                     var commessa = obj.Commessa;
                     if (commessa != null)
                         infoCommesssa.Text = "Commessa " + commessa.Codice + " - " + commessa.Denominazione;

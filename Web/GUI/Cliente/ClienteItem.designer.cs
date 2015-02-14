@@ -33,7 +33,7 @@ namespace Web.GUI.Cliente
             this.infoCodice = new Gizmox.WebGUI.Forms.Label();
             this.infoImage = new Gizmox.WebGUI.Forms.PictureBox();
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
-            this.infoPartitaIVA = new Gizmox.WebGUI.Forms.Label();
+            this.infoIndirizzo = new Gizmox.WebGUI.Forms.Label();
             this.infoRagioneSociale = new Gizmox.WebGUI.Forms.Label();
             this.infoLiquidazioneTotale = new Gizmox.WebGUI.Forms.Label();
             this.imgStato = new Gizmox.WebGUI.Forms.PictureBox();
@@ -47,7 +47,7 @@ namespace Web.GUI.Cliente
             // container
             // 
             this.container.Controls.Add(this.infoCommesssa);
-            this.container.Controls.Add(this.infoPartitaIVA);
+            this.container.Controls.Add(this.infoIndirizzo);
             this.container.Controls.Add(this.imgStato);
             this.container.Controls.Add(this.infoLiquidazioneTotale);
             // 
@@ -85,18 +85,18 @@ namespace Web.GUI.Cliente
             this.panelLeft.Size = new System.Drawing.Size(83, 96);
             this.panelLeft.TabIndex = 0;
             // 
-            // infoPartitaIVA
+            // infoIndirizzo
             // 
-            this.infoPartitaIVA.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
+            this.infoIndirizzo.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.infoPartitaIVA.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoPartitaIVA.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoPartitaIVA.Location = new System.Drawing.Point(90, 29);
-            this.infoPartitaIVA.Name = "infoPartitaIVA";
-            this.infoPartitaIVA.Size = new System.Drawing.Size(305, 16);
-            this.infoPartitaIVA.TabIndex = 1;
-            this.infoPartitaIVA.Text = "Partita IVA";
+            this.infoIndirizzo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoIndirizzo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.infoIndirizzo.Location = new System.Drawing.Point(90, 29);
+            this.infoIndirizzo.Name = "infoIndirizzo";
+            this.infoIndirizzo.Size = new System.Drawing.Size(302, 20);
+            this.infoIndirizzo.TabIndex = 1;
+            this.infoIndirizzo.Text = "Indirizzo";
             // 
             // infoRagioneSociale
             // 
@@ -141,7 +141,7 @@ namespace Web.GUI.Cliente
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoCommesssa.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoCommesssa.ForeColor = System.Drawing.Color.Black;
-            this.infoCommesssa.Location = new System.Drawing.Point(90, 48);
+            this.infoCommesssa.Location = new System.Drawing.Point(90, 52);
             this.infoCommesssa.Name = "infoCommesssa";
             this.infoCommesssa.Size = new System.Drawing.Size(295, 20);
             this.infoCommesssa.TabIndex = 1;
@@ -170,7 +170,7 @@ namespace Web.GUI.Cliente
         private Gizmox.WebGUI.Forms.Label infoCodice;
         private Gizmox.WebGUI.Forms.PictureBox infoImage;
         private Gizmox.WebGUI.Forms.Panel panelLeft;
-        private Gizmox.WebGUI.Forms.Label infoPartitaIVA;
+        private Gizmox.WebGUI.Forms.Label infoIndirizzo;
         private Gizmox.WebGUI.Forms.Label infoRagioneSociale;
         private Gizmox.WebGUI.Forms.Label infoCommesssa;
         private Gizmox.WebGUI.Forms.PictureBox imgStato;
