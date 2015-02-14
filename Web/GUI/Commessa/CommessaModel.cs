@@ -168,6 +168,35 @@ namespace Web.GUI.Commessa
             }
         }
 
+        private void btnCalcoloAvanzamentoLavori_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CalcoloAvanzamentoLavori();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void CalcoloAvanzamentoLavori()
+        {
+            try
+            {
+                var obj = (WcfService.Dto.CommessaDto)Model;
+                var importoAvanzamentoLavori = BusinessLogic.Commessa.GetImportoAvanzamentoLavori(obj);
+                var percentualeAvanzamento = BusinessLogic.Commessa.GetPercentualeAvanzamento(obj);
+
+                editPercentualeAvanzamento.Value = percentualeAvanzamento;
+                editImportoAvanzamentoLavori.Value = importoAvanzamentoLavori;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         
 
 	}

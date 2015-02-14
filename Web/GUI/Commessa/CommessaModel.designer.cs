@@ -60,6 +60,7 @@ namespace Web.GUI.Commessa
             this.btnSAL = new Library.Controls.ButtonSeparatorV();
             this.editComune = new Library.Template.Controls.TemplateEditComuneProvincia();
             this.editLocalita = new Library.Template.Controls.TemplateEditText();
+            this.btnCalcoloAvanzamentoLavori = new Library.Controls.ButtonSeparatorV();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -133,6 +134,7 @@ namespace Web.GUI.Commessa
             // 
             // panelCommands
             // 
+            this.panelCommands.Controls.Add(this.btnCalcoloAvanzamentoLavori);
             this.panelCommands.Controls.Add(this.btnSAL);
             this.panelCommands.Controls.Add(this.btnLiquidazioni);
             this.panelCommands.Controls.Add(this.btnPagamenti);
@@ -146,6 +148,7 @@ namespace Web.GUI.Commessa
             this.panelCommands.Controls.SetChildIndex(this.btnPagamenti, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnLiquidazioni, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSAL, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnCalcoloAvanzamentoLavori, 0);
             // 
             // btnDelete
             // 
@@ -406,6 +409,7 @@ namespace Web.GUI.Commessa
             this.editStato.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
             this.editStato.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editStato.Changed = true;
+            this.editStato.DisplayValues = null;
             this.editStato.Editing = false;
             this.editStato.Items = null;
             this.editStato.Label = "Stato";
@@ -496,11 +500,11 @@ namespace Web.GUI.Commessa
             this.editPercentualeAvanzamento.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editPercentualeAvanzamento.Changed = true;
             this.editPercentualeAvanzamento.Editing = false;
-            this.editPercentualeAvanzamento.Label = "Percentuale avanzamento";
+            this.editPercentualeAvanzamento.Label = "Percentuale";
             this.editPercentualeAvanzamento.LabelWidth = 175;
             this.editPercentualeAvanzamento.Location = new System.Drawing.Point(25, 854);
             this.editPercentualeAvanzamento.Name = "editPercentualeAvanzamento";
-            this.editPercentualeAvanzamento.ReadOnly = false;
+            this.editPercentualeAvanzamento.ReadOnly = true;
             this.editPercentualeAvanzamento.Required = false;
             this.editPercentualeAvanzamento.Size = new System.Drawing.Size(792, 30);
             this.editPercentualeAvanzamento.TabIndex = 19;
@@ -544,11 +548,10 @@ namespace Web.GUI.Commessa
             this.editImportoAvanzamentoLavori.LabelWidth = 175;
             this.editImportoAvanzamentoLavori.Location = new System.Drawing.Point(25, 818);
             this.editImportoAvanzamentoLavori.Name = "editImportoAvanzamentoLavori";
-            this.editImportoAvanzamentoLavori.ReadOnly = false;
+            this.editImportoAvanzamentoLavori.ReadOnly = true;
             this.editImportoAvanzamentoLavori.Required = false;
             this.editImportoAvanzamentoLavori.Size = new System.Drawing.Size(792, 30);
             this.editImportoAvanzamentoLavori.TabIndex = 18;
-            this.editImportoAvanzamentoLavori.Text = "TemplateEditNumeric";
             this.editImportoAvanzamentoLavori.Value = null;
             // 
             // editImportoPerizie
@@ -659,7 +662,7 @@ namespace Web.GUI.Commessa
             this.btnFornitori.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnFornitori.ImageButton = "";
             this.btnFornitori.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnFornitori.Location = new System.Drawing.Point(0, 217);
+            this.btnFornitori.Location = new System.Drawing.Point(0, 288);
             this.btnFornitori.Name = "btnFornitori";
             this.btnFornitori.Size = new System.Drawing.Size(100, 72);
             this.btnFornitori.TabIndex = 1002;
@@ -673,7 +676,7 @@ namespace Web.GUI.Commessa
             this.btnPagamenti.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnPagamenti.ImageButton = "";
             this.btnPagamenti.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnPagamenti.Location = new System.Drawing.Point(0, 289);
+            this.btnPagamenti.Location = new System.Drawing.Point(0, 360);
             this.btnPagamenti.Name = "btnPagamenti";
             this.btnPagamenti.Size = new System.Drawing.Size(100, 72);
             this.btnPagamenti.TabIndex = 1002;
@@ -687,7 +690,7 @@ namespace Web.GUI.Commessa
             this.btnLiquidazioni.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnLiquidazioni.ImageButton = "";
             this.btnLiquidazioni.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnLiquidazioni.Location = new System.Drawing.Point(0, 361);
+            this.btnLiquidazioni.Location = new System.Drawing.Point(0, 432);
             this.btnLiquidazioni.Name = "btnLiquidazioni";
             this.btnLiquidazioni.Size = new System.Drawing.Size(100, 72);
             this.btnLiquidazioni.TabIndex = 1002;
@@ -701,7 +704,7 @@ namespace Web.GUI.Commessa
             this.btnSAL.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnSAL.ImageButton = "";
             this.btnSAL.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnSAL.Location = new System.Drawing.Point(0, 433);
+            this.btnSAL.Location = new System.Drawing.Point(0, 504);
             this.btnSAL.Name = "btnSAL";
             this.btnSAL.Size = new System.Drawing.Size(100, 72);
             this.btnSAL.TabIndex = 1002;
@@ -751,6 +754,20 @@ namespace Web.GUI.Commessa
             this.editLocalita.Text = "EditControl";
             this.editLocalita.Value = null;
             // 
+            // btnCalcoloAvanzamentoLavori
+            // 
+            this.btnCalcoloAvanzamentoLavori.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.btnCalcoloAvanzamentoLavori.BackColor = System.Drawing.Color.Transparent;
+            this.btnCalcoloAvanzamentoLavori.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.btnCalcoloAvanzamentoLavori.ImageButton = "";
+            this.btnCalcoloAvanzamentoLavori.ImageSeparator = "Images.separator_ht_small.png";
+            this.btnCalcoloAvanzamentoLavori.Location = new System.Drawing.Point(0, 216);
+            this.btnCalcoloAvanzamentoLavori.Name = "btnCalcoloAvanzamentoLavori";
+            this.btnCalcoloAvanzamentoLavori.Size = new System.Drawing.Size(100, 72);
+            this.btnCalcoloAvanzamentoLavori.TabIndex = 1002;
+            this.btnCalcoloAvanzamentoLavori.TextButton = "Calcolo stato lavori";
+            this.btnCalcoloAvanzamentoLavori.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnCalcoloAvanzamentoLavori_Click);
+            // 
             // CommessaModel
             // 
             this.Location = new System.Drawing.Point(0, -168);
@@ -796,6 +813,7 @@ namespace Web.GUI.Commessa
         private Library.Controls.ButtonSeparatorV btnPagamenti;
         private Library.Template.Controls.TemplateEditComuneProvincia editComune;
         private Library.Template.Controls.TemplateEditText editLocalita;
+        private Library.Controls.ButtonSeparatorV btnCalcoloAvanzamentoLavori;
 
 
     }
