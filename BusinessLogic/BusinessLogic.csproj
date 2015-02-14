@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="Articolo.cs" />
     <Compile Include="Cliente.cs" />
+    <Compile Include="Commessa.cs" />
     <Compile Include="Fattura.cs" />
     <Compile Include="Fornitore.cs" />
     <Compile Include="Liquidazione.cs" />
