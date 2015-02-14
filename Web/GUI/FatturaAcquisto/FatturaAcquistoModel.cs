@@ -301,12 +301,12 @@ namespace Web.GUI.FatturaAcquisto
                 var ritardo = BusinessLogic.Fattura.GetRitardo(data, scadenza);
                 if (statoFattura == Tipi.StatoFattura.Insoluta)
                 {
-                    descrizione = "La fattura risulta insoluta. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura risulta scaduta il  " + scadenza.ToString("dd/MM/yyyy") + " con un ritardo di pagamento pari a " + ritardo;
+                    descrizione = "La fattura risulta insoluta. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura risulta scaduta il " + scadenza.ToString("dd/MM/yyyy") + " con un ritardo di pagamento pari a " + ritardo;
                     stato = TypeState.Critical;
                 }
                 else if (statoFattura == Tipi.StatoFattura.NonPagata)
                 {
-                    descrizione = "La fattura risulta in pagamento. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura scade il  " + scadenza.ToString("dd/MM/yyyy");
+                    descrizione = "La fattura risulta in pagamento. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura scade il " + scadenza.ToString("dd/MM/yyyy");
                     stato = TypeState.Warning;
                 }
                 else if (statoFattura == Tipi.StatoFattura.Pagata)

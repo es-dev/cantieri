@@ -161,6 +161,7 @@
     <Content Include="ESCantieriConnection%282015-02-14 11-45-01%29.rlinq.sql" />
     <Content Include="ESCantieriConnection%282015-02-14 13-54-34%29.rlinq.sql" />
     <Content Include="ESCantieriConnection%282015-02-14 22-20-50%29.rlinq.sql" />
+    <Content Include="ESCantieriConnection%282015-02-14 23-08-43%29.rlinq.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ES.Library\ES.Library.csproj">
