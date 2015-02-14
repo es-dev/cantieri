@@ -34,11 +34,19 @@ namespace Web.GUI.Commessa
             this.infoImage = new Gizmox.WebGUI.Forms.PictureBox();
             this.infoDenominazione = new Gizmox.WebGUI.Forms.Label();
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
-            this.infoAzienda = new Gizmox.WebGUI.Forms.Label();
             this.infoDescrizione = new Gizmox.WebGUI.Forms.Label();
+            this.imgStato = new Gizmox.WebGUI.Forms.PictureBox();
+            this.infoStato = new Gizmox.WebGUI.Forms.Label();
+            this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgStato)).BeginInit();
             this.SuspendLayout();
+            // 
+            // container
+            // 
+            this.container.Controls.Add(this.infoStato);
+            this.container.Controls.Add(this.imgStato);
             // 
             // infoCodice
             // 
@@ -86,20 +94,6 @@ namespace Web.GUI.Commessa
             this.panelLeft.Size = new System.Drawing.Size(83, 96);
             this.panelLeft.TabIndex = 0;
             // 
-            // infoAzienda
-            // 
-            this.infoAzienda.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.infoAzienda.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.infoAzienda.ForeColor = System.Drawing.Color.DarkRed;
-            this.infoAzienda.Location = new System.Drawing.Point(91, 72);
-            this.infoAzienda.Name = "infoAzienda";
-            this.infoAzienda.Size = new System.Drawing.Size(305, 18);
-            this.infoAzienda.TabIndex = 1;
-            this.infoAzienda.Text = "Azienda";
-            this.infoAzienda.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
             // infoDescrizione
             // 
             this.infoDescrizione.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -109,22 +103,46 @@ namespace Web.GUI.Commessa
             this.infoDescrizione.TabIndex = 2;
             this.infoDescrizione.Text = "Descrizione";
             // 
+            // imgStato
+            // 
+            this.imgStato.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.imgStato.BackColor = System.Drawing.Color.Transparent;
+            this.imgStato.Location = new System.Drawing.Point(369, 74);
+            this.imgStato.Name = "imgStato";
+            this.imgStato.Size = new System.Drawing.Size(20, 20);
+            this.imgStato.SizeMode = Gizmox.WebGUI.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgStato.TabIndex = 3;
+            this.imgStato.TabStop = false;
+            // 
+            // infoStato
+            // 
+            this.infoStato.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.infoStato.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoStato.ForeColor = System.Drawing.Color.DarkRed;
+            this.infoStato.Location = new System.Drawing.Point(91, 75);
+            this.infoStato.Name = "infoStato";
+            this.infoStato.Size = new System.Drawing.Size(265, 16);
+            this.infoStato.TabIndex = 1;
+            this.infoStato.Text = "Scadenza lavori dd/MM/yyyy";
+            this.infoStato.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // CommessaItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Controls.Add(this.infoDescrizione);
-            this.Controls.Add(this.infoAzienda);
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.infoDenominazione);
+            this.Controls.Add(this.infoDescrizione);
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.CommessaItem_ItemClick);
             this.Controls.SetChildIndex(this.container, 0);
+            this.Controls.SetChildIndex(this.infoDescrizione, 0);
             this.Controls.SetChildIndex(this.infoDenominazione, 0);
             this.Controls.SetChildIndex(this.panelLeft, 0);
-            this.Controls.SetChildIndex(this.infoAzienda, 0);
-            this.Controls.SetChildIndex(this.infoDescrizione, 0);
+            this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imgStato)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -135,7 +153,8 @@ namespace Web.GUI.Commessa
         private Gizmox.WebGUI.Forms.PictureBox infoImage;
         private Gizmox.WebGUI.Forms.Label infoDenominazione;
         private Gizmox.WebGUI.Forms.Panel panelLeft;
-        private Gizmox.WebGUI.Forms.Label infoAzienda;
         private Gizmox.WebGUI.Forms.Label infoDescrizione;
+        private Gizmox.WebGUI.Forms.Label infoStato;
+        private Gizmox.WebGUI.Forms.PictureBox imgStato;
 	}
 }

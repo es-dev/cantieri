@@ -168,12 +168,6 @@ namespace Web.GUI.Commessa
             }
         }
 
-        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-     
         
 
 	}
