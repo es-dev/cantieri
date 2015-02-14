@@ -1,3 +1,4 @@
+using BusinessLogic;
 using Library.Code;
 using Library.Code.Enum;
 using Library.Template.MVVM;
@@ -53,9 +54,9 @@ namespace Web.GUI.Cliente
                     editLocalita.Value = obj.Localita;
                     editPartitaIVA.Value = obj.PIva;
                     editNote.Value = obj.Note;
-                    editTotaleFattureVendita.Value = obj.TotaleFattureVendita;
-                    editStato.Value = obj.Stato;
-                    editTotaleLiquidazioni.Value = obj.TotaleLiquidazioni;
+                    editTotaleFattureVendita.Value =GetTotaleFattureVendita(obj);
+                    editStato.Value = GetStato(obj);
+                    editTotaleLiquidazioni.Value = GetTotaleLiquidazioni(obj);
                     var commessa = obj.Commessa;
                     if (commessa != null)
                     {
@@ -69,6 +70,65 @@ namespace Web.GUI.Cliente
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private decimal GetTotaleLiquidazioni(WcfService.Dto.ClienteDto cliente)
+        {
+            try
+            {
+                var today = DateTime.Today;
+                decimal totaleLiquidazioni = BusinessLogic.Cliente.GetTotaleLiquidazioni(cliente, today);
+                return totaleLiquidazioni;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        private string GetStato(WcfService.Dto.ClienteDto cliente)
+        {
+            try
+            {
+                var stato = "N/D";
+                var commessa = cliente.Commessa;
+                var statoCommessa = commessa.Stato;
+                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                    stato = cliente.Stato;
+                else
+                {
+                    var today = DateTime.Today;
+                    var fatture = cliente.FatturaVenditas;
+                    var totaleFatture = BusinessLogic.Cliente.GetTotaleFatture(cliente, today);
+                    var totaleLiquidazioni = BusinessLogic.Cliente.GetTotaleLiquidazioni(cliente, today);
+                    var fattureInsolute = BusinessLogic.Cliente.GetFattureInsolute(fatture);
+                    var fattureNonLiquidate = BusinessLogic.Cliente.GetFattureNonLiquidate(fatture);
+                    var statoDescrizione = GetStatoDescrizione(totaleFatture, totaleLiquidazioni, fattureInsolute, fattureNonLiquidate);
+                    stato = statoDescrizione.ToString();
+                }
+                return stato;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private decimal GetTotaleFattureVendita(WcfService.Dto.ClienteDto cliente)
+        {
+            try
+            {
+                var today = DateTime.Today;
+                decimal totaleFattureVendita = BusinessLogic.Cliente.GetTotaleFatture(cliente, today);
+                return totaleFattureVendita;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
         }
 
         public override void BindModel(object model)

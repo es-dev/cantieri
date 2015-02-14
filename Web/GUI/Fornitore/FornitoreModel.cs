@@ -54,9 +54,9 @@ namespace Web.GUI.Fornitore
                     editPartitaIVA.Value = obj.PIva;
                     editLocalita.Value = obj.Localita;
                     editNote.Value = obj.Note;
-                    editTotaleFattureAcquisto.Value = obj.TotaleFattureAcquisto;
-                    editStato.Value = obj.Stato;
-                    editTotalePagamenti.Value = obj.TotalePagamenti;
+                    editTotaleFattureAcquisto.Value = GetTotaleFatturaAcquisto(obj);
+                    editStato.Value = GetStato(obj);
+                    editTotalePagamenti.Value = GetTotalePagamenti(obj);
                     var commessa = obj.Commessa;
                     if (commessa != null)
                     {
@@ -70,6 +70,68 @@ namespace Web.GUI.Fornitore
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private decimal GetTotalePagamenti(WcfService.Dto.FornitoreDto fornitore)
+        {
+            try
+            {
+                var today = DateTime.Today;
+                decimal totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamenti(fornitore, today);
+                return totalePagamenti;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        private string GetStato(WcfService.Dto.FornitoreDto fornitore)
+        {
+            try
+            {
+                var stato = "N/D";
+                var commessa = fornitore.Commessa;
+                var statoCommessa = commessa.Stato;
+                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                    stato = fornitore.Stato;
+                else
+                {
+                    var today = DateTime.Today;
+                    var fatture = fornitore.FatturaAcquistos;
+                    var totaleFatture = BusinessLogic.Fornitore.GetTotaleFatture(fornitore, today);
+                    var totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamenti(fornitore, today);
+                    var fattureInsolute = BusinessLogic.Fornitore.GetFattureInsolute(fatture);
+                    var fattureNonPagate = BusinessLogic.Fornitore.GetFattureNonPagate(fatture);
+                    var statoFornitore = BusinessLogic.Fornitore.GetStato(fornitore);
+
+                    var statoDescrizione = GetStatoDescrizione(totaleFatture, totalePagamenti, fattureInsolute, fattureNonPagate, statoFornitore);
+                    stato = statoDescrizione.ToString();
+                }
+                return stato;
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private decimal GetTotaleFatturaAcquisto(WcfService.Dto.FornitoreDto fornitore)
+        {
+            try
+            {
+                var today = DateTime.Today;
+                decimal totaleFatturaAcquisto = BusinessLogic.Fornitore.GetTotaleFatture(fornitore, today);
+                return totaleFatturaAcquisto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
         }
 
         public override void BindModel(object model)
