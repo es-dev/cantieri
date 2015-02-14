@@ -82,8 +82,8 @@ namespace Web.GUI.Commessa
                     editNote.Value = obj.Note;
                     editImporto.Value = obj.Importo;
                     editMargine.Value = obj.Margine;
-                    editImportoAvanzamentoLavori.Value = obj.ImportoAvanzamento;
-                    editPercentualeAvanzamento.Value = obj.Percentuale;
+                    editImportoAvanzamentoLavori.Value = GetImportoAvanzamentLavori(obj);
+                    editPercentualeAvanzamento.Value = GetPercentualeAvanzamento(obj);
                     editEstremiContratto.Value = obj.EstremiContratto;
                     editOggetto.Value = obj.Oggetto;
                     editImportoPerizie.Value = obj.ImportoPerizie;
@@ -101,6 +101,47 @@ namespace Web.GUI.Commessa
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private decimal GetImportoAvanzamentLavori(WcfService.Dto.CommessaDto commessa)
+        {
+            try
+            {
+                decimal importoAvanzamentoLavori = 0;
+                var statoCommessa = commessa.Stato;
+                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                    importoAvanzamentoLavori = UtilityValidation.GetDecimal(commessa.ImportoAvanzamento);
+                else
+                {
+                    importoAvanzamentoLavori = BusinessLogic.Commessa.GetImportoAvanzamentoLavori(commessa);
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        private decimal GetPercentualeAvanzamento(WcfService.Dto.CommessaDto commessa)
+        {
+            try
+            {
+                decimal percentualeAvanzamento = 0;
+                var statoCommessa = commessa.Stato;
+                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                    percentualeAvanzamento = UtilityValidation.GetDecimal(commessa.Percentuale);
+                else
+                {
+                    percentualeAvanzamento = BusinessLogic.Commessa.GetPercentualeAvanzamento(commessa);
+                }
+                return  percentualeAvanzamento;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
         }
 
         public override void BindModel(object model)

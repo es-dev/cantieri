@@ -79,8 +79,14 @@ namespace Web.GUI.Cliente
         {
             try
             {
+                decimal totaleLiquidazioni = 0;
                 var today = DateTime.Today;
-                decimal totaleLiquidazioni = BusinessLogic.Cliente.GetTotaleLiquidazioni(cliente, today);
+                var commessa = cliente.Commessa;
+                var statoCommessa = commessa.Stato;
+                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                    totaleLiquidazioni = UtilityValidation.GetDecimal(cliente.TotaleLiquidazioni);
+                else
+                    totaleLiquidazioni = BusinessLogic.Cliente.GetTotaleLiquidazioni(cliente, today);
                 return totaleLiquidazioni;
             }
             catch (Exception ex)
@@ -123,8 +129,15 @@ namespace Web.GUI.Cliente
         {
             try
             {
+
+                decimal totaleFattureVendita = 0;
                 var today = DateTime.Today;
-                decimal totaleFattureVendita = BusinessLogic.Cliente.GetTotaleFatture(cliente, today);
+                var commessa = cliente.Commessa;
+                var statoCommessa = commessa.Stato;
+                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                    totaleFattureVendita = UtilityValidation.GetDecimal(cliente.TotaleFattureVendita);
+                else
+                    totaleFattureVendita = BusinessLogic.Cliente.GetTotaleFatture(cliente, today);
                 return totaleFattureVendita;
             }
             catch (Exception ex)
