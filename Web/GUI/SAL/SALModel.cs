@@ -47,12 +47,12 @@ namespace Web.GUI.SAL
                     editData.Value = obj.Data;
                     editCodice.Value = obj.Codice;
                     editNote.Value = obj.Note;
-                    editTotaleAcquisti.Value = obj.TotaleAcquisti;
-                    editTotaleVendite.Value = obj.TotaleVendite;
-                    editTotaleLiquidazioni.Value = obj.TotaleLiquidazioni;
+                    editTotaleAcquisti.Value = GetTotaleAcquisti(obj);
+                    editTotaleVendite.Value = GetTotaleVendite(obj);
+                    editTotaleLiquidazioni.Value = GetTotaleLiquidazioni(obj);
                     editDenominazione.Value = obj.Denominazione;
-                    editTotalePagamenti.Value = obj.TotalePagamenti;
-                    editStato.Value = obj.Stato; 
+                    editTotalePagamenti.Value = GatTotalePagamenti(obj);
+                    editStato.Value = GetStato(obj); 
                     var commessa = obj.Commessa;
                     if (commessa != null)
                     {
@@ -65,6 +65,150 @@ namespace Web.GUI.SAL
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private string GetStato(SALDto sal)
+        {
+            try
+            {
+                var stato = "N/D";
+                var commessaId = sal.CommessaId;
+                var viewModelCliente = new Commessa.CommessaViewModel(this);
+                var commessa = viewModelCliente.Read(commessaId);
+
+                var statoCommessa = commessa.Stato;
+                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                    stato = sal.Stato;
+                else
+                {
+                    var today = DateTime.Today;
+                    var data = sal.Data;
+                    var fornitori = commessa.Fornitores;
+                    var cliente = commessa.Cliente;
+                    var totaleAcquisti = BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, data.Value);
+                    var totaleVendite = BusinessLogic.SAL.GetTotaleFattureVendita(cliente, data.Value);
+                    var totalePagamenti = BusinessLogic.SAL.GetTotalePagamenti(fornitori, data.Value);
+                    var totaleLiquidazioni = BusinessLogic.SAL.GetTotaleLiquidazioni(cliente, data.Value);
+                    var statoSAL = BusinessLogic.SAL.GetStato(commessa, data.Value);
+                    var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
+                    var margine = UtilityValidation.GetDecimal(commessa.Margine);
+                    var margineOperativo = importoLavori - totaleAcquisti;
+                    var statoDescrizione = GetStatoDescrizione(importoLavori, margine, margineOperativo, statoSAL);
+                    stato = statoDescrizione.ToString();
+                }
+
+                return stato;
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private decimal GatTotalePagamenti(SALDto sal)
+        {
+            try
+            {
+                decimal totalePagamenti = 0;
+                var commessaId = sal.CommessaId;
+                var viewModelCliente = new Commessa.CommessaViewModel(this);
+                var commessa = viewModelCliente.Read(commessaId);
+                var fornitori = commessa.Fornitores;
+                var statoCommessa = commessa.Stato;
+                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                    totalePagamenti = UtilityValidation.GetDecimal(sal.TotalePagamenti);
+                else
+                {
+                    var data = sal.Data;
+                    totalePagamenti = BusinessLogic.SAL.GetTotalePagamenti(fornitori, data.Value);
+                }
+                return totalePagamenti;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        private decimal GetTotaleLiquidazioni(SALDto sal)
+        {
+            try
+            {
+                decimal totaleLiquidazioni = 0;
+                var commessaId = sal.CommessaId;
+                var viewModelCliente = new Commessa.CommessaViewModel(this);
+                var commessa = viewModelCliente.Read(commessaId);
+                var cliente = commessa.Cliente;
+                var statoCommessa = commessa.Stato;
+                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                    totaleLiquidazioni = UtilityValidation.GetDecimal(sal.TotaleLiquidazioni);
+                else
+                {
+                    var data = sal.Data;
+                    totaleLiquidazioni = BusinessLogic.SAL.GetTotaleLiquidazioni(cliente, data.Value);
+                }
+                return totaleLiquidazioni;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        private decimal GetTotaleVendite(SALDto sal)
+        {
+            try
+            {
+                decimal totaleVendite = 0;
+                var commessaId = sal.CommessaId;
+                var viewModelCliente = new Commessa.CommessaViewModel(this);
+                var commessa = viewModelCliente.Read(commessaId);
+                var cliente = commessa.Cliente;
+                var statoCommessa = commessa.Stato;
+                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                    totaleVendite = UtilityValidation.GetDecimal(sal.TotaleVendite);
+                else
+                {
+                    var data = sal.Data;
+                    totaleVendite = BusinessLogic.SAL.GetTotaleFattureVendita(cliente, data.Value);
+                }
+                return totaleVendite;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        private decimal GetTotaleAcquisti(SALDto sal)
+        {
+            try
+            {
+                decimal totaleAcquisti = 0;
+                var commessaId = sal.CommessaId;
+                var viewModelCliente = new Commessa.CommessaViewModel(this);
+                var commessa = viewModelCliente.Read(commessaId);
+                var fornitori = commessa.Fornitores;
+                var statoCommessa = commessa.Stato;
+                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                    totaleAcquisti = UtilityValidation.GetDecimal(sal.TotaleAcquisti);
+                else
+                {
+                    var data = sal.Data;
+                    totaleAcquisti = BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, data.Value);
+                }
+                return totaleAcquisti;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
         }
 
         public override void BindModel(object model)

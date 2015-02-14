@@ -79,8 +79,16 @@ namespace Web.GUI.Fornitore
         {
             try
             {
+                decimal totalePagamenti = 0;
                 var today = DateTime.Today;
-                decimal totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamenti(fornitore, today);
+                var commessa=fornitore.Commessa;
+                var statoCommessa = commessa.Stato;
+                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                    totalePagamenti = UtilityValidation.GetDecimal(fornitore.TotalePagamenti);
+                else
+                {
+                    totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamenti(fornitore, today);
+                }
                 return totalePagamenti;
             }
             catch (Exception ex)
@@ -126,8 +134,14 @@ namespace Web.GUI.Fornitore
         {
             try
             {
+                decimal totaleFatturaAcquisto = 0;
                 var today = DateTime.Today;
-                decimal totaleFatturaAcquisto = BusinessLogic.Fornitore.GetTotaleFatture(fornitore, today);
+                var commessa=fornitore.Commessa;
+                var statoCommessa = commessa.Stato;
+                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                    totaleFatturaAcquisto = UtilityValidation.GetDecimal(fornitore.TotaleFattureAcquisto);
+                else
+                    totaleFatturaAcquisto = BusinessLogic.Fornitore.GetTotaleFatture(fornitore, today);
                 return totaleFatturaAcquisto;
             }
             catch (Exception ex)
