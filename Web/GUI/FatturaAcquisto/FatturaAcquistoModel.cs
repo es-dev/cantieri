@@ -32,12 +32,8 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                var tipiPagamenti = UtilityEnum.GetNames<Tipi.TipoPagamento>();
-                editTipoPagamento.Items = tipiPagamenti;
-
-                var scadenzaPagamenti = UtilityEnum.GetNames<Tipi.ScadenzaPagamento>();
-                editScadenzaPagamento.Items = scadenzaPagamenti;
-
+                editTipoPagamento.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.TipoPagamento>(); ;
+                editScadenzaPagamento.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.ScadenzaPagamento>();
             }
             catch (Exception ex)
             {

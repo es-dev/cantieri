@@ -31,8 +31,7 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                var statiCommessa = UtilityEnum.GetNames<Tipi.StatoCommessa>();
-                editStato.Items = statiCommessa;
+                editStato.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.StatoCommessa>();
             }
             catch (Exception ex)
             {

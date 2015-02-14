@@ -30,8 +30,7 @@ namespace Web.GUI.Liquidazione
         {
             try
             {
-                var tipiPagamenti = UtilityEnum.GetNames<Tipi.TipoPagamento>();
-                editTipoPagamento.Items = tipiPagamenti;
+                editTipoPagamento.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.TipoPagamento>();
             }
             catch (Exception ex)
             {

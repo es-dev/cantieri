@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,10 +24,15 @@ namespace BusinessLogic
 
         public enum ScadenzaPagamento
         {
+            [Description("")]
             None,
+            [Description("Scadenza a 30 giorni")]
             GG30,
+            [Description("Scadenza a 60 giorni")]
             GG60,
+            [Description("Scadenza a 90 giorni")]
             GG90,
+            [Description("Scadenza a 120 giorni")]
             GG120
         }
 
@@ -34,6 +40,7 @@ namespace BusinessLogic
         {
             None,
             Aperta,
+            [Description("In lavorazione")]
             InLavorazione,
             Chiusa,
             Sospesa
