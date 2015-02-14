@@ -27,7 +27,7 @@ namespace Web.GUI.AnagraficaFornitore
                     var obj = (WcfService.Dto.AnagraficaFornitoreDto)model;
                     var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
                     var codice = UtilityValidation.GetStringND(obj.Codice);
-                    var partitaIVA = UtilityValidation.GetStringND(obj.PIva);
+                    var partitaIVA = UtilityValidation.GetStringND(obj.PartitaIva);
                     var indirizzo = UtilityValidation.GetStringND(obj.Indirizzo);
                     var cap = UtilityValidation.GetStringND(obj.CAP);
                     var comune = UtilityValidation.GetStringND(obj.Comune);

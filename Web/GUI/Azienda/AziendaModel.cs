@@ -51,7 +51,7 @@ namespace Web.GUI.Azienda
                     editIndirizzo.Value = obj.Indirizzo;
                     editLocalita.Value = obj.Localita;
                     editNumeroDipendenti.Value = obj.Dipendenti;
-                    editPartitaIVA.Value = obj.PIva;
+                    editPartitaIVA.Value = obj.PartitaIva;
                     editTelefono.Value = obj.Telefono;
                     editFAX.Value = obj.Fax;
                     editEmail.Value = obj.Email;
@@ -80,7 +80,7 @@ namespace Web.GUI.Azienda
                     obj.Dipendenti = editNumeroDipendenti.Value;
                     obj.Indirizzo = editIndirizzo.Value;
                     obj.Localita = editLocalita.Value;
-                    obj.PIva = editPartitaIVA.Value;
+                    obj.PartitaIva = editPartitaIVA.Value;
                     obj.Telefono = editTelefono.Value;
                     obj.Fax = editFAX.Value;
                     obj.Email = editEmail.Value;

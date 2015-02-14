@@ -455,13 +455,13 @@ namespace WcfService
                 {
                     var commesseId = (from c in QueryCommesse(search) select c.Id).ToList();
                     fornitori = (from q in fornitori
-                                 where q.Codice.StartsWith(search) || q.PIva.StartsWith(search) ||
+                                 where q.Codice.StartsWith(search) || q.PartitaIva.StartsWith(search) ||
                                      q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
                                      q.Comune.StartsWith(search) || q.Provincia.StartsWith(search) ||
                                      commesseId.Contains(q.CommessaId)
                                  select q);
                 }
-                fornitori = (from q in fornitori orderby q.PIva select q);
+                fornitori = (from q in fornitori orderby q.RagioneSociale select q);
                 return fornitori;
             }
             catch (Exception ex)
@@ -1250,7 +1250,7 @@ namespace WcfService
                 {
                     var commesseId = (from c in QueryCommesse(search) select c.Id).ToList();
                     clienti = (from q in clienti
-                               where q.Codice.StartsWith(search) || q.PIva.StartsWith(search) ||
+                               where q.Codice.StartsWith(search) || q.PartitaIva.StartsWith(search) ||
                                  q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
                                  q.Comune.StartsWith(search) || q.Provincia.StartsWith(search) ||
                                  commesseId.Contains(q.Commessa.Id)
@@ -1861,7 +1861,7 @@ namespace WcfService
                 var anagraficheFornitori = (from q in ef.AnagraficaFornitores select q);
                 if (search != null && search.Length > 0)
                     anagraficheFornitori = (from q in anagraficheFornitori
-                                            where q.Codice.StartsWith(search) || q.PIva.StartsWith(search) ||
+                                            where q.Codice.StartsWith(search) || q.PartitaIva.StartsWith(search) ||
                                                 q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
                                                 q.Comune.StartsWith(search) || q.Provincia.StartsWith(search)
                                             select q);
@@ -2013,7 +2013,7 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var anagraficheClienti = (from q in ef.AnagraficaClientes select q);
                 if (search != null && search.Length > 0)
-                    anagraficheClienti = (from q in anagraficheClienti where q.Codice.StartsWith(search) || q.PIva.StartsWith(search) ||
+                    anagraficheClienti = (from q in anagraficheClienti where q.Codice.StartsWith(search) || q.PartitaIva.StartsWith(search) ||
                                               q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
                                               q.Comune.StartsWith(search) || q.Provincia.StartsWith(search) select q);
 

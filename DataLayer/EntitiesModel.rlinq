@@ -28,8 +28,8 @@
         <orm:field name="_provincia" property="Provincia" uniqueId="a3e4768b-bc9e-4560-9f73-714501c1a525" type="System.String">
           <orm:column name="Provincia" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_pIva" property="PIva" uniqueId="3c4d82b8-36fa-43ab-b7ce-36c0c2f6b5c9" type="System.String">
-          <orm:column name="PIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:field name="_partitaIva" property="PartitaIva" uniqueId="3c4d82b8-36fa-43ab-b7ce-36c0c2f6b5c9" type="System.String">
+          <orm:column name="PartitaIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_dipendenti" property="Dipendenti" uniqueId="2f09d16a-870f-47cc-b64d-62cbcf01da6a" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="Dipendenti" sql-type="int" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -206,8 +206,8 @@
         <orm:field name="_email" property="Email" uniqueId="a93efbac-026b-4529-ac1a-6f973b758be0" type="System.String">
           <orm:column name="Email" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_pIva" property="PIva" uniqueId="d1bb9712-68b2-4620-aa34-ed500baa263c" type="System.String">
-          <orm:column name="PIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:field name="_partitaIva" property="PartitaIva" uniqueId="d1bb9712-68b2-4620-aa34-ed500baa263c" type="System.String">
+          <orm:column name="PartitaIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_codice" property="Codice" uniqueId="5534e8fc-5f84-4390-9eee-749b30ab8a0d" type="System.String">
           <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
@@ -279,8 +279,8 @@
         <orm:field name="_email" property="Email" uniqueId="7e366140-c536-477b-b997-e728ae697bbe" type="System.String">
           <orm:column name="Email" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_pIva" property="PIva" uniqueId="5bafbccf-c05f-4922-9f1e-d1ac6527766f" type="System.String">
-          <orm:column name="PIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:field name="_partitaIva" property="PartitaIva" uniqueId="5bafbccf-c05f-4922-9f1e-d1ac6527766f" type="System.String">
+          <orm:column name="PartitaIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_codice" property="Codice" uniqueId="1d5cde1d-271e-4ddb-8eac-172d1b35bb71" type="System.String">
           <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
@@ -648,8 +648,8 @@
         <orm:field name="_email" property="Email" uniqueId="82f63353-5c7f-41d5-b8ba-f6d0c79bb575" type="System.String">
           <orm:column name="Email" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_pIva" property="PIva" uniqueId="586230d3-0691-4dd2-8b3b-2808006a7580" type="System.String">
-          <orm:column name="PIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:field name="_partitaIva" property="PartitaIva" uniqueId="586230d3-0691-4dd2-8b3b-2808006a7580" type="System.String">
+          <orm:column name="PartitaIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_codice" property="Codice" uniqueId="a361b66b-2d6f-4c95-96e2-dd093275942a" type="System.String">
           <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
@@ -702,8 +702,8 @@
         <orm:field name="_email" property="Email" uniqueId="3debd6af-5522-4a25-a2c1-ec108154ec5d" type="System.String">
           <orm:column name="Email" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_pIva" property="PIva" uniqueId="eb8e8b82-725d-4c8e-8ddc-213a342e2e59" type="System.String">
-          <orm:column name="PIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:field name="_partitaIva" property="PartitaIva" uniqueId="eb8e8b82-725d-4c8e-8ddc-213a342e2e59" type="System.String">
+          <orm:column name="PartitaIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_codice" property="Codice" uniqueId="11862c95-d2f1-4cf4-905f-b84ece07e150" type="System.String">
           <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
@@ -800,7 +800,7 @@
         <orm:column name="CAP" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Comune" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Provincia" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        <orm:column name="PIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="PartitaIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Dipendenti" sql-type="int" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         <orm:column name="Telefono" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="Fax" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
@@ -915,7 +915,7 @@
         <orm:column name="Mobile" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Fax" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Email" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        <orm:column name="PIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="PartitaIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="CodiceCatastale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="TotaleLiquidazioni" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
@@ -988,7 +988,7 @@
         <orm:column name="Mobile" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Fax" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Email" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        <orm:column name="PIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="PartitaIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="CodiceCatastale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="Localita" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
@@ -1005,7 +1005,7 @@
         <orm:column name="Mobile" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Fax" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Email" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        <orm:column name="PIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="PartitaIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="CodiceCatastale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="Localita" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
@@ -1028,7 +1028,7 @@
         <orm:column name="Mobile" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Fax" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Email" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        <orm:column name="PIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="PartitaIva" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         <orm:column name="CodiceCatastale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
@@ -1096,7 +1096,7 @@
       <Property Id="e866c776-f0d5-491c-8256-74055137444b" name="Comune" label="Comune : String" fieldName="_comune" />
       <Property Id="0cf2c782-4b8e-413f-81ff-6aab42873644" name="Localita" label="Localita : String" fieldName="_localita" />
       <Property Id="a3e4768b-bc9e-4560-9f73-714501c1a525" name="Provincia" label="Provincia : String" fieldName="_provincia" />
-      <Property Id="3c4d82b8-36fa-43ab-b7ce-36c0c2f6b5c9" name="PIva" label="PIva : String" fieldName="_pIva" />
+      <Property Id="3c4d82b8-36fa-43ab-b7ce-36c0c2f6b5c9" name="PartitaIva" label="PartitaIva : String" fieldName="_partitaIva" />
       <Property Id="2f09d16a-870f-47cc-b64d-62cbcf01da6a" name="Dipendenti" type="Int32" label="Dipendenti : Int32" nullable="true" fieldName="_dipendenti" />
       <Property Id="41aea0cb-fe80-4bea-8d48-560a194fa0dd" name="Telefono" label="Telefono : String" fieldName="_telefono" />
       <Property Id="4b691d1d-8557-4101-bc89-edbda95879e4" name="Fax" label="Fax : String" fieldName="_fax" />
@@ -1179,7 +1179,7 @@
       <Property Id="efd991ee-f5ff-4f49-abb4-e5a344e5b811" name="Mobile" label="Mobile : String" fieldName="_mobile" />
       <Property Id="cd718fa4-2b28-47c0-bf63-f2f68c60b763" name="Fax" label="Fax : String" fieldName="_fax" />
       <Property Id="a93efbac-026b-4529-ac1a-6f973b758be0" name="Email" label="Email : String" fieldName="_email" />
-      <Property Id="d1bb9712-68b2-4620-aa34-ed500baa263c" name="PIva" label="PIva : String" fieldName="_pIva" />
+      <Property Id="d1bb9712-68b2-4620-aa34-ed500baa263c" name="PartitaIva" label="PartitaIva : String" fieldName="_partitaIva" />
       <Property Id="5534e8fc-5f84-4390-9eee-749b30ab8a0d" name="Codice" label="Codice : String" fieldName="_codice" />
       <Property Id="24554c08-e24a-42e3-a991-f765e956c50f" name="CodiceCatastale" label="CodiceCatastale : String" fieldName="_codiceCatastale" />
       <Property Id="73ce7723-433e-4530-81aa-67e4ff51d77d" name="TotaleFattureAcquisto" type="Decimal" label="TotaleFattureAcquisto : Decimal" nullable="true" fieldName="_totaleFattureAcquisto" />
@@ -1222,7 +1222,7 @@
       <Property Id="8e8a9fda-728a-4eb4-aaf8-d3cf4c0cc33f" name="Mobile" label="Mobile : String" fieldName="_mobile" />
       <Property Id="4561dc69-e69e-4187-a1b3-2d68dff69f94" name="Fax" label="Fax : String" fieldName="_fax" />
       <Property Id="7e366140-c536-477b-b997-e728ae697bbe" name="Email" label="Email : String" fieldName="_email" />
-      <Property Id="5bafbccf-c05f-4922-9f1e-d1ac6527766f" name="PIva" label="PIva : String" fieldName="_pIva" />
+      <Property Id="5bafbccf-c05f-4922-9f1e-d1ac6527766f" name="PartitaIva" label="PartitaIva : String" fieldName="_partitaIva" />
       <Property Id="1d5cde1d-271e-4ddb-8eac-172d1b35bb71" name="Codice" label="Codice : String" fieldName="_codice" />
       <Property Id="a6daf789-7658-4e9c-b1b9-3723c5e33772" name="CodiceCatastale" label="CodiceCatastale : String" fieldName="_codiceCatastale" />
       <Property Id="acc3e0a3-a034-478e-9be6-c0d79be3695e" name="TotaleFattureVendita" type="Decimal" label="TotaleFattureVendita : Decimal" nullable="true" fieldName="_totaleFattureVendita" />
@@ -1466,7 +1466,7 @@
       <Property Id="c6b29274-9722-4916-a55c-4623766da439" name="Mobile" label="Mobile : String" fieldName="_mobile" />
       <Property Id="a8c522da-832b-42a4-bd9d-020edc76ef98" name="Fax" label="Fax : String" fieldName="_fax" />
       <Property Id="82f63353-5c7f-41d5-b8ba-f6d0c79bb575" name="Email" label="Email : String" fieldName="_email" />
-      <Property Id="586230d3-0691-4dd2-8b3b-2808006a7580" name="PIva" label="PIva : String" fieldName="_pIva" />
+      <Property Id="586230d3-0691-4dd2-8b3b-2808006a7580" name="PartitaIva" label="PartitaIva : String" fieldName="_partitaIva" />
       <Property Id="a361b66b-2d6f-4c95-96e2-dd093275942a" name="Codice" label="Codice : String" fieldName="_codice" />
       <Property Id="aad548af-167c-421f-8ac0-6da4fd0c1657" name="CodiceCatastale" label="CodiceCatastale : String" fieldName="_codiceCatastale" />
       <Property Id="377ff1ba-bdf1-4e63-8e64-9951f9304071" name="Localita" label="Localita : String" fieldName="_localita" />
@@ -1483,7 +1483,7 @@
       <Property Id="0a5a8651-61d2-4c58-a421-add764108cee" name="Mobile" label="Mobile : String" fieldName="_mobile" />
       <Property Id="7ed48bd1-62bd-42f0-8696-7e56a10a24d5" name="Fax" label="Fax : String" fieldName="_fax" />
       <Property Id="3debd6af-5522-4a25-a2c1-ec108154ec5d" name="Email" label="Email : String" fieldName="_email" />
-      <Property Id="eb8e8b82-725d-4c8e-8ddc-213a342e2e59" name="PIva" label="PIva : String" fieldName="_pIva" />
+      <Property Id="eb8e8b82-725d-4c8e-8ddc-213a342e2e59" name="PartitaIva" label="PartitaIva : String" fieldName="_partitaIva" />
       <Property Id="11862c95-d2f1-4cf4-905f-b84ece07e150" name="Codice" label="Codice : String" fieldName="_codice" />
       <Property Id="8fd6470f-a881-4708-bb1b-3be769248c0b" name="CodiceCatastale" label="CodiceCatastale : String" fieldName="_codiceCatastale" />
       <Property Id="4f2a9c1f-737f-4ec1-9676-22864e339790" name="Localita" label="Localita : String" fieldName="_localita" />

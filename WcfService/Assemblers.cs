@@ -100,7 +100,7 @@ namespace WcfService.Assemblers
 			entity.CAP = dto.CAP;
 			entity.Comune = dto.Comune;
 			entity.Provincia = dto.Provincia;
-			entity.PIva = dto.PIva;
+			entity.PartitaIva = dto.PartitaIva;
 			entity.Dipendenti = dto.Dipendenti;
 			entity.Telefono = dto.Telefono;
 			entity.Fax = dto.Fax;
@@ -125,7 +125,7 @@ namespace WcfService.Assemblers
 			dto.CAP = entity.CAP;
 			dto.Comune = entity.Comune;
 			dto.Provincia = entity.Provincia;
-			dto.PIva = entity.PIva;
+			dto.PartitaIva = entity.PartitaIva;
 			dto.Dipendenti = entity.Dipendenti;
 			dto.Telefono = entity.Telefono;
 			dto.Fax = entity.Fax;
@@ -335,7 +335,7 @@ namespace WcfService.Assemblers
 			entity.Mobile = dto.Mobile;
 			entity.Fax = dto.Fax;
 			entity.Email = dto.Email;
-			entity.PIva = dto.PIva;
+			entity.PartitaIva = dto.PartitaIva;
 			entity.Codice = dto.Codice;
 			entity.CodiceCatastale = dto.CodiceCatastale;
 			entity.TotaleFattureAcquisto = dto.TotaleFattureAcquisto;
@@ -364,7 +364,7 @@ namespace WcfService.Assemblers
 			dto.Mobile = entity.Mobile;
 			dto.Fax = entity.Fax;
 			dto.Email = entity.Email;
-			dto.PIva = entity.PIva;
+			dto.PartitaIva = entity.PartitaIva;
 			dto.Codice = entity.Codice;
 			dto.CodiceCatastale = entity.CodiceCatastale;
 			dto.TotaleFattureAcquisto = entity.TotaleFattureAcquisto;
@@ -441,7 +441,7 @@ namespace WcfService.Assemblers
 			entity.Mobile = dto.Mobile;
 			entity.Fax = dto.Fax;
 			entity.Email = dto.Email;
-			entity.PIva = dto.PIva;
+			entity.PartitaIva = dto.PartitaIva;
 			entity.Codice = dto.Codice;
 			entity.CodiceCatastale = dto.CodiceCatastale;
 			entity.TotaleFattureVendita = dto.TotaleFattureVendita;
@@ -469,7 +469,7 @@ namespace WcfService.Assemblers
 			dto.Mobile = entity.Mobile;
 			dto.Fax = entity.Fax;
 			dto.Email = entity.Email;
-			dto.PIva = entity.PIva;
+			dto.PartitaIva = entity.PartitaIva;
 			dto.Codice = entity.Codice;
 			dto.CodiceCatastale = entity.CodiceCatastale;
 			dto.TotaleFattureVendita = entity.TotaleFattureVendita;
@@ -1058,7 +1058,7 @@ namespace WcfService.Assemblers
 			entity.Mobile = dto.Mobile;
 			entity.Fax = dto.Fax;
 			entity.Email = dto.Email;
-			entity.PIva = dto.PIva;
+			entity.PartitaIva = dto.PartitaIva;
 			entity.Codice = dto.Codice;
 			entity.CodiceCatastale = dto.CodiceCatastale;
 			entity.Localita = dto.Localita;
@@ -1083,7 +1083,7 @@ namespace WcfService.Assemblers
 			dto.Mobile = entity.Mobile;
 			dto.Fax = entity.Fax;
 			dto.Email = entity.Email;
-			dto.PIva = entity.PIva;
+			dto.PartitaIva = entity.PartitaIva;
 			dto.Codice = entity.Codice;
 			dto.CodiceCatastale = entity.CodiceCatastale;
 			dto.Localita = entity.Localita;
@@ -1144,7 +1144,7 @@ namespace WcfService.Assemblers
 			entity.Mobile = dto.Mobile;
 			entity.Fax = dto.Fax;
 			entity.Email = dto.Email;
-			entity.PIva = dto.PIva;
+			entity.PartitaIva = dto.PartitaIva;
 			entity.Codice = dto.Codice;
 			entity.CodiceCatastale = dto.CodiceCatastale;
 			entity.Localita = dto.Localita;
@@ -1169,7 +1169,7 @@ namespace WcfService.Assemblers
 			dto.Mobile = entity.Mobile;
 			dto.Fax = entity.Fax;
 			dto.Email = entity.Email;
-			dto.PIva = entity.PIva;
+			dto.PartitaIva = entity.PartitaIva;
 			dto.Codice = entity.Codice;
 			dto.CodiceCatastale = entity.CodiceCatastale;
 			dto.Localita = entity.Localita;
