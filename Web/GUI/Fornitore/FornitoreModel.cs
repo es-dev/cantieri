@@ -109,7 +109,7 @@ namespace Web.GUI.Fornitore
                     var fattureNonPagate = BusinessLogic.Fornitore.GetFattureNonPagate(fatture);
                     var statoFornitore = BusinessLogic.Fornitore.GetStato(fornitore);
 
-                    var statoDescrizione = GetStatoDescrizione(totaleFatture, totalePagamenti, fattureInsolute, fattureNonPagate, statoFornitore);
+                    var statoDescrizione = GetStato(totaleFatture, totalePagamenti, fattureInsolute, fattureNonPagate, statoFornitore);
                     stato = statoDescrizione.ToString();
                 }
                 return stato;

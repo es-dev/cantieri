@@ -107,7 +107,7 @@ namespace Web.GUI.Cliente
                     var totaleLiquidazioni = BusinessLogic.Cliente.GetTotaleLiquidazioni(cliente, today);
                     var fattureInsolute = BusinessLogic.Cliente.GetFattureInsolute(fatture);
                     var fattureNonLiquidate = BusinessLogic.Cliente.GetFattureNonLiquidate(fatture);
-                    var statoDescrizione = GetStatoDescrizione(totaleFatture, totaleLiquidazioni, fattureInsolute, fattureNonLiquidate);
+                    var statoDescrizione = GetStato(totaleFatture, totaleLiquidazioni, fattureInsolute, fattureNonLiquidate);
                     stato = statoDescrizione.ToString();
                 }
                 return stato;
@@ -191,7 +191,6 @@ namespace Web.GUI.Cliente
                 if (commessa != null)
                     editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;
                     CalcolaTotali();
-            }
             }
             catch (Exception ex)
             {
