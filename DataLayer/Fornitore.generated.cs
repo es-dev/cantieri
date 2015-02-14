@@ -167,16 +167,16 @@ namespace DataLayer
 			}
 		}
 		
-		private string _pIva;
-		public virtual string PIva
+		private string _partitaIva;
+		public virtual string PartitaIva
 		{
 			get
 			{
-				return this._pIva;
+				return this._partitaIva;
 			}
 			set
 			{
-				this._pIva = value;
+				this._partitaIva = value;
 			}
 		}
 		

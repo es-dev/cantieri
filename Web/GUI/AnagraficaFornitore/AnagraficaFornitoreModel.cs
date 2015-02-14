@@ -53,7 +53,7 @@ namespace Web.GUI.AnagraficaFornitore
                     editFAX.Value = obj.Fax;
                     editMobile.Value = obj.Mobile;
                     editEmail.Value = obj.Email;
-                    editPartitaIVA.Value = obj.PIva;
+                    editPartitaIVA.Value = obj.PartitaIva;
                     editCodice.Value = obj.Codice;
                     editNote.Value = obj.Note;
                 }
@@ -82,7 +82,7 @@ namespace Web.GUI.AnagraficaFornitore
                     obj.Fax = editFAX.Value;
                     obj.Mobile = editMobile.Value;
                     obj.Email = editEmail.Value;
-                    obj.PIva = editPartitaIVA.Value;
+                    obj.PartitaIva = editPartitaIVA.Value;
                     obj.Codice = editCodice.Value;
                     obj.Note = editNote.Value;
                 }

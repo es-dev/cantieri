@@ -30,7 +30,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public AziendaDto(int _id, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _pIva, int? _dipendenti, string _telefono, string _fax, string _email, string _codice, string _codiceCatastale, string _localita, string _note, IList<CommessaDto> _commessas)
+		public AziendaDto(int _id, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _partitaIva, int? _dipendenti, string _telefono, string _fax, string _email, string _codice, string _codiceCatastale, string _localita, string _note, IList<CommessaDto> _commessas)
 		{
 			this.Id = _id;
 			this.Denominazione = _denominazione;
@@ -38,7 +38,7 @@ namespace WcfService.Dto
 			this.CAP = _cAP;
 			this.Comune = _comune;
 			this.Provincia = _provincia;
-			this.PIva = _pIva;
+			this.PartitaIva = _partitaIva;
 			this.Dipendenti = _dipendenti;
 			this.Telefono = _telefono;
 			this.Fax = _fax;
@@ -72,7 +72,7 @@ namespace WcfService.Dto
 		public virtual string Provincia { get;set; }
 
 		[DataMember]
-		public virtual string PIva { get;set; }
+		public virtual string PartitaIva { get;set; }
 
 		[DataMember]
 		public virtual int? Dipendenti { get;set; }
@@ -252,7 +252,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public FornitoreDto(int _id, int _commessaId, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, string _codice, string _codiceCatastale, decimal? _totaleFattureAcquisto, string _stato, decimal? _totalePagamenti, string _localita, string _note, CommessaDto _commessa, IList<FatturaAcquistoDto> _fatturaAcquistos)
+		public FornitoreDto(int _id, int _commessaId, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _partitaIva, string _codice, string _codiceCatastale, decimal? _totaleFattureAcquisto, string _stato, decimal? _totalePagamenti, string _localita, string _note, CommessaDto _commessa, IList<FatturaAcquistoDto> _fatturaAcquistos)
 		{
 			this.Id = _id;
 			this.CommessaId = _commessaId;
@@ -265,7 +265,7 @@ namespace WcfService.Dto
 			this.Mobile = _mobile;
 			this.Fax = _fax;
 			this.Email = _email;
-			this.PIva = _pIva;
+			this.PartitaIva = _partitaIva;
 			this.Codice = _codice;
 			this.CodiceCatastale = _codiceCatastale;
 			this.TotaleFattureAcquisto = _totaleFattureAcquisto;
@@ -314,7 +314,7 @@ namespace WcfService.Dto
 		public virtual string Email { get;set; }
 
 		[DataMember]
-		public virtual string PIva { get;set; }
+		public virtual string PartitaIva { get;set; }
 
 		[DataMember]
 		public virtual string Codice { get;set; }
@@ -354,7 +354,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public ClienteDto(int _id, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, string _codice, string _codiceCatastale, decimal? _totaleFattureVendita, string _stato, decimal? _totaleLiquidazioni, string _localita, string _note, CommessaDto _commessa, IList<FatturaVenditaDto> _fatturaVenditas)
+		public ClienteDto(int _id, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _partitaIva, string _codice, string _codiceCatastale, decimal? _totaleFattureVendita, string _stato, decimal? _totaleLiquidazioni, string _localita, string _note, CommessaDto _commessa, IList<FatturaVenditaDto> _fatturaVenditas)
 		{
 			this.Id = _id;
 			this.RagioneSociale = _ragioneSociale;
@@ -366,7 +366,7 @@ namespace WcfService.Dto
 			this.Mobile = _mobile;
 			this.Fax = _fax;
 			this.Email = _email;
-			this.PIva = _pIva;
+			this.PartitaIva = _partitaIva;
 			this.Codice = _codice;
 			this.CodiceCatastale = _codiceCatastale;
 			this.TotaleFattureVendita = _totaleFattureVendita;
@@ -412,7 +412,7 @@ namespace WcfService.Dto
 		public virtual string Email { get;set; }
 
 		[DataMember]
-		public virtual string PIva { get;set; }
+		public virtual string PartitaIva { get;set; }
 
 		[DataMember]
 		public virtual string Codice { get;set; }
@@ -832,7 +832,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public AnagraficaFornitoreDto(int _id, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, string _codice, string _codiceCatastale, string _localita, string _note)
+		public AnagraficaFornitoreDto(int _id, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _partitaIva, string _codice, string _codiceCatastale, string _localita, string _note)
 		{
 			this.Id = _id;
 			this.RagioneSociale = _ragioneSociale;
@@ -844,7 +844,7 @@ namespace WcfService.Dto
 			this.Mobile = _mobile;
 			this.Fax = _fax;
 			this.Email = _email;
-			this.PIva = _pIva;
+			this.PartitaIva = _partitaIva;
 			this.Codice = _codice;
 			this.CodiceCatastale = _codiceCatastale;
 			this.Localita = _localita;
@@ -885,7 +885,7 @@ namespace WcfService.Dto
 		public virtual string Email { get;set; }
 
 		[DataMember]
-		public virtual string PIva { get;set; }
+		public virtual string PartitaIva { get;set; }
 
 		[DataMember]
 		public virtual string Codice { get;set; }
@@ -908,7 +908,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public AnagraficaClienteDto(int _id, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _pIva, string _codice, string _codiceCatastale, string _localita, string _note)
+		public AnagraficaClienteDto(int _id, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _partitaIva, string _codice, string _codiceCatastale, string _localita, string _note)
 		{
 			this.Id = _id;
 			this.RagioneSociale = _ragioneSociale;
@@ -920,7 +920,7 @@ namespace WcfService.Dto
 			this.Mobile = _mobile;
 			this.Fax = _fax;
 			this.Email = _email;
-			this.PIva = _pIva;
+			this.PartitaIva = _partitaIva;
 			this.Codice = _codice;
 			this.CodiceCatastale = _codiceCatastale;
 			this.Localita = _localita;
@@ -961,7 +961,7 @@ namespace WcfService.Dto
 		public virtual string Email { get;set; }
 
 		[DataMember]
-		public virtual string PIva { get;set; }
+		public virtual string PartitaIva { get;set; }
 
 		[DataMember]
 		public virtual string Codice { get;set; }

@@ -55,7 +55,7 @@ namespace Web.GUI.Cliente
                     editMobile.Value = obj.Mobile;
                     editEmail.Value = obj.Email;
                     editLocalita.Value = obj.Localita;
-                    editPartitaIVA.Value = obj.PIva;
+                    editPartitaIVA.Value = obj.PartitaIva;
                     editNote.Value = obj.Note;
                     editTotaleFattureVendita.Value =GetTotaleFattureVendita(obj);
                     editStato.Value = GetStato(obj);
@@ -165,7 +165,7 @@ namespace Web.GUI.Cliente
                     obj.Fax = editFAX.Value;
                     obj.Mobile = editMobile.Value;
                     obj.Email = editEmail.Value;
-                    obj.PIva = editPartitaIVA.Value;
+                    obj.PartitaIva = editPartitaIVA.Value;
                     obj.Note = editNote.Value;
                     obj.Codice = editCodiceCliente.Value;
                     obj.TotaleFattureVendita = editTotaleFattureVendita.Value;
@@ -239,7 +239,7 @@ namespace Web.GUI.Cliente
                     editFAX.Value = anagraficaCliente.Fax;
                     editIndirizzo.Value = anagraficaCliente.Indirizzo;
                     editMobile.Value = anagraficaCliente.Mobile;
-                    editPartitaIVA.Value = anagraficaCliente.PIva;
+                    editPartitaIVA.Value = anagraficaCliente.PartitaIva;
                     editRagioneSociale.Value = anagraficaCliente.RagioneSociale;
                     editTelefono.Value = anagraficaCliente.Telefono;
                 }

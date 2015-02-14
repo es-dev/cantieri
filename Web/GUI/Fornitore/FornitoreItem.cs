@@ -34,7 +34,7 @@ namespace Web.GUI.Fornitore
                     var cap = UtilityValidation.GetStringND(obj.CAP);
                     var comune = UtilityValidation.GetStringND(obj.Comune);
                     var provincia = UtilityValidation.GetStringND(obj.Provincia);
-                    var partitaIva = UtilityValidation.GetStringND(obj.PIva);
+                    var partitaIva = UtilityValidation.GetStringND(obj.PartitaIva);
                     var commessa = obj.Commessa;
                     var today = DateTime.Today;
                     var totaleFatture = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleFatture(obj, today));
