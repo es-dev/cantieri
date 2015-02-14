@@ -100,7 +100,7 @@ namespace Web.GUI.AnagraficaFornitore
             return false;
         }
 
-        public override object Read(object id)
+        public new AnagraficaFornitoreDto Read(object id)
         {
             try
             {

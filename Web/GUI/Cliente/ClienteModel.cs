@@ -66,7 +66,6 @@ namespace Web.GUI.Cliente
                         editCommessa.Value =  commessa.Codice + " - " + commessa.Denominazione;
                     }
                     editCodiceCliente.Value = obj.Codice;
-
                 }
             }
             catch (Exception ex)
@@ -131,6 +130,8 @@ namespace Web.GUI.Cliente
                 var commessa = (WcfService.Dto.CommessaDto)model;
                 if (commessa != null)
                     editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;
+                    CalcolaTotali();
+            }
             }
             catch (Exception ex)
             {
@@ -181,6 +182,7 @@ namespace Web.GUI.Cliente
         {
             try
             {
+                if (Editing)
                 CalcolaTotali();
             }
             catch (Exception ex)
@@ -203,7 +205,7 @@ namespace Web.GUI.Cliente
                     var fattureInsolute = BusinessLogic.Cliente.GetFattureInsolute(fatture);
                     var fattureNonLiquidate = BusinessLogic.Cliente.GetFattureNonLiquidate(fatture);
                     var stato = GetStato(totaleFatture, totaleLiquidazioni, fattureInsolute, fattureNonLiquidate);
-                    
+
                     editStato.Value = stato.ToString();
                     editTotaleFattureVendita.Value = totaleFatture;
                     editTotaleLiquidazioni.Value = totaleLiquidazioni;
@@ -258,6 +260,18 @@ namespace Web.GUI.Cliente
             return null;
         }
 
+        public override void SetEditing(bool editing, bool deleting)
+        {
+            try
+            {
+                base.SetEditing(editing, deleting);
+                btnCalcoloTotali.Enabled = editing;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
         
 
 	}

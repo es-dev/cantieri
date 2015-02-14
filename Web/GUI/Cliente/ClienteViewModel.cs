@@ -100,7 +100,7 @@ namespace Web.GUI.Cliente
             return false;
         }
 
-        public override object Read(object id)
+        public new ClienteDto Read(object id)
         {
             try
             {

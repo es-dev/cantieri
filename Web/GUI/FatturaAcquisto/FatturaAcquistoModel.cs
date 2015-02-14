@@ -70,8 +70,8 @@ namespace Web.GUI.FatturaAcquisto
                     var obj = (WcfService.Dto.FatturaAcquistoDto)model;
                     editData.Value = obj.Data;
                     editDescrizione.Value = obj.Descrizione;
-                    editImponibile.Value = obj.Imponibile;
-                    editIVA.Value = obj.IVA;
+                    editImponibile.Value = obj.Imponibile; 
+                    editIVA.Value = obj.IVA;               
                     editNumero.Value = obj.Numero;
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editScadenzaPagamento.Value = obj.ScadenzaPagamento;
@@ -97,6 +97,43 @@ namespace Web.GUI.FatturaAcquisto
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private string GetStato(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto)
+        {
+            try
+            {
+                var stato = "N/D";
+                var fornitoreId = fatturaAcquisto.FornitoreId;
+                var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
+                var fornitore = viewModelFornitore.Read(fornitoreId);
+                var commessa = fornitore.Commessa;
+                var statoCommessa = commessa.Stato;
+                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                    stato =fatturaAcquisto.Stato;
+                else
+                {
+                    var today = DateTime.Today;
+                    var _scadenzaPagamento = fatturaAcquisto.ScadenzaPagamento;
+                    var data = fatturaAcquisto.Data;
+                    var imponibile = UtilityValidation.GetDecimal(fatturaAcquisto.Imponibile);
+                    var iva = UtilityValidation.GetDecimal(fatturaAcquisto.IVA);
+                    var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(_scadenzaPagamento);
+                    var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, scadenzaPagamento);
+                    var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
+                    var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(fatturaAcquisto, today);
+                    var statoFattura = BusinessLogic.Fattura.GetStato(fatturaAcquisto);
+
+                    var statoDescrizione = GetStatoDescrizione(today, scadenza, totaleFattura, totalePagamenti, statoFattura);
+                    stato = statoDescrizione.ToString();
+                }
+                return stato;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
 
         private decimal GetTotalePagamenti(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto)

@@ -100,7 +100,7 @@ namespace Web.GUI.SAL
             return false;
         }
 
-        public override object Read(object id)
+        public new SALDto Read(object id)
         {
             try
             {

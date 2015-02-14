@@ -75,8 +75,8 @@ namespace Web.GUI.FatturaVendita
                     editScadenzaPagamento.Value = obj.ScadenzaPagamento;
                     editNote.Value = obj.Note;
                     editTotale.Value = obj.Totale;
-                    editTotaleLiquidazioni.Value = obj.TotaleLiquidazioni;
-                    editStato.Value = obj.Stato;
+                    editTotaleLiquidazioni.Value = GetTotaleLiquidazioni(obj);
+                    editStato.Value = GetStato(obj); ;
                     var cliente = obj.Cliente;
                     if (cliente != null)
                     {
@@ -89,6 +89,69 @@ namespace Web.GUI.FatturaVendita
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private string GetStato(WcfService.Dto.FatturaVenditaDto fatturaVendita)
+        {
+            try
+            {
+                var stato = "N/D";
+                var clienteId = fatturaVendita.ClienteId;
+                var viewModelCliente = new Cliente.ClienteViewModel(this);
+                var cliente = viewModelCliente.Read(clienteId);
+                var commessa = cliente.Commessa;
+                var statoCommessa = commessa.Stato;
+                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                    stato = fatturaVendita.Stato;
+                else
+                {
+                    var imponibile = UtilityValidation.GetDecimal(editImponibile.Value);
+                    var iva = UtilityValidation.GetDecimal(editIVA.Value);
+                    var data = editData.Value;
+                    var _scadenzaPagamento = editScadenzaPagamento.Value;
+                    var today = DateTime.Today;
+                    var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(_scadenzaPagamento);
+                    var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, scadenzaPagamento);
+                    var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
+                    var totaleLiquidazioni = BusinessLogic.Fattura.GetTotaleLiquidazioni(fatturaVendita, today);
+                    var statoFattura = BusinessLogic.Fattura.GetStato(fatturaVendita);
+
+                    var statoDescrizione = GetStatoDescrizione(today, scadenza, totaleFattura, totaleLiquidazioni, statoFattura);
+                    stato = statoDescrizione.ToString();
+                }
+                return stato;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private decimal GetTotaleLiquidazioni(WcfService.Dto.FatturaVenditaDto fatturaVendita)
+        {
+            try
+            {
+                decimal totaleLiquidazioni = 0;
+                var clienteId = fatturaVendita.ClienteId;
+                var viewModelCliente = new Cliente.ClienteViewModel(this);
+                var cliente = viewModelCliente.Read(clienteId);
+                var commessa = cliente.Commessa;
+                var statoCommessa = commessa.Stato;
+                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                    totaleLiquidazioni = UtilityValidation.GetDecimal(fatturaVendita.TotaleLiquidazioni);
+                else
+                {
+                    var today = DateTime.Today;
+                    totaleLiquidazioni = BusinessLogic.Fattura.GetTotaleLiquidazioni(fatturaVendita, today);
+                }
+                return totaleLiquidazioni;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
         }
 
         public override void BindModel(object model)
@@ -152,7 +215,8 @@ namespace Web.GUI.FatturaVendita
         {
             try
             {
-                CalcolaTotali();
+                if (Editing)
+                    CalcolaTotali();
 
             }
             catch (Exception ex)
@@ -229,7 +293,21 @@ namespace Web.GUI.FatturaVendita
         {
             try
             {
-                CalcolaTotali();
+                if (Editing)
+                    CalcolaTotali();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        public override void SetEditing(bool editing, bool deleting)
+        {
+            try
+            {
+                base.SetEditing(editing, deleting);
+                btnCalcoloTotali.Enabled = editing;
             }
             catch (Exception ex)
             {

@@ -177,7 +177,8 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                CalcoloAvanzamentoLavori();
+                if (Editing)
+                    CalcoloAvanzamentoLavori();
             }
             catch (Exception ex)
             {
@@ -202,7 +203,18 @@ namespace Web.GUI.Commessa
             }
         }
 
-        
+        public override void SetEditing(bool editing, bool deleting)
+        {
+            try
+            {
+                base.SetEditing(editing, deleting);
+                btnCalcoloAvanzamentoLavori.Enabled = editing;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 
 	}
 }

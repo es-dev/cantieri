@@ -100,7 +100,7 @@ namespace Web.GUI.CentroCosto
             return false;
         }
 
-        public override object Read(object id)
+        public new CentroCostoDto Read(object id)
         {
             try
             {

@@ -100,7 +100,7 @@ namespace Web.GUI.Articolo
             return false;
         }
 
-        public override object Read(object id)
+        public new ArticoloDto Read(object id)
         {
             try
             {

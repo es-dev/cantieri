@@ -100,7 +100,7 @@ namespace Web.GUI.Azienda
             return false;
         }
 
-        public override object Read(object id)
+        public new AziendaDto Read(object id)
         {
             try
             {
