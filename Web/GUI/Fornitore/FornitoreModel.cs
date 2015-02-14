@@ -175,8 +175,7 @@ namespace Web.GUI.Fornitore
         {
             try
             {
-                if (Editing)
-                    CalcolaTotali();
+                CalcolaTotali();
             }
             catch (Exception ex)
             {
@@ -253,11 +252,6 @@ namespace Web.GUI.Fornitore
             }
             return null;
         }
-
-       
-
-
-
 
 	}
 }
