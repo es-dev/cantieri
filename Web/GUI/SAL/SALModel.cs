@@ -1,3 +1,4 @@
+using BusinessLogic;
 using Library.Code;
 using Library.Code.Enum;
 using Library.Template.Controls;
@@ -122,6 +123,7 @@ namespace Web.GUI.SAL
         {
             try
             {
+                var obj = (WcfService.Dto.SALDto)Model;
                 var commessaId = editCommessa.Id;
                 var data = editData.Value;
                 if (commessaId != null && data != null)
@@ -136,6 +138,7 @@ namespace Web.GUI.SAL
                     var totaleVendite = BusinessLogic.SAL.GetTotaleFattureVendita(cliente, data.Value);
                     var totalePagamenti = BusinessLogic.SAL.GetTotalePagamenti(fornitori, data.Value);
                     var totaleLiquidazioni = BusinessLogic.SAL.GetTotaleLiquidazioni(cliente, data.Value);
+                    var statoSAL = BusinessLogic.SAL.GetStato(commessa, data.Value);
 
                     //calcolo e verifica margine operativo = importoLavori - totaleAcquisti
                     var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
@@ -143,10 +146,10 @@ namespace Web.GUI.SAL
                     var margineOperativo = importoLavori - totaleAcquisti;
 
                     //valutazione dell'andamento del lavoro
-                    var stato = GetStato(importoLavori, margine, margineOperativo);
+                    var statoDescrizione = GetStatoDescrizione(importoLavori, margine, margineOperativo, statoSAL);
                    
                     //binding dati in GUI
-                    editStato.Value = stato.ToString();
+                    editStato.Value = statoDescrizione.ToString();
                     editTotaleAcquisti.Value = totaleAcquisti;
                     editTotaleVendite.Value = totaleVendite;
                     editTotalePagamenti.Value = totalePagamenti;
@@ -159,23 +162,23 @@ namespace Web.GUI.SAL
             }
         }
 
-        private StatoDescrizione GetStato(decimal importoLavori, decimal margine, decimal margineOperativo)
+        private StatoDescrizione GetStatoDescrizione(decimal importoLavori, decimal margine, decimal margineOperativo, Tipi.StatoSAL statoSAL)
         {
             try
             {
                 var descrizione = "";
                 var stato = TypeStato.None;
-                if (margineOperativo < 0)
+                if (statoSAL== Tipi.StatoSAL.Perdita)
                 {
                     descrizione = "Andamento del lavoro critico. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta al valore critico di " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
                     stato = TypeStato.Critical;
                 }
-                else if (margineOperativo < margine)
+                else if (statoSAL == Tipi.StatoSAL.Negativo)
                 {
                     descrizione = "Andamento del lavoro negativo. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta ad un valore inferiore pari a " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
                     stato = TypeStato.Warning;
                 }
-                else if (margineOperativo >= margine)
+                else if (statoSAL == Tipi.StatoSAL.Positivo)
                 {
                     descrizione = "Andamento del lavoro positivo. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta a valori superiori pari a " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
                     stato = TypeStato.Normal;

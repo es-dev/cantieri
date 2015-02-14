@@ -1,5 +1,6 @@
 using BusinessLogic;
 using Library.Code;
+using Library.Code.Enum;
 using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace Web.GUI.Pagamento
         {
             try
             {
-                var tipiPagamenti = Tipi.GetNames(typeof(Tipi.TipoPagamento));
+                var tipiPagamenti = UtilityEnum.GetNames<Tipi.TipoPagamento>();
                 editTipoPagamento.Items = tipiPagamenti;
             }
             catch (Exception ex)

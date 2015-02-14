@@ -1,6 +1,7 @@
 using BusinessLogic;
 using Library.Code;
 using Library.Code.Enum;
+using Library.Template.Controls;
 using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
@@ -31,10 +32,12 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                var tipiPagamenti = Tipi.GetNames(typeof(Tipi.TipoPagamento));
+                var tipiPagamenti = UtilityEnum.GetNames<Tipi.TipoPagamento>();
                 editTipoPagamento.Items = tipiPagamenti;
-                var scadenzaPagamenti = Tipi.GetNames(typeof(Tipi.ScadenzaPagamento));
+
+                var scadenzaPagamenti = UtilityEnum.GetNames<Tipi.ScadenzaPagamento>();
                 editScadenzaPagamento.Items = scadenzaPagamenti;
+
             }
             catch (Exception ex)
             {
@@ -204,7 +207,7 @@ namespace Web.GUI.FatturaAcquisto
                 var imponibile = UtilityValidation.GetDecimal(editImponibile.Value);
                 var iva = UtilityValidation.GetDecimal(editIVA.Value);
                 var data = editData.Value;
-                var scadenzaPagamento = editScadenzaPagamento.Value;
+                var _scadenzaPagamento = editScadenzaPagamento.Value;
                 var today= DateTime.Today;
 
                 if (data != null)
@@ -212,8 +215,8 @@ namespace Web.GUI.FatturaAcquisto
                     //prelievo dati da DB
                     var obj = (WcfService.Dto.FatturaAcquistoDto)Model;
 
-                    var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
-                    var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, _scadenzaPagamento);
+                    var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(_scadenzaPagamento);
+                    var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, scadenzaPagamento);
                     var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
                     var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, today);
                     var statoFattura = BusinessLogic.Fattura.GetStato(obj);

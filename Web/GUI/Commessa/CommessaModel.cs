@@ -1,5 +1,6 @@
 using BusinessLogic;
 using Library.Code;
+using Library.Code.Enum;
 using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                var statiCommessa = Tipi.GetNames(typeof(Tipi.StatoCommessa));
+                var statiCommessa = UtilityEnum.GetNames<Tipi.StatoCommessa>();
                 editStato.Items = statiCommessa;
             }
             catch (Exception ex)

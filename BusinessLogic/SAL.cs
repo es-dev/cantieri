@@ -91,5 +91,40 @@ namespace BusinessLogic
             }
             return 0;
         }
+
+        public static Tipi.StatoSAL GetStato(CommessaDto commessa, DateTime data)
+        {
+            try
+            {
+                if (commessa != null)
+                {
+                    var fornitori = commessa.Fornitores;
+                    var cliente = commessa.Cliente;
+
+                    var totaleAcquisti = GetTotaleFattureAcquisto(fornitori, data);
+                    var totaleVendite = GetTotaleFattureVendita(cliente, data);
+                    var totalePagamenti = GetTotalePagamenti(fornitori, data);
+                    var totaleLiquidazioni = GetTotaleLiquidazioni(cliente, data);
+
+                    var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
+                    var margine = UtilityValidation.GetDecimal(commessa.Margine);
+                    var margineOperativo = importoLavori - totaleAcquisti;
+
+                    var stato = Tipi.StatoSAL.None;
+                    if (margineOperativo < 0)
+                        stato = Tipi.StatoSAL.Perdita;
+                    else if (margineOperativo < margine)
+                        stato = Tipi.StatoSAL.Negativo;
+                    else if (margineOperativo >= margine)
+                        stato = Tipi.StatoSAL.Positivo;
+                    return stato;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return Tipi.StatoSAL.None;
+        }
     }
 }

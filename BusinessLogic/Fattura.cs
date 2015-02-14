@@ -1,4 +1,5 @@
 ﻿using Library.Code;
+using Library.Code.Enum;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -139,10 +140,9 @@ namespace BusinessLogic
             try
             {
                 var today = DateTime.Today;
-                var scadenzaPagamento = fattura.ScadenzaPagamento;
                 var data = fattura.Data;
-                var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
-                var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, _scadenzaPagamento);
+                var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(fattura.ScadenzaPagamento);
+                var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, scadenzaPagamento);
                 var ritardo = GetRitardo(today, scadenza);
                 return ritardo;
             }
@@ -158,10 +158,9 @@ namespace BusinessLogic
             try
             {
                 var today = DateTime.Today;
-                var scadenzaPagamento = fattura.ScadenzaPagamento;
                 var data = fattura.Data;
-                var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
-                var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, _scadenzaPagamento);
+                var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(fattura.ScadenzaPagamento);
+                var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, scadenzaPagamento);
                 var ritardo = GetRitardo(today, scadenza);
                 return ritardo;
             }
@@ -178,9 +177,8 @@ namespace BusinessLogic
             {
                 var today = DateTime.Today;
                 var data = fattura.Data;
-                var scadenzaPagamento = fattura.ScadenzaPagamento;
-                var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
-                var scadenza = GetScadenza(data.Value, _scadenzaPagamento);
+                var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(fattura.ScadenzaPagamento);
+                var scadenza = GetScadenza(data.Value, scadenzaPagamento);
                 var totaleFattura = UtilityValidation.GetDecimal(fattura.Totale);
                 var totalePagamenti = GetTotalePagamenti(fattura, today);
                 var stato = GetStato(today, scadenza, totaleFattura, totalePagamenti);
@@ -225,9 +223,8 @@ namespace BusinessLogic
             {
                 var today = DateTime.Today;
                 var data = fattura.Data;
-                var scadenzaPagamento = fattura.ScadenzaPagamento;
-                var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
-                var scadenza = GetScadenza(data.Value, _scadenzaPagamento);
+                var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(fattura.ScadenzaPagamento);
+                var scadenza = GetScadenza(data.Value, scadenzaPagamento);
                 var totaleFattura = UtilityValidation.GetDecimal(fattura.Totale);
                 var totaleLiquidazioni = GetTotaleLiquidazioni(fattura, today);
                 var stato = GetStato(today, scadenza, totaleFattura, totaleLiquidazioni);

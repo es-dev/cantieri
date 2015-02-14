@@ -10,7 +10,6 @@ namespace BusinessLogic
 {
     public class Tipi
     {
-
         public enum TipoPagamento
         {
             None,
@@ -22,21 +21,30 @@ namespace BusinessLogic
             RID
         }
 
+        public enum ScadenzaPagamento
+        {
+            None,
+            GG30,
+            GG60,
+            GG90,
+            GG120
+        }
+
         public enum StatoCommessa
         {
             None,
             Aperta,
+            InLavorazione,
             Chiusa,
-            Sospesa,
+            Sospesa
         }
 
-        public enum ScadenzaPagamento
+        public enum StatoSAL
         {
             None,
-            GG30 = 30,
-            GG60=60,
-            GG90=90,
-            GG120=120
+            Perdita,
+            Negativo,
+            Positivo
         }
 
         public enum StatoFattura
@@ -62,20 +70,7 @@ namespace BusinessLogic
             NonLiquidato, //cliente il cui totale incassi <totale fattura e....
         }
 
-        public static IList<string> GetNames(Type type)
-        {
-            try
-            {
-                string[] names = Enum.GetNames(type);
-                return names.ToList();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
+        
 
     }
 }

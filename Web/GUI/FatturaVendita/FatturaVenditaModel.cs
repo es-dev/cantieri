@@ -31,9 +31,9 @@ namespace Web.GUI.FatturaVendita
         {
             try
             {
-                var tipiPagamenti = Tipi.GetNames(typeof(Tipi.TipoPagamento));
+                var tipiPagamenti = UtilityEnum.GetNames<Tipi.TipoPagamento>();
                 editTipoPagamento.Items = tipiPagamenti;
-                var scadenzaPagamenti = Tipi.GetNames(typeof(Tipi.ScadenzaPagamento));
+                var scadenzaPagamenti = UtilityEnum.GetNames<Tipi.ScadenzaPagamento>();
                 editScadenzaPagamento.Items = scadenzaPagamenti;
             }
             catch (Exception ex)
@@ -167,7 +167,7 @@ namespace Web.GUI.FatturaVendita
                 var imponibile = UtilityValidation.GetDecimal(editImponibile.Value);
                 var iva = UtilityValidation.GetDecimal(editIVA.Value);
                 var data = editData.Value;
-                var scadenzaPagamento = editScadenzaPagamento.Value;
+                var _scadenzaPagamento = editScadenzaPagamento.Value;
                 var today = DateTime.Today;
 
                 if (data != null)
@@ -175,8 +175,8 @@ namespace Web.GUI.FatturaVendita
                     //prelievo dati da DB
                     var obj = (WcfService.Dto.FatturaVenditaDto)Model;
 
-                    var _scadenzaPagamento = (Tipi.ScadenzaPagamento)Enum.Parse(typeof(Tipi.ScadenzaPagamento), scadenzaPagamento);
-                    var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, _scadenzaPagamento);
+                    var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(_scadenzaPagamento);
+                    var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, scadenzaPagamento);
                     var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
                     var totaleLiquidazioni= BusinessLogic.Fattura.GetTotaleLiquidazioni(obj, today);
                     var statoFattura = BusinessLogic.Fattura.GetStato(obj);
