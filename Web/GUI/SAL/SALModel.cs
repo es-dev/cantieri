@@ -212,7 +212,8 @@ namespace Web.GUI.SAL
         {
             try
             {
-                CalcolaTotali();
+                if (Editing)
+                    CalcolaTotali();
             }
             catch (Exception ex)
             {
@@ -220,6 +221,18 @@ namespace Web.GUI.SAL
             }
         }
 
+        public override void SetEditing(bool editing, bool deleting)
+        {
+            try
+            {
+                base.SetEditing(editing, deleting);
+                btnCalcoloSAL.Enabled = editing;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 
 	}
 }

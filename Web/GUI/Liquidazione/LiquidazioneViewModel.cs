@@ -100,7 +100,7 @@ namespace Web.GUI.Liquidazione
             return false;
         }
 
-        public override object Read(object id)
+        public new LiquidazioneDto Read(object id)
         {
             try
             {

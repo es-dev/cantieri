@@ -100,7 +100,7 @@ namespace Web.GUI.Commessa
             return false;
         }
 
-        public override object Read(object id)
+        public new CommessaDto Read(object id)
         {
             try
             {

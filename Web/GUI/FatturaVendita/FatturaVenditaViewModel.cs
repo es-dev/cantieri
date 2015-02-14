@@ -100,7 +100,7 @@ namespace Web.GUI.FatturaVendita
             return false;
         }
 
-        public override object Read(object id)
+        public new FatturaVenditaDto Read(object id)
         {
             try
             {
