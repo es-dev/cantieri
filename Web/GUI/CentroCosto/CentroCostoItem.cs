@@ -25,10 +25,13 @@ namespace Web.GUI.CentroCosto
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.CentroCostoDto)model;
+                    var codice = UtilityValidation.GetStringND(obj.Codice);
+                    var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
+                
                     infoImage.Image = "Images.dashboard.centrocosto.png";
                     infoCodice.Text = "CC";
-                    infoCodiceCentroCosto.Text = "CENTRO DI COSTO "+ obj.Codice;
-                    infoDenominazione.Text = obj.Denominazione;
+                    infoCodiceCentroCosto.Text = "CENTRO DI COSTO "+ codice;
+                    infoDenominazione.Text = denominazione; ;
 
                 }
             }

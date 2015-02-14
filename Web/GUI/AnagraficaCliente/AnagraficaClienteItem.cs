@@ -25,31 +25,18 @@ namespace Web.GUI.AnagraficaCliente
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AnagraficaClienteDto)model;
+                    var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
+                    var codice = UtilityValidation.GetStringND(obj.Codice);
+                    var partitaIVA = UtilityValidation.GetStringND(obj.PIva);
+                    var indirizzo = UtilityValidation.GetStringND(obj.Indirizzo);
+                    var cap = UtilityValidation.GetStringND(obj.CAP);
+                    var comune = UtilityValidation.GetStringND(obj.Comune);
+                    var provincia = UtilityValidation.GetStringND(obj.Provincia);
                     infoImage.Image = "Images.dashboard.anagraficacliente.png";
-                    var ragioneSociale = "Non definito";
-                    if (obj.RagioneSociale != null)
-                        ragioneSociale = obj.RagioneSociale;
                     infoRagioneSociale.Text = ragioneSociale;
-                    var codice = "N/D";
-                    if (obj.Codice != null)
-                        codice = obj.Codice;
                     infoCodice.Text = codice;
-                    var pIva = "N/D";
-                    if (obj.PIva != null)
-                        pIva = obj.PIva;
-                    infoPartitaIVA.Text = "P.IVA " + pIva;
-                    var indirizzo = "Non definito";
-                    if (obj.Indirizzo != null)
-                    {
-                        indirizzo = obj.Indirizzo;
-                        if (obj.CAP != null)
-                            indirizzo += " - " + obj.CAP;
-                        if (obj.Comune != null)
-                            indirizzo += " - " + obj.Comune;
-                        if(obj.Provincia!=null)
-                            indirizzo += " (" + obj.Provincia + ")";
-                    }
-                    infoIndirizzo.Text = indirizzo; // obj.Indirizzo + " - " + obj.CAP + " - " + obj.Comune + " (" + obj.Provincia + ")";
+                    infoPartitaIVA.Text = "P.IVA " + partitaIVA;
+                    infoIndirizzo.Text = indirizzo + " - " + cap + " - " + comune + " (" + provincia + ")";
                 }
             }
             catch (Exception ex)

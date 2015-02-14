@@ -1,4 +1,5 @@
 using Library.Code;
+using Library.Controls;
 using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace Web.GUI.AnagraficaFornitore
                     editRagioneSociale.Value = obj.RagioneSociale;
                     editIndirizzo.Value = obj.Indirizzo;
                     editCAP.Value = obj.CAP;
-                    editComune.Value = new Library.Controls.ComuniProvince.Comune(obj.Comune, obj.CodiceCatastale, obj.Provincia);
+                    editComune.Value = new ComuniProvince.Comune(obj.Comune, obj.CodiceCatastale, obj.Provincia);
                     editLocalita.Value = obj.Localita;
                     editTelefono.Value = obj.Telefono;
                     editFAX.Value = obj.Fax;
@@ -68,10 +69,7 @@ namespace Web.GUI.AnagraficaFornitore
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AnagraficaFornitoreDto)model;
-                    var ragioneSociale = editRagioneSociale.Value;
-                    if (ragioneSociale != null)
-                       ragioneSociale= ragioneSociale.Trim();
-                    obj.RagioneSociale = ragioneSociale; 
+                    obj.RagioneSociale = editRagioneSociale.Value;
                     obj.Indirizzo = editIndirizzo.Value;
                     obj.CAP = editCAP.Value;
                     obj.Comune = editComune.Value.Denominazione;

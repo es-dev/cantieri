@@ -25,22 +25,15 @@ namespace Web.GUI.Articolo
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.ArticoloDto)model;
+                    var codice = UtilityValidation.GetStringND(obj.Codice);
+                    var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
+                    var fattura = obj.Fattura;
+                    var numeroFattura = UtilityValidation.GetStringND(fattura.Numero);
                     infoImage.Image = "Images.dashboard.articolo.png";
                     infoCodice.Text = "ART";
-                    var codiceArticolo = "Non definito";
-                    if (obj.Codice != null)
-                        codiceArticolo = obj.Codice;
-                    infoCodiceArticolo.Text = codiceArticolo;
-                    var descrizione = "Descrizione non inserita";
-                    if (obj.Descrizione != null)
-                        descrizione = obj.Descrizione;
+                    infoFattura.Text = "Fattura N." + numeroFattura;
                     infoDescrizione.Text = descrizione;
-                    var fattura = obj.Fattura;
-                    var numeroFattura = "N/D";
-                    if (fattura != null)
-                        if (fattura.Numero != null)
-                            numeroFattura = fattura.Numero;
-                    infoFattura.Text = "Fattura N. " + numeroFattura;
+                    infoCodiceArticolo.Text = codice;
                 }
             }
             catch (Exception ex)

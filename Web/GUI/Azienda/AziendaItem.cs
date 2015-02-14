@@ -25,21 +25,17 @@ namespace Web.GUI.Azienda
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AziendaDto)model;
-                    infoCodice.Text = obj.Codice;
+                    var indirizzo = UtilityValidation.GetStringND(obj.Indirizzo);
+                    var cap = UtilityValidation.GetStringND(obj.CAP);
+                    var comune = UtilityValidation.GetStringND(obj.Comune);
+                    var provincia = UtilityValidation.GetStringND(obj.Provincia);
+                    var codice = UtilityValidation.GetStringND(obj.Codice);
+                    var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
+
+                    infoCodice.Text = codice;
                     infoImage.Image = "Images.dashboard.azienda.png";
-                    infoDenominazione.Text = obj.Denominazione;
-                    var indirizzo = "Non definito";
-                    if (obj.Indirizzo != null)
-                    {
-                        indirizzo = obj.Indirizzo;
-                        if (obj.CAP != null)
-                            indirizzo += " - " + obj.CAP;
-                        if (obj.Comune != null)
-                            indirizzo += " - " + obj.Comune;
-                        if (obj.Provincia != null)
-                            indirizzo += " (" + obj.Provincia + ")";
-                    }
-                    infoIndirizzo.Text = indirizzo; // obj.Indirizzo + " - " + obj.CAP + " - " + obj.Comune + " (" + obj.Provincia + ")";
+                    infoDenominazione.Text = denominazione;
+                    infoIndirizzo.Text = indirizzo + " - " + cap + " - " + comune + " (" + provincia + ")";
                 }
             }
             catch (Exception ex)
