@@ -24,7 +24,6 @@ namespace BusinessLogic
 
         public enum ScadenzaPagamento
         {
-            [Description("")]
             None,
             [Description("Scadenza a 30 giorni")]
             GG30,

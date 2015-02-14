@@ -1,4 +1,6 @@
+using BusinessLogic;
 using Library.Code;
+using Library.Code.Enum;
 using Library.Interfaces;
 using Library.Template.MVVM;
 using System;
@@ -37,11 +39,37 @@ namespace Web.GUI.Commessa
                     if (obj.Denominazione != null)
                         denominazione = obj.Denominazione;
                     infoDenominazione.Text = numero + " - " + denominazione;
-
                     infoDescrizione.Text = obj.Descrizione;
-                    var azienda = obj.Azienda;
-                    if (azienda != null)
-                        infoAzienda.Text = azienda.Denominazione;
+
+                    var scadenza = (obj.Scadenza!=null? obj.Scadenza.Value.ToString("dd/MM/yyyy"):"N/D");
+                    infoStato.Text = "Scadenza lavori al " + scadenza;
+
+                    var stato = UtilityEnum.GetValue<Tipi.StatoCommessa>(obj.Stato);
+                    var image = "";
+                    var descrizione = "";
+                    if (stato == Tipi.StatoCommessa.Chiusa)
+                    {
+                        image = "Images.messageConfirm.png";
+                        descrizione = "Commessa chiusa";
+                    }
+                    else if (stato == Tipi.StatoCommessa.InLavorazione)
+                    {
+                        image = "Images.messageQuestion.png";
+                        descrizione = "Commessa in lavorazione";
+                    }
+                    else if (stato == Tipi.StatoCommessa.Sospesa)
+                    {
+                        image = "Images.messageAlert.png";
+                        descrizione = "Lavori sospesi per la commessa";
+                    }
+                    else if (stato == Tipi.StatoCommessa.Aperta)
+                    {
+                        image = "Images.messageInfo.png";
+                        descrizione = "Commessa aperta";
+                    }
+                    toolTip.SetToolTip(imgStato, descrizione);
+                    imgStato.Image = image;
+
                 }
             }
             catch (Exception ex)
