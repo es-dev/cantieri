@@ -21,8 +21,11 @@ namespace Web.GUI.CentroCosto
         {
             try
             {
+                var obj = (WcfService.Dto.CentroCostoDto)model;
+                var codice = UtilityValidation.GetStringND(obj.Codice);
+                var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
+                infoSubtitle.Text = codice + " - " + denominazione; 
                 infoSubtitleImage.Image = "Images.dashboard.centrocosto.png";
-
             }
             catch (Exception ex)
             {

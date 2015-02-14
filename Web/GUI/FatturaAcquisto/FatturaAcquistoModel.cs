@@ -48,8 +48,10 @@ namespace Web.GUI.FatturaAcquisto
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.FatturaAcquistoDto)model;
+                    var numero = UtilityValidation.GetStringND(obj.Numero);
+                    var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
+                    infoSubtitle.Text = numero + " - " + descrizione;
                     infoSubtitleImage.Image = "Images.dashboard.fatturaacquisto.png";
-                    infoSubtitle.Text = obj.Numero;
                 }
             }
             catch (Exception ex)
@@ -76,9 +78,9 @@ namespace Web.GUI.FatturaAcquisto
                     editNote.Value = obj.Note;
                     editTotale.Value = obj.Totale;
                     editTotalePagamenti.Value = GetTotalePagamenti(obj);
-                    editStato.Value = GetStato(obj);
-                    var centroCosto=obj.CentroCosto;
-                    if (centroCosto!=null)
+                    editStato.Value = obj.Stato;
+                    var centroCosto = obj.CentroCosto;
+                    if (centroCosto != null)
                     {
                         editCentroCosto.Model = centroCosto;
                         editCentroCosto.Value = "(" + centroCosto.Codice + ") - " + centroCosto.Denominazione;
@@ -87,7 +89,7 @@ namespace Web.GUI.FatturaAcquisto
                     if (fornitore != null)
                     {
                         editFornitore.Model = fornitore;
-                        editFornitore.Value = "(" + fornitore.Codice + ") - " + fornitore.RagioneSociale;
+                        editFornitore.Value =  fornitore.Codice + " - " + fornitore.RagioneSociale;
                     }
                 }
             }
@@ -212,7 +214,7 @@ namespace Web.GUI.FatturaAcquisto
             {
                 var fornitore = (WcfService.Dto.FornitoreDto)model;
                 if (fornitore != null)
-                    editFornitore.Value = "(" + fornitore.Codice+ ") - " +fornitore.RagioneSociale;
+                    editFornitore.Value =  fornitore.Codice+ " - " +fornitore.RagioneSociale;
             }
             catch (Exception ex)
             {
@@ -240,7 +242,7 @@ namespace Web.GUI.FatturaAcquisto
             {
                 var centroCosto = (WcfService.Dto.CentroCostoDto)model;
                 if (centroCosto != null)
-                    editCentroCosto.Value = "(" + centroCosto.Codice + ") - " + centroCosto.Denominazione;
+                    editCentroCosto.Value = centroCosto.Codice + " - " + centroCosto.Denominazione;
             }
             catch (Exception ex)
             {
@@ -259,13 +261,12 @@ namespace Web.GUI.FatturaAcquisto
             {
                 UtilityError.Write(ex);
             }
-                }
+        }
 
         private void CalcolaTotali()
         {
             try
             {
-                //prelievo dati da GUI
                 var imponibile = UtilityValidation.GetDecimal(editImponibile.Value);
                 var iva = UtilityValidation.GetDecimal(editIVA.Value);
                 var data = editData.Value;
@@ -274,20 +275,14 @@ namespace Web.GUI.FatturaAcquisto
 
                 if (data != null)
                 {
-                    //prelievo dati da DB
                     var obj = (WcfService.Dto.FatturaAcquistoDto)Model;
-
-                    var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(_scadenzaPagamento);
-                    var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, scadenzaPagamento);
+                    var scadenza = BusinessLogic.Fattura.GetScadenza(obj);
                     var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
                     var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, today);
                     var statoFattura = BusinessLogic.Fattura.GetStato(obj);
+                    var stato = GetStato(today, scadenza, totaleFattura, totalePagamenti, statoFattura);
 
-                    //valutazione dell'andamento del lavoro
-                    var statoDescrizione = GetStatoDescrizione(today, scadenza, totaleFattura, totalePagamenti, statoFattura);
-
-                    //binding dati in GUI
-                    editStato.Value = statoDescrizione.ToString();
+                    editStato.Value = stato.ToString();
                     editTotale.Value = totaleFattura;
                     editTotalePagamenti.Value = totalePagamenti;
                 }
@@ -298,30 +293,30 @@ namespace Web.GUI.FatturaAcquisto
             }
         }
 
-        private StatoDescrizione GetStatoDescrizione(DateTime data, DateTime scadenza, decimal totaleFattura, decimal totalePagamenti, BusinessLogic.Tipi.StatoFattura statoFattura)
+        private StateDescriptionImage GetStato(DateTime data, DateTime scadenza, decimal totaleFattura, decimal totalePagamenti, BusinessLogic.Tipi.StatoFattura statoFattura)
         {
             try
             {
-                var stato = TypeStato.None;
+                var stato = TypeState.None;
                 var descrizione = "";
                 var ritardo = BusinessLogic.Fattura.GetRitardo(data, scadenza);
                 if (statoFattura == Tipi.StatoFattura.Insoluta)
                 {
                     descrizione = "La fattura risulta insoluta. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura risulta scaduta il  " + scadenza.ToString("dd/MM/yyyy") + " con un ritardo di pagamento pari a " + ritardo;
-                    stato = TypeStato.Critical;
+                    stato = TypeState.Critical;
                 }
                 else if (statoFattura == Tipi.StatoFattura.NonPagata)
                 {
                     descrizione = "La fattura risulta in pagamento. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura scade il  " + scadenza.ToString("dd/MM/yyyy");
-                    stato = TypeStato.Warning;
+                    stato = TypeState.Warning;
                 }
                 else if (statoFattura == Tipi.StatoFattura.Pagata)
                 {
                     descrizione = "La fattura è stata pagata";
-                    stato = TypeStato.Normal;
+                    stato = TypeState.Normal;
                 }
-                var statoDescrizione = new StatoDescrizione(stato, descrizione);
-                return statoDescrizione;
+                var _stato = new StateDescriptionImage(stato, descrizione);
+                return _stato;
             }
             catch (Exception ex)
             {

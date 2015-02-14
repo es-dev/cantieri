@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.Liquidazione
@@ -44,7 +45,10 @@ namespace Web.GUI.Liquidazione
             {
                 if (model != null)
                 {
-
+                    var obj = (LiquidazioneDto)model;
+                    var codice = UtilityValidation.GetStringND(obj.Codice);
+                    var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
+                    infoSubtitle.Text = codice + " - " + descrizione;
                     infoSubtitleImage.Image = "Images.dashboard.liquidazione.png";
                 }
             }

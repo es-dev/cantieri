@@ -1,6 +1,7 @@
 using BusinessLogic;
 using Library.Code;
 using Library.Code.Enum;
+using Library.Controls;
 using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
@@ -47,8 +48,10 @@ namespace Web.GUI.Commessa
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.CommessaDto)model;
+                    var codice = UtilityValidation.GetStringND(obj.Codice);
+                    var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
+                    infoSubtitle.Text = codice + " - " + denominazione;
                     infoSubtitleImage.Image = "Images.dashboard.commessa.png";
-                    infoSubtitle.Text = obj.Codice + " - " + obj.Denominazione;
                 }
             }
             catch (Exception ex)
@@ -67,7 +70,7 @@ namespace Web.GUI.Commessa
                     editDenominazione.Value = obj.Denominazione;
                     editCodice.Value = obj.Codice;
                     editCAP.Value = obj.CAP;
-                    editComune.Value = new Library.Controls.ComuniProvince.Comune(obj.Comune, obj.CodiceCatastale, obj.Provincia);
+                    editComune.Value = new ComuniProvince.Comune(obj.Comune, obj.CodiceCatastale, obj.Provincia);
                     editLocalita.Value = obj.Localita;
                     editIndirizzo.Value = obj.Indirizzo;
                     editCreazione.Value = obj.Creazione;

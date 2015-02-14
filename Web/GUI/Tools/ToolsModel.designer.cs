@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace Web.GUI.SAL
+namespace Web.GUI.Tools
 {
     partial class ToolsModel 
 	{

@@ -32,6 +32,7 @@ namespace Web.GUI.AnagraficaFornitore
                     var cap = UtilityValidation.GetStringND(obj.CAP);
                     var comune = UtilityValidation.GetStringND(obj.Comune);
                     var provincia = UtilityValidation.GetStringND(obj.Provincia);
+
                     infoImage.Image = "Images.dashboard.anagraficafornitore.png";
                     infoRagioneSociale.Text = ragioneSociale;
                     infoCodice.Text = codice;

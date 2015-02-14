@@ -19,7 +19,7 @@ namespace BusinessLogic
                 {
                     foreach (var fornitore in fornitori)
                     {
-                        var totaleFatture = BusinessLogic.Fornitore.GetTotaleFatture(fornitore, data);
+                        var totaleFatture = Fornitore.GetTotaleFatture(fornitore, data);
                         totale += totaleFatture;
                     }
                     return totale;
@@ -39,7 +39,7 @@ namespace BusinessLogic
                 decimal totale = 0;
                 if (cliente != null)
                 {
-                    var totaleFattura = BusinessLogic.Cliente.GetTotaleFatture(cliente, data);
+                    var totaleFattura = Cliente.GetTotaleFatture(cliente, data);
                     totale = totaleFattura;
                     return totale;
                 }
@@ -60,7 +60,7 @@ namespace BusinessLogic
                 {
                     foreach (var fornitore in fornitori)
                     {
-                        var totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamenti(fornitore, data);
+                        var totalePagamenti = Fornitore.GetTotalePagamenti(fornitore, data);
                         totale += totalePagamenti;
                     }
                     return totale;
@@ -80,7 +80,7 @@ namespace BusinessLogic
                 decimal totale = 0;
                 if (cliente != null)
                 {
-                    var totaleLiquidazioni = BusinessLogic.Cliente.GetTotaleLiquidazioni(cliente, data);
+                    var totaleLiquidazioni = Cliente.GetTotaleLiquidazioni(cliente, data);
                     totale = totaleLiquidazioni;
                     return totale;
                 }

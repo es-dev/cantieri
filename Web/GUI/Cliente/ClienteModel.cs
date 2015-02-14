@@ -1,6 +1,7 @@
 using BusinessLogic;
 using Library.Code;
 using Library.Code.Enum;
+using Library.Controls;
 using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
@@ -26,8 +27,10 @@ namespace Web.GUI.Cliente
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.ClienteDto)model;
+                    var codice = UtilityValidation.GetStringND(obj.Codice);
+                    var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
+                    infoSubtitle.Text = codice + " - " + ragioneSociale;
                     infoSubtitleImage.Image = "Images.dashboard.cliente.png";
-                    infoSubtitle.Text = obj.Codice + " - " + obj.RagioneSociale;
                 }
             }
             catch (Exception ex)
@@ -46,7 +49,7 @@ namespace Web.GUI.Cliente
                     editRagioneSociale.Value = obj.RagioneSociale;
                     editIndirizzo.Value = obj.Indirizzo;
                     editCAP.Value = obj.CAP;
-                    editComune.Value = new Library.Controls.ComuniProvince.Comune(obj.Comune, obj.CodiceCatastale, obj.Provincia);
+                    editComune.Value = new ComuniProvince.Comune(obj.Comune, obj.CodiceCatastale, obj.Provincia);
                     editTelefono.Value = obj.Telefono;
                     editFAX.Value = obj.Fax;
                     editMobile.Value = obj.Mobile;
@@ -61,7 +64,7 @@ namespace Web.GUI.Cliente
                     if (commessa != null)
                     {
                         editCommessa.Model = commessa;
-                        editCommessa.Value = "(" + commessa.Codice + ") - " + commessa.Denominazione;
+                        editCommessa.Value =  commessa.Codice + " - " + commessa.Denominazione;
                     }
                     editCodiceCliente.Value = obj.Codice;
                 }
@@ -186,10 +189,9 @@ namespace Web.GUI.Cliente
             {
                 var commessa = (WcfService.Dto.CommessaDto)model;
                 if (commessa != null)
-                {
-                    editCommessa.Value = "(" + commessa.Codice + ") - " + commessa.Denominazione;
+                    editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;
                     CalcolaTotali();
-                }
+            }
             }
             catch (Exception ex)
             {
@@ -241,7 +243,7 @@ namespace Web.GUI.Cliente
             try
             {
                 if (Editing)
-                    CalcolaTotali();
+                CalcolaTotali();
             }
             catch (Exception ex)
             {
@@ -253,8 +255,6 @@ namespace Web.GUI.Cliente
         {
             try
             {
-                //prelievo dati da GUI -->non prelevo nnt da GUI
-                //prelievo dati DB
                 var obj = (WcfService.Dto.ClienteDto)Model;
                 var fatture = obj.FatturaVenditas;
                 var today = DateTime.Today;
@@ -264,12 +264,9 @@ namespace Web.GUI.Cliente
                     var totaleLiquidazioni = BusinessLogic.Cliente.GetTotaleLiquidazioni(obj, today);
                     var fattureInsolute = BusinessLogic.Cliente.GetFattureInsolute(fatture);
                     var fattureNonLiquidate = BusinessLogic.Cliente.GetFattureNonLiquidate(fatture);
+                    var stato = GetStato(totaleFatture, totaleLiquidazioni, fattureInsolute, fattureNonLiquidate);
 
-                    //valutazione dell'andamento del lavoro
-                    var statoDescrizione = GetStatoDescrizione(totaleFatture, totaleLiquidazioni, fattureInsolute, fattureNonLiquidate);
-
-                    ////binding dati in GUI
-                    editStato.Value = statoDescrizione.ToString();
+                    editStato.Value = stato.ToString();
                     editTotaleFattureVendita.Value = totaleFatture;
                     editTotaleLiquidazioni.Value = totaleLiquidazioni;
                 }
@@ -280,12 +277,12 @@ namespace Web.GUI.Cliente
             }
         }
 
-        private StatoDescrizione GetStatoDescrizione(decimal totaleFatture, decimal totaleLiquidazioni, IList<WcfService.Dto.FatturaVenditaDto> fattureInsolute, IList<WcfService.Dto.FatturaVenditaDto> fattureNonLiquidate)
+        private StateDescriptionImage GetStato(decimal totaleFatture, decimal totaleLiquidazioni, IList<WcfService.Dto.FatturaVenditaDto> fattureInsolute, IList<WcfService.Dto.FatturaVenditaDto> fattureNonLiquidate)
         {
             try
             {
                 var descrizione = "";
-                var stato = TypeStato.None;
+                var stato = TypeState.None;
                 var existFattureInsolute = (fattureInsolute.Count >= 1);
                 var existFattureNonLiquidate = (fattureNonLiquidate.Count >= 1);
                 var listaFattureInsolute = BusinessLogic.Fattura.GetLista(fattureInsolute);
@@ -298,23 +295,23 @@ namespace Web.GUI.Cliente
                         descrizione = "Il cliente risulta insoluto. Il totale incassi pari a " + totaleLiquidazioni.ToString("0.00€") + " è inferiore al totale delle fatture pari a " + totaleFatture.ToString("0.00€") + ". Le fatture insolute sono " + listaFattureInsolute;
                         if (existFattureNonLiquidate)
                             descrizione += " Le fatture non liquidate sono " + listaFattureNonLiquidate;
-                        stato = TypeStato.Critical;
+                        stato = TypeState.Critical;
                     }
                     else //condizione di non pagamento (pagamenti nulli o non completi, se non completi segnalo le fatture non pagate)
                     {
                         descrizione = "Il cliente risulta non liquidato. Il totale incassi pari a " + totaleLiquidazioni.ToString("0.00€") + " è inferiore al totale delle fatture pari a " + totaleFatture.ToString("0.00€");
                         if (existFattureNonLiquidate)
                             descrizione += " Le fatture non pagate sono " + listaFattureNonLiquidate;
-                        stato = TypeStato.Warning;
+                        stato = TypeState.Warning;
                     }
                 }
                 else if (totaleLiquidazioni >= totaleFatture)
                 {
                     descrizione = "Il cliente risulta liquidato. Tutte le fatture sono state saldate";  //non so se ha senso indicargli anche insolute o no!!!!! per ora NO
-                    stato = TypeStato.Normal;
+                    stato = TypeState.Normal;
                 }
-                var statoDescrizione = new StatoDescrizione(stato, descrizione);
-                return statoDescrizione;
+                var _stato = new StateDescriptionImage(stato, descrizione);
+                return _stato;
             }
             catch (Exception ex)
             {
@@ -335,7 +332,7 @@ namespace Web.GUI.Cliente
                 UtilityError.Write(ex);
             }
         }
-
+        
 
 	}
 }

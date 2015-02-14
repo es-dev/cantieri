@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WcfService.Dto;
 
 namespace BusinessLogic
 {
@@ -25,7 +26,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleLiquidazioni(WcfService.Dto.FatturaVenditaDto fatturaVendita, DateTime data)
+        public static decimal GetTotaleLiquidazioni(FatturaVenditaDto fatturaVendita, DateTime data)
         {
             try
             {
@@ -48,7 +49,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotalePagamenti(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto, DateTime data)
+        public static decimal GetTotalePagamenti(FatturaAcquistoDto fatturaAcquisto, DateTime data)
         {
             try
             {
@@ -71,12 +72,13 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static DateTime GetScadenza(DateTime data, BusinessLogic.Tipi.ScadenzaPagamento scadenzaPagamento)
+        public static DateTime GetScadenza(FatturaAcquistoDto fattura)
         {
             try
             {
-                var giorni = GetGiorni(scadenzaPagamento);
-                var scadenza= data.AddDays(giorni);
+                var data = UtilityValidation.GetData(fattura.Data);
+                var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(fattura.ScadenzaPagamento);
+                var scadenza = GetScadenza(data, scadenzaPagamento);
                 return scadenza;
             }
             catch (Exception ex)
@@ -86,7 +88,38 @@ namespace BusinessLogic
             return DateTime.MinValue;
         }
 
-        private static int GetGiorni(BusinessLogic.Tipi.ScadenzaPagamento tipoScadenzaPagamento)
+        public static DateTime GetScadenza(FatturaVenditaDto fattura)
+        {
+            try
+            {
+                var data = UtilityValidation.GetData(fattura.Data);
+                var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(fattura.ScadenzaPagamento);
+                var scadenza = GetScadenza(data, scadenzaPagamento);
+                return scadenza;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return DateTime.MinValue;
+        }
+
+        private static DateTime GetScadenza(DateTime dataFattura, Tipi.ScadenzaPagamento scadenzaPagamento)
+        {
+            try
+            {
+                var giorni = GetGiorniScadenzaPagamento(scadenzaPagamento);
+                var scadenza= dataFattura.AddDays(giorni);
+                return scadenza;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return DateTime.MinValue;
+        }
+
+        private static int GetGiorniScadenzaPagamento(Tipi.ScadenzaPagamento tipoScadenzaPagamento)
         {
             try
             {
@@ -99,6 +132,7 @@ namespace BusinessLogic
                     giorni = 60;
                 else if (tipoScadenzaPagamento == Tipi.ScadenzaPagamento.GG30)
                     giorni = 30;
+
                 return giorni;
             }
             catch (Exception ex)
@@ -113,18 +147,18 @@ namespace BusinessLogic
             try
             {
                 string ritardo = null;
-                var giorniRitardo = data.Subtract(scadenza).TotalDays;
-                if (0 <= giorniRitardo && giorniRitardo <= 120)
-                    ritardo = giorniRitardo.ToString() + " giorni";
-                else if (120 < giorniRitardo && giorniRitardo <= 365)
+                var giorni = data.Subtract(scadenza).TotalDays;
+                if (0 <= giorni && giorni <= 120)
+                    ritardo = giorni.ToString() + " giorni";
+                else if (120 < giorni && giorni <= 365)
                 {
-                    var mesiRitardo = (int)(giorniRitardo / 30) + 1;
-                    ritardo = mesiRitardo.ToString() + " mesi";    
+                    var mesi = (int)(giorni / 30) + 1;
+                    ritardo = mesi.ToString() + " mesi";
                 }
-                else if (giorniRitardo > 365)
+                else if (giorni > 365)
                 {
-                    var anniRitardo = (int)(giorniRitardo / 365);
-                    ritardo = anniRitardo.ToString() + " anni"; 
+                    var anni = (int)(giorni / 365);
+                    ritardo = anni.ToString() + " anni";
                 }
                 return ritardo;
             }
@@ -135,14 +169,12 @@ namespace BusinessLogic
             return null;
         }
 
-        public static string GetRitardo(WcfService.Dto.FatturaAcquistoDto fattura)
+        public static string GetRitardo(FatturaAcquistoDto fattura)
         {
             try
             {
                 var today = DateTime.Today;
-                var data = fattura.Data;
-                var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(fattura.ScadenzaPagamento);
-                var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, scadenzaPagamento);
+                var scadenza = GetScadenza(fattura);
                 var ritardo = GetRitardo(today, scadenza);
                 return ritardo;
             }
@@ -153,14 +185,12 @@ namespace BusinessLogic
             return null;
         }
 
-        public static string GetRitardo(WcfService.Dto.FatturaVenditaDto fattura)
+        public static string GetRitardo(FatturaVenditaDto fattura)
         {
             try
             {
                 var today = DateTime.Today;
-                var data = fattura.Data;
-                var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(fattura.ScadenzaPagamento);
-                var scadenza = BusinessLogic.Fattura.GetScadenza(data.Value, scadenzaPagamento);
+                var scadenza = GetScadenza(fattura);
                 var ritardo = GetRitardo(today, scadenza);
                 return ritardo;
             }
@@ -171,17 +201,33 @@ namespace BusinessLogic
             return null;
         }
 
-        public static Tipi.StatoFattura GetStato(WcfService.Dto.FatturaAcquistoDto fattura)
+        public static Tipi.StatoFattura GetStato(FatturaAcquistoDto fattura)
         {
             try
             {
                 var today = DateTime.Today;
-                var data = fattura.Data;
-                var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(fattura.ScadenzaPagamento);
-                var scadenza = GetScadenza(data.Value, scadenzaPagamento);
+                var scadenza = GetScadenza(fattura);
                 var totaleFattura = UtilityValidation.GetDecimal(fattura.Totale);
                 var totalePagamenti = GetTotalePagamenti(fattura, today);
                 var stato = GetStato(today, scadenza, totaleFattura, totalePagamenti);
+                return stato;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return Tipi.StatoFattura.None;
+        }
+
+        public static Tipi.StatoFattura GetStato(FatturaVenditaDto fattura)
+        {
+            try
+            {
+                var today = DateTime.Today;
+                var scadenza = GetScadenza(fattura);
+                var totaleFattura = UtilityValidation.GetDecimal(fattura.Totale);
+                var totaleLiquidazioni = GetTotaleLiquidazioni(fattura, today);
+                var stato = GetStato(today, scadenza, totaleFattura, totaleLiquidazioni);
                 return stato;
             }
             catch (Exception ex)
@@ -206,6 +252,7 @@ namespace BusinessLogic
                 }
                 else if (totalePagamentiLiquidazioni >= totaleFattura)
                     stato = Tipi.StatoFattura.Pagata;
+
                 return stato;
             }
             catch (Exception ex)
@@ -213,40 +260,22 @@ namespace BusinessLogic
                 UtilityError.Write(ex);
             }
             return Tipi.StatoFattura.None;
-            
+
         }
 
 
-        public static Tipi.StatoFattura GetStato(WcfService.Dto.FatturaVenditaDto fattura)
+        public static string GetLista(IList<FatturaAcquistoDto> fatture)
         {
             try
             {
-                var today = DateTime.Today;
-                var data = fattura.Data;
-                var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(fattura.ScadenzaPagamento);
-                var scadenza = GetScadenza(data.Value, scadenzaPagamento);
-                var totaleFattura = UtilityValidation.GetDecimal(fattura.Totale);
-                var totaleLiquidazioni = GetTotaleLiquidazioni(fattura, today);
-                var stato = GetStato(today, scadenza, totaleFattura, totaleLiquidazioni);
-                return stato;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return Tipi.StatoFattura.None;
-        }
-
-        public static string GetLista(IList<WcfService.Dto.FatturaAcquistoDto> fatture)
-        {
-            try
-            {
-                var listaFatture = "";
+                string  listaFatture = null;
                 foreach (var fattura in fatture)
                 {
-                    if (listaFatture.Length >= 1)
+                    if (listaFatture!=null)
                         listaFatture += ", ";
-                    var _fattura = fattura.Numero + "/" + fattura.Data.Value.Year.ToString();
+                    var numero = UtilityValidation.GetStringND(fattura.Numero);
+                    var data = UtilityValidation.GetDataND(fattura.Data);
+                    var _fattura = numero + "/" + data;
                     listaFatture += _fattura;
                 }
                 return listaFatture;
@@ -258,16 +287,18 @@ namespace BusinessLogic
             return null;
         }
 
-        public static string GetLista(IList<WcfService.Dto.FatturaVenditaDto> fatture)
+        public static string GetLista(IList<FatturaVenditaDto> fatture)
         {
             try
             {
-                var listaFatture = "";
+                string listaFatture = null;
                 foreach (var fattura in fatture)
                 {
-                    if (listaFatture.Length >= 1)
+                    if (listaFatture != null)
                         listaFatture += ", ";
-                    var _fattura = fattura.Numero + "/" + fattura.Data.Value.Year.ToString();
+                    var numero = UtilityValidation.GetStringND(fattura.Numero);
+                    var data = UtilityValidation.GetDataND(fattura.Data);
+                    var _fattura = numero + "/" + data;
                     listaFatture += _fattura;
                 }
                 return listaFatture;

@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.SAL
@@ -24,6 +25,10 @@ namespace Web.GUI.SAL
         {
             try
             {
+                var obj = (SALDto)model;
+                var codice = UtilityValidation.GetStringND(obj.Codice);
+                var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
+                infoSubtitle.Text = codice + " - " + denominazione;
                 infoSubtitleImage.Image = "Images.dashboard.SAL.png";
             }
             catch (Exception ex)
@@ -68,7 +73,7 @@ namespace Web.GUI.SAL
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.SALDto)model;
+                    var obj = (SALDto)model;
                     obj.Data = editData.Value;
                     obj.Codice = editCodice.Value;
                     obj.Note = editNote.Value;
@@ -78,7 +83,7 @@ namespace Web.GUI.SAL
                     obj.TotalePagamenti = editTotalePagamenti.Value;
                     obj.Denominazione = editDenominazione.Value;
                     obj.Stato = editStato.Value;
-                    var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
+                    var commessa = (CommessaDto)editCommessa.Model;
                     if(commessa!=null)
                         obj.CommessaId = commessa.Id;
                 }
@@ -108,7 +113,7 @@ namespace Web.GUI.SAL
         {
             try
             {
-                var commessa = (WcfService.Dto.CommessaDto)model;
+                var commessa = (CommessaDto)model;
                 if (commessa != null)
                 {
                     editCommessa.Value = commessa.Denominazione;
@@ -164,28 +169,28 @@ namespace Web.GUI.SAL
             }
         }
 
-        private StatoDescrizione GetStatoDescrizione(decimal importoLavori, decimal margine, decimal margineOperativo, Tipi.StatoSAL statoSAL)
+        private StateDescriptionImage GetStatoDescrizione(decimal importoLavori, decimal margine, decimal margineOperativo, Tipi.StatoSAL statoSAL)
         {
             try
             {
                 var descrizione = "";
-                var stato = TypeStato.None;
+                var stato = TypeState.None;
                 if (statoSAL== Tipi.StatoSAL.Perdita)
                 {
                     descrizione = "Andamento del lavoro critico. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta al valore critico di " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
-                    stato = TypeStato.Critical;
+                    stato = TypeState.Critical;
                 }
                 else if (statoSAL == Tipi.StatoSAL.Negativo)
                 {
                     descrizione = "Andamento del lavoro negativo. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta ad un valore inferiore pari a " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
-                    stato = TypeStato.Warning;
+                    stato = TypeState.Warning;
                 }
                 else if (statoSAL == Tipi.StatoSAL.Positivo)
                 {
                     descrizione = "Andamento del lavoro positivo. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta a valori superiori pari a " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
-                    stato = TypeStato.Normal;
+                    stato = TypeState.Normal;
                 }
-                var statoDescrizione = new StatoDescrizione(stato, descrizione);
+                var statoDescrizione = new StateDescriptionImage(stato, descrizione);
                 return statoDescrizione;
             }
             catch (Exception ex)

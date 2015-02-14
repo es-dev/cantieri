@@ -1,5 +1,6 @@
 using BusinessLogic;
 using Library.Code;
+using Library.Code.Enum;
 using Library.Interfaces;
 using Library.Template.MVVM;
 using System;
@@ -8,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.Cliente
@@ -26,64 +28,26 @@ namespace Web.GUI.Cliente
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.ClienteDto)model;
-                    infoImage.Image = "Images.dashboard.cliente.png";
-                    var ragioneSociale = "Non definito";
-                    if (obj.RagioneSociale != null)
-                        ragioneSociale = obj.RagioneSociale;
-                    infoRagioneSociale.Text = ragioneSociale;
-                    var codice = "N/D";
-                    if (obj.Codice != null)
-                        codice = obj.Codice;
-                    infoCodice.Text = codice;
-                    var indirizzo = "Non definito";
-                    if (obj.Indirizzo != null)
-                    {
-                        indirizzo = obj.Indirizzo;
-                        if (obj.CAP != null)
-                            indirizzo += " - " + obj.CAP;
-                        if (obj.Comune != null)
-                            indirizzo += " - " + obj.Comune;
-                        if (obj.Provincia != null)
-                            indirizzo += " (" + obj.Provincia + ")";
-                    }
-                    infoIndirizzo.Text = indirizzo;
+                    var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
+                    var codice = UtilityValidation.GetStringND(obj.Codice);
+                    var indirizzo = UtilityValidation.GetStringND(obj.Indirizzo);
+                    var cap = UtilityValidation.GetStringND(obj.CAP);
+                    var comune = UtilityValidation.GetStringND(obj.Comune);
+                    var provincia = UtilityValidation.GetStringND(obj.Provincia);
                     var commessa = obj.Commessa;
-                    if (commessa != null)
-                        infoCommesssa.Text = "Commessa " + commessa.Codice + " - " + commessa.Denominazione;
-
                     var today = DateTime.Today;
-                    var totaleFattureVendita = BusinessLogic.Cliente.GetTotaleFatture(obj, today);
-                    var totaleFatture = totaleFattureVendita.ToString("0.00") + "€";
-
+                    var totaleFatture = BusinessLogic.Cliente.GetTotaleFatture(obj, today);
                     var totaleLiquidazioni = BusinessLogic.Cliente.GetTotaleLiquidazioni(obj, today);
-                    infoLiquidazioneTotale.Text = "Incassato " + totaleLiquidazioni.ToString("0.00") + "€ su un totale di " + totaleFatture;
+                    var stato = GetStato(obj);
 
-                    var fatture = obj.FatturaVenditas;
-                    var fattureNonLiquidate = BusinessLogic.Cliente.GetFattureNonLiquidate(fatture);
-                    var fattureInsolute = BusinessLogic.Cliente.GetFattureInsolute(fatture);
-                    var listaFattureNonLiquidate = BusinessLogic.Fattura.GetLista(fattureNonLiquidate);
-                    var listaFattureInsolute = BusinessLogic.Fattura.GetLista(fattureInsolute);
-
-                    var stato = BusinessLogic.Cliente.GetStato(obj);
-                    var image = "";
-                    var descrizione = "";
-                    if (stato == Tipi.StatoCliente.Liquidato)
-                    {
-                        image = "Images.messageConfirm.png";
-                        descrizione = "Cliente incassato";
-                    }
-                    else if (stato == Tipi.StatoCliente.NonLiquidato)
-                    {
-                        image = "Images.messageQuestion.png";
-                        descrizione = "Cliente non incassato, le fatture non incassate sono " + listaFattureNonLiquidate;
-                    }
-                    else if (stato == Tipi.StatoCliente.Insoluto)
-                    {
-                        image = "Images.messageAlert.png";
-                        descrizione = "Cliente insoluto, le fatture insolute sono " + listaFattureInsolute;
-                    }
-                    toolTip.SetToolTip(imgStato, descrizione);
-                    imgStato.Image = image;
+                    toolTip.SetToolTip(imgStato, stato.Description);
+                    imgStato.Image = stato.Image;
+                    infoImage.Image = "Images.dashboard.cliente.png";
+                    infoRagioneSociale.Text = ragioneSociale;
+                    infoCodice.Text = codice;
+                    infoIndirizzo.Text = indirizzo + " - " + cap + " - " + comune + " (" + provincia + ")";
+                    infoLiquidazioneTotale.Text = "Incassato " + totaleLiquidazioni.ToString("0.00") + "€ su un totale di " + totaleFatture.ToString("0.00") + "€";
+                    infoCommesssa.Text = "Commessa " + commessa.Codice + " - " + commessa.Denominazione;
                 }
             }
             catch (Exception ex)
@@ -91,6 +55,45 @@ namespace Web.GUI.Cliente
                 UtilityError.Write(ex);
             }
         }
+
+        private static DescriptionImage GetStato(ClienteDto cliente)
+        {
+            try
+            {
+                var fatture = cliente.FatturaVenditas;
+                var fattureNonLiquidate = BusinessLogic.Cliente.GetFattureNonLiquidate(fatture);
+                var fattureInsolute = BusinessLogic.Cliente.GetFattureInsolute(fatture);
+                var listaFattureNonLiquidate = BusinessLogic.Fattura.GetLista(fattureNonLiquidate);
+                var listaFattureInsolute = BusinessLogic.Fattura.GetLista(fattureInsolute);
+
+                var image = "";
+                var descrizione = "";
+                var stato = BusinessLogic.Cliente.GetStato(cliente);
+                if (stato == Tipi.StatoCliente.Liquidato)
+                {
+                    image = "Images.messageConfirm.png";
+                    descrizione = "Cliente incassato";
+                }
+                else if (stato == Tipi.StatoCliente.NonLiquidato)
+                {
+                    image = "Images.messageQuestion.png";
+                    descrizione = "Cliente non incassato, le fatture non incassate sono " + listaFattureNonLiquidate;
+                }
+                else if (stato == Tipi.StatoCliente.Insoluto)
+                {
+                    image = "Images.messageAlert.png";
+                    descrizione = "Cliente insoluto, le fatture insolute sono " + listaFattureInsolute;
+                }
+                var _stato = new DescriptionImage(descrizione, image);
+                return _stato;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+             
 
         private void ClienteItem_ItemClick(IItem item)
         {

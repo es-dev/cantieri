@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.Pagamento
@@ -24,19 +25,17 @@ namespace Web.GUI.Pagamento
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.PagamentoDto)model;
+                    var obj = (PagamentoDto)model;
+                    var importo = UtilityValidation.GetEuro(obj.Importo);
+                    var codice = UtilityValidation.GetStringND(obj.Codice);
+                    var data = UtilityValidation.GetDataND(obj.Data);
+                 
+                    infoData.Text = "Pagato il " + data;
                     infoImage.Image = "Images.dashboard.pagamento.png";
                     infoCodice.Text = "PAG";
                     infoNote.Text = obj.Note;
-                    var importo = "N/D";
-                    if (obj.Importo != null)
-                        importo = obj.Importo.Value.ToString("0.00");
-                    infoImporto.Text = "Importo: " + importo + "€";
-                    infoPagamento.Text = "Pagamento N." + obj.Codice;
-                    var data = "N/D";
-                    if (obj.Data != null)
-                        data = "Pagato il " + obj.Data.Value.ToString("dd/MM/yyyy");
-                    infoData.Text = data;
+                    infoImporto.Text = "Importo: " + importo;
+                    infoPagamento.Text = "Pagamento N." + codice;
                 }
             }
             catch (Exception ex)

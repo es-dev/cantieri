@@ -1,4 +1,5 @@
 using Library.Code;
+using Library.Controls;
 using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,10 @@ namespace Web.GUI.Azienda
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AziendaDto)model;
+                    var codice = UtilityValidation.GetStringND(obj.Codice);
+                    var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
+                    infoSubtitle.Text = codice + " - " + denominazione;
                     infoSubtitleImage.Image = "Images.dashboard.azienda.png";
-                    infoSubtitle.Text = obj.Codice + " " + obj.Denominazione;
                 }
             }
             catch (Exception ex)
@@ -44,7 +47,7 @@ namespace Web.GUI.Azienda
                     editCodice.Value = obj.Codice;
                     editDenominazione.Value = obj.Denominazione;
                     editCAP.Value = obj.CAP;
-                    editComune.Value = new Library.Controls.ComuniProvince.Comune(obj.Comune, obj.CodiceCatastale, obj.Provincia);
+                    editComune.Value = new ComuniProvince.Comune(obj.Comune, obj.CodiceCatastale, obj.Provincia);
                     editIndirizzo.Value = obj.Indirizzo;
                     editLocalita.Value = obj.Localita;
                     editNumeroDipendenti.Value = obj.Dipendenti;

@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 
 namespace Web.GUI.SAL
 {
@@ -35,7 +36,7 @@ namespace Web.GUI.SAL
             {
                 var space = new SALModel();
                 space.Title = "NUOVO SAL";
-                space.Model = new WcfService.Dto.SALDto();
+                space.Model = new SALDto();
                 AddSpace(space);
             }
             catch (Exception ex)

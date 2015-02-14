@@ -25,8 +25,10 @@ namespace Web.GUI.AnagraficaCliente
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AnagraficaClienteDto)model;
+                    var codice = UtilityValidation.GetStringND(obj.Codice);
+                    var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
+                    infoSubtitle.Text = codice + " - " + ragioneSociale;
                     infoSubtitleImage.Image = "Images.dashboard.anagraficacliente.png";
-                    infoSubtitle.Text = obj.Codice + " - " + obj.RagioneSociale;
                 }
             }
             catch (Exception ex)

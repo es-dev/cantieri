@@ -42,7 +42,7 @@ namespace BusinessLogic
                     var fattureVendita = cliente.FatturaVenditas;
                     foreach (var fatturaVendita in fattureVendita)
                     {
-                        var totaleLiquidazioni = BusinessLogic.Fattura.GetTotaleLiquidazioni(fatturaVendita, data);
+                        var totaleLiquidazioni = Fattura.GetTotaleLiquidazioni(fatturaVendita, data);
                         totale += totaleLiquidazioni;
                     }
                     return totale;
@@ -83,11 +83,11 @@ namespace BusinessLogic
             return null;
         }
 
-        private static IList<WcfService.Dto.FatturaVenditaDto> GetFatture(IList<WcfService.Dto.FatturaVenditaDto> fatture, BusinessLogic.Tipi.StatoFattura stato)
+        private static IList<WcfService.Dto.FatturaVenditaDto> GetFatture(IList<WcfService.Dto.FatturaVenditaDto> fatture, Tipi.StatoFattura stato)
         {
             try
             {
-                var _fatture = (from q in fatture where BusinessLogic.Fattura.GetStato(q) == stato select q).ToList();
+                var _fatture = (from q in fatture where Fattura.GetStato(q) == stato select q).ToList();
                 return _fatture;
             }
             catch (Exception ex)
@@ -114,18 +114,13 @@ namespace BusinessLogic
                 if (totaleLiquidazioni < totaleFatture)
                 {
                     if (existFattureInsolute)
-                    {
                         stato = Tipi.StatoCliente.Insoluto;
-                    }
                     else
-                    {
                         stato = Tipi.StatoCliente.NonLiquidato;
-                    }
                 }
                 else if (totaleLiquidazioni >= totaleFatture)
-                {
                     stato = Tipi.StatoCliente.Liquidato;
-                }
+                
                 return stato;
             }
             catch (Exception ex)

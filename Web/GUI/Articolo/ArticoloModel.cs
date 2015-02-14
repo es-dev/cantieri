@@ -24,8 +24,10 @@ namespace Web.GUI.Articolo
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.ArticoloDto)model;
+                    var codice = UtilityValidation.GetStringND(obj.Codice);
+                    var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
+                    infoSubtitle.Text = codice + " - " + descrizione;
                     infoSubtitleImage.Image = "Images.dashboard.articolo.png";
-                    infoSubtitle.Text = obj.Codice;
                 }
             }
             catch (Exception ex)

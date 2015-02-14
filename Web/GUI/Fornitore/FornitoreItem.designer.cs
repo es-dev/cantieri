@@ -46,9 +46,9 @@ namespace Web.GUI.Fornitore
             // 
             // container
             // 
+            this.container.Controls.Add(this.infoPartitaIVA);
             this.container.Controls.Add(this.infoPagamentoTotale);
             this.container.Controls.Add(this.imgStato);
-            this.container.Controls.Add(this.infoPartitaIVA);
             this.container.Controls.Add(this.infoCommesssa);
             this.container.Size = new System.Drawing.Size(408, 93);
             // 
@@ -100,14 +100,13 @@ namespace Web.GUI.Fornitore
             // 
             // infoPartitaIVA
             // 
-            this.infoPartitaIVA.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.infoPartitaIVA.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoPartitaIVA.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoPartitaIVA.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.infoPartitaIVA.Location = new System.Drawing.Point(91, 28);
             this.infoPartitaIVA.Name = "infoPartitaIVA";
-            this.infoPartitaIVA.Size = new System.Drawing.Size(153, 15);
+            this.infoPartitaIVA.Size = new System.Drawing.Size(294, 17);
             this.infoPartitaIVA.TabIndex = 1;
             this.infoPartitaIVA.Text = "Partita IVA";
             // 

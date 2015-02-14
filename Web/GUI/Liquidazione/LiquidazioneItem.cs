@@ -25,19 +25,17 @@ namespace Web.GUI.Liquidazione
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.LiquidazioneDto)model;
+                 
+                    var importo = UtilityValidation.GetEuro(obj.Importo);
+                    var codice = UtilityValidation.GetStringND(obj.Codice);
+                    var data = UtilityValidation.GetDataND(obj.Data);
+                    
+                    infoData.Text = "Incassato il " + data;
                     infoImage.Image = "Images.dashboard.liquidazione.png";
                     infoCodice.Text = "LIQ";
                     infoNote.Text = obj.Note;
-                    var importo = "N/D";
-                    if (obj.Importo != null)
-                        importo = obj.Importo.Value.ToString("0.00");
-                    infoImporto.Text = "Importo: " + importo + "€";
-                    infoLiquidazione.Text = "Incasso N." + obj.Codice;
-                    var data = "N/D";
-                    if (obj.Data != null)
-                        data = "Incassato il " + obj.Data.Value.ToString("dd/MM/yyyy");
-                    infoData.Text = data;
-                    
+                    infoImporto.Text = "Importo: " + importo;
+                    infoLiquidazione.Text = "Incasso N." + codice;
                 }
             }
             catch (Exception ex)
