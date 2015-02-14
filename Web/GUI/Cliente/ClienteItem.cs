@@ -39,6 +39,8 @@ namespace Web.GUI.Cliente
                     var totaleFatture = BusinessLogic.Cliente.GetTotaleFatture(obj, today);
                     var totaleLiquidazioni = BusinessLogic.Cliente.GetTotaleLiquidazioni(obj, today);
                     var stato = GetStato(obj);
+                    var _totaleLiquidazioni = UtilityValidation.GetEuro(totaleLiquidazioni);
+                    var _totaleFatture = UtilityValidation.GetEuro(totaleFatture);
 
                     toolTip.SetToolTip(imgStato, stato.Description);
                     imgStato.Image = stato.Image;
@@ -46,7 +48,7 @@ namespace Web.GUI.Cliente
                     infoRagioneSociale.Text = ragioneSociale;
                     infoCodice.Text = codice;
                     infoIndirizzo.Text = indirizzo + " - " + cap + " - " + comune + " (" + provincia + ")";
-                    infoLiquidazioneTotale.Text = "Incassato " + totaleLiquidazioni.ToString("0.00") + "€ su un totale di " + totaleFatture.ToString("0.00") + "€";
+                    infoLiquidazioneTotale.Text = "Incassato " + _totaleLiquidazioni +" su un totale di " + _totaleFatture;
                     infoCommesssa.Text = "Commessa " + commessa.Codice + " - " + commessa.Denominazione;
                 }
             }

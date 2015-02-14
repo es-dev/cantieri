@@ -175,19 +175,23 @@ namespace Web.GUI.SAL
             {
                 var descrizione = "";
                 var stato = TypeState.None;
+                var _margine = UtilityValidation.GetEuro(margine);
+                var _margineOperativo = UtilityValidation.GetEuro(margineOperativo);
+                var _importoLavori = UtilityValidation.GetEuro(importoLavori);
+
                 if (statoSAL== Tipi.StatoSAL.Perdita)
                 {
-                    descrizione = "Andamento del lavoro critico. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta al valore critico di " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
+                    descrizione = "Andamento del lavoro critico. Il margine aziendale previsto è di " + _margine + " e il margine operativo si attesta al valore critico di " + _margineOperativo + " per un importo lavori di " + _importoLavori;
                     stato = TypeState.Critical;
                 }
                 else if (statoSAL == Tipi.StatoSAL.Negativo)
                 {
-                    descrizione = "Andamento del lavoro negativo. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta ad un valore inferiore pari a " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
+                    descrizione = "Andamento del lavoro negativo. Il margine aziendale previsto è di " + _margine + " e il margine operativo si attesta ad un valore inferiore pari a " + _margineOperativo + " per un importo lavori di " + _importoLavori;
                     stato = TypeState.Warning;
                 }
                 else if (statoSAL == Tipi.StatoSAL.Positivo)
                 {
-                    descrizione = "Andamento del lavoro positivo. Il margine aziendale previsto è di " + margine.ToString("0.00€") + " e il margine operativo si attesta a valori superiori pari a " + margineOperativo.ToString("0.00€") + " per un importo lavori di " + importoLavori.ToString("0.00€");
+                    descrizione = "Andamento del lavoro positivo. Il margine aziendale previsto è di " + _margine + " e il margine operativo si attesta a valori superiori pari a " + _margineOperativo + " per un importo lavori di " + _importoLavori;
                     stato = TypeState.Normal;
                 }
                 var statoDescrizione = new StateDescriptionImage(stato, descrizione);

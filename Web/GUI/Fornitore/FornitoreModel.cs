@@ -293,17 +293,19 @@ namespace Web.GUI.Fornitore
                 var existFattureNonPagate = (fattureNonPagate.Count >= 1);
                 var listaFattureInsolute = BusinessLogic.Fattura.GetLista(fattureInsolute);
                 var listaFattureNonPagate = BusinessLogic.Fattura.GetLista(fattureNonPagate);
+                var _totalePagamenti = UtilityValidation.GetEuro(totalePagamenti);
+                var _totaleFatture = UtilityValidation.GetEuro(totaleFatture);
 
                 if (statoFornitore == Tipi.StatoFornitore.Insoluto) //condizione di non soluzione delle fatture, segnalo le fatture insolute ed eventualmente quelle non pagate
                 {
-                    descrizione = "Il fornitore risulta insoluto. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale delle fatture pari a " + totaleFatture.ToString("0.00€") + ". Le fatture insolute sono " + listaFattureInsolute;
+                    descrizione = "Il fornitore risulta insoluto. Il totale pagamenti pari a " + _totalePagamenti + " è inferiore al totale delle fatture pari a " + _totaleFatture + ". Le fatture insolute sono " + listaFattureInsolute;
                     if (existFattureNonPagate)
                         descrizione += " Le fatture non pagate sono " + listaFattureNonPagate;
                     stato = TypeState.Critical;
                 }
                 else if (statoFornitore == Tipi.StatoFornitore.NonPagato)
                 {
-                    descrizione = "Il fornitore risulta non pagato. Il totale pagamenti pari a " + totalePagamenti.ToString("0.00€") + " è inferiore al totale delle fatture pari a " + totaleFatture.ToString("0.00€");
+                    descrizione = "Il fornitore risulta non pagato. Il totale pagamenti pari a " + _totalePagamenti + " è inferiore al totale delle fatture pari a " + _totaleFatture;
                     if (existFattureNonPagate)
                         descrizione += " Le fatture non pagate sono " + listaFattureNonPagate;
                     stato = TypeState.Warning;

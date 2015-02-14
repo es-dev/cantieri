@@ -274,8 +274,9 @@ namespace BusinessLogic
                     if (listaFatture!=null)
                         listaFatture += ", ";
                     var numero = UtilityValidation.GetStringND(fattura.Numero);
-                    var data = UtilityValidation.GetDataND(fattura.Data);
-                    var _fattura = numero + "/" + data;
+                    var data = UtilityValidation.GetData(fattura.Data);
+                    var anno = data.Year.ToString();
+                    var _fattura = numero + "/" + anno;
                     listaFatture += _fattura;
                 }
                 return listaFatture;
@@ -297,8 +298,9 @@ namespace BusinessLogic
                     if (listaFatture != null)
                         listaFatture += ", ";
                     var numero = UtilityValidation.GetStringND(fattura.Numero);
-                    var data = UtilityValidation.GetDataND(fattura.Data);
-                    var _fattura = numero + "/" + data;
+                    var data = UtilityValidation.GetData(fattura.Data);
+                    var anno = data.Year.ToString();
+                    var _fattura = numero + "/" + anno;
                     listaFatture += _fattura;
                 }
                 return listaFatture;

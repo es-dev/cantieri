@@ -263,19 +263,23 @@ namespace Web.GUI.FatturaVendita
                 var stato = TypeState.None;
                 var descrizione = "";
                 var ritardo = BusinessLogic.Fattura.GetRitardo(data, scadenza);
+                var _totaleLiquidazioni = UtilityValidation.GetEuro(totaleLiquidazioni);
+                var _totaleFattura = UtilityValidation.GetEuro(totaleFattura);
+                var _scadenza = UtilityValidation.GetDataND(scadenza);
+
                 if (statoFattura == Tipi.StatoFattura.Insoluta)
                 {
-                    descrizione = "La fattura risulta insoluta. Il totale incassi pari a " + totaleLiquidazioni.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura risulta scaduta il  " + scadenza.ToString("dd/MM/yyyy") + " con un ritardo di pagamento pari a " + ritardo;
+                    descrizione = "La fattura risulta insoluta. Il totale incassi pari a " + _totaleLiquidazioni + " è inferiore al totale della fattura pari a " + _totaleFattura + ". La fattura risulta scaduta il " + _scadenza + " con un ritardo di liquidazione pari a " + ritardo;
                     stato = TypeState.Critical;
                 }
                 else if (statoFattura == Tipi.StatoFattura.NonPagata)
                 {
-                    descrizione = "La fattura risulta in liquidazione. Il totale incassi pari a " + totaleLiquidazioni.ToString("0.00€") + " è inferiore al totale della fattura pari a " + totaleFattura.ToString("0.00€") + ". La fattura scade il  " + scadenza.ToString("dd/MM/yyyy");
+                    descrizione = "La fattura risulta non incassata. Il totale incassi pari a " + _totaleLiquidazioni + " è inferiore al totale della fattura pari a " + _totaleFattura + ". La fattura scade il " + _scadenza;
                     stato = TypeState.Warning;
                 }
                 else if (statoFattura == Tipi.StatoFattura.Pagata)
                 {
-                    descrizione = "La fattura è stata liquidata";
+                    descrizione = "La fattura è stata incassata";
                     stato = TypeState.Normal;
                 }
                 var _stato = new StateDescriptionImage(stato, descrizione);
