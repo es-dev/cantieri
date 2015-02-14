@@ -100,7 +100,7 @@ namespace Web.GUI.Fornitore
             return false;
         }
 
-        public override object Read(object id)
+        public new FornitoreDto Read(object id)
         {
             try
             {

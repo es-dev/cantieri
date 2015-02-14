@@ -75,7 +75,7 @@ namespace Web.GUI.FatturaAcquisto
                     editScadenzaPagamento.Value = obj.ScadenzaPagamento;
                     editNote.Value = obj.Note;
                     editTotale.Value = obj.Totale;
-                    editTotalePagamenti.Value = obj.TotalePagamenti;
+                    editTotalePagamenti.Value = GetTotalePagamenti(obj);
                     editStato.Value = obj.Stato;
                     var centroCosto=obj.CentroCosto;
                     if (centroCosto!=null)
@@ -95,6 +95,32 @@ namespace Web.GUI.FatturaAcquisto
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private decimal GetTotalePagamenti(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto)
+        {
+            try
+            {
+                decimal totalePagamenti= 0;
+                var fornitoreId = fatturaAcquisto.FornitoreId;
+                var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
+                var fornitore = viewModelFornitore.Read(fornitoreId);
+                var commessa = fornitore.Commessa;
+                var statoCommessa = commessa.Stato;
+                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                    totalePagamenti = UtilityValidation.GetDecimal(fatturaAcquisto.TotalePagamenti);
+                else
+                {
+                    var today = DateTime.Today;
+                    totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(fatturaAcquisto, today);
+                }
+                return totalePagamenti;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
         }
 
         public override void BindModel(object model)
@@ -189,7 +215,8 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                CalcolaTotali();
+                if(Editing)
+                    CalcolaTotali();
             }
             catch (Exception ex)
             {
@@ -270,8 +297,8 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                CalcolaTotali();
-
+                if (Editing)
+                    CalcolaTotali();
             }
             catch (Exception ex)
             {
@@ -279,6 +306,17 @@ namespace Web.GUI.FatturaAcquisto
             }
         }
 
-
+        public override void SetEditing(bool editing, bool deleting)
+        {
+            try
+            {
+                base.SetEditing(editing, deleting);
+                btnCalcoloTotali.Enabled = editing;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 	}
 }
