@@ -154,6 +154,16 @@ namespace WcfService.Assemblers
 				dto.Commessas.Add(dtoItem);
 			}
 
+			AccountAssembler accountAssembler = new AccountAssembler();
+
+			dto.Accounts = new List<AccountDto>();
+			foreach (Account item in entity.Accounts)
+			{
+				var dtoItem = accountAssembler.Assemble(item);
+				dtoItem.Azienda = dto;
+				dto.Accounts.Add(dtoItem);
+			}
+
 	    }
 	
 	}
@@ -1335,6 +1345,83 @@ namespace WcfService.Assemblers
 	
 	
 	public partial class AnagraficaArticoloAssembler : AnagraficaArticoloAssemblerBase, IAnagraficaArticoloAssembler
+	{
+	    
+	}
+	
+	public partial interface IAccountAssembler : IAssembler<AccountDto, Account>
+	{ 
+	
+	}
+	
+	public partial class AccountAssemblerBase : Assembler<AccountDto, Account>
+	{
+		/// <summary>
+	    /// Invoked after the AccountDto instance is assembled.
+	    /// </summary>
+	    /// <param name="dto"><see cref="AccountDto"/> The Dto instance.</param>
+		partial void OnDTOAssembled(AccountDto dto);
+	
+		/// <summary>
+	    /// Invoked after the Account instance is assembled.
+	    /// </summary>
+	    /// <param name="entity">The <see cref="Account"/> instance.</param>
+		partial void OnEntityAssembled(Account entity);
+		
+	    public override Account Assemble(Account entity, AccountDto dto)
+	    {
+	        if (entity == null)
+	        {
+	            entity = new Account();
+	        }
+			
+			entity.Id = dto.Id;
+			entity.AziendaId = dto.AziendaId;
+			entity.Username = dto.Username;
+			entity.Password = dto.Password;
+			entity.Nickname = dto.Nickname;
+			entity.Ruolo = dto.Ruolo;
+			entity.Note = dto.Note;
+			entity.Creazione = dto.Creazione;
+			entity.Abilitato = dto.Abilitato;
+	        this.OnEntityAssembled(entity);
+	        return entity;
+	    }
+	
+	    public override AccountDto Assemble(Account entity)
+	    {
+	        AccountDto dto = new AccountDto();
+	        
+			ObjectKey key = KeyUtility.Instance.Create(entity);
+			dto.DtoKey = KeyUtility.Instance.Convert(key);
+			dto.Id = entity.Id;
+			dto.AziendaId = entity.AziendaId;
+			dto.Username = entity.Username;
+			dto.Password = entity.Password;
+			dto.Nickname = entity.Nickname;
+			dto.Ruolo = entity.Ruolo;
+			dto.Note = entity.Note;
+			dto.Creazione = entity.Creazione;
+			dto.Abilitato = entity.Abilitato;
+			this.OnDTOAssembled(dto); 
+	        return dto;
+	    }
+	
+	    public override void AssembleReferences(Account entity, AccountDto dto)
+	    {
+			AziendaAssembler aziendaAssembler = new AziendaAssembler();
+			dto.Azienda = aziendaAssembler.Assemble(entity.Azienda);
+
+	    }
+	
+	    public override void AssembleCollections(Account entity, AccountDto dto)
+	    {
+	    }
+	
+	}
+	
+	
+	public partial class AccountAssembler : AccountAssemblerBase, IAccountAssembler
 	{
 	    
 	}

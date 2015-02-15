@@ -58,6 +58,9 @@
         <orm:field name="_commessas" property="Commessas" behavior="readwrite" uniqueId="966c5bf1-e84b-4658-a843-ef38d0bb7093" type="DataLayer.Commessa">
           <orm:collection element-class="DataLayer.Commessa" inverse-field="_azienda" order-by="" uniqueId="9529a813-1327-451c-bfdc-62fcf2c3ea6a" />
         </orm:field>
+        <orm:field name="_accounts" property="Accounts" behavior="readwrite" uniqueId="e92c9565-b53b-4520-92cb-c9f07d311816" type="DataLayer.Account">
+          <orm:collection element-class="DataLayer.Account" inverse-field="_azienda" order-by="" uniqueId="b3bd6008-a50b-482a-b0d1-14775d9a049a" />
+        </orm:field>
       </orm:class>
       <orm:class name="Commessa" uniqueId="e3447bbe-e1c7-4842-b2ae-fbc6a53dfdb1">
         <orm:table name="Commessa" />
@@ -791,6 +794,52 @@
           <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
       </orm:class>
+      <orm:class name="Account" uniqueId="fd974ab0-1e4d-4532-a14c-1dd99e787a68">
+        <orm:table name="Account" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:field name="_id" property="Id" uniqueId="62e9a700-1735-4afe-8368-cdc9c129f925" type="System.Int32">
+          <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_aziendaId" property="AziendaId" uniqueId="9987a373-91dc-47a2-bd61-cbad8a992a03" type="System.Int32">
+          <orm:column name="AziendaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_username" property="Username" uniqueId="7550ddc1-f475-47b9-bdc6-03d06e91bc05" type="System.String">
+          <orm:column name="Username" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_password" property="Password" uniqueId="776dbb4b-d1cd-4ad9-98f3-438bb71bd129" type="System.String">
+          <orm:column name="Password" sql-type="varchar(max)" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_nickname" property="Nickname" uniqueId="02b68320-03d2-4866-8bd4-a0de0144fd1b" type="System.String">
+          <orm:column name="Nickname" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_ruolo" property="Ruolo" uniqueId="2e038159-ac9f-49f1-964f-fb0e41b9c3c6" type="System.String">
+          <orm:column name="Ruolo" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_note" property="Note" uniqueId="8f96c0d2-6a1e-49a4-bd5e-5e814b528232" type="System.String">
+          <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_creazione" property="Creazione" uniqueId="115acdc9-4a47-48af-bcda-8e470c9490f8" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Creazione" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_abilitato" property="Abilitato" uniqueId="8f236abe-9741-45ea-bfea-e17f125f297f" type="System.Nullable`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Abilitato" sql-type="bit" nullable="true" length="0" scale="0" ado-type="Bit" />
+        </orm:field>
+        <orm:field name="_azienda" property="Azienda" behavior="readwrite" uniqueId="37375983-d4de-4e27-9c01-c3a1456c86d8" type="DataLayer.Azienda">
+          <orm:reference uniqueId="b3bd6008-a50b-482a-b0d1-14775d9a049a" association-name="AccountHasAzienda">
+            <orm:sharedfield name="_aziendaId" target-class="DataLayer.Azienda" target-field="_id" />
+          </orm:reference>
+        </orm:field>
+        <orm:index name="idx_Account_AziendaId">
+          <orm:columnMapping>
+            <orm:column name="AziendaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
     </orm:namespace>
     <orm:schema schema="">
       <orm:table name="Azienda">
@@ -1043,6 +1092,22 @@
           </orm:columnMapping>
         </orm:index>
       </orm:table>
+      <orm:table name="Account">
+        <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="AziendaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:column name="Username" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="Password" sql-type="varchar(max)" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        <orm:column name="Nickname" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="Ruolo" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="Creazione" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:column name="Abilitato" sql-type="bit" nullable="true" length="0" scale="0" ado-type="Bit" />
+        <orm:index name="idx_Account_AziendaId">
+          <orm:columnMapping>
+            <orm:column name="AziendaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:table>
     </orm:schema>
     <orm:relational-naming-settings>
       <orm:remove-leading-underscore>False</orm:remove-leading-underscore>
@@ -1107,6 +1172,9 @@
       <navigationalProperties>
         <classHasNavigationalProperties Id="265c7d9c-c78e-44bb-9804-cd1228ad49e6">
           <NavigationalProperty Id="966c5bf1-e84b-4658-a843-ef38d0bb7093" name="Commessas" type="IList&lt;Commessa&gt;" label="Commessas : IList&lt;Commessa&gt;" nullable="true" kind="Persistent" fieldName="_commessas" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="73bf1c5c-2340-4c87-a974-dd9390b92df9">
+          <NavigationalProperty Id="e92c9565-b53b-4520-92cb-c9f07d311816" name="Accounts" type="IList&lt;Account&gt;" label="Accounts : IList&lt;Account&gt;" nullable="true" kind="Persistent" fieldName="_accounts" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
@@ -1528,6 +1596,37 @@
       <Property Id="a8dea8e9-31eb-4b55-a18c-aa71e371627e" name="Descrizione" label="Descrizione : String" fieldName="_descrizione" />
       <Property Id="bb8eb3ea-e546-4d50-b5dc-cafa92d86cc9" name="Note" label="Note : String" fieldName="_note" />
     </DomainClass>
+    <DomainClass Id="fd974ab0-1e4d-4532-a14c-1dd99e787a68" name="Account" namespace="DataLayer" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="62e9a700-1735-4afe-8368-cdc9c129f925" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
+      <Property Id="9987a373-91dc-47a2-bd61-cbad8a992a03" name="AziendaId" type="Int32" label="AziendaId : Int32" fieldName="_aziendaId" />
+      <Property Id="7550ddc1-f475-47b9-bdc6-03d06e91bc05" name="Username" label="Username : String" fieldName="_username" />
+      <Property Id="776dbb4b-d1cd-4ad9-98f3-438bb71bd129" name="Password" label="Password : String" fieldName="_password" />
+      <Property Id="02b68320-03d2-4866-8bd4-a0de0144fd1b" name="Nickname" label="Nickname : String" fieldName="_nickname" />
+      <Property Id="2e038159-ac9f-49f1-964f-fb0e41b9c3c6" name="Ruolo" label="Ruolo : String" fieldName="_ruolo" />
+      <Property Id="8f96c0d2-6a1e-49a4-bd5e-5e814b528232" name="Note" label="Note : String" fieldName="_note" />
+      <Property Id="115acdc9-4a47-48af-bcda-8e470c9490f8" name="Creazione" type="DateTime" label="Creazione : DateTime" nullable="true" fieldName="_creazione" />
+      <Property Id="8f236abe-9741-45ea-bfea-e17f125f297f" name="Abilitato" type="Boolean" label="Abilitato : Boolean" nullable="true" fieldName="_abilitato" />
+      <AssociationTargets>
+        <Association Id="b3bd6008-a50b-482a-b0d1-14775d9a049a" SourceMultiplicity="ZeroOne" name="AccountHasAzienda">
+          <DomainClassMoniker name="/EntitiesModel/Azienda" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="15ef8ad0-06f4-4df4-8aff-82ed6df6d372">
+              <NavigationalPropertyMoniker name="/EntitiesModel/Azienda/Accounts" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="63d0809e-e79b-4d29-badd-2bad86d67dbe">
+              <NavigationalPropertyMoniker name="/EntitiesModel/Account/Azienda" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="a4dccf68-371f-441d-b698-7d88de07875a">
+          <NavigationalProperty Id="37375983-d4de-4e27-9c01-c3a1456c86d8" name="Azienda" type="Azienda" label="Azienda : Azienda" nullable="true" kind="Persistent" fieldName="_azienda" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
   </Types>
   <domainContext>
     <domainModelHasDomainContext Id="0d78686f-daea-40df-b476-5e7a97b883da">
@@ -1546,6 +1645,7 @@
         <entitySetProperty name="AnagraficaClientes" namespace="DataLayer" type="AnagraficaCliente" label="AnagraficaClientes : IQueryable&lt;DataLayer.AnagraficaCliente&gt;" />
         <entitySetProperty name="SALs" namespace="DataLayer" type="SAL" label="SALs : IQueryable&lt;DataLayer.SAL&gt;" />
         <entitySetProperty name="Articolos" namespace="DataLayer" type="Articolo" label="Articolos : IQueryable&lt;DataLayer.Articolo&gt;" />
+        <entitySetProperty name="Accounts" namespace="DataLayer" type="Account" label="Accounts : IQueryable&lt;DataLayer.Account&gt;" />
       </domainContainer>
     </domainModelHasDomainContext>
   </domainContext>

@@ -24,13 +24,14 @@ namespace WcfService.Dto
 	
 	[DataContract(IsReference = true)]
 	[KnownType(typeof(CommessaDto))]
+	[KnownType(typeof(AccountDto))]
 	public partial class AziendaDto : IDtoWithKey
 	{
 		public AziendaDto()
 		{
 		}
 		
-		public AziendaDto(int _id, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _partitaIva, int? _dipendenti, string _telefono, string _fax, string _email, string _codice, string _codiceCatastale, string _localita, string _note, IList<CommessaDto> _commessas)
+		public AziendaDto(int _id, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _partitaIva, int? _dipendenti, string _telefono, string _fax, string _email, string _codice, string _codiceCatastale, string _localita, string _note, IList<CommessaDto> _commessas, IList<AccountDto> _accounts)
 		{
 			this.Id = _id;
 			this.Denominazione = _denominazione;
@@ -48,6 +49,7 @@ namespace WcfService.Dto
 			this.Localita = _localita;
 			this.Note = _note;
 			this.Commessas = _commessas;
+			this.Accounts = _accounts;
 		}
 		
 		[DataMember]
@@ -100,6 +102,9 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual IList<CommessaDto> Commessas { get;set; }
+
+		[DataMember]
+		public virtual IList<AccountDto> Accounts { get;set; }
 
 	}
 	
@@ -1071,6 +1076,63 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual string Note { get;set; }
+
+	}
+	
+	[DataContract(IsReference = true)]
+	[KnownType(typeof(AziendaDto))]
+	public partial class AccountDto : IDtoWithKey
+	{
+		public AccountDto()
+		{
+		}
+		
+		public AccountDto(int _id, int _aziendaId, string _username, string _password, string _nickname, string _ruolo, string _note, DateTime? _creazione, bool? _abilitato, AziendaDto _azienda)
+		{
+			this.Id = _id;
+			this.AziendaId = _aziendaId;
+			this.Username = _username;
+			this.Password = _password;
+			this.Nickname = _nickname;
+			this.Ruolo = _ruolo;
+			this.Note = _note;
+			this.Creazione = _creazione;
+			this.Abilitato = _abilitato;
+			this.Azienda = _azienda;
+		}
+		
+		[DataMember]
+		public virtual string DtoKey { get; set; }
+		
+		[DataMember]
+		public virtual int Id { get;set; }
+
+		[DataMember]
+		public virtual int AziendaId { get;set; }
+
+		[DataMember]
+		public virtual string Username { get;set; }
+
+		[DataMember]
+		public virtual string Password { get;set; }
+
+		[DataMember]
+		public virtual string Nickname { get;set; }
+
+		[DataMember]
+		public virtual string Ruolo { get;set; }
+
+		[DataMember]
+		public virtual string Note { get;set; }
+
+		[DataMember]
+		public virtual DateTime? Creazione { get;set; }
+
+		[DataMember]
+		public virtual bool? Abilitato { get;set; }
+
+		[DataMember]
+		public virtual AziendaDto Azienda { get;set; }
 
 	}
 	

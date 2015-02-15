@@ -58,6 +58,182 @@ namespace WcfService
 	    }	
 	    
 	    /// <summary>
+	    /// A general purpose generated service used for all CRUD operations against Account entity.
+	    /// </summary>
+	    private IAccountService accountservice;
+	    
+	    /// <summary>
+	    /// Gets or sets the general purpose generated service used for all CRUD operations against Account entity.
+	    /// </summary>
+	    public virtual IAccountService AccountService
+	    {
+	        get
+	        {
+	            if (this.accountservice == null)
+	            {
+	                IAccountAssembler assembler = new AccountAssembler();
+	                IAccountRepository repository = new AccountRepository(this.UnitOfWork);
+	
+	                this.accountservice = new AccountService(assembler, repository);
+	            }
+	            return this.accountservice;
+	        }
+	    }
+	        
+	    #region Accounts CRUD Operations
+	
+	    /// <summary>
+	    /// Returns all accounts.
+	    /// </summary>
+	    /// <returns></returns>
+	    public IEnumerable<AccountDto> ReadAccounts()	
+	    {
+	        return this.AccountService.GetAll();
+	    }
+	
+	    /// <summary>
+	    /// Returns a specified amount of accounts from the given start index.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <returns></returns>
+	    public IEnumerable<AccountDto> ReadAccountsPaged(int startIndex, int pageSize)
+	    {
+	        return this.AccountService.Find(startIndex, pageSize);
+	    }
+	
+	    /// <summary>
+	    /// Returns all accounts filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public IEnumerable<AccountDto> ReadAccountsFiltered(string sortExpression, string filterExpression)
+	    {
+	        return this.AccountService.Find(sortExpression, filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Returns a specified amount of accounts from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public IEnumerable<AccountDto> ReadAccountsPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression)
+	    {
+	        return this.AccountService.Find(startIndex, pageSize, sortExpression, filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Returns a account with the specified dto key.
+	    /// </summary>
+	    /// <param name="dtoKey">The specified dto key value.</param>
+	    /// <returns></returns>
+	    public AccountDto ReadAccount(string dtoKey)
+	    {
+	        return this.AccountService.GetByKey(dtoKey);
+	    }
+	    
+	    /// <summary>
+	    /// Returns all accounts count.
+	    /// </summary>
+	    /// <returns></returns>
+	    public int AccountsCount()
+	    {
+	        return this.AccountService.Count();
+	    }
+	    
+	    /// <summary>
+	    /// Returns all accounts count filtered by the specified filter expression.
+	    /// </summary>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public int AccountsCountFiltered(string filterExpression)
+	    {
+	        return this.AccountService.Count(filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Adds a new account from the given dto object into the database.
+	    /// </summary>
+	    /// <param name="account">The dto object.</param>
+	    /// <returns>The dto key of the newly created account.</returns>
+	    public string CreateAccount(AccountDto account)
+	    {
+	        string key = this.AccountService.Add(account);
+	        this.UnitOfWork.SaveChanges();
+	        return key;
+	    }
+	
+	    /// <summary>
+	    /// Updates an existing account in the database from the given dto object.
+	    /// </summary>
+	    /// <param name="account">The dto object.</param>
+	    public void UpdateAccount(AccountDto account)
+	    {
+	        this.AccountService.Update(account);
+	        this.UnitOfWork.SaveChanges();
+	    }
+	
+	    /// <summary>
+	    /// Update accounts in the database from the given dto object list.
+	    /// </summary>
+	    /// <param name="accounts">The dto object list.</param>
+	    public void UpdateAccounts(IEnumerable<AccountDto> accounts)
+	    {
+	        if (accounts == null)
+	        {
+	            return;
+	        }
+	
+	        foreach (AccountDto account in accounts)
+	        {
+	            if (account == null)
+	            {
+	                continue;
+	            }
+	            
+	            this.UpdateAccount(account);
+	        }
+	    }
+	
+	    /// <summary>
+	    /// Deletes account from the database by the given dto object.
+	    /// </summary>
+	    /// <param name="account">The dto object.</param>
+	    public void DeleteAccount(AccountDto account)
+	    {
+	        this.AccountService.Delete(account);
+	        this.UnitOfWork.SaveChanges();		
+	    }
+	
+	    /// <summary>
+	    /// Delete accounts from the database by the given dto object list.
+	    /// </summary>
+	    /// <param name="accounts">The dto object list.</param>
+	    public void DeleteAccounts(IEnumerable<AccountDto> accounts)
+	    {
+	        if (accounts == null)
+	        {
+	            return;
+	        }
+	
+	        foreach (AccountDto account in accounts)
+	        {
+	            if (account == null)
+	            {
+	                continue;
+	            }
+	            
+	            this.DeleteAccount(account);
+	        }
+	    }
+	    
+	    #endregion
+	    
+	    /// <summary>
 	    /// A general purpose generated service used for all CRUD operations against AnagraficaArticolo entity.
 	    /// </summary>
 	    private IAnagraficaArticoloService anagraficaarticoloservice;

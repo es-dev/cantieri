@@ -164,6 +164,157 @@ namespace WcfService
         #endregion
         #endregion
 
+        #region Account
+        #region CRUD
+        public Dto.AccountDto CreateAccount(Dto.AccountDto account)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var dtoKey = wcf.CreateAccount(account);
+                var newAccount = wcf.ReadAccount(dtoKey);
+                return newAccount;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<Dto.AccountDto> ReadAccounts()
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var accounts = wcf.ReadAccounts();
+                return accounts;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public bool UpdateAccount(Dto.AccountDto account)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                wcf.UpdateAccount(account);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
+        }
+
+        public bool DeleteAccount(Dto.AccountDto account)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                wcf.DeleteAccount(account);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
+        }
+
+        public int CountAccounts()
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var count = wcf.AccountsCount();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+        #endregion
+        #region Custom
+        public IEnumerable<Dto.AccountDto> LoadAccounts(int skip, int take, string search = null)
+        {
+            try
+            {
+                var accounts = QueryAccounts(search);
+                accounts = (from q in accounts select q).Skip(skip).Take(take);
+                var accountsDto = UtilityPOCO.Assemble<Dto.AccountDto>(accounts);
+                return accountsDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public int CountAccounts(string search = null)
+        {
+            try
+            {
+                var accounts = QueryAccounts(search);
+                var count = accounts.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public Dto.AccountDto ReadAccount(object id)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var account = (from q in ef.Accounts where q.Id == (int)id select q).FirstOrDefault();
+                var accountDto = UtilityPOCO.Assemble<Dto.AccountDto>(account);
+                return accountDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private IQueryable<DataLayer.Account> QueryAccounts(string search)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var accounts = (from q in ef.Accounts select q);
+                if (search != null && search.Length > 0)
+                    accounts = (from q in accounts
+                               where q.Nickname.StartsWith(search) || q.Username.Contains(search) select q);
+
+                accounts = (from q in accounts orderby q.Username select q);
+                return accounts;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+
+        #endregion
+        #endregion
+
+
         #region Commessa
         #region CRUD
         public Dto.CommessaDto CreateCommessa(Dto.CommessaDto commessa)

@@ -228,6 +228,15 @@ namespace DataLayer
 			}
 		}
 		
+		private IList<Account> _accounts = new List<Account>();
+		public virtual IList<Account> Accounts
+		{
+			get
+			{
+				return this._accounts;
+			}
+		}
+		
 	}
 }
 #pragma warning restore 1591

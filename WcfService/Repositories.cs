@@ -248,5 +248,18 @@ namespace WcfService.Repositories
 	    {
 	    }
 	}
+	
+	public partial interface IAccountRepository : IRepository<Account>
+	{ 
+	
+	}
+	
+	public partial class AccountRepository : Repository<Account>, IAccountRepository
+	{
+	    public AccountRepository(IEntitiesModelUnitOfWork unitOfWork)
+	        : base(unitOfWork)
+	    {
+	    }
+	}
 }
 #pragma warning restore 1591

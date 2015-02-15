@@ -82,6 +82,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.generated.cs">
+      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    </Compile>
     <Compile Include="AnagraficaArticolo.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
@@ -162,6 +165,10 @@
     <Content Include="ESCantieriConnection%282015-02-14 13-54-34%29.rlinq.sql" />
     <Content Include="ESCantieriConnection%282015-02-14 22-20-50%29.rlinq.sql" />
     <Content Include="ESCantieriConnection%282015-02-14 23-08-43%29.rlinq.sql" />
+    <Content Include="ESCantieriConnection%282015-02-15 15-57-22%29.rlinq.sql" />
+    <Content Include="ESCantieriConnection%282015-02-15 16-19-12%29.rlinq.sql" />
+    <Content Include="ESCantieriConnection%282015-02-15 16-31-04%29.rlinq.sql" />
+    <Content Include="ESCantieriConnection%282015-02-15 18-08-37%29.rlinq.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ES.Library\ES.Library.csproj">
