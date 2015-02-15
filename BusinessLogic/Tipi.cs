@@ -76,6 +76,13 @@ namespace BusinessLogic
             NonLiquidato, //cliente il cui totale incassi <totale fattura e....
         }
 
+        public enum TipoAccount
+        {
+            None,
+            Supervisore,
+            Amministratore,
+            Operatore
+        }
         
 
     }

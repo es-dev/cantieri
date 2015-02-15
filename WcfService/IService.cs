@@ -42,6 +42,36 @@ namespace WcfService
         #endregion
         #endregion
 
+        #region Account
+        #region CRUD
+        [OperationContract]
+        Dto.AccountDto CreateAccount(Dto.AccountDto account);
+
+        [OperationContract]
+        IEnumerable<Dto.AccountDto> ReadAccounts();
+
+        [OperationContract]
+        bool UpdateAccount(Dto.AccountDto account);
+
+        [OperationContract]
+        bool DeleteAccount(Dto.AccountDto account);
+
+        [OperationContract]
+        int CountAccounts();
+        #endregion
+        #region Custom
+        [OperationContract]
+        IEnumerable<Dto.AccountDto> LoadAccounts(int skip, int take, string search = null);
+
+        [OperationContract]
+        int CountAccounts(string search = null);
+
+        [OperationContract]
+        Dto.AccountDto ReadAccount(object id);
+        #endregion
+        #endregion
+
+
         #region Commessa
         #region CRUD
         [OperationContract]

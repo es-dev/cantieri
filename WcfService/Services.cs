@@ -369,5 +369,19 @@ namespace WcfService.Services
 	
 	    }
 	}
+	
+	public partial interface IAccountService : IService<AccountDto, Account>
+	{
+	
+	}
+	
+	public partial class AccountService : Service<AccountDto, Account>, IAccountService
+	{
+	    public AccountService(IAccountAssembler assembler, IAccountRepository repository)
+	        : base(assembler, repository)
+	    {
+	
+	    }
+	}
 }
 #pragma warning restore 1591

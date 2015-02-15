@@ -20,6 +20,7 @@ using Web.GUI.Fornitore;
 using Web.GUI.Liquidazione;
 using Web.GUI.Pagamento;
 using Web.GUI.SAL;
+using Web.GUI.Account;
 
 namespace Web.GUI.Dashboard.Configurazione
 {
@@ -81,9 +82,11 @@ namespace Web.GUI.Dashboard.Configurazione
                 var dashboards = new List<DashboardConfigurazione>();
                 var dashboardAzienda = new DashboardConfigurazione("Aziende", "AZ", "Definisci la tua azienda, inserisci il logo aziendale, l'intestazione e i dati commerciali...", "Images.dashboard.azienda.png", "", typeof(AziendaView));
                 var dashboardCentroCosto = new DashboardConfigurazione("Centri di costo", "CC", "Definisci i centri di costo per organizzare al meglio il tuo lavoro e per raggruppare i flussi economici in voci di costo separate...", "Images.dashboard.centrocosto.png", "", typeof(CentroCostoView));
-                
+                var dashboardAccount = new DashboardConfigurazione("Accounts", "ACC", "Definisci gli account specificando Username, Password ed il ruolo ad esso associato...", "Images.dashboard.centrocosto.png", "", typeof(AccountView));
+            
                 dashboards.Add(dashboardAzienda);
                 dashboards.Add(dashboardCentroCosto);
+                dashboards.Add(dashboardAccount);
 
                 var query = dashboards.AsQueryable();
                 return query;
