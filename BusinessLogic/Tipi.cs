@@ -84,6 +84,26 @@ namespace BusinessLogic
             Operatore
         }
         
+        public enum TIpoReport
+        {
+            None,
+            [Description("Situazione Fornitore")]
+            Fornitore,
+            [Description("Situazione Fornitori")]
+            Fornitori,
+            [Description("Situazione pagamenti fattura di acquisto")]
+            FatturaAcquisto,
+            [Description("Stato avanzamento lavori")]
+            SAL,
+            [Description("Stato commessa")]
+            Commessa,
+            [Description("Situazione Cliente")]
+            Cliente,
+            [Description("Situazione Clienti")]
+            Clienti,
+            [Description("Situazione incassi fattura di vendita")]
+            FatturaVendita
+        }
 
     }
 }

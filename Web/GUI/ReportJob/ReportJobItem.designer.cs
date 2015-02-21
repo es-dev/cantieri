@@ -117,6 +117,10 @@ namespace Web.GUI.ReportJob
             // ReportJobItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.JQContainer.Controls.Add(this.panelLeft);
+            this.JQContainer.Controls.Add(this.infoTipo);
+            this.JQContainer.Controls.Add(this.infoFornitore);
+            this.JQContainer.Controls.Add(this.infoCodiceReport);
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.ReportJobItem_ItemClick);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();

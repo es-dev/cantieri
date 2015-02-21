@@ -1,4 +1,6 @@
+using BusinessLogic;
 using Library.Code;
+using Library.Code.Enum;
 using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
@@ -13,9 +15,30 @@ namespace Web.GUI.ReportJob
 	public partial class ReportJobFornitoreModel : TemplateModel
 	{
         public ReportJobFornitoreModel()
-		{
-			InitializeComponent();
-		}
+        {
+            InitializeComponent();
+            try
+            {
+                InitCombo();
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void InitCombo()
+        {
+            try
+            {
+                editTipoReport.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.TIpoReport>();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 
         public override void BindViewSubTitle(object model)
         {
