@@ -105,7 +105,7 @@ namespace Web.GUI.Liquidazione
             this.editFatturaVendita.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editFatturaVendita.Changed = true;
             this.editFatturaVendita.Editing = false;
-            this.editFatturaVendita.Label = "Fattura vendita";
+            this.editFatturaVendita.Label = "Fattura di vendita";
             this.editFatturaVendita.LabelWidth = 175;
             this.editFatturaVendita.Location = new System.Drawing.Point(25, 75);
             this.editFatturaVendita.Model = null;

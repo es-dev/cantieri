@@ -82,13 +82,13 @@ namespace Web.GUI.Dashboard.Lavori
             {
                 var dashboards = new List<DashboardLavori>();
 
-                var dashboardCommessa = new DashboardLavori("Commesse", "COM", "Visualizza le tue commesse, verifica i bilanci e il margine operativo mediante strumenti grafici e analisi statistiche...", "Images.dashboard.commessa.png", "", typeof(CommessaView));
+                var dashboardCommessa = new DashboardLavori("Commesse", "CM", "Visualizza le tue commesse, verifica i bilanci e il margine operativo mediante strumenti grafici e analisi statistiche...", "Images.dashboard.commessa.png", "", typeof(CommessaView));
                 var dashboardFornitore = new DashboardLavori("Fornitori", "FOR", "Specifica i fornitori per le commesse inserite nel sistema, inserisci i dati identificativi e i dati di fornitura...", "Images.dashboard.fornitore.png", "", typeof(FornitoreView));
                 var dashboardFatturaAcquisto = new DashboardLavori("Fatture di acquisto", "FA", "Inserisci le fatture di acquisto per i fornitori, specificando i prodotti acquistati e i costi relativi...", "Images.dashboard.fatturaacquisto.png", "", typeof(FatturaAcquistoView));
                 var dashboardArticolo = new DashboardLavori("Articoli", "ART", "Inserisci gli articoli per le fattura di acquisto, specificandone le quantità, i costi e gli eventuali sconti relativi...", "Images.dashboard.articolo.png", "", typeof(ArticoloView));
                 var dashboardPagamento = new DashboardLavori("Pagamenti", "PAG", "Gestisci i pagamenti per le fattura inserite, controllando le scadenze, le passività e gli importi in dare/avere...", "Images.dashboard.pagamento.png", "", typeof(PagamentoView));
-                var dashboardCliente = new DashboardLavori("Committenti", "CL", "Specifica i committenti per le commesse inserite nel sistema, definisci gli importi attribuiti ai vari SAL...", "Images.dashboard.cliente.png", "", typeof(ClienteView));
-                var dashboardFatturaVendita = new DashboardLavori("Fatture di vendita", "FV", "Inserisci le fatture di vendita per i clienti delle commesse, gestisci i pagamenti e il conto economico...", "Images.dashboard.fatturavendita.png", "", typeof(FatturaVenditaView));
+                var dashboardCliente = new DashboardLavori("Committenti", "CT", "Specifica i committenti per le commesse inserite nel sistema, definisci gli importi attribuiti ai vari SAL...", "Images.dashboard.cliente.png", "", typeof(ClienteView));
+                var dashboardFatturaVendita = new DashboardLavori("Fatture di vendita", "FV", "Inserisci le fatture di vendita per i committenti delle commesse, gestisci gli incassi e il conto economico...", "Images.dashboard.fatturavendita.png", "", typeof(FatturaVenditaView));
                 var dashboardLiquidazioni = new DashboardLavori("Incassi", "INC", "Gestisci gli incassi corrispondenti alle fatture di vendita per le commesse inserite nel sistema, visualizza i movimenti in dare/avere...", "Images.dashboard.liquidazione.png", "", typeof(LiquidazioneView));
                 var dashboardSAL = new DashboardLavori("SAL", "SAL", "Crea uno Stato di Avanzamento Lavori (SAL) e controlla i bilanci delle tue commesse, evidenziando i movimenti in attivo/passivo...", "Images.dashboard.SAL.png", "", typeof(SALView));
                

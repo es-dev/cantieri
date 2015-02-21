@@ -89,20 +89,20 @@ namespace BusinessLogic
             None,
             [Description("Situazione Fornitore")]
             Fornitore,
-            [Description("Situazione Fornitori")]
+            [Description("Situazione Committente")]
+            Cliente,
+            [Description("Stato Fornitori")]
             Fornitori,
-            [Description("Situazione pagamenti fattura di acquisto")]
+            [Description("Stato Committenti")]
+            Clienti,
+            [Description("Stato pagamenti fatture")]
             FatturaAcquisto,
+            [Description("Stato incassi fatture")]
+            FatturaVendita,
             [Description("Stato avanzamento lavori")]
             SAL,
-            [Description("Stato commessa")]
-            Commessa,
-            [Description("Situazione Cliente")]
-            Cliente,
-            [Description("Situazione Clienti")]
-            Clienti,
-            [Description("Situazione incassi fattura di vendita")]
-            FatturaVendita
+            [Description("Situazione commesse")]
+            Commessa
         }
 
     }
