@@ -36,15 +36,17 @@ namespace Web.GUI.Account
             this.infoNickname = new Gizmox.WebGUI.Forms.Label();
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
             this.infoCreazione = new Gizmox.WebGUI.Forms.Label();
-            this.container.SuspendLayout();
+            this.JQContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
             this.SuspendLayout();
             // 
             // container
             // 
-            this.container.Controls.Add(this.infoRuolo);
-            this.container.Controls.Add(this.infoCreazione);
+            this.JQContainer.Controls.Add(this.panelLeft);
+            this.JQContainer.Controls.Add(this.infoNickname);
+            this.JQContainer.Controls.Add(this.infoRuolo);
+            this.JQContainer.Controls.Add(this.infoCreazione);
             // 
             // infoRuolo
             // 
@@ -53,7 +55,7 @@ namespace Web.GUI.Account
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoRuolo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoRuolo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoRuolo.Location = new System.Drawing.Point(90, 31);
+            this.infoRuolo.Location = new System.Drawing.Point(91, 31);
             this.infoRuolo.Name = "infoRuolo";
             this.infoRuolo.Size = new System.Drawing.Size(305, 33);
             this.infoRuolo.TabIndex = 1;
@@ -64,7 +66,7 @@ namespace Web.GUI.Account
             this.infoCodice.BackColor = System.Drawing.Color.Silver;
             this.infoCodice.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoCodice.ForeColor = System.Drawing.Color.DimGray;
-            this.infoCodice.Location = new System.Drawing.Point(0, 60);
+            this.infoCodice.Location = new System.Drawing.Point(-1, 59);
             this.infoCodice.Name = "infoCodice";
             this.infoCodice.Size = new System.Drawing.Size(83, 33);
             this.infoCodice.TabIndex = 2;
@@ -74,7 +76,7 @@ namespace Web.GUI.Account
             // infoImage
             // 
             this.infoImage.BackColor = System.Drawing.Color.Transparent;
-            this.infoImage.Location = new System.Drawing.Point(18, 4);
+            this.infoImage.Location = new System.Drawing.Point(17, 3);
             this.infoImage.Name = "infoImage";
             this.infoImage.Size = new System.Drawing.Size(48, 48);
             this.infoImage.SizeMode = Gizmox.WebGUI.Forms.PictureBoxSizeMode.StretchImage;
@@ -111,7 +113,7 @@ namespace Web.GUI.Account
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoCreazione.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoCreazione.ForeColor = System.Drawing.Color.DarkRed;
-            this.infoCreazione.Location = new System.Drawing.Point(130, 77);
+            this.infoCreazione.Location = new System.Drawing.Point(131, 77);
             this.infoCreazione.Name = "infoCreazione";
             this.infoCreazione.Size = new System.Drawing.Size(265, 16);
             this.infoCreazione.TabIndex = 1;
@@ -121,14 +123,9 @@ namespace Web.GUI.Account
             // AccountItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Controls.Add(this.panelLeft);
-            this.Controls.Add(this.infoNickname);
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.AccountItem_ItemClick);
-            this.Controls.SetChildIndex(this.container, 0);
-            this.Controls.SetChildIndex(this.infoNickname, 0);
-            this.Controls.SetChildIndex(this.panelLeft, 0);
-            this.container.ResumeLayout(false);
+            this.JQContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.ResumeLayout(false);

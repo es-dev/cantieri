@@ -36,15 +36,9 @@ namespace Web.GUI.AnagraficaFornitore
             this.infoRagioneSociale = new Gizmox.WebGUI.Forms.Label();
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
             this.infoIndirizzo = new Gizmox.WebGUI.Forms.Label();
-            this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // container
-            // 
-            this.container.Controls.Add(this.infoPartitaIVA);
-            this.container.Controls.Add(this.infoIndirizzo);
             // 
             // infoPartitaIVA
             // 
@@ -88,7 +82,7 @@ namespace Web.GUI.AnagraficaFornitore
             this.infoRagioneSociale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.infoRagioneSociale.Location = new System.Drawing.Point(91, 2);
             this.infoRagioneSociale.Name = "infoRagioneSociale";
-            this.infoRagioneSociale.Size = new System.Drawing.Size(305, 30);
+            this.infoRagioneSociale.Size = new System.Drawing.Size(263, 30);
             this.infoRagioneSociale.TabIndex = 1;
             this.infoRagioneSociale.Text = "RAGIONE SOCIALE";
             // 
@@ -117,14 +111,12 @@ namespace Web.GUI.AnagraficaFornitore
             // AnagraficaFornitoreItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Controls.Add(this.panelLeft);
-            this.Controls.Add(this.infoRagioneSociale);
+            this.JQContainer.Controls.Add(this.panelLeft);
+            this.JQContainer.Controls.Add(this.infoRagioneSociale);
+            this.JQContainer.Controls.Add(this.infoPartitaIVA);
+            this.JQContainer.Controls.Add(this.infoIndirizzo);
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.AnagraficaFornitoreItem_ItemClick);
-            this.Controls.SetChildIndex(this.container, 0);
-            this.Controls.SetChildIndex(this.infoRagioneSociale, 0);
-            this.Controls.SetChildIndex(this.panelLeft, 0);
-            this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.ResumeLayout(false);

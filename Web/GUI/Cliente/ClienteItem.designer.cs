@@ -38,18 +38,10 @@ namespace Web.GUI.Cliente
             this.infoLiquidazioneTotale = new Gizmox.WebGUI.Forms.Label();
             this.imgStato = new Gizmox.WebGUI.Forms.PictureBox();
             this.infoCommesssa = new Gizmox.WebGUI.Forms.Label();
-            this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgStato)).BeginInit();
             this.SuspendLayout();
-            // 
-            // container
-            // 
-            this.container.Controls.Add(this.infoCommesssa);
-            this.container.Controls.Add(this.infoIndirizzo);
-            this.container.Controls.Add(this.imgStato);
-            this.container.Controls.Add(this.infoLiquidazioneTotale);
             // 
             // infoCodice
             // 
@@ -105,7 +97,7 @@ namespace Web.GUI.Cliente
             this.infoRagioneSociale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.infoRagioneSociale.Location = new System.Drawing.Point(88, 2);
             this.infoRagioneSociale.Name = "infoRagioneSociale";
-            this.infoRagioneSociale.Size = new System.Drawing.Size(306, 30);
+            this.infoRagioneSociale.Size = new System.Drawing.Size(269, 30);
             this.infoRagioneSociale.TabIndex = 1;
             this.infoRagioneSociale.Text = "RAGIONE SOCIALE";
             // 
@@ -149,14 +141,14 @@ namespace Web.GUI.Cliente
             // ClienteItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Controls.Add(this.infoRagioneSociale);
-            this.Controls.Add(this.panelLeft);
+            this.JQContainer.Controls.Add(this.infoRagioneSociale);
+            this.JQContainer.Controls.Add(this.panelLeft);
+            this.JQContainer.Controls.Add(this.infoCommesssa);
+            this.JQContainer.Controls.Add(this.infoIndirizzo);
+            this.JQContainer.Controls.Add(this.imgStato);
+            this.JQContainer.Controls.Add(this.infoLiquidazioneTotale);
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.ClienteItem_ItemClick);
-            this.Controls.SetChildIndex(this.container, 0);
-            this.Controls.SetChildIndex(this.panelLeft, 0);
-            this.Controls.SetChildIndex(this.infoRagioneSociale, 0);
-            this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgStato)).EndInit();

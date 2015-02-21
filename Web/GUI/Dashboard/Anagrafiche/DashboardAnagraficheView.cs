@@ -66,7 +66,7 @@ namespace Web.GUI.Dashboard.Anagrafiche
             }
         }
 
-        private void DashboardAnagraficheView_OpenedSpace()
+        private void DashboardAnagraficheView_Opened()
         {
             try
             {

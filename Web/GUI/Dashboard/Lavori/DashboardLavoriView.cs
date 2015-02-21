@@ -66,7 +66,7 @@ namespace Web.GUI.Dashboard.Lavori
             }
         }
 
-        private void DashboardLavoriView_OpenedSpace()
+        private void DashboardLavoriView_Opened()
         {
             try
             {

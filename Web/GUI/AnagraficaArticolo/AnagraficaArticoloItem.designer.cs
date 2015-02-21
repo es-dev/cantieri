@@ -82,7 +82,7 @@ namespace Web.GUI.AnagraficaArticolo
             this.infoCodiceArticolo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.infoCodiceArticolo.Location = new System.Drawing.Point(91, 2);
             this.infoCodiceArticolo.Name = "infoCodiceArticolo";
-            this.infoCodiceArticolo.Size = new System.Drawing.Size(305, 30);
+            this.infoCodiceArticolo.Size = new System.Drawing.Size(263, 30);
             this.infoCodiceArticolo.TabIndex = 1;
             this.infoCodiceArticolo.Text = "CODICE ARTICOLO";
             // 
@@ -101,15 +101,11 @@ namespace Web.GUI.AnagraficaArticolo
             // AnagraficaArticoloItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Controls.Add(this.panelLeft);
-            this.Controls.Add(this.infoCodiceArticolo);
-            this.Controls.Add(this.infoDescrizione);
+            this.JQContainer.Controls.Add(this.panelLeft);
+            this.JQContainer.Controls.Add(this.infoCodiceArticolo);
+            this.JQContainer.Controls.Add(this.infoDescrizione);
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.AnagraficaArticoloItem_ItemClick);
-            this.Controls.SetChildIndex(this.container, 0);
-            this.Controls.SetChildIndex(this.infoDescrizione, 0);
-            this.Controls.SetChildIndex(this.infoCodiceArticolo, 0);
-            this.Controls.SetChildIndex(this.panelLeft, 0);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.ResumeLayout(false);

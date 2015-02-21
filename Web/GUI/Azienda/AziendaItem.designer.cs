@@ -82,7 +82,7 @@ namespace Web.GUI.Azienda
             this.infoDenominazione.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.infoDenominazione.Location = new System.Drawing.Point(91, 2);
             this.infoDenominazione.Name = "infoDenominazione";
-            this.infoDenominazione.Size = new System.Drawing.Size(305, 30);
+            this.infoDenominazione.Size = new System.Drawing.Size(263, 30);
             this.infoDenominazione.TabIndex = 1;
             this.infoDenominazione.Text = "DENOMINAZIONE";
             // 
@@ -101,15 +101,11 @@ namespace Web.GUI.Azienda
             // AziendaItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Controls.Add(this.panelLeft);
-            this.Controls.Add(this.infoDenominazione);
-            this.Controls.Add(this.infoIndirizzo);
+            this.JQContainer.Controls.Add(this.panelLeft);
+            this.JQContainer.Controls.Add(this.infoDenominazione);
+            this.JQContainer.Controls.Add(this.infoIndirizzo);
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.AziendaItem_ItemClick);
-            this.Controls.SetChildIndex(this.container, 0);
-            this.Controls.SetChildIndex(this.infoIndirizzo, 0);
-            this.Controls.SetChildIndex(this.infoDenominazione, 0);
-            this.Controls.SetChildIndex(this.panelLeft, 0);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.ResumeLayout(false);

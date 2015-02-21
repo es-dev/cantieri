@@ -40,10 +40,6 @@ namespace Web.GUI.Dashboard.Anagrafiche
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.SuspendLayout();
             // 
-            // container
-            // 
-            this.container.BackColor = System.Drawing.Color.Transparent;
-            // 
             // panelLeft
             // 
             this.panelLeft.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
@@ -86,7 +82,7 @@ namespace Web.GUI.Dashboard.Anagrafiche
             this.infoTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.infoTitle.Location = new System.Drawing.Point(95, 2);
             this.infoTitle.Name = "infoTitle";
-            this.infoTitle.Size = new System.Drawing.Size(305, 30);
+            this.infoTitle.Size = new System.Drawing.Size(259, 30);
             this.infoTitle.TabIndex = 1;
             this.infoTitle.Text = "TITLE";
             // 
@@ -107,16 +103,12 @@ namespace Web.GUI.Dashboard.Anagrafiche
             // DashboardAnagraficheItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Controls.Add(this.infoDescription);
-            this.Controls.Add(this.infoTitle);
-            this.Controls.Add(this.panelLeft);
+            this.JQContainer.Controls.Add(this.infoDescription);
+            this.JQContainer.Controls.Add(this.infoTitle);
+            this.JQContainer.Controls.Add(this.panelLeft);
             this.CountVisible = true;
             this.Size = new System.Drawing.Size(407, 105);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.DashboardAnagraficheItem_ItemClick);
-            this.Controls.SetChildIndex(this.container, 0);
-            this.Controls.SetChildIndex(this.panelLeft, 0);
-            this.Controls.SetChildIndex(this.infoTitle, 0);
-            this.Controls.SetChildIndex(this.infoDescription, 0);
             this.panelLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.ResumeLayout(false);

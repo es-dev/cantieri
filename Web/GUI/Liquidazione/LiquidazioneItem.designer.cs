@@ -37,17 +37,9 @@ namespace Web.GUI.Liquidazione
             this.infoLiquidazione = new Gizmox.WebGUI.Forms.Label();
             this.infoData = new Gizmox.WebGUI.Forms.Label();
             this.infoImporto = new Gizmox.WebGUI.Forms.Label();
-            this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // container
-            // 
-            this.container.Controls.Add(this.infoImporto);
-            this.container.Controls.Add(this.infoData);
-            this.container.Controls.Add(this.infoNote);
-            this.container.Controls.Add(this.infoLiquidazione);
             // 
             // infoCodice
             // 
@@ -103,7 +95,7 @@ namespace Web.GUI.Liquidazione
             this.infoLiquidazione.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.infoLiquidazione.Location = new System.Drawing.Point(91, 2);
             this.infoLiquidazione.Name = "infoLiquidazione";
-            this.infoLiquidazione.Size = new System.Drawing.Size(305, 30);
+            this.infoLiquidazione.Size = new System.Drawing.Size(263, 30);
             this.infoLiquidazione.TabIndex = 1;
             this.infoLiquidazione.Text = "INCASSO";
             // 
@@ -134,12 +126,13 @@ namespace Web.GUI.Liquidazione
             // LiquidazioneItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Controls.Add(this.panelLeft);
+            this.JQContainer.Controls.Add(this.panelLeft);
+            this.JQContainer.Controls.Add(this.infoImporto);
+            this.JQContainer.Controls.Add(this.infoData);
+            this.JQContainer.Controls.Add(this.infoNote);
+            this.JQContainer.Controls.Add(this.infoLiquidazione);
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.LiquidazioneItem_ItemClick);
-            this.Controls.SetChildIndex(this.container, 0);
-            this.Controls.SetChildIndex(this.panelLeft, 0);
-            this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.ResumeLayout(false);

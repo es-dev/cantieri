@@ -125,7 +125,7 @@ namespace Web.GUI.Dashboard
             // 
             // DashboardView
             // 
-            this.OpenedSpace += new Library.Interfaces.OpenSpaceHandler(this.DashboardView_OpenedSpace);
+            this.Opened += new Library.Interfaces.OpenHandler(this.DashboardView_Opened);
             this.Controls.SetChildIndex(this.txtSearch, 0);
             this.Controls.SetChildIndex(this.btnOrderBy, 0);
             this.Controls.SetChildIndex(this.btnAdvancedSearch, 0);

@@ -66,7 +66,7 @@ namespace Web.GUI.Dashboard
             }
         }
 
-        private void DashboardView_OpenedSpace()
+        private void DashboardView_Opened()
         {
             try
             {

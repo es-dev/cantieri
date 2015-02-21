@@ -37,17 +37,9 @@ namespace Web.GUI.Pagamento
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
             this.infoNote = new Gizmox.WebGUI.Forms.Label();
             this.infoData = new Gizmox.WebGUI.Forms.Label();
-            this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // container
-            // 
-            this.container.Controls.Add(this.infoData);
-            this.container.Controls.Add(this.infoNote);
-            this.container.Controls.Add(this.infoPagamento);
-            this.container.Controls.Add(this.infoImporto);
             // 
             // infoImporto
             // 
@@ -91,7 +83,7 @@ namespace Web.GUI.Pagamento
             this.infoPagamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.infoPagamento.Location = new System.Drawing.Point(91, 2);
             this.infoPagamento.Name = "infoPagamento";
-            this.infoPagamento.Size = new System.Drawing.Size(305, 30);
+            this.infoPagamento.Size = new System.Drawing.Size(263, 30);
             this.infoPagamento.TabIndex = 1;
             this.infoPagamento.Text = "PAGAMENTO";
             // 
@@ -135,12 +127,13 @@ namespace Web.GUI.Pagamento
             // PagamentoItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Controls.Add(this.panelLeft);
+            this.JQContainer.Controls.Add(this.panelLeft);
+            this.JQContainer.Controls.Add(this.infoData);
+            this.JQContainer.Controls.Add(this.infoNote);
+            this.JQContainer.Controls.Add(this.infoPagamento);
+            this.JQContainer.Controls.Add(this.infoImporto);
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.PagamentoItem_ItemClick);
-            this.Controls.SetChildIndex(this.container, 0);
-            this.Controls.SetChildIndex(this.panelLeft, 0);
-            this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.ResumeLayout(false);
