@@ -87,22 +87,22 @@ namespace BusinessLogic
         public enum TIpoReport
         {
             None,
-            [Description("Situazione Fornitore")]
+            [Description("Situazione fornitore")]
             Fornitore,
-            [Description("Situazione Committente")]
+            [Description("Situazione committente")]
             Cliente,
-            [Description("Stato Fornitori")]
+            [Description("Stato fornitori")]
             Fornitori,
-            [Description("Stato Committenti")]
+            [Description("Stato committenti")]
             Clienti,
             [Description("Stato pagamenti fatture")]
-            FatturaAcquisto,
+            FattureAcquisto,
             [Description("Stato incassi fatture")]
-            FatturaVendita,
+            FattureVendita,
             [Description("Stato avanzamento lavori")]
             SAL,
             [Description("Situazione commesse")]
-            Commessa
+            Commesse
         }
 
     }
