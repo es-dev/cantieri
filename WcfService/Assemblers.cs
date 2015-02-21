@@ -1425,5 +1425,77 @@ namespace WcfService.Assemblers
 	{
 	    
 	}
+	
+	public partial interface IReportJobAssembler : IAssembler<ReportJobDto, ReportJob>
+	{ 
+	
+	}
+	
+	public partial class ReportJobAssemblerBase : Assembler<ReportJobDto, ReportJob>
+	{
+		/// <summary>
+	    /// Invoked after the ReportJobDto instance is assembled.
+	    /// </summary>
+	    /// <param name="dto"><see cref="ReportJobDto"/> The Dto instance.</param>
+		partial void OnDTOAssembled(ReportJobDto dto);
+	
+		/// <summary>
+	    /// Invoked after the ReportJob instance is assembled.
+	    /// </summary>
+	    /// <param name="entity">The <see cref="ReportJob"/> instance.</param>
+		partial void OnEntityAssembled(ReportJob entity);
+		
+	    public override ReportJob Assemble(ReportJob entity, ReportJobDto dto)
+	    {
+	        if (entity == null)
+	        {
+	            entity = new ReportJob();
+	        }
+			
+			entity.Id = dto.Id;
+			entity.Creazione = dto.Creazione;
+			entity.Codice = dto.Codice;
+			entity.Denominazione = dto.Denominazione;
+			entity.Tipo = dto.Tipo;
+			entity.CodiceFornitore = dto.CodiceFornitore;
+			entity.Elaborazione = dto.Elaborazione;
+			entity.Note = dto.Note;
+	        this.OnEntityAssembled(entity);
+	        return entity;
+	    }
+	
+	    public override ReportJobDto Assemble(ReportJob entity)
+	    {
+	        ReportJobDto dto = new ReportJobDto();
+	        
+			ObjectKey key = KeyUtility.Instance.Create(entity);
+			dto.DtoKey = KeyUtility.Instance.Convert(key);
+			dto.Id = entity.Id;
+			dto.Creazione = entity.Creazione;
+			dto.Codice = entity.Codice;
+			dto.Denominazione = entity.Denominazione;
+			dto.Tipo = entity.Tipo;
+			dto.CodiceFornitore = entity.CodiceFornitore;
+			dto.Elaborazione = entity.Elaborazione;
+			dto.Note = entity.Note;
+			this.OnDTOAssembled(dto); 
+	        return dto;
+	    }
+	
+	    public override void AssembleReferences(ReportJob entity, ReportJobDto dto)
+	    {
+	    }
+	
+	    public override void AssembleCollections(ReportJob entity, ReportJobDto dto)
+	    {
+	    }
+	
+	}
+	
+	
+	public partial class ReportJobAssembler : ReportJobAssemblerBase, IReportJobAssembler
+	{
+	    
+	}
 }
 #pragma warning restore 1591

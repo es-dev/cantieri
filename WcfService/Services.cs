@@ -383,5 +383,19 @@ namespace WcfService.Services
 	
 	    }
 	}
+	
+	public partial interface IReportJobService : IService<ReportJobDto, ReportJob>
+	{
+	
+	}
+	
+	public partial class ReportJobService : Service<ReportJobDto, ReportJob>, IReportJobService
+	{
+	    public ReportJobService(IReportJobAssembler assembler, IReportJobRepository repository)
+	        : base(assembler, repository)
+	    {
+	
+	    }
+	}
 }
 #pragma warning restore 1591

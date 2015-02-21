@@ -2331,5 +2331,154 @@ namespace WcfService
         #endregion
         #endregion
 
+        #region ReportJob
+        #region CRUD
+        public Dto.ReportJobDto CreateReportJob(Dto.ReportJobDto reportJob)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var dtoKey = wcf.CreateReportJob(reportJob);
+                var newReportJob = wcf.ReadReportJob(dtoKey);
+                return newReportJob;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<Dto.ReportJobDto> ReadReportJobs()
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var reportJobs = wcf.ReadReportJobs();
+                return reportJobs;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public bool UpdateReportJob(Dto.ReportJobDto reportJob)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                wcf.UpdateReportJob(reportJob);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
+        }
+
+        public bool DeleteReportJob(Dto.ReportJobDto reportJob)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                wcf.DeleteReportJob(reportJob);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
+        }
+
+        public int CountReportJobs()
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var count = wcf.ReportJobsCount();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+        #endregion
+        #region Custom
+        public IEnumerable<Dto.ReportJobDto> LoadReportJobs(int skip, int take, string search = null)
+        {
+            try
+            {
+                var reportJobs = QueryReportJobs(search);
+                reportJobs = (from q in reportJobs select q).Skip(skip).Take(take);
+
+                var reportJobsDto = UtilityPOCO.Assemble<Dto.ReportJobDto>(reportJobs);
+                return reportJobsDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public int CountReportJobs(string search = null)
+        {
+            try
+            {
+                var reportJobs = QueryReportJobs(search);
+                var count = reportJobs.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public Dto.ReportJobDto ReadReportJob(object id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var reportJob = wcf.ReadReportJob("Id=" + id);
+                return reportJob;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private IQueryable<DataLayer.ReportJob> QueryReportJobs(string search)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var reportJobs = (from q in ef.ReportJobs select q);
+                if (search != null && search.Length > 0)
+                    reportJobs = (from q in reportJobs where q.Codice.StartsWith(search) || q.CodiceFornitore.Contains(search) select q);
+
+                reportJobs = (from q in reportJobs orderby q.Codice select q);
+                return reportJobs;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+
+        #endregion
+        #endregion
+
     }
 }
