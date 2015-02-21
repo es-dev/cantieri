@@ -130,6 +130,9 @@
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportJob.generated.cs">
+      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    </Compile>
     <Compile Include="SAL.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
@@ -169,6 +172,8 @@
     <Content Include="ESCantieriConnection%282015-02-15 16-19-12%29.rlinq.sql" />
     <Content Include="ESCantieriConnection%282015-02-15 16-31-04%29.rlinq.sql" />
     <Content Include="ESCantieriConnection%282015-02-15 18-08-37%29.rlinq.sql" />
+    <Content Include="ESCantieriConnection%282015-02-21 21-58-48%29.rlinq.sql" />
+    <Content Include="ESCantieriConnection%282015-02-21 22-28-51%29.rlinq.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ES.Library\ES.Library.csproj">

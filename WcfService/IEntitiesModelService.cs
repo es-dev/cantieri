@@ -1413,6 +1413,105 @@ namespace WcfService
 	    
 	    #endregion
 	    
+	    #region ReportJobs CRUD Operations
+	
+	    /// <summary>
+	    /// Returns all reportjobs.
+	    /// </summary>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<ReportJobDto> ReadReportJobs();
+	
+	    /// <summary>
+	    /// Returns a specified amount of reportjobs from the given start index.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<ReportJobDto> ReadReportJobsPaged(int startIndex, int pageSize);
+	
+	    /// <summary>
+	    /// Returns all reportjobs filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<ReportJobDto> ReadReportJobsFiltered(string sortExpression, string filterExpression);
+	
+	    /// <summary>
+	    /// Returns a specified amount of reportjobs from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<ReportJobDto> ReadReportJobsPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression);
+	
+	    /// <summary>
+	    /// Returns a reportjob with the specified dto key.
+	    /// </summary>
+	    /// <param name="dtoKey">The specified dto key value.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    ReportJobDto ReadReportJob(string dtoKey);
+	
+	    /// <summary>
+	    /// Returns all reportjobs count.
+	    /// </summary>
+	    /// <returns></returns>
+	    [OperationContract]
+	    int ReportJobsCount();
+	
+	    /// <summary>
+	    /// Returns all reportjobs count filtered by the specified filter expression.
+	    /// </summary>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    int ReportJobsCountFiltered(string filterExpression);
+	
+	    /// <summary>
+	    /// Adds a new reportjob from the given dto object into the database.
+	    /// </summary>
+	    /// <param name="reportjob">The dto object.</param>
+	    /// <returns>The dto key of the newly created reportjob.</returns>
+	    [OperationContract]
+	    string CreateReportJob(ReportJobDto reportjob);
+	
+	    /// <summary>
+	    /// Updates reportjob in the database from the given dto object.
+	    /// </summary>
+	    /// <param name="reportjob">The dto object.</param>
+	    [OperationContract]
+	    void UpdateReportJob(ReportJobDto reportjob);
+	
+	    /// <summary>
+	    /// Update an existing reportjobs in the database from the given dto object list.
+	    /// </summary>
+	    /// <param name="reportjobs">The dto object list.</param>
+	    [OperationContract]
+	    void UpdateReportJobs(IEnumerable<ReportJobDto> reportjobs);
+	
+	    /// <summary>
+	    /// Deletes reportjob from the database by the given dto object.
+	    /// </summary>
+	    /// <param name="reportjob">The dto object.</param>
+	    [OperationContract]
+	    void DeleteReportJob(ReportJobDto reportjob);
+	
+	    /// <summary>
+	    /// Delete reportjobs from the database by the given dto object list.
+	    /// </summary>
+	    /// <param name="reportjobs">The dto object list.</param>
+	    [OperationContract]
+	    void DeleteReportJobs(IEnumerable<ReportJobDto> reportjobs);
+	    
+	    #endregion
+	    
 	    #region SALs CRUD Operations
 	
 	    /// <summary>

@@ -71,7 +71,6 @@ namespace WcfService
         #endregion
         #endregion
 
-
         #region Commessa
         #region CRUD
         [OperationContract]
@@ -462,6 +461,36 @@ namespace WcfService
         
         [OperationContract]
         Dto.AnagraficaArticoloDto ReadAnagraficaArticolo(object id);
+        #endregion
+        #endregion
+
+        #region ReportJob
+        #region CRUD
+        [OperationContract]
+        Dto.ReportJobDto CreateReportJob(Dto.ReportJobDto reportJob);
+
+        [OperationContract]
+        IEnumerable<Dto.ReportJobDto> ReadReportJobs();
+
+        [OperationContract]
+        bool UpdateReportJob(Dto.ReportJobDto reportJob);
+
+        [OperationContract]
+        bool DeleteReportJob(Dto.ReportJobDto reportJob);
+
+        [OperationContract]
+        int CountReportJobs();
+        #endregion
+
+        #region Custom
+        [OperationContract]
+        IEnumerable<Dto.ReportJobDto> LoadReportJobs(int skip, int take, string search = null);
+
+        [OperationContract]
+        int CountReportJobs(string search = null);
+
+        [OperationContract]
+        Dto.ReportJobDto ReadReportJob(object id);
         #endregion
         #endregion
 

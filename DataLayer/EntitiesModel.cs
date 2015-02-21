@@ -170,6 +170,14 @@ namespace DataLayer
 			}
 		}
 		
+		public IQueryable<ReportJob> ReportJobs 
+		{
+			get
+			{
+				return this.GetAll<ReportJob>();
+			}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -249,6 +257,10 @@ namespace DataLayer
 			get;
 		}
 		IQueryable<Account> Accounts
+		{
+			get;
+		}
+		IQueryable<ReportJob> ReportJobs
 		{
 			get;
 		}

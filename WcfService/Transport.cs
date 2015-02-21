@@ -1136,5 +1136,53 @@ namespace WcfService.Dto
 
 	}
 	
+	[DataContract(IsReference = true)]
+	public partial class ReportJobDto : IDtoWithKey
+	{
+		public ReportJobDto()
+		{
+		}
+		
+		public ReportJobDto(int _id, DateTime? _creazione, string _codice, string _denominazione, string _tipo, string _codiceFornitore, DateTime? _elaborazione, string _note)
+		{
+			this.Id = _id;
+			this.Creazione = _creazione;
+			this.Codice = _codice;
+			this.Denominazione = _denominazione;
+			this.Tipo = _tipo;
+			this.CodiceFornitore = _codiceFornitore;
+			this.Elaborazione = _elaborazione;
+			this.Note = _note;
+		}
+		
+		[DataMember]
+		public virtual string DtoKey { get; set; }
+		
+		[DataMember]
+		public virtual int Id { get;set; }
+
+		[DataMember]
+		public virtual DateTime? Creazione { get;set; }
+
+		[DataMember]
+		public virtual string Codice { get;set; }
+
+		[DataMember]
+		public virtual string Denominazione { get;set; }
+
+		[DataMember]
+		public virtual string Tipo { get;set; }
+
+		[DataMember]
+		public virtual string CodiceFornitore { get;set; }
+
+		[DataMember]
+		public virtual DateTime? Elaborazione { get;set; }
+
+		[DataMember]
+		public virtual string Note { get;set; }
+
+	}
+	
 }
 #pragma warning restore 1591

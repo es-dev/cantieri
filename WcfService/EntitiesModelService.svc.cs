@@ -2522,6 +2522,182 @@ namespace WcfService
 	    #endregion
 	    
 	    /// <summary>
+	    /// A general purpose generated service used for all CRUD operations against ReportJob entity.
+	    /// </summary>
+	    private IReportJobService reportjobservice;
+	    
+	    /// <summary>
+	    /// Gets or sets the general purpose generated service used for all CRUD operations against ReportJob entity.
+	    /// </summary>
+	    public virtual IReportJobService ReportJobService
+	    {
+	        get
+	        {
+	            if (this.reportjobservice == null)
+	            {
+	                IReportJobAssembler assembler = new ReportJobAssembler();
+	                IReportJobRepository repository = new ReportJobRepository(this.UnitOfWork);
+	
+	                this.reportjobservice = new ReportJobService(assembler, repository);
+	            }
+	            return this.reportjobservice;
+	        }
+	    }
+	        
+	    #region ReportJobs CRUD Operations
+	
+	    /// <summary>
+	    /// Returns all reportjobs.
+	    /// </summary>
+	    /// <returns></returns>
+	    public IEnumerable<ReportJobDto> ReadReportJobs()	
+	    {
+	        return this.ReportJobService.GetAll();
+	    }
+	
+	    /// <summary>
+	    /// Returns a specified amount of reportjobs from the given start index.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <returns></returns>
+	    public IEnumerable<ReportJobDto> ReadReportJobsPaged(int startIndex, int pageSize)
+	    {
+	        return this.ReportJobService.Find(startIndex, pageSize);
+	    }
+	
+	    /// <summary>
+	    /// Returns all reportjobs filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public IEnumerable<ReportJobDto> ReadReportJobsFiltered(string sortExpression, string filterExpression)
+	    {
+	        return this.ReportJobService.Find(sortExpression, filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Returns a specified amount of reportjobs from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public IEnumerable<ReportJobDto> ReadReportJobsPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression)
+	    {
+	        return this.ReportJobService.Find(startIndex, pageSize, sortExpression, filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Returns a reportjob with the specified dto key.
+	    /// </summary>
+	    /// <param name="dtoKey">The specified dto key value.</param>
+	    /// <returns></returns>
+	    public ReportJobDto ReadReportJob(string dtoKey)
+	    {
+	        return this.ReportJobService.GetByKey(dtoKey);
+	    }
+	    
+	    /// <summary>
+	    /// Returns all reportjobs count.
+	    /// </summary>
+	    /// <returns></returns>
+	    public int ReportJobsCount()
+	    {
+	        return this.ReportJobService.Count();
+	    }
+	    
+	    /// <summary>
+	    /// Returns all reportjobs count filtered by the specified filter expression.
+	    /// </summary>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public int ReportJobsCountFiltered(string filterExpression)
+	    {
+	        return this.ReportJobService.Count(filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Adds a new reportjob from the given dto object into the database.
+	    /// </summary>
+	    /// <param name="reportjob">The dto object.</param>
+	    /// <returns>The dto key of the newly created reportjob.</returns>
+	    public string CreateReportJob(ReportJobDto reportjob)
+	    {
+	        string key = this.ReportJobService.Add(reportjob);
+	        this.UnitOfWork.SaveChanges();
+	        return key;
+	    }
+	
+	    /// <summary>
+	    /// Updates an existing reportjob in the database from the given dto object.
+	    /// </summary>
+	    /// <param name="reportjob">The dto object.</param>
+	    public void UpdateReportJob(ReportJobDto reportjob)
+	    {
+	        this.ReportJobService.Update(reportjob);
+	        this.UnitOfWork.SaveChanges();
+	    }
+	
+	    /// <summary>
+	    /// Update reportjobs in the database from the given dto object list.
+	    /// </summary>
+	    /// <param name="reportjobs">The dto object list.</param>
+	    public void UpdateReportJobs(IEnumerable<ReportJobDto> reportjobs)
+	    {
+	        if (reportjobs == null)
+	        {
+	            return;
+	        }
+	
+	        foreach (ReportJobDto reportjob in reportjobs)
+	        {
+	            if (reportjob == null)
+	            {
+	                continue;
+	            }
+	            
+	            this.UpdateReportJob(reportjob);
+	        }
+	    }
+	
+	    /// <summary>
+	    /// Deletes reportjob from the database by the given dto object.
+	    /// </summary>
+	    /// <param name="reportjob">The dto object.</param>
+	    public void DeleteReportJob(ReportJobDto reportjob)
+	    {
+	        this.ReportJobService.Delete(reportjob);
+	        this.UnitOfWork.SaveChanges();		
+	    }
+	
+	    /// <summary>
+	    /// Delete reportjobs from the database by the given dto object list.
+	    /// </summary>
+	    /// <param name="reportjobs">The dto object list.</param>
+	    public void DeleteReportJobs(IEnumerable<ReportJobDto> reportjobs)
+	    {
+	        if (reportjobs == null)
+	        {
+	            return;
+	        }
+	
+	        foreach (ReportJobDto reportjob in reportjobs)
+	        {
+	            if (reportjob == null)
+	            {
+	                continue;
+	            }
+	            
+	            this.DeleteReportJob(reportjob);
+	        }
+	    }
+	    
+	    #endregion
+	    
+	    /// <summary>
 	    /// A general purpose generated service used for all CRUD operations against SAL entity.
 	    /// </summary>
 	    private ISALService salservice;

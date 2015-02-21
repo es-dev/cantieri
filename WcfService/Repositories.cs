@@ -261,5 +261,18 @@ namespace WcfService.Repositories
 	    {
 	    }
 	}
+	
+	public partial interface IReportJobRepository : IRepository<ReportJob>
+	{ 
+	
+	}
+	
+	public partial class ReportJobRepository : Repository<ReportJob>, IReportJobRepository
+	{
+	    public ReportJobRepository(IEntitiesModelUnitOfWork unitOfWork)
+	        : base(unitOfWork)
+	    {
+	    }
+	}
 }
 #pragma warning restore 1591

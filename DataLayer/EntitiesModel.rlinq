@@ -840,6 +840,36 @@
           </orm:columnMapping>
         </orm:index>
       </orm:class>
+      <orm:class name="ReportJob" uniqueId="b95dbb13-c746-4365-ad3e-3467474a7064">
+        <orm:table name="ReportJob" />
+        <orm:identity>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:field name="_id" property="Id" uniqueId="4ef547d6-bb4b-4520-bdd7-60f997e7960c" type="System.Int32">
+          <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_creazione" property="Creazione" uniqueId="d200461e-947d-4185-8025-8c75a389bf74" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Creazione" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_codice" property="Codice" uniqueId="8666f8f4-a774-4dd4-a160-97209e560c6a" type="System.String">
+          <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_denominazione" property="Denominazione" uniqueId="92ce7d40-d73f-4ab3-9060-6c63d6e353ef" type="System.String">
+          <orm:column name="Denominazione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_tipo" property="Tipo" uniqueId="b7a4c08d-0cde-4200-96ca-c8fadc30e5a9" type="System.String">
+          <orm:column name="Tipo" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_codiceFornitore" property="CodiceFornitore" uniqueId="53040560-a928-470f-8f5b-f07de461f01c" type="System.String">
+          <orm:column name="CodiceFornitore" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_elaborazione" property="Elaborazione" uniqueId="b64a0810-7e64-447b-adcd-573c49de2150" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Elaborazione" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_note" property="Note" uniqueId="7a88c3ed-fc34-45cd-8f64-bf456fb8f122" type="System.String">
+          <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+      </orm:class>
     </orm:namespace>
     <orm:schema schema="">
       <orm:table name="Azienda">
@@ -1107,6 +1137,16 @@
             <orm:column name="AziendaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
           </orm:columnMapping>
         </orm:index>
+      </orm:table>
+      <orm:table name="ReportJob">
+        <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:column name="Creazione" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
+        <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="Denominazione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="Tipo" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="CodiceFornitore" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="Elaborazione" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
       </orm:table>
     </orm:schema>
     <orm:relational-naming-settings>
@@ -1627,6 +1667,16 @@
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
+    <DomainClass Id="b95dbb13-c746-4365-ad3e-3467474a7064" name="ReportJob" namespace="DataLayer" showPropertiesCompartment="true" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="4ef547d6-bb4b-4520-bdd7-60f997e7960c" name="Id" type="System.Int32" label="Id : System.Int32" identity="true" fieldName="_id" />
+      <Property Id="d200461e-947d-4185-8025-8c75a389bf74" name="Creazione" type="DateTime" label="Creazione : DateTime" nullable="true" fieldName="_creazione" />
+      <Property Id="8666f8f4-a774-4dd4-a160-97209e560c6a" name="Codice" label="Codice : String" fieldName="_codice" />
+      <Property Id="92ce7d40-d73f-4ab3-9060-6c63d6e353ef" name="Denominazione" label="Denominazione : String" fieldName="_denominazione" />
+      <Property Id="b7a4c08d-0cde-4200-96ca-c8fadc30e5a9" name="Tipo" label="Tipo : String" fieldName="_tipo" />
+      <Property Id="53040560-a928-470f-8f5b-f07de461f01c" name="CodiceFornitore" label="CodiceFornitore : String" fieldName="_codiceFornitore" />
+      <Property Id="b64a0810-7e64-447b-adcd-573c49de2150" name="Elaborazione" type="DateTime" label="Elaborazione : DateTime" nullable="true" fieldName="_elaborazione" />
+      <Property Id="7a88c3ed-fc34-45cd-8f64-bf456fb8f122" name="Note" label="Note : String" fieldName="_note" />
+    </DomainClass>
   </Types>
   <domainContext>
     <domainModelHasDomainContext Id="0d78686f-daea-40df-b476-5e7a97b883da">
@@ -1646,6 +1696,7 @@
         <entitySetProperty name="SALs" namespace="DataLayer" type="SAL" label="SALs : IQueryable&lt;DataLayer.SAL&gt;" />
         <entitySetProperty name="Articolos" namespace="DataLayer" type="Articolo" label="Articolos : IQueryable&lt;DataLayer.Articolo&gt;" />
         <entitySetProperty name="Accounts" namespace="DataLayer" type="Account" label="Accounts : IQueryable&lt;DataLayer.Account&gt;" />
+        <entitySetProperty name="ReportJobs" namespace="DataLayer" type="ReportJob" label="ReportJobs : IQueryable&lt;DataLayer.ReportJob&gt;" />
       </domainContainer>
     </domainModelHasDomainContext>
   </domainContext>
