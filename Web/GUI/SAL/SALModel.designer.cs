@@ -206,7 +206,7 @@ namespace Web.GUI.SAL
             this.editTotaleVendite.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editTotaleVendite.Changed = true;
             this.editTotaleVendite.Editing = false;
-            this.editTotaleVendite.Label = "Fatture al cliente";
+            this.editTotaleVendite.Label = "Fatture al committente";
             this.editTotaleVendite.LabelWidth = 175;
             this.editTotaleVendite.Location = new System.Drawing.Point(25, 369);
             this.editTotaleVendite.Name = "editTotaleVendite";
@@ -300,7 +300,7 @@ namespace Web.GUI.SAL
             this.editTotaleLiquidazioni.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editTotaleLiquidazioni.Changed = true;
             this.editTotaleLiquidazioni.Editing = false;
-            this.editTotaleLiquidazioni.Label = "Incassi cliente";
+            this.editTotaleLiquidazioni.Label = "Incassi committente";
             this.editTotaleLiquidazioni.LabelWidth = 175;
             this.editTotaleLiquidazioni.Location = new System.Drawing.Point(25, 495);
             this.editTotaleLiquidazioni.Name = "editTotaleLiquidazioni";

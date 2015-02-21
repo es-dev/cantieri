@@ -180,7 +180,7 @@ namespace Web.GUI.FatturaVendita
             this.editCliente.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editCliente.Changed = true;
             this.editCliente.Editing = false;
-            this.editCliente.Label = "Cliente";
+            this.editCliente.Label = "Committente";
             this.editCliente.LabelWidth = 175;
             this.editCliente.Location = new System.Drawing.Point(25, 75);
             this.editCliente.Model = null;

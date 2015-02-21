@@ -184,7 +184,7 @@ namespace Web.GUI.FatturaVendita
             try
             {
                 var view = new Cliente.ClienteView();
-                view.Title = "SELEZIONA UN CLIENTE";
+                view.Title = "SELEZIONA UN COMMITTENTE";
                 editCliente.Show(view);
             }
             catch (Exception ex)

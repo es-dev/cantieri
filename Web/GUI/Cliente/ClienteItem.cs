@@ -74,17 +74,17 @@ namespace Web.GUI.Cliente
                 if (stato == Tipi.StatoCliente.Liquidato)
                 {
                     image = "Images.messageConfirm.png";
-                    descrizione = "Cliente incassato";
+                    descrizione = "Committente incassato";
                 }
                 else if (stato == Tipi.StatoCliente.NonLiquidato)
                 {
                     image = "Images.messageQuestion.png";
-                    descrizione = "Cliente non incassato, le fatture non incassate sono " + listaFattureNonLiquidate;
+                    descrizione = "Committente non incassato, le fatture non incassate sono " + listaFattureNonLiquidate;
                 }
                 else if (stato == Tipi.StatoCliente.Insoluto)
                 {
                     image = "Images.messageAlert.png";
-                    descrizione = "Cliente insoluto, le fatture insolute sono " + listaFattureInsolute;
+                    descrizione = "Committente insoluto, le fatture insolute sono " + listaFattureInsolute;
                 }
                 var _stato = new DescriptionImage(descrizione, image);
                 return _stato;
@@ -104,7 +104,7 @@ namespace Web.GUI.Cliente
                 if (item != null)
                 {
                     var space = new ClienteModel();
-                    space.Title = "DETTAGLI CLIENTE";
+                    space.Title = "DETTAGLI COMMITTENTE";
                     AddSpace(space);
                 }
             }

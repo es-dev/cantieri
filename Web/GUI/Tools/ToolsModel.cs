@@ -103,11 +103,11 @@ namespace Web.GUI.Tools
                         anagraficaCliente.CodiceCatastale = comune.Code;
                         anagraficaCliente.Provincia = comune.County;
                         viewModel.Save(anagraficaCliente, false);
-                        AddLog("Anagrafica cliente " + anagraficaCliente.RagioneSociale + " aggiornata con successo ... OK");
+                        AddLog("Anagrafica committenti " + anagraficaCliente.RagioneSociale + " aggiornata con successo ... OK");
                     }
                     else
                     {
-                        AddLog("Anagrafica cliente " + anagraficaCliente.RagioneSociale + " non aggiornata, comune " + anagraficaCliente.Comune + " non trovato... ERROR");
+                        AddLog("Anagrafica committenti " + anagraficaCliente.RagioneSociale + " non aggiornata, comune " + anagraficaCliente.Comune + " non trovato... ERROR");
                         warning = true;
                     }
                 }

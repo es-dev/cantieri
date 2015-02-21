@@ -71,7 +71,7 @@ namespace Web.GUI.Dashboard.Anagrafiche
             {
                 var dashboards = new List<DashboardAnagrafiche>();
                 var dashboardAnagraficaFornitore = new DashboardAnagrafiche("Anagrafiche fornitori", "AF", "Archivia i fornitori verso i quali effettui l'approvviggionamento delle risorse per una rapida gestione degli archivi...", "Images.dashboard.anagraficafornitore.png", "", typeof(AnagraficaFornitoreView));
-                var dashboardAnagraficaCliente = new DashboardAnagrafiche("Anagrafiche clienti", "AC", "Archivia i clienti verso i quali esegui le commesse dei lavori assegnati  per una rapida gestione degli storici...", "Images.dashboard.anagraficacliente.png", "", typeof(AnagraficaClienteView));
+                var dashboardAnagraficaCliente = new DashboardAnagrafiche("Anagrafiche committenti", "AC", "Archivia i committenti verso i quali esegui le commesse dei lavori assegnati  per una rapida gestione degli storici...", "Images.dashboard.anagraficacliente.png", "", typeof(AnagraficaClienteView));
                 var dashboardAnagraficaArticolo = new DashboardAnagrafiche("Anagrafiche articoli", "AA", "Archivia gli articoli e i prodotti acquistati per una gestione rapida delle movimentazioni di fatturazione e di magazzino...", "Images.dashboard.anagraficaarticolo.png", "", typeof(AnagraficaArticoloView));
                
                 dashboards.Add(dashboardAnagraficaFornitore);

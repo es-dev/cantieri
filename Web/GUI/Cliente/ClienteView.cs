@@ -34,7 +34,7 @@ namespace Web.GUI.Cliente
             try
             {
                 var space = new ClienteModel();
-                space.Title = "NUOVO CLIENTE";
+                space.Title = "NUOVO COMMITTENTE";
                 space.Model = new WcfService.Dto.ClienteDto();
                 AddSpace(space);
             }

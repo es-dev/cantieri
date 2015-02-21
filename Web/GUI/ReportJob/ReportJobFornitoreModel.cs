@@ -26,7 +26,7 @@ namespace Web.GUI.ReportJob
                     var obj = (WcfService.Dto.ReportJobDto)model;
                     var codice = UtilityValidation.GetStringND(obj.Codice);
                     infoSubtitle.Text = codice;
-                    infoSubtitleImage.Image = "Images.dashboard.articolo.png";
+                    infoSubtitleImage.Image = "Images.dashboard.reportjob.png";
                 }
             }
             catch (Exception ex)
