@@ -30,12 +30,46 @@ namespace Web.GUI.ReportJob
 		/// </summary>
 		private void InitializeComponent()
 		{
+            this.contextMenu = new Gizmox.WebGUI.Forms.ContextMenu();
+            this.menuItem1 = new Gizmox.WebGUI.Forms.MenuItem();
+            this.menuItem2 = new Gizmox.WebGUI.Forms.MenuItem();
+            this.menuItem3 = new Gizmox.WebGUI.Forms.MenuItem();
+            this.menuItem4 = new Gizmox.WebGUI.Forms.MenuItem();
             this.panelCommands.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAdd
             // 
+            this.btnAdd.ContextMenu = this.contextMenu;
             this.btnAdd.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnAdd_Click);
+            // 
+            // contextMenu
+            // 
+            this.contextMenu.MenuItems.AddRange(new Gizmox.WebGUI.Forms.MenuItem[] {
+            this.menuItem1,
+            this.menuItem2,
+            this.menuItem3,
+            this.menuItem4});
+            // 
+            // menuItem1
+            // 
+            this.menuItem1.Index = 0;
+            this.menuItem1.Text = "Situazione Fornitore";
+            // 
+            // menuItem2
+            // 
+            this.menuItem2.Index = 1;
+            this.menuItem2.Text = "Situazione Fornitori";
+            // 
+            // menuItem3
+            // 
+            this.menuItem3.Index = 2;
+            this.menuItem3.Text = "-";
+            // 
+            // menuItem4
+            // 
+            this.menuItem4.Index = 3;
+            this.menuItem4.Text = "Stato Commesse";
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.txtSearch, 0);
             this.Controls.SetChildIndex(this.btnOrderBy, 0);
@@ -46,5 +80,11 @@ namespace Web.GUI.ReportJob
 		}
 
 		#endregion
+
+        private Gizmox.WebGUI.Forms.ContextMenu contextMenu;
+        private Gizmox.WebGUI.Forms.MenuItem menuItem1;
+        private Gizmox.WebGUI.Forms.MenuItem menuItem2;
+        private Gizmox.WebGUI.Forms.MenuItem menuItem3;
+        private Gizmox.WebGUI.Forms.MenuItem menuItem4;
 	}
 }
