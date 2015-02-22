@@ -29,11 +29,12 @@ namespace Web.GUI.ReportJob
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)    //todo: parametrizzare per tipo report (pannello di selezione con descrizione)
         {
             try
             {
-                var space = new ReportJobFornitoreModel();
+                var tipoReport = BusinessLogic.Tipi.TipoReport.Fornitore;
+                var space = new ReportJobFornitoreModel(tipoReport);
                 space.Title = "NUOVO REPORT";
                 space.Model = new WcfService.Dto.ReportJobDto();
                 AddSpace(space);

@@ -127,6 +127,19 @@ namespace DataLayer
 			}
 		}
 		
+		private string _nomeFile;
+		public virtual string NomeFile
+		{
+			get
+			{
+				return this._nomeFile;
+			}
+			set
+			{
+				this._nomeFile = value;
+			}
+		}
+		
 	}
 }
 #pragma warning restore 1591

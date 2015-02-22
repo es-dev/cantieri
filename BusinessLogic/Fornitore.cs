@@ -133,5 +133,156 @@ namespace BusinessLogic
             }
             return Tipi.StatoFornitore.None; 
         }
+
+        public static decimal GetTotaleImponibile(IEnumerable<FornitoreDto> fornitori)
+        {
+            try
+            {
+                decimal totaleImponibile = 0;
+                var data = DateTime.Today;
+                foreach (var fornitore in fornitori)
+                {
+                    var _totaleImponibile = GetTotaleImponibile(fornitore, data);
+                    totaleImponibile += _totaleImponibile;
+                }
+                return totaleImponibile;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal GetTotaleImponibile(FornitoreDto fornitore, DateTime data)
+        {
+            try
+            {
+                decimal totale = 0;
+                if (fornitore != null)
+                {
+                    var fattureAcquisto = fornitore.FatturaAcquistos;
+                    if (fattureAcquisto != null)
+                    {
+                        var totaleImponibile = (from q in fattureAcquisto where q.Imponibile != null && q.Data <= data select q.Imponibile).Sum();
+                        totale = UtilityValidation.GetDecimal(totaleImponibile);
+                    }
+                    return totale;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+
+
+        public static decimal GetTotaleIVA(IEnumerable<FornitoreDto> fornitori)
+        {
+            try
+            {
+                decimal totaleIVA = 0;
+                var data = DateTime.Today;
+                foreach (var fornitore in fornitori)
+                {
+                    var _totaleIVA = GetTotaleIVA(fornitore, data);
+                    totaleIVA += _totaleIVA;
+                }
+                return totaleIVA;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        private static decimal GetTotaleIVA(FornitoreDto fornitore, DateTime data)
+        {
+            try
+            {
+                decimal totale = 0;
+                if (fornitore != null)
+                {
+                    var fattureAcquisto = fornitore.FatturaAcquistos;
+                    if (fattureAcquisto != null)
+                    {
+                        var totaleIVA= (from q in fattureAcquisto where q.IVA != null && q.Data <= data select q.IVA).Sum();
+                        totale = UtilityValidation.GetDecimal(totaleIVA);
+                    }
+                    return totale;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal GetTotaleFatture(IEnumerable<FornitoreDto> fornitori)
+        {
+            try
+            {
+                decimal totaleFatture = 0;
+                var data = DateTime.Today;
+                foreach (var fornitore in fornitori)
+                {
+                    var _totaleFatture = GetTotaleFatture(fornitore, data);
+                    totaleFatture += _totaleFatture;
+                }
+                return totaleFatture;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal GetTotalePagamentiDato(IEnumerable<FornitoreDto> fornitori)
+        {
+            try
+            {
+                decimal totalePagamentiDato = 0;
+                var data = DateTime.Today;
+                foreach (var fornitore in fornitori)
+                {
+                    var _totalePagamentiDato = GetTotalePagamenti(fornitore, data);
+                    totalePagamentiDato += _totalePagamentiDato;
+                }
+                return totalePagamentiDato;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal GetTotalePagamentiDare(IEnumerable<FornitoreDto> fornitori)
+        {
+            try
+            {
+                decimal totaleFatture = 0;
+                decimal totalePagamentiDato = 0;
+                decimal totalePagamentiDare = 0;
+                var data = DateTime.Today;
+                foreach (var fornitore in fornitori)
+                {
+                    totalePagamentiDato = GetTotalePagamenti(fornitore, data);
+                    totaleFatture = GetTotaleFatture(fornitore, data);
+                    totalePagamentiDare = totaleFatture - totalePagamentiDato;
+                }
+                return totalePagamentiDare;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
     }
 }

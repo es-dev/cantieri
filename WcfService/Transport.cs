@@ -1143,7 +1143,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public ReportJobDto(int _id, DateTime? _creazione, string _codice, string _denominazione, string _tipo, string _codiceFornitore, DateTime? _elaborazione, string _note)
+		public ReportJobDto(int _id, DateTime? _creazione, string _codice, string _denominazione, string _tipo, string _codiceFornitore, DateTime? _elaborazione, string _note, string _nomeFile)
 		{
 			this.Id = _id;
 			this.Creazione = _creazione;
@@ -1153,6 +1153,7 @@ namespace WcfService.Dto
 			this.CodiceFornitore = _codiceFornitore;
 			this.Elaborazione = _elaborazione;
 			this.Note = _note;
+			this.NomeFile = _nomeFile;
 		}
 		
 		[DataMember]
@@ -1181,6 +1182,9 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual string Note { get;set; }
+
+		[DataMember]
+		public virtual string NomeFile { get;set; }
 
 	}
 	

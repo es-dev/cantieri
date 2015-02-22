@@ -622,6 +622,23 @@ namespace WcfService
             return null;
         }
 
+        public IEnumerable<Dto.FornitoreDto> ReadFornitori(string codice)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var fornitori = (from q in ef.Fornitores where q.Codice == codice select q);
+                var fornitoriDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitori);
+                return fornitoriDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+
         #endregion
         #endregion
 
@@ -2004,6 +2021,23 @@ namespace WcfService
             return null;
         }
 
+        public Dto.AnagraficaFornitoreDto ReadAnagraficaFornitore(string codice)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var anagraficaFornitore = (from q in ef.AnagraficaFornitores where q.Codice == codice select q).FirstOrDefault();
+                var anagraficaFornitoreDto = UtilityPOCO.Assemble<Dto.AnagraficaFornitoreDto>(anagraficaFornitore);
+                return anagraficaFornitoreDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+
         private IQueryable<DataLayer.AnagraficaFornitore> QueryAnagraficheFornitori(string search)
         {
             try
@@ -2479,6 +2513,7 @@ namespace WcfService
 
         #endregion
         #endregion
+
 
     }
 }

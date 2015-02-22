@@ -128,6 +128,10 @@ namespace WcfService
 
         [OperationContract]
         Dto.FornitoreDto ReadFornitore(object id);
+
+        [OperationContract]
+        IEnumerable<Dto.FornitoreDto> ReadFornitori(string codice);
+
         #endregion
         #endregion
 
@@ -401,6 +405,10 @@ namespace WcfService
 
         [OperationContract]
         Dto.AnagraficaFornitoreDto ReadAnagraficaFornitore(object id);
+
+        [OperationContract]
+        Dto.AnagraficaFornitoreDto ReadAnagraficaFornitore(string codice);
+
         #endregion
         #endregion
 

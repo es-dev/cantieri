@@ -84,7 +84,7 @@ namespace BusinessLogic
             Operatore
         }
         
-        public enum TIpoReport
+        public enum TipoReport
         {
             None,
             [Description("Situazione fornitore")]

@@ -872,6 +872,9 @@
         <orm:field name="_note" property="Note" uniqueId="7a88c3ed-fc34-45cd-8f64-bf456fb8f122" type="System.String">
           <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
+        <orm:field name="_nomeFile" property="NomeFile" uniqueId="01691b9f-7127-4325-8474-1274b8ca4202" type="System.String">
+          <orm:column name="NomeFile" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
       </orm:class>
     </orm:namespace>
     <orm:schema schema="">
@@ -1150,6 +1153,7 @@
         <orm:column name="CodiceFornitore" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Elaborazione" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="NomeFile" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
       </orm:table>
     </orm:schema>
     <orm:relational-naming-settings>
@@ -1679,6 +1683,7 @@
       <Property Id="53040560-a928-470f-8f5b-f07de461f01c" name="CodiceFornitore" label="CodiceFornitore : String" fieldName="_codiceFornitore" />
       <Property Id="b64a0810-7e64-447b-adcd-573c49de2150" name="Elaborazione" type="DateTime" label="Elaborazione : DateTime" nullable="true" fieldName="_elaborazione" />
       <Property Id="7a88c3ed-fc34-45cd-8f64-bf456fb8f122" name="Note" label="Note : String" fieldName="_note" />
+      <Property Id="01691b9f-7127-4325-8474-1274b8ca4202" name="NomeFile" label="NomeFile : String" fieldName="_nomeFile" />
     </DomainClass>
   </Types>
   <domainContext>

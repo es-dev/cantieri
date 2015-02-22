@@ -48,7 +48,8 @@ namespace Web.GUI.ReportJob
             {
                 if (item != null)
                 {
-                    var space = new ReportJobFornitoreModel();
+                    var tipoReport = BusinessLogic.Tipi.TipoReport.Fornitore;
+                    var space = new ReportJobFornitoreModel(tipoReport);
                     space.Title = "DETTAGLI REPORT";
                     AddSpace(space);
                 }

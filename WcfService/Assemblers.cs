@@ -1460,6 +1460,7 @@ namespace WcfService.Assemblers
 			entity.CodiceFornitore = dto.CodiceFornitore;
 			entity.Elaborazione = dto.Elaborazione;
 			entity.Note = dto.Note;
+			entity.NomeFile = dto.NomeFile;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1478,6 +1479,7 @@ namespace WcfService.Assemblers
 			dto.CodiceFornitore = entity.CodiceFornitore;
 			dto.Elaborazione = entity.Elaborazione;
 			dto.Note = entity.Note;
+			dto.NomeFile = entity.NomeFile;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
