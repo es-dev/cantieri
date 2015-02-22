@@ -98,6 +98,10 @@ namespace WcfService
 
         [OperationContract]
         Dto.CommessaDto ReadCommessa(object id);
+
+        [OperationContract]
+        IEnumerable<Dto.CommessaDto> ReadCommesse(IEnumerable<Dto.FornitoreDto> fornitori);
+
         #endregion
         #endregion
 

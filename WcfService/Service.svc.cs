@@ -465,7 +465,23 @@ namespace WcfService
             return null;
         }
 
-       
+        public IEnumerable<Dto.CommessaDto> ReadCommesse(IEnumerable<Dto.FornitoreDto> fornitori) //dto parametrici, vanno solo in where etc... mai in dataset
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var fornitoriId = (from q in fornitori select q.Id);
+                var commesse =(from q in ef.Fornitores where fornitoriId.Contains(q.Id) select q.Commessa);
+                var commesseDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commesse);
+                return commesseDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         #endregion
         #endregion
 
@@ -637,6 +653,7 @@ namespace WcfService
             }
             return null;
         }
+
 
 
         #endregion
@@ -2513,6 +2530,7 @@ namespace WcfService
 
         #endregion
         #endregion
+
 
 
     }

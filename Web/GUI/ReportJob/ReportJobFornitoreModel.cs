@@ -10,6 +10,8 @@ using System.Drawing;
 using System.Text;
 using WcfService.Dto;
 using Web.Code;
+using System.Linq;
+using System.Collections;
 
 namespace Web.GUI.ReportJob
 {
@@ -165,6 +167,7 @@ namespace Web.GUI.ReportJob
                 {
                     var codiceFornitore = anagraficaFornitore.Codice;
                     var data = DateTime.Today.ToString("ddMMyyyy");
+                    var elaborazione = editElaborazione.Value;
                     string pathTemplateWord = UtilityWeb.GetRootPath(Context) + @"Resources\Templates\TemplateSituazioneFornitore.doc";
                     var fileNamePDF = "SituazioneFornitore_" + codiceFornitore + "_" + data + ".PDF";
                     var pathReportPDF = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileNamePDF;
@@ -188,25 +191,36 @@ namespace Web.GUI.ReportJob
                     report.AddData("Provincia", provincia);
                     
                     var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
-                    var fornitori = viewModelFornitore.ReadFornitori(codiceFornitore);
+                    var fornitori = viewModelFornitore.ReadFornitori(codiceFornitore).ToList();
 
-                    var totaleImponibile =UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleImponibile(fornitori));
-                    var totaleIVA = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleIVA(fornitori));
-                    var totaleFatture = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleFatture(fornitori));
-                    var totalePagamentiDato = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamentiDato(fornitori));
-                    var totalePagamentiDare = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamentiDare(fornitori));
+                    var totaleImponibileFornitore = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleImponibile(fornitori, elaborazione.Value));
+                    var totaleIVAFornitore = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleIVA(fornitori, elaborazione.Value));
+                    var totaleFattureFornitore = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleFatture(fornitori, elaborazione.Value));
+                    var totalePagamentiDatoFornitore = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamenti(fornitori, elaborazione.Value));
+                    var totalePagamentiDareFornitore = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamentiDare(fornitori, elaborazione.Value));
 
-                    report.AddData("TotaleImponibile", totaleImponibile);
-                    report.AddData("TotaleIVA", totaleIVA);
-                    report.AddData("TotaleFatture", totaleFatture);
-                    report.AddData("TotalePagamentiDato", totalePagamentiDato);
-                    report.AddData("TotalePagamentiDare", totalePagamentiDare);
+                    report.AddData("TotaleImponibileFornitore", totaleImponibileFornitore);
+                    report.AddData("TotaleIVAFornitore", totaleIVAFornitore);
+                    report.AddData("TotaleFattureFornitore", totaleFattureFornitore);
+                    report.AddData("TotalePagamentiDatoFornitore", totalePagamentiDatoFornitore);
+                    report.AddData("TotalePagamentiDareFornitore", totalePagamentiDareFornitore);
 
-                    //var tableCommessa = new UtilityReport.Table("Commessa", "TotaleImponibile", "TotaleIVA", "TotaleFatture", "TotalePagamentiDato", "TotalePagamentiDare");
-                    //foreach (var commessa in commesse)
-                    //{
+                    //var viewModelCommessa = new Commessa.CommessaViewModel(this);
+                    //var commesse = viewModelCommessa.ReadCommesse(fornitori);
 
-                    //    tableCommessa.AddRow(commessa, totaleImponibile, totaleIVA, totaleFatture, totalePagamentiDato, totalePagamentiDare);
+
+                    var tableCommessa = new UtilityReport.Table("Commessa", "TotaleImponibile", "TotaleIVA", "TotaleFatture", "TotalePagamentiDato", "TotalePagamentiDare");
+                    foreach (var fornitore in fornitori)
+                    {
+                        var commessa = fornitore.Commessa;
+                        var _commessa = commessa.Codice + " - " + commessa.Denominazione;
+                        var totaleImponibile = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleImponibile(fornitore, elaborazione.Value));
+                        var totaleIVA = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleIVA(fornitore, elaborazione.Value));
+                        var totaleFatture = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleFatture(fornitore, elaborazione.Value));
+                        var totalePagamentiDato = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamenti(fornitore, elaborazione.Value));
+                        var totalePagamentiDare = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamentiDare(fornitore, elaborazione.Value));
+
+                        tableCommessa.AddRow(_commessa, totaleImponibile, totaleIVA, totaleFatture, totalePagamentiDato, totalePagamentiDare);
 
                     //    var tableFornitore = new UtilityReport.Table("Numero", "Data", "Scadenza", "Descrizione", "Imponibile", "IVA", "Totale", "TotalePagamenti", "Dare");
                     //    foreach (var fornitore in fornitori)
@@ -214,8 +228,8 @@ namespace Web.GUI.ReportJob
                     //        tableFornitore.AddRow(numero, data, scadenza, descrizione, imponibile, iva, totale, totalePagamenti, dare);
                     //    }
                     //    report.Tables.Add(tableFornitore);
-                    //}
-                    //report.Tables.Add(tableCommessa);
+                    }
+                    report.Tables.Add(tableCommessa);
 
                     bool performed = report.Create(pathTemplateWord, pathReportPDF);
                     if (performed)

@@ -55,5 +55,100 @@ namespace BusinessLogic
             }
             return 0;
         }
+
+        public static decimal GetTotaleImponibile(WcfService.Dto.CommessaDto commessa, DateTime data)
+        {
+            try
+            {
+                decimal totaleImponibile = 0;
+                if (commessa != null)
+                {
+                    var fornitori = commessa.Fornitores;
+                    totaleImponibile = Fornitore.GetTotaleImponibile(fornitori, data);
+                }
+                return totaleImponibile;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal GetTotaleIVA(WcfService.Dto.CommessaDto commessa, DateTime data)
+        {
+            try
+            {
+                decimal totaleIVA = 0;
+                if (commessa != null)
+                {
+                    var fornitori = commessa.Fornitores;
+                    totaleIVA = Fornitore.GetTotaleIVA(fornitori, data);
+                }
+                return totaleIVA;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal GetTotaleFattureCommessa(WcfService.Dto.CommessaDto commessa, DateTime data)
+        {
+            try
+            {
+                decimal totaleFatture = 0;
+                if (commessa != null)
+                {
+                    var fornitori = commessa.Fornitores;
+                    totaleFatture = Fornitore.GetTotaleFatture(fornitori, data);
+                }
+                return totaleFatture;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal GetTotalePagamentiDatoCommessa(WcfService.Dto.CommessaDto commessa, DateTime data)
+        {
+            try
+            {
+                decimal totalePagamentiDato = 0;
+                if (commessa != null)
+                {
+                    var fornitori = commessa.Fornitores;
+                    totalePagamentiDato = Fornitore.GetTotalePagamenti(fornitori, data);
+                }
+                return totalePagamentiDato;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal? GetTotalePagamentiDareCommessa(WcfService.Dto.CommessaDto commessa, DateTime data)
+        {
+            try
+            {
+                decimal totalePagamentiDare = 0;
+                if (commessa != null)
+                {
+                    var fornitori = commessa.Fornitores;
+                    totalePagamentiDare = Fornitore.GetTotalePagamentiDare(fornitori, data);
+                }
+                return totalePagamentiDare;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
     }
 }

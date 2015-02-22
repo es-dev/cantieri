@@ -134,12 +134,11 @@ namespace BusinessLogic
             return Tipi.StatoFornitore.None; 
         }
 
-        public static decimal GetTotaleImponibile(IEnumerable<FornitoreDto> fornitori)
+        public static decimal GetTotaleImponibile(IList<FornitoreDto> fornitori, DateTime data)
         {
             try
             {
                 decimal totaleImponibile = 0;
-                var data = DateTime.Today;
                 foreach (var fornitore in fornitori)
                 {
                     var _totaleImponibile = GetTotaleImponibile(fornitore, data);
@@ -179,12 +178,11 @@ namespace BusinessLogic
 
 
 
-        public static decimal GetTotaleIVA(IEnumerable<FornitoreDto> fornitori)
+        public static decimal GetTotaleIVA(IList<FornitoreDto> fornitori, DateTime data)
         {
             try
             {
                 decimal totaleIVA = 0;
-                var data = DateTime.Today;
                 foreach (var fornitore in fornitori)
                 {
                     var _totaleIVA = GetTotaleIVA(fornitore, data);
@@ -199,7 +197,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        private static decimal GetTotaleIVA(FornitoreDto fornitore, DateTime data)
+        public static decimal GetTotaleIVA(FornitoreDto fornitore, DateTime data)
         {
             try
             {
@@ -222,12 +220,11 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleFatture(IEnumerable<FornitoreDto> fornitori)
+        public static decimal GetTotaleFatture(IList<FornitoreDto> fornitori, DateTime data)
         {
             try
             {
                 decimal totaleFatture = 0;
-                var data = DateTime.Today;
                 foreach (var fornitore in fornitori)
                 {
                     var _totaleFatture = GetTotaleFatture(fornitore, data);
@@ -242,12 +239,11 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotalePagamentiDato(IEnumerable<FornitoreDto> fornitori)
+        public static decimal GetTotalePagamenti(IList<FornitoreDto> fornitori, DateTime data)
         {
             try
             {
                 decimal totalePagamentiDato = 0;
-                var data = DateTime.Today;
                 foreach (var fornitore in fornitori)
                 {
                     var _totalePagamentiDato = GetTotalePagamenti(fornitore, data);
@@ -262,20 +258,30 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotalePagamentiDare(IEnumerable<FornitoreDto> fornitori)
+        public static decimal GetTotalePagamentiDare(FornitoreDto fornitore, DateTime data)
         {
             try
             {
-                decimal totaleFatture = 0;
-                decimal totalePagamentiDato = 0;
-                decimal totalePagamentiDare = 0;
-                var data = DateTime.Today;
-                foreach (var fornitore in fornitori)
-                {
-                    totalePagamentiDato = GetTotalePagamenti(fornitore, data);
-                    totaleFatture = GetTotaleFatture(fornitore, data);
-                    totalePagamentiDare = totaleFatture - totalePagamentiDato;
-                }
+                var totaleFatture = GetTotaleFatture(fornitore,data);
+                var totalePagamentiDato = GetTotalePagamenti(fornitore, data);
+                var totalePagamentiDare = totaleFatture - totalePagamentiDato;
+                return totalePagamentiDare;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+
+        public static decimal GetTotalePagamentiDare(IList<FornitoreDto> fornitori, DateTime data)
+        {
+            try
+            {
+                var totaleFatture = GetTotaleFatture(fornitori, data);
+                var totalePagamentiDato = GetTotalePagamenti(fornitori, data);
+                var totalePagamentiDare = totaleFatture - totalePagamentiDato;
                 return totalePagamentiDare;
             }
             catch (Exception ex)
