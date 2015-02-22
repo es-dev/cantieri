@@ -80,7 +80,7 @@ namespace Web.GUI.Pagamento
             this.editFatturaAcquisto.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editFatturaAcquisto.Changed = true;
             this.editFatturaAcquisto.Editing = false;
-            this.editFatturaAcquisto.Label = "Fattura acquisto";
+            this.editFatturaAcquisto.Label = "Fattura di acquisto";
             this.editFatturaAcquisto.LabelWidth = 175;
             this.editFatturaAcquisto.Location = new System.Drawing.Point(25, 75);
             this.editFatturaAcquisto.Model = null;

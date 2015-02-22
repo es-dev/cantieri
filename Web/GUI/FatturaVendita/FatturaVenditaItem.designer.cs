@@ -86,7 +86,7 @@ namespace Web.GUI.FatturaVendita
             this.infoCliente.Name = "infoCliente";
             this.infoCliente.Size = new System.Drawing.Size(305, 20);
             this.infoCliente.TabIndex = 1;
-            this.infoCliente.Text = "Cliente";
+            this.infoCliente.Text = "Committente";
             // 
             // infoNumeroData
             // 

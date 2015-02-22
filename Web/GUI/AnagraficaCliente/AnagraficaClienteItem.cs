@@ -52,7 +52,7 @@ namespace Web.GUI.AnagraficaCliente
                 if (item != null)
                 {
                     var space = new AnagraficaClienteModel();
-                    space.Title = "DETTAGLI ANAGRAFICA CLIENTE";
+                    space.Title = "DETTAGLI ANAGRAFICA COMMITTENTE";
                     AddSpace(space);
                 }
             }

@@ -29,7 +29,7 @@ namespace Web.GUI.ReportJob
                     var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
                     var tipo = UtilityValidation.GetStringND(obj.Tipo);
                     var fornitore = obj.CodiceFornitore;
-                    infoImage.Image = "Images.dashboard.articolo.png";
+                    infoImage.Image = "Images.dashboard.reportjob.png";
                     infoCodice.Text = "";
                     infoFornitore.Text = "Fornitore: " + fornitore;
                     infoTipo.Text = tipo;

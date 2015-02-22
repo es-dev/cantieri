@@ -220,7 +220,7 @@ namespace Web.GUI.Fornitore
             try
             {
                 var view = new AnagraficaFornitore.AnagraficaFornitoreView();
-                view.Title = "SELEZIONA UN FORNITORE DALL'ANAGRAFICA FORNITORI";
+                view.Title = "SELEZIONA UN FORNITORE";
                 editCodiceFornitore.Show(view);
             }
             catch (Exception ex)
