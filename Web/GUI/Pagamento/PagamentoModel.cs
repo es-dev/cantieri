@@ -129,9 +129,9 @@ namespace Web.GUI.Pagamento
                 var fatturaAcquisto = (FatturaAcquistoDto)model;
                 if (fatturaAcquisto != null)
                 {
-                    editFatturaAcquisto.Value = fatturaAcquisto.Numero +"/"+ fatturaAcquisto.Data.Value.Year.ToString();
+                    editFatturaAcquisto.Value = fatturaAcquisto.Numero + "/" + fatturaAcquisto.Data.Value.Year.ToString();
                     var obj = (PagamentoDto)Model;
-                    if (obj!=null && obj.Id==0)
+                    if (obj != null && obj.Id == 0)
                     {
                         var codice = BusinessLogic.Pagamento.GetCodice(fatturaAcquisto);
                         editCodice.Value = codice;

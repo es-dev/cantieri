@@ -18,26 +18,13 @@ namespace Web.GUI.ReportJob
 	public partial class ReportJobFornitoreModel : TemplateModel
 	{
         private BusinessLogic.Tipi.TipoReport tipoReport = Tipi.TipoReport.None;
-        public ReportJobFornitoreModel(BusinessLogic.Tipi.TipoReport tipoReport)
+        public ReportJobFornitoreModel(BusinessLogic.Tipi.TipoReport tipoReport = Tipi.TipoReport.None)
         {
             InitializeComponent();
             try
             {
-                this.tipoReport = tipoReport;
                 InitCombo();
-                SetTipoReport(tipoReport);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void SetTipoReport(Tipi.TipoReport tipoReport)
-        {
-            try
-            {
-                editTipoReport.Value = tipoReport.ToString();
+                this.tipoReport = tipoReport;
             }
             catch (Exception ex)
             {
@@ -82,12 +69,7 @@ namespace Web.GUI.ReportJob
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.ReportJobDto)model;
-                    editDenominazione.Value = obj.Denominazione;
-                    editCodice.Value = obj.Codice;
                     editNote.Value = obj.Note;
-                    editCreazione.Value = obj.Creazione;
-                    editElaborazione.Value = obj.Elaborazione;
-                    editTipoReport.Value = obj.Tipo;
                     var codiceFornitore = obj.CodiceFornitore;
                     var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
                     var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
@@ -96,12 +78,49 @@ namespace Web.GUI.ReportJob
                         editFornitore.Model = anagraficaFornitore;
                         editFornitore.Value = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
                     }
+                    editCodice.Value = obj.Codice;
+                    editDenominazione.Value = obj.Denominazione;
+                    editElaborazione.Value = obj.Elaborazione;
+                    editCreazione.Value =  obj.Creazione;
+                    editTipoReport.Value =  obj.Tipo;
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private string GetDenominazione(Tipi.TipoReport tipoReport)
+        {
+            try
+            {
+                var description = UtilityEnum.GetDescription<Tipi.TipoReport>(tipoReport.ToString());
+                var denominazione = "Report generato per l'analisi di: " + description;
+                return denominazione;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private string GetCodice()
+        {
+            try
+            {
+                var viewModel = (ReportJob.ReportJobViewModel)ViewModel;
+                var count = viewModel.GetCount();
+                count += 1;
+                var codice = "RPT" + count.ToString("000")+"/"+DateTime.Today.Year.ToString();
+                return codice;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
 
         public override void BindModel(object model)
@@ -239,6 +258,38 @@ namespace Web.GUI.ReportJob
                         editReport.Text = "Open Report.PDF";
 
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void ReportJobFornitoreModel_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                SetNewValue();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void SetNewValue()
+        {
+            try
+            {
+                var obj = (WcfService.Dto.ReportJobDto)Model;
+                if (obj != null && obj.Id == 0)
+                {
+                    editCodice.Value = GetCodice();
+                    editDenominazione.Value = GetDenominazione(tipoReport);
+                    editElaborazione.Value = DateTime.Today;
+                    editCreazione.Value = DateTime.Today;
+                    editTipoReport.Value = tipoReport.ToString();
                 }
             }
             catch (Exception ex)

@@ -272,6 +272,10 @@ namespace Web.GUI.ReportJob
             this.lblReport.Size = new System.Drawing.Size(38, 21);
             this.lblReport.TabIndex = 1007;
             this.lblReport.Text = "Report (PDF)";
+            // 
+            // ReportJobFornitoreModel
+            // 
+            this.Load += new System.EventHandler(this.ReportJobFornitoreModel_Load);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
