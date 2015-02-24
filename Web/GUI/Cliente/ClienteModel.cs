@@ -235,7 +235,7 @@ namespace Web.GUI.Cliente
                 {
                     editCodiceCliente.Value = anagraficaCliente.Codice;
                     editCAP.Value = anagraficaCliente.CAP;
-                    editComune.Value = new Library.Controls.Countries.City(anagraficaCliente.Comune, anagraficaCliente.Provincia);
+                    editComune.Value = new Library.Controls.Countries.City(anagraficaCliente.Comune, anagraficaCliente.CodiceCatastale, anagraficaCliente.Provincia);
                     editEmail.Value = anagraficaCliente.Email;
                     editFAX.Value = anagraficaCliente.Fax;
                     editIndirizzo.Value = anagraficaCliente.Indirizzo;

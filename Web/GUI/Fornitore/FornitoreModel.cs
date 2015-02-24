@@ -238,7 +238,7 @@ namespace Web.GUI.Fornitore
                 {
                     editCodiceFornitore.Value = anagraficaFornitore.Codice;
                     editCAP.Value = anagraficaFornitore.CAP;
-                    editComune.Value  = new Countries.City(anagraficaFornitore.Comune, anagraficaFornitore.Provincia);
+                    editComune.Value = new Countries.City(anagraficaFornitore.Comune, anagraficaFornitore.CodiceCatastale, anagraficaFornitore.Provincia);
                     editEmail.Value = anagraficaFornitore.Email;
                     editFAX.Value = anagraficaFornitore.Fax;
                     editIndirizzo.Value = anagraficaFornitore.Indirizzo;
