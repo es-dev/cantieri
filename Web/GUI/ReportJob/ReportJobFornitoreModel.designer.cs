@@ -38,8 +38,7 @@ namespace Web.GUI.ReportJob
             this.editElaborazione = new Library.Template.Controls.TemplateEditDate();
             this.editCodice = new Library.Template.Controls.TemplateEditText();
             this.btnStampaReport = new Library.Controls.ButtonSeparatorV();
-            this.editReport = new Gizmox.WebGUI.Forms.LinkLabel();
-            this.lblReport = new Gizmox.WebGUI.Forms.Label();
+            this.editNomeFile = new Library.Template.Controls.TemplateEditLink();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -47,8 +46,7 @@ namespace Web.GUI.ReportJob
             // 
             // container
             // 
-            this.container.Controls.Add(this.lblReport);
-            this.container.Controls.Add(this.editReport);
+            this.container.Controls.Add(this.editNomeFile);
             this.container.Controls.Add(this.editCodice);
             this.container.Controls.Add(this.editElaborazione);
             this.container.Controls.Add(this.editCreazione);
@@ -65,8 +63,7 @@ namespace Web.GUI.ReportJob
             this.container.Controls.SetChildIndex(this.editCreazione, 0);
             this.container.Controls.SetChildIndex(this.editElaborazione, 0);
             this.container.Controls.SetChildIndex(this.editCodice, 0);
-            this.container.Controls.SetChildIndex(this.editReport, 0);
-            this.container.Controls.SetChildIndex(this.lblReport, 0);
+            this.container.Controls.SetChildIndex(this.editNomeFile, 0);
             // 
             // infoSubtitle
             // 
@@ -126,7 +123,7 @@ namespace Web.GUI.ReportJob
             this.editFornitore.ReadOnly = false;
             this.editFornitore.Required = false;
             this.editFornitore.Size = new System.Drawing.Size(794, 30);
-            this.editFornitore.TabIndex = 1000;
+            this.editFornitore.TabIndex = 3;
             this.editFornitore.Value = null;
             this.editFornitore.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editFornitore_ComboConfirm);
             this.editFornitore.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editFornitore_ComboClick);
@@ -151,7 +148,7 @@ namespace Web.GUI.ReportJob
             this.editTipoReport.ReadOnly = false;
             this.editTipoReport.Required = false;
             this.editTipoReport.Size = new System.Drawing.Size(794, 30);
-            this.editTipoReport.TabIndex = 1001;
+            this.editTipoReport.TabIndex = 0;
             this.editTipoReport.Value = null;
             // 
             // editNote
@@ -172,7 +169,7 @@ namespace Web.GUI.ReportJob
             this.editNote.ReadOnly = false;
             this.editNote.Required = false;
             this.editNote.Size = new System.Drawing.Size(794, 30);
-            this.editNote.TabIndex = 1002;
+            this.editNote.TabIndex = 6;
             this.editNote.Value = null;
             // 
             // editCreazione
@@ -193,7 +190,7 @@ namespace Web.GUI.ReportJob
             this.editCreazione.ReadOnly = false;
             this.editCreazione.Required = false;
             this.editCreazione.Size = new System.Drawing.Size(794, 30);
-            this.editCreazione.TabIndex = 1003;
+            this.editCreazione.TabIndex = 4;
             this.editCreazione.Value = null;
             // 
             // editElaborazione
@@ -214,7 +211,7 @@ namespace Web.GUI.ReportJob
             this.editElaborazione.ReadOnly = false;
             this.editElaborazione.Required = false;
             this.editElaborazione.Size = new System.Drawing.Size(794, 30);
-            this.editElaborazione.TabIndex = 1004;
+            this.editElaborazione.TabIndex = 5;
             this.editElaborazione.Value = null;
             // 
             // editCodice
@@ -235,7 +232,7 @@ namespace Web.GUI.ReportJob
             this.editCodice.ReadOnly = false;
             this.editCodice.Required = false;
             this.editCodice.Size = new System.Drawing.Size(794, 30);
-            this.editCodice.TabIndex = 1005;
+            this.editCodice.TabIndex = 1;
             this.editCodice.Value = null;
             // 
             // btnStampaReport
@@ -252,26 +249,27 @@ namespace Web.GUI.ReportJob
             this.btnStampaReport.TextButton = "Stampa report";
             this.btnStampaReport.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnStampaReport_Click);
             // 
-            // editReport
+            // editNomeFile
             // 
-            this.editReport.AutoSize = true;
-            this.editReport.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.editReport.LinkColor = System.Drawing.Color.Blue;
-            this.editReport.Location = new System.Drawing.Point(156, 413);
-            this.editReport.Name = "editReport";
-            this.editReport.Size = new System.Drawing.Size(53, 13);
-            this.editReport.TabIndex = 1006;
-            this.editReport.TabStop = true;
-            this.editReport.Text = "linkLabel1";
-            // 
-            // lblReport
-            // 
-            this.lblReport.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblReport.Location = new System.Drawing.Point(21, 413);
-            this.lblReport.Name = "lblReport";
-            this.lblReport.Size = new System.Drawing.Size(38, 21);
-            this.lblReport.TabIndex = 1007;
-            this.lblReport.Text = "Report (PDF)";
+            this.editNomeFile.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editNomeFile.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editNomeFile.BackColor = System.Drawing.Color.Transparent;
+            this.editNomeFile.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editNomeFile.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editNomeFile.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editNomeFile.Changed = true;
+            this.editNomeFile.Editing = false;
+            this.editNomeFile.Label = "NomeFile";
+            this.editNomeFile.LabelWidth = 175;
+            this.editNomeFile.Location = new System.Drawing.Point(25, 389);
+            this.editNomeFile.Name = "templateEditLink1";
+            this.editNomeFile.ReadOnly = false;
+            this.editNomeFile.Required = false;
+            this.editNomeFile.Size = new System.Drawing.Size(792, 30);
+            this.editNomeFile.TabIndex = 7;
+            this.editNomeFile.Url = null;
+            this.editNomeFile.Value = null;
             // 
             // ReportJobFornitoreModel
             // 
@@ -294,9 +292,8 @@ namespace Web.GUI.ReportJob
         private Library.Template.Controls.TemplateEditDate editCreazione;
         private Library.Template.Controls.TemplateEditText editNote;
         private Library.Template.Controls.TemplateEditText editCodice;
-        private Gizmox.WebGUI.Forms.Label lblReport;
-        private Gizmox.WebGUI.Forms.LinkLabel editReport;
         private Library.Controls.ButtonSeparatorV btnStampaReport;
+        private Library.Template.Controls.TemplateEditLink editNomeFile;
 
 
     }

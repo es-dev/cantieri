@@ -81,8 +81,16 @@ namespace Web.GUI.ReportJob
                     editCodice.Value = obj.Codice;
                     editDenominazione.Value = obj.Denominazione;
                     editElaborazione.Value = obj.Elaborazione;
-                    editCreazione.Value =  obj.Creazione;
-                    editTipoReport.Value =  obj.Tipo;
+                    editCreazione.Value = obj.Creazione;
+                    editTipoReport.Value = obj.Tipo;
+
+                    var fileName = obj.NomeFile;
+                    editNomeFile.Value = fileName;
+                    if (fileName != null && fileName.Length > 0)
+                    {
+                        var url = UtilityWeb.GetRootUrl(Context) + "/Resources/Reports/" + fileName;
+                        editNomeFile.Url = url;
+                    }
                 }
             }
             catch (Exception ex)
@@ -136,9 +144,11 @@ namespace Web.GUI.ReportJob
                     obj.Creazione = editCreazione.Value;
                     obj.Elaborazione = editElaborazione.Value;
                     obj.Tipo = editTipoReport.Value;
+                    obj.NomeFile = editNomeFile.Value;
                     var anagraficaFornitore = (AnagraficaFornitoreDto)editFornitore.Model;
                     if (anagraficaFornitore != null)
                         obj.CodiceFornitore = anagraficaFornitore.Codice;
+
                 }
             }
             catch (Exception ex)
@@ -254,8 +264,8 @@ namespace Web.GUI.ReportJob
                     if (performed)
                     {
                         string url = UtilityWeb.GetRootUrl(Context) + @"/Resources/Reports/"+fileNamePDF;
-                        editReport.RegisterClientAction("open", url);
-                        editReport.Text = "Open Report.PDF";
+                        editNomeFile.Url = url;
+                        editNomeFile.Value = fileNamePDF;
 
                     }
                 }
