@@ -108,12 +108,15 @@ namespace Web.GUI.Commessa
             try
             {
                 decimal importoAvanzamentoLavori = 0;
-                var statoCommessa = commessa.Stato;
-                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                    importoAvanzamentoLavori = UtilityValidation.GetDecimal(commessa.ImportoAvanzamento);
-                else
+                if (commessa != null)
                 {
-                    importoAvanzamentoLavori = BusinessLogic.Commessa.GetImportoAvanzamentoLavori(commessa);
+                    var statoCommessa = commessa.Stato;
+                    if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                        importoAvanzamentoLavori = UtilityValidation.GetDecimal(commessa.ImportoAvanzamento);
+                    else
+                    {
+                        importoAvanzamentoLavori = BusinessLogic.Commessa.GetImportoAvanzamentoLavori(commessa);
+                    }
                 }
             }
             catch (Exception ex)
@@ -128,12 +131,15 @@ namespace Web.GUI.Commessa
             try
             {
                 decimal percentualeAvanzamento = 0;
-                var statoCommessa = commessa.Stato;
-                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                    percentualeAvanzamento = UtilityValidation.GetDecimal(commessa.Percentuale);
-                else
+                if (commessa != null)
                 {
-                    percentualeAvanzamento = BusinessLogic.Commessa.GetPercentualeAvanzamento(commessa);
+                    var statoCommessa = commessa.Stato;
+                    if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                        percentualeAvanzamento = UtilityValidation.GetDecimal(commessa.Percentuale);
+                    else
+                    {
+                        percentualeAvanzamento = BusinessLogic.Commessa.GetPercentualeAvanzamento(commessa);
+                    }
                 }
                 return  percentualeAvanzamento;
             }

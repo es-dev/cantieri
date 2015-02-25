@@ -96,24 +96,30 @@ namespace Web.GUI.FatturaVendita
             try
             {
                 var stato = "N/D";
-                var clienteId = fatturaVendita.ClienteId;
-                var viewModelCliente = new Cliente.ClienteViewModel(this);
-                var cliente = viewModelCliente.Read(clienteId);
-                var commessa = cliente.Commessa;
-                var statoCommessa = commessa.Stato;
-                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                    stato = fatturaVendita.Stato;
-                else
+                if (fatturaVendita != null)
                 {
-                    var imponibile = UtilityValidation.GetDecimal(editImponibile.Value);
-                    var iva = UtilityValidation.GetDecimal(editIVA.Value);
-                    var today = DateTime.Today;
-                    var scadenza = BusinessLogic.Fattura.GetScadenza(fatturaVendita);
-                    var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
-                    var totaleLiquidazioni = BusinessLogic.Fattura.GetTotaleLiquidazioni(fatturaVendita, today);
-                    var statoFattura = BusinessLogic.Fattura.GetStato(fatturaVendita);
-                    var _stato = GetStato(today, scadenza, totaleFattura, totaleLiquidazioni, statoFattura);
-                    stato = _stato.ToString();
+                    var clienteId = fatturaVendita.ClienteId;
+                    var viewModelCliente = new Cliente.ClienteViewModel(this);
+                    var cliente = viewModelCliente.Read(clienteId);
+                    if (cliente != null)
+                    {
+                        var commessa = cliente.Commessa;
+                        var statoCommessa = commessa.Stato;
+                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                            stato = fatturaVendita.Stato;
+                        else
+                        {
+                            var imponibile = UtilityValidation.GetDecimal(editImponibile.Value);
+                            var iva = UtilityValidation.GetDecimal(editIVA.Value);
+                            var today = DateTime.Today;
+                            var scadenza = BusinessLogic.Fattura.GetScadenza(fatturaVendita);
+                            var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
+                            var totaleLiquidazioni = BusinessLogic.Fattura.GetTotaleLiquidazioni(fatturaVendita, today);
+                            var statoFattura = BusinessLogic.Fattura.GetStato(fatturaVendita);
+                            var _stato = GetStato(today, scadenza, totaleFattura, totaleLiquidazioni, statoFattura);
+                            stato = _stato.ToString();
+                        }
+                    }
                 }
                 return stato;
             }
@@ -129,17 +135,23 @@ namespace Web.GUI.FatturaVendita
             try
             {
                 decimal totaleLiquidazioni = 0;
-                var clienteId = fatturaVendita.ClienteId;
-                var viewModelCliente = new Cliente.ClienteViewModel(this);
-                var cliente = viewModelCliente.Read(clienteId);
-                var commessa = cliente.Commessa;
-                var statoCommessa = commessa.Stato;
-                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                    totaleLiquidazioni = UtilityValidation.GetDecimal(fatturaVendita.TotaleLiquidazioni);
-                else
+                if (fatturaVendita != null)
                 {
-                    var today = DateTime.Today;
-                    totaleLiquidazioni = BusinessLogic.Fattura.GetTotaleLiquidazioni(fatturaVendita, today);
+                    var clienteId = fatturaVendita.ClienteId;
+                    var viewModelCliente = new Cliente.ClienteViewModel(this);
+                    var cliente = viewModelCliente.Read(clienteId);
+                    if (cliente != null)
+                    {
+                        var commessa = cliente.Commessa;
+                        var statoCommessa = commessa.Stato;
+                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                            totaleLiquidazioni = UtilityValidation.GetDecimal(fatturaVendita.TotaleLiquidazioni);
+                        else
+                        {
+                            var today = DateTime.Today;
+                            totaleLiquidazioni = BusinessLogic.Fattura.GetTotaleLiquidazioni(fatturaVendita, today);
+                        }
+                    }
                 }
                 return totaleLiquidazioni;
             }

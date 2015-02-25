@@ -80,14 +80,18 @@ namespace Web.GUI.Fornitore
             try
             {
                 decimal totalePagamenti = 0;
-                var today = DateTime.Today;
-                var commessa=fornitore.Commessa;
-                var statoCommessa = commessa.Stato;
-                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                    totalePagamenti = UtilityValidation.GetDecimal(fornitore.TotalePagamenti);
-                else
+                if (fornitore != null)
                 {
-                    totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamenti(fornitore, today);
+                    var today = DateTime.Today;
+                    var commessa = fornitore.Commessa;
+                    if (commessa != null)
+                    {
+                        var statoCommessa = commessa.Stato;
+                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                            totalePagamenti = UtilityValidation.GetDecimal(fornitore.TotalePagamenti);
+                        else
+                            totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamenti(fornitore, today);
+                    }
                 }
                 return totalePagamenti;
             }
@@ -103,24 +107,29 @@ namespace Web.GUI.Fornitore
             try
             {
                 var stato = "N/D";
-                var commessa = fornitore.Commessa;
-                var statoCommessa = commessa.Stato;
-                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                    stato = fornitore.Stato;
-                else
+                if (fornitore != null)
                 {
-                    var today = DateTime.Today;
-                    var fatture = fornitore.FatturaAcquistos;
-                    var totaleFatture = BusinessLogic.Fornitore.GetTotaleFatture(fornitore, today);
-                    var totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamenti(fornitore, today);
-                    var fattureInsolute = BusinessLogic.Fornitore.GetFattureInsolute(fatture);
-                    var fattureNonPagate = BusinessLogic.Fornitore.GetFattureNonPagate(fatture);
-                    var statoFornitore = BusinessLogic.Fornitore.GetStato(fornitore);
-                    var _stato = GetStato(totaleFatture, totalePagamenti, fattureInsolute, fattureNonPagate, statoFornitore);
-                    stato = _stato.ToString();
+                    var commessa = fornitore.Commessa;
+                    if (commessa != null)
+                    {
+                        var statoCommessa = commessa.Stato;
+                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                            stato = fornitore.Stato;
+                        else
+                        {
+                            var today = DateTime.Today;
+                            var fatture = fornitore.FatturaAcquistos;
+                            var totaleFatture = BusinessLogic.Fornitore.GetTotaleFatture(fornitore, today);
+                            var totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamenti(fornitore, today);
+                            var fattureInsolute = BusinessLogic.Fornitore.GetFattureInsolute(fatture);
+                            var fattureNonPagate = BusinessLogic.Fornitore.GetFattureNonPagate(fatture);
+                            var statoFornitore = BusinessLogic.Fornitore.GetStato(fornitore);
+                            var _stato = GetStato(totaleFatture, totalePagamenti, fattureInsolute, fattureNonPagate, statoFornitore);
+                            stato = _stato.ToString();
+                        }
+                    }
                 }
                 return stato;
-
             }
             catch (Exception ex)
             {
@@ -135,12 +144,18 @@ namespace Web.GUI.Fornitore
             {
                 decimal totaleFatturaAcquisto = 0;
                 var today = DateTime.Today;
-                var commessa=fornitore.Commessa;
-                var statoCommessa = commessa.Stato;
-                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                    totaleFatturaAcquisto = UtilityValidation.GetDecimal(fornitore.TotaleFattureAcquisto);
-                else
-                    totaleFatturaAcquisto = BusinessLogic.Fornitore.GetTotaleFatture(fornitore, today);
+                if (fornitore != null)
+                {
+                    var commessa = fornitore.Commessa;
+                    if (commessa != null)
+                    {
+                        var statoCommessa = commessa.Stato;
+                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                            totaleFatturaAcquisto = UtilityValidation.GetDecimal(fornitore.TotaleFattureAcquisto);
+                        else
+                            totaleFatturaAcquisto = BusinessLogic.Fornitore.GetTotaleFatture(fornitore, today);
+                    }
+                }
                 return totaleFatturaAcquisto;
             }
             catch (Exception ex)

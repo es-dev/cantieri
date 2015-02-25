@@ -104,24 +104,27 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 var stato = "N/D";
-                var fornitoreId = fatturaAcquisto.FornitoreId;
-                var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
-                var fornitore = viewModelFornitore.Read(fornitoreId);
-                var commessa = fornitore.Commessa;
-                var statoCommessa = commessa.Stato;
-                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                    stato =fatturaAcquisto.Stato;
-                else
+                if (fatturaAcquisto != null)
                 {
-                    var today = DateTime.Today;
-                    var imponibile = UtilityValidation.GetDecimal(fatturaAcquisto.Imponibile);
-                    var iva = UtilityValidation.GetDecimal(fatturaAcquisto.IVA);
-                    var scadenza = BusinessLogic.Fattura.GetScadenza(fatturaAcquisto);
-                    var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
-                    var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(fatturaAcquisto, today);
-                    var statoFattura = BusinessLogic.Fattura.GetStato(fatturaAcquisto);
-                    var _stato = GetStato(today, scadenza, totaleFattura, totalePagamenti, statoFattura);
-                    stato = _stato.ToString();
+                    var fornitoreId = fatturaAcquisto.FornitoreId;
+                    var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
+                    var fornitore = viewModelFornitore.Read(fornitoreId);
+                    var commessa = fornitore.Commessa;
+                    var statoCommessa = commessa.Stato;
+                    if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                        stato = fatturaAcquisto.Stato;
+                    else
+                    {
+                        var today = DateTime.Today;
+                        var imponibile = UtilityValidation.GetDecimal(fatturaAcquisto.Imponibile);
+                        var iva = UtilityValidation.GetDecimal(fatturaAcquisto.IVA);
+                        var scadenza = BusinessLogic.Fattura.GetScadenza(fatturaAcquisto);
+                        var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
+                        var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(fatturaAcquisto, today);
+                        var statoFattura = BusinessLogic.Fattura.GetStato(fatturaAcquisto);
+                        var _stato = GetStato(today, scadenza, totaleFattura, totalePagamenti, statoFattura);
+                        stato = _stato.ToString();
+                    }
                 }
                 return stato;
             }
@@ -137,17 +140,23 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 decimal totalePagamenti= 0;
-                var fornitoreId = fatturaAcquisto.FornitoreId;
-                var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
-                var fornitore = viewModelFornitore.Read(fornitoreId);
-                var commessa = fornitore.Commessa;
-                var statoCommessa = commessa.Stato;
-                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                    totalePagamenti = UtilityValidation.GetDecimal(fatturaAcquisto.TotalePagamenti);
-                else
+                if (fatturaAcquisto != null)
                 {
-                    var today = DateTime.Today;
-                    totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(fatturaAcquisto, today);
+                    var fornitoreId = fatturaAcquisto.FornitoreId;
+                    var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
+                    var fornitore = viewModelFornitore.Read(fornitoreId);
+                    if (fornitore != null)
+                    {
+                        var commessa = fornitore.Commessa;
+                        var statoCommessa = commessa.Stato;
+                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                            totalePagamenti = UtilityValidation.GetDecimal(fatturaAcquisto.TotalePagamenti);
+                        else
+                        {
+                            var today = DateTime.Today;
+                            totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(fatturaAcquisto, today);
+                        }
+                    }
                 }
                 return totalePagamenti;
             }

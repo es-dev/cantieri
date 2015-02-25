@@ -1326,7 +1326,7 @@
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
-    <DomainClass Id="2fb30af5-7285-4d31-98ce-5913cc73edde" name="Cliente" namespace="DataLayer" showPropertiesCompartment="true" showNavigationCompartment="true" showImplementationCompartment="true">
+    <DomainClass Id="2fb30af5-7285-4d31-98ce-5913cc73edde" name="Cliente" namespace="DataLayer" showPropertiesCompartment="true" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
       <Property Id="1aab52e3-a2ba-49fc-8918-91d3958e8c24" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
       <Property Id="f03db241-281c-41d5-acad-10061f811f7c" name="RagioneSociale" label="RagioneSociale : String" fieldName="_ragioneSociale" />
       <Property Id="2017cb68-eea4-44c9-8e48-0e3c6944900b" name="Indirizzo" label="Indirizzo : String" fieldName="_indirizzo" />
