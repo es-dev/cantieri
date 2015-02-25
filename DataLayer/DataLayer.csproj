@@ -149,38 +149,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ESCantieriConnection%282015-02-04 14-04-56%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-04 14-07-45%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-04 21-19-56%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-07 16-32-30%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-07 16-45-18%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-08 19-10-48%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-08 20-30-27%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-08 20-30-38%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-08 20-37-12%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-08 21-48-40%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-09 21-09-30%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-09 21-59-42%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-10 22-50-53%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-10 23-35-10%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-13 01-16-24%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-14 11-45-01%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-14 13-54-34%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-14 22-20-50%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-14 23-08-43%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-15 15-57-22%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-15 16-19-12%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-15 16-31-04%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-15 18-08-37%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-21 21-58-48%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-21 22-28-51%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-22 10-22-21%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-22 10-25-01%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-22 16-26-23%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-22 16-40-53%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-02-23 19-06-48%29.rlinq.sql" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\ES.Library\ES.Library.csproj">
       <Project>{67131adf-23de-46cf-888b-9afd6f648405}</Project>
       <Name>ES.Library</Name>
