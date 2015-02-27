@@ -37,6 +37,7 @@ namespace Web.GUI.AnagraficaArticolo
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
+            this.jqContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // infoDescrizione
@@ -101,13 +102,14 @@ namespace Web.GUI.AnagraficaArticolo
             // AnagraficaArticoloItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.JQContainer.Controls.Add(this.panelLeft);
-            this.JQContainer.Controls.Add(this.infoCodiceArticolo);
-            this.JQContainer.Controls.Add(this.infoDescrizione);
+            this.jqContainer.Controls.Add(this.panelLeft);
+            this.jqContainer.Controls.Add(this.infoCodiceArticolo);
+            this.jqContainer.Controls.Add(this.infoDescrizione);
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.AnagraficaArticoloItem_ItemClick);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
+            this.jqContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}

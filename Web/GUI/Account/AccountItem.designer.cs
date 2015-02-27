@@ -36,17 +36,10 @@ namespace Web.GUI.Account
             this.infoNickname = new Gizmox.WebGUI.Forms.Label();
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
             this.infoCreazione = new Gizmox.WebGUI.Forms.Label();
-            this.JQContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
+            this.jqContainer.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // container
-            // 
-            this.JQContainer.Controls.Add(this.panelLeft);
-            this.JQContainer.Controls.Add(this.infoNickname);
-            this.JQContainer.Controls.Add(this.infoRuolo);
-            this.JQContainer.Controls.Add(this.infoCreazione);
             // 
             // infoRuolo
             // 
@@ -66,7 +59,7 @@ namespace Web.GUI.Account
             this.infoCodice.BackColor = System.Drawing.Color.Silver;
             this.infoCodice.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoCodice.ForeColor = System.Drawing.Color.DimGray;
-            this.infoCodice.Location = new System.Drawing.Point(-1, 59);
+            this.infoCodice.Location = new System.Drawing.Point(0, 62);
             this.infoCodice.Name = "infoCodice";
             this.infoCodice.Size = new System.Drawing.Size(83, 33);
             this.infoCodice.TabIndex = 2;
@@ -122,12 +115,16 @@ namespace Web.GUI.Account
             // 
             // AccountItem
             // 
+            this.jqContainer.Controls.Add(this.infoCreazione);
+            this.jqContainer.Controls.Add(this.infoRuolo);
+            this.jqContainer.Controls.Add(this.infoNickname);
+            this.jqContainer.Controls.Add(this.panelLeft);
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.AccountItem_ItemClick);
-            this.JQContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
+            this.jqContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}

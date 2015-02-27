@@ -37,6 +37,7 @@ namespace Web.GUI.Dashboard
             this.infoTitle = new Gizmox.WebGUI.Forms.Label();
             this.infoDescription = new Gizmox.WebGUI.Forms.Label();
             this.panelLeft.SuspendLayout();
+            this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,13 +103,14 @@ namespace Web.GUI.Dashboard
             // 
             // DashboardItem
             // 
+            this.jqContainer.Controls.Add(this.infoDescription);
+            this.jqContainer.Controls.Add(this.infoTitle);
+            this.jqContainer.Controls.Add(this.panelLeft);
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.JQContainer.Controls.Add(this.infoDescription);
-            this.JQContainer.Controls.Add(this.infoTitle);
-            this.JQContainer.Controls.Add(this.panelLeft);
             this.Size = new System.Drawing.Size(407, 105);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.DashboardItem_ItemClick);
             this.panelLeft.ResumeLayout(false);
+            this.jqContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.ResumeLayout(false);
 

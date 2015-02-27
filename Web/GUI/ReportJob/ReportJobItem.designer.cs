@@ -38,6 +38,7 @@ namespace Web.GUI.ReportJob
             this.infoFornitore = new Gizmox.WebGUI.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
+            this.jqContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // infoCodice
@@ -45,7 +46,7 @@ namespace Web.GUI.ReportJob
             this.infoCodice.BackColor = System.Drawing.Color.Silver;
             this.infoCodice.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoCodice.ForeColor = System.Drawing.Color.DimGray;
-            this.infoCodice.Location = new System.Drawing.Point(0, 60);
+            this.infoCodice.Location = new System.Drawing.Point(0, 62);
             this.infoCodice.Name = "infoCodice";
             this.infoCodice.Size = new System.Drawing.Size(83, 33);
             this.infoCodice.TabIndex = 2;
@@ -116,15 +117,16 @@ namespace Web.GUI.ReportJob
             // 
             // ReportJobItem
             // 
+            this.jqContainer.Controls.Add(this.panelLeft);
+            this.jqContainer.Controls.Add(this.infoTipo);
+            this.jqContainer.Controls.Add(this.infoFornitore);
+            this.jqContainer.Controls.Add(this.infoCodiceReport);
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.JQContainer.Controls.Add(this.panelLeft);
-            this.JQContainer.Controls.Add(this.infoTipo);
-            this.JQContainer.Controls.Add(this.infoFornitore);
-            this.JQContainer.Controls.Add(this.infoCodiceReport);
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.ReportJobItem_ItemClick);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
+            this.jqContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}

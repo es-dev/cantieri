@@ -28,8 +28,8 @@ namespace Web.GUI.AnagraficaCliente
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
-		private void InitializeComponent()
-		{
+        private void InitializeComponent()
+        {
             this.infoCodice = new Gizmox.WebGUI.Forms.Label();
             this.infoImage = new Gizmox.WebGUI.Forms.PictureBox();
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
@@ -38,6 +38,7 @@ namespace Web.GUI.AnagraficaCliente
             this.infoIndirizzo = new Gizmox.WebGUI.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
+            this.jqContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // infoCodice
@@ -45,7 +46,7 @@ namespace Web.GUI.AnagraficaCliente
             this.infoCodice.BackColor = System.Drawing.Color.Silver;
             this.infoCodice.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoCodice.ForeColor = System.Drawing.Color.DimGray;
-            this.infoCodice.Location = new System.Drawing.Point(0, 60);
+            this.infoCodice.Location = new System.Drawing.Point(0, 62);
             this.infoCodice.Name = "infoCodice";
             this.infoCodice.Size = new System.Drawing.Size(83, 33);
             this.infoCodice.TabIndex = 2;
@@ -64,7 +65,7 @@ namespace Web.GUI.AnagraficaCliente
             // 
             // panelLeft
             // 
-            this.panelLeft.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
+            this.panelLeft.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom)
             | Gizmox.WebGUI.Forms.AnchorStyles.Left)));
             this.panelLeft.BackColor = System.Drawing.Color.Gainsboro;
             this.panelLeft.Controls.Add(this.infoCodice);
@@ -76,7 +77,7 @@ namespace Web.GUI.AnagraficaCliente
             // 
             // infoRagioneSociale
             // 
-            this.infoRagioneSociale.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.infoRagioneSociale.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left)
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoRagioneSociale.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoRagioneSociale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
@@ -100,7 +101,7 @@ namespace Web.GUI.AnagraficaCliente
             // 
             // infoIndirizzo
             // 
-            this.infoIndirizzo.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.infoIndirizzo.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left)
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoIndirizzo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoIndirizzo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -112,18 +113,19 @@ namespace Web.GUI.AnagraficaCliente
             // 
             // AnagraficaClienteItem
             // 
+            this.jqContainer.Controls.Add(this.infoRagioneSociale);
+            this.jqContainer.Controls.Add(this.panelLeft);
+            this.jqContainer.Controls.Add(this.infoPartitaIVA);
+            this.jqContainer.Controls.Add(this.infoIndirizzo); 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.JQContainer.Controls.Add(this.infoRagioneSociale);
-            this.JQContainer.Controls.Add(this.panelLeft);
-            this.JQContainer.Controls.Add(this.infoPartitaIVA);
-            this.JQContainer.Controls.Add(this.infoIndirizzo);
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.AnagraficaClienteItem_ItemClick);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
+            this.jqContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
-		}
+        }
 
 		#endregion
 

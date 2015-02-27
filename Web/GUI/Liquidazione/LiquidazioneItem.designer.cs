@@ -39,6 +39,7 @@ namespace Web.GUI.Liquidazione
             this.infoImporto = new Gizmox.WebGUI.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
+            this.jqContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // infoCodice
@@ -46,7 +47,7 @@ namespace Web.GUI.Liquidazione
             this.infoCodice.BackColor = System.Drawing.Color.Silver;
             this.infoCodice.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoCodice.ForeColor = System.Drawing.Color.DimGray;
-            this.infoCodice.Location = new System.Drawing.Point(0, 60);
+            this.infoCodice.Location = new System.Drawing.Point(0, 62);
             this.infoCodice.Name = "infoCodice";
             this.infoCodice.Size = new System.Drawing.Size(83, 33);
             this.infoCodice.TabIndex = 2;
@@ -125,16 +126,17 @@ namespace Web.GUI.Liquidazione
             // 
             // LiquidazioneItem
             // 
+            this.jqContainer.Controls.Add(this.panelLeft);
+            this.jqContainer.Controls.Add(this.infoImporto);
+            this.jqContainer.Controls.Add(this.infoData);
+            this.jqContainer.Controls.Add(this.infoNote);
+            this.jqContainer.Controls.Add(this.infoLiquidazione);
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.JQContainer.Controls.Add(this.panelLeft);
-            this.JQContainer.Controls.Add(this.infoImporto);
-            this.JQContainer.Controls.Add(this.infoData);
-            this.JQContainer.Controls.Add(this.infoNote);
-            this.JQContainer.Controls.Add(this.infoLiquidazione);
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.LiquidazioneItem_ItemClick);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
+            this.jqContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
