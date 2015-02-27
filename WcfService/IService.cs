@@ -89,9 +89,15 @@ namespace WcfService
         int CountCommesse();
         #endregion
 
+        [OperationContract]
+        int CountCommesseNonAssegnate(string search = null);
+
         #region Custom
         [OperationContract]
         IEnumerable<Dto.CommessaDto> LoadCommesse(int skip, int take, string search = null);
+
+        [OperationContract]
+        IEnumerable<Dto.CommessaDto> LoadCommesseNonAssegnate(int skip, int take, string search = null);
 
         [OperationContract]
         int CountCommesse(string search = null);

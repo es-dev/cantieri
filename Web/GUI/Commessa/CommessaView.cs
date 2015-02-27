@@ -1,3 +1,4 @@
+using BusinessLogic;
 using Library.Code;
 using Library.Template.MVVM;
 using System;
@@ -11,10 +12,25 @@ namespace Web.GUI.Commessa
 {
 	public partial class CommessaView : TemplateView
 	{
-        public CommessaView()
+        public CommessaView(Tipi.FiltroCommessa filtroCommessa = Tipi.FiltroCommessa.None)
 		{ 
 			InitializeComponent();
+            try
+            {
+                var viewModel = (Commessa.CommessaViewModel)ViewModel;
+                if(viewModel!=null)
+                    viewModel.FiltroCommessa = filtroCommessa;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
 		}
+
+        public CommessaView()
+        {
+            InitializeComponent();
+        }
 
         public override void Init()
         {

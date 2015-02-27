@@ -1,4 +1,5 @@
-﻿using Library.Code;
+﻿using BusinessLogic;
+using Library.Code;
 using Library.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,18 +11,23 @@ namespace Web.GUI.Commessa
 {
     public class CommessaViewModel : Library.Template.MVVM.TemplateViewModel<CommessaDto, CommessaItem>
     {
+        private Tipi.FiltroCommessa filtroCommessa = Tipi.FiltroCommessa.None;
+        public Tipi.FiltroCommessa FiltroCommessa
+        {
+            get 
+            {
+                return filtroCommessa;
+            }
+            set
+            {
+                filtroCommessa = value;
+            }
+        }
 
         public CommessaViewModel(ISpace space)
             : base(space) 
         {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
+           
         }
 
         public override void Load(int skip, int take, string search=null)
@@ -29,7 +35,12 @@ namespace Web.GUI.Commessa
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadCommesse(skip, take, search);
+                IEnumerable<CommessaDto> objs = null;
+                if (filtroCommessa == Tipi.FiltroCommessa.None)
+                    objs = wcf.LoadCommesse(skip, take, search);
+                else if (filtroCommessa == Tipi.FiltroCommessa.NonAssegnate)
+                    objs = wcf.LoadCommesseNonAssegnate(skip, take, search);
+
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +54,12 @@ namespace Web.GUI.Commessa
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountCommesse(search);
+                int count = 0;
+                if (filtroCommessa == Tipi.FiltroCommessa.None)
+                    count = wcf.CountCommesse(search);
+                else if (filtroCommessa == Tipi.FiltroCommessa.NonAssegnate)
+                    count = wcf.CountCommesseNonAssegnate(search);
+               
                 return count;
             }
             catch (Exception ex)

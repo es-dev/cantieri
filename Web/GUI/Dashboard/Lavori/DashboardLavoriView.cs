@@ -39,13 +39,26 @@ namespace Web.GUI.Dashboard.Lavori
                 var items = Items;
                 foreach(TemplateItem item in items)
                 {
-                    var model = (DashboardLavori)item.Model;
-                    var type = model.TypeSpace;
-                    var space = (ISpace)Activator.CreateInstance(type);
-                    var viewModel = space.ViewModel;
-                    item.Count = viewModel.GetCount(); 
-                    item.CountVisible = true;
+                    RefreshCount(item);
                 }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private static void RefreshCount(TemplateItem item)
+        {
+            try
+            {
+                var model = (DashboardLavori)item.Model;
+                var type = model.TypeSpace;
+                var space = (ISpace)Activator.CreateInstance(type);
+                var viewModel = space.ViewModel;
+                item.Count = viewModel.GetCount();
+                item.CountVisible = true;
+
             }
             catch (Exception ex)
             {

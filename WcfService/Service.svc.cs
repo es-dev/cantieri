@@ -410,12 +410,47 @@ namespace WcfService
             }
             return null;
         }
+
+        public IEnumerable<Dto.CommessaDto> LoadCommesseNonAssegnate(int skip, int take, string search = null)
+        {
+            try
+            {
+                var commesse = QueryCommesse(search);
+                commesse = (from q in commesse where q.Cliente == null select q); //filtro aggiuntivo per commesse non assegnate (cliente nullo)
+                commesse = (from q in commesse select q).Skip(skip).Take(take);
+
+                var commesseDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commesse);
+                return commesseDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+        
         
         public int CountCommesse(string search = null)
         {
             try
             {
                 var commesse = QueryCommesse(search);
+                var count = commesse.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public int CountCommesseNonAssegnate(string search = null)
+        {
+            try
+            {
+                var commesse = QueryCommesse(search);
+                commesse = (from q in commesse where q.Cliente == null select q); //filtro aggiuntivo per commesse non assegnate (cliente nullo)
                 var count = commesse.Count();
                 return count;
             }

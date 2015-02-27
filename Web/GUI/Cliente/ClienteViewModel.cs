@@ -11,6 +11,19 @@ namespace Web.GUI.Cliente
     public class ClienteViewModel : Library.Template.MVVM.TemplateViewModel<ClienteDto, ClienteItem>
     {
 
+        private ClienteDto oldObj = null;
+        public ClienteDto OldObj
+        {
+            get
+            {
+                return oldObj;
+            }
+            set
+            {
+                oldObj = value;
+            }
+        }
+
         public ClienteViewModel(ISpace space)
             : base(space) 
         {
@@ -61,6 +74,11 @@ namespace Web.GUI.Cliente
                 {
                     var wcf = new WcfService.Service();
                     var obj = (ClienteDto)model;
+                    var _obj = Read(obj.Id);
+                    creating = (_obj == null); //condizione di creazione --> non esistenza in db
+                    if (oldObj != null && oldObj.Id!=obj.Id) //eliminazione del modello preassociato
+                        Delete(oldObj);
+
                     bool performed = false;
                     if (creating)
                     {

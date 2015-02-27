@@ -11,6 +11,13 @@ namespace BusinessLogic
 {
     public class Tipi
     {
+        public enum FiltroCommessa
+        {
+            None,
+            [Description("Cliente non assegnato")]
+            NonAssegnate,
+        }
+
         public enum TipoPagamento
         {
             None,
