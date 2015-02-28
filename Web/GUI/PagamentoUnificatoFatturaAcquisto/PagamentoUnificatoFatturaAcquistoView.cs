@@ -34,7 +34,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             try
             {
                 var space = new PagamentoUnificatoFatturaAcquistoModel();
-                space.Title = "ASSOCIA IL PAGAMENTO UNIFICATO ALLE FATTURE DI ACQUISTO";
+                space.Title = "FATTURA DI ACQUISTO PER PAGAMENTO UNIFICATO";
                 space.Model = new WcfService.Dto.PagamentoUnificatoFatturaAcquistoDto();
                 AddSpace(space);
             }

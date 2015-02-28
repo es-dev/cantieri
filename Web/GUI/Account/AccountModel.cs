@@ -47,7 +47,7 @@ namespace Web.GUI.Account
                 if (model != null)
                 {
                     infoSubtitle.Text = "Acc";
-                    infoSubtitleImage.Image = "Images.dashboard.azienda.png";
+                    infoSubtitleImage.Image = "Images.dashboard.account.png";
                 }
             }
             catch (Exception ex)

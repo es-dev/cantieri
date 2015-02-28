@@ -29,7 +29,7 @@ namespace Web.GUI.Account
                     var nickname = UtilityValidation.GetStringND(obj.Nickname);
                     var ruolo = UtilityValidation.GetStringND(obj.Ruolo);
 
-                    infoImage.Image = "Images.dashboard.azienda.png";
+                    infoImage.Image = "Images.dashboard.account.png";
                     infoNickname.Text = nickname;
                     infoCreazione.Text = creazione;
                     infoRuolo.Text = ruolo;
