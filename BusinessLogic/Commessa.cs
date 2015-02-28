@@ -94,7 +94,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleFattureCommessa(WcfService.Dto.CommessaDto commessa, DateTime data)
+        public static decimal GetTotaleFatture(WcfService.Dto.CommessaDto commessa, DateTime data)
         {
             try
             {
@@ -113,7 +113,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotalePagamentiDatoCommessa(WcfService.Dto.CommessaDto commessa, DateTime data)
+        public static decimal GetTotalePagamenti(WcfService.Dto.CommessaDto commessa, DateTime data)
         {
             try
             {
@@ -132,7 +132,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal? GetTotalePagamentiDareCommessa(WcfService.Dto.CommessaDto commessa, DateTime data)
+        public static decimal GetTotalePagamentiDare(WcfService.Dto.CommessaDto commessa, DateTime data)
         {
             try
             {

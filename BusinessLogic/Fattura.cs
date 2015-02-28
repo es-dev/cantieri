@@ -26,6 +26,44 @@ namespace BusinessLogic
             return 0;
         }
 
+        public static decimal GetTotale(FatturaAcquistoDto fatturaAcquisto)
+        {
+            try
+            {
+                if (fatturaAcquisto != null)
+                {
+                    var imponibile = UtilityValidation.GetDecimal(fatturaAcquisto.Imponibile);
+                    var iva = UtilityValidation.GetDecimal(fatturaAcquisto.IVA);
+                    decimal totale = GetTotale(imponibile, iva);
+                    return totale;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal GetTotale(FatturaVenditaDto fatturaVendita)
+        {
+            try
+            {
+                if (fatturaVendita != null)
+                {
+                    var imponibile = UtilityValidation.GetDecimal(fatturaVendita.Imponibile);
+                    var iva = UtilityValidation.GetDecimal(fatturaVendita.IVA);
+                    decimal totale = GetTotale(imponibile, iva);
+                    return totale;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
         public static decimal GetTotaleLiquidazioni(FatturaVenditaDto fatturaVendita, DateTime data)
         {
             try
@@ -312,5 +350,21 @@ namespace BusinessLogic
             return null;
         }
 
+
+        public static decimal GetTotalePagamentiDare(FatturaAcquistoDto fatturaAcquisto, DateTime data)
+        {
+            try
+            {
+                var totaleFatture = GetTotale(fatturaAcquisto);
+                var totalePagamentiDato = GetTotalePagamenti(fatturaAcquisto, data);
+                var totalePagamentiDare = totaleFatture - totalePagamentiDato;
+                return totalePagamentiDare;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
     }
 }

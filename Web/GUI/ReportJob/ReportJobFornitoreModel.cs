@@ -221,7 +221,8 @@ namespace Web.GUI.ReportJob
                     report.AddData("TotalePagamentiDareFornitore", BusinessLogic.Fornitore.GetTotalePagamentiDare(fornitori, elaborazione.Value), TypeFormat.Euro);
 
                     //totali per commessa
-                    var tableCommessa = new UtilityReport.Table("Commessa", "TotaleImponibile", "TotaleIVA", "TotaleFatture", "TotalePagamentiDato", "TotalePagamentiDare");
+                    var tableCommesse = new UtilityReport.Table("Commessa", "TotaleImponibile", "TotaleIVA", "TotaleFatture", "TotalePagamentiDato", "TotalePagamentiDare");
+                    var tableFatture = new UtilityReport.Table("Numero", "Data", "Scadenza", "Descrizione", "Imponibile", "IVA", "Totale", "TotalePagamentiDato", "TotalePagamentiDare");
                     foreach (var fornitore in fornitori)
                     {
                         var commessa = fornitore.Commessa;
@@ -232,16 +233,26 @@ namespace Web.GUI.ReportJob
                         var totalePagamentiDato = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamenti(fornitore, elaborazione.Value));
                         var totalePagamentiDare = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamentiDare(fornitore, elaborazione.Value));
 
-                        tableCommessa.AddRow(_commessa, totaleImponibile, totaleIVA, totaleFatture, totalePagamentiDato, totalePagamentiDare);
+                        tableCommesse.AddRow(_commessa, totaleImponibile, totaleIVA, totaleFatture, totalePagamentiDato, totalePagamentiDare);
 
-                    //    var tableFornitore = new UtilityReport.Table("Numero", "Data", "Scadenza", "Descrizione", "Imponibile", "IVA", "Totale", "TotalePagamenti", "Dare");
-                    //    foreach (var fornitore in fornitori)
-                    //    {
-                    //        tableFornitore.AddRow(numero, data, scadenza, descrizione, imponibile, iva, totale, totalePagamenti, dare);
-                    //    }
-                    //    report.Tables.Add(tableFornitore);
+                        var fattureAcquisto = fornitore.FatturaAcquistos;
+                        foreach (var fatturaAcquisto in fattureAcquisto)
+                        {
+                            var numero = fatturaAcquisto.Numero;
+                            var dataFattura = UtilityValidation.GetDataND(fatturaAcquisto.Data);
+                            var scadenza = UtilityValidation.GetDataND(BusinessLogic.Fattura.GetScadenza(fatturaAcquisto));
+                            var descrizione = fatturaAcquisto.Descrizione;
+                            var imponibile = UtilityValidation.GetEuro(fatturaAcquisto.Imponibile);
+                            var iva = UtilityValidation.GetEuro(fatturaAcquisto.IVA);
+                            var totale = UtilityValidation.GetEuro(fatturaAcquisto.Totale);
+                            var totalePagamentiFatturaDato = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotalePagamenti(fatturaAcquisto, elaborazione.Value));
+                            var totalePagamentiFatturaDare = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotalePagamentiDare(fatturaAcquisto, elaborazione.Value));
+
+                            tableFatture.AddRow(numero, dataFattura, scadenza, descrizione, imponibile, iva, totale, totalePagamentiFatturaDato, totalePagamentiFatturaDare);
+                        }
                     }
-                    report.Tables.Add(tableCommessa);
+                    report.Tables.Add(tableCommesse);
+                    report.Tables.Add(tableFatture);
 
                     bool performed = report.Create(pathTemplateWord, pathReportPDF);
                     if (performed)
