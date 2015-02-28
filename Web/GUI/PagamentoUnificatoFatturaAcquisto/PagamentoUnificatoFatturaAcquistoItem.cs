@@ -25,17 +25,15 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             {
                 if (model != null)
                 {
-                    var obj = (PagamentoDto)model;
-                    var importo = UtilityValidation.GetEuro(obj.Importo);
-                    var codice = UtilityValidation.GetStringND(obj.Codice);
-                    var data = UtilityValidation.GetDataND(obj.Data);
-                 
-                    infoData.Text = "Pagato il " + data;
+                    var obj = (PagamentoUnificatoFatturaAcquistoDto)model;
+                    var saldo = UtilityValidation.GetEuro(obj.Saldo);
+                    var fatturaAcquisto = obj.FatturaAcquisto;
+                    var pagamentoUnificato = obj.PagamentoUnificato;
                     infoImage.Image = "Images.dashboard.pagamento.png";
-                    infoCodice.Text = "PAG";
+                    infoCodice.Text = "PU/FA";
                     infoNote.Text = obj.Note;
-                    infoImporto.Text = "Importo: " + importo;
-                    infoPagamento.Text = "Pagamento N." + codice;
+                    infoImporto.Text = "Importo: " + saldo;
+                    infoPagamento.Text="Pagamento: " + pagamentoUnificato.Codice  + " - Fattura: " + fatturaAcquisto.Numero;
                 }
             }
             catch (Exception ex)
