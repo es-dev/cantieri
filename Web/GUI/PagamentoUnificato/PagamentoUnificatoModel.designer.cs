@@ -227,6 +227,10 @@ namespace Web.GUI.PagamentoUnificato
             this.editDescrizione.TabIndex = 5;
             this.editDescrizione.Text = "EditControl";
             this.editDescrizione.Value = null;
+            // 
+            // PagamentoUnificatoModel
+            // 
+            this.Load += new System.EventHandler(this.PagamentoUnificatoModel_Load);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
