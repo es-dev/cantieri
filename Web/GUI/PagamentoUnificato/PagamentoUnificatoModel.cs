@@ -144,5 +144,32 @@ namespace Web.GUI.PagamentoUnificato
             }
         }
 
+        private void PagamentoUnificatoModel_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                CalcolaTotalePagamentoUnificato();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
+        }
+
+        private void CalcolaTotalePagamentoUnificato()
+        {
+            try
+            {
+                var obj = (PagamentoUnificatoDto)Model;
+                var importoPagamento = BusinessLogic.PagamentoUnificato.GetTotalePagamentoUnificato(obj);
+                editImporto.Value = importoPagamento;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
 	}
 }

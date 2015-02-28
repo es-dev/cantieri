@@ -140,7 +140,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             this.editPagamentoUnificato.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editPagamentoUnificato.Changed = true;
             this.editPagamentoUnificato.Editing = false;
-            this.editPagamentoUnificato.Label = "PagamentoUnificato";
+            this.editPagamentoUnificato.Label = "Pagamento unificato";
             this.editPagamentoUnificato.LabelWidth = 175;
             this.editPagamentoUnificato.Location = new System.Drawing.Point(25, 118);
             this.editPagamentoUnificato.Model = null;
