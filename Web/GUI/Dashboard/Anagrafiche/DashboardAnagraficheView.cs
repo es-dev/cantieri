@@ -43,8 +43,11 @@ namespace Web.GUI.Dashboard.Anagrafiche
                     var type = model.TypeSpace;
                     var space = (ISpace)Activator.CreateInstance(type);
                     var viewModel = space.ViewModel;
-                    item.Count = viewModel.GetCount(); 
-                    item.CountVisible = true;
+                    if (viewModel != null)
+                    {
+                        item.Count = viewModel.GetCount();
+                        item.CountVisible = model.CountVisible;
+                    }
                 }
             }
             catch (Exception ex)
