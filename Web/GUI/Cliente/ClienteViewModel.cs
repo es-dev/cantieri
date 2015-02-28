@@ -62,7 +62,8 @@ namespace Web.GUI.Cliente
                     var obj = (ClienteDto)model;
                     var _obj = Read(obj.Id);
                     creating = (_obj == null); //condizione di creazione --> non esistenza in db
-                    if (obj!= null && obj.DtoKey!="Id="+obj.Id) //eliminazione del modello preassociato
+                    
+                    if (obj != null && obj.DtoKey != UtilityPOCO.GetDtoKey(obj)) //eliminazione del modello preassociato
                         Delete(obj);
 
                     bool performed = false;
