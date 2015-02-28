@@ -115,29 +115,16 @@ namespace DataLayer
 			}
 		}
 		
-		private int _fornitoreId;
-		public virtual int FornitoreId
+		private string _codiceFornitore;
+		public virtual string CodiceFornitore
 		{
 			get
 			{
-				return this._fornitoreId;
+				return this._codiceFornitore;
 			}
 			set
 			{
-				this._fornitoreId = value;
-			}
-		}
-		
-		private Fornitore _fornitore;
-		public virtual Fornitore Fornitore
-		{
-			get
-			{
-				return this._fornitore;
-			}
-			set
-			{
-				this._fornitore = value;
+				this._codiceFornitore = value;
 			}
 		}
 		

@@ -37,6 +37,7 @@ namespace Web.GUI.PagamentoUnificato
             this.editCodice = new Library.Template.Controls.TemplateEditText();
             this.editTipoPagamento = new Library.Template.Controls.TemplateEditDropDown();
             this.editDescrizione = new Library.Template.Controls.TemplateEditText();
+            this.btnCalcoloSaldoImporto = new Library.Controls.ButtonSeparatorV();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -68,6 +69,15 @@ namespace Web.GUI.PagamentoUnificato
             // infoSubtitleImage
             // 
             this.infoSubtitleImage.Location = new System.Drawing.Point(610, 3);
+            // 
+            // panelCommands
+            // 
+            this.panelCommands.Controls.Add(this.btnCalcoloSaldoImporto);
+            this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnDelete, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnCalcoloSaldoImporto, 0);
             // 
             // editFornitore
             // 
@@ -127,7 +137,7 @@ namespace Web.GUI.PagamentoUnificato
             this.editImporto.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editImporto.Changed = true;
             this.editImporto.Editing = false;
-            this.editImporto.Label = "Importo";
+            this.editImporto.Label = "Saldo importo";
             this.editImporto.LabelWidth = 175;
             this.editImporto.Location = new System.Drawing.Point(25, 204);
             this.editImporto.Name = "editImporto";
@@ -228,9 +238,22 @@ namespace Web.GUI.PagamentoUnificato
             this.editDescrizione.Text = "EditControl";
             this.editDescrizione.Value = null;
             // 
+            // btnCalcoloSaldoImporto
+            // 
+            this.btnCalcoloSaldoImporto.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.btnCalcoloSaldoImporto.BackColor = System.Drawing.Color.Transparent;
+            this.btnCalcoloSaldoImporto.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.btnCalcoloSaldoImporto.ImageButton = "";
+            this.btnCalcoloSaldoImporto.ImageSeparator = "Images.separator_ht_small.png";
+            this.btnCalcoloSaldoImporto.Location = new System.Drawing.Point(0, 217);
+            this.btnCalcoloSaldoImporto.Name = "btnCalcoloSaldoImporto";
+            this.btnCalcoloSaldoImporto.Size = new System.Drawing.Size(100, 72);
+            this.btnCalcoloSaldoImporto.TabIndex = 1002;
+            this.btnCalcoloSaldoImporto.TextButton = "Calcolo saldo importo";
+            this.btnCalcoloSaldoImporto.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnCalcoloSaldoImporto_Click);
+            // 
             // PagamentoUnificatoModel
             // 
-            this.Load += new System.EventHandler(this.PagamentoUnificatoModel_Load);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
@@ -249,6 +272,7 @@ namespace Web.GUI.PagamentoUnificato
         private Library.Template.Controls.TemplateEditText editCodice;
         private Library.Template.Controls.TemplateEditText editDescrizione;
         private Library.Template.Controls.TemplateEditDropDown editTipoPagamento;
+        private Library.Controls.ButtonSeparatorV btnCalcoloSaldoImporto;
 
 
     }

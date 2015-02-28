@@ -405,16 +405,6 @@ namespace WcfService.Assemblers
 				dto.FatturaAcquistos.Add(dtoItem);
 			}
 
-			PagamentoUnificatoAssembler pagamentoUnificatoAssembler = new PagamentoUnificatoAssembler();
-
-			dto.PagamentoUnificatos = new List<PagamentoUnificatoDto>();
-			foreach (PagamentoUnificato item in entity.PagamentoUnificatos)
-			{
-				var dtoItem = pagamentoUnificatoAssembler.Assemble(item);
-				dtoItem.Fornitore = dto;
-				dto.PagamentoUnificatos.Add(dtoItem);
-			}
-
 	    }
 	
 	}
@@ -1558,7 +1548,7 @@ namespace WcfService.Assemblers
 			entity.Codice = dto.Codice;
 			entity.TipoPagamento = dto.TipoPagamento;
 			entity.Descrizione = dto.Descrizione;
-			entity.FornitoreId = dto.FornitoreId;
+			entity.CodiceFornitore = dto.CodiceFornitore;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1576,16 +1566,13 @@ namespace WcfService.Assemblers
 			dto.Codice = entity.Codice;
 			dto.TipoPagamento = entity.TipoPagamento;
 			dto.Descrizione = entity.Descrizione;
-			dto.FornitoreId = entity.FornitoreId;
+			dto.CodiceFornitore = entity.CodiceFornitore;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
 	
 	    public override void AssembleReferences(PagamentoUnificato entity, PagamentoUnificatoDto dto)
 	    {
-			FornitoreAssembler fornitoreAssembler = new FornitoreAssembler();
-			dto.Fornitore = fornitoreAssembler.Assemble(entity.Fornitore);
-
 	    }
 	
 	    public override void AssembleCollections(PagamentoUnificato entity, PagamentoUnificatoDto dto)

@@ -241,9 +241,6 @@
         <orm:field name="_fatturaAcquistos" property="FatturaAcquistos" behavior="readwrite" uniqueId="c005e506-8dd4-429b-830f-7f3d6bbe34a1" type="DataLayer.FatturaAcquisto">
           <orm:collection element-class="DataLayer.FatturaAcquisto" inverse-field="_fornitore" order-by="" uniqueId="9133edb8-9422-4c9c-a7d6-77def2077659" />
         </orm:field>
-        <orm:field name="_pagamentoUnificatos" property="PagamentoUnificatos" behavior="readwrite" uniqueId="7d25c4a9-85bb-4038-9417-2827995109b9" type="DataLayer.PagamentoUnificato">
-          <orm:collection element-class="DataLayer.PagamentoUnificato" inverse-field="_fornitore" order-by="" uniqueId="aa7590b1-b2b4-4f0c-88d3-d4a034a1a363" />
-        </orm:field>
         <orm:index name="idx_Fornitore_CommessaId">
           <orm:columnMapping>
             <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -902,7 +899,7 @@
           <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
         </orm:field>
         <orm:field name="_data" property="Data" uniqueId="1d7a6f9a-76af-4d46-af96-e4a5d30b7297" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="dta" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+          <orm:column name="Data" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_importo" property="Importo" uniqueId="cd597386-5669-45fa-8207-54c4081f9683" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
@@ -919,13 +916,8 @@
         <orm:field name="_descrizione" property="Descrizione" uniqueId="e4625cb1-dae3-4c6d-b6c6-39bc0ece0b2d" type="System.String">
           <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_fornitoreId" property="FornitoreId" uniqueId="3caac902-ef56-46f3-a49c-5c342179f591" type="System.Int32">
-          <orm:column name="FornitoreId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
-        </orm:field>
-        <orm:field name="_fornitore" property="Fornitore" behavior="readwrite" uniqueId="f93079c1-06ac-4dd6-9edf-ad074ca4b31b" type="DataLayer.Fornitore">
-          <orm:reference uniqueId="aa7590b1-b2b4-4f0c-88d3-d4a034a1a363" association-name="PagamentoUnificatoHasFornitore">
-            <orm:sharedfield name="_fornitoreId" target-class="DataLayer.Fornitore" target-field="_id" />
-          </orm:reference>
+        <orm:field name="_codiceFornitore" property="CodiceFornitore" uniqueId="a803f2a1-2f96-4b5a-bc02-8780dd37721f" type="System.String">
+          <orm:column name="CodiceFornitore" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
         <orm:field name="_pagamentos" property="Pagamentos" behavior="readwrite" uniqueId="449cfe29-bc15-4cae-b000-c2b6a460b74c" type="DataLayer.Pagamento">
           <orm:collection element-class="DataLayer.Pagamento" inverse-field="_pagamentoUnificato" order-by="" uniqueId="097450a7-c563-429a-a661-2531ec82d923" />
@@ -933,11 +925,6 @@
         <orm:field name="_pagamentoUnificatoFatturaAcquistos" property="PagamentoUnificatoFatturaAcquistos" behavior="readwrite" uniqueId="2942d8c6-5650-4e03-8235-9312da078f31" type="DataLayer.PagamentoUnificatoFatturaAcquisto">
           <orm:collection element-class="DataLayer.PagamentoUnificatoFatturaAcquisto" inverse-field="_pagamentoUnificato" order-by="" uniqueId="9403f640-9654-4cb7-b391-47d0d52f2c5b" />
         </orm:field>
-        <orm:index name="idx_PgmntUnificato_FornitoreId">
-          <orm:columnMapping>
-            <orm:column name="FornitoreId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
-          </orm:columnMapping>
-        </orm:index>
       </orm:class>
       <orm:class name="PagamentoUnificatoFatturaAcquisto" uniqueId="96abba45-9005-4a66-95aa-f0df23f0b58f">
         <orm:table name="PgmntoUnificatoFatturaAcquisto" />
@@ -1282,18 +1269,13 @@
       </orm:table>
       <orm:table name="PagamentoUnificato">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
-        <orm:column name="dta" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:column name="Data" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="TipoPagamento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        <orm:column name="FornitoreId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
-        <orm:index name="idx_PgmntUnificato_FornitoreId">
-          <orm:columnMapping>
-            <orm:column name="FornitoreId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
-          </orm:columnMapping>
-        </orm:index>
+        <orm:column name="CodiceFornitore" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
       </orm:table>
     </orm:schema>
     <orm:relational-naming-settings>
@@ -1463,9 +1445,6 @@
         </classHasNavigationalProperties>
         <classHasNavigationalProperties Id="8706b4bf-a6ea-4eef-9ad8-00ce93a996d8">
           <NavigationalProperty Id="c005e506-8dd4-429b-830f-7f3d6bbe34a1" name="FatturaAcquistos" type="IList&lt;FatturaAcquisto&gt;" label="FatturaAcquistos : IList&lt;FatturaAcquisto&gt;" nullable="true" kind="Persistent" fieldName="_fatturaAcquistos" isDependent="false" isManaged="false" />
-        </classHasNavigationalProperties>
-        <classHasNavigationalProperties Id="dcc83355-7752-49ba-bd53-4b1d1e5c3d68">
-          <NavigationalProperty Id="7d25c4a9-85bb-4038-9417-2827995109b9" name="PagamentoUnificatos" type="IList&lt;PagamentoUnificato&gt;" label="PagamentoUnificatos : IList&lt;PagamentoUnificato&gt;" nullable="true" kind="Persistent" fieldName="_pagamentoUnificatos" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
@@ -1856,26 +1835,8 @@
       <Property Id="c4610587-b4aa-4f6d-a9e8-c74c193961c0" name="Codice" label="Codice : String" fieldName="_codice" />
       <Property Id="750af29b-a2b2-4068-a88a-974f85e7f619" name="TipoPagamento" label="TipoPagamento : String" fieldName="_tipoPagamento" />
       <Property Id="e4625cb1-dae3-4c6d-b6c6-39bc0ece0b2d" name="Descrizione" label="Descrizione : String" fieldName="_descrizione" />
-      <Property Id="3caac902-ef56-46f3-a49c-5c342179f591" name="FornitoreId" type="Int32" label="FornitoreId : Int32" fieldName="_fornitoreId" />
-      <AssociationTargets>
-        <Association Id="aa7590b1-b2b4-4f0c-88d3-d4a034a1a363" SourceMultiplicity="ZeroOne" name="PagamentoUnificatoHasFornitore">
-          <DomainClassMoniker name="/EntitiesModel/Fornitore" />
-          <targetNavigationalProperty>
-            <associationDefinesTargetProperty Id="9d47098b-ad22-4102-96bc-e9bc096ba4c8">
-              <NavigationalPropertyMoniker name="/EntitiesModel/Fornitore/PagamentoUnificatos" />
-            </associationDefinesTargetProperty>
-          </targetNavigationalProperty>
-          <sourceNavigationalProperty>
-            <associationDefinesSourceProperty Id="90dc2f47-a8d0-4bfa-85c8-8e6e92f08ad7">
-              <NavigationalPropertyMoniker name="/EntitiesModel/PagamentoUnificato/Fornitore" />
-            </associationDefinesSourceProperty>
-          </sourceNavigationalProperty>
-        </Association>
-      </AssociationTargets>
+      <Property Id="a803f2a1-2f96-4b5a-bc02-8780dd37721f" name="CodiceFornitore" label="CodiceFornitore : String" fieldName="_codiceFornitore" />
       <navigationalProperties>
-        <classHasNavigationalProperties Id="2a047245-f935-47de-a009-06f5ba33d979">
-          <NavigationalProperty Id="f93079c1-06ac-4dd6-9edf-ad074ca4b31b" name="Fornitore" type="Fornitore" label="Fornitore : Fornitore" nullable="true" kind="Persistent" fieldName="_fornitore" isDependent="false" isManaged="false" />
-        </classHasNavigationalProperties>
         <classHasNavigationalProperties Id="60af0410-0f23-4595-af20-434bd2f1ec94">
           <NavigationalProperty Id="449cfe29-bc15-4cae-b000-c2b6a460b74c" name="Pagamentos" type="IList&lt;Pagamento&gt;" label="Pagamentos : IList&lt;Pagamento&gt;" nullable="true" kind="Persistent" fieldName="_pagamentos" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>

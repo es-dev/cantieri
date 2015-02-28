@@ -293,15 +293,6 @@ namespace DataLayer
 			}
 		}
 		
-		private IList<PagamentoUnificato> _pagamentoUnificatos = new List<PagamentoUnificato>();
-		public virtual IList<PagamentoUnificato> PagamentoUnificatos
-		{
-			get
-			{
-				return this._pagamentoUnificatos;
-			}
-		}
-		
 	}
 }
 #pragma warning restore 1591

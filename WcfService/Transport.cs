@@ -251,14 +251,13 @@ namespace WcfService.Dto
 	[DataContract(IsReference = true)]
 	[KnownType(typeof(CommessaDto))]
 	[KnownType(typeof(FatturaAcquistoDto))]
-	[KnownType(typeof(PagamentoUnificatoDto))]
 	public partial class FornitoreDto : IDtoWithKey
 	{
 		public FornitoreDto()
 		{
 		}
 		
-		public FornitoreDto(int _id, int _commessaId, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _partitaIva, string _codice, string _codiceCatastale, decimal? _totaleFattureAcquisto, string _stato, decimal? _totalePagamenti, string _localita, string _note, CommessaDto _commessa, IList<FatturaAcquistoDto> _fatturaAcquistos, IList<PagamentoUnificatoDto> _pagamentoUnificatos)
+		public FornitoreDto(int _id, int _commessaId, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _partitaIva, string _codice, string _codiceCatastale, decimal? _totaleFattureAcquisto, string _stato, decimal? _totalePagamenti, string _localita, string _note, CommessaDto _commessa, IList<FatturaAcquistoDto> _fatturaAcquistos)
 		{
 			this.Id = _id;
 			this.CommessaId = _commessaId;
@@ -281,7 +280,6 @@ namespace WcfService.Dto
 			this.Note = _note;
 			this.Commessa = _commessa;
 			this.FatturaAcquistos = _fatturaAcquistos;
-			this.PagamentoUnificatos = _pagamentoUnificatos;
 		}
 		
 		[DataMember]
@@ -349,9 +347,6 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual IList<FatturaAcquistoDto> FatturaAcquistos { get;set; }
-
-		[DataMember]
-		public virtual IList<PagamentoUnificatoDto> PagamentoUnificatos { get;set; }
 
 	}
 	
@@ -1208,7 +1203,6 @@ namespace WcfService.Dto
 	}
 	
 	[DataContract(IsReference = true)]
-	[KnownType(typeof(FornitoreDto))]
 	[KnownType(typeof(PagamentoDto))]
 	[KnownType(typeof(PagamentoUnificatoFatturaAcquistoDto))]
 	public partial class PagamentoUnificatoDto : IDtoWithKey
@@ -1217,7 +1211,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public PagamentoUnificatoDto(int _id, DateTime? _data, decimal? _importo, string _note, string _codice, string _tipoPagamento, string _descrizione, int _fornitoreId, FornitoreDto _fornitore, IList<PagamentoDto> _pagamentos, IList<PagamentoUnificatoFatturaAcquistoDto> _pagamentoUnificatoFatturaAcquistos)
+		public PagamentoUnificatoDto(int _id, DateTime? _data, decimal? _importo, string _note, string _codice, string _tipoPagamento, string _descrizione, string _codiceFornitore, IList<PagamentoDto> _pagamentos, IList<PagamentoUnificatoFatturaAcquistoDto> _pagamentoUnificatoFatturaAcquistos)
 		{
 			this.Id = _id;
 			this.Data = _data;
@@ -1226,8 +1220,7 @@ namespace WcfService.Dto
 			this.Codice = _codice;
 			this.TipoPagamento = _tipoPagamento;
 			this.Descrizione = _descrizione;
-			this.FornitoreId = _fornitoreId;
-			this.Fornitore = _fornitore;
+			this.CodiceFornitore = _codiceFornitore;
 			this.Pagamentos = _pagamentos;
 			this.PagamentoUnificatoFatturaAcquistos = _pagamentoUnificatoFatturaAcquistos;
 		}
@@ -1257,10 +1250,7 @@ namespace WcfService.Dto
 		public virtual string Descrizione { get;set; }
 
 		[DataMember]
-		public virtual int FornitoreId { get;set; }
-
-		[DataMember]
-		public virtual FornitoreDto Fornitore { get;set; }
+		public virtual string CodiceFornitore { get;set; }
 
 		[DataMember]
 		public virtual IList<PagamentoDto> Pagamentos { get;set; }

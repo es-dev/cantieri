@@ -73,13 +73,13 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             this.editFatturaAcquisto.Editing = false;
             this.editFatturaAcquisto.Label = "Fattura di acquisto";
             this.editFatturaAcquisto.LabelWidth = 175;
-            this.editFatturaAcquisto.Location = new System.Drawing.Point(25, 75);
+            this.editFatturaAcquisto.Location = new System.Drawing.Point(25, 119);
             this.editFatturaAcquisto.Model = null;
             this.editFatturaAcquisto.Name = "editFatturaAcquisto";
             this.editFatturaAcquisto.ReadOnly = false;
             this.editFatturaAcquisto.Required = false;
-            this.editFatturaAcquisto.Size = new System.Drawing.Size(800, 30);
-            this.editFatturaAcquisto.TabIndex = 0;
+            this.editFatturaAcquisto.Size = new System.Drawing.Size(798, 30);
+            this.editFatturaAcquisto.TabIndex = 1;
             this.editFatturaAcquisto.Text = "EditControl";
             this.editFatturaAcquisto.Value = null;
             this.editFatturaAcquisto.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editFatturaAcquisto_ComboConfirm);
@@ -98,12 +98,12 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             this.editSaldo.Editing = false;
             this.editSaldo.Label = "Saldo";
             this.editSaldo.LabelWidth = 175;
-            this.editSaldo.Location = new System.Drawing.Point(27, 165);
+            this.editSaldo.Location = new System.Drawing.Point(25, 163);
             this.editSaldo.Name = "editSaldo";
             this.editSaldo.ReadOnly = false;
             this.editSaldo.Required = false;
             this.editSaldo.Size = new System.Drawing.Size(798, 30);
-            this.editSaldo.TabIndex = 3;
+            this.editSaldo.TabIndex = 2;
             this.editSaldo.Text = "TemplateEditNumeric";
             this.editSaldo.Value = null;
             // 
@@ -120,12 +120,12 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             this.editNote.Editing = false;
             this.editNote.Label = "Note";
             this.editNote.LabelWidth = 175;
-            this.editNote.Location = new System.Drawing.Point(29, 207);
+            this.editNote.Location = new System.Drawing.Point(25, 207);
             this.editNote.Name = "editNote";
             this.editNote.ReadOnly = false;
             this.editNote.Required = false;
             this.editNote.Size = new System.Drawing.Size(798, 30);
-            this.editNote.TabIndex = 6;
+            this.editNote.TabIndex = 3;
             this.editNote.Text = "EditControl";
             this.editNote.Value = null;
             // 
@@ -142,7 +142,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             this.editPagamentoUnificato.Editing = false;
             this.editPagamentoUnificato.Label = "Pagamento unificato";
             this.editPagamentoUnificato.LabelWidth = 175;
-            this.editPagamentoUnificato.Location = new System.Drawing.Point(25, 118);
+            this.editPagamentoUnificato.Location = new System.Drawing.Point(25, 75);
             this.editPagamentoUnificato.Model = null;
             this.editPagamentoUnificato.Name = "editPagamentoUnificato";
             this.editPagamentoUnificato.ReadOnly = false;

@@ -100,7 +100,12 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
         {
             try
             {
-                var view = new FatturaAcquisto.FatturaAcquistoView();
+                var obj = (PagamentoUnificatoFatturaAcquistoDto)Model;
+                var pagamentoUnificato = obj.PagamentoUnificato;
+                var codiceFornitore = pagamentoUnificato.CodiceFornitore;
+                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
+                var view = new FatturaAcquisto.FatturaAcquistoView(anagraficaFornitore, Tipi.StatoFattura.NonPagata | Tipi.StatoFattura.Insoluta);
                 view.Title = "SELEZIONA LA FATTURA DI ACQUISTO";
                 editFatturaAcquisto.Show(view);
             }
@@ -149,7 +154,6 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                 if (pagamentoUnificato != null)
                 {
                     editPagamentoUnificato.Value = pagamentoUnificato.Codice + "/" + pagamentoUnificato.Data.Value.Year.ToString();
-                    CalcolaSaldo();
                 }
             }
             catch (Exception ex)

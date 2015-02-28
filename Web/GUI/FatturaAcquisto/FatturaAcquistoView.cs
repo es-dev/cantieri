@@ -1,3 +1,4 @@
+using BusinessLogic;
 using Library.Code;
 using Library.Template.MVVM;
 using System;
@@ -15,6 +16,24 @@ namespace Web.GUI.FatturaAcquisto
 		{ 
 			InitializeComponent();
 		}
+
+        public FatturaAcquistoView(WcfService.Dto.AnagraficaFornitoreDto anagraficaFornitore, Tipi.StatoFattura statoFattura)
+        {
+            InitializeComponent();
+            try
+            {
+                var viewModel = (FatturaAcquisto.FatturaAcquistoViewModel)ViewModel;
+                if (viewModel != null)
+                {
+                    viewModel.AnagraficaFornitore = anagraficaFornitore;
+                    viewModel.StatoFattura = statoFattura;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 
         public override void Init()
         {

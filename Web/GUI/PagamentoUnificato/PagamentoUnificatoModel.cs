@@ -70,11 +70,13 @@ namespace Web.GUI.PagamentoUnificato
                     editImporto.Value = obj.Importo;
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editDescrizione.Value = obj.Descrizione;
-                    var fornitore = obj.Fornitore;
-                    if (fornitore != null)
+                    var codiceFornitore = obj.CodiceFornitore;
+                    var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                    var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
+                    if (anagraficaFornitore != null)
                     {
-                        editFornitore.Model = fornitore;
-                        editFornitore.Value = fornitore.Codice +" - "+ fornitore.RagioneSociale;
+                        editFornitore.Model = anagraficaFornitore;
+                        editFornitore.Value = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
                     }
                 }
             }
@@ -97,9 +99,9 @@ namespace Web.GUI.PagamentoUnificato
                     obj.Note = editNote.Value;
                     obj.Descrizione = editDescrizione.Value;
                     obj.TipoPagamento = editTipoPagamento.Value;
-                    var fornitore = (FornitoreDto)editFornitore.Model;
-                    if (fornitore != null)
-                        obj.FornitoreId = fornitore.Id;
+                    var anagraficaFornitore = (AnagraficaFornitoreDto)editFornitore.Model;
+                    if (anagraficaFornitore != null)
+                        obj.CodiceFornitore = anagraficaFornitore.Codice;
                 }
             }
             catch (Exception ex)
@@ -112,8 +114,8 @@ namespace Web.GUI.PagamentoUnificato
         {
             try
             {
-                var view = new Fornitore.FornitoreView();
-                view.Title = "SELEZIONA IL FORNITORE";
+                var view = new AnagraficaFornitore.AnagraficaFornitoreView();
+                view.Title = "SELEZIONA UN FORNITORE";
                 editFornitore.Show(view);
             }
             catch (Exception ex)
@@ -126,16 +128,10 @@ namespace Web.GUI.PagamentoUnificato
         {
             try
             {
-                var fornitore = (FornitoreDto)model;
-                if (fornitore != null)
+                var anagraficaFornitore = (WcfService.Dto.AnagraficaFornitoreDto)model;
+                if (anagraficaFornitore != null)
                 {
-                    editFornitore.Value = fornitore.Codice + " - " + fornitore.RagioneSociale;
-                    //var obj = (PagamentoUnificatoDto)Model;
-                    //if (obj != null && obj.Id == 0)
-                    //{
-                    //    var codice = BusinessLogic.Pagamento.GetCodice(fornitore);
-                    //    editCodice.Value = codice;
-                    //}
+                    editFornitore.Value = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
                 }
             }
             catch (Exception ex)
@@ -144,18 +140,6 @@ namespace Web.GUI.PagamentoUnificato
             }
         }
 
-        private void PagamentoUnificatoModel_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                CalcolaTotalePagamentoUnificato();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-
-        }
 
         private void CalcolaTotalePagamentoUnificato()
         {
@@ -164,6 +148,18 @@ namespace Web.GUI.PagamentoUnificato
                 var obj = (PagamentoUnificatoDto)Model;
                 var importoPagamento = BusinessLogic.PagamentoUnificato.GetTotalePagamentoUnificato(obj);
                 editImporto.Value = importoPagamento;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void btnCalcoloSaldoImporto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CalcolaTotalePagamentoUnificato();
             }
             catch (Exception ex)
             {

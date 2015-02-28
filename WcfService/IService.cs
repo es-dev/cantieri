@@ -198,7 +198,13 @@ namespace WcfService
         IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquisto(int skip, int take, string search = null);
 
         [OperationContract]
+        IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquistoFornitoreDare(int skip, int take, string search, Dto.AnagraficaFornitoreDto anagraficaFornitore);
+
+        [OperationContract]
         int CountFattureAcquisto(string search = null);
+
+        [OperationContract]
+        int CountFattureAcquisto(string search, Dto.AnagraficaFornitoreDto anagraficaFornitore);
 
         [OperationContract]
         IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquistoCommessa(Dto.CommessaDto commessa);

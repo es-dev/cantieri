@@ -1,4 +1,5 @@
-﻿using Library.Code;
+﻿using BusinessLogic;
+using Library.Code;
 using Library.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,31 @@ namespace Web.GUI.FatturaAcquisto
 {
     public class FatturaAcquistoViewModel : Library.Template.MVVM.TemplateViewModel<FatturaAcquistoDto, FatturaAcquistoItem>
     {
+        private AnagraficaFornitoreDto anagraficaFornitore = null;
+        public AnagraficaFornitoreDto AnagraficaFornitore
+        {
+            get
+            {
+                return anagraficaFornitore;
+            }
+            set
+            {
+                anagraficaFornitore = value;
+            }
+        }
+
+        private Tipi.StatoFattura statoFattura = Tipi.StatoFattura.None;
+        public Tipi.StatoFattura StatoFattura
+        {
+            get
+            {
+                return statoFattura;
+            }
+            set
+            {
+                statoFattura = value;
+            }
+        }
 
         public FatturaAcquistoViewModel(ISpace space)
             : base(space) 
@@ -29,7 +55,11 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadFattureAcquisto(skip, take, search);
+                IEnumerable<FatturaAcquistoDto> objs = null;
+                if(anagraficaFornitore==null)
+                    objs = wcf.LoadFattureAcquisto(skip, take, search);
+                else if(anagraficaFornitore!=null && statoFattura== Tipi.StatoFattura.NonPagata || statoFattura== Tipi.StatoFattura.Insoluta)
+                    objs = wcf.LoadFattureAcquistoFornitoreDare(skip, take, search, anagraficaFornitore);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +73,11 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountFattureAcquisto(search);
+                int count = 0;
+                if(anagraficaFornitore==null)
+                     count = wcf.CountFattureAcquisto(search);
+                else if(anagraficaFornitore!=null && statoFattura== Tipi.StatoFattura.NonPagata || statoFattura== Tipi.StatoFattura.Insoluta)
+                    count = wcf.CountFattureAcquisto(search, anagraficaFornitore);
                 return count;
             }
             catch (Exception ex)
@@ -114,5 +148,6 @@ namespace Web.GUI.FatturaAcquisto
             }
             return null;
         }
+
     }
 }

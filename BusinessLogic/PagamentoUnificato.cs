@@ -4,22 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WcfService.Dto;
 
 namespace BusinessLogic
 {
     public class PagamentoUnificato
     {
 
-        public static decimal GetTotalePagamentoUnificato(WcfService.Dto.PagamentoUnificatoDto pagamentoUnificato)
+        public static decimal GetTotalePagamentoUnificato(PagamentoUnificatoDto pagamentoUnificato)
         {
             try
             {
-                decimal totale = 0;
-                var pagamentiUnificatiFattureAcquisto = pagamentoUnificato.PagamentoUnificatoFatturaAcquistos;
-                 var totaleSaldo = (from q in pagamentiUnificatiFattureAcquisto select q.Saldo).Sum();
-                totale = UtilityValidation.GetDecimal(totaleSaldo);
-
-                return totale;
+                if (pagamentoUnificato != null)
+                {
+                    var pagamentiUnificatiFattureAcquisto = pagamentoUnificato.PagamentoUnificatoFatturaAcquistos;
+                    if (pagamentiUnificatiFattureAcquisto != null)
+                    {
+                        var totale = UtilityValidation.GetDecimal((from q in pagamentiUnificatiFattureAcquisto where q.Saldo!=null select q.Saldo).Sum());
+                        return totale;
+                    }
+                }
             }
             catch (Exception ex)
             {

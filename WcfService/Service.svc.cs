@@ -940,11 +940,69 @@ namespace WcfService
             return null;
         }
 
+        public IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquistoFornitoreDare(int skip, int take, string search, Dto.AnagraficaFornitoreDto anagraficaFornitore)
+        {
+            try
+            {
+                var fattureAcquistoId= new List<int>();
+                var fattureAcquisto = QueryFattureAcquisto(search);
+                fattureAcquisto = (from q in fattureAcquisto where q.Fornitore.Codice ==anagraficaFornitore.Codice select q);
+                foreach( var fatturaAcquisto in fattureAcquisto)
+                {
+                    var totale = UtilityValidation.GetDecimal(fatturaAcquisto.Totale);
+                    var pagamenti = fatturaAcquisto.Pagamentos;
+                    var totalePagamenti = UtilityValidation.GetDecimal((from q in pagamenti select q.Importo).Sum());
+                    if (totalePagamenti < totale)
+                    {
+                        fattureAcquistoId.Add(fatturaAcquisto.Id);
+                    }
+                }
+                fattureAcquisto = (from q in fattureAcquisto where fattureAcquistoId.Contains(q.Id) select q);
+                fattureAcquisto = (from q in fattureAcquisto select q).Skip(skip).Take(take);
+                var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
+                return fattureAcquistoDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+
         public int CountFattureAcquisto(string search = null)
         {
             try
             {
                 var fattureAcquisto = QueryFattureAcquisto(search);
+                var count = fattureAcquisto.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public int CountFattureAcquisto(string search, Dto.AnagraficaFornitoreDto anagraficaFornitore)
+        {
+            try
+            {
+                var fattureAcquistoId = new List<int>();
+                var fattureAcquisto = QueryFattureAcquisto(search);
+                fattureAcquisto = (from q in fattureAcquisto where q.Fornitore.Codice == anagraficaFornitore.Codice select q);
+                foreach (var fatturaAcquisto in fattureAcquisto)
+                {
+                    var totale = UtilityValidation.GetDecimal(fatturaAcquisto.Totale);
+                    var pagamenti = fatturaAcquisto.Pagamentos;
+                    var totalePagamenti = UtilityValidation.GetDecimal((from q in pagamenti select q.Importo).Sum());
+                    if (totalePagamenti < totale)
+                    {
+                        fattureAcquistoId.Add(fatturaAcquisto.Id);
+                    }
+                }
+                fattureAcquisto = (from q in fattureAcquisto where fattureAcquistoId.Contains(q.Id) select q);
                 var count = fattureAcquisto.Count();
                 return count;
             }
@@ -1004,7 +1062,7 @@ namespace WcfService
                 var fattureAcquisto = (from q in ef.FatturaAcquistos select q);
                 if (search != null && search.Length > 0)
                 {
-                    var fornitoriId = (from f in QueryFornitori(search) select f.Id).ToList();
+                    var fornitoriId = (from q in QueryFornitori(search) select q.Id).ToList();
                     fattureAcquisto = (from q in fattureAcquisto
                                        where q.Numero.StartsWith(search) || q.Descrizione.Contains(search) || q.TipoPagamento.StartsWith(search) ||
                                        fornitoriId.Contains(q.FornitoreId)
@@ -1158,7 +1216,7 @@ namespace WcfService
                 var articoli = (from q in ef.Articolos select q);
                 if (search != null && search.Length > 0)
                 {
-                    var fattureAcquistoId = (from f in QueryFattureAcquisto(search) select f.Id).ToList();
+                    var fattureAcquistoId = (from q in QueryFattureAcquisto(search) select q.Id).ToList();
                     articoli = (from q in articoli
                                 where q.Codice.StartsWith(search) || q.Descrizione.Contains(search) ||
                                     fattureAcquistoId.Contains(q.FatturaAcquistoId)
@@ -1312,7 +1370,7 @@ namespace WcfService
                 var pagamenti = (from q in ef.Pagamentos select q);
                 if (search != null && search.Length > 0)
                 {
-                    var fattureAcquistoId = (from f in QueryFattureAcquisto(search) select f.Id).ToList();
+                    var fattureAcquistoId = (from q in QueryFattureAcquisto(search) select q.Id).ToList();
                     pagamenti = (from q in pagamenti
                                  where q.Note.Contains(search) ||
                                      fattureAcquistoId.Contains(q.FatturaAcquistoId)
@@ -1466,10 +1524,10 @@ namespace WcfService
                 var pagamentiUnificati = (from q in ef.PagamentoUnificatos select q);
                 if (search != null && search.Length > 0)
                 {
-                    var fornitoreId = (from f in QueryFornitori(search) select f.Id).ToList();
+                    var codiciFornitori = (from q in QueryFornitori(search) select q.Codice).ToList();
                     pagamentiUnificati = (from q in pagamentiUnificati
                                  where q.Note.Contains(search) ||
-                                     fornitoreId.Contains(q.FornitoreId)
+                                     codiciFornitori.Contains(q.CodiceFornitore)
                                  select q);
                 }
                 pagamentiUnificati = (from q in pagamentiUnificati orderby q.Note select q);
@@ -1620,7 +1678,7 @@ namespace WcfService
                 var pagamentiUnificatiFatturaAcquisto = (from q in ef.PagamentoUnificatoFatturaAcquistos select q);
                 if (search != null && search.Length > 0)
                 {
-                    var fatturaAcquistoId = (from f in QueryFattureAcquisto(search) select f.Id).ToList();
+                    var fatturaAcquistoId = (from q in QueryFattureAcquisto(search) select q.Id).ToList();
                     pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto
                                           where q.Note.Contains(search) ||
                                               fatturaAcquistoId.Contains(q.FatturaAcquistoId)
@@ -2083,7 +2141,7 @@ namespace WcfService
                 var liquidazioni = (from q in ef.Liquidaziones select q);
                 if (search != null && search.Length > 0)
                 {
-                    var fattureVenditaId = (from f in QueryFattureVendita(search) select f.Id).ToList();
+                    var fattureVenditaId = (from q in QueryFattureVendita(search) select q.Id).ToList();
                     liquidazioni = (from q in liquidazioni
                                     where q.Note.Contains(search) ||
                                         fattureVenditaId.Contains(q.FatturaVenditaId)
@@ -2873,6 +2931,8 @@ namespace WcfService
 
         #endregion
         #endregion
-        
+
+
+
     }
 }
