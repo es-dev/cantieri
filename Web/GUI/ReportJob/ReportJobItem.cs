@@ -1,3 +1,4 @@
+using BusinessLogic;
 using Library.Code;
 using Library.Interfaces;
 using Library.Template.MVVM;
@@ -25,21 +26,47 @@ namespace Web.GUI.ReportJob
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.ReportJobDto)model;
-                    var codice = UtilityValidation.GetStringND(obj.Codice);
-                    var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
-                    var tipo = UtilityValidation.GetStringND(obj.Tipo);
-                    var fornitore = obj.CodiceFornitore;
                     infoImage.Image = "Images.dashboard.reportjob.png";
-                    infoCodice.Text = "";
-                    infoFornitore.Text = "Fornitore: " + fornitore;
-                    infoTipo.Text = tipo;
-                    infoCodiceReport.Text = codice;
+                    infoCodice.Text = "RPT";
+                    infoCodiceReport.Text = "REPORT N. " + obj.Codice;
+                    infoTipo.Text = "Tipo report: " + UtilityValidation.GetStringND(obj.Tipo);
+                    var descrizione = GetDescrizione(obj);
+                    infoFornitore.Text = descrizione;
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private string GetDescrizione(WcfService.Dto.ReportJobDto obj)
+        {
+            try
+            {
+                if (obj != null)
+                {
+                    var tipo = obj.Tipo;
+                    string descrizione = null;
+                    if (tipo == Tipi.TipoReport.Fornitore.ToString())
+                    {
+                        var codiceFornitore = obj.CodiceFornitore;
+                        var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                        var anagraficaFornitore=viewModel.ReadAnagraficaFornitore(codiceFornitore);
+                        if(anagraficaFornitore!=null)
+                        {
+                            descrizione = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
+                        }
+                    }
+
+                    return descrizione;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
 
         private void ReportJobItem_ItemClick(IItem item)

@@ -37,14 +37,17 @@ namespace Web.GUI.Dashboard
             try
             {
                 var items = Items;
-                foreach(TemplateItem item in items)
+                foreach (TemplateItem item in items)
                 {
                     var model = (Dashboard)item.Model;
                     var type = model.TypeSpace;
                     var space = (ISpace)Activator.CreateInstance(type);
                     var viewModel = space.ViewModel;
-                    if(viewModel!=null)
-                        item.Count = viewModel.GetCount(); 
+                    if (viewModel != null)
+                    {
+                        item.Count = viewModel.GetCount();
+                        item.CountVisible = model.CountVisible;
+                    }
                 }
             }
             catch (Exception ex)

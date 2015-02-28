@@ -36,10 +36,17 @@ namespace Web.GUI.ReportJob
             this.infoCodiceReport = new Gizmox.WebGUI.Forms.Label();
             this.infoTipo = new Gizmox.WebGUI.Forms.Label();
             this.infoFornitore = new Gizmox.WebGUI.Forms.Label();
+            this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
-            this.jqContainer.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // jqContainer
+            // 
+            this.jqContainer.Controls.Add(this.panelLeft);
+            this.jqContainer.Controls.Add(this.infoTipo);
+            this.jqContainer.Controls.Add(this.infoFornitore);
+            this.jqContainer.Controls.Add(this.infoCodiceReport);
             // 
             // infoCodice
             // 
@@ -96,7 +103,7 @@ namespace Web.GUI.ReportJob
             this.infoTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.infoTipo.Location = new System.Drawing.Point(91, 33);
             this.infoTipo.Name = "infoTipo";
-            this.infoTipo.Size = new System.Drawing.Size(305, 38);
+            this.infoTipo.Size = new System.Drawing.Size(304, 21);
             this.infoTipo.TabIndex = 1;
             this.infoTipo.Text = "Tipo";
             // 
@@ -117,16 +124,12 @@ namespace Web.GUI.ReportJob
             // 
             // ReportJobItem
             // 
-            this.jqContainer.Controls.Add(this.panelLeft);
-            this.jqContainer.Controls.Add(this.infoTipo);
-            this.jqContainer.Controls.Add(this.infoFornitore);
-            this.jqContainer.Controls.Add(this.infoCodiceReport);
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.ReportJobItem_ItemClick);
+            this.jqContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
-            this.jqContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
