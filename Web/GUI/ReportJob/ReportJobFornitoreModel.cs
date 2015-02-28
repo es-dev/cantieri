@@ -200,44 +200,27 @@ namespace Web.GUI.ReportJob
                     string pathTemplateWord = UtilityWeb.GetRootPath(Context) + @"Resources\Templates\TemplateSituazioneFornitore.doc";
                     var fileNamePDF = "SituazioneFornitore_" + codiceFornitore + "_" + data + ".PDF";
                     var pathReportPDF = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileNamePDF;
-
                     var report = new UtilityReport.Report();
 
-                    //devi ottenere tutti i fornitori di questa anagrafica nelle commesse
-                    var ragioneSociale = UtilityValidation.GetStringND(anagraficaFornitore.RagioneSociale);
-                    var partitaIva = UtilityValidation.GetStringND(anagraficaFornitore.PartitaIva);
-                    var indirizzo = UtilityValidation.GetStringND(anagraficaFornitore.Indirizzo);
-                    var cap = UtilityValidation.GetStringND(anagraficaFornitore.CAP);
-                    var localita = UtilityValidation.GetStringND(anagraficaFornitore.Localita);
-                    var comune = UtilityValidation.GetStringND(anagraficaFornitore.Comune);
-                    var provincia = UtilityValidation.GetStringND(anagraficaFornitore.Provincia);
-                    report.AddData("RagioneSociale", ragioneSociale);
-                    report.AddData("PartitaIva", partitaIva);
-                    report.AddData("Indirizzo", indirizzo);
-                    report.AddData("CAP", cap);
-                    report.AddData("Localita", localita);
-                    report.AddData("Comune", comune);
-                    report.AddData("Provincia", provincia);
+                    //header
+                    report.AddData("RagioneSociale", anagraficaFornitore.RagioneSociale);
+                    report.AddData("PartitaIva", anagraficaFornitore.PartitaIva);
+                    report.AddData("Indirizzo", anagraficaFornitore.Indirizzo);
+                    report.AddData("CAP", anagraficaFornitore.CAP);
+                    report.AddData("Localita", anagraficaFornitore.Localita);
+                    report.AddData("Comune", anagraficaFornitore.Comune);
+                    report.AddData("Provincia", anagraficaFornitore.Provincia);
                     
+                    //totali fornitre
                     var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
                     var fornitori = viewModelFornitore.ReadFornitori(codiceFornitore).ToList();
+                    report.AddData("TotaleImponibileFornitore", BusinessLogic.Fornitore.GetTotaleImponibile(fornitori, elaborazione.Value), TypeFormat.Euro);
+                    report.AddData("TotaleIVAFornitore", BusinessLogic.Fornitore.GetTotaleIVA(fornitori, elaborazione.Value), TypeFormat.Euro);
+                    report.AddData("TotaleFattureFornitore", BusinessLogic.Fornitore.GetTotaleFatture(fornitori, elaborazione.Value), TypeFormat.Euro);
+                    report.AddData("TotalePagamentiDatoFornitore", BusinessLogic.Fornitore.GetTotalePagamenti(fornitori, elaborazione.Value), TypeFormat.Euro);
+                    report.AddData("TotalePagamentiDareFornitore", BusinessLogic.Fornitore.GetTotalePagamentiDare(fornitori, elaborazione.Value), TypeFormat.Euro);
 
-                    var totaleImponibileFornitore = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleImponibile(fornitori, elaborazione.Value));
-                    var totaleIVAFornitore = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleIVA(fornitori, elaborazione.Value));
-                    var totaleFattureFornitore = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleFatture(fornitori, elaborazione.Value));
-                    var totalePagamentiDatoFornitore = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamenti(fornitori, elaborazione.Value));
-                    var totalePagamentiDareFornitore = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamentiDare(fornitori, elaborazione.Value));
-
-                    report.AddData("TotaleImponibileFornitore", totaleImponibileFornitore);
-                    report.AddData("TotaleIVAFornitore", totaleIVAFornitore);
-                    report.AddData("TotaleFattureFornitore", totaleFattureFornitore);
-                    report.AddData("TotalePagamentiDatoFornitore", totalePagamentiDatoFornitore);
-                    report.AddData("TotalePagamentiDareFornitore", totalePagamentiDareFornitore);
-
-                    //var viewModelCommessa = new Commessa.CommessaViewModel(this);
-                    //var commesse = viewModelCommessa.ReadCommesse(fornitori);
-
-
+                    //totali per commessa
                     var tableCommessa = new UtilityReport.Table("Commessa", "TotaleImponibile", "TotaleIVA", "TotaleFatture", "TotalePagamentiDato", "TotalePagamentiDare");
                     foreach (var fornitore in fornitori)
                     {
