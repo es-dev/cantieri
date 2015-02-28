@@ -172,8 +172,6 @@ namespace Web.GUI.Cliente
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.ClienteDto)model;
-                    SetOldObj(obj); //salvataggio del modello precedente
-
                     obj.RagioneSociale = editRagioneSociale.Value;
                     obj.Indirizzo = editIndirizzo.Value;
                     obj.CAP = editCAP.Value;
@@ -196,19 +194,6 @@ namespace Web.GUI.Cliente
                         obj.Id = commessa.Id;
                     
                 }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void SetOldObj(WcfService.Dto.ClienteDto obj)
-        {
-            try
-            {
-                var viewModel = (Cliente.ClienteViewModel)ViewModel;
-                viewModel.OldObj = obj;
             }
             catch (Exception ex)
             {

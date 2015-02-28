@@ -10,20 +10,6 @@ namespace Web.GUI.Cliente
 {
     public class ClienteViewModel : Library.Template.MVVM.TemplateViewModel<ClienteDto, ClienteItem>
     {
-
-        private ClienteDto oldObj = null;
-        public ClienteDto OldObj
-        {
-            get
-            {
-                return oldObj;
-            }
-            set
-            {
-                oldObj = value;
-            }
-        }
-
         public ClienteViewModel(ISpace space)
             : base(space) 
         {
@@ -66,7 +52,7 @@ namespace Web.GUI.Cliente
             return 0;
         }
 
-        public override bool Save(object model, bool creating)
+        public override bool Save(object model, bool creating)  //salvataggio per modelli con relazioni entità 1-1 con modello parent
         {
             try
             {
@@ -76,8 +62,8 @@ namespace Web.GUI.Cliente
                     var obj = (ClienteDto)model;
                     var _obj = Read(obj.Id);
                     creating = (_obj == null); //condizione di creazione --> non esistenza in db
-                    if (oldObj != null && oldObj.Id!=obj.Id) //eliminazione del modello preassociato
-                        Delete(oldObj);
+                    if (obj!= null && obj.DtoKey!="Id="+obj.Id) //eliminazione del modello preassociato
+                        Delete(obj);
 
                     bool performed = false;
                     if (creating)
