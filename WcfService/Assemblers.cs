@@ -405,6 +405,16 @@ namespace WcfService.Assemblers
 				dto.FatturaAcquistos.Add(dtoItem);
 			}
 
+			PagamentoUnificatoAssembler pagamentoUnificatoAssembler = new PagamentoUnificatoAssembler();
+
+			dto.PagamentoUnificatos = new List<PagamentoUnificatoDto>();
+			foreach (PagamentoUnificato item in entity.PagamentoUnificatos)
+			{
+				var dtoItem = pagamentoUnificatoAssembler.Assemble(item);
+				dtoItem.Fornitore = dto;
+				dto.PagamentoUnificatos.Add(dtoItem);
+			}
+
 	    }
 	
 	}
@@ -694,6 +704,16 @@ namespace WcfService.Assemblers
 				dto.Pagamentos.Add(dtoItem);
 			}
 
+			PagamentoUnificatoFatturaAcquistoAssembler pagamentoUnificatoFatturaAcquistoAssembler = new PagamentoUnificatoFatturaAcquistoAssembler();
+
+			dto.PagamentoUnificatoFatturaAcquistos = new List<PagamentoUnificatoFatturaAcquistoDto>();
+			foreach (PagamentoUnificatoFatturaAcquisto item in entity.PagamentoUnificatoFatturaAcquistos)
+			{
+				var dtoItem = pagamentoUnificatoFatturaAcquistoAssembler.Assemble(item);
+				dtoItem.FatturaAcquisto = dto;
+				dto.PagamentoUnificatoFatturaAcquistos.Add(dtoItem);
+			}
+
 	    }
 	
 	}
@@ -821,6 +841,7 @@ namespace WcfService.Assemblers
 			entity.Codice = dto.Codice;
 			entity.TipoPagamento = dto.TipoPagamento;
 			entity.Descrizione = dto.Descrizione;
+			entity.PagamentoUnificatoId = dto.PagamentoUnificatoId;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -839,6 +860,7 @@ namespace WcfService.Assemblers
 			dto.Codice = entity.Codice;
 			dto.TipoPagamento = entity.TipoPagamento;
 			dto.Descrizione = entity.Descrizione;
+			dto.PagamentoUnificatoId = entity.PagamentoUnificatoId;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -847,6 +869,9 @@ namespace WcfService.Assemblers
 	    {
 			FatturaAcquistoAssembler fatturaAcquistoAssembler = new FatturaAcquistoAssembler();
 			dto.FatturaAcquisto = fatturaAcquistoAssembler.Assemble(entity.FatturaAcquisto);
+
+			PagamentoUnificatoAssembler pagamentoUnificatoAssembler = new PagamentoUnificatoAssembler();
+			dto.PagamentoUnificato = pagamentoUnificatoAssembler.Assemble(entity.PagamentoUnificato);
 
 	    }
 	
@@ -1496,6 +1521,173 @@ namespace WcfService.Assemblers
 	
 	
 	public partial class ReportJobAssembler : ReportJobAssemblerBase, IReportJobAssembler
+	{
+	    
+	}
+	
+	public partial interface IPagamentoUnificatoAssembler : IAssembler<PagamentoUnificatoDto, PagamentoUnificato>
+	{ 
+	
+	}
+	
+	public partial class PagamentoUnificatoAssemblerBase : Assembler<PagamentoUnificatoDto, PagamentoUnificato>
+	{
+		/// <summary>
+	    /// Invoked after the PagamentoUnificatoDto instance is assembled.
+	    /// </summary>
+	    /// <param name="dto"><see cref="PagamentoUnificatoDto"/> The Dto instance.</param>
+		partial void OnDTOAssembled(PagamentoUnificatoDto dto);
+	
+		/// <summary>
+	    /// Invoked after the PagamentoUnificato instance is assembled.
+	    /// </summary>
+	    /// <param name="entity">The <see cref="PagamentoUnificato"/> instance.</param>
+		partial void OnEntityAssembled(PagamentoUnificato entity);
+		
+	    public override PagamentoUnificato Assemble(PagamentoUnificato entity, PagamentoUnificatoDto dto)
+	    {
+	        if (entity == null)
+	        {
+	            entity = new PagamentoUnificato();
+	        }
+			
+			entity.Id = dto.Id;
+			entity.Data = dto.Data;
+			entity.Importo = dto.Importo;
+			entity.Note = dto.Note;
+			entity.Codice = dto.Codice;
+			entity.TipoPagamento = dto.TipoPagamento;
+			entity.Descrizione = dto.Descrizione;
+			entity.FornitoreId = dto.FornitoreId;
+	        this.OnEntityAssembled(entity);
+	        return entity;
+	    }
+	
+	    public override PagamentoUnificatoDto Assemble(PagamentoUnificato entity)
+	    {
+	        PagamentoUnificatoDto dto = new PagamentoUnificatoDto();
+	        
+			ObjectKey key = KeyUtility.Instance.Create(entity);
+			dto.DtoKey = KeyUtility.Instance.Convert(key);
+			dto.Id = entity.Id;
+			dto.Data = entity.Data;
+			dto.Importo = entity.Importo;
+			dto.Note = entity.Note;
+			dto.Codice = entity.Codice;
+			dto.TipoPagamento = entity.TipoPagamento;
+			dto.Descrizione = entity.Descrizione;
+			dto.FornitoreId = entity.FornitoreId;
+			this.OnDTOAssembled(dto); 
+	        return dto;
+	    }
+	
+	    public override void AssembleReferences(PagamentoUnificato entity, PagamentoUnificatoDto dto)
+	    {
+			FornitoreAssembler fornitoreAssembler = new FornitoreAssembler();
+			dto.Fornitore = fornitoreAssembler.Assemble(entity.Fornitore);
+
+	    }
+	
+	    public override void AssembleCollections(PagamentoUnificato entity, PagamentoUnificatoDto dto)
+	    {
+			PagamentoAssembler pagamentoAssembler = new PagamentoAssembler();
+
+			dto.Pagamentos = new List<PagamentoDto>();
+			foreach (Pagamento item in entity.Pagamentos)
+			{
+				var dtoItem = pagamentoAssembler.Assemble(item);
+				dtoItem.PagamentoUnificato = dto;
+				dto.Pagamentos.Add(dtoItem);
+			}
+
+			PagamentoUnificatoFatturaAcquistoAssembler pagamentoUnificatoFatturaAcquistoAssembler = new PagamentoUnificatoFatturaAcquistoAssembler();
+
+			dto.PagamentoUnificatoFatturaAcquistos = new List<PagamentoUnificatoFatturaAcquistoDto>();
+			foreach (PagamentoUnificatoFatturaAcquisto item in entity.PagamentoUnificatoFatturaAcquistos)
+			{
+				var dtoItem = pagamentoUnificatoFatturaAcquistoAssembler.Assemble(item);
+				dtoItem.PagamentoUnificato = dto;
+				dto.PagamentoUnificatoFatturaAcquistos.Add(dtoItem);
+			}
+
+	    }
+	
+	}
+	
+	
+	public partial class PagamentoUnificatoAssembler : PagamentoUnificatoAssemblerBase, IPagamentoUnificatoAssembler
+	{
+	    
+	}
+	
+	public partial interface IPagamentoUnificatoFatturaAcquistoAssembler : IAssembler<PagamentoUnificatoFatturaAcquistoDto, PagamentoUnificatoFatturaAcquisto>
+	{ 
+	
+	}
+	
+	public partial class PagamentoUnificatoFatturaAcquistoAssemblerBase : Assembler<PagamentoUnificatoFatturaAcquistoDto, PagamentoUnificatoFatturaAcquisto>
+	{
+		/// <summary>
+	    /// Invoked after the PagamentoUnificatoFatturaAcquistoDto instance is assembled.
+	    /// </summary>
+	    /// <param name="dto"><see cref="PagamentoUnificatoFatturaAcquistoDto"/> The Dto instance.</param>
+		partial void OnDTOAssembled(PagamentoUnificatoFatturaAcquistoDto dto);
+	
+		/// <summary>
+	    /// Invoked after the PagamentoUnificatoFatturaAcquisto instance is assembled.
+	    /// </summary>
+	    /// <param name="entity">The <see cref="PagamentoUnificatoFatturaAcquisto"/> instance.</param>
+		partial void OnEntityAssembled(PagamentoUnificatoFatturaAcquisto entity);
+		
+	    public override PagamentoUnificatoFatturaAcquisto Assemble(PagamentoUnificatoFatturaAcquisto entity, PagamentoUnificatoFatturaAcquistoDto dto)
+	    {
+	        if (entity == null)
+	        {
+	            entity = new PagamentoUnificatoFatturaAcquisto();
+	        }
+			
+			entity.Id = dto.Id;
+			entity.FatturaAcquistoId = dto.FatturaAcquistoId;
+			entity.PagamentoUnificatoId = dto.PagamentoUnificatoId;
+			entity.Saldo = dto.Saldo;
+			entity.Note = dto.Note;
+	        this.OnEntityAssembled(entity);
+	        return entity;
+	    }
+	
+	    public override PagamentoUnificatoFatturaAcquistoDto Assemble(PagamentoUnificatoFatturaAcquisto entity)
+	    {
+	        PagamentoUnificatoFatturaAcquistoDto dto = new PagamentoUnificatoFatturaAcquistoDto();
+	        
+			ObjectKey key = KeyUtility.Instance.Create(entity);
+			dto.DtoKey = KeyUtility.Instance.Convert(key);
+			dto.Id = entity.Id;
+			dto.FatturaAcquistoId = entity.FatturaAcquistoId;
+			dto.PagamentoUnificatoId = entity.PagamentoUnificatoId;
+			dto.Saldo = entity.Saldo;
+			dto.Note = entity.Note;
+			this.OnDTOAssembled(dto); 
+	        return dto;
+	    }
+	
+	    public override void AssembleReferences(PagamentoUnificatoFatturaAcquisto entity, PagamentoUnificatoFatturaAcquistoDto dto)
+	    {
+			FatturaAcquistoAssembler fatturaAcquistoAssembler = new FatturaAcquistoAssembler();
+			dto.FatturaAcquisto = fatturaAcquistoAssembler.Assemble(entity.FatturaAcquisto);
+
+			PagamentoUnificatoAssembler pagamentoUnificatoAssembler = new PagamentoUnificatoAssembler();
+			dto.PagamentoUnificato = pagamentoUnificatoAssembler.Assemble(entity.PagamentoUnificato);
+
+	    }
+	
+	    public override void AssembleCollections(PagamentoUnificatoFatturaAcquisto entity, PagamentoUnificatoFatturaAcquistoDto dto)
+	    {
+	    }
+	
+	}
+	
+	
+	public partial class PagamentoUnificatoFatturaAcquistoAssembler : PagamentoUnificatoFatturaAcquistoAssemblerBase, IPagamentoUnificatoFatturaAcquistoAssembler
 	{
 	    
 	}

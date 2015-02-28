@@ -21,6 +21,8 @@ using Web.GUI.Fornitore;
 using Web.GUI.Liquidazione;
 using Web.GUI.Pagamento;
 using Web.GUI.SAL;
+using Web.GUI.PagamentoUnificato;
+using Web.GUI.PagamentoUnificatoFatturaAcquisto;
 
 namespace Web.GUI.Dashboard.Lavori
 {
@@ -87,6 +89,8 @@ namespace Web.GUI.Dashboard.Lavori
                 var dashboardFatturaAcquisto = new DashboardLavori("Fatture di acquisto", "FA", "Inserisci le fatture di acquisto per i fornitori, specificando i prodotti acquistati e i costi relativi...", "Images.dashboard.fatturaacquisto.png", "", typeof(FatturaAcquistoView));
                 var dashboardArticolo = new DashboardLavori("Articoli", "ART", "Inserisci gli articoli per le fattura di acquisto, specificandone le quantità, i costi e gli eventuali sconti relativi...", "Images.dashboard.articolo.png", "", typeof(ArticoloView));
                 var dashboardPagamento = new DashboardLavori("Pagamenti", "PAG", "Gestisci i pagamenti per le fattura inserite, controllando le scadenze, le passività e gli importi in dare/avere...", "Images.dashboard.pagamento.png", "", typeof(PagamentoView));
+                var dashboardPagamentoUnificato = new DashboardLavori("Pagamenti Unificati", "PU", "Gestisci i pagamenti unificati per i fornitori inseriti...", "Images.dashboard.pagamento.png", "", typeof(PagamentoUnificatoView));
+                var dashboardPagamentoUnificatoFatturaAcquisto = new DashboardLavori("Pagamenti Unificati - Fatture Acquisto", "PU/FA", "Associa i pagamenti alle fattura inserite...", "Images.dashboard.pagamento.png", "", typeof(PagamentoUnificatoFatturaAcquistoView));
                 var dashboardCliente = new DashboardLavori("Committenti", "CT", "Specifica i committenti per le commesse inserite nel sistema, definisci gli importi attribuiti ai vari SAL...", "Images.dashboard.cliente.png", "", typeof(ClienteView));
                 var dashboardFatturaVendita = new DashboardLavori("Fatture di vendita", "FV", "Inserisci le fatture di vendita per i committenti delle commesse, gestisci gli incassi e il conto economico...", "Images.dashboard.fatturavendita.png", "", typeof(FatturaVenditaView));
                 var dashboardLiquidazioni = new DashboardLavori("Incassi", "INC", "Gestisci gli incassi corrispondenti alle fatture di vendita per le commesse inserite nel sistema, visualizza i movimenti in dare/avere...", "Images.dashboard.liquidazione.png", "", typeof(LiquidazioneView));
@@ -98,6 +102,8 @@ namespace Web.GUI.Dashboard.Lavori
                 dashboards.Add(dashboardFatturaAcquisto);
                 dashboards.Add(dashboardArticolo);
                 dashboards.Add(dashboardPagamento);
+                dashboards.Add(dashboardPagamentoUnificato);
+                dashboards.Add(dashboardPagamentoUnificatoFatturaAcquisto);
                 dashboards.Add(dashboardCliente);
                 dashboards.Add(dashboardFatturaVendita);
                 dashboards.Add(dashboardLiquidazioni);

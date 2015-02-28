@@ -1413,6 +1413,204 @@ namespace WcfService
 	    
 	    #endregion
 	    
+	    #region PagamentoUnificatos CRUD Operations
+	
+	    /// <summary>
+	    /// Returns all pagamentounificatos.
+	    /// </summary>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<PagamentoUnificatoDto> ReadPagamentoUnificatos();
+	
+	    /// <summary>
+	    /// Returns a specified amount of pagamentounificatos from the given start index.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<PagamentoUnificatoDto> ReadPagamentoUnificatosPaged(int startIndex, int pageSize);
+	
+	    /// <summary>
+	    /// Returns all pagamentounificatos filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<PagamentoUnificatoDto> ReadPagamentoUnificatosFiltered(string sortExpression, string filterExpression);
+	
+	    /// <summary>
+	    /// Returns a specified amount of pagamentounificatos from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<PagamentoUnificatoDto> ReadPagamentoUnificatosPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression);
+	
+	    /// <summary>
+	    /// Returns a pagamentounificato with the specified dto key.
+	    /// </summary>
+	    /// <param name="dtoKey">The specified dto key value.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    PagamentoUnificatoDto ReadPagamentoUnificato(string dtoKey);
+	
+	    /// <summary>
+	    /// Returns all pagamentounificatos count.
+	    /// </summary>
+	    /// <returns></returns>
+	    [OperationContract]
+	    int PagamentoUnificatosCount();
+	
+	    /// <summary>
+	    /// Returns all pagamentounificatos count filtered by the specified filter expression.
+	    /// </summary>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    int PagamentoUnificatosCountFiltered(string filterExpression);
+	
+	    /// <summary>
+	    /// Adds a new pagamentounificato from the given dto object into the database.
+	    /// </summary>
+	    /// <param name="pagamentounificato">The dto object.</param>
+	    /// <returns>The dto key of the newly created pagamentounificato.</returns>
+	    [OperationContract]
+	    string CreatePagamentoUnificato(PagamentoUnificatoDto pagamentounificato);
+	
+	    /// <summary>
+	    /// Updates pagamentounificato in the database from the given dto object.
+	    /// </summary>
+	    /// <param name="pagamentounificato">The dto object.</param>
+	    [OperationContract]
+	    void UpdatePagamentoUnificato(PagamentoUnificatoDto pagamentounificato);
+	
+	    /// <summary>
+	    /// Update an existing pagamentounificatos in the database from the given dto object list.
+	    /// </summary>
+	    /// <param name="pagamentounificatos">The dto object list.</param>
+	    [OperationContract]
+	    void UpdatePagamentoUnificatos(IEnumerable<PagamentoUnificatoDto> pagamentounificatos);
+	
+	    /// <summary>
+	    /// Deletes pagamentounificato from the database by the given dto object.
+	    /// </summary>
+	    /// <param name="pagamentounificato">The dto object.</param>
+	    [OperationContract]
+	    void DeletePagamentoUnificato(PagamentoUnificatoDto pagamentounificato);
+	
+	    /// <summary>
+	    /// Delete pagamentounificatos from the database by the given dto object list.
+	    /// </summary>
+	    /// <param name="pagamentounificatos">The dto object list.</param>
+	    [OperationContract]
+	    void DeletePagamentoUnificatos(IEnumerable<PagamentoUnificatoDto> pagamentounificatos);
+	    
+	    #endregion
+	    
+	    #region PagamentoUnificatoFatturaAcquistos CRUD Operations
+	
+	    /// <summary>
+	    /// Returns all pagamentounificatofatturaacquistos.
+	    /// </summary>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<PagamentoUnificatoFatturaAcquistoDto> ReadPagamentoUnificatoFatturaAcquistos();
+	
+	    /// <summary>
+	    /// Returns a specified amount of pagamentounificatofatturaacquistos from the given start index.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<PagamentoUnificatoFatturaAcquistoDto> ReadPagamentoUnificatoFatturaAcquistosPaged(int startIndex, int pageSize);
+	
+	    /// <summary>
+	    /// Returns all pagamentounificatofatturaacquistos filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<PagamentoUnificatoFatturaAcquistoDto> ReadPagamentoUnificatoFatturaAcquistosFiltered(string sortExpression, string filterExpression);
+	
+	    /// <summary>
+	    /// Returns a specified amount of pagamentounificatofatturaacquistos from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<PagamentoUnificatoFatturaAcquistoDto> ReadPagamentoUnificatoFatturaAcquistosPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression);
+	
+	    /// <summary>
+	    /// Returns a pagamentounificatofatturaacquisto with the specified dto key.
+	    /// </summary>
+	    /// <param name="dtoKey">The specified dto key value.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    PagamentoUnificatoFatturaAcquistoDto ReadPagamentoUnificatoFatturaAcquisto(string dtoKey);
+	
+	    /// <summary>
+	    /// Returns all pagamentounificatofatturaacquistos count.
+	    /// </summary>
+	    /// <returns></returns>
+	    [OperationContract]
+	    int PagamentoUnificatoFatturaAcquistosCount();
+	
+	    /// <summary>
+	    /// Returns all pagamentounificatofatturaacquistos count filtered by the specified filter expression.
+	    /// </summary>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    int PagamentoUnificatoFatturaAcquistosCountFiltered(string filterExpression);
+	
+	    /// <summary>
+	    /// Adds a new pagamentounificatofatturaacquisto from the given dto object into the database.
+	    /// </summary>
+	    /// <param name="pagamentounificatofatturaacquisto">The dto object.</param>
+	    /// <returns>The dto key of the newly created pagamentounificatofatturaacquisto.</returns>
+	    [OperationContract]
+	    string CreatePagamentoUnificatoFatturaAcquisto(PagamentoUnificatoFatturaAcquistoDto pagamentounificatofatturaacquisto);
+	
+	    /// <summary>
+	    /// Updates pagamentounificatofatturaacquisto in the database from the given dto object.
+	    /// </summary>
+	    /// <param name="pagamentounificatofatturaacquisto">The dto object.</param>
+	    [OperationContract]
+	    void UpdatePagamentoUnificatoFatturaAcquisto(PagamentoUnificatoFatturaAcquistoDto pagamentounificatofatturaacquisto);
+	
+	    /// <summary>
+	    /// Update an existing pagamentounificatofatturaacquistos in the database from the given dto object list.
+	    /// </summary>
+	    /// <param name="pagamentounificatofatturaacquistos">The dto object list.</param>
+	    [OperationContract]
+	    void UpdatePagamentoUnificatoFatturaAcquistos(IEnumerable<PagamentoUnificatoFatturaAcquistoDto> pagamentounificatofatturaacquistos);
+	
+	    /// <summary>
+	    /// Deletes pagamentounificatofatturaacquisto from the database by the given dto object.
+	    /// </summary>
+	    /// <param name="pagamentounificatofatturaacquisto">The dto object.</param>
+	    [OperationContract]
+	    void DeletePagamentoUnificatoFatturaAcquisto(PagamentoUnificatoFatturaAcquistoDto pagamentounificatofatturaacquisto);
+	
+	    /// <summary>
+	    /// Delete pagamentounificatofatturaacquistos from the database by the given dto object list.
+	    /// </summary>
+	    /// <param name="pagamentounificatofatturaacquistos">The dto object list.</param>
+	    [OperationContract]
+	    void DeletePagamentoUnificatoFatturaAcquistos(IEnumerable<PagamentoUnificatoFatturaAcquistoDto> pagamentounificatofatturaacquistos);
+	    
+	    #endregion
+	    
 	    #region ReportJobs CRUD Operations
 	
 	    /// <summary>

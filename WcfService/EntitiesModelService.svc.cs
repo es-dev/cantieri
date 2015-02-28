@@ -2522,6 +2522,358 @@ namespace WcfService
 	    #endregion
 	    
 	    /// <summary>
+	    /// A general purpose generated service used for all CRUD operations against PagamentoUnificato entity.
+	    /// </summary>
+	    private IPagamentoUnificatoService pagamentounificatoservice;
+	    
+	    /// <summary>
+	    /// Gets or sets the general purpose generated service used for all CRUD operations against PagamentoUnificato entity.
+	    /// </summary>
+	    public virtual IPagamentoUnificatoService PagamentoUnificatoService
+	    {
+	        get
+	        {
+	            if (this.pagamentounificatoservice == null)
+	            {
+	                IPagamentoUnificatoAssembler assembler = new PagamentoUnificatoAssembler();
+	                IPagamentoUnificatoRepository repository = new PagamentoUnificatoRepository(this.UnitOfWork);
+	
+	                this.pagamentounificatoservice = new PagamentoUnificatoService(assembler, repository);
+	            }
+	            return this.pagamentounificatoservice;
+	        }
+	    }
+	        
+	    #region PagamentoUnificatos CRUD Operations
+	
+	    /// <summary>
+	    /// Returns all pagamentounificatos.
+	    /// </summary>
+	    /// <returns></returns>
+	    public IEnumerable<PagamentoUnificatoDto> ReadPagamentoUnificatos()	
+	    {
+	        return this.PagamentoUnificatoService.GetAll();
+	    }
+	
+	    /// <summary>
+	    /// Returns a specified amount of pagamentounificatos from the given start index.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <returns></returns>
+	    public IEnumerable<PagamentoUnificatoDto> ReadPagamentoUnificatosPaged(int startIndex, int pageSize)
+	    {
+	        return this.PagamentoUnificatoService.Find(startIndex, pageSize);
+	    }
+	
+	    /// <summary>
+	    /// Returns all pagamentounificatos filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public IEnumerable<PagamentoUnificatoDto> ReadPagamentoUnificatosFiltered(string sortExpression, string filterExpression)
+	    {
+	        return this.PagamentoUnificatoService.Find(sortExpression, filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Returns a specified amount of pagamentounificatos from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public IEnumerable<PagamentoUnificatoDto> ReadPagamentoUnificatosPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression)
+	    {
+	        return this.PagamentoUnificatoService.Find(startIndex, pageSize, sortExpression, filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Returns a pagamentounificato with the specified dto key.
+	    /// </summary>
+	    /// <param name="dtoKey">The specified dto key value.</param>
+	    /// <returns></returns>
+	    public PagamentoUnificatoDto ReadPagamentoUnificato(string dtoKey)
+	    {
+	        return this.PagamentoUnificatoService.GetByKey(dtoKey);
+	    }
+	    
+	    /// <summary>
+	    /// Returns all pagamentounificatos count.
+	    /// </summary>
+	    /// <returns></returns>
+	    public int PagamentoUnificatosCount()
+	    {
+	        return this.PagamentoUnificatoService.Count();
+	    }
+	    
+	    /// <summary>
+	    /// Returns all pagamentounificatos count filtered by the specified filter expression.
+	    /// </summary>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public int PagamentoUnificatosCountFiltered(string filterExpression)
+	    {
+	        return this.PagamentoUnificatoService.Count(filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Adds a new pagamentounificato from the given dto object into the database.
+	    /// </summary>
+	    /// <param name="pagamentounificato">The dto object.</param>
+	    /// <returns>The dto key of the newly created pagamentounificato.</returns>
+	    public string CreatePagamentoUnificato(PagamentoUnificatoDto pagamentounificato)
+	    {
+	        string key = this.PagamentoUnificatoService.Add(pagamentounificato);
+	        this.UnitOfWork.SaveChanges();
+	        return key;
+	    }
+	
+	    /// <summary>
+	    /// Updates an existing pagamentounificato in the database from the given dto object.
+	    /// </summary>
+	    /// <param name="pagamentounificato">The dto object.</param>
+	    public void UpdatePagamentoUnificato(PagamentoUnificatoDto pagamentounificato)
+	    {
+	        this.PagamentoUnificatoService.Update(pagamentounificato);
+	        this.UnitOfWork.SaveChanges();
+	    }
+	
+	    /// <summary>
+	    /// Update pagamentounificatos in the database from the given dto object list.
+	    /// </summary>
+	    /// <param name="pagamentounificatos">The dto object list.</param>
+	    public void UpdatePagamentoUnificatos(IEnumerable<PagamentoUnificatoDto> pagamentounificatos)
+	    {
+	        if (pagamentounificatos == null)
+	        {
+	            return;
+	        }
+	
+	        foreach (PagamentoUnificatoDto pagamentounificato in pagamentounificatos)
+	        {
+	            if (pagamentounificato == null)
+	            {
+	                continue;
+	            }
+	            
+	            this.UpdatePagamentoUnificato(pagamentounificato);
+	        }
+	    }
+	
+	    /// <summary>
+	    /// Deletes pagamentounificato from the database by the given dto object.
+	    /// </summary>
+	    /// <param name="pagamentounificato">The dto object.</param>
+	    public void DeletePagamentoUnificato(PagamentoUnificatoDto pagamentounificato)
+	    {
+	        this.PagamentoUnificatoService.Delete(pagamentounificato);
+	        this.UnitOfWork.SaveChanges();		
+	    }
+	
+	    /// <summary>
+	    /// Delete pagamentounificatos from the database by the given dto object list.
+	    /// </summary>
+	    /// <param name="pagamentounificatos">The dto object list.</param>
+	    public void DeletePagamentoUnificatos(IEnumerable<PagamentoUnificatoDto> pagamentounificatos)
+	    {
+	        if (pagamentounificatos == null)
+	        {
+	            return;
+	        }
+	
+	        foreach (PagamentoUnificatoDto pagamentounificato in pagamentounificatos)
+	        {
+	            if (pagamentounificato == null)
+	            {
+	                continue;
+	            }
+	            
+	            this.DeletePagamentoUnificato(pagamentounificato);
+	        }
+	    }
+	    
+	    #endregion
+	    
+	    /// <summary>
+	    /// A general purpose generated service used for all CRUD operations against PagamentoUnificatoFatturaAcquisto entity.
+	    /// </summary>
+	    private IPagamentoUnificatoFatturaAcquistoService pagamentounificatofatturaacquistoservice;
+	    
+	    /// <summary>
+	    /// Gets or sets the general purpose generated service used for all CRUD operations against PagamentoUnificatoFatturaAcquisto entity.
+	    /// </summary>
+	    public virtual IPagamentoUnificatoFatturaAcquistoService PagamentoUnificatoFatturaAcquistoService
+	    {
+	        get
+	        {
+	            if (this.pagamentounificatofatturaacquistoservice == null)
+	            {
+	                IPagamentoUnificatoFatturaAcquistoAssembler assembler = new PagamentoUnificatoFatturaAcquistoAssembler();
+	                IPagamentoUnificatoFatturaAcquistoRepository repository = new PagamentoUnificatoFatturaAcquistoRepository(this.UnitOfWork);
+	
+	                this.pagamentounificatofatturaacquistoservice = new PagamentoUnificatoFatturaAcquistoService(assembler, repository);
+	            }
+	            return this.pagamentounificatofatturaacquistoservice;
+	        }
+	    }
+	        
+	    #region PagamentoUnificatoFatturaAcquistos CRUD Operations
+	
+	    /// <summary>
+	    /// Returns all pagamentounificatofatturaacquistos.
+	    /// </summary>
+	    /// <returns></returns>
+	    public IEnumerable<PagamentoUnificatoFatturaAcquistoDto> ReadPagamentoUnificatoFatturaAcquistos()	
+	    {
+	        return this.PagamentoUnificatoFatturaAcquistoService.GetAll();
+	    }
+	
+	    /// <summary>
+	    /// Returns a specified amount of pagamentounificatofatturaacquistos from the given start index.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <returns></returns>
+	    public IEnumerable<PagamentoUnificatoFatturaAcquistoDto> ReadPagamentoUnificatoFatturaAcquistosPaged(int startIndex, int pageSize)
+	    {
+	        return this.PagamentoUnificatoFatturaAcquistoService.Find(startIndex, pageSize);
+	    }
+	
+	    /// <summary>
+	    /// Returns all pagamentounificatofatturaacquistos filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public IEnumerable<PagamentoUnificatoFatturaAcquistoDto> ReadPagamentoUnificatoFatturaAcquistosFiltered(string sortExpression, string filterExpression)
+	    {
+	        return this.PagamentoUnificatoFatturaAcquistoService.Find(sortExpression, filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Returns a specified amount of pagamentounificatofatturaacquistos from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public IEnumerable<PagamentoUnificatoFatturaAcquistoDto> ReadPagamentoUnificatoFatturaAcquistosPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression)
+	    {
+	        return this.PagamentoUnificatoFatturaAcquistoService.Find(startIndex, pageSize, sortExpression, filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Returns a pagamentounificatofatturaacquisto with the specified dto key.
+	    /// </summary>
+	    /// <param name="dtoKey">The specified dto key value.</param>
+	    /// <returns></returns>
+	    public PagamentoUnificatoFatturaAcquistoDto ReadPagamentoUnificatoFatturaAcquisto(string dtoKey)
+	    {
+	        return this.PagamentoUnificatoFatturaAcquistoService.GetByKey(dtoKey);
+	    }
+	    
+	    /// <summary>
+	    /// Returns all pagamentounificatofatturaacquistos count.
+	    /// </summary>
+	    /// <returns></returns>
+	    public int PagamentoUnificatoFatturaAcquistosCount()
+	    {
+	        return this.PagamentoUnificatoFatturaAcquistoService.Count();
+	    }
+	    
+	    /// <summary>
+	    /// Returns all pagamentounificatofatturaacquistos count filtered by the specified filter expression.
+	    /// </summary>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public int PagamentoUnificatoFatturaAcquistosCountFiltered(string filterExpression)
+	    {
+	        return this.PagamentoUnificatoFatturaAcquistoService.Count(filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Adds a new pagamentounificatofatturaacquisto from the given dto object into the database.
+	    /// </summary>
+	    /// <param name="pagamentounificatofatturaacquisto">The dto object.</param>
+	    /// <returns>The dto key of the newly created pagamentounificatofatturaacquisto.</returns>
+	    public string CreatePagamentoUnificatoFatturaAcquisto(PagamentoUnificatoFatturaAcquistoDto pagamentounificatofatturaacquisto)
+	    {
+	        string key = this.PagamentoUnificatoFatturaAcquistoService.Add(pagamentounificatofatturaacquisto);
+	        this.UnitOfWork.SaveChanges();
+	        return key;
+	    }
+	
+	    /// <summary>
+	    /// Updates an existing pagamentounificatofatturaacquisto in the database from the given dto object.
+	    /// </summary>
+	    /// <param name="pagamentounificatofatturaacquisto">The dto object.</param>
+	    public void UpdatePagamentoUnificatoFatturaAcquisto(PagamentoUnificatoFatturaAcquistoDto pagamentounificatofatturaacquisto)
+	    {
+	        this.PagamentoUnificatoFatturaAcquistoService.Update(pagamentounificatofatturaacquisto);
+	        this.UnitOfWork.SaveChanges();
+	    }
+	
+	    /// <summary>
+	    /// Update pagamentounificatofatturaacquistos in the database from the given dto object list.
+	    /// </summary>
+	    /// <param name="pagamentounificatofatturaacquistos">The dto object list.</param>
+	    public void UpdatePagamentoUnificatoFatturaAcquistos(IEnumerable<PagamentoUnificatoFatturaAcquistoDto> pagamentounificatofatturaacquistos)
+	    {
+	        if (pagamentounificatofatturaacquistos == null)
+	        {
+	            return;
+	        }
+	
+	        foreach (PagamentoUnificatoFatturaAcquistoDto pagamentounificatofatturaacquisto in pagamentounificatofatturaacquistos)
+	        {
+	            if (pagamentounificatofatturaacquisto == null)
+	            {
+	                continue;
+	            }
+	            
+	            this.UpdatePagamentoUnificatoFatturaAcquisto(pagamentounificatofatturaacquisto);
+	        }
+	    }
+	
+	    /// <summary>
+	    /// Deletes pagamentounificatofatturaacquisto from the database by the given dto object.
+	    /// </summary>
+	    /// <param name="pagamentounificatofatturaacquisto">The dto object.</param>
+	    public void DeletePagamentoUnificatoFatturaAcquisto(PagamentoUnificatoFatturaAcquistoDto pagamentounificatofatturaacquisto)
+	    {
+	        this.PagamentoUnificatoFatturaAcquistoService.Delete(pagamentounificatofatturaacquisto);
+	        this.UnitOfWork.SaveChanges();		
+	    }
+	
+	    /// <summary>
+	    /// Delete pagamentounificatofatturaacquistos from the database by the given dto object list.
+	    /// </summary>
+	    /// <param name="pagamentounificatofatturaacquistos">The dto object list.</param>
+	    public void DeletePagamentoUnificatoFatturaAcquistos(IEnumerable<PagamentoUnificatoFatturaAcquistoDto> pagamentounificatofatturaacquistos)
+	    {
+	        if (pagamentounificatofatturaacquistos == null)
+	        {
+	            return;
+	        }
+	
+	        foreach (PagamentoUnificatoFatturaAcquistoDto pagamentounificatofatturaacquisto in pagamentounificatofatturaacquistos)
+	        {
+	            if (pagamentounificatofatturaacquisto == null)
+	            {
+	                continue;
+	            }
+	            
+	            this.DeletePagamentoUnificatoFatturaAcquisto(pagamentounificatofatturaacquisto);
+	        }
+	    }
+	    
+	    #endregion
+	    
+	    /// <summary>
 	    /// A general purpose generated service used for all CRUD operations against ReportJob entity.
 	    /// </summary>
 	    private IReportJobService reportjobservice;

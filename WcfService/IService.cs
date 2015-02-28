@@ -268,6 +268,67 @@ namespace WcfService
         #endregion
         #endregion
 
+        #region PagamentoUnificato
+        #region CRUD
+        [OperationContract]
+        Dto.PagamentoUnificatoDto CreatePagamentoUnificato(Dto.PagamentoUnificatoDto pagamentoUnificato);
+
+        [OperationContract]
+        IEnumerable<Dto.PagamentoUnificatoDto> ReadPagamentiUnificati();
+
+        [OperationContract]
+        bool UpdatePagamentoUnificato(Dto.PagamentoUnificatoDto pagamentoUnificato);
+
+        [OperationContract]
+        bool DeletePagamentoUnificato(Dto.PagamentoUnificatoDto pagamentoUnificato);
+
+        [OperationContract]
+        int CountPagamentiUnificati();
+        #endregion
+
+        #region Custom
+        [OperationContract]
+        IEnumerable<Dto.PagamentoUnificatoDto> LoadPagamentiUnificati(int skip, int take, string search = null);
+
+        [OperationContract]
+        int CountPagamentiUnificati(string search = null);
+
+        [OperationContract]
+        Dto.PagamentoUnificatoDto ReadPagamentoUnificato(object id);
+        #endregion
+        #endregion
+
+        #region PagamentoUnificatoFatturaAcquisto
+        #region CRUD
+        [OperationContract]
+        Dto.PagamentoUnificatoFatturaAcquistoDto CreatePagamentoUnificatoFatturaAcquisto(Dto.PagamentoUnificatoFatturaAcquistoDto pagamentoUnificatoFatturaAcquisto);
+
+        [OperationContract]
+        IEnumerable<Dto.PagamentoUnificatoFatturaAcquistoDto> ReadPagamentiUnificatiFatturaAcquisto();
+
+        [OperationContract]
+        bool UpdatePagamentoUnificatoFatturaAcquisto(Dto.PagamentoUnificatoFatturaAcquistoDto pagamentoUnificatoFatturaAcquisto);
+
+        [OperationContract]
+        bool DeletePagamentoUnificatoFatturaAcquisto(Dto.PagamentoUnificatoFatturaAcquistoDto pagamentoUnificatoFatturaAcquisto);
+
+        [OperationContract]
+        int CountPagamentiUnificatiFatturaAcquisto();
+        #endregion
+
+        #region Custom
+        [OperationContract]
+        IEnumerable<Dto.PagamentoUnificatoFatturaAcquistoDto> LoadPagamentiUnificatiFatturaAcquisto(int skip, int take, string search = null);
+
+        [OperationContract]
+        int CountPagamentiUnificatiFatturaAcquisto(string search = null);
+
+        [OperationContract]
+        Dto.PagamentoUnificatoFatturaAcquistoDto ReadPagamentoUnificatoFatturaAcquisto(object id);
+        #endregion
+        #endregion
+
+
         #region Cliente
         #region CRUD
         [OperationContract]

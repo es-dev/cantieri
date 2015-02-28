@@ -128,6 +128,19 @@ namespace DataLayer
 			}
 		}
 		
+		private int? _pagamentoUnificatoId;
+		public virtual int? PagamentoUnificatoId
+		{
+			get
+			{
+				return this._pagamentoUnificatoId;
+			}
+			set
+			{
+				this._pagamentoUnificatoId = value;
+			}
+		}
+		
 		private FatturaAcquisto _fatturaAcquisto;
 		public virtual FatturaAcquisto FatturaAcquisto
 		{
@@ -138,6 +151,19 @@ namespace DataLayer
 			set
 			{
 				this._fatturaAcquisto = value;
+			}
+		}
+		
+		private PagamentoUnificato _pagamentoUnificato;
+		public virtual PagamentoUnificato PagamentoUnificato
+		{
+			get
+			{
+				return this._pagamentoUnificato;
+			}
+			set
+			{
+				this._pagamentoUnificato = value;
 			}
 		}
 		

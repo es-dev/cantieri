@@ -251,13 +251,14 @@ namespace WcfService.Dto
 	[DataContract(IsReference = true)]
 	[KnownType(typeof(CommessaDto))]
 	[KnownType(typeof(FatturaAcquistoDto))]
+	[KnownType(typeof(PagamentoUnificatoDto))]
 	public partial class FornitoreDto : IDtoWithKey
 	{
 		public FornitoreDto()
 		{
 		}
 		
-		public FornitoreDto(int _id, int _commessaId, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _partitaIva, string _codice, string _codiceCatastale, decimal? _totaleFattureAcquisto, string _stato, decimal? _totalePagamenti, string _localita, string _note, CommessaDto _commessa, IList<FatturaAcquistoDto> _fatturaAcquistos)
+		public FornitoreDto(int _id, int _commessaId, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _telefono, string _mobile, string _fax, string _email, string _partitaIva, string _codice, string _codiceCatastale, decimal? _totaleFattureAcquisto, string _stato, decimal? _totalePagamenti, string _localita, string _note, CommessaDto _commessa, IList<FatturaAcquistoDto> _fatturaAcquistos, IList<PagamentoUnificatoDto> _pagamentoUnificatos)
 		{
 			this.Id = _id;
 			this.CommessaId = _commessaId;
@@ -280,6 +281,7 @@ namespace WcfService.Dto
 			this.Note = _note;
 			this.Commessa = _commessa;
 			this.FatturaAcquistos = _fatturaAcquistos;
+			this.PagamentoUnificatos = _pagamentoUnificatos;
 		}
 		
 		[DataMember]
@@ -347,6 +349,9 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual IList<FatturaAcquistoDto> FatturaAcquistos { get;set; }
+
+		[DataMember]
+		public virtual IList<PagamentoUnificatoDto> PagamentoUnificatos { get;set; }
 
 	}
 	
@@ -490,13 +495,14 @@ namespace WcfService.Dto
 	[KnownType(typeof(FornitoreDto))]
 	[KnownType(typeof(ArticoloDto))]
 	[KnownType(typeof(PagamentoDto))]
+	[KnownType(typeof(PagamentoUnificatoFatturaAcquistoDto))]
 	public partial class FatturaAcquistoDto : IDtoWithKey
 	{
 		public FatturaAcquistoDto()
 		{
 		}
 		
-		public FatturaAcquistoDto(int _id, int _fornitoreId, DateTime? _data, string _numero, string _tipoPagamento, string _descrizione, decimal? _imponibile, decimal? _iVA, decimal? _totale, string _scadenzaPagamento, int _centroCostoId, decimal? _totalePagamenti, string _stato, string _note, CentroCostoDto _centroCosto, FornitoreDto _fornitore, IList<ArticoloDto> _articolos, IList<PagamentoDto> _pagamentos)
+		public FatturaAcquistoDto(int _id, int _fornitoreId, DateTime? _data, string _numero, string _tipoPagamento, string _descrizione, decimal? _imponibile, decimal? _iVA, decimal? _totale, string _scadenzaPagamento, int _centroCostoId, decimal? _totalePagamenti, string _stato, string _note, CentroCostoDto _centroCosto, FornitoreDto _fornitore, IList<ArticoloDto> _articolos, IList<PagamentoDto> _pagamentos, IList<PagamentoUnificatoFatturaAcquistoDto> _pagamentoUnificatoFatturaAcquistos)
 		{
 			this.Id = _id;
 			this.FornitoreId = _fornitoreId;
@@ -516,6 +522,7 @@ namespace WcfService.Dto
 			this.Fornitore = _fornitore;
 			this.Articolos = _articolos;
 			this.Pagamentos = _pagamentos;
+			this.PagamentoUnificatoFatturaAcquistos = _pagamentoUnificatoFatturaAcquistos;
 		}
 		
 		[DataMember]
@@ -574,6 +581,9 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual IList<PagamentoDto> Pagamentos { get;set; }
+
+		[DataMember]
+		public virtual IList<PagamentoUnificatoFatturaAcquistoDto> PagamentoUnificatoFatturaAcquistos { get;set; }
 
 	}
 	
@@ -648,13 +658,14 @@ namespace WcfService.Dto
 	
 	[DataContract(IsReference = true)]
 	[KnownType(typeof(FatturaAcquistoDto))]
+	[KnownType(typeof(PagamentoUnificatoDto))]
 	public partial class PagamentoDto : IDtoWithKey
 	{
 		public PagamentoDto()
 		{
 		}
 		
-		public PagamentoDto(int _id, int _fatturaAcquistoId, DateTime? _data, decimal? _importo, string _note, string _codice, string _tipoPagamento, string _descrizione, FatturaAcquistoDto _fatturaAcquisto)
+		public PagamentoDto(int _id, int _fatturaAcquistoId, DateTime? _data, decimal? _importo, string _note, string _codice, string _tipoPagamento, string _descrizione, int? _pagamentoUnificatoId, FatturaAcquistoDto _fatturaAcquisto, PagamentoUnificatoDto _pagamentoUnificato)
 		{
 			this.Id = _id;
 			this.FatturaAcquistoId = _fatturaAcquistoId;
@@ -664,7 +675,9 @@ namespace WcfService.Dto
 			this.Codice = _codice;
 			this.TipoPagamento = _tipoPagamento;
 			this.Descrizione = _descrizione;
+			this.PagamentoUnificatoId = _pagamentoUnificatoId;
 			this.FatturaAcquisto = _fatturaAcquisto;
+			this.PagamentoUnificato = _pagamentoUnificato;
 		}
 		
 		[DataMember]
@@ -695,7 +708,13 @@ namespace WcfService.Dto
 		public virtual string Descrizione { get;set; }
 
 		[DataMember]
+		public virtual int? PagamentoUnificatoId { get;set; }
+
+		[DataMember]
 		public virtual FatturaAcquistoDto FatturaAcquisto { get;set; }
+
+		[DataMember]
+		public virtual PagamentoUnificatoDto PagamentoUnificato { get;set; }
 
 	}
 	
@@ -1185,6 +1204,115 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual string NomeFile { get;set; }
+
+	}
+	
+	[DataContract(IsReference = true)]
+	[KnownType(typeof(FornitoreDto))]
+	[KnownType(typeof(PagamentoDto))]
+	[KnownType(typeof(PagamentoUnificatoFatturaAcquistoDto))]
+	public partial class PagamentoUnificatoDto : IDtoWithKey
+	{
+		public PagamentoUnificatoDto()
+		{
+		}
+		
+		public PagamentoUnificatoDto(int _id, DateTime? _data, decimal? _importo, string _note, string _codice, string _tipoPagamento, string _descrizione, int _fornitoreId, FornitoreDto _fornitore, IList<PagamentoDto> _pagamentos, IList<PagamentoUnificatoFatturaAcquistoDto> _pagamentoUnificatoFatturaAcquistos)
+		{
+			this.Id = _id;
+			this.Data = _data;
+			this.Importo = _importo;
+			this.Note = _note;
+			this.Codice = _codice;
+			this.TipoPagamento = _tipoPagamento;
+			this.Descrizione = _descrizione;
+			this.FornitoreId = _fornitoreId;
+			this.Fornitore = _fornitore;
+			this.Pagamentos = _pagamentos;
+			this.PagamentoUnificatoFatturaAcquistos = _pagamentoUnificatoFatturaAcquistos;
+		}
+		
+		[DataMember]
+		public virtual string DtoKey { get; set; }
+		
+		[DataMember]
+		public virtual int Id { get;set; }
+
+		[DataMember]
+		public virtual DateTime? Data { get;set; }
+
+		[DataMember]
+		public virtual decimal? Importo { get;set; }
+
+		[DataMember]
+		public virtual string Note { get;set; }
+
+		[DataMember]
+		public virtual string Codice { get;set; }
+
+		[DataMember]
+		public virtual string TipoPagamento { get;set; }
+
+		[DataMember]
+		public virtual string Descrizione { get;set; }
+
+		[DataMember]
+		public virtual int FornitoreId { get;set; }
+
+		[DataMember]
+		public virtual FornitoreDto Fornitore { get;set; }
+
+		[DataMember]
+		public virtual IList<PagamentoDto> Pagamentos { get;set; }
+
+		[DataMember]
+		public virtual IList<PagamentoUnificatoFatturaAcquistoDto> PagamentoUnificatoFatturaAcquistos { get;set; }
+
+	}
+	
+	[DataContract(IsReference = true)]
+	[KnownType(typeof(FatturaAcquistoDto))]
+	[KnownType(typeof(PagamentoUnificatoDto))]
+	public partial class PagamentoUnificatoFatturaAcquistoDto : IDtoWithKey
+	{
+		public PagamentoUnificatoFatturaAcquistoDto()
+		{
+		}
+		
+		public PagamentoUnificatoFatturaAcquistoDto(int _id, int _fatturaAcquistoId, int _pagamentoUnificatoId, decimal? _saldo, string _note, FatturaAcquistoDto _fatturaAcquisto, PagamentoUnificatoDto _pagamentoUnificato)
+		{
+			this.Id = _id;
+			this.FatturaAcquistoId = _fatturaAcquistoId;
+			this.PagamentoUnificatoId = _pagamentoUnificatoId;
+			this.Saldo = _saldo;
+			this.Note = _note;
+			this.FatturaAcquisto = _fatturaAcquisto;
+			this.PagamentoUnificato = _pagamentoUnificato;
+		}
+		
+		[DataMember]
+		public virtual string DtoKey { get; set; }
+		
+		[DataMember]
+		public virtual int Id { get;set; }
+
+		[DataMember]
+		public virtual int FatturaAcquistoId { get;set; }
+
+		[DataMember]
+		public virtual int PagamentoUnificatoId { get;set; }
+
+		[DataMember]
+		public virtual decimal? Saldo { get;set; }
+
+		[DataMember]
+		public virtual string Note { get;set; }
+
+		[DataMember]
+		public virtual FatturaAcquistoDto FatturaAcquisto { get;set; }
+
+		[DataMember]
+		public virtual PagamentoUnificatoDto PagamentoUnificato { get;set; }
 
 	}
 	

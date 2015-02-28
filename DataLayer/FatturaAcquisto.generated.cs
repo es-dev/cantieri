@@ -250,6 +250,15 @@ namespace DataLayer
 			}
 		}
 		
+		private IList<PagamentoUnificatoFatturaAcquisto> _pagamentoUnificatoFatturaAcquistos = new List<PagamentoUnificatoFatturaAcquisto>();
+		public virtual IList<PagamentoUnificatoFatturaAcquisto> PagamentoUnificatoFatturaAcquistos
+		{
+			get
+			{
+				return this._pagamentoUnificatoFatturaAcquistos;
+			}
+		}
+		
 	}
 }
 #pragma warning restore 1591

@@ -274,5 +274,31 @@ namespace WcfService.Repositories
 	    {
 	    }
 	}
+	
+	public partial interface IPagamentoUnificatoRepository : IRepository<PagamentoUnificato>
+	{ 
+	
+	}
+	
+	public partial class PagamentoUnificatoRepository : Repository<PagamentoUnificato>, IPagamentoUnificatoRepository
+	{
+	    public PagamentoUnificatoRepository(IEntitiesModelUnitOfWork unitOfWork)
+	        : base(unitOfWork)
+	    {
+	    }
+	}
+	
+	public partial interface IPagamentoUnificatoFatturaAcquistoRepository : IRepository<PagamentoUnificatoFatturaAcquisto>
+	{ 
+	
+	}
+	
+	public partial class PagamentoUnificatoFatturaAcquistoRepository : Repository<PagamentoUnificatoFatturaAcquisto>, IPagamentoUnificatoFatturaAcquistoRepository
+	{
+	    public PagamentoUnificatoFatturaAcquistoRepository(IEntitiesModelUnitOfWork unitOfWork)
+	        : base(unitOfWork)
+	    {
+	    }
+	}
 }
 #pragma warning restore 1591

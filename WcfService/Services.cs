@@ -397,5 +397,33 @@ namespace WcfService.Services
 	
 	    }
 	}
+	
+	public partial interface IPagamentoUnificatoService : IService<PagamentoUnificatoDto, PagamentoUnificato>
+	{
+	
+	}
+	
+	public partial class PagamentoUnificatoService : Service<PagamentoUnificatoDto, PagamentoUnificato>, IPagamentoUnificatoService
+	{
+	    public PagamentoUnificatoService(IPagamentoUnificatoAssembler assembler, IPagamentoUnificatoRepository repository)
+	        : base(assembler, repository)
+	    {
+	
+	    }
+	}
+	
+	public partial interface IPagamentoUnificatoFatturaAcquistoService : IService<PagamentoUnificatoFatturaAcquistoDto, PagamentoUnificatoFatturaAcquisto>
+	{
+	
+	}
+	
+	public partial class PagamentoUnificatoFatturaAcquistoService : Service<PagamentoUnificatoFatturaAcquistoDto, PagamentoUnificatoFatturaAcquisto>, IPagamentoUnificatoFatturaAcquistoService
+	{
+	    public PagamentoUnificatoFatturaAcquistoService(IPagamentoUnificatoFatturaAcquistoAssembler assembler, IPagamentoUnificatoFatturaAcquistoRepository repository)
+	        : base(assembler, repository)
+	    {
+	
+	    }
+	}
 }
 #pragma warning restore 1591

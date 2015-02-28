@@ -314,7 +314,6 @@ namespace WcfService
         #endregion
         #endregion
 
-
         #region Commessa
         #region CRUD
         public Dto.CommessaDto CreateCommessa(Dto.CommessaDto commessa)
@@ -1332,6 +1331,315 @@ namespace WcfService
        
         #endregion
         #endregion
+
+        #region PagamentoUnificato
+        #region CRUD
+        public Dto.PagamentoUnificatoDto CreatePagamentoUnificato(Dto.PagamentoUnificatoDto pagamentoUnificato)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var dtoKey = wcf.CreatePagamentoUnificato(pagamentoUnificato);
+                var newPagamentoUnificato = wcf.ReadPagamentoUnificato(dtoKey);
+                return newPagamentoUnificato;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<Dto.PagamentoUnificatoDto> ReadPagamentiUnificati()
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var pagamentiUnificati = wcf.ReadPagamentoUnificatos();
+                return pagamentiUnificati;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public bool UpdatePagamentoUnificato(Dto.PagamentoUnificatoDto pagamentoUnificato)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                wcf.UpdatePagamentoUnificato(pagamentoUnificato);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
+        }
+
+        public bool DeletePagamentoUnificato(Dto.PagamentoUnificatoDto pagamentoUnificato)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                wcf.DeletePagamentoUnificato(pagamentoUnificato);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
+        }
+
+        public int CountPagamentiUnificati()
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var count = wcf.PagamentoUnificatosCount();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+        #endregion
+        #region Custom
+        public IEnumerable<Dto.PagamentoUnificatoDto> LoadPagamentiUnificati(int skip, int take, string search = null)
+        {
+            try
+            {
+                var pagamentiUnificati = QueryPagamentiUnificati(search);
+                pagamentiUnificati = (from q in pagamentiUnificati select q).Skip(skip).Take(take);
+
+                var pagamentiUnificatiDto = UtilityPOCO.Assemble<Dto.PagamentoUnificatoDto>(pagamentiUnificati);
+                return pagamentiUnificatiDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public int CountPagamentiUnificati(string search = null)
+        {
+            try
+            {
+                var pagamentiUnificati = QueryPagamentiUnificati(search);
+                var count = pagamentiUnificati.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public Dto.PagamentoUnificatoDto ReadPagamentoUnificato(object id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var pagamentoUnificato = wcf.ReadPagamentoUnificato("Id=" + id);
+                return pagamentoUnificato;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private IQueryable<DataLayer.PagamentoUnificato > QueryPagamentiUnificati(string search)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var pagamentiUnificati = (from q in ef.PagamentoUnificatos select q);
+                if (search != null && search.Length > 0)
+                {
+                    var fornitoreId = (from f in QueryFornitori(search) select f.Id).ToList();
+                    pagamentiUnificati = (from q in pagamentiUnificati
+                                 where q.Note.Contains(search) ||
+                                     fornitoreId.Contains(q.FornitoreId)
+                                 select q);
+                }
+                pagamentiUnificati = (from q in pagamentiUnificati orderby q.Note select q);
+                return pagamentiUnificati;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+
+        #endregion
+        #endregion
+
+        #region PagamentoUnificatoFatturaAcquisto
+        #region CRUD
+        public Dto.PagamentoUnificatoFatturaAcquistoDto CreatePagamentoUnificatoFatturaAcquisto(Dto.PagamentoUnificatoFatturaAcquistoDto pagamentoUnificatoFatturaAcquisto)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var dtoKey = wcf.CreatePagamentoUnificatoFatturaAcquisto(pagamentoUnificatoFatturaAcquisto);
+                var newPagamentoUnificato = wcf.ReadPagamentoUnificatoFatturaAcquisto(dtoKey);
+                return newPagamentoUnificato;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<Dto.PagamentoUnificatoFatturaAcquistoDto> ReadPagamentiUnificatiFatturaAcquisto()
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var pagamentiUnificatiFatturaAcquisto = wcf.ReadPagamentoUnificatoFatturaAcquistos();
+                return pagamentiUnificatiFatturaAcquisto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public bool UpdatePagamentoUnificatoFatturaAcquisto(Dto.PagamentoUnificatoFatturaAcquistoDto pagamentoUnificatoFatturaAcquisto)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                wcf.UpdatePagamentoUnificatoFatturaAcquisto(pagamentoUnificatoFatturaAcquisto);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
+        }
+
+        public bool DeletePagamentoUnificatoFatturaAcquisto(Dto.PagamentoUnificatoFatturaAcquistoDto pagamentoUnificatoFatturaAcquisto)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                wcf.DeletePagamentoUnificatoFatturaAcquisto(pagamentoUnificatoFatturaAcquisto);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
+        }
+
+        public int CountPagamentiUnificatiFatturaAcquisto()
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var count = wcf.PagamentoUnificatoFatturaAcquistosCount();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+        #endregion
+        #region Custom
+        public IEnumerable<Dto.PagamentoUnificatoFatturaAcquistoDto> LoadPagamentiUnificatiFatturaAcquisto(int skip, int take, string search = null)
+        {
+            try
+            {
+                var pagamentiUnificatiFatturaAcquisto = QueryPagamentiUnificatiFatturaAcquisto(search);
+                pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto select q).Skip(skip).Take(take);
+
+                var pagamentiUnificatiFatturaAcquistoDto = UtilityPOCO.Assemble<Dto.PagamentoUnificatoFatturaAcquistoDto>(pagamentiUnificatiFatturaAcquisto);
+                return pagamentiUnificatiFatturaAcquistoDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public int CountPagamentiUnificatiFatturaAcquisto(string search = null)
+        {
+            try
+            {
+                var pagamentiUnificatiFatturaAcquisto = QueryPagamentiUnificatiFatturaAcquisto(search);
+                var count = pagamentiUnificatiFatturaAcquisto.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public Dto.PagamentoUnificatoFatturaAcquistoDto ReadPagamentoUnificatoFatturaAcquisto(object id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var pagamentoUnificatoFatturaAcquisto = wcf.ReadPagamentoUnificatoFatturaAcquisto("Id=" + id);
+                return pagamentoUnificatoFatturaAcquisto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private IQueryable<DataLayer.PagamentoUnificatoFatturaAcquisto> QueryPagamentiUnificatiFatturaAcquisto(string search)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var pagamentiUnificatiFatturaAcquisto = (from q in ef.PagamentoUnificatoFatturaAcquistos select q);
+                if (search != null && search.Length > 0)
+                {
+                    var fatturaAcquistoId = (from f in QueryFattureAcquisto(search) select f.Id).ToList();
+                    pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto
+                                          where q.Note.Contains(search) ||
+                                              fatturaAcquistoId.Contains(q.FatturaAcquistoId)
+                                          select q);
+                }
+                pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto orderby q.Note select q);
+                return pagamentiUnificatiFatturaAcquisto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+
+        #endregion
+        #endregion
+
 
         #region Cliente
         #region CRUD
@@ -2565,8 +2873,6 @@ namespace WcfService
 
         #endregion
         #endregion
-
-
-
+        
     }
 }

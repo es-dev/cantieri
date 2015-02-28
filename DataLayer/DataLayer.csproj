@@ -129,6 +129,12 @@
     <Compile Include="Pagamento.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
+    <Compile Include="PagamentoUnificato.generated.cs">
+      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="PagamentoUnificatoFatturaAcquisto.generated.cs">
+      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportJob.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
@@ -153,6 +159,9 @@
       <Project>{67131adf-23de-46cf-888b-9afd6f648405}</Project>
       <Name>ES.Library</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ESCantieriConnection%282015-02-28 16-20-00%29.rlinq.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

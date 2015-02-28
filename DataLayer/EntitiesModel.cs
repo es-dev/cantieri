@@ -178,6 +178,22 @@ namespace DataLayer
 			}
 		}
 		
+		public IQueryable<PagamentoUnificato> PagamentoUnificatos 
+		{
+			get
+			{
+				return this.GetAll<PagamentoUnificato>();
+			}
+		}
+		
+		public IQueryable<PagamentoUnificatoFatturaAcquisto> PagamentoUnificatoFatturaAcquistos 
+		{
+			get
+			{
+				return this.GetAll<PagamentoUnificatoFatturaAcquisto>();
+			}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -261,6 +277,14 @@ namespace DataLayer
 			get;
 		}
 		IQueryable<ReportJob> ReportJobs
+		{
+			get;
+		}
+		IQueryable<PagamentoUnificato> PagamentoUnificatos
+		{
+			get;
+		}
+		IQueryable<PagamentoUnificatoFatturaAcquisto> PagamentoUnificatoFatturaAcquistos
 		{
 			get;
 		}
