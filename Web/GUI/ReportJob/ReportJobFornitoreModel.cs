@@ -215,17 +215,19 @@ namespace Web.GUI.ReportJob
                     
                     //totali fornitore
                     var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
-                    var fornitori = viewModelFornitore.ReadFornitori(codiceFornitore).ToList();
-                    AddReportTotaliFornitore(elaborazione, fornitori, report);
+                    var fornitori = viewModelFornitore.ReadFornitori(codiceFornitore);
+                    AddReportTotaliFornitore(elaborazione, fornitori.ToList(), report);
 
                     //totali per commessa
                     var tableCommesse = new UtilityReport.Table("Commessa", "TotaleImponibile", "TotaleIVA", "TotaleFatture", "TotalePagamentiDato", "TotalePagamentiDare");
                     var tableFatture = new UtilityReport.Table("Numero", "Data", "Scadenza", "Descrizione", "Imponibile", "IVA", "Totale", "TotalePagamentiDato", "TotalePagamentiDare");
                     foreach (var fornitore in fornitori)
                     {
-                        AddReportCommessaFornitore(elaborazione, tableCommesse, fornitore);
+                        var commessa = fornitore.Commessa;
+                        AddReportCommessaFornitore(elaborazione, tableCommesse, fornitore, commessa);
 
                         //totali per fattura
+                        tableFatture.AddRow(commessa.Codice, "", "", "", "", "", "", "", "");
                         var fattureAcquisto = fornitore.FatturaAcquistos;
                         foreach (var fatturaAcquisto in fattureAcquisto)
                             AddReportFatturaAcquistoFornitore(elaborazione, tableFatture, fatturaAcquisto);
@@ -240,7 +242,6 @@ namespace Web.GUI.ReportJob
                         string url = UtilityWeb.GetRootUrl(Context) + @"/Resources/Reports/"+fileName;
                         editNomeFile.Url = url;
                         editNomeFile.Value = fileName;
-
                     }
                 }
             }
@@ -292,11 +293,10 @@ namespace Web.GUI.ReportJob
             }
         }
 
-        private static void AddReportCommessaFornitore(DateTime elaborazione, UtilityReport.Table tableCommesse, FornitoreDto fornitore)
+        private static void AddReportCommessaFornitore(DateTime elaborazione, UtilityReport.Table tableCommesse, FornitoreDto fornitore, CommessaDto commessa)
         {
             try
             {
-                var commessa = fornitore.Commessa;
                 var _commessa = commessa.Codice + " - " + commessa.Denominazione;
                 var totaleImponibile = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleImponibile(fornitore, elaborazione));
                 var totaleIVA = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleIVA(fornitore, elaborazione));
