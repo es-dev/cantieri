@@ -26,8 +26,8 @@ namespace Web.GUI.Azienda
                 {
                     var obj = (WcfService.Dto.AziendaDto)model;
                     var codice = UtilityValidation.GetStringND(obj.Codice);
-                    var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
-                    infoSubtitle.Text = codice + " - " + denominazione;
+                    var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
+                    infoSubtitle.Text = codice + " - " + ragioneSociale;
                     infoSubtitleImage.Image = "Images.dashboard.azienda.png";
                 }
             }
@@ -45,7 +45,7 @@ namespace Web.GUI.Azienda
                 {
                     var obj = (WcfService.Dto.AziendaDto)model;
                     editCodice.Value = obj.Codice;
-                    editDenominazione.Value = obj.Denominazione;
+                    editRagioneSociale.Value = obj.RagioneSociale;
                     editCAP.Value = obj.CAP;
                     editComune.Value = new Countries.City(obj.Comune, obj.CodiceCatastale, obj.Provincia);
                     editIndirizzo.Value = obj.Indirizzo;
@@ -72,7 +72,7 @@ namespace Web.GUI.Azienda
                 {
                     var obj = (WcfService.Dto.AziendaDto)model;
                     obj.Codice = editCodice.Value;
-                    obj.Denominazione = editDenominazione.Value;
+                    obj.RagioneSociale = editRagioneSociale.Value;
                     obj.CAP = editCAP.Value;
                     obj.Comune = editComune.Value.Description;
                     obj.CodiceCatastale = editComune.Value.Code;

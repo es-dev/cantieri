@@ -270,11 +270,11 @@ namespace Web.GUI.Tools
                         azienda.CodiceCatastale = comune.Code;
                         azienda.Provincia = comune.County;
                         viewModel.Save(azienda, false);
-                        AddLog("Azienda " + azienda.Denominazione + " aggiornata con successo ... OK");
+                        AddLog("Azienda " + azienda.RagioneSociale + " aggiornata con successo ... OK");
                     }
                     else
                     {
-                        AddLog("Azienda " + azienda.Denominazione + " non aggiornata, comune " + azienda.Comune + " non trovato... ERROR");
+                        AddLog("Azienda " + azienda.RagioneSociale + " non aggiornata, comune " + azienda.Comune + " non trovato... ERROR");
                         warning = true;
                     }
                 }

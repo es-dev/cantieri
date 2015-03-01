@@ -29,7 +29,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                     var saldo = UtilityValidation.GetEuro(obj.Saldo);
                     var fatturaAcquisto = obj.FatturaAcquisto;
                     var pagamentoUnificato = obj.PagamentoUnificato;
-                    infoImage.Image = "Images.dashboard.pagamento.png";
+                    infoImage.Image = "Images.dashboard.pagamentounificatofatturaacquisto.png";
                     infoCodice.Text = "PU/FA";
                     infoNote.Text = obj.Note;
                     infoImporto.Text = "Importo: " + saldo;

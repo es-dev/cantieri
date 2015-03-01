@@ -95,7 +95,7 @@ namespace WcfService.Assemblers
 	        }
 			
 			entity.Id = dto.Id;
-			entity.Denominazione = dto.Denominazione;
+			entity.RagioneSociale = dto.RagioneSociale;
 			entity.Indirizzo = dto.Indirizzo;
 			entity.CAP = dto.CAP;
 			entity.Comune = dto.Comune;
@@ -120,7 +120,7 @@ namespace WcfService.Assemblers
 			ObjectKey key = KeyUtility.Instance.Create(entity);
 			dto.DtoKey = KeyUtility.Instance.Convert(key);
 			dto.Id = entity.Id;
-			dto.Denominazione = entity.Denominazione;
+			dto.RagioneSociale = entity.RagioneSociale;
 			dto.Indirizzo = entity.Indirizzo;
 			dto.CAP = entity.CAP;
 			dto.Comune = entity.Comune;

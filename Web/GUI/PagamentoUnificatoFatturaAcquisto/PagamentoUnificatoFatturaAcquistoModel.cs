@@ -35,7 +35,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                 var obj = (PagamentoUnificatoFatturaAcquistoDto)model;
                 var codice = "PU/FA";
                 infoSubtitle.Text = codice;
-                infoSubtitleImage.Image = "Images.dashboard.pagamento.png";
+                infoSubtitleImage.Image = "Images.dashboard.pagamentounificatofatturaacquisto.png";
             }
             catch (Exception ex)
             {

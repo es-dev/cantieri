@@ -50,7 +50,7 @@ namespace Web.GUI.ReportJob
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.ReportJobDto)model;
+                    var obj = (ReportJobDto)model;
                     var codice = UtilityValidation.GetStringND(obj.Codice);
                     infoSubtitle.Text = codice;
                     infoSubtitleImage.Image = "Images.dashboard.reportjob.png";
@@ -68,7 +68,7 @@ namespace Web.GUI.ReportJob
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.ReportJobDto)model;
+                    var obj = (ReportJobDto)model;
                     editNote.Value = obj.Note;
                     var codiceFornitore = obj.CodiceFornitore;
                     var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
@@ -118,7 +118,7 @@ namespace Web.GUI.ReportJob
         {
             try
             {
-                var viewModel = (ReportJob.ReportJobViewModel)ViewModel;
+                var viewModel = (ReportJobViewModel)ViewModel;
                 var count = viewModel.GetCount();
                 count += 1;
                 var codice = "RPT" + count.ToString("000")+"/"+DateTime.Today.Year.ToString();
@@ -137,7 +137,7 @@ namespace Web.GUI.ReportJob
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.ReportJobDto)model;
+                    var obj = (ReportJobDto)model;
                     obj.Denominazione = editDenominazione.Value;
                     obj.Codice = editCodice.Value;
                     obj.Note= editNote.Value;
@@ -175,7 +175,7 @@ namespace Web.GUI.ReportJob
         {
             try
             {
-                var anagraficaFornitore = (WcfService.Dto.AnagraficaFornitoreDto)model;
+                var anagraficaFornitore = (AnagraficaFornitoreDto)model;
                 if (anagraficaFornitore != null)
                 {
                     editFornitore.Value = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
@@ -196,73 +196,152 @@ namespace Web.GUI.ReportJob
                 {
                     var codiceFornitore = anagraficaFornitore.Codice;
                     var data = DateTime.Today.ToString("ddMMyyyy");
-                    var elaborazione = editElaborazione.Value;
-                    string pathTemplateWord = UtilityWeb.GetRootPath(Context) + @"Resources\Templates\TemplateSituazioneFornitore.doc";
-                    var fileNamePDF = "SituazioneFornitore_" + codiceFornitore + "_" + data + ".PDF";
-                    var pathReportPDF = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileNamePDF;
+                    var elaborazione = UtilityValidation.GetData(editElaborazione.Value);
+                    string pathTemplate = UtilityWeb.GetRootPath(Context) + @"Resources\Templates\TemplateSituazioneFornitore.doc";
+                    var fileName = "SituazioneFornitore_" + codiceFornitore + "_" + data + ".PDF";
+                    var pathReport = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileName;
+
+                    var account = SessionManager.GetAccount(Context);
+                    var viewModelAzienda = new Azienda.AziendaViewModel(this);
+                    var azienda = viewModelAzienda.ReadAzienda(account);
+
                     var report = new UtilityReport.Report();
 
-                    //header
-                    report.AddData("RagioneSociale", anagraficaFornitore.RagioneSociale);
-                    report.AddData("PartitaIva", anagraficaFornitore.PartitaIva);
-                    report.AddData("Indirizzo", anagraficaFornitore.Indirizzo);
-                    report.AddData("CAP", anagraficaFornitore.CAP);
-                    report.AddData("Localita", anagraficaFornitore.Localita);
-                    report.AddData("Comune", anagraficaFornitore.Comune);
-                    report.AddData("Provincia", anagraficaFornitore.Provincia);
+                    //azienda e dati generali
+                    AddReportAzienda(azienda, elaborazione, report);
+ 
+                    //fornitore
+                    AddReportFornitore(anagraficaFornitore, report);
                     
-                    //totali fornitre
+                    //totali fornitore
                     var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
                     var fornitori = viewModelFornitore.ReadFornitori(codiceFornitore).ToList();
-                    report.AddData("TotaleImponibileFornitore", BusinessLogic.Fornitore.GetTotaleImponibile(fornitori, elaborazione.Value), TypeFormat.Euro);
-                    report.AddData("TotaleIVAFornitore", BusinessLogic.Fornitore.GetTotaleIVA(fornitori, elaborazione.Value), TypeFormat.Euro);
-                    report.AddData("TotaleFattureFornitore", BusinessLogic.Fornitore.GetTotaleFatture(fornitori, elaborazione.Value), TypeFormat.Euro);
-                    report.AddData("TotalePagamentiDatoFornitore", BusinessLogic.Fornitore.GetTotalePagamenti(fornitori, elaborazione.Value), TypeFormat.Euro);
-                    report.AddData("TotalePagamentiDareFornitore", BusinessLogic.Fornitore.GetTotalePagamentiDare(fornitori, elaborazione.Value), TypeFormat.Euro);
+                    AddReportTotaliFornitore(elaborazione, fornitori, report);
 
                     //totali per commessa
                     var tableCommesse = new UtilityReport.Table("Commessa", "TotaleImponibile", "TotaleIVA", "TotaleFatture", "TotalePagamentiDato", "TotalePagamentiDare");
                     var tableFatture = new UtilityReport.Table("Numero", "Data", "Scadenza", "Descrizione", "Imponibile", "IVA", "Totale", "TotalePagamentiDato", "TotalePagamentiDare");
                     foreach (var fornitore in fornitori)
                     {
-                        var commessa = fornitore.Commessa;
-                        var _commessa = commessa.Codice + " - " + commessa.Denominazione;
-                        var totaleImponibile = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleImponibile(fornitore, elaborazione.Value));
-                        var totaleIVA = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleIVA(fornitore, elaborazione.Value));
-                        var totaleFatture = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleFatture(fornitore, elaborazione.Value));
-                        var totalePagamentiDato = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamenti(fornitore, elaborazione.Value));
-                        var totalePagamentiDare = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamentiDare(fornitore, elaborazione.Value));
+                        AddReportCommessaFornitore(elaborazione, tableCommesse, fornitore);
 
-                        tableCommesse.AddRow(_commessa, totaleImponibile, totaleIVA, totaleFatture, totalePagamentiDato, totalePagamentiDare);
-
+                        //totali per fattura
                         var fattureAcquisto = fornitore.FatturaAcquistos;
                         foreach (var fatturaAcquisto in fattureAcquisto)
-                        {
-                            var numero = fatturaAcquisto.Numero;
-                            var dataFattura = UtilityValidation.GetDataND(fatturaAcquisto.Data);
-                            var scadenza = UtilityValidation.GetDataND(BusinessLogic.Fattura.GetScadenza(fatturaAcquisto));
-                            var descrizione = fatturaAcquisto.Descrizione;
-                            var imponibile = UtilityValidation.GetEuro(fatturaAcquisto.Imponibile);
-                            var iva = UtilityValidation.GetEuro(fatturaAcquisto.IVA);
-                            var totale = UtilityValidation.GetEuro(fatturaAcquisto.Totale);
-                            var totalePagamentiFatturaDato = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotalePagamenti(fatturaAcquisto, elaborazione.Value));
-                            var totalePagamentiFatturaDare = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotalePagamentiDare(fatturaAcquisto, elaborazione.Value));
-
-                            tableFatture.AddRow(numero, dataFattura, scadenza, descrizione, imponibile, iva, totale, totalePagamentiFatturaDato, totalePagamentiFatturaDare);
-                        }
+                            AddReportFatturaAcquistoFornitore(elaborazione, tableFatture, fatturaAcquisto);
+                    
                     }
                     report.Tables.Add(tableCommesse);
                     report.Tables.Add(tableFatture);
 
-                    bool performed = report.Create(pathTemplateWord, pathReportPDF);
+                    bool performed = report.Create(pathTemplate, pathReport);
                     if (performed)
                     {
-                        string url = UtilityWeb.GetRootUrl(Context) + @"/Resources/Reports/"+fileNamePDF;
+                        string url = UtilityWeb.GetRootUrl(Context) + @"/Resources/Reports/"+fileName;
                         editNomeFile.Url = url;
-                        editNomeFile.Value = fileNamePDF;
+                        editNomeFile.Value = fileName;
 
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void AddReportAzienda(AziendaDto azienda, DateTime elaborazione, UtilityReport.Report report)
+        {
+            try
+            {
+                report.AddData("RagioneSocialeAzienda", azienda.RagioneSociale);
+                report.AddData("IndirizzoAzienda", azienda.Indirizzo + " " + azienda.CAP + " " + azienda.Comune+ " ("+azienda.Provincia+")");
+                report.AddData("TelefonoAzienda", azienda.Telefono, TypeFormat.StringND);
+                report.AddData("EmailAzienda", azienda.Email, TypeFormat.StringND);
+                report.AddData("PartitaIvaAzienda", azienda.PartitaIva, TypeFormat.StringND);
+                report.AddData("Elaborazione", elaborazione, TypeFormat.DateDDMMYYYY);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+        
+
+        private static void AddReportFatturaAcquistoFornitore(DateTime elaborazione, UtilityReport.Table tableFatture, FatturaAcquistoDto fatturaAcquisto)
+        {
+            try
+            {
+                var numero = fatturaAcquisto.Numero;
+                var dataFattura = UtilityValidation.GetDataND(fatturaAcquisto.Data);
+                var scadenza = UtilityValidation.GetDataND(BusinessLogic.Fattura.GetScadenza(fatturaAcquisto));
+                var descrizione = fatturaAcquisto.Descrizione;
+                var imponibile = UtilityValidation.GetEuro(fatturaAcquisto.Imponibile);
+                var iva = UtilityValidation.GetEuro(fatturaAcquisto.IVA);
+                var totale = UtilityValidation.GetEuro(fatturaAcquisto.Totale);
+                var totalePagamentiFatturaDato = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotalePagamenti(fatturaAcquisto, elaborazione));
+                var totalePagamentiFatturaDare = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotalePagamentiDare(fatturaAcquisto, elaborazione));
+
+                tableFatture.AddRow(numero, dataFattura, scadenza, descrizione, imponibile, iva, totale, totalePagamentiFatturaDato, totalePagamentiFatturaDare);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private static void AddReportCommessaFornitore(DateTime elaborazione, UtilityReport.Table tableCommesse, FornitoreDto fornitore)
+        {
+            try
+            {
+                var commessa = fornitore.Commessa;
+                var _commessa = commessa.Codice + " - " + commessa.Denominazione;
+                var totaleImponibile = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleImponibile(fornitore, elaborazione));
+                var totaleIVA = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleIVA(fornitore, elaborazione));
+                var totaleFatture = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleFatture(fornitore, elaborazione));
+                var totalePagamentiDato = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamenti(fornitore, elaborazione));
+                var totalePagamentiDare = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamentiDare(fornitore, elaborazione));
+
+                tableCommesse.AddRow(_commessa, totaleImponibile, totaleIVA, totaleFatture, totalePagamentiDato, totalePagamentiDare);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private static void AddReportTotaliFornitore(DateTime elaborazione, IList<FornitoreDto> fornitori, UtilityReport.Report report)
+        {
+            try
+            {
+                report.AddData("TotaleImponibileFornitore", BusinessLogic.Fornitore.GetTotaleImponibile(fornitori, elaborazione), TypeFormat.Euro);
+                report.AddData("TotaleIVAFornitore", BusinessLogic.Fornitore.GetTotaleIVA(fornitori, elaborazione), TypeFormat.Euro);
+                report.AddData("TotaleFattureFornitore", BusinessLogic.Fornitore.GetTotaleFatture(fornitori, elaborazione), TypeFormat.Euro);
+                report.AddData("TotalePagamentiDatoFornitore", BusinessLogic.Fornitore.GetTotalePagamenti(fornitori, elaborazione), TypeFormat.Euro);
+                report.AddData("TotalePagamentiDareFornitore", BusinessLogic.Fornitore.GetTotalePagamentiDare(fornitori, elaborazione), TypeFormat.Euro);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private static void AddReportFornitore(AnagraficaFornitoreDto anagraficaFornitore, UtilityReport.Report report)
+        {
+            try
+            {
+                report.AddData("RagioneSociale", anagraficaFornitore.RagioneSociale);
+                report.AddData("PartitaIva", anagraficaFornitore.PartitaIva);
+                report.AddData("Indirizzo", anagraficaFornitore.Indirizzo);
+                report.AddData("CAP", anagraficaFornitore.CAP);
+                report.AddData("Localita", anagraficaFornitore.Localita);
+                report.AddData("Comune", anagraficaFornitore.Comune);
+                report.AddData("Provincia", anagraficaFornitore.Provincia);
+
             }
             catch (Exception ex)
             {
@@ -274,7 +353,10 @@ namespace Web.GUI.ReportJob
         {
             try
             {
-                SetNewValue();
+                var obj = (ReportJobDto)Model;
+                if (obj != null && obj.Id == 0)
+                    SetNewValue();
+            
             }
             catch (Exception ex)
             {
@@ -286,15 +368,11 @@ namespace Web.GUI.ReportJob
         {
             try
             {
-                var obj = (WcfService.Dto.ReportJobDto)Model;
-                if (obj != null && obj.Id == 0)
-                {
-                    editCodice.Value = GetCodice();
-                    editDenominazione.Value = GetDenominazione(tipoReport);
-                    editElaborazione.Value = DateTime.Today;
-                    editCreazione.Value = DateTime.Today;
-                    editTipoReport.Value = tipoReport.ToString();
-                }
+                editCodice.Value = GetCodice();
+                editDenominazione.Value = GetDenominazione(tipoReport);
+                editElaborazione.Value = DateTime.Today;
+                editCreazione.Value = DateTime.Today;
+                editTipoReport.Value = tipoReport.ToString();
             }
             catch (Exception ex)
             {

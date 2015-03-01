@@ -31,7 +31,7 @@ namespace Web.GUI.PagamentoUnificato
                     var data = UtilityValidation.GetDataND(obj.Data);
                  
                     infoData.Text = "Pagato il " + data;
-                    infoImage.Image = "Images.dashboard.pagamento.png";
+                    infoImage.Image = "Images.dashboard.pagamentounificato.png";
                     infoCodice.Text = "PAG";
                     infoNote.Text = obj.Note;
                     infoImporto.Text = "Importo: " + importo;

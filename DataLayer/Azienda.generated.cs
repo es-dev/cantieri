@@ -37,16 +37,16 @@ namespace DataLayer
 			}
 		}
 		
-		private string _denominazione;
-		public virtual string Denominazione
+		private string _ragioneSociale;
+		public virtual string RagioneSociale
 		{
 			get
 			{
-				return this._denominazione;
+				return this._ragioneSociale;
 			}
 			set
 			{
-				this._denominazione = value;
+				this._ragioneSociale = value;
 			}
 		}
 		

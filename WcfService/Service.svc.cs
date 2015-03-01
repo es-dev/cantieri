@@ -147,10 +147,10 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var aziende = (from q in ef.Aziendas select q);
                 if (search != null && search.Length > 0)
-                    aziende = (from q in aziende where q.Codice.StartsWith(search) || q.Denominazione.Contains(search) || q.Comune.StartsWith(search) || q.Indirizzo.Contains(search) ||
+                    aziende = (from q in aziende where q.Codice.StartsWith(search) || q.RagioneSociale.Contains(search) || q.Comune.StartsWith(search) || q.Indirizzo.Contains(search) ||
                                    q.Provincia.StartsWith(search) select q);
 
-                aziende = (from q in aziende orderby q.Denominazione select q);
+                aziende = (from q in aziende orderby q.RagioneSociale select q);
                 return aziende;
             }
             catch (Exception ex)
