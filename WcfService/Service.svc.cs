@@ -1665,6 +1665,25 @@ namespace WcfService
             return null;
         }
 
+        public IEnumerable<Dto.PagamentoUnificatoFatturaAcquistoDto> LoadPagamentiUnificatiFatturaAcquistoPagamentoUnificato(int skip, int take, string search, Dto.PagamentoUnificatoDto pagamentoUnificato)
+        {
+            try
+            {
+                var pagamentiUnificatiFatturaAcquisto = QueryPagamentiUnificatiFatturaAcquisto(search);
+                pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto where q.PagamentoUnificatoId == pagamentoUnificato.Id select q);
+                pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto select q).Skip(skip).Take(take);
+
+                var pagamentiUnificatiFatturaAcquistoDto = UtilityPOCO.Assemble<Dto.PagamentoUnificatoFatturaAcquistoDto>(pagamentiUnificatiFatturaAcquisto);
+                return pagamentiUnificatiFatturaAcquistoDto;
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         public int CountPagamentiUnificatiFatturaAcquisto(string search = null)
         {
             try
@@ -1679,6 +1698,23 @@ namespace WcfService
             }
             return 0;
         }
+        public int CountPagamentiUnificatiFatturaAcquistoPagamentoUnificato(string search, Dto.PagamentoUnificatoDto pagamentoUnificato)
+        {
+            try
+            {
+                var pagamentiUnificatiFatturaAcquisto = QueryPagamentiUnificatiFatturaAcquisto(search);
+                pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto where q.PagamentoUnificatoId == pagamentoUnificato.Id select q);
+                var count = pagamentiUnificatiFatturaAcquisto.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+
 
         public Dto.PagamentoUnificatoFatturaAcquistoDto ReadPagamentoUnificatoFatturaAcquisto(object id)
         {
@@ -2966,6 +3002,8 @@ namespace WcfService
 
         #endregion
         #endregion
+
+
 
     }
 }

@@ -167,5 +167,36 @@ namespace Web.GUI.PagamentoUnificato
             }
         }
 
+
+        public override void SetEditing(bool editing, bool deleting)
+        {
+            try
+            {
+                base.SetEditing(editing, deleting);
+                btnCalcoloSaldoImporto.Enabled = editing;
+                btnFatture.Enabled = editing;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void btnFatture_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (PagamentoUnificatoDto)Model;
+                var space = new PagamentoUnificatoFatturaAcquisto.PagamentoUnificatoFatturaAcquistoView(obj);
+                space.Title = "FATTURE PAGAMENTO UNIFICATO " + obj.Codice;
+                Workspace.AddSpace(space);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
+        }
+
 	}
 }

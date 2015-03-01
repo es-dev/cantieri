@@ -16,17 +16,25 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
 {
 	public partial class PagamentoUnificatoFatturaAcquistoModel : TemplateModel
 	{
+        private PagamentoUnificatoDto pagamentoUnificato = null;
+
         public PagamentoUnificatoFatturaAcquistoModel()
 		{
 			InitializeComponent();
+		}
+
+        public PagamentoUnificatoFatturaAcquistoModel(PagamentoUnificatoDto pagamentoUnificato)
+        {
+            InitializeComponent();
             try
             {
+                this.pagamentoUnificato = pagamentoUnificato;
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
-		}
+        }
 
         public override void BindViewSubTitle(object model)
         {
@@ -180,6 +188,38 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                 UtilityError.Write(ex);
             }
         }
+
+        private void PagamentoUnificatoFatturaAcquistoModel_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (PagamentoUnificatoFatturaAcquistoDto)Model;
+                if (obj != null && obj.Id == 0)
+                    SetNewValue();
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void SetNewValue()
+        {
+            try
+            {
+                if (pagamentoUnificato != null)
+                {
+                    editPagamentoUnificato.Model = pagamentoUnificato;
+                    editPagamentoUnificato.Value = pagamentoUnificato.Codice + "/" + pagamentoUnificato.Data.Value.Year.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
 
 	}
 }

@@ -153,6 +153,10 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             this.editPagamentoUnificato.Value = null;
             this.editPagamentoUnificato.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editPagamentoUnificato_ComboConfirm);
             this.editPagamentoUnificato.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editPagamentoUnificato_ComboClick);
+            // 
+            // PagamentoUnificatoFatturaAcquistoModel
+            // 
+            this.Load += new System.EventHandler(this.PagamentoUnificatoFatturaAcquistoModel_Load);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);

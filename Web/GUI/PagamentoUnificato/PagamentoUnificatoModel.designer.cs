@@ -38,6 +38,7 @@ namespace Web.GUI.PagamentoUnificato
             this.editTipoPagamento = new Library.Template.Controls.TemplateEditDropDown();
             this.editDescrizione = new Library.Template.Controls.TemplateEditText();
             this.btnCalcoloSaldoImporto = new Library.Controls.ButtonSeparatorV();
+            this.btnFatture = new Library.Controls.ButtonSeparatorV();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -72,12 +73,14 @@ namespace Web.GUI.PagamentoUnificato
             // 
             // panelCommands
             // 
+            this.panelCommands.Controls.Add(this.btnFatture);
             this.panelCommands.Controls.Add(this.btnCalcoloSaldoImporto);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnDelete, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnCalcoloSaldoImporto, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnFatture, 0);
             // 
             // editFornitore
             // 
@@ -245,15 +248,26 @@ namespace Web.GUI.PagamentoUnificato
             this.btnCalcoloSaldoImporto.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnCalcoloSaldoImporto.ImageButton = "";
             this.btnCalcoloSaldoImporto.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnCalcoloSaldoImporto.Location = new System.Drawing.Point(0, 217);
+            this.btnCalcoloSaldoImporto.Location = new System.Drawing.Point(0, 289);
             this.btnCalcoloSaldoImporto.Name = "btnCalcoloSaldoImporto";
             this.btnCalcoloSaldoImporto.Size = new System.Drawing.Size(100, 72);
             this.btnCalcoloSaldoImporto.TabIndex = 1002;
             this.btnCalcoloSaldoImporto.TextButton = "Calcolo saldo importo";
             this.btnCalcoloSaldoImporto.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnCalcoloSaldoImporto_Click);
             // 
-            // PagamentoUnificatoModel
+            // btnFatture
             // 
+            this.btnFatture.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.btnFatture.BackColor = System.Drawing.Color.Transparent;
+            this.btnFatture.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.btnFatture.ImageButton = "";
+            this.btnFatture.ImageSeparator = "Images.separator_ht_small.png";
+            this.btnFatture.Location = new System.Drawing.Point(0, 217);
+            this.btnFatture.Name = "btnFatture";
+            this.btnFatture.Size = new System.Drawing.Size(100, 72);
+            this.btnFatture.TabIndex = 1002;
+            this.btnFatture.TextButton = "Fatture";
+            this.btnFatture.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnFatture_Click);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
@@ -273,6 +287,7 @@ namespace Web.GUI.PagamentoUnificato
         private Library.Template.Controls.TemplateEditText editDescrizione;
         private Library.Template.Controls.TemplateEditDropDown editTipoPagamento;
         private Library.Controls.ButtonSeparatorV btnCalcoloSaldoImporto;
+        private Library.Controls.ButtonSeparatorV btnFatture;
 
 
     }

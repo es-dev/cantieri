@@ -10,7 +10,19 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
 {
     public class PagamentoUnificatoFatturaAcquistoViewModel : Library.Template.MVVM.TemplateViewModel<PagamentoUnificatoFatturaAcquistoDto, PagamentoUnificatoFatturaAcquistoItem>
     {
+        private PagamentoUnificatoDto pagamentoUnificato = null;
 
+        public PagamentoUnificatoDto PagamentoUnificato
+        {
+            get
+            {
+                return pagamentoUnificato;
+            }
+            set
+            {
+                pagamentoUnificato = value;
+            }
+        }
         public PagamentoUnificatoFatturaAcquistoViewModel(ISpace space)
             : base(space) 
         {
@@ -29,7 +41,11 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadPagamentiUnificatiFatturaAcquisto(skip, take, search);
+                IEnumerable<PagamentoUnificatoFatturaAcquistoDto> objs = null;
+                if(pagamentoUnificato==null)
+                    objs = wcf.LoadPagamentiUnificatiFatturaAcquisto(skip, take, search);
+                else
+                    objs = wcf.LoadPagamentiUnificatiFatturaAcquistoPagamentoUnificato(skip, take, search, pagamentoUnificato);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +59,11 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountPagamentiUnificatiFatturaAcquisto(search);
+                var count = 0;
+                if(pagamentoUnificato==null)
+                    count = wcf.CountPagamentiUnificatiFatturaAcquisto(search);
+                else
+                    count = wcf.CountPagamentiUnificatiFatturaAcquistoPagamentoUnificato(search, pagamentoUnificato);
                 return count;
             }
             catch (Exception ex)
