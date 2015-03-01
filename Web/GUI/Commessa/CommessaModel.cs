@@ -93,7 +93,7 @@ namespace Web.GUI.Commessa
                     if (azienda != null)
                     {
                         editAzienda.Model = azienda;
-                        editAzienda.Value = azienda.Denominazione;
+                        editAzienda.Value = azienda.RagioneSociale;
                     }
                 }
             }
@@ -212,7 +212,7 @@ namespace Web.GUI.Commessa
             {
                 var azienda = (WcfService.Dto.AziendaDto)model;
                 if (azienda != null)
-                    editAzienda.Value = azienda.Denominazione;
+                    editAzienda.Value = azienda.RagioneSociale;
             }
             catch (Exception ex)
             {

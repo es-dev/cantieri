@@ -13,8 +13,8 @@
         <orm:field name="_id" property="Id" uniqueId="75b86659-7959-4bab-8f97-9f93ba16d93d" type="System.Int32">
           <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
         </orm:field>
-        <orm:field name="_denominazione" property="Denominazione" uniqueId="a08bbdfc-b172-4784-8acc-68943b666815" type="System.String">
-          <orm:column name="Denominazione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:field name="_ragioneSociale" property="RagioneSociale" uniqueId="a08bbdfc-b172-4784-8acc-68943b666815" type="System.String">
+          <orm:column name="RagioneSociale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_indirizzo" property="Indirizzo" uniqueId="76b798dd-fcc8-4f6e-9871-8fceb2ac6b13" type="System.String">
           <orm:column name="Indirizzo" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
@@ -974,7 +974,7 @@
     <orm:schema schema="">
       <orm:table name="Azienda">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
-        <orm:column name="Denominazione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="RagioneSociale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Indirizzo" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="CAP" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Comune" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
@@ -1324,7 +1324,7 @@
   <Types>
     <DomainClass Id="de019a87-9702-4284-bad3-c13059304df7" name="Azienda" namespace="DataLayer" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
       <Property Id="75b86659-7959-4bab-8f97-9f93ba16d93d" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
-      <Property Id="a08bbdfc-b172-4784-8acc-68943b666815" name="Denominazione" label="Denominazione : String" fieldName="_denominazione" />
+      <Property Id="a08bbdfc-b172-4784-8acc-68943b666815" name="RagioneSociale" label="RagioneSociale : String" fieldName="_ragioneSociale" />
       <Property Id="76b798dd-fcc8-4f6e-9871-8fceb2ac6b13" name="Indirizzo" label="Indirizzo : String" fieldName="_indirizzo" />
       <Property Id="f7537b74-cd52-4c9d-981f-f3166adc632d" name="CAP" label="CAP : String" fieldName="_cAP" />
       <Property Id="e866c776-f0d5-491c-8256-74055137444b" name="Comune" label="Comune : String" fieldName="_comune" />

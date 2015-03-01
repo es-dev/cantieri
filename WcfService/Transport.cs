@@ -31,10 +31,10 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public AziendaDto(int _id, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _partitaIva, int? _dipendenti, string _telefono, string _fax, string _email, string _codice, string _codiceCatastale, string _localita, string _note, IList<CommessaDto> _commessas, IList<AccountDto> _accounts)
+		public AziendaDto(int _id, string _ragioneSociale, string _indirizzo, string _cAP, string _comune, string _provincia, string _partitaIva, int? _dipendenti, string _telefono, string _fax, string _email, string _codice, string _codiceCatastale, string _localita, string _note, IList<CommessaDto> _commessas, IList<AccountDto> _accounts)
 		{
 			this.Id = _id;
-			this.Denominazione = _denominazione;
+			this.RagioneSociale = _ragioneSociale;
 			this.Indirizzo = _indirizzo;
 			this.CAP = _cAP;
 			this.Comune = _comune;
@@ -59,7 +59,7 @@ namespace WcfService.Dto
 		public virtual int Id { get;set; }
 
 		[DataMember]
-		public virtual string Denominazione { get;set; }
+		public virtual string RagioneSociale { get;set; }
 
 		[DataMember]
 		public virtual string Indirizzo { get;set; }

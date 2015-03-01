@@ -30,11 +30,11 @@ namespace Web.GUI.Azienda
                     var comune = UtilityValidation.GetStringND(obj.Comune);
                     var provincia = UtilityValidation.GetStringND(obj.Provincia);
                     var codice = UtilityValidation.GetStringND(obj.Codice);
-                    var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
+                    var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
 
                     infoCodice.Text = codice;
                     infoImage.Image = "Images.dashboard.azienda.png";
-                    infoDenominazione.Text = denominazione;
+                    infoDenominazione.Text = ragioneSociale;
                     infoIndirizzo.Text = indirizzo + " - " + cap + " - " + comune + " (" + provincia + ")";
                 }
             }

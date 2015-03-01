@@ -129,5 +129,24 @@ namespace Web.GUI.Azienda
             }
             return null;
         }
+
+        internal AziendaDto ReadAzienda(AccountDto account)
+        {
+            try
+            {
+                if (account != null)
+                {
+                    int aziendaId = account.AziendaId;
+                    var wcf = new WcfService.Service();
+                    var obj = wcf.ReadAzienda(aziendaId);
+                    return obj;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }
