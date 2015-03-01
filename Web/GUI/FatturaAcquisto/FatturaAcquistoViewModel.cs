@@ -101,7 +101,7 @@ namespace Web.GUI.FatturaAcquisto
                         var newObj = wcf.CreateFatturaAcquisto(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj.Id = newObj.Id;
+                            obj = newObj;
                     }
                     else //updating
                         performed = wcf.UpdateFatturaAcquisto(obj);

@@ -160,8 +160,6 @@ namespace WcfService
             }
             return null;
         }
-
-       
         #endregion
         #endregion
 
@@ -323,7 +321,8 @@ namespace WcfService
             {
                 var wcf = new EntitiesModelService();
                 var dtoKey = wcf.CreateCommessa(commessa);
-                var newCommessa = wcf.ReadCommessa(dtoKey);
+                var id = UtilityPOCO.GetId(dtoKey);
+                var newCommessa = ReadCommessa(id);
                 return newCommessa;
             }
             catch (Exception ex)
@@ -429,7 +428,6 @@ namespace WcfService
             return null;
         }
         
-        
         public int CountCommesse(string search = null)
         {
             try
@@ -528,7 +526,8 @@ namespace WcfService
             {
                 var wcf = new EntitiesModelService();
                 var dtoKey = wcf.CreateFornitore(fornitore);
-                var newFornitore = wcf.ReadFornitore(dtoKey);
+                var id = UtilityPOCO.GetId(dtoKey);
+                var newFornitore = ReadFornitore(id);
                 return newFornitore;
             }
             catch (Exception ex)
@@ -688,8 +687,6 @@ namespace WcfService
             }
             return null;
         }
-
-
 
         #endregion
         #endregion
@@ -853,7 +850,8 @@ namespace WcfService
             {
                 var wcf = new EntitiesModelService();
                 var dtoKey = wcf.CreateFatturaAcquisto(fatturaAcquisto);
-                var newFatturaAcquisto = wcf.ReadFatturaAcquisto(dtoKey);
+                var id = UtilityPOCO.GetId(dtoKey);
+                var newFatturaAcquisto = ReadFatturaAcquisto(id);
                 return newFatturaAcquisto;
             }
             catch (Exception ex)
@@ -1247,7 +1245,8 @@ namespace WcfService
             {
                 var wcf = new EntitiesModelService();
                 var dtoKey = wcf.CreatePagamento(pagamento);
-                var newPagamento = wcf.ReadPagamento(dtoKey);
+                var id = UtilityPOCO.GetId(dtoKey);
+                var newPagamento = ReadPagamento(id);
                 return newPagamento;
             }
             catch (Exception ex)
@@ -1419,7 +1418,8 @@ namespace WcfService
             {
                 var wcf = new EntitiesModelService();
                 var dtoKey = wcf.CreatePagamentoUnificato(pagamentoUnificato);
-                var newPagamentoUnificato = wcf.ReadPagamentoUnificato(dtoKey);
+                var id = UtilityPOCO.GetId(dtoKey);
+                var newPagamentoUnificato = ReadPagamentoUnificato(id);
                 return newPagamentoUnificato;
             }
             catch (Exception ex)
@@ -1724,7 +1724,6 @@ namespace WcfService
         #endregion
         #endregion
 
-
         #region Cliente
         #region CRUD
         public Dto.ClienteDto CreateCliente(Dto.ClienteDto cliente)
@@ -1733,7 +1732,8 @@ namespace WcfService
             {
                 var wcf = new EntitiesModelService();
                 var dtoKey = wcf.CreateCliente(cliente);
-                var newCliente = wcf.ReadCliente(dtoKey);
+                var id = UtilityPOCO.GetId(dtoKey);
+                var newCliente = ReadCliente(id);
                 return newCliente;
             }
             catch (Exception ex)
@@ -1888,7 +1888,8 @@ namespace WcfService
             {
                 var wcf = new EntitiesModelService();
                 var dtoKey = wcf.CreateFatturaVendita(fatturaVendita);
-                var newFatturaVendita = wcf.ReadFatturaVendita(dtoKey);
+                var id = UtilityPOCO.GetId(dtoKey);
+                var newFatturaVendita = ReadFatturaVendita(id);
                 return newFatturaVendita;
             }
             catch (Exception ex)
@@ -2041,7 +2042,8 @@ namespace WcfService
             {
                 var wcf = new EntitiesModelService();
                 var dtoKey = wcf.CreateLiquidazione(liquidazione);
-                var newLiquidazione = wcf.ReadLiquidazione(dtoKey);
+                var id = UtilityPOCO.GetId(dtoKey);
+                var newLiquidazione = ReadLiquidazione(id);
                 return newLiquidazione;
             }
             catch (Exception ex)
@@ -2196,7 +2198,8 @@ namespace WcfService
             {
                 var wcf = new EntitiesModelService();
                 var dtoKey = wcf.CreateSAL(sal);
-                var newSAL = wcf.ReadSAL(dtoKey);
+                var id = UtilityPOCO.GetId(dtoKey);
+                var newSAL = ReadSAL(id);
                 return newSAL;
             }
             catch (Exception ex)

@@ -67,7 +67,7 @@ namespace Web.GUI.FatturaVendita
                         var newObj = wcf.CreateFatturaVendita(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj.Id = newObj.Id;
+                            obj = newObj;
                     }
                     else //updating
                         performed = wcf.UpdateFatturaVendita(obj);
