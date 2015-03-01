@@ -130,7 +130,7 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
                 var azienda = wcf.ReadAzienda(dtoKey);
                 return azienda;
             }
@@ -810,7 +810,7 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
                 var centroCosto = wcf.ReadCentroCosto(dtoKey);
                 return centroCosto;
             }
@@ -1200,7 +1200,7 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
                 var articolo = wcf.ReadArticolo(dtoKey);
                 return articolo;
             }
@@ -1355,7 +1355,7 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
                 var pagamento = wcf.ReadPagamento(dtoKey);
                 return pagamento;
             }
@@ -2149,7 +2149,7 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
                 var liquidazione = wcf.ReadLiquidazione(dtoKey);
                 return liquidazione;
             }
@@ -2304,7 +2304,7 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
                 var SAL = wcf.ReadSAL(dtoKey);
                 return SAL;
             }
@@ -2457,7 +2457,7 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
                 var anagraficaFornitore = wcf.ReadAnagraficaFornitore(dtoKey);
                 return anagraficaFornitore;
             }
@@ -2628,7 +2628,7 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
                 var anagraficaCliente = wcf.ReadAnagraficaCliente(dtoKey);
                 return anagraficaCliente;
             }
@@ -2780,7 +2780,7 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
                 var anagraficaArticolo = wcf.ReadAnagraficaArticolo(dtoKey);
                 return anagraficaArticolo;
             }
@@ -2930,7 +2930,7 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
                 var reportJob = wcf.ReadReportJob(dtoKey);
                 return reportJob;
             }
