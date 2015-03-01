@@ -429,7 +429,6 @@ namespace WcfService
             return null;
         }
         
-        
         public int CountCommesse(string search = null)
         {
             try
@@ -1722,7 +1721,6 @@ namespace WcfService
 
         #endregion
         #endregion
-
 
         #region Cliente
         #region CRUD
