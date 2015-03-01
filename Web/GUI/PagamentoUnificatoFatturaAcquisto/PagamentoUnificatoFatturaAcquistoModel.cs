@@ -101,7 +101,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             try
             {
                 var obj = (PagamentoUnificatoFatturaAcquistoDto)Model;
-                var pagamentoUnificato = obj.PagamentoUnificato;
+                var pagamentoUnificato = (PagamentoUnificatoDto)editPagamentoUnificato.Model;
                 var codiceFornitore = pagamentoUnificato.CodiceFornitore;
                 var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
                 var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);

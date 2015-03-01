@@ -1386,7 +1386,24 @@ namespace WcfService
             return null;
         }
 
-       
+        public Dto.PagamentoDto ReadPagamentoPagamentoUnificatoFatturaAcquisto(Dto.PagamentoUnificatoFatturaAcquistoDto pagamentoUnificatoFatturaAcquistoDto)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var pagamento = (from q in ef.Pagamentos where q.FatturaAcquistoId==pagamentoUnificatoFatturaAcquistoDto.FatturaAcquistoId &&
+                                     q.PagamentoUnificatoId== pagamentoUnificatoFatturaAcquistoDto.PagamentoUnificatoId select q).FirstOrDefault();
+
+                var pagamentoDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamento);
+                return pagamentoDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         #endregion
         #endregion
 
@@ -1505,9 +1522,10 @@ namespace WcfService
         {
             try
             {
-                var wcf = new EntitiesModelService();
-                var pagamentoUnificato = wcf.ReadPagamentoUnificato("Id=" + id);
-                return pagamentoUnificato;
+                var ef = new DataLayer.EntitiesModel();
+                var pagamentoUnificato = (from q in ef.PagamentoUnificatos where q.Id == (int)id select q).FirstOrDefault();
+                var pagamentoUnificatoDto = UtilityPOCO.Assemble<Dto.PagamentoUnificatoDto>(pagamentoUnificato);
+                return pagamentoUnificatoDto;
             }
             catch (Exception ex)
             {
@@ -1515,6 +1533,8 @@ namespace WcfService
             }
             return null;
         }
+
+
 
         private IQueryable<DataLayer.PagamentoUnificato > QueryPagamentiUnificati(string search)
         {
@@ -1659,9 +1679,10 @@ namespace WcfService
         {
             try
             {
-                var wcf = new EntitiesModelService();
-                var pagamentoUnificatoFatturaAcquisto = wcf.ReadPagamentoUnificatoFatturaAcquisto("Id=" + id);
-                return pagamentoUnificatoFatturaAcquisto;
+                var ef = new DataLayer.EntitiesModel();
+                var pagamentoUnificatoFatturaAcquisto = (from q in ef.PagamentoUnificatoFatturaAcquistos where q.Id == (int)id select q).FirstOrDefault();
+                var pagamentoUnificatoFatturaAcquistoDto = UtilityPOCO.Assemble<Dto.PagamentoUnificatoFatturaAcquistoDto>(pagamentoUnificatoFatturaAcquisto);
+                return pagamentoUnificatoFatturaAcquistoDto;
             }
             catch (Exception ex)
             {
@@ -2931,8 +2952,6 @@ namespace WcfService
 
         #endregion
         #endregion
-
-
 
     }
 }
