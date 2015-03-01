@@ -72,7 +72,7 @@ namespace Web.GUI.Cliente
                         var newObj = wcf.CreateCliente(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj.Id = newObj.Id;
+                            obj = newObj;
                     }
                     else //updating
                         performed = wcf.UpdateCliente(obj);

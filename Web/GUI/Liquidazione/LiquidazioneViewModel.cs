@@ -67,7 +67,7 @@ namespace Web.GUI.Liquidazione
                         var newObj = wcf.CreateLiquidazione(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj.Id = newObj.Id;
+                            obj = newObj;
                     }
                     else //updating
                         performed = wcf.UpdateLiquidazione(obj);

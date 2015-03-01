@@ -67,7 +67,7 @@ namespace Web.GUI.PagamentoUnificato
                         var newObj = wcf.CreatePagamentoUnificato(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj.Id = newObj.Id;
+                            obj = newObj;
                     }
                     else //updating
                         performed = wcf.UpdatePagamentoUnificato(obj);
