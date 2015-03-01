@@ -71,6 +71,17 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                     }
                     else //updating
                         performed = wcf.UpdatePagamentoUnificatoFatturaAcquisto(obj);
+
+                    if(performed) //sync  pagamento
+                    {
+                        var viewModelPagamento = new Pagamento.PagamentoViewModel(Space);
+                        var pagamento = viewModelPagamento.ReadPagamentoPagamentoUnificatoFatturaAcquisto(obj);
+                        if(pagamento==null)
+                        {
+                            pagamento = GetPagamento(obj);
+                        }
+                        viewModelPagamento.Save(pagamento, creating);
+                    }
                     return performed;
                 }
             }
@@ -79,6 +90,34 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                 UtilityError.Write(ex);
             }
             return false;
+        }
+
+        private PagamentoDto GetPagamento(PagamentoUnificatoFatturaAcquistoDto obj)
+        {
+            try
+            {
+                var pagamento = new PagamentoDto();
+                var wcf = new WcfService.Service();
+                var pagamentoUnificatoFatturaAcquisto = wcf.ReadPagamentoUnificatoFatturaAcquisto(obj.Id);
+
+                var fatturaAcquisto = pagamentoUnificatoFatturaAcquisto.FatturaAcquisto;
+                var pagamentoUnificato = pagamentoUnificatoFatturaAcquisto.PagamentoUnificato;
+                pagamento.Codice = BusinessLogic.Pagamento.GetCodice(fatturaAcquisto);
+                pagamento.Data = pagamentoUnificato.Data;
+                pagamento.Descrizione = pagamentoUnificato.Descrizione;
+                pagamento.FatturaAcquistoId = pagamentoUnificatoFatturaAcquisto.FatturaAcquistoId;
+                pagamento.Importo = pagamentoUnificatoFatturaAcquisto.Saldo;
+                pagamento.Note = "Pagamento unificato " + pagamentoUnificato.Codice;
+                pagamento.PagamentoUnificatoId = pagamentoUnificatoFatturaAcquisto.PagamentoUnificatoId;
+                pagamento.TipoPagamento = pagamentoUnificato.TipoPagamento;
+
+                return pagamento;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
 
         public override bool Delete(object model)
@@ -90,6 +129,13 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                     var wcf = new WcfService.Service();
                     var obj = (PagamentoUnificatoFatturaAcquistoDto)model;
                     bool performed = wcf.DeletePagamentoUnificatoFatturaAcquisto(obj);
+                    if (performed) //sync  pagamento
+                    {
+                        var viewModelPagamento = new Pagamento.PagamentoViewModel(Space);
+                        var pagamento = viewModelPagamento.ReadPagamentoPagamentoUnificatoFatturaAcquisto(obj);
+                        viewModelPagamento.Delete(pagamento);
+                    }
+
                     return performed;
                 }
             }
