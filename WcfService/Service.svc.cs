@@ -1575,7 +1575,8 @@ namespace WcfService
             {
                 var wcf = new EntitiesModelService();
                 var dtoKey = wcf.CreatePagamentoUnificatoFatturaAcquisto(pagamentoUnificatoFatturaAcquisto);
-                var newPagamentoUnificato = wcf.ReadPagamentoUnificatoFatturaAcquisto(dtoKey);
+                var id = UtilityPOCO.GetId(dtoKey);
+                var newPagamentoUnificato = ReadPagamentoUnificatoFatturaAcquisto(id);
                 return newPagamentoUnificato;
             }
             catch (Exception ex)
