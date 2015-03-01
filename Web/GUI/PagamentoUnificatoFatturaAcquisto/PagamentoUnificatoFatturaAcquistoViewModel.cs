@@ -96,22 +96,21 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
         {
             try
             {
-                var pagamento = new PagamentoDto();
-                var wcf = new WcfService.Service();
-                var pagamentoUnificatoFatturaAcquisto = wcf.ReadPagamentoUnificatoFatturaAcquisto(obj.Id);
-
-                var fatturaAcquisto = pagamentoUnificatoFatturaAcquisto.FatturaAcquisto;
-                var pagamentoUnificato = pagamentoUnificatoFatturaAcquisto.PagamentoUnificato;
-                pagamento.Codice = BusinessLogic.Pagamento.GetCodice(fatturaAcquisto);
-                pagamento.Data = pagamentoUnificato.Data;
-                pagamento.Descrizione = pagamentoUnificato.Descrizione;
-                pagamento.FatturaAcquistoId = pagamentoUnificatoFatturaAcquisto.FatturaAcquistoId;
-                pagamento.Importo = pagamentoUnificatoFatturaAcquisto.Saldo;
-                pagamento.Note = "Pagamento unificato " + pagamentoUnificato.Codice;
-                pagamento.PagamentoUnificatoId = pagamentoUnificatoFatturaAcquisto.PagamentoUnificatoId;
-                pagamento.TipoPagamento = pagamentoUnificato.TipoPagamento;
-
-                return pagamento;
+                if (obj != null)
+                {
+                    var fatturaAcquisto = obj.FatturaAcquisto;
+                    var pagamentoUnificato = obj.PagamentoUnificato;
+                    var pagamento = new PagamentoDto();
+                    pagamento.Codice = BusinessLogic.Pagamento.GetCodice(fatturaAcquisto);
+                    pagamento.Data = pagamentoUnificato.Data;
+                    pagamento.Descrizione = pagamentoUnificato.Descrizione;
+                    pagamento.FatturaAcquistoId = obj.FatturaAcquistoId;
+                    pagamento.Importo = obj.Saldo;
+                    pagamento.Note = "Pagamento unificato " + pagamentoUnificato.Codice;
+                    pagamento.PagamentoUnificatoId = obj.PagamentoUnificatoId;
+                    pagamento.TipoPagamento = pagamentoUnificato.TipoPagamento;
+                    return pagamento;
+                }
             }
             catch (Exception ex)
             {

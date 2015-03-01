@@ -115,12 +115,12 @@ namespace Web.GUI.Pagamento
             return null;
         }
 
-        internal object ReadPagamentoPagamentoUnificatoFatturaAcquisto(PagamentoUnificatoFatturaAcquistoDto pagamentoUnificatoFatturaAcquistoDto)
+        internal object ReadPagamentoPagamentoUnificatoFatturaAcquisto(PagamentoUnificatoFatturaAcquistoDto pagamentoUnificatoFatturaAcquisto)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var obj = wcf.ReadPagamentoPagamentoUnificatoFatturaAcquisto(pagamentoUnificatoFatturaAcquistoDto);
+                var obj = wcf.ReadPagamentoPagamentoUnificatoFatturaAcquisto(pagamentoUnificatoFatturaAcquisto);
                 return obj;
             }
             catch (Exception ex)

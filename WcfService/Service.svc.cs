@@ -130,7 +130,8 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var azienda = wcf.ReadAzienda("Id=" + id);
+                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var azienda = wcf.ReadAzienda(dtoKey);
                 return azienda;
             }
             catch (Exception ex)
@@ -809,7 +810,8 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var centroCosto = wcf.ReadCentroCosto("Id=" + id);
+                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var centroCosto = wcf.ReadCentroCosto(dtoKey);
                 return centroCosto;
             }
             catch (Exception ex)
@@ -1198,7 +1200,8 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var articolo = wcf.ReadArticolo("Id=" + id);
+                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var articolo = wcf.ReadArticolo(dtoKey);
                 return articolo;
             }
             catch (Exception ex)
@@ -1352,7 +1355,8 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var pagamento = wcf.ReadPagamento("Id=" + id);
+                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var pagamento = wcf.ReadPagamento(dtoKey);
                 return pagamento;
             }
             catch (Exception ex)
@@ -1386,13 +1390,13 @@ namespace WcfService
             return null;
         }
 
-        public Dto.PagamentoDto ReadPagamentoPagamentoUnificatoFatturaAcquisto(Dto.PagamentoUnificatoFatturaAcquistoDto pagamentoUnificatoFatturaAcquistoDto)
+        public Dto.PagamentoDto ReadPagamentoPagamentoUnificatoFatturaAcquisto(Dto.PagamentoUnificatoFatturaAcquistoDto pagamentoUnificatoFatturaAcquisto)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
-                var pagamento = (from q in ef.Pagamentos where q.FatturaAcquistoId==pagamentoUnificatoFatturaAcquistoDto.FatturaAcquistoId &&
-                                     q.PagamentoUnificatoId== pagamentoUnificatoFatturaAcquistoDto.PagamentoUnificatoId select q).FirstOrDefault();
+                var pagamento = (from q in ef.Pagamentos where q.FatturaAcquistoId==pagamentoUnificatoFatturaAcquisto.FatturaAcquistoId &&
+                                     q.PagamentoUnificatoId== pagamentoUnificatoFatturaAcquisto.PagamentoUnificatoId select q).FirstOrDefault();
 
                 var pagamentoDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamento);
                 return pagamentoDto;
@@ -2144,7 +2148,8 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var liquidazione = wcf.ReadLiquidazione("Id=" + id);
+                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var liquidazione = wcf.ReadLiquidazione(dtoKey);
                 return liquidazione;
             }
             catch (Exception ex)
@@ -2298,7 +2303,8 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var SAL = wcf.ReadSAL("Id=" + id);
+                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var SAL = wcf.ReadSAL(dtoKey);
                 return SAL;
             }
             catch (Exception ex)
@@ -2450,7 +2456,8 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var anagraficaFornitore = wcf.ReadAnagraficaFornitore("Id=" + id);
+                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var anagraficaFornitore = wcf.ReadAnagraficaFornitore(dtoKey);
                 return anagraficaFornitore;
             }
             catch (Exception ex)
@@ -2620,7 +2627,8 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var anagraficaCliente = wcf.ReadAnagraficaCliente("Id=" + id);
+                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var anagraficaCliente = wcf.ReadAnagraficaCliente(dtoKey);
                 return anagraficaCliente;
             }
             catch (Exception ex)
@@ -2771,7 +2779,8 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var anagraficaArticolo = wcf.ReadAnagraficaArticolo("Id=" + id);
+                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var anagraficaArticolo = wcf.ReadAnagraficaArticolo(dtoKey);
                 return anagraficaArticolo;
             }
             catch (Exception ex)
@@ -2920,7 +2929,8 @@ namespace WcfService
             try
             {
                 var wcf = new EntitiesModelService();
-                var reportJob = wcf.ReadReportJob("Id=" + id);
+                var dtoKey = UtilityPOCO.GetDtoKey(id);
+                var reportJob = wcf.ReadReportJob(dtoKey);
                 return reportJob;
             }
             catch (Exception ex)
