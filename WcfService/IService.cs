@@ -270,6 +270,12 @@ namespace WcfService
         int CountPagamenti(string search = null);
 
         [OperationContract]
+        IEnumerable<Dto.PagamentoDto> LoadPagamentiFatturaAcquisto(int skip, int take, Dto.FatturaAcquistoDto fatturaAcquisto, string search = null);
+
+        [OperationContract]
+        int CountPagamentiFatturaAcquisto(Dto.FatturaAcquistoDto fatturaAcquisto, string search = null);
+
+        [OperationContract]
         Dto.PagamentoDto ReadPagamento(object id);
         #endregion
         #endregion

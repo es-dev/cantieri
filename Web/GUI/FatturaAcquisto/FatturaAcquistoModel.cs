@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.FatturaAcquisto
@@ -47,7 +48,7 @@ namespace Web.GUI.FatturaAcquisto
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.FatturaAcquistoDto)model;
+                    var obj = (FatturaAcquistoDto)model;
                     var numero = UtilityValidation.GetStringND(obj.Numero);
                     var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
                     infoSubtitle.Text = numero + " - " + descrizione;
@@ -67,7 +68,7 @@ namespace Web.GUI.FatturaAcquisto
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.FatturaAcquistoDto)model;
+                    var obj = (FatturaAcquistoDto)model;
                     editData.Value = obj.Data;
                     editDescrizione.Value = obj.Descrizione;
                     editImponibile.Value = obj.Imponibile; 
@@ -99,7 +100,7 @@ namespace Web.GUI.FatturaAcquisto
             }
         }
 
-        private string GetStato(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto)
+        private string GetStato(FatturaAcquistoDto fatturaAcquisto)
         {
             try
             {
@@ -173,7 +174,7 @@ namespace Web.GUI.FatturaAcquisto
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.FatturaAcquistoDto)model;
+                    var obj = (FatturaAcquistoDto)model;
                     obj.Data = editData.Value;
                     obj.Descrizione = editDescrizione.Value;
                     obj.Imponibile = editImponibile.Value;
@@ -353,6 +354,22 @@ namespace Web.GUI.FatturaAcquisto
             {
                 base.SetEditing(editing, deleting);
                 btnCalcoloTotali.Enabled = editing;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void btnPagamenti_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (FatturaAcquistoDto)Model;
+                var space = new Pagamento.PagamentoView(obj);
+                space.Title = "PAGAMENTI FATTURA N. " + obj.Numero;
+                Workspace.AddSpace(space);
+
             }
             catch (Exception ex)
             {

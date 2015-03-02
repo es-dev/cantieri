@@ -11,10 +11,31 @@ namespace Web.GUI.Pagamento
 {
 	public partial class PagamentoView : TemplateView
 	{
+        private WcfService.Dto.FatturaAcquistoDto fatturaAcquisto;
+
         public PagamentoView()
 		{ 
 			InitializeComponent();
 		}
+
+        public PagamentoView(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto)
+        {
+            InitializeComponent();
+            try
+            {
+                this.fatturaAcquisto = fatturaAcquisto;
+                var viewModel = (Pagamento.PagamentoViewModel)ViewModel;
+                if (viewModel != null)
+                {
+                    viewModel.FatturaAcquisto = fatturaAcquisto;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 
         public override void Init()
         {
