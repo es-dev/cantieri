@@ -260,7 +260,7 @@ namespace Web.GUI.ReportJob
             this.editNomeFile.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editNomeFile.Changed = true;
             this.editNomeFile.Editing = false;
-            this.editNomeFile.Label = "NomeFile";
+            this.editNomeFile.Label = "Report";
             this.editNomeFile.LabelWidth = 175;
             this.editNomeFile.Location = new System.Drawing.Point(25, 389);
             this.editNomeFile.Name = "templateEditLink1";
