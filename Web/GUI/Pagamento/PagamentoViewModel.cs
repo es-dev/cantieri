@@ -11,8 +11,22 @@ namespace Web.GUI.Pagamento
     public class PagamentoViewModel : Library.Template.MVVM.TemplateViewModel<PagamentoDto, PagamentoItem>
     {
 
+        private FatturaAcquistoDto fatturaAcquisto = null;
+
+        public FatturaAcquistoDto FatturaAcquisto
+        {
+            get
+            {
+                return fatturaAcquisto;
+            }
+            set
+            {
+                fatturaAcquisto = value;
+            }
+        }
+
         public PagamentoViewModel(ISpace space)
-            : base(space) 
+            : base(space)
         {
             try
             {
@@ -29,7 +43,11 @@ namespace Web.GUI.Pagamento
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadPagamenti(skip, take, search);
+                IEnumerable<PagamentoDto> objs = null;
+                if(fatturaAcquisto==null)
+                    objs = wcf.LoadPagamenti(skip, take, search);
+                else
+                    objs = wcf.LoadPagamentiFatturaAcquisto(skip, take, fatturaAcquisto, search);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +61,11 @@ namespace Web.GUI.Pagamento
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountPagamenti(search);
+                var count = 0;
+                if(fatturaAcquisto==null)
+                    count = wcf.CountPagamenti(search);
+                else
+                    count = wcf.CountPagamentiFatturaAcquisto(fatturaAcquisto,search);
                 return count;
             }
             catch (Exception ex)
@@ -129,5 +151,6 @@ namespace Web.GUI.Pagamento
             }
             return null;
         }
+
     }
 }

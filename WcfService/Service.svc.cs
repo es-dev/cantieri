@@ -1334,6 +1334,24 @@ namespace WcfService
             return null;
         }
 
+        public IEnumerable<Dto.PagamentoDto> LoadPagamentiFatturaAcquisto(int skip, int take, Dto.FatturaAcquistoDto fatturaAcquisto, string search)
+        {
+            try
+            {
+                var pagamenti = QueryPagamenti(search);
+                pagamenti = (from q in pagamenti where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
+                pagamenti = (from q in pagamenti select q).Skip(skip).Take(take);
+
+                var pagamentiDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamenti);
+                return pagamentiDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         public int CountPagamenti(string search = null)
         {
             try
@@ -1348,6 +1366,22 @@ namespace WcfService
             }
             return 0;
         }
+        public int CountPagamentiFatturaAcquisto(Dto.FatturaAcquistoDto fatturaAcquisto, string search = null)
+        {
+            try
+            {
+                var pagamenti = QueryPagamenti(search);
+                pagamenti = (from q in pagamenti where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
+                var count = pagamenti.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
 
         public Dto.PagamentoDto ReadPagamento(object id)
         {
@@ -3002,6 +3036,7 @@ namespace WcfService
 
         #endregion
         #endregion
+
 
 
 
