@@ -384,5 +384,22 @@ namespace Web.GUI.Fornitore
 
         }
 
+        private void btnPagamenti_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (FornitoreDto)Model;
+                var space = new Pagamento.PagamentoView(obj);
+                space.Title = "PAGAMENTI FORNITORE " + obj.RagioneSociale;
+                Workspace.AddSpace(space);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
+        }
+
 	}
 }

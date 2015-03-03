@@ -25,6 +25,21 @@ namespace Web.GUI.Pagamento
             }
         }
 
+        private FornitoreDto fornitore = null;
+
+        public FornitoreDto Fornitore
+        {
+            get
+            {
+                return fornitore;
+            }
+            set
+            {
+                fornitore = value;
+            }
+        }
+
+
         public PagamentoViewModel(ISpace space)
             : base(space)
         {
@@ -44,10 +59,13 @@ namespace Web.GUI.Pagamento
             {
                 var wcf = new WcfService.Service();
                 IEnumerable<PagamentoDto> objs = null;
-                if(fatturaAcquisto==null)
+                if(fatturaAcquisto==null  && fornitore==null)
                     objs = wcf.LoadPagamenti(skip, take, search);
-                else
+                else if (fatturaAcquisto != null)
                     objs = wcf.LoadPagamentiFatturaAcquisto(skip, take, fatturaAcquisto, search);
+                else if (fornitore != null)
+                    objs = wcf.LoadPagamentiFornitore(skip, take, fornitore, search);
+
                 Load(objs);
             }
             catch (Exception ex)
@@ -62,10 +80,12 @@ namespace Web.GUI.Pagamento
             {
                 var wcf = new WcfService.Service();
                 var count = 0;
-                if(fatturaAcquisto==null)
+                if (fatturaAcquisto == null && fornitore == null)
                     count = wcf.CountPagamenti(search);
-                else
-                    count = wcf.CountPagamentiFatturaAcquisto(fatturaAcquisto,search);
+                else if (fatturaAcquisto != null)
+                    count = wcf.CountPagamentiFatturaAcquisto(fatturaAcquisto, search);
+                else if (fornitore != null)
+                    count = wcf.CountPagamentiFornitore(fornitore, search);
                 return count;
             }
             catch (Exception ex)
@@ -151,6 +171,7 @@ namespace Web.GUI.Pagamento
             }
             return null;
         }
+
 
     }
 }

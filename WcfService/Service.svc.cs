@@ -1384,6 +1384,27 @@ namespace WcfService
             return null;
         }
 
+        public IEnumerable<Dto.PagamentoDto> LoadPagamentiFornitore(int skip, int take, Dto.FornitoreDto fornitore, string search)
+        {
+            try
+            {
+                var pagamenti = QueryPagamenti(search);
+                var fattureAcquisto = fornitore.FatturaAcquistos;
+                var fattureAcquistoIds = (from q in fattureAcquisto select q.Id);
+                pagamenti = (from q in pagamenti where fattureAcquistoIds.Contains(q.FatturaAcquistoId) select q);
+
+                pagamenti = (from q in pagamenti select q).Skip(skip).Take(take);
+
+                var pagamentiDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamenti);
+                return pagamentiDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         public int CountPagamenti(string search = null)
         {
             try
@@ -1404,6 +1425,23 @@ namespace WcfService
             {
                 var pagamenti = QueryPagamenti(search);
                 pagamenti = (from q in pagamenti where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
+                var count = pagamenti.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+        public int CountPagamentiFornitore(Dto.FornitoreDto fornitore, string search = null)
+        {
+            try
+            {
+                var pagamenti = QueryPagamenti(search);
+                var fattureAcquisto = fornitore.FatturaAcquistos;
+                var fattureAcquistoIds = (from q in fattureAcquisto select q.Id);
+                pagamenti = (from q in pagamenti where fattureAcquistoIds.Contains(q.FatturaAcquistoId) select q);
                 var count = pagamenti.Count();
                 return count;
             }

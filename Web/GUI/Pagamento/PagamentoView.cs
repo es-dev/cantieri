@@ -37,6 +37,27 @@ namespace Web.GUI.Pagamento
             }
         }
 
+        private WcfService.Dto.FornitoreDto fornitore;
+        public PagamentoView(WcfService.Dto.FornitoreDto fornitore)
+        {
+            InitializeComponent();
+            try
+            {
+                this.fornitore = fornitore;
+                var viewModel = (Pagamento.PagamentoViewModel)ViewModel;
+                if (viewModel != null)
+                {
+                    viewModel.Fornitore = fornitore;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+
         public override void Init()
         {
             try
