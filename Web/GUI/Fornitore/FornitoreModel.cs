@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.Fornitore
@@ -364,6 +365,23 @@ namespace Web.GUI.Fornitore
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void btnFattureAcquisto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (FornitoreDto)Model;
+                var space = new FatturaAcquisto.FatturaAcquistoView(obj);
+                space.Title = "FATTURE ACQUISTO DEL FORNITORE " + obj.RagioneSociale;
+                Workspace.AddSpace(space);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
         }
 
 	}

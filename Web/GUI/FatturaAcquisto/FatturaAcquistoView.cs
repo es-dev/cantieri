@@ -36,6 +36,23 @@ namespace Web.GUI.FatturaAcquisto
             }
         }
 
+        public FatturaAcquistoView(FornitoreDto fornitore)
+        {
+            InitializeComponent();
+            try
+            {
+                var viewModel = (FatturaAcquisto.FatturaAcquistoViewModel)ViewModel;
+                if (viewModel != null)
+                {
+                    viewModel.Fornitore = fornitore;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         public override void Init()
         {
             try
