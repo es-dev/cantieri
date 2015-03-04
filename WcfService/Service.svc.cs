@@ -969,6 +969,23 @@ namespace WcfService
             return null;
         }
 
+        public IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquistoFornitore(int skip, int take, Dto.FornitoreDto fornitore, string search = null)
+        {
+            try
+            {
+                var fattureAcquisto = QueryFattureAcquisto(search);
+                fattureAcquisto = (from q in fattureAcquisto where q.FornitoreId == fornitore.Id select q);
+                fattureAcquisto = (from q in fattureAcquisto select q).Skip(skip).Take(take);
+
+                var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
+                return fattureAcquistoDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
 
         public int CountFattureAcquisto(string search = null)
         {
@@ -985,7 +1002,7 @@ namespace WcfService
             return 0;
         }
 
-        public int CountFattureAcquisto(string search, Dto.AnagraficaFornitoreDto anagraficaFornitore)
+        public int CountFattureAcquistoFornitoreDare(string search, Dto.AnagraficaFornitoreDto anagraficaFornitore)
         {
             try
             {
@@ -1003,6 +1020,21 @@ namespace WcfService
                     }
                 }
                 fattureAcquisto = (from q in fattureAcquisto where fattureAcquistoId.Contains(q.Id) select q);
+                var count = fattureAcquisto.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+        public int CountFattureAcquistoFornitore(Dto.FornitoreDto fornitore, string search = null)
+        {
+            try
+            {
+                var fattureAcquisto = QueryFattureAcquisto(search);
+                fattureAcquisto = (from q in fattureAcquisto where q.FornitoreId == fornitore.Id select q);
                 var count = fattureAcquisto.Count();
                 return count;
             }
@@ -1352,6 +1384,27 @@ namespace WcfService
             return null;
         }
 
+        public IEnumerable<Dto.PagamentoDto> LoadPagamentiFornitore(int skip, int take, Dto.FornitoreDto fornitore, string search)
+        {
+            try
+            {
+                var pagamenti = QueryPagamenti(search);
+                var fattureAcquisto = fornitore.FatturaAcquistos;
+                var fattureAcquistoIds = (from q in fattureAcquisto select q.Id);
+                pagamenti = (from q in pagamenti where fattureAcquistoIds.Contains(q.FatturaAcquistoId) select q);
+
+                pagamenti = (from q in pagamenti select q).Skip(skip).Take(take);
+
+                var pagamentiDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamenti);
+                return pagamentiDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         public int CountPagamenti(string search = null)
         {
             try
@@ -1372,6 +1425,23 @@ namespace WcfService
             {
                 var pagamenti = QueryPagamenti(search);
                 pagamenti = (from q in pagamenti where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
+                var count = pagamenti.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+        public int CountPagamentiFornitore(Dto.FornitoreDto fornitore, string search = null)
+        {
+            try
+            {
+                var pagamenti = QueryPagamenti(search);
+                var fattureAcquisto = fornitore.FatturaAcquistos;
+                var fattureAcquistoIds = (from q in fattureAcquisto select q.Id);
+                pagamenti = (from q in pagamenti where fattureAcquistoIds.Contains(q.FatturaAcquistoId) select q);
                 var count = pagamenti.Count();
                 return count;
             }

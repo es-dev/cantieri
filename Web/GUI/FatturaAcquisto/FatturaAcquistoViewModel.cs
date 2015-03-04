@@ -36,6 +36,18 @@ namespace Web.GUI.FatturaAcquisto
                 statoFattura = value;
             }
         }
+        private FornitoreDto fornitore = null;
+        public FornitoreDto Fornitore 
+        { 
+            get
+            {
+                return fornitore;
+            }
+            set
+            {
+                fornitore = value;
+            }
+        }
 
         public FatturaAcquistoViewModel(ISpace space)
             : base(space) 
@@ -56,10 +68,12 @@ namespace Web.GUI.FatturaAcquisto
             {
                 var wcf = new WcfService.Service();
                 IEnumerable<FatturaAcquistoDto> objs = null;
-                if(anagraficaFornitore==null)
+                if(anagraficaFornitore==null && fornitore==null)
                     objs = wcf.LoadFattureAcquisto(skip, take, search);
                 else if(anagraficaFornitore!=null && statoFattura== Tipi.StatoFattura.NonPagata || statoFattura== Tipi.StatoFattura.Insoluta)
                     objs = wcf.LoadFattureAcquistoFornitoreDare(skip, take, search, anagraficaFornitore);
+                else if(fornitore!=null)
+                    objs = wcf.LoadFattureAcquistoFornitore(skip, take, fornitore, search);
                 Load(objs);
             }
             catch (Exception ex)
@@ -74,10 +88,13 @@ namespace Web.GUI.FatturaAcquisto
             {
                 var wcf = new WcfService.Service();
                 int count = 0;
-                if(anagraficaFornitore==null)
+                if(anagraficaFornitore==null && fornitore==null)
                      count = wcf.CountFattureAcquisto(search);
                 else if(anagraficaFornitore!=null && statoFattura== Tipi.StatoFattura.NonPagata || statoFattura== Tipi.StatoFattura.Insoluta)
-                    count = wcf.CountFattureAcquisto(search, anagraficaFornitore);
+                    count = wcf.CountFattureAcquistoFornitoreDare(search, anagraficaFornitore);
+                else if (fornitore != null)
+                    count = wcf.CountFattureAcquistoFornitore(fornitore, search);
+
                 return count;
             }
             catch (Exception ex)
@@ -148,6 +165,7 @@ namespace Web.GUI.FatturaAcquisto
             }
             return null;
         }
+
 
 
     }

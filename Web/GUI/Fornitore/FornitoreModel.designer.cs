@@ -48,6 +48,8 @@ namespace Web.GUI.Fornitore
             this.editTotalePagamenti = new Library.Template.Controls.TemplateEditDecimal();
             this.editLocalita = new Library.Template.Controls.TemplateEditText();
             this.editNote = new Library.Template.Controls.TemplateEditText();
+            this.btnFattureAcquisto = new Library.Controls.ButtonSeparatorV();
+            this.btnPagamenti = new Library.Controls.ButtonSeparatorV();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -103,6 +105,8 @@ namespace Web.GUI.Fornitore
             // 
             // panelCommands
             // 
+            this.panelCommands.Controls.Add(this.btnPagamenti);
+            this.panelCommands.Controls.Add(this.btnFattureAcquisto);
             this.panelCommands.Controls.Add(this.btnCalcoloTotali);
             this.panelCommands.Size = new System.Drawing.Size(101, 731);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
@@ -110,6 +114,8 @@ namespace Web.GUI.Fornitore
             this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnDelete, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnCalcoloTotali, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnFattureAcquisto, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnPagamenti, 0);
             // 
             // btnDelete
             // 
@@ -428,7 +434,7 @@ namespace Web.GUI.Fornitore
             this.btnCalcoloTotali.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnCalcoloTotali.ImageButton = "";
             this.btnCalcoloTotali.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnCalcoloTotali.Location = new System.Drawing.Point(1, 217);
+            this.btnCalcoloTotali.Location = new System.Drawing.Point(0, 361);
             this.btnCalcoloTotali.Name = "btnCalcoloTotali";
             this.btnCalcoloTotali.Size = new System.Drawing.Size(100, 72);
             this.btnCalcoloTotali.TabIndex = 1002;
@@ -501,6 +507,34 @@ namespace Web.GUI.Fornitore
             this.editNote.Text = "EditControl";
             this.editNote.Value = null;
             // 
+            // btnFattureAcquisto
+            // 
+            this.btnFattureAcquisto.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.btnFattureAcquisto.BackColor = System.Drawing.Color.Transparent;
+            this.btnFattureAcquisto.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.btnFattureAcquisto.ImageButton = "";
+            this.btnFattureAcquisto.ImageSeparator = "Images.separator_ht_small.png";
+            this.btnFattureAcquisto.Location = new System.Drawing.Point(0, 217);
+            this.btnFattureAcquisto.Name = "btnFattureAcquisto";
+            this.btnFattureAcquisto.Size = new System.Drawing.Size(100, 72);
+            this.btnFattureAcquisto.TabIndex = 1002;
+            this.btnFattureAcquisto.TextButton = "Fatture di acquisto";
+            this.btnFattureAcquisto.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnFattureAcquisto_Click);
+            // 
+            // btnPagamenti
+            // 
+            this.btnPagamenti.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.btnPagamenti.BackColor = System.Drawing.Color.Transparent;
+            this.btnPagamenti.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.btnPagamenti.ImageButton = "";
+            this.btnPagamenti.ImageSeparator = "Images.separator_ht_small.png";
+            this.btnPagamenti.Location = new System.Drawing.Point(0, 289);
+            this.btnPagamenti.Name = "btnPagamenti";
+            this.btnPagamenti.Size = new System.Drawing.Size(100, 72);
+            this.btnPagamenti.TabIndex = 1002;
+            this.btnPagamenti.TextButton = "Pagamenti";
+            this.btnPagamenti.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnPagamenti_Click);
+            // 
             // FornitoreModel
             // 
             this.Size = new System.Drawing.Size(1024, 799);
@@ -533,6 +567,8 @@ namespace Web.GUI.Fornitore
         private Library.Template.Controls.TemplateEditDecimal editTotalePagamenti;
         private Library.Template.Controls.TemplateEditText editLocalita;
         private Library.Template.Controls.TemplateEditText editNote;
+        private Library.Controls.ButtonSeparatorV btnFattureAcquisto;
+        private Library.Controls.ButtonSeparatorV btnPagamenti;
 
 
     }
