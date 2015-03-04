@@ -84,7 +84,7 @@ namespace Web.GUI.FatturaAcquisto
                     if (centroCosto != null)
                     {
                         editCentroCosto.Model = centroCosto;
-                        editCentroCosto.Value = "(" + centroCosto.Codice + ") - " + centroCosto.Denominazione;
+                        editCentroCosto.Value = centroCosto.Codice + " - " + centroCosto.Denominazione;
                     }
                     var fornitore = obj.Fornitore;
                     if (fornitore != null)
