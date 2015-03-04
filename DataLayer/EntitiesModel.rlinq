@@ -159,8 +159,8 @@
         <orm:field name="_sALs" property="SALs" behavior="readwrite" uniqueId="0dbed7e3-e3c6-46cc-a388-6ceb266c16ee" type="DataLayer.SAL">
           <orm:collection element-class="DataLayer.SAL" inverse-field="_commessa" order-by="" uniqueId="5e538b05-7df0-4fbd-9e24-1297d12e5678" />
         </orm:field>
-        <orm:field name="_cliente" property="Cliente" behavior="readwrite" uniqueId="ce61cd10-8023-4084-af65-30e0edeb7143" type="DataLayer.Cliente">
-          <orm:inversereference inverse-field="_commessa" uniqueId="2e7765b0-82e3-4978-a0c4-56bb3098179a" />
+        <orm:field name="_clientes" property="Clientes" behavior="readwrite" uniqueId="b0852979-7b0c-4f1a-8ef5-ba8631d0927c" type="DataLayer.Cliente">
+          <orm:collection element-class="DataLayer.Cliente" inverse-field="_commessa" order-by="" uniqueId="98accec0-eb06-4da1-9a34-0118b4cbdd22" />
         </orm:field>
         <orm:index name="idx_Commessa_AziendaId">
           <orm:columnMapping>
@@ -250,10 +250,13 @@
       <orm:class name="Cliente" uniqueId="2fb30af5-7285-4d31-98ce-5913cc73edde">
         <orm:table name="Cliente" />
         <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
           <orm:single-field field-name="_id" />
         </orm:identity>
         <orm:field name="_id" property="Id" uniqueId="1aab52e3-a2ba-49fc-8918-91d3958e8c24" type="System.Int32">
-          <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+          <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
         </orm:field>
         <orm:field name="_ragioneSociale" property="RagioneSociale" uniqueId="f03db241-281c-41d5-acad-10061f811f7c" type="System.String">
           <orm:column name="RagioneSociale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
@@ -306,13 +309,16 @@
         <orm:field name="_note" property="Note" uniqueId="f4e49bbd-765b-43ae-a1ad-12ceafd709e8" type="System.String">
           <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
-        <orm:field name="_commessa" property="Commessa" behavior="readwrite" uniqueId="d2449fe8-a609-403e-8779-406be42f82eb" type="DataLayer.Commessa">
-          <orm:reference uniqueId="2e7765b0-82e3-4978-a0c4-56bb3098179a" association-name="ClienteHasCommessa">
-            <orm:sharedfield name="_id" target-class="DataLayer.Commessa" target-field="_id" />
+        <orm:field name="_commessaId" property="CommessaId" uniqueId="2b772062-10ed-437a-93a4-6071fe4604b7" type="System.Int32">
+          <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_commessa" property="Commessa" behavior="readwrite" uniqueId="621d7ebe-b5b1-493e-b5a8-9fd9a21ad5eb" type="DataLayer.Commessa">
+          <orm:reference uniqueId="98accec0-eb06-4da1-9a34-0118b4cbdd22" association-name="ClienteHasCommessa">
+            <orm:sharedfield name="_commessaId" target-class="DataLayer.Commessa" target-field="_id" />
           </orm:reference>
         </orm:field>
-        <orm:field name="_fatturaVenditas" property="FatturaVenditas" behavior="readwrite" uniqueId="a6b90b88-58ab-4ab2-8608-1efe8197b673" type="DataLayer.FatturaVendita">
-          <orm:collection element-class="DataLayer.FatturaVendita" inverse-field="_cliente" order-by="" uniqueId="17987c58-2c27-4bba-b919-b1e4679a2b98" />
+        <orm:field name="_fatturaVenditas" property="FatturaVenditas" behavior="readwrite" uniqueId="67388df4-6f8d-4de2-a87b-371d2547cf00" type="DataLayer.FatturaVendita">
+          <orm:collection element-class="DataLayer.FatturaVendita" inverse-field="_cliente" order-by="" uniqueId="35403887-7114-422d-a11b-c64ef2d707e5" />
         </orm:field>
       </orm:class>
       <orm:class name="CentroCosto" uniqueId="acdc8bbc-4b19-46bd-8c16-7ae0b20c80d8">
@@ -567,13 +573,13 @@
         <orm:field name="_note" property="Note" uniqueId="f4f995e6-33b1-4f86-9894-89e2e6bd9859" type="System.String">
           <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
-        <orm:field name="_cliente" property="Cliente" behavior="readwrite" uniqueId="1d9a256b-bc28-4168-89ff-c7bf05be68de" type="DataLayer.Cliente">
-          <orm:reference uniqueId="17987c58-2c27-4bba-b919-b1e4679a2b98" association-name="FatturaVenditaHasCliente">
-            <orm:sharedfield name="_clienteId" target-class="DataLayer.Cliente" target-field="_id" />
-          </orm:reference>
-        </orm:field>
         <orm:field name="_liquidaziones" property="Liquidaziones" behavior="readwrite" uniqueId="a812dacc-c65e-4a4d-bdd0-6d9c2fd831b0" type="DataLayer.Liquidazione">
           <orm:collection element-class="DataLayer.Liquidazione" inverse-field="_fatturaVendita" order-by="" uniqueId="3d93d254-2a67-4e4a-8665-f0d72e57af0f" />
+        </orm:field>
+        <orm:field name="_cliente" property="Cliente" behavior="readwrite" uniqueId="8272210e-e320-4a4b-be43-448f46e3b9ff" type="DataLayer.Cliente">
+          <orm:reference uniqueId="35403887-7114-422d-a11b-c64ef2d707e5" association-name="FatturaVenditaHasCliente">
+            <orm:sharedfield name="_clienteId" target-class="DataLayer.Cliente" target-field="_id" />
+          </orm:reference>
         </orm:field>
         <orm:index name="idx_FatturaVendita_ClienteId">
           <orm:columnMapping>
@@ -1085,7 +1091,7 @@
         </orm:index>
       </orm:table>
       <orm:table name="Cliente">
-        <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
         <orm:column name="RagioneSociale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Indirizzo" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="CAP" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
@@ -1103,6 +1109,7 @@
         <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="Localita" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" ado-type="" />
       </orm:table>
       <orm:table name="FatturaVendita">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
@@ -1399,8 +1406,8 @@
         <classHasNavigationalProperties Id="b9630218-4869-4e18-8d23-4771cafd5800">
           <NavigationalProperty Id="0dbed7e3-e3c6-46cc-a388-6ceb266c16ee" name="SALs" type="IList&lt;SAL&gt;" label="SALs : IList&lt;SAL&gt;" nullable="true" kind="Persistent" fieldName="_sALs" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
-        <classHasNavigationalProperties Id="7a1ee165-2f1b-4413-a6d5-d5bc5c0a3710">
-          <NavigationalProperty Id="ce61cd10-8023-4084-af65-30e0edeb7143" name="Cliente" type="Cliente" label="Cliente : Cliente" nullable="true" kind="Persistent" fieldName="_cliente" isDependent="false" isManaged="true" />
+        <classHasNavigationalProperties Id="76e8a1ef-954d-4ad9-9c3d-2d8802f2fea9">
+          <NavigationalProperty Id="b0852979-7b0c-4f1a-8ef5-ba8631d0927c" name="Clientes" type="IList&lt;Cliente&gt;" label="Clientes : IList&lt;Cliente&gt;" nullable="true" kind="Persistent" fieldName="_clientes" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
@@ -1448,7 +1455,7 @@
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
-    <DomainClass Id="2fb30af5-7285-4d31-98ce-5913cc73edde" name="Cliente" namespace="DataLayer" showPropertiesCompartment="true" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+    <DomainClass Id="2fb30af5-7285-4d31-98ce-5913cc73edde" name="Cliente" namespace="DataLayer" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
       <Property Id="1aab52e3-a2ba-49fc-8918-91d3958e8c24" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
       <Property Id="f03db241-281c-41d5-acad-10061f811f7c" name="RagioneSociale" label="RagioneSociale : String" fieldName="_ragioneSociale" />
       <Property Id="2017cb68-eea4-44c9-8e48-0e3c6944900b" name="Indirizzo" label="Indirizzo : String" fieldName="_indirizzo" />
@@ -1467,27 +1474,28 @@
       <Property Id="2d49c392-549c-4557-9b66-b4b53c547a5b" name="TotaleLiquidazioni" type="Decimal" label="TotaleLiquidazioni : Decimal" nullable="true" fieldName="_totaleLiquidazioni" />
       <Property Id="b24960b6-6b51-4fe3-827e-24cdb01bf26e" name="Localita" label="Localita : String" fieldName="_localita" />
       <Property Id="f4e49bbd-765b-43ae-a1ad-12ceafd709e8" name="Note" label="Note : String" fieldName="_note" />
+      <Property Id="2b772062-10ed-437a-93a4-6071fe4604b7" name="CommessaId" type="Int32" label="CommessaId : Int32" fieldName="_commessaId" />
       <AssociationTargets>
-        <Association Id="2e7765b0-82e3-4978-a0c4-56bb3098179a" SourceMultiplicity="One" TargetMultiplicity="ZeroOne" name="ClienteHasCommessa">
+        <Association Id="98accec0-eb06-4da1-9a34-0118b4cbdd22" SourceMultiplicity="ZeroOne" name="ClienteHasCommessa">
           <DomainClassMoniker name="/EntitiesModel/Commessa" />
           <targetNavigationalProperty>
-            <associationDefinesTargetProperty Id="e6e84d24-e4ba-4a54-bd1b-acff8cebd5d8">
-              <NavigationalPropertyMoniker name="/EntitiesModel/Commessa/Cliente" />
+            <associationDefinesTargetProperty Id="25f963f0-28ca-470f-ae45-34d9ef24660a">
+              <NavigationalPropertyMoniker name="/EntitiesModel/Commessa/Clientes" />
             </associationDefinesTargetProperty>
           </targetNavigationalProperty>
           <sourceNavigationalProperty>
-            <associationDefinesSourceProperty Id="5997511e-0506-4463-9a97-4128f0e19a7c">
+            <associationDefinesSourceProperty Id="c5670762-bc9b-4b61-8fda-5af256107e7e">
               <NavigationalPropertyMoniker name="/EntitiesModel/Cliente/Commessa" />
             </associationDefinesSourceProperty>
           </sourceNavigationalProperty>
         </Association>
       </AssociationTargets>
       <navigationalProperties>
-        <classHasNavigationalProperties Id="68377e8b-3a9f-403e-84ef-eccb3bcab351">
-          <NavigationalProperty Id="a6b90b88-58ab-4ab2-8608-1efe8197b673" name="FatturaVenditas" type="IList&lt;FatturaVendita&gt;" label="FatturaVenditas : IList&lt;FatturaVendita&gt;" nullable="true" kind="Persistent" fieldName="_fatturaVenditas" isDependent="false" isManaged="false" />
+        <classHasNavigationalProperties Id="f5dc0158-849b-474a-a1b1-8b39ee5c505b">
+          <NavigationalProperty Id="621d7ebe-b5b1-493e-b5a8-9fd9a21ad5eb" name="Commessa" type="Commessa" label="Commessa : Commessa" nullable="true" kind="Persistent" fieldName="_commessa" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
-        <classHasNavigationalProperties Id="cb032c15-3d24-4160-a6ad-ddf00f1704ad">
-          <NavigationalProperty Id="d2449fe8-a609-403e-8779-406be42f82eb" name="Commessa" type="Commessa" label="Commessa : Commessa" nullable="true" kind="Persistent" fieldName="_commessa" isDependent="false" isManaged="true" />
+        <classHasNavigationalProperties Id="8d448320-0b59-4da4-b30a-f05d81f8a9ee">
+          <NavigationalProperty Id="67388df4-6f8d-4de2-a87b-371d2547cf00" name="FatturaVenditas" type="IList&lt;FatturaVendita&gt;" label="FatturaVenditas : IList&lt;FatturaVendita&gt;" nullable="true" kind="Persistent" fieldName="_fatturaVenditas" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
@@ -1659,26 +1667,26 @@
       <Property Id="6efeb1bb-6c89-4ed6-af34-1cfaae2e0c73" name="TotaleLiquidazioni" type="Decimal" label="TotaleLiquidazioni : Decimal" nullable="true" fieldName="_totaleLiquidazioni" />
       <Property Id="f4f995e6-33b1-4f86-9894-89e2e6bd9859" name="Note" label="Note : String" fieldName="_note" />
       <AssociationTargets>
-        <Association Id="17987c58-2c27-4bba-b919-b1e4679a2b98" SourceMultiplicity="ZeroOne" name="FatturaVenditaHasCliente">
+        <Association Id="35403887-7114-422d-a11b-c64ef2d707e5" SourceMultiplicity="ZeroOne" name="FatturaVenditaHasCliente">
           <DomainClassMoniker name="/EntitiesModel/Cliente" />
           <targetNavigationalProperty>
-            <associationDefinesTargetProperty Id="e3f5231c-1b7b-4260-9520-e0f426261caf">
+            <associationDefinesTargetProperty Id="006af05f-70ed-44ce-957b-0aeedd35f766">
               <NavigationalPropertyMoniker name="/EntitiesModel/Cliente/FatturaVenditas" />
             </associationDefinesTargetProperty>
           </targetNavigationalProperty>
           <sourceNavigationalProperty>
-            <associationDefinesSourceProperty Id="b47d5e14-b5f4-40fc-9b01-2e485b10e5ae">
+            <associationDefinesSourceProperty Id="9d89e9b2-b284-4101-9618-ddc9d73fbe28">
               <NavigationalPropertyMoniker name="/EntitiesModel/FatturaVendita/Cliente" />
             </associationDefinesSourceProperty>
           </sourceNavigationalProperty>
         </Association>
       </AssociationTargets>
       <navigationalProperties>
-        <classHasNavigationalProperties Id="9d387f85-f0b7-43a2-84d9-5a7688e6836e">
-          <NavigationalProperty Id="1d9a256b-bc28-4168-89ff-c7bf05be68de" name="Cliente" type="Cliente" label="Cliente : Cliente" nullable="true" kind="Persistent" fieldName="_cliente" isDependent="false" isManaged="false" />
-        </classHasNavigationalProperties>
         <classHasNavigationalProperties Id="47dc0b4b-9987-4af3-afe2-e0ffbfb80844">
           <NavigationalProperty Id="a812dacc-c65e-4a4d-bdd0-6d9c2fd831b0" name="Liquidaziones" type="IList&lt;Liquidazione&gt;" label="Liquidaziones : IList&lt;Liquidazione&gt;" nullable="true" kind="Persistent" fieldName="_liquidaziones" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="c5c04693-57a6-46f7-a2b5-89e62c3249b8">
+          <NavigationalProperty Id="8272210e-e320-4a4b-be43-448f46e3b9ff" name="Cliente" type="Cliente" label="Cliente : Cliente" nullable="true" kind="Persistent" fieldName="_cliente" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>

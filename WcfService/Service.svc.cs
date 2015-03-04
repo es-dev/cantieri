@@ -415,7 +415,7 @@ namespace WcfService
             try
             {
                 var commesse = QueryCommesse(search);
-                commesse = (from q in commesse where q.Cliente == null select q); //filtro aggiuntivo per commesse non assegnate (cliente nullo)
+                commesse = (from q in commesse where (q.Clientes == null && q.Clientes.Count == 0) select q); //filtro aggiuntivo per commesse non assegnate (cliente nullo)
                 commesse = (from q in commesse select q).Skip(skip).Take(take);
 
                 var commesseDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commesse);
@@ -448,7 +448,7 @@ namespace WcfService
             try
             {
                 var commesse = QueryCommesse(search);
-                commesse = (from q in commesse where q.Cliente == null select q); //filtro aggiuntivo per commesse non assegnate (cliente nullo)
+                commesse = (from q in commesse where (q.Clientes==null && q.Clientes.Count==0) select q); //filtro aggiuntivo per commesse non assegnate (cliente nullo)
                 var count = commesse.Count();
                 return count;
             }

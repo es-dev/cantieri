@@ -258,6 +258,19 @@ namespace DataLayer
 			}
 		}
 		
+		private int _commessaId;
+		public virtual int CommessaId
+		{
+			get
+			{
+				return this._commessaId;
+			}
+			set
+			{
+				this._commessaId = value;
+			}
+		}
+		
 		private Commessa _commessa;
 		public virtual Commessa Commessa
 		{

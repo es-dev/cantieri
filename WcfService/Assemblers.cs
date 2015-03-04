@@ -271,9 +271,6 @@ namespace WcfService.Assemblers
 			AziendaAssembler aziendaAssembler = new AziendaAssembler();
 			dto.Azienda = aziendaAssembler.Assemble(entity.Azienda);
 
-			ClienteAssembler clienteAssembler = new ClienteAssembler();
-			dto.Cliente = clienteAssembler.Assemble(entity.Cliente);
-
 	    }
 	
 	    public override void AssembleCollections(Commessa entity, CommessaDto dto)
@@ -296,6 +293,16 @@ namespace WcfService.Assemblers
 				var dtoItem = sALAssembler.Assemble(item);
 				dtoItem.Commessa = dto;
 				dto.SALs.Add(dtoItem);
+			}
+
+			ClienteAssembler clienteAssembler = new ClienteAssembler();
+
+			dto.Clientes = new List<ClienteDto>();
+			foreach (Cliente item in entity.Clientes)
+			{
+				var dtoItem = clienteAssembler.Assemble(item);
+				dtoItem.Commessa = dto;
+				dto.Clientes.Add(dtoItem);
 			}
 
 	    }
@@ -459,6 +466,7 @@ namespace WcfService.Assemblers
 			entity.TotaleLiquidazioni = dto.TotaleLiquidazioni;
 			entity.Localita = dto.Localita;
 			entity.Note = dto.Note;
+			entity.CommessaId = dto.CommessaId;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -487,6 +495,7 @@ namespace WcfService.Assemblers
 			dto.TotaleLiquidazioni = entity.TotaleLiquidazioni;
 			dto.Localita = entity.Localita;
 			dto.Note = entity.Note;
+			dto.CommessaId = entity.CommessaId;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }

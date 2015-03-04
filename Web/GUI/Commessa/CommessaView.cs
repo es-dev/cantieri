@@ -12,21 +12,7 @@ namespace Web.GUI.Commessa
 {
 	public partial class CommessaView : TemplateView
 	{
-        public CommessaView(Tipi.FiltroCommessa filtroCommessa = Tipi.FiltroCommessa.None)
-		{ 
-			InitializeComponent();
-            try
-            {
-                var viewModel = (Commessa.CommessaViewModel)ViewModel;
-                if(viewModel!=null)
-                    viewModel.FiltroCommessa = filtroCommessa;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-		}
-
+ 
         public CommessaView()
         {
             InitializeComponent();

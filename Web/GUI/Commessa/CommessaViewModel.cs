@@ -11,18 +11,6 @@ namespace Web.GUI.Commessa
 {
     public class CommessaViewModel : Library.Template.MVVM.TemplateViewModel<CommessaDto, CommessaItem>
     {
-        private Tipi.FiltroCommessa filtroCommessa = Tipi.FiltroCommessa.None;
-        public Tipi.FiltroCommessa FiltroCommessa
-        {
-            get 
-            {
-                return filtroCommessa;
-            }
-            set
-            {
-                filtroCommessa = value;
-            }
-        }
 
         public CommessaViewModel(ISpace space)
             : base(space) 
@@ -35,12 +23,7 @@ namespace Web.GUI.Commessa
             try
             {
                 var wcf = new WcfService.Service();
-                IEnumerable<CommessaDto> objs = null;
-                if (filtroCommessa == Tipi.FiltroCommessa.None)
-                    objs = wcf.LoadCommesse(skip, take, search);
-                else if (filtroCommessa == Tipi.FiltroCommessa.NonAssegnate)
-                    objs = wcf.LoadCommesseNonAssegnate(skip, take, search);
-
+                var objs = wcf.LoadCommesse(skip, take, search);
                 Load(objs);
             }
             catch (Exception ex)
@@ -54,12 +37,7 @@ namespace Web.GUI.Commessa
             try
             {
                 var wcf = new WcfService.Service();
-                int count = 0;
-                if (filtroCommessa == Tipi.FiltroCommessa.None)
-                    count = wcf.CountCommesse(search);
-                else if (filtroCommessa == Tipi.FiltroCommessa.NonAssegnate)
-                    count = wcf.CountCommesseNonAssegnate(search);
-               
+                var count = wcf.CountCommesse(search);
                 return count;
             }
             catch (Exception ex)

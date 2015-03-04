@@ -191,7 +191,7 @@ namespace Web.GUI.Cliente
                     obj.TotaleLiquidazioni = editTotaleLiquidazioni.Value;
                     var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
                     if (commessa != null)
-                        obj.Id = commessa.Id;
+                        obj.CommessaId = commessa.Id;
                     
                 }
             }
@@ -205,7 +205,7 @@ namespace Web.GUI.Cliente
         {
             try
             {
-                var view = new Commessa.CommessaView(Tipi.FiltroCommessa.NonAssegnate);
+                var view = new Commessa.CommessaView();
                 view.Title = "SELEZIONA UNA COMMESSA";
                 editCommessa.Show(view);
             }
@@ -221,8 +221,10 @@ namespace Web.GUI.Cliente
             {
                 var commessa = (WcfService.Dto.CommessaDto)model;
                 if (commessa != null)
+                {
                     editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;
                     CalcolaTotali();
+                }
             }
             catch (Exception ex)
             {

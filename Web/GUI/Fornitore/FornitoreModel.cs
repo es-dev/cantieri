@@ -221,7 +221,7 @@ namespace Web.GUI.Fornitore
                 var commessa = (WcfService.Dto.CommessaDto)model;
                 if (commessa != null)
                 {
-                    editCommessa.Value = "(" + commessa.Codice + ") - " + commessa.Denominazione;
+                    editCommessa.Value =  commessa.Codice + " - " + commessa.Denominazione;
                     CalcolaTotali();
                 }
             }
