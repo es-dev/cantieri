@@ -488,7 +488,7 @@ namespace WcfService
                                     q.Riferimento.Contains(search) || q.Stato.StartsWith(search)
                                 select q);
 
-                commesse = (from q in commesse orderby q.Denominazione select q);
+                commesse = (from q in commesse orderby q.Id descending select q);
                 return commesse;
             }
             catch (Exception ex)
@@ -1100,7 +1100,7 @@ namespace WcfService
                                        fornitoriId.Contains(q.FornitoreId)
                                        select q);
                 }
-                fattureAcquisto = (from q in fattureAcquisto orderby q.Numero select q);
+                fattureAcquisto = (from q in fattureAcquisto orderby q.Id descending select q);
                 return fattureAcquisto;
             }
             catch (Exception ex)
@@ -1255,7 +1255,7 @@ namespace WcfService
                                     fattureAcquistoId.Contains(q.FatturaAcquistoId)
                                 select q);
                 }
-                articoli = (from q in articoli orderby q.Codice select q);
+                articoli = (from q in articoli orderby q.Id descending select q);
                 return articoli;
             }
             catch (Exception ex)
@@ -1483,7 +1483,7 @@ namespace WcfService
                                      fattureAcquistoId.Contains(q.FatturaAcquistoId)
                                  select q);
                 }
-                pagamenti = (from q in pagamenti orderby q.Note select q);
+                pagamenti = (from q in pagamenti orderby q.Id descending select q);
                 return pagamenti;
             }
             catch (Exception ex)
@@ -1658,7 +1658,7 @@ namespace WcfService
                                      codiciFornitori.Contains(q.CodiceFornitore)
                                  select q);
                 }
-                pagamentiUnificati = (from q in pagamentiUnificati orderby q.Note select q);
+                pagamentiUnificati = (from q in pagamentiUnificati orderby q.Id descending select q);
                 return pagamentiUnificati;
             }
             catch (Exception ex)
@@ -1850,7 +1850,7 @@ namespace WcfService
                                               fatturaAcquistoId.Contains(q.FatturaAcquistoId)
                                           select q);
                 }
-                pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto orderby q.Note select q);
+                pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto orderby q.Id descending select q);
                 return pagamentiUnificatiFatturaAcquisto;
             }
             catch (Exception ex)
@@ -2162,7 +2162,7 @@ namespace WcfService
                                           clientiId.Contains(q.ClienteId)
                                       select q);
                 }
-                fattureVendita = (from q in fattureVendita orderby q.Numero select q);
+                fattureVendita = (from q in fattureVendita orderby q.Id descending select q);
                 return fattureVendita;
             }
             catch (Exception ex)
@@ -2316,7 +2316,7 @@ namespace WcfService
                                         fattureVenditaId.Contains(q.FatturaVenditaId)
                                     select q);
                 }
-                liquidazioni = (from q in liquidazioni orderby q.Note select q);
+                liquidazioni = (from q in liquidazioni orderby q.Id descending select q);
                 return liquidazioni;
             }
             catch (Exception ex)
@@ -2472,7 +2472,7 @@ namespace WcfService
                                 commesseId.Contains(q.CommessaId)
                             select q);
                 }
-                sals = (from q in sals orderby q.Id select q);
+                sals = (from q in sals orderby q.Id descending select q);
                 return sals;
             }
             catch (Exception ex)
@@ -3093,7 +3093,7 @@ namespace WcfService
                 if (search != null && search.Length > 0)
                     reportJobs = (from q in reportJobs where q.Codice.StartsWith(search) || q.CodiceFornitore.Contains(search) select q);
 
-                reportJobs = (from q in reportJobs orderby q.Codice select q);
+                reportJobs = (from q in reportJobs orderby q.Id descending select q);
                 return reportJobs;
             }
             catch (Exception ex)
