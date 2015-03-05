@@ -134,7 +134,13 @@ namespace WcfService
         IEnumerable<Dto.FornitoreDto> LoadFornitori(int skip, int take, string search = null);
 
         [OperationContract]
+        IEnumerable<Dto.FornitoreDto> LoadFornitoriCommessa(int skip, int take, Dto.CommessaDto commessa, string search = null);
+
+        [OperationContract]
         int CountFornitori(string search = null);
+
+        [OperationContract]
+        int CountFornitoriCommessa(Dto.CommessaDto commessa, string search = null);
 
         [OperationContract]
         Dto.FornitoreDto ReadFornitore(object id);

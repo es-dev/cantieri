@@ -375,7 +375,6 @@ namespace Web.GUI.Fornitore
                 var space = new FatturaAcquisto.FatturaAcquistoView(obj);
                 space.Title = "FATTURE ACQUISTO DEL FORNITORE " + obj.RagioneSociale;
                 Workspace.AddSpace(space);
-
             }
             catch (Exception ex)
             {

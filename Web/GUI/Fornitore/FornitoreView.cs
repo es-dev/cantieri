@@ -11,10 +11,30 @@ namespace Web.GUI.Fornitore
 {
 	public partial class FornitoreView : TemplateView
 	{
+        private WcfService.Dto.CommessaDto commessa;
+
         public FornitoreView()
 		{ 
 			InitializeComponent();
 		}
+
+        public FornitoreView(WcfService.Dto.CommessaDto commessa)
+        {
+            InitializeComponent();
+            try
+            {
+                var viewModel = (Fornitore.FornitoreViewModel)ViewModel;
+                if (viewModel != null)
+                {
+                    viewModel.Commessa = commessa;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
+        }
 
         public override void Init()
         {

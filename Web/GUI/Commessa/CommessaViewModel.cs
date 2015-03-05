@@ -11,7 +11,7 @@ namespace Web.GUI.Commessa
 {
     public class CommessaViewModel : Library.Template.MVVM.TemplateViewModel<CommessaDto, CommessaItem>
     {
-
+     
         public CommessaViewModel(ISpace space)
             : base(space) 
         {
@@ -140,5 +140,6 @@ namespace Web.GUI.Commessa
             }
             return null;
         }
+
     }
 }

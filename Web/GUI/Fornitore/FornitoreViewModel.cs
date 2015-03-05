@@ -10,6 +10,19 @@ namespace Web.GUI.Fornitore
 {
     public class FornitoreViewModel : Library.Template.MVVM.TemplateViewModel<FornitoreDto, FornitoreItem>
     {
+        private CommessaDto commessa = null;
+
+        public CommessaDto Commessa
+        {
+            get
+            {
+                return commessa;
+            }
+            set
+            {
+                commessa = value;
+            }
+        }
 
         public FornitoreViewModel(ISpace space)
             : base(space) 
@@ -29,7 +42,11 @@ namespace Web.GUI.Fornitore
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadFornitori(skip, take, search);
+                IEnumerable<FornitoreDto> objs = null;
+                if (commessa==null)
+                    objs = wcf.LoadFornitori(skip, take, search);
+                else
+                    objs = wcf.LoadFornitoriCommessa(skip, take,commessa, search);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +60,11 @@ namespace Web.GUI.Fornitore
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountFornitori(search);
+                var count = 0;
+                if (commessa==null)
+                    count = wcf.CountFornitori(search);
+                else
+                    count = wcf.CountFornitoriCommessa(commessa, search);
                 return count;
             }
             catch (Exception ex)
@@ -144,5 +165,6 @@ namespace Web.GUI.Fornitore
             }
             return null;
         }
+
     }
 }

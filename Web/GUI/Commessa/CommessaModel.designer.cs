@@ -662,7 +662,6 @@ namespace Web.GUI.Commessa
             // 
             this.btnFornitori.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.btnFornitori.BackColor = System.Drawing.Color.Transparent;
-            this.btnFornitori.Enabled = false;
             this.btnFornitori.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnFornitori.ImageButton = "";
             this.btnFornitori.ImageSeparator = "Images.separator_ht_small.png";
@@ -671,6 +670,7 @@ namespace Web.GUI.Commessa
             this.btnFornitori.Size = new System.Drawing.Size(100, 72);
             this.btnFornitori.TabIndex = 1002;
             this.btnFornitori.TextButton = "Fornitori";
+            this.btnFornitori.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnFornitori_Click);
             // 
             // btnPagamenti
             // 

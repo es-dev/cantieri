@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.Commessa
@@ -256,6 +257,21 @@ namespace Web.GUI.Commessa
             {
                 base.SetEditing(editing, deleting);
                 btnCalcoloAvanzamentoLavori.Enabled = editing;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void btnFornitori_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (CommessaDto)Model;
+                var space = new Fornitore.FornitoreView(obj);
+                space.Title = "Fornitori della commessa " + obj.Denominazione;
+                Workspace.AddSpace(space);
             }
             catch (Exception ex)
             {

@@ -615,11 +615,45 @@ namespace WcfService
             return null;
         }
 
+        public IEnumerable<Dto.FornitoreDto> LoadFornitoriCommessa(int skip, int take,Dto.CommessaDto commessa, string search = null)
+        {
+            try
+            {
+                var fornitori = QueryFornitori(search);
+                fornitori = (from q in fornitori where q.CommessaId==commessa.Id select q);
+                fornitori = (from q in fornitori select q).Skip(skip).Take(take);
+
+                var fornitoriDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitori);
+                return fornitoriDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         public int CountFornitori(string search = null)
         {
             try
             {
                 var fornitori = QueryFornitori(search);
+                var count = fornitori.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public int CountFornitoriCommessa(Dto.CommessaDto commessa, string search = null)
+        {
+            try
+            {
+                var fornitori = QueryFornitori(search);
+                fornitori = (from q in fornitori where q.CommessaId == commessa.Id select q);
                 var count = fornitori.Count();
                 return count;
             }
