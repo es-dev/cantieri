@@ -279,5 +279,20 @@ namespace Web.GUI.Commessa
             }
         }
 
+        private void bntClienti_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (CommessaDto)Model;
+                var space = new Cliente.ClienteView(obj);
+                space.Title = "Clienti della commessa " + obj.Denominazione;
+                Workspace.AddSpace(space);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
 	}
 }

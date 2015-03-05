@@ -62,6 +62,7 @@ namespace Web.GUI.Commessa
             this.editLocalita = new Library.Template.Controls.TemplateEditText();
             this.editNote = new Library.Template.Controls.TemplateEditText();
             this.btnCalcoloAvanzamentoLavori = new Library.Controls.ButtonSeparatorV();
+            this.bntClienti = new Library.Controls.ButtonSeparatorV();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -137,6 +138,7 @@ namespace Web.GUI.Commessa
             // 
             // panelCommands
             // 
+            this.panelCommands.Controls.Add(this.bntClienti);
             this.panelCommands.Controls.Add(this.btnCalcoloAvanzamentoLavori);
             this.panelCommands.Controls.Add(this.btnSAL);
             this.panelCommands.Controls.Add(this.btnLiquidazioni);
@@ -152,6 +154,7 @@ namespace Web.GUI.Commessa
             this.panelCommands.Controls.SetChildIndex(this.btnLiquidazioni, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSAL, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnCalcoloAvanzamentoLavori, 0);
+            this.panelCommands.Controls.SetChildIndex(this.bntClienti, 0);
             // 
             // btnDelete
             // 
@@ -680,7 +683,7 @@ namespace Web.GUI.Commessa
             this.btnPagamenti.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnPagamenti.ImageButton = "";
             this.btnPagamenti.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnPagamenti.Location = new System.Drawing.Point(0, 360);
+            this.btnPagamenti.Location = new System.Drawing.Point(0, 432);
             this.btnPagamenti.Name = "btnPagamenti";
             this.btnPagamenti.Size = new System.Drawing.Size(100, 72);
             this.btnPagamenti.TabIndex = 1002;
@@ -694,7 +697,7 @@ namespace Web.GUI.Commessa
             this.btnLiquidazioni.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnLiquidazioni.ImageButton = "";
             this.btnLiquidazioni.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnLiquidazioni.Location = new System.Drawing.Point(0, 432);
+            this.btnLiquidazioni.Location = new System.Drawing.Point(0, 504);
             this.btnLiquidazioni.Name = "btnLiquidazioni";
             this.btnLiquidazioni.Size = new System.Drawing.Size(100, 72);
             this.btnLiquidazioni.TabIndex = 1002;
@@ -708,7 +711,7 @@ namespace Web.GUI.Commessa
             this.btnSAL.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnSAL.ImageButton = "";
             this.btnSAL.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnSAL.Location = new System.Drawing.Point(0, 504);
+            this.btnSAL.Location = new System.Drawing.Point(0, 576);
             this.btnSAL.Name = "btnSAL";
             this.btnSAL.Size = new System.Drawing.Size(100, 72);
             this.btnSAL.TabIndex = 1002;
@@ -794,6 +797,20 @@ namespace Web.GUI.Commessa
             this.btnCalcoloAvanzamentoLavori.TextButton = "Calcolo stato lavori";
             this.btnCalcoloAvanzamentoLavori.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnCalcoloAvanzamentoLavori_Click);
             // 
+            // bntClienti
+            // 
+            this.bntClienti.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.bntClienti.BackColor = System.Drawing.Color.Transparent;
+            this.bntClienti.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.bntClienti.ImageButton = "";
+            this.bntClienti.ImageSeparator = "Images.separator_ht_small.png";
+            this.bntClienti.Location = new System.Drawing.Point(0, 360);
+            this.bntClienti.Name = "bntClienti";
+            this.bntClienti.Size = new System.Drawing.Size(100, 72);
+            this.bntClienti.TabIndex = 1002;
+            this.bntClienti.TextButton = "Clienti";
+            this.bntClienti.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.bntClienti_Click);
+            // 
             // CommessaModel
             // 
             this.Location = new System.Drawing.Point(0, -168);
@@ -841,6 +858,7 @@ namespace Web.GUI.Commessa
         private Library.Template.Controls.TemplateEditText editLocalita;
         private Library.Template.Controls.TemplateEditText editNote;
         private Library.Controls.ButtonSeparatorV btnCalcoloAvanzamentoLavori;
+        private Library.Controls.ButtonSeparatorV bntClienti;
 
 
     }

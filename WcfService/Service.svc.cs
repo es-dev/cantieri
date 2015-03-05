@@ -2010,6 +2010,40 @@ namespace WcfService
             return 0;
         }
 
+        public IEnumerable<Dto.ClienteDto> LoadClientiCommessa(int skip, int take, Dto.CommessaDto commessa, string search = null)
+        {
+            try
+            {
+                var clienti = QueryClienti(search);
+                clienti = (from q in clienti where q.CommessaId == commessa.Id select q);
+                clienti = (from q in clienti select q).Skip(skip).Take(take);
+
+                var clientiDto = UtilityPOCO.Assemble<Dto.ClienteDto>(clienti);
+                return clientiDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public int CountClientiCommessa(Dto.CommessaDto commessa, string search = null)
+        {
+            try
+            {
+                var clienti = QueryClienti(search);
+                clienti = (from q in clienti where q.CommessaId == commessa.Id select q);
+                var count = clienti.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
         public Dto.ClienteDto ReadCliente(object id)
         {
             try

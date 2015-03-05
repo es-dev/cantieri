@@ -358,7 +358,6 @@ namespace WcfService
         #endregion
         #endregion
 
-
         #region Cliente
         #region CRUD
         [OperationContract]
@@ -382,7 +381,13 @@ namespace WcfService
         IEnumerable<Dto.ClienteDto> LoadClienti(int skip, int take, string search = null);
 
         [OperationContract]
+        IEnumerable<Dto.ClienteDto> LoadClientiCommessa(int skip, int take, Dto.CommessaDto commessa, string search = null);
+
+        [OperationContract]
         int CountClienti(string search = null);
+
+        [OperationContract]
+        int CountClientiCommessa(Dto.CommessaDto commessa, string search = null);
 
         [OperationContract]
         Dto.ClienteDto ReadCliente(object id);

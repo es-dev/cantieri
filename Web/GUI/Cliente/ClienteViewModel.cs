@@ -10,6 +10,20 @@ namespace Web.GUI.Cliente
 {
     public class ClienteViewModel : Library.Template.MVVM.TemplateViewModel<ClienteDto, ClienteItem>
     {
+        private CommessaDto commessa = null;
+
+        public CommessaDto Commessa
+        {
+            get
+            {
+                return commessa;
+            }
+            set
+            {
+                commessa = value;
+            }
+        }
+
         public ClienteViewModel(ISpace space)
             : base(space) 
         {
@@ -28,7 +42,12 @@ namespace Web.GUI.Cliente
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadClienti(skip, take, search);
+                IEnumerable<ClienteDto> objs = null;
+                if (commessa==null)
+                    objs = wcf.LoadClienti(skip, take, search);
+                else
+                    objs = wcf.LoadClientiCommessa(skip, take, commessa, search);
+
                 Load(objs);
             }
             catch (Exception ex)
@@ -42,7 +61,11 @@ namespace Web.GUI.Cliente
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountClienti(search);
+                int count = 0;
+                if (commessa == null)
+                    count = wcf.CountClienti(search);
+                else
+                    count = wcf.CountClientiCommessa(commessa, search);
                 return count;
             }
             catch (Exception ex)

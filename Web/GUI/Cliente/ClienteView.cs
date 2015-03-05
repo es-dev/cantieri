@@ -11,10 +11,29 @@ namespace Web.GUI.Cliente
 {
 	public partial class ClienteView : TemplateView
 	{
+        private WcfService.Dto.CommessaDto commessa;
+
         public ClienteView()
 		{ 
 			InitializeComponent();
 		}
+
+        public ClienteView(WcfService.Dto.CommessaDto obj)
+        {
+            InitializeComponent();
+            try
+            {
+                var viewModel = (Cliente.ClienteViewModel)ViewModel;
+                if (viewModel != null)
+                {
+                    viewModel.Commessa = commessa;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 
         public override void Init()
         {
