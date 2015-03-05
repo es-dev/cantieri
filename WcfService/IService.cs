@@ -462,6 +462,12 @@ namespace WcfService
         int CountLiquidazioniCliente(Dto.ClienteDto cliente, string search = null);
 
         [OperationContract]
+        IEnumerable<Dto.LiquidazioneDto> LoadLiquidazioniFatturaVendita(int skip, int take, Dto.FatturaVenditaDto fatturaVendita, string search = null);
+
+        [OperationContract]
+        int CountLiquidazioniFatturaVendita(Dto.FatturaVenditaDto fatturaVendita, string search = null);
+
+        [OperationContract]
         Dto.LiquidazioneDto ReadLiquidazione(object id);
         #endregion
         #endregion

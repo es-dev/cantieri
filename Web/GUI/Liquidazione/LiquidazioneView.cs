@@ -12,6 +12,7 @@ namespace Web.GUI.Liquidazione
 	public partial class LiquidazioneView : TemplateView
 	{
         private WcfService.Dto.ClienteDto cliente;
+        private WcfService.Dto.FatturaVenditaDto fatturaVendita;
 
         public LiquidazioneView()
 		{ 
@@ -30,6 +31,24 @@ namespace Web.GUI.Liquidazione
                     viewModel.Cliente = cliente;
                 }
 
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        public LiquidazioneView(WcfService.Dto.FatturaVenditaDto fatturaVendita)
+        {
+            InitializeComponent();
+            try
+            {
+                this.fatturaVendita = fatturaVendita;
+                var viewModel = (Liquidazione.LiquidazioneViewModel)ViewModel;
+                if (viewModel != null)
+                {
+                    viewModel.FatturaVendita = fatturaVendita;
+                }
             }
             catch (Exception ex)
             {

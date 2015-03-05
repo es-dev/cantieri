@@ -369,7 +369,6 @@ namespace Web.GUI.FatturaAcquisto
                 var space = new Pagamento.PagamentoView(obj);
                 space.Title = "PAGAMENTI FATTURA N. " + obj.Numero;
                 Workspace.AddSpace(space);
-
             }
             catch (Exception ex)
             {

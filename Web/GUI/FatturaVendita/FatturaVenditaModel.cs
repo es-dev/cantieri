@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.FatturaVendita
@@ -325,6 +326,23 @@ namespace Web.GUI.FatturaVendita
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void btnIncassi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (FatturaVenditaDto)Model;
+                var space = new Liquidazione.LiquidazioneView(obj);
+                space.Title = "INCASSI FATTURA N. " + obj.Numero;
+                Workspace.AddSpace(space);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
         }
 
 	}

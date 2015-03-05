@@ -23,6 +23,20 @@ namespace Web.GUI.Liquidazione
                 cliente = value;
             }
         }
+
+        private FatturaVenditaDto fatturaVendita = null;
+
+        public FatturaVenditaDto FatturaVendita
+        {
+            get
+            {
+                return fatturaVendita;
+            }
+            set
+            {
+                fatturaVendita = value;
+            }
+        }
         public LiquidazioneViewModel(ISpace space)
             : base(space) 
         {
@@ -42,10 +56,12 @@ namespace Web.GUI.Liquidazione
             {
                 var wcf = new WcfService.Service();
                 IEnumerable<LiquidazioneDto> objs = null;
-                if (cliente==null)
+                if (cliente == null && fatturaVendita == null)
                     objs = wcf.LoadLiquidazioni(skip, take, search);
-                else
+                else if (cliente!=null)
                     objs = wcf.LoadLiquidazioniCliente(skip, take, cliente, search);
+                else if (fatturaVendita != null)
+                    objs = wcf.LoadLiquidazioniFatturaVendita(skip, take, fatturaVendita, search);
                 Load(objs);
             }
             catch (Exception ex)
@@ -60,10 +76,12 @@ namespace Web.GUI.Liquidazione
             {
                 var wcf = new WcfService.Service();
                 var count = 0;
-                if (cliente==null)
+                if (cliente == null && fatturaVendita == null)
                     count = wcf.CountLiquidazioni(search);
-                else
+                else if (cliente != null)
                     count = wcf.CountLiquidazioniCliente(cliente, search);
+                else if (fatturaVendita != null)
+                    count = wcf.CountLiquidazioniFatturaVendita(fatturaVendita, search);
                 return count;
             }
             catch (Exception ex)

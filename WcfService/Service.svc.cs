@@ -2426,6 +2426,40 @@ namespace WcfService
             return 0;
         }
 
+        public IEnumerable<Dto.LiquidazioneDto> LoadLiquidazioniFatturaVendita(int skip, int take, Dto.FatturaVenditaDto fatturaVendita, string search = null)
+        {
+            try
+            {
+                var liquidazioni = QueryLiquidazioni(search);
+                liquidazioni = (from q in liquidazioni where q.FatturaVenditaId==fatturaVendita.Id select q);
+                liquidazioni = (from q in liquidazioni select q).Skip(skip).Take(take);
+
+                var liquidazioniDto = UtilityPOCO.Assemble<Dto.LiquidazioneDto>(liquidazioni);
+                return liquidazioniDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public int CountLiquidazioniFatturaVendita(Dto.FatturaVenditaDto fatturaVendita, string search = null)
+        {
+            try
+            {
+                var liquidazioni = QueryLiquidazioni(search);
+                liquidazioni = (from q in liquidazioni where q.FatturaVenditaId == fatturaVendita.Id select q);
+                var count = liquidazioni.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
 
         public Dto.LiquidazioneDto ReadLiquidazione(object id)
         {
