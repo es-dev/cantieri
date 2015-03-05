@@ -378,7 +378,7 @@ namespace Web.GUI.FatturaVendita
             this.btnCalcoloTotali.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnCalcoloTotali.ImageButton = "";
             this.btnCalcoloTotali.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnCalcoloTotali.Location = new System.Drawing.Point(1, 289);
+            this.btnCalcoloTotali.Location = new System.Drawing.Point(0, 289);
             this.btnCalcoloTotali.Name = "btnCalcoloTotali";
             this.btnCalcoloTotali.Size = new System.Drawing.Size(100, 72);
             this.btnCalcoloTotali.TabIndex = 1002;

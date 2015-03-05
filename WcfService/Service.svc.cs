@@ -2460,7 +2460,6 @@ namespace WcfService
             return 0;
         }
 
-
         public Dto.LiquidazioneDto ReadLiquidazione(object id)
         {
             try
@@ -2501,7 +2500,6 @@ namespace WcfService
             return null;
         }
 
-      
         #endregion
         #endregion
 
