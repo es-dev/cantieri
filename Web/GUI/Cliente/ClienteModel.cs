@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.Cliente
@@ -360,6 +361,37 @@ namespace Web.GUI.Cliente
             {
                 base.SetEditing(editing, deleting);
                 btnCalcoloTotali.Enabled = editing;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void btnFattureVendita_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (ClienteDto)Model;
+                var space = new FatturaVendita.FatturaVenditaView(obj);
+                space.Title = "FATTURE DI VENDITA DEL CLIENTE " + obj.RagioneSociale;
+                Workspace.AddSpace(space);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
+        }
+
+        private void btnIncassi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (ClienteDto)Model;
+                var space = new Liquidazione.LiquidazioneView(obj);
+                space.Title = "INCASSI CLIENTE " + obj.RagioneSociale;
+                Workspace.AddSpace(space);
             }
             catch (Exception ex)
             {

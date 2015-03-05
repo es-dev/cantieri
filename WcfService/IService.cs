@@ -418,6 +418,12 @@ namespace WcfService
 
         [OperationContract]
         int CountFattureVendita(string search = null);
+        [OperationContract]
+
+        IEnumerable<Dto.FatturaVenditaDto> LoadFattureVenditaCliente(int skip, int take, Dto.ClienteDto cliente,  string search = null);
+
+        [OperationContract]
+        int CountFattureVenditaCliente(Dto.ClienteDto cliente, string search = null);
 
         [OperationContract]
         Dto.FatturaVenditaDto ReadFatturaVendita(object id);
@@ -448,7 +454,13 @@ namespace WcfService
 
         [OperationContract]
         int CountLiquidazioni(string search = null);
-        
+
+        [OperationContract]
+        IEnumerable<Dto.LiquidazioneDto> LoadLiquidazioniCliente(int skip, int take,Dto.ClienteDto cliente, string search = null);
+
+        [OperationContract]
+        int CountLiquidazioniCliente(Dto.ClienteDto cliente, string search = null);
+
         [OperationContract]
         Dto.LiquidazioneDto ReadLiquidazione(object id);
         #endregion

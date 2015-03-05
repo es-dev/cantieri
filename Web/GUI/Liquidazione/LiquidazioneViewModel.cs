@@ -10,7 +10,19 @@ namespace Web.GUI.Liquidazione
 {
     public class LiquidazioneViewModel : Library.Template.MVVM.TemplateViewModel<LiquidazioneDto, LiquidazioneItem>
     {
+        private ClienteDto cliente = null;
 
+        public ClienteDto Cliente
+        {
+            get
+            {
+                return cliente;
+            }
+            set
+            {
+                cliente = value;
+            }
+        }
         public LiquidazioneViewModel(ISpace space)
             : base(space) 
         {
@@ -29,7 +41,11 @@ namespace Web.GUI.Liquidazione
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadLiquidazioni(skip, take, search);
+                IEnumerable<LiquidazioneDto> objs = null;
+                if (cliente==null)
+                    objs = wcf.LoadLiquidazioni(skip, take, search);
+                else
+                    objs = wcf.LoadLiquidazioniCliente(skip, take, cliente, search);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +59,11 @@ namespace Web.GUI.Liquidazione
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountLiquidazioni(search);
+                var count = 0;
+                if (cliente==null)
+                    count = wcf.CountLiquidazioni(search);
+                else
+                    count = wcf.CountLiquidazioniCliente(cliente, search);
                 return count;
             }
             catch (Exception ex)

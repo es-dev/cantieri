@@ -2200,6 +2200,40 @@ namespace WcfService
             return 0;
         }
 
+        public IEnumerable<Dto.FatturaVenditaDto> LoadFattureVenditaCliente(int skip, int take, Dto.ClienteDto cliente, string search = null)
+        {
+            try
+            {
+                var fattureVendita = QueryFattureVendita(search);
+                fattureVendita = (from q in fattureVendita where q.ClienteId == cliente.Id select q);
+                fattureVendita = (from q in fattureVendita select q).Skip(skip).Take(take);
+
+                var fattureVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fattureVendita);
+                return fattureVenditaDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public int CountFattureVenditaCliente(Dto.ClienteDto cliente, string search = null)
+        {
+            try
+            {
+                var fattureVendita = QueryFattureVendita(search);
+                fattureVendita = (from q in fattureVendita where q.ClienteId == cliente.Id select q);
+                var count = fattureVendita.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
         public Dto.FatturaVenditaDto ReadFatturaVendita(object id)
         {
             try
@@ -2353,6 +2387,45 @@ namespace WcfService
             }
             return 0;
         }
+
+        public IEnumerable<Dto.LiquidazioneDto> LoadLiquidazioniCliente(int skip, int take,Dto.ClienteDto cliente, string search = null)
+        {
+            try
+            {
+                var liquidazioni = QueryLiquidazioni(search);
+                var fattureVendita= cliente.FatturaVenditas;
+                var fattureVenditaIds = (from q in fattureVendita select q.Id);
+                liquidazioni = (from q in liquidazioni where fattureVenditaIds.Contains(q.FatturaVenditaId) select q);
+                liquidazioni = (from q in liquidazioni select q).Skip(skip).Take(take);
+
+                var liquidazioniDto = UtilityPOCO.Assemble<Dto.LiquidazioneDto>(liquidazioni);
+                return liquidazioniDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public int CountLiquidazioniCliente(Dto.ClienteDto cliente, string search = null)
+        {
+            try
+            {
+                var liquidazioni = QueryLiquidazioni(search);
+                var fattureVendita = cliente.FatturaVenditas;
+                var fattureVenditaIds = (from q in fattureVendita select q.Id);
+                liquidazioni = (from q in liquidazioni where fattureVenditaIds.Contains(q.FatturaVenditaId) select q);
+                var count = liquidazioni.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
 
         public Dto.LiquidazioneDto ReadLiquidazione(object id)
         {

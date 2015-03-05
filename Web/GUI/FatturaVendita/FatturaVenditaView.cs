@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 
 namespace Web.GUI.FatturaVendita
 {
@@ -15,6 +16,23 @@ namespace Web.GUI.FatturaVendita
 		{ 
 			InitializeComponent();
 		}
+
+        public FatturaVenditaView(ClienteDto cliente)
+        {
+            InitializeComponent();
+            try
+            {
+                var viewModel = (FatturaVendita.FatturaVenditaViewModel)ViewModel;
+                if (viewModel != null)
+                {
+                    viewModel.Cliente = cliente;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 
         public override void Init()
         {

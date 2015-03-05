@@ -11,10 +11,31 @@ namespace Web.GUI.Liquidazione
 {
 	public partial class LiquidazioneView : TemplateView
 	{
+        private WcfService.Dto.ClienteDto cliente;
+
         public LiquidazioneView()
 		{ 
 			InitializeComponent();
 		}
+
+        public LiquidazioneView(WcfService.Dto.ClienteDto cliente)
+        {
+            InitializeComponent();
+            try
+            {
+                this.cliente = cliente;
+                var viewModel = (Liquidazione.LiquidazioneViewModel)ViewModel;
+                if (viewModel != null)
+                {
+                    viewModel.Cliente = cliente;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 
         public override void Init()
         {

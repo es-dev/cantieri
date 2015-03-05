@@ -380,7 +380,6 @@ namespace Web.GUI.Fornitore
             {
                 UtilityError.Write(ex);
             }
-
         }
 
         private void btnPagamenti_Click(object sender, EventArgs e)
@@ -397,7 +396,6 @@ namespace Web.GUI.Fornitore
             {
                 UtilityError.Write(ex);
             }
-
         }
 
 	}
