@@ -2346,6 +2346,182 @@ namespace WcfService
 	    #endregion
 	    
 	    /// <summary>
+	    /// A general purpose generated service used for all CRUD operations against NotaCredito entity.
+	    /// </summary>
+	    private INotaCreditoService notacreditoservice;
+	    
+	    /// <summary>
+	    /// Gets or sets the general purpose generated service used for all CRUD operations against NotaCredito entity.
+	    /// </summary>
+	    public virtual INotaCreditoService NotaCreditoService
+	    {
+	        get
+	        {
+	            if (this.notacreditoservice == null)
+	            {
+	                INotaCreditoAssembler assembler = new NotaCreditoAssembler();
+	                INotaCreditoRepository repository = new NotaCreditoRepository(this.UnitOfWork);
+	
+	                this.notacreditoservice = new NotaCreditoService(assembler, repository);
+	            }
+	            return this.notacreditoservice;
+	        }
+	    }
+	        
+	    #region NotaCreditos CRUD Operations
+	
+	    /// <summary>
+	    /// Returns all notacreditos.
+	    /// </summary>
+	    /// <returns></returns>
+	    public IEnumerable<NotaCreditoDto> ReadNotaCreditos()	
+	    {
+	        return this.NotaCreditoService.GetAll();
+	    }
+	
+	    /// <summary>
+	    /// Returns a specified amount of notacreditos from the given start index.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <returns></returns>
+	    public IEnumerable<NotaCreditoDto> ReadNotaCreditosPaged(int startIndex, int pageSize)
+	    {
+	        return this.NotaCreditoService.Find(startIndex, pageSize);
+	    }
+	
+	    /// <summary>
+	    /// Returns all notacreditos filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public IEnumerable<NotaCreditoDto> ReadNotaCreditosFiltered(string sortExpression, string filterExpression)
+	    {
+	        return this.NotaCreditoService.Find(sortExpression, filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Returns a specified amount of notacreditos from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public IEnumerable<NotaCreditoDto> ReadNotaCreditosPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression)
+	    {
+	        return this.NotaCreditoService.Find(startIndex, pageSize, sortExpression, filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Returns a notacredito with the specified dto key.
+	    /// </summary>
+	    /// <param name="dtoKey">The specified dto key value.</param>
+	    /// <returns></returns>
+	    public NotaCreditoDto ReadNotaCredito(string dtoKey)
+	    {
+	        return this.NotaCreditoService.GetByKey(dtoKey);
+	    }
+	    
+	    /// <summary>
+	    /// Returns all notacreditos count.
+	    /// </summary>
+	    /// <returns></returns>
+	    public int NotaCreditosCount()
+	    {
+	        return this.NotaCreditoService.Count();
+	    }
+	    
+	    /// <summary>
+	    /// Returns all notacreditos count filtered by the specified filter expression.
+	    /// </summary>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public int NotaCreditosCountFiltered(string filterExpression)
+	    {
+	        return this.NotaCreditoService.Count(filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Adds a new notacredito from the given dto object into the database.
+	    /// </summary>
+	    /// <param name="notacredito">The dto object.</param>
+	    /// <returns>The dto key of the newly created notacredito.</returns>
+	    public string CreateNotaCredito(NotaCreditoDto notacredito)
+	    {
+	        string key = this.NotaCreditoService.Add(notacredito);
+	        this.UnitOfWork.SaveChanges();
+	        return key;
+	    }
+	
+	    /// <summary>
+	    /// Updates an existing notacredito in the database from the given dto object.
+	    /// </summary>
+	    /// <param name="notacredito">The dto object.</param>
+	    public void UpdateNotaCredito(NotaCreditoDto notacredito)
+	    {
+	        this.NotaCreditoService.Update(notacredito);
+	        this.UnitOfWork.SaveChanges();
+	    }
+	
+	    /// <summary>
+	    /// Update notacreditos in the database from the given dto object list.
+	    /// </summary>
+	    /// <param name="notacreditos">The dto object list.</param>
+	    public void UpdateNotaCreditos(IEnumerable<NotaCreditoDto> notacreditos)
+	    {
+	        if (notacreditos == null)
+	        {
+	            return;
+	        }
+	
+	        foreach (NotaCreditoDto notacredito in notacreditos)
+	        {
+	            if (notacredito == null)
+	            {
+	                continue;
+	            }
+	            
+	            this.UpdateNotaCredito(notacredito);
+	        }
+	    }
+	
+	    /// <summary>
+	    /// Deletes notacredito from the database by the given dto object.
+	    /// </summary>
+	    /// <param name="notacredito">The dto object.</param>
+	    public void DeleteNotaCredito(NotaCreditoDto notacredito)
+	    {
+	        this.NotaCreditoService.Delete(notacredito);
+	        this.UnitOfWork.SaveChanges();		
+	    }
+	
+	    /// <summary>
+	    /// Delete notacreditos from the database by the given dto object list.
+	    /// </summary>
+	    /// <param name="notacreditos">The dto object list.</param>
+	    public void DeleteNotaCreditos(IEnumerable<NotaCreditoDto> notacreditos)
+	    {
+	        if (notacreditos == null)
+	        {
+	            return;
+	        }
+	
+	        foreach (NotaCreditoDto notacredito in notacreditos)
+	        {
+	            if (notacredito == null)
+	            {
+	                continue;
+	            }
+	            
+	            this.DeleteNotaCredito(notacredito);
+	        }
+	    }
+	    
+	    #endregion
+	    
+	    /// <summary>
 	    /// A general purpose generated service used for all CRUD operations against Pagamento entity.
 	    /// </summary>
 	    private IPagamentoService pagamentoservice;

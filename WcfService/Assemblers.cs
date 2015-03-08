@@ -713,6 +713,16 @@ namespace WcfService.Assemblers
 				dto.PagamentoUnificatoFatturaAcquistos.Add(dtoItem);
 			}
 
+			NotaCreditoAssembler notaCreditoAssembler = new NotaCreditoAssembler();
+
+			dto.NotaCreditos = new List<NotaCreditoDto>();
+			foreach (NotaCredito item in entity.NotaCreditos)
+			{
+				var dtoItem = notaCreditoAssembler.Assemble(item);
+				dtoItem.FatturaAcquisto = dto;
+				dto.NotaCreditos.Add(dtoItem);
+			}
+
 	    }
 	
 	}
@@ -1684,6 +1694,81 @@ namespace WcfService.Assemblers
 	
 	
 	public partial class PagamentoUnificatoFatturaAcquistoAssembler : PagamentoUnificatoFatturaAcquistoAssemblerBase, IPagamentoUnificatoFatturaAcquistoAssembler
+	{
+	    
+	}
+	
+	public partial interface INotaCreditoAssembler : IAssembler<NotaCreditoDto, NotaCredito>
+	{ 
+	
+	}
+	
+	public partial class NotaCreditoAssemblerBase : Assembler<NotaCreditoDto, NotaCredito>
+	{
+		/// <summary>
+	    /// Invoked after the NotaCreditoDto instance is assembled.
+	    /// </summary>
+	    /// <param name="dto"><see cref="NotaCreditoDto"/> The Dto instance.</param>
+		partial void OnDTOAssembled(NotaCreditoDto dto);
+	
+		/// <summary>
+	    /// Invoked after the NotaCredito instance is assembled.
+	    /// </summary>
+	    /// <param name="entity">The <see cref="NotaCredito"/> instance.</param>
+		partial void OnEntityAssembled(NotaCredito entity);
+		
+	    public override NotaCredito Assemble(NotaCredito entity, NotaCreditoDto dto)
+	    {
+	        if (entity == null)
+	        {
+	            entity = new NotaCredito();
+	        }
+			
+			entity.Id = dto.Id;
+			entity.FatturaAcquistoId = dto.FatturaAcquistoId;
+			entity.Data = dto.Data;
+			entity.Importo = dto.Importo;
+			entity.Note = dto.Note;
+			entity.Codice = dto.Codice;
+			entity.TipoPagamento = dto.TipoPagamento;
+			entity.Descrizione = dto.Descrizione;
+	        this.OnEntityAssembled(entity);
+	        return entity;
+	    }
+	
+	    public override NotaCreditoDto Assemble(NotaCredito entity)
+	    {
+	        NotaCreditoDto dto = new NotaCreditoDto();
+	        
+			ObjectKey key = KeyUtility.Instance.Create(entity);
+			dto.DtoKey = KeyUtility.Instance.Convert(key);
+			dto.Id = entity.Id;
+			dto.FatturaAcquistoId = entity.FatturaAcquistoId;
+			dto.Data = entity.Data;
+			dto.Importo = entity.Importo;
+			dto.Note = entity.Note;
+			dto.Codice = entity.Codice;
+			dto.TipoPagamento = entity.TipoPagamento;
+			dto.Descrizione = entity.Descrizione;
+			this.OnDTOAssembled(dto); 
+	        return dto;
+	    }
+	
+	    public override void AssembleReferences(NotaCredito entity, NotaCreditoDto dto)
+	    {
+			FatturaAcquistoAssembler fatturaAcquistoAssembler = new FatturaAcquistoAssembler();
+			dto.FatturaAcquisto = fatturaAcquistoAssembler.Assemble(entity.FatturaAcquisto);
+
+	    }
+	
+	    public override void AssembleCollections(NotaCredito entity, NotaCreditoDto dto)
+	    {
+	    }
+	
+	}
+	
+	
+	public partial class NotaCreditoAssembler : NotaCreditoAssemblerBase, INotaCreditoAssembler
 	{
 	    
 	}

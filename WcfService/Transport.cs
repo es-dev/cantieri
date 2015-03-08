@@ -495,13 +495,14 @@ namespace WcfService.Dto
 	[KnownType(typeof(ArticoloDto))]
 	[KnownType(typeof(PagamentoDto))]
 	[KnownType(typeof(PagamentoUnificatoFatturaAcquistoDto))]
+	[KnownType(typeof(NotaCreditoDto))]
 	public partial class FatturaAcquistoDto : IDtoWithKey
 	{
 		public FatturaAcquistoDto()
 		{
 		}
 		
-		public FatturaAcquistoDto(int _id, int _fornitoreId, DateTime? _data, string _numero, string _tipoPagamento, string _descrizione, decimal? _imponibile, decimal? _iVA, decimal? _totale, string _scadenzaPagamento, int _centroCostoId, decimal? _totalePagamenti, string _stato, string _note, CentroCostoDto _centroCosto, FornitoreDto _fornitore, IList<ArticoloDto> _articolos, IList<PagamentoDto> _pagamentos, IList<PagamentoUnificatoFatturaAcquistoDto> _pagamentoUnificatoFatturaAcquistos)
+		public FatturaAcquistoDto(int _id, int _fornitoreId, DateTime? _data, string _numero, string _tipoPagamento, string _descrizione, decimal? _imponibile, decimal? _iVA, decimal? _totale, string _scadenzaPagamento, int _centroCostoId, decimal? _totalePagamenti, string _stato, string _note, CentroCostoDto _centroCosto, FornitoreDto _fornitore, IList<ArticoloDto> _articolos, IList<PagamentoDto> _pagamentos, IList<PagamentoUnificatoFatturaAcquistoDto> _pagamentoUnificatoFatturaAcquistos, IList<NotaCreditoDto> _notaCreditos)
 		{
 			this.Id = _id;
 			this.FornitoreId = _fornitoreId;
@@ -522,6 +523,7 @@ namespace WcfService.Dto
 			this.Articolos = _articolos;
 			this.Pagamentos = _pagamentos;
 			this.PagamentoUnificatoFatturaAcquistos = _pagamentoUnificatoFatturaAcquistos;
+			this.NotaCreditos = _notaCreditos;
 		}
 		
 		[DataMember]
@@ -583,6 +585,9 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual IList<PagamentoUnificatoFatturaAcquistoDto> PagamentoUnificatoFatturaAcquistos { get;set; }
+
+		[DataMember]
+		public virtual IList<NotaCreditoDto> NotaCreditos { get;set; }
 
 	}
 	
@@ -1307,6 +1312,59 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual PagamentoUnificatoDto PagamentoUnificato { get;set; }
+
+	}
+	
+	[DataContract(IsReference = true)]
+	[KnownType(typeof(FatturaAcquistoDto))]
+	public partial class NotaCreditoDto : IDtoWithKey
+	{
+		public NotaCreditoDto()
+		{
+		}
+		
+		public NotaCreditoDto(int _id, int _fatturaAcquistoId, DateTime? _data, decimal? _importo, string _note, string _codice, string _tipoPagamento, string _descrizione, FatturaAcquistoDto _fatturaAcquisto)
+		{
+			this.Id = _id;
+			this.FatturaAcquistoId = _fatturaAcquistoId;
+			this.Data = _data;
+			this.Importo = _importo;
+			this.Note = _note;
+			this.Codice = _codice;
+			this.TipoPagamento = _tipoPagamento;
+			this.Descrizione = _descrizione;
+			this.FatturaAcquisto = _fatturaAcquisto;
+		}
+		
+		[DataMember]
+		public virtual string DtoKey { get; set; }
+		
+		[DataMember]
+		public virtual int Id { get;set; }
+
+		[DataMember]
+		public virtual int FatturaAcquistoId { get;set; }
+
+		[DataMember]
+		public virtual DateTime? Data { get;set; }
+
+		[DataMember]
+		public virtual decimal? Importo { get;set; }
+
+		[DataMember]
+		public virtual string Note { get;set; }
+
+		[DataMember]
+		public virtual string Codice { get;set; }
+
+		[DataMember]
+		public virtual string TipoPagamento { get;set; }
+
+		[DataMember]
+		public virtual string Descrizione { get;set; }
+
+		[DataMember]
+		public virtual FatturaAcquistoDto FatturaAcquisto { get;set; }
 
 	}
 	

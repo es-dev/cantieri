@@ -300,5 +300,18 @@ namespace WcfService.Repositories
 	    {
 	    }
 	}
+	
+	public partial interface INotaCreditoRepository : IRepository<NotaCredito>
+	{ 
+	
+	}
+	
+	public partial class NotaCreditoRepository : Repository<NotaCredito>, INotaCreditoRepository
+	{
+	    public NotaCreditoRepository(IEntitiesModelUnitOfWork unitOfWork)
+	        : base(unitOfWork)
+	    {
+	    }
+	}
 }
 #pragma warning restore 1591

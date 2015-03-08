@@ -126,6 +126,9 @@
     <Compile Include="Liquidazione.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
+    <Compile Include="NotaCredito.generated.cs">
+      <DependentUpon>EntitiesModel.rlinq</DependentUpon>
+    </Compile>
     <Compile Include="Pagamento.generated.cs">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
     </Compile>
@@ -168,6 +171,7 @@
     <Content Include="ESCantieriConnection%282015-03-04 23-04-26%29.rlinq.sql" />
     <Content Include="ESCantieriConnection%282015-03-04 23-17-28%29.rlinq.sql" />
     <Content Include="ESCantieriConnection%282015-03-04 23-31-20%29.rlinq.sql" />
+    <Content Include="ESCantieriConnection%282015-03-08 16-37-12%29.rlinq.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

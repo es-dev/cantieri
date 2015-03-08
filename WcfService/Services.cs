@@ -425,5 +425,19 @@ namespace WcfService.Services
 	
 	    }
 	}
+	
+	public partial interface INotaCreditoService : IService<NotaCreditoDto, NotaCredito>
+	{
+	
+	}
+	
+	public partial class NotaCreditoService : Service<NotaCreditoDto, NotaCredito>, INotaCreditoService
+	{
+	    public NotaCreditoService(INotaCreditoAssembler assembler, INotaCreditoRepository repository)
+	        : base(assembler, repository)
+	    {
+	
+	    }
+	}
 }
 #pragma warning restore 1591

@@ -1548,6 +1548,234 @@ namespace WcfService
         #endregion
         #endregion
 
+        #region NotaCredito
+        #region CRUD
+        public Dto.NotaCreditoDto CreateNotaCredito(Dto.NotaCreditoDto notaCredito)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var dtoKey = wcf.CreateNotaCredito(notaCredito);
+                var id = UtilityPOCO.GetId(dtoKey);
+                var newNotaCredito = ReadNotaCredito(id);
+                return newNotaCredito;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<Dto.NotaCreditoDto> ReadNoteCredito()
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var noteCredito = wcf.ReadNotaCreditos();
+                return noteCredito;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public bool UpdateNotaCredito(Dto.NotaCreditoDto notaCredito)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                wcf.UpdateNotaCredito(notaCredito);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
+        }
+
+        public bool DeleteNotaCredito(Dto.NotaCreditoDto notaCredito)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                wcf.DeleteNotaCredito(notaCredito);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
+        }
+
+        public int CountNoteCredito()
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var count = wcf.NotaCreditosCount();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+        #endregion
+        #region Custom
+        public IEnumerable<Dto.NotaCreditoDto> LoadNoteCredito(int skip, int take, string search = null)
+        {
+            try
+            {
+                var noteCredito = QueryNoteCredito(search);
+                noteCredito = (from q in noteCredito select q).Skip(skip).Take(take);
+
+                var noteCreditoDto = UtilityPOCO.Assemble<Dto.NotaCreditoDto>(noteCredito);
+                return noteCreditoDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<Dto.NotaCreditoDto> LoadNoteCreditoFatturaAcquisto(int skip, int take, Dto.FatturaAcquistoDto fatturaAcquisto, string search)
+        {
+            try
+            {
+                var noteCredito = QueryNoteCredito(search);
+                noteCredito = (from q in noteCredito where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
+                noteCredito = (from q in noteCredito select q).Skip(skip).Take(take);
+
+                var noteCreditoDto = UtilityPOCO.Assemble<Dto.NotaCreditoDto>(noteCredito);
+                return noteCreditoDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<Dto.NotaCreditoDto> LoadNoteCreditoFornitore(int skip, int take, Dto.FornitoreDto fornitore, string search)
+        {
+            try
+            {
+                var noteCredito = QueryNoteCredito(search);
+                var fattureAcquisto = fornitore.FatturaAcquistos;
+                var fattureAcquistoIds = (from q in fattureAcquisto select q.Id);
+                noteCredito = (from q in noteCredito where fattureAcquistoIds.Contains(q.FatturaAcquistoId) select q);
+
+                noteCredito = (from q in noteCredito select q).Skip(skip).Take(take);
+
+                var noteCreditoDto = UtilityPOCO.Assemble<Dto.NotaCreditoDto>(noteCredito);
+                return noteCreditoDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public int CountNoteCredito(string search = null)
+        {
+            try
+            {
+                var noteCredito = QueryNoteCredito(search);
+                var count = noteCredito.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+        public int CountNoteCreditoFatturaAcquisto(Dto.FatturaAcquistoDto fatturaAcquisto, string search = null)
+        {
+            try
+            {
+                var noteCredito = QueryNoteCredito(search);
+                noteCredito = (from q in noteCredito where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
+                var count = noteCredito.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+        public int CountNoteCreditoFornitore(Dto.FornitoreDto fornitore, string search = null)
+        {
+            try
+            {
+                var noteCredito = QueryNoteCredito(search);
+                var fattureAcquisto = fornitore.FatturaAcquistos;
+                var fattureAcquistoIds = (from q in fattureAcquisto select q.Id);
+                noteCredito = (from q in noteCredito where fattureAcquistoIds.Contains(q.FatturaAcquistoId) select q);
+                var count = noteCredito.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+
+        public Dto.NotaCreditoDto ReadNotaCredito(object id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
+                var notaCredito = wcf.ReadNotaCredito(dtoKey);
+                return notaCredito;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private IQueryable<DataLayer.NotaCredito> QueryNoteCredito(string search)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var noteCredito = (from q in ef.NotaCreditos select q);
+                if (search != null && search.Length > 0)
+                {
+                    var fattureAcquistoId = (from q in QueryFattureAcquisto(search) select q.Id).ToList();
+                    noteCredito = (from q in noteCredito
+                                 where q.Note.Contains(search) ||
+                                     fattureAcquistoId.Contains(q.FatturaAcquistoId)
+                                 select q);
+                }
+                noteCredito = (from q in noteCredito orderby q.Id descending select q);
+                return noteCredito;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        #endregion
+        #endregion
+
+
         #region PagamentoUnificato
         #region CRUD
         public Dto.PagamentoUnificatoDto CreatePagamentoUnificato(Dto.PagamentoUnificatoDto pagamentoUnificato)

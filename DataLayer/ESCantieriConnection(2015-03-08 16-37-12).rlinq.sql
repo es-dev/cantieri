@@ -1,0 +1,24 @@
+-- DataLayer.NotaCredito
+CREATE TABLE [NotaCredito] (
+    [Codice] varchar(max) NULL,             -- _codice
+    [Data] datetime NULL,                   -- _data
+    [Descrizione] varchar(max) NULL,        -- _descrizione
+    [FatturaAcquistoId] int NOT NULL,       -- _fatturaAcquisto
+    [Id] int IDENTITY NOT NULL,             -- _id
+    [Importo] numeric(20,10) NULL,          -- _importo
+    [Note] varchar(max) NULL,               -- _note
+    [TipoPagamento] varchar(max) NULL,      -- _tipoPagamento
+    CONSTRAINT [pk_NotaCredito] PRIMARY KEY ([Id])
+)
+
+go
+
+ALTER TABLE [NotaCredito] ADD CONSTRAINT [ref_NtCrdt_FttrAcqsto_F6E19BC0] FOREIGN KEY ([FatturaAcquistoId]) REFERENCES [FatturaAcquisto]([Id])
+
+go
+
+-- Index 'idx_NtCrdito_FatturaAcquistoId' was not detected in the database. It will be created
+CREATE INDEX [idx_NtCrdito_FatturaAcquistoId] ON [NotaCredito]([FatturaAcquistoId])
+
+go
+

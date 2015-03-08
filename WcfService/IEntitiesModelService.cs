@@ -1314,6 +1314,105 @@ namespace WcfService
 	    
 	    #endregion
 	    
+	    #region NotaCreditos CRUD Operations
+	
+	    /// <summary>
+	    /// Returns all notacreditos.
+	    /// </summary>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<NotaCreditoDto> ReadNotaCreditos();
+	
+	    /// <summary>
+	    /// Returns a specified amount of notacreditos from the given start index.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<NotaCreditoDto> ReadNotaCreditosPaged(int startIndex, int pageSize);
+	
+	    /// <summary>
+	    /// Returns all notacreditos filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<NotaCreditoDto> ReadNotaCreditosFiltered(string sortExpression, string filterExpression);
+	
+	    /// <summary>
+	    /// Returns a specified amount of notacreditos from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<NotaCreditoDto> ReadNotaCreditosPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression);
+	
+	    /// <summary>
+	    /// Returns a notacredito with the specified dto key.
+	    /// </summary>
+	    /// <param name="dtoKey">The specified dto key value.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    NotaCreditoDto ReadNotaCredito(string dtoKey);
+	
+	    /// <summary>
+	    /// Returns all notacreditos count.
+	    /// </summary>
+	    /// <returns></returns>
+	    [OperationContract]
+	    int NotaCreditosCount();
+	
+	    /// <summary>
+	    /// Returns all notacreditos count filtered by the specified filter expression.
+	    /// </summary>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    int NotaCreditosCountFiltered(string filterExpression);
+	
+	    /// <summary>
+	    /// Adds a new notacredito from the given dto object into the database.
+	    /// </summary>
+	    /// <param name="notacredito">The dto object.</param>
+	    /// <returns>The dto key of the newly created notacredito.</returns>
+	    [OperationContract]
+	    string CreateNotaCredito(NotaCreditoDto notacredito);
+	
+	    /// <summary>
+	    /// Updates notacredito in the database from the given dto object.
+	    /// </summary>
+	    /// <param name="notacredito">The dto object.</param>
+	    [OperationContract]
+	    void UpdateNotaCredito(NotaCreditoDto notacredito);
+	
+	    /// <summary>
+	    /// Update an existing notacreditos in the database from the given dto object list.
+	    /// </summary>
+	    /// <param name="notacreditos">The dto object list.</param>
+	    [OperationContract]
+	    void UpdateNotaCreditos(IEnumerable<NotaCreditoDto> notacreditos);
+	
+	    /// <summary>
+	    /// Deletes notacredito from the database by the given dto object.
+	    /// </summary>
+	    /// <param name="notacredito">The dto object.</param>
+	    [OperationContract]
+	    void DeleteNotaCredito(NotaCreditoDto notacredito);
+	
+	    /// <summary>
+	    /// Delete notacreditos from the database by the given dto object list.
+	    /// </summary>
+	    /// <param name="notacreditos">The dto object list.</param>
+	    [OperationContract]
+	    void DeleteNotaCreditos(IEnumerable<NotaCreditoDto> notacreditos);
+	    
+	    #endregion
+	    
 	    #region Pagamentos CRUD Operations
 	
 	    /// <summary>

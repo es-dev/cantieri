@@ -194,6 +194,14 @@ namespace DataLayer
 			}
 		}
 		
+		public IQueryable<NotaCredito> NotaCreditos 
+		{
+			get
+			{
+				return this.GetAll<NotaCredito>();
+			}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -285,6 +293,10 @@ namespace DataLayer
 			get;
 		}
 		IQueryable<PagamentoUnificatoFatturaAcquisto> PagamentoUnificatoFatturaAcquistos
+		{
+			get;
+		}
+		IQueryable<NotaCredito> NotaCreditos
 		{
 			get;
 		}

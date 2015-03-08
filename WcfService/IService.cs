@@ -298,6 +298,49 @@ namespace WcfService
         #endregion
         #endregion
 
+        #region NotaCredito
+        #region CRUD
+        [OperationContract]
+        Dto.NotaCreditoDto CreateNotaCredito(Dto.NotaCreditoDto notaCredito);
+
+        [OperationContract]
+        IEnumerable<Dto.NotaCreditoDto> ReadNoteCredito();
+
+        [OperationContract]
+        bool UpdateNotaCredito(Dto.NotaCreditoDto notaCredito);
+
+        [OperationContract]
+        bool DeleteNotaCredito(Dto.NotaCreditoDto notaCredito);
+
+        [OperationContract]
+        int CountNoteCredito();
+        #endregion
+
+        #region Custom
+        [OperationContract]
+        IEnumerable<Dto.NotaCreditoDto> LoadNoteCredito(int skip, int take, string search = null);
+
+        [OperationContract]
+        int CountNoteCredito(string search = null);
+
+        [OperationContract]
+        IEnumerable<Dto.NotaCreditoDto> LoadNoteCreditoFatturaAcquisto(int skip, int take, Dto.FatturaAcquistoDto fatturaAcquisto, string search = null);
+
+        [OperationContract]
+        int CountNoteCreditoFatturaAcquisto(Dto.FatturaAcquistoDto fatturaAcquisto, string search = null);
+
+        [OperationContract]
+        IEnumerable<Dto.NotaCreditoDto> LoadNoteCreditoFornitore(int skip, int take, Dto.FornitoreDto fornitore, string search = null);
+
+        [OperationContract]
+        int CountNoteCreditoFornitore(Dto.FornitoreDto fornitore, string search = null);
+
+        [OperationContract]
+        Dto.NotaCreditoDto ReadNotaCredito(object id);
+        #endregion
+        #endregion
+
+
         #region PagamentoUnificato
         #region CRUD
         [OperationContract]
