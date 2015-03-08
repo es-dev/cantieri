@@ -64,7 +64,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                     if (fatturaAcquisto != null)
                     {
                         editFatturaAcquisto.Model = fatturaAcquisto;
-                        editFatturaAcquisto.Value = fatturaAcquisto.Numero +"/"+ fatturaAcquisto.Data.Value.Year.ToString();
+                        editFatturaAcquisto.Value = fatturaAcquisto.Numero +" del "+ fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy");
                     }
                     var pagamentoUnificato = obj.PagamentoUnificato;
                     if (pagamentoUnificato != null)

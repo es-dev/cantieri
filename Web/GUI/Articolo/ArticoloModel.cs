@@ -57,7 +57,7 @@ namespace Web.GUI.Articolo
                     if (fatturaAcquisto != null)
                     {
                         editFatturaAcquisto.Model = fatturaAcquisto;
-                        editFatturaAcquisto.Value = fatturaAcquisto.Numero;
+                        editFatturaAcquisto.Value = fatturaAcquisto.Numero +" del "+fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy");
                     }
                 }
             }
@@ -115,7 +115,7 @@ namespace Web.GUI.Articolo
             {
                 var fatturaAcquisto = (WcfService.Dto.FatturaAcquistoDto)model;
                 if (fatturaAcquisto != null)
-                    editFatturaAcquisto.Value = fatturaAcquisto.Numero;
+                    editFatturaAcquisto.Value = fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy");
             }
             catch (Exception ex)
             {
