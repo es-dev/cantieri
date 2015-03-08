@@ -89,7 +89,7 @@ namespace Web.GUI.Pagamento
                     if (fatturaAcquisto != null)
                     {
                         editFatturaAcquisto.Model = fatturaAcquisto;
-                        editFatturaAcquisto.Value = fatturaAcquisto.Numero +"/"+ fatturaAcquisto.Data.Value.Year.ToString();
+                        editFatturaAcquisto.Value = fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy");
                     }
                 }
             }
@@ -144,7 +144,7 @@ namespace Web.GUI.Pagamento
                 var fatturaAcquisto = (FatturaAcquistoDto)model;
                 if (fatturaAcquisto != null)
                 {
-                    editFatturaAcquisto.Value = fatturaAcquisto.Numero + "/" + fatturaAcquisto.Data.Value.Year.ToString();
+                    editFatturaAcquisto.Value = fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy");
                     var obj = (PagamentoDto)Model;
                     if (obj != null && obj.Id == 0)
                     {
@@ -181,7 +181,7 @@ namespace Web.GUI.Pagamento
                 if (fatturaAcquisto!=null)
                 {
                     editFatturaAcquisto.Model = fatturaAcquisto;
-                    editFatturaAcquisto.Value = fatturaAcquisto.Numero + "/" + fatturaAcquisto.Data.Value.Year.ToString();
+                    editFatturaAcquisto.Value = fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy");
                 }
             }
             catch (Exception ex)
