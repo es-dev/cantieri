@@ -92,7 +92,7 @@ namespace Web.GUI.Liquidazione
                     if (fatturaVendita != null)
                     {
                         editFatturaVendita.Model = fatturaVendita;
-                        editFatturaVendita.Value = fatturaVendita.Numero;
+                        editFatturaVendita.Value = fatturaVendita.Numero + " del " + fatturaVendita.Data.Value.ToString("dd/MM/yyyy");
                     }
                 }
             }
