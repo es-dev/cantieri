@@ -149,7 +149,7 @@ namespace Web.GUI.NotaCredito
                     var obj = (NotaCreditoDto)Model;
                     if (obj != null && obj.Id == 0)
                     {
-                        var codice = BusinessLogic.Pagamento.GetCodice(fatturaAcquisto); //todo: in classe notacredito?? :D
+                        var codice = BusinessLogic.NotaCredito.GetCodice(fatturaAcquisto);
                         editCodice.Value = codice;
                     }
                 }
