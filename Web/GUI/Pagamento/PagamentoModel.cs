@@ -35,6 +35,7 @@ namespace Web.GUI.Pagamento
             InitializeComponent();
             try
             {
+                InitCombo();
                 this.fatturaAcquisto = fatturaAcquisto;
             }
             catch (Exception ex)

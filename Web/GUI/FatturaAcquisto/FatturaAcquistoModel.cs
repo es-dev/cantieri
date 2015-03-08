@@ -36,14 +36,7 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 InitCombo();
-                try
-                {
-                    this.fornitore = fornitore;
-                }
-                catch (Exception ex)
-                {
-                    UtilityError.Write(ex);
-                }
+                this.fornitore = fornitore;
             }
             catch (Exception ex)
             {

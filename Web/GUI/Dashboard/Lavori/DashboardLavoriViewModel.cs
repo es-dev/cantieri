@@ -23,6 +23,7 @@ using Web.GUI.Pagamento;
 using Web.GUI.SAL;
 using Web.GUI.PagamentoUnificato;
 using Web.GUI.PagamentoUnificatoFatturaAcquisto;
+using Web.GUI.NotaCredito;
 
 namespace Web.GUI.Dashboard.Lavori
 {
@@ -89,6 +90,7 @@ namespace Web.GUI.Dashboard.Lavori
                 var dashboardFatturaAcquisto = new DashboardLavori("Fatture di acquisto", "FA", "Inserisci le fatture di acquisto per i fornitori, specifica i prodotti acquistati e i costi relativi...", "Images.dashboard.fatturaacquisto.png", "", typeof(FatturaAcquistoView));
                 var dashboardArticolo = new DashboardLavori("Articoli", "ART", "Inserisci gli articoli per le fattura di acquisto, specifica le quantità, i costi e gli eventuali sconti relativi...", "Images.dashboard.articolo.png", "", typeof(ArticoloView));
                 var dashboardPagamento = new DashboardLavori("Pagamenti", "PAG", "Gestisci i pagamenti per le fattura inserite, controlla le scadenze, le passività e gli importi dati e in dare...", "Images.dashboard.pagamento.png", "", typeof(PagamentoView));
+                var dashboardNotaCredito = new DashboardLavori("Note di credito", "NC", "Gestisci le note di credito per le fattura inserite...", "Images.dashboard.notacredito.png", "", typeof(NotaCreditoView));
                 var dashboardPagamentoUnificato = new DashboardLavori("Pagamenti Unificati", "PU", "Gestisci i pagamenti unificati per i fornitori inseriti. Potrai saldare in un unico pagamento una o più fatture insolute...", "Images.dashboard.pagamentounificato.png", "", typeof(PagamentoUnificatoView));
                 var dashboardPagamentoUnificatoFatturaAcquisto = new DashboardLavori("Pagamenti Unificati - Fatture Acquisto", "PU/FA", "Specifica le fatture di acquisto da associare la pagamento unificato. Il sistema valuterà in automatico il saldo da pagare...", "Images.dashboard.pagamentounificatofatturaacquisto.png", "", typeof(PagamentoUnificatoFatturaAcquistoView));
                 var dashboardCliente = new DashboardLavori("Committenti", "CT", "Specifica i committenti per le commesse inserite nel sistema, definisci gli importi attribuiti ai vari SAL...", "Images.dashboard.cliente.png", "", typeof(ClienteView));
@@ -102,6 +104,7 @@ namespace Web.GUI.Dashboard.Lavori
                 dashboards.Add(dashboardFatturaAcquisto);
                 dashboards.Add(dashboardArticolo);
                 dashboards.Add(dashboardPagamento);
+                dashboards.Add(dashboardNotaCredito);
                 dashboards.Add(dashboardPagamentoUnificato);
                 dashboards.Add(dashboardPagamentoUnificatoFatturaAcquisto);
                 dashboards.Add(dashboardCliente);

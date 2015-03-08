@@ -35,6 +35,7 @@ namespace Web.GUI.NotaCredito
             InitializeComponent();
             try
             {
+                InitCombo();
                 this.fatturaAcquisto = fatturaAcquisto;
             }
             catch (Exception ex)
