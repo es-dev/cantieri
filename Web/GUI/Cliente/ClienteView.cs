@@ -6,11 +6,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 
 namespace Web.GUI.Cliente
 {
 	public partial class ClienteView : TemplateView
 	{
+        private CommessaDto commessa = null;
 
         public ClienteView()
 		{ 
@@ -22,6 +24,7 @@ namespace Web.GUI.Cliente
             InitializeComponent();
             try
             {
+                this.commessa = commessa;
                 var viewModel = (Cliente.ClienteViewModel)ViewModel;
                 if (viewModel != null)
                 {
@@ -51,7 +54,7 @@ namespace Web.GUI.Cliente
         {
             try
             {
-                var space = new ClienteModel();
+                var space = new ClienteModel(commessa);
                 space.Title = "NUOVO COMMITTENTE";
                 space.Model = new WcfService.Dto.ClienteDto();
                 AddSpace(space);

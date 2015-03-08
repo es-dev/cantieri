@@ -15,6 +15,8 @@ namespace Web.GUI.FatturaVendita
 {
 	public partial class FatturaVenditaModel : TemplateModel
 	{
+        private ClienteDto cliente = null;
+
         public FatturaVenditaModel()
 		{
 			InitializeComponent();
@@ -27,6 +29,20 @@ namespace Web.GUI.FatturaVendita
                 UtilityError.Write(ex);
             }
 		}
+
+        public FatturaVenditaModel(ClienteDto cliente)
+        {
+            InitializeComponent();
+            try
+            {
+                this.cliente = cliente;
+                InitCombo();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 
         private void InitCombo()
         {
@@ -343,6 +359,37 @@ namespace Web.GUI.FatturaVendita
                 UtilityError.Write(ex);
             }
 
+        }
+
+        private void FatturaVenditaModel_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (FatturaVenditaDto)Model;
+                if (obj != null && obj.Id == 0)
+                    SetNewValue();
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void SetNewValue()
+        {
+            try
+            {
+                if (cliente != null)
+                {
+                    editCliente.Model = cliente;
+                    editCliente.Value = cliente.Codice + " - " + cliente.RagioneSociale;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
         }
 
 	}

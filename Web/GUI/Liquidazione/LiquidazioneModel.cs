@@ -15,6 +15,8 @@ namespace Web.GUI.Liquidazione
 {
 	public partial class LiquidazioneModel : TemplateModel
 	{
+        private FatturaVenditaDto fatturaVendita = null;
+
         public LiquidazioneModel()
 		{
 			InitializeComponent();
@@ -27,6 +29,21 @@ namespace Web.GUI.Liquidazione
                 UtilityError.Write(ex);
             }
         }
+
+        public LiquidazioneModel(FatturaVenditaDto fatturaVendita)
+        {
+            InitializeComponent();
+            try
+            {
+                this.fatturaVendita = fatturaVendita;
+                InitCombo();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         private void InitCombo()
         {
             try
@@ -130,13 +147,44 @@ namespace Web.GUI.Liquidazione
                 var fatturaVendita = (WcfService.Dto.FatturaVenditaDto)model;
                 if (fatturaVendita != null)
                 {
-                    editFatturaVendita.Value = fatturaVendita.Numero;
+                    editFatturaVendita.Value = fatturaVendita.Numero + " del " + fatturaVendita.Data.Value.ToString("dd/MM/yyyy");
                     var obj = (WcfService.Dto.LiquidazioneDto)Model;
                     if (obj != null && obj.Id == 0)
                     {
                         var codice = BusinessLogic.Liquidazione.GetCodice(fatturaVendita);
                         editCodice.Value = codice;
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void LiquidazioneModel_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (LiquidazioneDto)Model;
+                if (obj != null && obj.Id == 0)
+                    SetNewValue();
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void SetNewValue()
+        {
+            try
+            {
+                if (fatturaVendita != null)
+                {
+                    editFatturaVendita.Model = fatturaVendita;
+                    editFatturaVendita.Value = fatturaVendita.Numero + " del " + fatturaVendita.Data.Value.ToString("dd/MM/yyyy");
                 }
             }
             catch (Exception ex)

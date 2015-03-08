@@ -12,6 +12,8 @@ namespace Web.GUI.FatturaVendita
 {
 	public partial class FatturaVenditaView : TemplateView
 	{
+        private ClienteDto cliente = null;
+
         public FatturaVenditaView()
 		{ 
 			InitializeComponent();
@@ -22,6 +24,7 @@ namespace Web.GUI.FatturaVendita
             InitializeComponent();
             try
             {
+                this.cliente = cliente;
                 var viewModel = (FatturaVendita.FatturaVenditaViewModel)ViewModel;
                 if (viewModel != null)
                 {
@@ -51,7 +54,7 @@ namespace Web.GUI.FatturaVendita
         {
             try
             {
-                var space = new FatturaVenditaModel();
+                var space = new FatturaVenditaModel(cliente);
                 space.Title = "NUOVA FATTURA DI VENDITA";
                 space.Model = new WcfService.Dto.FatturaVenditaDto();
                 AddSpace(space);
