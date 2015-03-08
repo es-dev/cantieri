@@ -73,7 +73,7 @@ namespace Web.GUI.Liquidazione
         {
             try
             {
-                var space = new LiquidazioneModel();
+                var space = new LiquidazioneModel(fatturaVendita);
                 space.Title = "NUOVO INCASSO";
                 space.Model = new WcfService.Dto.LiquidazioneDto();
                 AddSpace(space);
