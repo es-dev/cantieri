@@ -21,6 +21,7 @@ namespace BusinessLogic
                     var noteCredito = fatturaAcquisto.NotaCreditos;
                     if (noteCredito != null)
                         progressivo = noteCredito.Count + 1;
+
                     var codice = numeroFattura + "/" + DateTime.Today.Year.ToString() + "/" + progressivo.ToString("000");  //numerofattura/anno/progressivo
                     return codice;
                 }
