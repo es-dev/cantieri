@@ -46,6 +46,7 @@ namespace Web.GUI.FatturaAcquisto
             this.btnCalcoloTotali = new Library.Controls.ButtonSeparatorV();
             this.editNote = new Library.Template.Controls.TemplateEditText();
             this.btnPagamenti = new Library.Controls.ButtonSeparatorV();
+            this.templateEditDecimal1 = new Library.Template.Controls.TemplateEditDecimal();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -53,6 +54,7 @@ namespace Web.GUI.FatturaAcquisto
             // 
             // container
             // 
+            this.container.Controls.Add(this.templateEditDecimal1);
             this.container.Controls.Add(this.editNote);
             this.container.Controls.Add(this.editTotalePagamenti);
             this.container.Controls.Add(this.lblAndamento);
@@ -84,6 +86,7 @@ namespace Web.GUI.FatturaAcquisto
             this.container.Controls.SetChildIndex(this.lblAndamento, 0);
             this.container.Controls.SetChildIndex(this.editTotalePagamenti, 0);
             this.container.Controls.SetChildIndex(this.editNote, 0);
+            this.container.Controls.SetChildIndex(this.templateEditDecimal1, 0);
             // 
             // infoSubtitle
             // 
@@ -354,7 +357,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editStato.Editing = false;
             this.editStato.Label = "Stato";
             this.editStato.LabelWidth = 175;
-            this.editStato.Location = new System.Drawing.Point(25, 569);
+            this.editStato.Location = new System.Drawing.Point(25, 588);
             this.editStato.Name = "editStato";
             this.editStato.ReadOnly = false;
             this.editStato.Required = false;
@@ -449,6 +452,28 @@ namespace Web.GUI.FatturaAcquisto
             this.btnPagamenti.TextButton = "Pagamenti";
             this.btnPagamenti.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnPagamenti_Click);
             // 
+            // templateEditDecimal1
+            // 
+            this.templateEditDecimal1.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.templateEditDecimal1.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.templateEditDecimal1.BackColor = System.Drawing.Color.Transparent;
+            this.templateEditDecimal1.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.templateEditDecimal1.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.templateEditDecimal1.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.templateEditDecimal1.Changed = true;
+            this.templateEditDecimal1.Editing = false;
+            this.templateEditDecimal1.Label = "Totale pagamenti";
+            this.templateEditDecimal1.LabelWidth = 175;
+            this.templateEditDecimal1.Location = new System.Drawing.Point(25, 558);
+            this.templateEditDecimal1.Name = "templateEditDecimal1";
+            this.templateEditDecimal1.ReadOnly = false;
+            this.templateEditDecimal1.Required = false;
+            this.templateEditDecimal1.Size = new System.Drawing.Size(798, 30);
+            this.templateEditDecimal1.TabIndex = 11;
+            this.templateEditDecimal1.Text = "TemplateEditNumeric";
+            this.templateEditDecimal1.Value = null;
+            // 
             // FatturaAcquistoModel
             // 
             this.Size = new System.Drawing.Size(1024, 693);
@@ -480,6 +505,7 @@ namespace Web.GUI.FatturaAcquisto
         private Library.Controls.ButtonSeparatorV btnCalcoloTotali;
         private Library.Template.Controls.TemplateEditText editNote;
         private Library.Controls.ButtonSeparatorV btnPagamenti;
+        private Library.Template.Controls.TemplateEditDecimal templateEditDecimal1;
 
 
     }

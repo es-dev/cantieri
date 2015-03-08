@@ -271,6 +271,19 @@ namespace DataLayer
 			}
 		}
 		
+		private decimal? _totaleNoteCredito;
+		public virtual decimal? TotaleNoteCredito
+		{
+			get
+			{
+				return this._totaleNoteCredito;
+			}
+			set
+			{
+				this._totaleNoteCredito = value;
+			}
+		}
+		
 		private Commessa _commessa;
 		public virtual Commessa Commessa
 		{

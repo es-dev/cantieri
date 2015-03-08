@@ -225,13 +225,16 @@
           <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
         <orm:field name="_totalePagamenti" property="TotalePagamenti" uniqueId="03a6749b-0293-4dac-ba15-7a504338b6c2" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="TotalePagamenti" sql-type="decimal" nullable="false" length="20" scale="10" ado-type="" />
+          <orm:column name="TotalePagamenti" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         </orm:field>
         <orm:field name="_localita" property="Localita" uniqueId="d78423c8-6b23-4ab4-a2fb-99c615df6745" type="System.String">
           <orm:column name="Localita" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
         <orm:field name="_note" property="Note" uniqueId="4ee38ec2-6370-4ff5-a8ac-beec0418df3e" type="System.String">
           <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_totaleNoteCredito" property="TotaleNoteCredito" uniqueId="a40054aa-d060-43a9-b535-e818604742b6" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="TotaleNoteCredito" sql-type="numeric" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
         <orm:field name="_commessa" property="Commessa" behavior="readwrite" uniqueId="791cabb3-ef72-40a8-b4a7-3ca133c6521c" type="DataLayer.Commessa">
           <orm:reference uniqueId="032d408c-e267-47d7-bbd9-3cb51d71d72d" association-name="FornitoreHasCommessa">
@@ -394,6 +397,9 @@
         </orm:field>
         <orm:field name="_note" property="Note" uniqueId="e08fcac6-bc31-461f-9130-330deaa4c717" type="System.String">
           <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_totaleNoteCredito" property="TotaleNoteCredito" uniqueId="b4d8fab7-30a1-470e-ba7b-31f6ef16f790" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="TotaleNoteCredito" sql-type="numeric" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
         <orm:field name="_centroCosto" property="CentroCosto" behavior="readwrite" uniqueId="b3fb004d-8bc0-4b48-8852-13ca483b50b0" type="DataLayer.CentroCosto">
           <orm:reference uniqueId="8a1ec485-60f4-4ca4-8b26-6596dcdbd353" association-name="FatturaAcquistoHasCentroCosto">
@@ -1095,6 +1101,7 @@
         <orm:column name="TotalePagamenti" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="TotaleNoteCredito" sql-type="numeric" nullable="true" length="0" scale="0" ado-type="" />
         <orm:index name="idx_FtturaAcquisto_FornitoreId">
           <orm:columnMapping>
             <orm:column name="FornitoreId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -1267,9 +1274,10 @@
         <orm:column name="CodiceCatastale" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="TotaleFattureAcquisto" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
-        <orm:column name="TotalePagamenti" sql-type="decimal" nullable="false" length="20" scale="10" ado-type="" />
+        <orm:column name="TotalePagamenti" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         <orm:column name="Localita" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="TotaleNoteCredito" sql-type="numeric" nullable="true" length="0" scale="0" ado-type="" />
         <orm:index name="idx_Fornitore_CommessaId">
           <orm:columnMapping>
             <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -1492,6 +1500,7 @@
       <Property Id="03a6749b-0293-4dac-ba15-7a504338b6c2" name="TotalePagamenti" type="Decimal" label="TotalePagamenti : Decimal" nullable="true" fieldName="_totalePagamenti" />
       <Property Id="d78423c8-6b23-4ab4-a2fb-99c615df6745" name="Localita" label="Localita : String" fieldName="_localita" />
       <Property Id="4ee38ec2-6370-4ff5-a8ac-beec0418df3e" name="Note" label="Note : String" fieldName="_note" />
+      <Property Id="a40054aa-d060-43a9-b535-e818604742b6" name="TotaleNoteCredito" type="Decimal" label="TotaleNoteCredito : Decimal" nullable="true" fieldName="_totaleNoteCredito" />
       <AssociationTargets>
         <Association Id="032d408c-e267-47d7-bbd9-3cb51d71d72d" SourceMultiplicity="ZeroOne" name="FornitoreHasCommessa">
           <DomainClassMoniker name="/EntitiesModel/Commessa" />
@@ -1586,6 +1595,7 @@
       <Property Id="106a13f4-4f0b-418b-a315-7f4129822f28" name="TotalePagamenti" type="Decimal" label="TotalePagamenti : Decimal" nullable="true" fieldName="_totalePagamenti" />
       <Property Id="8bf1edd0-d2fa-4dda-b1e4-07e759a77230" name="Stato" label="Stato : String" fieldName="_stato" />
       <Property Id="e08fcac6-bc31-461f-9130-330deaa4c717" name="Note" label="Note : String" fieldName="_note" />
+      <Property Id="b4d8fab7-30a1-470e-ba7b-31f6ef16f790" name="TotaleNoteCredito" type="Decimal" label="TotaleNoteCredito : Decimal" nullable="true" fieldName="_totaleNoteCredito" />
       <AssociationTargets>
         <Association Id="9133edb8-9422-4c9c-a7d6-77def2077659" SourceMultiplicity="ZeroOne" name="FatturaAcquistoHasFornitore">
           <DomainClassMoniker name="/EntitiesModel/Fornitore" />

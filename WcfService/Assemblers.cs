@@ -360,6 +360,7 @@ namespace WcfService.Assemblers
 			entity.TotalePagamenti = dto.TotalePagamenti;
 			entity.Localita = dto.Localita;
 			entity.Note = dto.Note;
+			entity.TotaleNoteCredito = dto.TotaleNoteCredito;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -389,6 +390,7 @@ namespace WcfService.Assemblers
 			dto.TotalePagamenti = entity.TotalePagamenti;
 			dto.Localita = entity.Localita;
 			dto.Note = entity.Note;
+			dto.TotaleNoteCredito = entity.TotaleNoteCredito;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -643,6 +645,7 @@ namespace WcfService.Assemblers
 			entity.TotalePagamenti = dto.TotalePagamenti;
 			entity.Stato = dto.Stato;
 			entity.Note = dto.Note;
+			entity.TotaleNoteCredito = dto.TotaleNoteCredito;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -667,6 +670,7 @@ namespace WcfService.Assemblers
 			dto.TotalePagamenti = entity.TotalePagamenti;
 			dto.Stato = entity.Stato;
 			dto.Note = entity.Note;
+			dto.TotaleNoteCredito = entity.TotaleNoteCredito;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
