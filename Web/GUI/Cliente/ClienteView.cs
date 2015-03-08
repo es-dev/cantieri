@@ -11,14 +11,13 @@ namespace Web.GUI.Cliente
 {
 	public partial class ClienteView : TemplateView
 	{
-        private WcfService.Dto.CommessaDto commessa;
 
         public ClienteView()
 		{ 
 			InitializeComponent();
 		}
 
-        public ClienteView(WcfService.Dto.CommessaDto obj)
+        public ClienteView(WcfService.Dto.CommessaDto commessa)
         {
             InitializeComponent();
             try

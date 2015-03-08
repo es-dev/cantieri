@@ -11,8 +11,6 @@ namespace Web.GUI.Fornitore
 {
 	public partial class FornitoreView : TemplateView
 	{
-        private WcfService.Dto.CommessaDto commessa;
-
         public FornitoreView()
 		{ 
 			InitializeComponent();
