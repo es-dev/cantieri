@@ -59,6 +59,32 @@ namespace BusinessLogic
             return 0;
         }
 
+        public static decimal GetTotaleNoteCredito(FornitoreDto fornitore, DateTime data)
+        {
+            try
+            {
+                decimal totale = 0;
+                if (fornitore != null)
+                {
+                    var fattureAcquisto = fornitore.FatturaAcquistos;
+                    if (fattureAcquisto != null)
+                    {
+                        foreach (var fatturaAcquisto in fattureAcquisto)
+                        {
+                            var totaleNoteCredito = Fattura.GetTotaleNoteCredito(fatturaAcquisto, data);
+                            totale += totaleNoteCredito;
+                        }
+                    }
+                    return totale;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
         public static IList<WcfService.Dto.FatturaAcquistoDto> GetFattureInsolute(IList<FatturaAcquistoDto> fatture)
         {
             try
@@ -243,13 +269,32 @@ namespace BusinessLogic
         {
             try
             {
-                decimal totalePagamentiDato = 0;
+                decimal totalePagamenti = 0;
                 foreach (var fornitore in fornitori)
                 {
-                    var _totalePagamentiDato = GetTotalePagamenti(fornitore, data);
-                    totalePagamentiDato += _totalePagamentiDato;
+                    var _totalePagamenti = GetTotalePagamenti(fornitore, data);
+                    totalePagamenti += _totalePagamenti;
                 }
-                return totalePagamentiDato;
+                return totalePagamenti;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal GetTotaleNoteCredito(IList<FornitoreDto> fornitori, DateTime data)
+        {
+            try
+            {
+                decimal totaleNoteCredito = 0;
+                foreach (var fornitore in fornitori)
+                {
+                    var _totaleNoteCredito = GetTotaleNoteCredito(fornitore, data);
+                    totaleNoteCredito += _totaleNoteCredito;
+                }
+                return totaleNoteCredito;
             }
             catch (Exception ex)
             {

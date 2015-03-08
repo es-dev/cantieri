@@ -117,13 +117,32 @@ namespace BusinessLogic
         {
             try
             {
-                decimal totalePagamentiDato = 0;
+                decimal totalePagamenti = 0;
                 if (commessa != null)
                 {
                     var fornitori = commessa.Fornitores;
-                    totalePagamentiDato = Fornitore.GetTotalePagamenti(fornitori, data);
+                    totalePagamenti = Fornitore.GetTotalePagamenti(fornitori, data);
                 }
-                return totalePagamentiDato;
+                return totalePagamenti;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal GetTotaleNoteCredito(WcfService.Dto.CommessaDto commessa, DateTime data)
+        {
+            try
+            {
+                decimal totaleNoteCredito = 0;
+                if (commessa != null)
+                {
+                    var fornitori = commessa.Fornitores;
+                    totaleNoteCredito = Fornitore.GetTotaleNoteCredito(fornitori, data);
+                }
+                return totaleNoteCredito;
             }
             catch (Exception ex)
             {
