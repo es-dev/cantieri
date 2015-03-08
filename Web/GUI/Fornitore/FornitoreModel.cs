@@ -76,6 +76,8 @@ namespace Web.GUI.Fornitore
                     editTotaleFattureAcquisto.Value = GetTotaleFatturaAcquisto(obj);
                     editStato.Value = GetStato(obj);
                     editTotalePagamenti.Value = GetTotalePagamenti(obj);
+                    editTotaleNoteCredito.Value = GetTotaleNoteCredito(obj);
+
                     var commessa = obj.Commessa;
                     if (commessa != null)
                     {
@@ -110,6 +112,33 @@ namespace Web.GUI.Fornitore
                     }
                 }
                 return totalePagamenti;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        private decimal GetTotaleNoteCredito(WcfService.Dto.FornitoreDto fornitore)
+        {
+            try
+            {
+                decimal totaleNoteCredito = 0;
+                if (fornitore != null)
+                {
+                    var today = DateTime.Today;
+                    var commessa = fornitore.Commessa;
+                    if (commessa != null)
+                    {
+                        var statoCommessa = commessa.Stato;
+                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                            totaleNoteCredito = UtilityValidation.GetDecimal(fornitore.TotalePagamenti);
+                        else
+                            totaleNoteCredito = BusinessLogic.Fornitore.GetTotaleNoteCredito(fornitore, today);
+                    }
+                }
+                return totaleNoteCredito;
             }
             catch (Exception ex)
             {
@@ -205,6 +234,7 @@ namespace Web.GUI.Fornitore
                     obj.TotaleFattureAcquisto = editTotaleFattureAcquisto.Value;
                     obj.Stato = editStato.Value;
                     obj.TotalePagamenti = editTotalePagamenti.Value;
+                    obj.TotaleNoteCredito = editTotaleNoteCredito.Value;
                     var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
                     if(commessa!=null)
                         obj.CommessaId = commessa.Id;
