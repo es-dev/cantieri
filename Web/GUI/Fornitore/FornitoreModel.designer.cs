@@ -50,6 +50,7 @@ namespace Web.GUI.Fornitore
             this.editNote = new Library.Template.Controls.TemplateEditText();
             this.btnFattureAcquisto = new Library.Controls.ButtonSeparatorV();
             this.btnPagamenti = new Library.Controls.ButtonSeparatorV();
+            this.editTotaleNoteCredito = new Library.Template.Controls.TemplateEditDecimal();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -57,6 +58,7 @@ namespace Web.GUI.Fornitore
             // 
             // container
             // 
+            this.container.Controls.Add(this.editTotaleNoteCredito);
             this.container.Controls.Add(this.editNote);
             this.container.Controls.Add(this.editLocalita);
             this.container.Controls.Add(this.editTotalePagamenti);
@@ -94,6 +96,7 @@ namespace Web.GUI.Fornitore
             this.container.Controls.SetChildIndex(this.editTotalePagamenti, 0);
             this.container.Controls.SetChildIndex(this.editLocalita, 0);
             this.container.Controls.SetChildIndex(this.editNote, 0);
+            this.container.Controls.SetChildIndex(this.editTotaleNoteCredito, 0);
             // 
             // infoSubtitle
             // 
@@ -159,7 +162,7 @@ namespace Web.GUI.Fornitore
             this.editRagioneSociale.Editing = false;
             this.editRagioneSociale.Label = "Ragione sociale";
             this.editRagioneSociale.LabelWidth = 175;
-            this.editRagioneSociale.Location = new System.Drawing.Point(20, 141);
+            this.editRagioneSociale.Location = new System.Drawing.Point(20, 139);
             this.editRagioneSociale.Name = "editRagioneSociale";
             this.editRagioneSociale.ReadOnly = false;
             this.editRagioneSociale.Required = false;
@@ -181,7 +184,7 @@ namespace Web.GUI.Fornitore
             this.editIndirizzo.Editing = false;
             this.editIndirizzo.Label = "Indirizzo";
             this.editIndirizzo.LabelWidth = 175;
-            this.editIndirizzo.Location = new System.Drawing.Point(20, 179);
+            this.editIndirizzo.Location = new System.Drawing.Point(20, 176);
             this.editIndirizzo.Name = "editIndirizzo";
             this.editIndirizzo.ReadOnly = false;
             this.editIndirizzo.Required = false;
@@ -203,7 +206,7 @@ namespace Web.GUI.Fornitore
             this.editCAP.Editing = false;
             this.editCAP.Label = "CAP";
             this.editCAP.LabelWidth = 175;
-            this.editCAP.Location = new System.Drawing.Point(20, 217);
+            this.editCAP.Location = new System.Drawing.Point(20, 213);
             this.editCAP.Name = "editCAP";
             this.editCAP.ReadOnly = false;
             this.editCAP.Required = false;
@@ -225,7 +228,7 @@ namespace Web.GUI.Fornitore
             this.editTelefono.Editing = false;
             this.editTelefono.Label = "Telefono";
             this.editTelefono.LabelWidth = 175;
-            this.editTelefono.Location = new System.Drawing.Point(20, 331);
+            this.editTelefono.Location = new System.Drawing.Point(20, 324);
             this.editTelefono.Name = "editTelefono";
             this.editTelefono.ReadOnly = false;
             this.editTelefono.Required = false;
@@ -247,7 +250,7 @@ namespace Web.GUI.Fornitore
             this.editFAX.Editing = false;
             this.editFAX.Label = "FAX";
             this.editFAX.LabelWidth = 175;
-            this.editFAX.Location = new System.Drawing.Point(20, 369);
+            this.editFAX.Location = new System.Drawing.Point(20, 361);
             this.editFAX.Name = "editFAX";
             this.editFAX.ReadOnly = false;
             this.editFAX.Required = false;
@@ -269,7 +272,7 @@ namespace Web.GUI.Fornitore
             this.editMobile.Editing = false;
             this.editMobile.Label = "Mobile";
             this.editMobile.LabelWidth = 175;
-            this.editMobile.Location = new System.Drawing.Point(20, 407);
+            this.editMobile.Location = new System.Drawing.Point(20, 398);
             this.editMobile.Name = "editMobile";
             this.editMobile.ReadOnly = false;
             this.editMobile.Required = false;
@@ -291,7 +294,7 @@ namespace Web.GUI.Fornitore
             this.editCodiceFornitore.Editing = false;
             this.editCodiceFornitore.Label = "Codice fornitore";
             this.editCodiceFornitore.LabelWidth = 175;
-            this.editCodiceFornitore.Location = new System.Drawing.Point(20, 103);
+            this.editCodiceFornitore.Location = new System.Drawing.Point(20, 102);
             this.editCodiceFornitore.Model = null;
             this.editCodiceFornitore.Name = "editCodiceFornitore";
             this.editCodiceFornitore.ReadOnly = false;
@@ -316,7 +319,7 @@ namespace Web.GUI.Fornitore
             this.editEmail.Editing = false;
             this.editEmail.Label = "Email";
             this.editEmail.LabelWidth = 175;
-            this.editEmail.Location = new System.Drawing.Point(20, 445);
+            this.editEmail.Location = new System.Drawing.Point(20, 435);
             this.editEmail.Name = "editEmail";
             this.editEmail.ReadOnly = false;
             this.editEmail.Required = false;
@@ -338,7 +341,7 @@ namespace Web.GUI.Fornitore
             this.editPartitaIVA.Editing = false;
             this.editPartitaIVA.Label = "Partita IVA";
             this.editPartitaIVA.LabelWidth = 175;
-            this.editPartitaIVA.Location = new System.Drawing.Point(20, 483);
+            this.editPartitaIVA.Location = new System.Drawing.Point(20, 472);
             this.editPartitaIVA.Name = "editPartitaIVA";
             this.editPartitaIVA.ReadOnly = false;
             this.editPartitaIVA.Required = false;
@@ -360,7 +363,7 @@ namespace Web.GUI.Fornitore
             this.editComune.Editing = false;
             this.editComune.Label = "Comune";
             this.editComune.LabelWidth = 175;
-            this.editComune.Location = new System.Drawing.Point(20, 255);
+            this.editComune.Location = new System.Drawing.Point(20, 250);
             this.editComune.Name = "editComune";
             this.editComune.ReadOnly = false;
             this.editComune.Required = false;
@@ -382,7 +385,7 @@ namespace Web.GUI.Fornitore
             this.editTotaleFattureAcquisto.Editing = false;
             this.editTotaleFattureAcquisto.Label = "Totale fatture";
             this.editTotaleFattureAcquisto.LabelWidth = 175;
-            this.editTotaleFattureAcquisto.Location = new System.Drawing.Point(20, 597);
+            this.editTotaleFattureAcquisto.Location = new System.Drawing.Point(20, 583);
             this.editTotaleFattureAcquisto.Name = "editTotaleFattureAcquisto";
             this.editTotaleFattureAcquisto.ReadOnly = false;
             this.editTotaleFattureAcquisto.Required = false;
@@ -398,9 +401,9 @@ namespace Web.GUI.Fornitore
             this.lblAndamento.BackColor = System.Drawing.Color.Gainsboro;
             this.lblAndamento.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAndamento.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblAndamento.Location = new System.Drawing.Point(13, 559);
+            this.lblAndamento.Location = new System.Drawing.Point(13, 546);
             this.lblAndamento.Name = "lblAndamento";
-            this.lblAndamento.Size = new System.Drawing.Size(883, 30);
+            this.lblAndamento.Size = new System.Drawing.Size(876, 30);
             this.lblAndamento.TabIndex = 1001;
             this.lblAndamento.Text = "SITUAZIONE PAGAMENTI FATTURE";
             this.lblAndamento.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -418,7 +421,7 @@ namespace Web.GUI.Fornitore
             this.editStato.Editing = false;
             this.editStato.Label = "Stato";
             this.editStato.LabelWidth = 175;
-            this.editStato.Location = new System.Drawing.Point(20, 673);
+            this.editStato.Location = new System.Drawing.Point(20, 694);
             this.editStato.Name = "editStato";
             this.editStato.ReadOnly = false;
             this.editStato.Required = false;
@@ -454,7 +457,7 @@ namespace Web.GUI.Fornitore
             this.editTotalePagamenti.Editing = false;
             this.editTotalePagamenti.Label = "Totale pagamenti";
             this.editTotalePagamenti.LabelWidth = 175;
-            this.editTotalePagamenti.Location = new System.Drawing.Point(20, 635);
+            this.editTotalePagamenti.Location = new System.Drawing.Point(20, 620);
             this.editTotalePagamenti.Name = "editTotalePagamenti";
             this.editTotalePagamenti.ReadOnly = false;
             this.editTotalePagamenti.Required = false;
@@ -476,7 +479,7 @@ namespace Web.GUI.Fornitore
             this.editLocalita.Editing = false;
             this.editLocalita.Label = "Località";
             this.editLocalita.LabelWidth = 175;
-            this.editLocalita.Location = new System.Drawing.Point(20, 293);
+            this.editLocalita.Location = new System.Drawing.Point(20, 287);
             this.editLocalita.Name = "editLocalita";
             this.editLocalita.ReadOnly = false;
             this.editLocalita.Required = false;
@@ -498,7 +501,7 @@ namespace Web.GUI.Fornitore
             this.editNote.Editing = false;
             this.editNote.Label = "Note";
             this.editNote.LabelWidth = 175;
-            this.editNote.Location = new System.Drawing.Point(20, 521);
+            this.editNote.Location = new System.Drawing.Point(20, 509);
             this.editNote.Name = "editNote";
             this.editNote.ReadOnly = false;
             this.editNote.Required = false;
@@ -535,6 +538,28 @@ namespace Web.GUI.Fornitore
             this.btnPagamenti.TextButton = "Pagamenti";
             this.btnPagamenti.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnPagamenti_Click);
             // 
+            // editTotaleNoteCredito
+            // 
+            this.editTotaleNoteCredito.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editTotaleNoteCredito.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editTotaleNoteCredito.BackColor = System.Drawing.Color.Transparent;
+            this.editTotaleNoteCredito.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editTotaleNoteCredito.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editTotaleNoteCredito.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editTotaleNoteCredito.Changed = true;
+            this.editTotaleNoteCredito.Editing = false;
+            this.editTotaleNoteCredito.Label = "Totale note credito";
+            this.editTotaleNoteCredito.LabelWidth = 175;
+            this.editTotaleNoteCredito.Location = new System.Drawing.Point(20, 657);
+            this.editTotaleNoteCredito.Name = "editTotaleNoteCredito";
+            this.editTotaleNoteCredito.ReadOnly = false;
+            this.editTotaleNoteCredito.Required = false;
+            this.editTotaleNoteCredito.Size = new System.Drawing.Size(813, 30);
+            this.editTotaleNoteCredito.TabIndex = 11;
+            this.editTotaleNoteCredito.Text = "TemplateEditNumeric";
+            this.editTotaleNoteCredito.Value = null;
+            // 
             // FornitoreModel
             // 
             this.Size = new System.Drawing.Size(1024, 799);
@@ -570,6 +595,7 @@ namespace Web.GUI.Fornitore
         private Library.Template.Controls.TemplateEditText editNote;
         private Library.Controls.ButtonSeparatorV btnFattureAcquisto;
         private Library.Controls.ButtonSeparatorV btnPagamenti;
+        private Library.Template.Controls.TemplateEditDecimal editTotaleNoteCredito;
 
 
     }
