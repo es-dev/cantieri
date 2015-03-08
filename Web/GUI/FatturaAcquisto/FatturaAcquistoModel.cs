@@ -95,6 +95,7 @@ namespace Web.GUI.FatturaAcquisto
                     editNote.Value = obj.Note;
                     editTotale.Value = obj.Totale;
                     editTotalePagamenti.Value = GetTotalePagamenti(obj);
+                    editTotaleNoteCredito.Value = GetTotaleNoteCredito(obj);
                     editStato.Value = obj.Stato;
                     var centroCosto = obj.CentroCosto;
                     if (centroCosto != null)
@@ -184,6 +185,39 @@ namespace Web.GUI.FatturaAcquisto
             return 0;
         }
 
+        private decimal GetTotaleNoteCredito(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto)
+        {
+            try
+            {
+                decimal totaleNoteCredito= 0;
+                if (fatturaAcquisto != null)
+                {
+                    var fornitoreId = fatturaAcquisto.FornitoreId;
+                    var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
+                    var fornitore = viewModelFornitore.Read(fornitoreId);
+                    if (fornitore != null)
+                    {
+                        var commessa = fornitore.Commessa;
+                        var statoCommessa = commessa.Stato;
+                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                            totaleNoteCredito = UtilityValidation.GetDecimal(fatturaAcquisto.TotaleNoteCredito);
+                        else
+                        {
+                            var today = DateTime.Today;
+                            totaleNoteCredito = BusinessLogic.Fattura.GetTotaleNoteCredito(fatturaAcquisto, today);
+                        }
+                    }
+                }
+                return totaleNoteCredito;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+
         public override void BindModel(object model)
         {
             try
@@ -201,6 +235,7 @@ namespace Web.GUI.FatturaAcquisto
                     obj.Totale = editTotale.Value;
                     obj.Note = editNote.Value;
                     obj.TotalePagamenti = editTotalePagamenti.Value;
+                    obj.TotaleNoteCredito = editTotaleNoteCredito.Value;
                     obj.Stato = editStato.Value;
                     var centroCosto = (WcfService.Dto.CentroCostoDto)editCentroCosto.Model;
                     if (centroCosto != null)
@@ -301,12 +336,16 @@ namespace Web.GUI.FatturaAcquisto
                     var scadenza = BusinessLogic.Fattura.GetScadenza(obj);
                     var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
                     var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, today);
+                    var totaleNoteCredito = BusinessLogic.Fattura.GetTotaleNoteCredito(obj, today);
+
                     var statoFattura = BusinessLogic.Fattura.GetStato(obj);
                     var stato = GetStato(today, scadenza, totaleFattura, totalePagamenti, statoFattura);
 
                     editStato.Value = stato.ToString();
                     editTotale.Value = totaleFattura;
                     editTotalePagamenti.Value = totalePagamenti;
+                    editTotaleNoteCredito.Value = totaleNoteCredito;
+
                 }
             }
             catch (Exception ex)
