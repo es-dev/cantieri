@@ -452,6 +452,7 @@ namespace Web.GUI.FatturaAcquisto
             // FatturaAcquistoModel
             // 
             this.Size = new System.Drawing.Size(1024, 693);
+            this.Load += new System.EventHandler(this.FatturaAcquistoModel_Load);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);

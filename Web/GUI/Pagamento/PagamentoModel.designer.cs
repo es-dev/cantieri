@@ -192,6 +192,7 @@ namespace Web.GUI.Pagamento
             this.editTipoPagamento.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
             this.editTipoPagamento.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editTipoPagamento.Changed = true;
+            this.editTipoPagamento.DisplayValues = null;
             this.editTipoPagamento.Editing = false;
             this.editTipoPagamento.Items = null;
             this.editTipoPagamento.Label = "Tipo pagamento";
@@ -226,6 +227,10 @@ namespace Web.GUI.Pagamento
             this.editDescrizione.TabIndex = 5;
             this.editDescrizione.Text = "EditControl";
             this.editDescrizione.Value = null;
+            // 
+            // PagamentoModel
+            // 
+            this.Load += new System.EventHandler(this.PagamentoModel_Load);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);

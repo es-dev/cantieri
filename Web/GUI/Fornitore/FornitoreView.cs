@@ -6,11 +6,14 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 
 namespace Web.GUI.Fornitore
 {
 	public partial class FornitoreView : TemplateView
 	{
+        private CommessaDto commessa = null;
+
         public FornitoreView()
 		{ 
 			InitializeComponent();
@@ -21,6 +24,7 @@ namespace Web.GUI.Fornitore
             InitializeComponent();
             try
             {
+                this.commessa = commessa;
                 var viewModel = (Fornitore.FornitoreViewModel)ViewModel;
                 if (viewModel != null)
                 {
@@ -51,7 +55,7 @@ namespace Web.GUI.Fornitore
         {
             try
             {
-                var space = new FornitoreModel();
+                var space = new FornitoreModel(commessa);
                 space.Title = "NUOVO FORNITORE";
                 space.Model = new WcfService.Dto.FornitoreDto() ;
                 AddSpace(space);

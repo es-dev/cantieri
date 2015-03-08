@@ -16,6 +16,7 @@ namespace Web.GUI.Pagamento
 {
 	public partial class PagamentoModel : TemplateModel
 	{
+        private FatturaAcquistoDto fatturaAcquisto = null;
         public PagamentoModel()
 		{
 			InitializeComponent();
@@ -28,6 +29,20 @@ namespace Web.GUI.Pagamento
                 UtilityError.Write(ex);
             }
 		}
+
+        public PagamentoModel(FatturaAcquistoDto fatturaAcquisto)
+        {
+            InitializeComponent();
+            try
+            {
+                this.fatturaAcquisto = fatturaAcquisto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         private void InitCombo()
         {
             try
@@ -136,6 +151,37 @@ namespace Web.GUI.Pagamento
                         var codice = BusinessLogic.Pagamento.GetCodice(fatturaAcquisto);
                         editCodice.Value = codice;
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void PagamentoModel_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (PagamentoDto)Model;
+                if (obj != null && obj.Id == 0)
+                    SetNewValue();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
+        }
+
+        private void SetNewValue()
+        {
+            try
+            {
+                if (fatturaAcquisto!=null)
+                {
+                    editFatturaAcquisto.Model = fatturaAcquisto;
+                    editFatturaAcquisto.Value = fatturaAcquisto.Numero + "/" + fatturaAcquisto.Data.Value.Year.ToString();
                 }
             }
             catch (Exception ex)

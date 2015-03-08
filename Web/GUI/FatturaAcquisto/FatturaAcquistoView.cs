@@ -13,6 +13,8 @@ namespace Web.GUI.FatturaAcquisto
 {
 	public partial class FatturaAcquistoView : TemplateView
 	{
+        private FornitoreDto fornitore = null;
+
         public FatturaAcquistoView()
 		{ 
 			InitializeComponent();
@@ -41,6 +43,7 @@ namespace Web.GUI.FatturaAcquisto
             InitializeComponent();
             try
             {
+                this.fornitore = fornitore;
                 var viewModel = (FatturaAcquisto.FatturaAcquistoViewModel)ViewModel;
                 if (viewModel != null)
                 {
@@ -70,7 +73,7 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                var space = new FatturaAcquistoModel();
+                var space = new FatturaAcquistoModel(fornitore);
                 space.Title = "NUOVA FATTURA DI ACQUISTO";
                 space.Model = new WcfService.Dto.FatturaAcquistoDto();
                 AddSpace(space);

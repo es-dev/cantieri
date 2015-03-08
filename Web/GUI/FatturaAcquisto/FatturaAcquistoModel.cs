@@ -16,6 +16,8 @@ namespace Web.GUI.FatturaAcquisto
 {
 	public partial class FatturaAcquistoModel : TemplateModel
 	{
+        private FornitoreDto fornitore = null;
+
         public FatturaAcquistoModel()
 		{
 			InitializeComponent();
@@ -28,6 +30,27 @@ namespace Web.GUI.FatturaAcquisto
                 UtilityError.Write(ex);
             }
 		}
+        public FatturaAcquistoModel(FornitoreDto fornitore)
+        {
+            InitializeComponent();
+            try
+            {
+                InitCombo();
+                try
+                {
+                    this.fornitore = fornitore;
+                }
+                catch (Exception ex)
+                {
+                    UtilityError.Write(ex);
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
 
         private void InitCombo()
         {
@@ -375,5 +398,36 @@ namespace Web.GUI.FatturaAcquisto
                 UtilityError.Write(ex);
             }
         }
+
+        private void FatturaAcquistoModel_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (FatturaAcquistoDto)Model;
+                if (obj != null && obj.Id == 0)
+                    SetNewValue();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+        private void SetNewValue()
+        {
+            try
+            {
+                if (fornitore != null)
+                {
+                    editFornitore.Model = fornitore;
+                    editFornitore.Value = fornitore.Codice + " - " + fornitore.RagioneSociale;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+
 	}
 }

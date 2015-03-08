@@ -196,7 +196,6 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                 var obj = (PagamentoUnificatoFatturaAcquistoDto)Model;
                 if (obj != null && obj.Id == 0)
                     SetNewValue();
-
             }
             catch (Exception ex)
             {
