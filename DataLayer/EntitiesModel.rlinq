@@ -234,7 +234,7 @@
           <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
         <orm:field name="_totaleNoteCredito" property="TotaleNoteCredito" uniqueId="a40054aa-d060-43a9-b535-e818604742b6" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="TotaleNoteCredito" sql-type="numeric" nullable="true" length="0" scale="0" ado-type="" />
+          <orm:column name="TotaleNoteCredito" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         </orm:field>
         <orm:field name="_commessa" property="Commessa" behavior="readwrite" uniqueId="791cabb3-ef72-40a8-b4a7-3ca133c6521c" type="DataLayer.Commessa">
           <orm:reference uniqueId="032d408c-e267-47d7-bbd9-3cb51d71d72d" association-name="FornitoreHasCommessa">
@@ -399,7 +399,7 @@
           <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
         <orm:field name="_totaleNoteCredito" property="TotaleNoteCredito" uniqueId="b4d8fab7-30a1-470e-ba7b-31f6ef16f790" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="TotaleNoteCredito" sql-type="numeric" nullable="true" length="0" scale="0" ado-type="" />
+          <orm:column name="TotaleNoteCredito" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         </orm:field>
         <orm:field name="_centroCosto" property="CentroCosto" behavior="readwrite" uniqueId="b3fb004d-8bc0-4b48-8852-13ca483b50b0" type="DataLayer.CentroCosto">
           <orm:reference uniqueId="8a1ec485-60f4-4ca4-8b26-6596dcdbd353" association-name="FatturaAcquistoHasCentroCosto">
@@ -1101,7 +1101,7 @@
         <orm:column name="TotalePagamenti" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
-        <orm:column name="TotaleNoteCredito" sql-type="numeric" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="TotaleNoteCredito" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         <orm:index name="idx_FtturaAcquisto_FornitoreId">
           <orm:columnMapping>
             <orm:column name="FornitoreId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -1277,7 +1277,7 @@
         <orm:column name="TotalePagamenti" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         <orm:column name="Localita" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
-        <orm:column name="TotaleNoteCredito" sql-type="numeric" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="TotaleNoteCredito" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         <orm:index name="idx_Fornitore_CommessaId">
           <orm:columnMapping>
             <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />

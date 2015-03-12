@@ -49,7 +49,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                 if (item != null)
                 {
                     var space = new PagamentoUnificatoFatturaAcquistoModel();
-                    space.Title = "DETTAGLI PAGAMENTO UNIFICATO - FATTURA ACQUISTO";
+                    space.Title = "DETTAGLI PAGAMENTO UNIFICATO - FATTURA DI ACQUISTO";
                     AddSpace(space);
                 }
             }

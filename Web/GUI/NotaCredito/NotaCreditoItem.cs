@@ -30,12 +30,12 @@ namespace Web.GUI.NotaCredito
                     var codice = UtilityValidation.GetStringND(obj.Codice);
                     var data = UtilityValidation.GetDataND(obj.Data);
                  
-                    infoData.Text = "Pagato il " + data;
-                    infoImage.Image = "Images.dashboard.pagamento.png";
-                    infoCodice.Text = "PAG";
+                    infoData.Text = "Resa il " + data;
+                    infoImage.Image = "Images.dashboard.notacredito.png";
+                    infoCodice.Text = "NC";
                     infoNote.Text = obj.Note;
                     infoImporto.Text = "Importo: " + importo;
-                    infoNotaCredito.Text = "Pagamento N." + codice;
+                    infoNotaCredito.Text = "Nota di credito N." + codice;
                 }
             }
             catch (Exception ex)
