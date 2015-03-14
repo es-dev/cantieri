@@ -95,8 +95,8 @@ namespace Web.GUI.FatturaAcquisto
                     editNote.Value = obj.Note;
                     editTotale.Value = obj.Totale;
                     editTotalePagamenti.Value = GetTotalePagamenti(obj);
-                    editTotaleNoteCredito.Value = GetTotaleNoteCredito(obj);
                     editStato.Value = obj.Stato;
+                    editSconto.Value = obj.Sconto;
                     var centroCosto = obj.CentroCosto;
                     if (centroCosto != null)
                     {
@@ -137,7 +137,9 @@ namespace Web.GUI.FatturaAcquisto
                         var imponibile = UtilityValidation.GetDecimal(fatturaAcquisto.Imponibile);
                         var iva = UtilityValidation.GetDecimal(fatturaAcquisto.IVA);
                         var scadenza = BusinessLogic.Fattura.GetScadenza(fatturaAcquisto);
-                        var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
+                        var totale = BusinessLogic.Fattura.GetTotale(imponibile, iva);
+                        var sconto = UtilityValidation.GetDecimal(fatturaAcquisto.Sconto);
+                        var totaleFattura = totale - sconto;
                         var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(fatturaAcquisto, today);
                         var statoFattura = BusinessLogic.Fattura.GetStato(fatturaAcquisto);
                         var _stato = GetStato(today, scadenza, totaleFattura, totalePagamenti, statoFattura);
@@ -185,37 +187,37 @@ namespace Web.GUI.FatturaAcquisto
             return 0;
         }
 
-        private decimal GetTotaleNoteCredito(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto)
-        {
-            try
-            {
-                decimal totaleNoteCredito= 0;
-                if (fatturaAcquisto != null)
-                {
-                    var fornitoreId = fatturaAcquisto.FornitoreId;
-                    var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
-                    var fornitore = viewModelFornitore.Read(fornitoreId);
-                    if (fornitore != null)
-                    {
-                        var commessa = fornitore.Commessa;
-                        var statoCommessa = commessa.Stato;
-                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                            totaleNoteCredito = UtilityValidation.GetDecimal(fatturaAcquisto.TotaleNoteCredito);
-                        else
-                        {
-                            var today = DateTime.Today;
-                            totaleNoteCredito = BusinessLogic.Fattura.GetTotaleNoteCredito(fatturaAcquisto, today);
-                        }
-                    }
-                }
-                return totaleNoteCredito;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
+        //private decimal GetTotaleNoteCredito(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto)
+        //{
+        //    try
+        //    {
+        //        decimal totaleNoteCredito= 0;
+        //        if (fatturaAcquisto != null)
+        //        {
+        //            var fornitoreId = fatturaAcquisto.FornitoreId;
+        //            var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
+        //            var fornitore = viewModelFornitore.Read(fornitoreId);
+        //            if (fornitore != null)
+        //            {
+        //                var commessa = fornitore.Commessa;
+        //                var statoCommessa = commessa.Stato;
+        //                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+        //                    totaleNoteCredito = UtilityValidation.GetDecimal(fatturaAcquisto.TotaleNoteCredito);
+        //                else
+        //                {
+        //                    var today = DateTime.Today;
+        //                    totaleNoteCredito = BusinessLogic.Fattura.GetTotaleNoteCredito(fatturaAcquisto, today);
+        //                }
+        //            }
+        //        }
+        //        return totaleNoteCredito;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        UtilityError.Write(ex);
+        //    }
+        //    return 0;
+        //}
 
 
         public override void BindModel(object model)
@@ -235,8 +237,8 @@ namespace Web.GUI.FatturaAcquisto
                     obj.Totale = editTotale.Value;
                     obj.Note = editNote.Value;
                     obj.TotalePagamenti = editTotalePagamenti.Value;
-                    obj.TotaleNoteCredito = editTotaleNoteCredito.Value;
                     obj.Stato = editStato.Value;
+                    obj.Sconto = editSconto.Value;
                     var centroCosto = (WcfService.Dto.CentroCostoDto)editCentroCosto.Model;
                     if (centroCosto != null)
                         obj.CentroCostoId = centroCosto.Id;
@@ -336,7 +338,7 @@ namespace Web.GUI.FatturaAcquisto
                     var scadenza = BusinessLogic.Fattura.GetScadenza(obj);
                     var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
                     var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, today);
-                    var totaleNoteCredito = BusinessLogic.Fattura.GetTotaleNoteCredito(obj, today);
+                    //var totaleNoteCredito = BusinessLogic.Fattura.GetTotaleNoteCredito(obj, today);
 
                     var statoFattura = BusinessLogic.Fattura.GetStato(obj);
                     var stato = GetStato(today, scadenza, totaleFattura, totalePagamenti, statoFattura);
@@ -344,7 +346,7 @@ namespace Web.GUI.FatturaAcquisto
                     editStato.Value = stato.ToString();
                     editTotale.Value = totaleFattura;
                     editTotalePagamenti.Value = totalePagamenti;
-                    editTotaleNoteCredito.Value = totaleNoteCredito;
+                    //editTotaleNoteCredito.Value = totaleNoteCredito;
 
                 }
             }

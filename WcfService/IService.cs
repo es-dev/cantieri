@@ -324,12 +324,6 @@ namespace WcfService
         int CountNoteCredito(string search = null);
 
         [OperationContract]
-        IEnumerable<Dto.NotaCreditoDto> LoadNoteCreditoFatturaAcquisto(int skip, int take, Dto.FatturaAcquistoDto fatturaAcquisto, string search = null);
-
-        [OperationContract]
-        int CountNoteCreditoFatturaAcquisto(Dto.FatturaAcquistoDto fatturaAcquisto, string search = null);
-
-        [OperationContract]
         IEnumerable<Dto.NotaCreditoDto> LoadNoteCreditoFornitore(int skip, int take, Dto.FornitoreDto fornitore, string search = null);
 
         [OperationContract]

@@ -30,7 +30,7 @@ namespace Web.GUI.NotaCredito
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.editFatturaAcquisto = new Library.Template.Controls.TemplateEditCombo();
+            this.editFornitore = new Library.Template.Controls.TemplateEditCombo();
             this.editData = new Library.Template.Controls.TemplateEditDate();
             this.editImporto = new Library.Template.Controls.TemplateEditDecimal();
             this.editNote = new Library.Template.Controls.TemplateEditText();
@@ -50,10 +50,10 @@ namespace Web.GUI.NotaCredito
             this.container.Controls.Add(this.editNote);
             this.container.Controls.Add(this.editImporto);
             this.container.Controls.Add(this.editData);
-            this.container.Controls.Add(this.editFatturaAcquisto);
+            this.container.Controls.Add(this.editFornitore);
             this.container.Controls.SetChildIndex(this.infoSubtitleImage, 0);
             this.container.Controls.SetChildIndex(this.infoSubtitle, 0);
-            this.container.Controls.SetChildIndex(this.editFatturaAcquisto, 0);
+            this.container.Controls.SetChildIndex(this.editFornitore, 0);
             this.container.Controls.SetChildIndex(this.editData, 0);
             this.container.Controls.SetChildIndex(this.editImporto, 0);
             this.container.Controls.SetChildIndex(this.editNote, 0);
@@ -69,30 +69,30 @@ namespace Web.GUI.NotaCredito
             // 
             this.infoSubtitleImage.Location = new System.Drawing.Point(610, 3);
             // 
-            // editFatturaAcquisto
+            // editFornitore
             // 
-            this.editFatturaAcquisto.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.editFornitore.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editFatturaAcquisto.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editFatturaAcquisto.BackColor = System.Drawing.Color.Transparent;
-            this.editFatturaAcquisto.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editFatturaAcquisto.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editFatturaAcquisto.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editFatturaAcquisto.Changed = true;
-            this.editFatturaAcquisto.Editing = false;
-            this.editFatturaAcquisto.Label = "Fattura di acquisto";
-            this.editFatturaAcquisto.LabelWidth = 175;
-            this.editFatturaAcquisto.Location = new System.Drawing.Point(25, 75);
-            this.editFatturaAcquisto.Model = null;
-            this.editFatturaAcquisto.Name = "editFatturaAcquisto";
-            this.editFatturaAcquisto.ReadOnly = false;
-            this.editFatturaAcquisto.Required = false;
-            this.editFatturaAcquisto.Size = new System.Drawing.Size(800, 30);
-            this.editFatturaAcquisto.TabIndex = 0;
-            this.editFatturaAcquisto.Text = "EditControl";
-            this.editFatturaAcquisto.Value = null;
-            this.editFatturaAcquisto.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editFatturaAcquisto_ComboConfirm);
-            this.editFatturaAcquisto.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editFatturaAcquisto_ComboClick);
+            this.editFornitore.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editFornitore.BackColor = System.Drawing.Color.Transparent;
+            this.editFornitore.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editFornitore.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editFornitore.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editFornitore.Changed = true;
+            this.editFornitore.Editing = false;
+            this.editFornitore.Label = "Fornitore";
+            this.editFornitore.LabelWidth = 175;
+            this.editFornitore.Location = new System.Drawing.Point(25, 75);
+            this.editFornitore.Model = null;
+            this.editFornitore.Name = "editFornitore";
+            this.editFornitore.ReadOnly = false;
+            this.editFornitore.Required = false;
+            this.editFornitore.Size = new System.Drawing.Size(800, 30);
+            this.editFornitore.TabIndex = 0;
+            this.editFornitore.Text = "EditControl";
+            this.editFornitore.Value = null;
+            this.editFornitore.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editFornitore_ComboConfirm);
+            this.editFornitore.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editFornitore_ComboClick);
             // 
             // editData
             // 
@@ -243,7 +243,7 @@ namespace Web.GUI.NotaCredito
 		#endregion
 
         private Library.Template.Controls.TemplateEditDate editData;
-        private Library.Template.Controls.TemplateEditCombo editFatturaAcquisto;
+        private Library.Template.Controls.TemplateEditCombo editFornitore;
         private Library.Template.Controls.TemplateEditDecimal editImporto;
         private Library.Template.Controls.TemplateEditText editNote;
         private Library.Template.Controls.TemplateEditText editCodice;

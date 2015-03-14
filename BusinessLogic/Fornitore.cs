@@ -66,14 +66,11 @@ namespace BusinessLogic
                 decimal totale = 0;
                 if (fornitore != null)
                 {
-                    var fattureAcquisto = fornitore.FatturaAcquistos;
-                    if (fattureAcquisto != null)
+                    var noteCredito = fornitore.NotaCreditos;
+                    if (noteCredito != null)
                     {
-                        foreach (var fatturaAcquisto in fattureAcquisto)
-                        {
-                            var totaleNoteCredito = Fattura.GetTotaleNoteCredito(fatturaAcquisto, data);
-                            totale += totaleNoteCredito;
-                        }
+                        var totaleNoteCredito = (from q in noteCredito where q.Data <= data select q.Importo).Sum();
+                        totale = UtilityValidation.GetDecimal(totaleNoteCredito);
                     }
                     return totale;
                 }
@@ -84,6 +81,7 @@ namespace BusinessLogic
             }
             return 0;
         }
+
 
         public static IList<WcfService.Dto.FatturaAcquistoDto> GetFattureInsolute(IList<FatturaAcquistoDto> fatture)
         {

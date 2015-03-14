@@ -219,6 +219,19 @@ namespace DataLayer
 			}
 		}
 		
+		private decimal? _sconto;
+		public virtual decimal? Sconto
+		{
+			get
+			{
+				return this._sconto;
+			}
+			set
+			{
+				this._sconto = value;
+			}
+		}
+		
 		private CentroCosto _centroCosto;
 		public virtual CentroCosto CentroCosto
 		{
@@ -269,15 +282,6 @@ namespace DataLayer
 			get
 			{
 				return this._pagamentoUnificatoFatturaAcquistos;
-			}
-		}
-		
-		private IList<NotaCredito> _notaCreditos = new List<NotaCredito>();
-		public virtual IList<NotaCredito> NotaCreditos
-		{
-			get
-			{
-				return this._notaCreditos;
 			}
 		}
 		

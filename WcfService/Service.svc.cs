@@ -1645,33 +1645,12 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.NotaCreditoDto> LoadNoteCreditoFatturaAcquisto(int skip, int take, Dto.FatturaAcquistoDto fatturaAcquisto, string search)
-        {
-            try
-            {
-                var noteCredito = QueryNoteCredito(search);
-                noteCredito = (from q in noteCredito where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
-                noteCredito = (from q in noteCredito select q).Skip(skip).Take(take);
-
-                var noteCreditoDto = UtilityPOCO.Assemble<Dto.NotaCreditoDto>(noteCredito);
-                return noteCreditoDto;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
         public IEnumerable<Dto.NotaCreditoDto> LoadNoteCreditoFornitore(int skip, int take, Dto.FornitoreDto fornitore, string search)
         {
             try
             {
                 var noteCredito = QueryNoteCredito(search);
-                var fattureAcquisto = fornitore.FatturaAcquistos;
-                var fattureAcquistoIds = (from q in fattureAcquisto select q.Id);
-                noteCredito = (from q in noteCredito where fattureAcquistoIds.Contains(q.FatturaAcquistoId) select q);
-
+                noteCredito = (from q in noteCredito where q.FornitoreId == fornitore.Id select q);
                 noteCredito = (from q in noteCredito select q).Skip(skip).Take(take);
 
                 var noteCreditoDto = UtilityPOCO.Assemble<Dto.NotaCreditoDto>(noteCredito);
@@ -1698,29 +1677,12 @@ namespace WcfService
             }
             return 0;
         }
-        public int CountNoteCreditoFatturaAcquisto(Dto.FatturaAcquistoDto fatturaAcquisto, string search = null)
-        {
-            try
-            {
-                var noteCredito = QueryNoteCredito(search);
-                noteCredito = (from q in noteCredito where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
-                var count = noteCredito.Count();
-                return count;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
         public int CountNoteCreditoFornitore(Dto.FornitoreDto fornitore, string search = null)
         {
             try
             {
                 var noteCredito = QueryNoteCredito(search);
-                var fattureAcquisto = fornitore.FatturaAcquistos;
-                var fattureAcquistoIds = (from q in fattureAcquisto select q.Id);
-                noteCredito = (from q in noteCredito where fattureAcquistoIds.Contains(q.FatturaAcquistoId) select q);
+                noteCredito = (from q in noteCredito where q.FornitoreId == fornitore.Id select q);
                 var count = noteCredito.Count();
                 return count;
             }
@@ -1730,7 +1692,6 @@ namespace WcfService
             }
             return 0;
         }
-
 
         public Dto.NotaCreditoDto ReadNotaCredito(object id)
         {
@@ -1756,10 +1717,10 @@ namespace WcfService
                 var noteCredito = (from q in ef.NotaCreditos select q);
                 if (search != null && search.Length > 0)
                 {
-                    var fattureAcquistoId = (from q in QueryFattureAcquisto(search) select q.Id).ToList();
+                    var fornitoreId = (from q in QueryFornitori(search) select q.Id).ToList();
                     noteCredito = (from q in noteCredito
                                  where q.Note.Contains(search) ||
-                                     fattureAcquistoId.Contains(q.FatturaAcquistoId)
+                                     fornitoreId.Contains(q.FornitoreId)
                                  select q);
                 }
                 noteCredito = (from q in noteCredito orderby q.Id descending select q);
