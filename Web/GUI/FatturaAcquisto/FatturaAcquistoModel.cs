@@ -97,6 +97,7 @@ namespace Web.GUI.FatturaAcquisto
                     editTotalePagamenti.Value = GetTotalePagamenti(obj);
                     editTotaleNoteCredito.Value = GetTotaleNoteCredito(obj);
                     editStato.Value = obj.Stato;
+                    editSconto.Value = obj.Sconto;
                     var centroCosto = obj.CentroCosto;
                     if (centroCosto != null)
                     {
@@ -137,7 +138,9 @@ namespace Web.GUI.FatturaAcquisto
                         var imponibile = UtilityValidation.GetDecimal(fatturaAcquisto.Imponibile);
                         var iva = UtilityValidation.GetDecimal(fatturaAcquisto.IVA);
                         var scadenza = BusinessLogic.Fattura.GetScadenza(fatturaAcquisto);
-                        var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
+                        var totale = BusinessLogic.Fattura.GetTotale(imponibile, iva);
+                        var sconto = UtilityValidation.GetDecimal(fatturaAcquisto.Sconto);
+                        var totaleFattura = totale - sconto;
                         var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(fatturaAcquisto, today);
                         var statoFattura = BusinessLogic.Fattura.GetStato(fatturaAcquisto);
                         var _stato = GetStato(today, scadenza, totaleFattura, totalePagamenti, statoFattura);
@@ -237,6 +240,7 @@ namespace Web.GUI.FatturaAcquisto
                     obj.TotalePagamenti = editTotalePagamenti.Value;
                     obj.TotaleNoteCredito = editTotaleNoteCredito.Value;
                     obj.Stato = editStato.Value;
+                    obj.Sconto = editSconto.Value;
                     var centroCosto = (WcfService.Dto.CentroCostoDto)editCentroCosto.Model;
                     if (centroCosto != null)
                         obj.CentroCostoId = centroCosto.Id;

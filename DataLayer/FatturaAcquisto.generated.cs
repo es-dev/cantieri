@@ -219,6 +219,19 @@ namespace DataLayer
 			}
 		}
 		
+		private decimal? _sconto;
+		public virtual decimal? Sconto
+		{
+			get
+			{
+				return this._sconto;
+			}
+			set
+			{
+				this._sconto = value;
+			}
+		}
+		
 		private CentroCosto _centroCosto;
 		public virtual CentroCosto CentroCosto
 		{

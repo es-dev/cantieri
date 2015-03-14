@@ -646,6 +646,7 @@ namespace WcfService.Assemblers
 			entity.Stato = dto.Stato;
 			entity.Note = dto.Note;
 			entity.TotaleNoteCredito = dto.TotaleNoteCredito;
+			entity.Sconto = dto.Sconto;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -671,6 +672,7 @@ namespace WcfService.Assemblers
 			dto.Stato = entity.Stato;
 			dto.Note = entity.Note;
 			dto.TotaleNoteCredito = entity.TotaleNoteCredito;
+			dto.Sconto = entity.Sconto;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }

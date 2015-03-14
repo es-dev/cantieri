@@ -401,6 +401,9 @@
         <orm:field name="_totaleNoteCredito" property="TotaleNoteCredito" uniqueId="b4d8fab7-30a1-470e-ba7b-31f6ef16f790" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="TotaleNoteCredito" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         </orm:field>
+        <orm:field name="_sconto" property="Sconto" uniqueId="46c9969c-2fc3-4d86-a49f-cc86cbb3794d" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Sconto" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        </orm:field>
         <orm:field name="_centroCosto" property="CentroCosto" behavior="readwrite" uniqueId="b3fb004d-8bc0-4b48-8852-13ca483b50b0" type="DataLayer.CentroCosto">
           <orm:reference uniqueId="8a1ec485-60f4-4ca4-8b26-6596dcdbd353" association-name="FatturaAcquistoHasCentroCosto">
             <orm:sharedfield name="_centroCostoId" target-class="DataLayer.CentroCosto" target-field="_id" />
@@ -1102,6 +1105,7 @@
         <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="TotaleNoteCredito" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        <orm:column name="Sconto" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         <orm:index name="idx_FtturaAcquisto_FornitoreId">
           <orm:columnMapping>
             <orm:column name="FornitoreId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -1596,6 +1600,7 @@
       <Property Id="8bf1edd0-d2fa-4dda-b1e4-07e759a77230" name="Stato" label="Stato : String" fieldName="_stato" />
       <Property Id="e08fcac6-bc31-461f-9130-330deaa4c717" name="Note" label="Note : String" fieldName="_note" />
       <Property Id="b4d8fab7-30a1-470e-ba7b-31f6ef16f790" name="TotaleNoteCredito" type="Decimal" label="TotaleNoteCredito : Decimal" nullable="true" fieldName="_totaleNoteCredito" />
+      <Property Id="46c9969c-2fc3-4d86-a49f-cc86cbb3794d" name="Sconto" type="Decimal" label="Sconto : Decimal" nullable="true" fieldName="_sconto" />
       <AssociationTargets>
         <Association Id="9133edb8-9422-4c9c-a7d6-77def2077659" SourceMultiplicity="ZeroOne" name="FatturaAcquistoHasFornitore">
           <DomainClassMoniker name="/EntitiesModel/Fornitore" />

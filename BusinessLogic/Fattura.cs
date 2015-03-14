@@ -268,7 +268,9 @@ namespace BusinessLogic
             {
                 var today = DateTime.Today;
                 var scadenza = GetScadenza(fattura);
-                var totaleFattura = UtilityValidation.GetDecimal(fattura.Totale);
+                var sconto = UtilityValidation.GetDecimal(fattura.Sconto);
+                var totale = UtilityValidation.GetDecimal(fattura.Totale);
+                var totaleFattura = totale - sconto;
                 var totalePagamenti = GetTotalePagamenti(fattura, today);
                 var stato = GetStato(today, scadenza, totaleFattura, totalePagamenti);
                 return stato;
