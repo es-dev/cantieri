@@ -285,15 +285,6 @@ namespace DataLayer
 			}
 		}
 		
-		private IList<NotaCredito> _notaCreditos = new List<NotaCredito>();
-		public virtual IList<NotaCredito> NotaCreditos
-		{
-			get
-			{
-				return this._notaCreditos;
-			}
-		}
-		
 	}
 }
 #pragma warning restore 1591

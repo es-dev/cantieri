@@ -110,28 +110,6 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleNoteCredito(FatturaAcquistoDto fatturaAcquisto, DateTime data)
-        {
-            try
-            {
-                decimal totale = 0;
-                if (fatturaAcquisto != null)
-                {
-                    var noteCredito = fatturaAcquisto.NotaCreditos;
-                    if (noteCredito != null)
-                    {
-                        var totaleNoteCredito = (from q in noteCredito where q.Data <= data select q.Importo).Sum();
-                        totale = UtilityValidation.GetDecimal(totaleNoteCredito);
-                    }
-                    return totale;
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
 
         public static DateTime GetScadenza(FatturaAcquistoDto fattura)
         {

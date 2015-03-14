@@ -11,20 +11,6 @@ namespace Web.GUI.NotaCredito
     public class NotaCreditoViewModel : Library.Template.MVVM.TemplateViewModel<NotaCreditoDto, NotaCreditoItem>
     {
 
-        private FatturaAcquistoDto fatturaAcquisto = null;
-
-        public FatturaAcquistoDto FatturaAcquisto
-        {
-            get
-            {
-                return fatturaAcquisto;
-            }
-            set
-            {
-                fatturaAcquisto = value;
-            }
-        }
-
         private FornitoreDto fornitore = null;
 
         public FornitoreDto Fornitore
@@ -59,11 +45,9 @@ namespace Web.GUI.NotaCredito
             {
                 var wcf = new WcfService.Service();
                 IEnumerable<NotaCreditoDto> objs = null;
-                if(fatturaAcquisto==null  && fornitore==null)
+                if(fornitore==null)
                     objs = wcf.LoadNoteCredito(skip, take, search);
-                else if (fatturaAcquisto != null)
-                    objs = wcf.LoadNoteCreditoFatturaAcquisto(skip, take, fatturaAcquisto, search);
-                else if (fornitore != null)
+                else
                     objs = wcf.LoadNoteCreditoFornitore(skip, take, fornitore, search);
 
                 Load(objs);
@@ -80,11 +64,9 @@ namespace Web.GUI.NotaCredito
             {
                 var wcf = new WcfService.Service();
                 var count = 0;
-                if (fatturaAcquisto == null && fornitore == null)
+                if (fornitore == null)
                     count = wcf.CountNoteCredito(search);
-                else if (fatturaAcquisto != null)
-                    count = wcf.CountNoteCreditoFatturaAcquisto(fatturaAcquisto, search);
-                else if (fornitore != null)
+                else 
                     count = wcf.CountNoteCreditoFornitore(fornitore, search);
                 return count;
             }

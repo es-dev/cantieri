@@ -16,7 +16,7 @@ namespace Web.GUI.NotaCredito
 {
 	public partial class NotaCreditoModel : TemplateModel
 	{
-        private FatturaAcquistoDto fatturaAcquisto = null;
+        private FornitoreDto fornitore = null;
         public NotaCreditoModel()
 		{
 			InitializeComponent();
@@ -30,13 +30,13 @@ namespace Web.GUI.NotaCredito
             }
 		}
 
-        public NotaCreditoModel(FatturaAcquistoDto fatturaAcquisto)
+        public NotaCreditoModel(FornitoreDto fornitore)
         {
             InitializeComponent();
             try
             {
                 InitCombo();
-                this.fatturaAcquisto = fatturaAcquisto;
+                this.fornitore = fornitore;
             }
             catch (Exception ex)
             {
@@ -86,11 +86,11 @@ namespace Web.GUI.NotaCredito
                     editImporto.Value = obj.Importo;
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editDescrizione.Value = obj.Descrizione;
-                    var fatturaAcquisto = obj.FatturaAcquisto;
-                    if (fatturaAcquisto != null)
+                    var fornitore = obj.Fornitore;
+                    if (fornitore != null)
                     {
-                        editFatturaAcquisto.Model = fatturaAcquisto;
-                        editFatturaAcquisto.Value = fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy");
+                        editFornitore.Model = fornitore;
+                        editFornitore.Value = fornitore.Codice + " - " + fornitore.RagioneSociale;
                     }
                 }
             }
@@ -113,9 +113,9 @@ namespace Web.GUI.NotaCredito
                     obj.Note = editNote.Value;
                     obj.Descrizione = editDescrizione.Value;
                     obj.TipoPagamento = editTipoPagamento.Value;
-                    var fatturaAcquisto = (FatturaAcquistoDto)editFatturaAcquisto.Model;
-                    if(fatturaAcquisto!=null)
-                        obj.FatturaAcquistoId = fatturaAcquisto.Id;
+                    var fornitore = (FornitoreDto)editFornitore.Model;
+                    if(fornitore!=null)
+                        obj.FornitoreId = fornitore.Id;
                 }
             }
             catch (Exception ex)
@@ -124,13 +124,13 @@ namespace Web.GUI.NotaCredito
             }
         }
 
-        private void editFatturaAcquisto_ComboClick()
+        private void editFornitore_ComboClick()
         {
             try
             {
-                var view = new FatturaAcquisto.FatturaAcquistoView();
-                view.Title = "SELEZIONA LA FATTURA DI ACQUISTO";
-                editFatturaAcquisto.Show(view);
+                var view = new Fornitore.FornitoreView();
+                view.Title = "SELEZIONA IL FORNITORE";
+                editFornitore.Show(view);
             }
             catch (Exception ex)
             {
@@ -138,20 +138,14 @@ namespace Web.GUI.NotaCredito
             }
         }
 
-        private void editFatturaAcquisto_ComboConfirm(object model)
+        private void editFornitore_ComboConfirm(object model)
         {
             try
             {
-                var fatturaAcquisto = (FatturaAcquistoDto)model;
-                if (fatturaAcquisto != null)
+                var fornitore = (FornitoreDto)model;
+                if (fornitore != null)
                 {
-                    editFatturaAcquisto.Value = fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy");
-                    var obj = (NotaCreditoDto)Model;
-                    if (obj != null && obj.Id == 0)
-                    {
-                        var codice = BusinessLogic.NotaCredito.GetCodice(fatturaAcquisto);
-                        editCodice.Value = codice;
-                    }
+                    editFornitore.Value = fornitore.Codice + " - " + fornitore.RagioneSociale;
                 }
             }
             catch (Exception ex)
@@ -179,10 +173,10 @@ namespace Web.GUI.NotaCredito
         {
             try
             {
-                if (fatturaAcquisto!=null)
+                if (fornitore!=null)
                 {
-                    editFatturaAcquisto.Model = fatturaAcquisto;
-                    editFatturaAcquisto.Value = fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy");
+                    editFornitore.Model = fornitore;
+                    editFornitore.Value = fornitore.Codice + " - " + fornitore.RagioneSociale;
                 }
             }
             catch (Exception ex)

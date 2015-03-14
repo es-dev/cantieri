@@ -37,16 +37,16 @@ namespace DataLayer
 			}
 		}
 		
-		private int _fatturaAcquistoId;
-		public virtual int FatturaAcquistoId
+		private int _fornitoreId;
+		public virtual int FornitoreId
 		{
 			get
 			{
-				return this._fatturaAcquistoId;
+				return this._fornitoreId;
 			}
 			set
 			{
-				this._fatturaAcquistoId = value;
+				this._fornitoreId = value;
 			}
 		}
 		
@@ -128,16 +128,16 @@ namespace DataLayer
 			}
 		}
 		
-		private FatturaAcquisto _fatturaAcquisto;
-		public virtual FatturaAcquisto FatturaAcquisto
+		private Fornitore _fornitore;
+		public virtual Fornitore Fornitore
 		{
 			get
 			{
-				return this._fatturaAcquisto;
+				return this._fornitore;
 			}
 			set
 			{
-				this._fatturaAcquisto = value;
+				this._fornitore = value;
 			}
 		}
 		

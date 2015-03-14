@@ -414,6 +414,16 @@ namespace WcfService.Assemblers
 				dto.FatturaAcquistos.Add(dtoItem);
 			}
 
+			NotaCreditoAssembler notaCreditoAssembler = new NotaCreditoAssembler();
+
+			dto.NotaCreditos = new List<NotaCreditoDto>();
+			foreach (NotaCredito item in entity.NotaCreditos)
+			{
+				var dtoItem = notaCreditoAssembler.Assemble(item);
+				dtoItem.Fornitore = dto;
+				dto.NotaCreditos.Add(dtoItem);
+			}
+
 	    }
 	
 	}
@@ -717,16 +727,6 @@ namespace WcfService.Assemblers
 				var dtoItem = pagamentoUnificatoFatturaAcquistoAssembler.Assemble(item);
 				dtoItem.FatturaAcquisto = dto;
 				dto.PagamentoUnificatoFatturaAcquistos.Add(dtoItem);
-			}
-
-			NotaCreditoAssembler notaCreditoAssembler = new NotaCreditoAssembler();
-
-			dto.NotaCreditos = new List<NotaCreditoDto>();
-			foreach (NotaCredito item in entity.NotaCreditos)
-			{
-				var dtoItem = notaCreditoAssembler.Assemble(item);
-				dtoItem.FatturaAcquisto = dto;
-				dto.NotaCreditos.Add(dtoItem);
 			}
 
 	    }
@@ -1731,7 +1731,7 @@ namespace WcfService.Assemblers
 	        }
 			
 			entity.Id = dto.Id;
-			entity.FatturaAcquistoId = dto.FatturaAcquistoId;
+			entity.FornitoreId = dto.FornitoreId;
 			entity.Data = dto.Data;
 			entity.Importo = dto.Importo;
 			entity.Note = dto.Note;
@@ -1749,7 +1749,7 @@ namespace WcfService.Assemblers
 			ObjectKey key = KeyUtility.Instance.Create(entity);
 			dto.DtoKey = KeyUtility.Instance.Convert(key);
 			dto.Id = entity.Id;
-			dto.FatturaAcquistoId = entity.FatturaAcquistoId;
+			dto.FornitoreId = entity.FornitoreId;
 			dto.Data = entity.Data;
 			dto.Importo = entity.Importo;
 			dto.Note = entity.Note;
@@ -1762,8 +1762,8 @@ namespace WcfService.Assemblers
 	
 	    public override void AssembleReferences(NotaCredito entity, NotaCreditoDto dto)
 	    {
-			FatturaAcquistoAssembler fatturaAcquistoAssembler = new FatturaAcquistoAssembler();
-			dto.FatturaAcquisto = fatturaAcquistoAssembler.Assemble(entity.FatturaAcquisto);
+			FornitoreAssembler fornitoreAssembler = new FornitoreAssembler();
+			dto.Fornitore = fornitoreAssembler.Assemble(entity.Fornitore);
 
 	    }
 	

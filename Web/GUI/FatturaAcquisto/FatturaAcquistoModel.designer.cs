@@ -46,7 +46,6 @@ namespace Web.GUI.FatturaAcquisto
             this.btnCalcoloTotali = new Library.Controls.ButtonSeparatorV();
             this.editNote = new Library.Template.Controls.TemplateEditText();
             this.btnPagamenti = new Library.Controls.ButtonSeparatorV();
-            this.editTotaleNoteCredito = new Library.Template.Controls.TemplateEditDecimal();
             this.editSconto = new Library.Template.Controls.TemplateEditDecimal();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
@@ -56,7 +55,6 @@ namespace Web.GUI.FatturaAcquisto
             // container
             // 
             this.container.Controls.Add(this.editSconto);
-            this.container.Controls.Add(this.editTotaleNoteCredito);
             this.container.Controls.Add(this.editNote);
             this.container.Controls.Add(this.editTotalePagamenti);
             this.container.Controls.Add(this.lblAndamento);
@@ -88,7 +86,6 @@ namespace Web.GUI.FatturaAcquisto
             this.container.Controls.SetChildIndex(this.lblAndamento, 0);
             this.container.Controls.SetChildIndex(this.editTotalePagamenti, 0);
             this.container.Controls.SetChildIndex(this.editNote, 0);
-            this.container.Controls.SetChildIndex(this.editTotaleNoteCredito, 0);
             this.container.Controls.SetChildIndex(this.editSconto, 0);
             // 
             // infoSubtitle
@@ -360,7 +357,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editStato.Editing = false;
             this.editStato.Label = "Stato";
             this.editStato.LabelWidth = 175;
-            this.editStato.Location = new System.Drawing.Point(25, 620);
+            this.editStato.Location = new System.Drawing.Point(25, 593);
             this.editStato.Name = "editStato";
             this.editStato.ReadOnly = false;
             this.editStato.Required = false;
@@ -455,28 +452,6 @@ namespace Web.GUI.FatturaAcquisto
             this.btnPagamenti.TextButton = "Pagamenti";
             this.btnPagamenti.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnPagamenti_Click);
             // 
-            // editTotaleNoteCredito
-            // 
-            this.editTotaleNoteCredito.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editTotaleNoteCredito.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editTotaleNoteCredito.BackColor = System.Drawing.Color.Transparent;
-            this.editTotaleNoteCredito.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editTotaleNoteCredito.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editTotaleNoteCredito.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editTotaleNoteCredito.Changed = true;
-            this.editTotaleNoteCredito.Editing = false;
-            this.editTotaleNoteCredito.Label = "Totale note credito";
-            this.editTotaleNoteCredito.LabelWidth = 175;
-            this.editTotaleNoteCredito.Location = new System.Drawing.Point(25, 584);
-            this.editTotaleNoteCredito.Name = "editTotaleNoteCredito";
-            this.editTotaleNoteCredito.ReadOnly = false;
-            this.editTotaleNoteCredito.Required = false;
-            this.editTotaleNoteCredito.Size = new System.Drawing.Size(798, 30);
-            this.editTotaleNoteCredito.TabIndex = 11;
-            this.editTotaleNoteCredito.Text = "TemplateEditNumeric";
-            this.editTotaleNoteCredito.Value = null;
-            // 
             // editSconto
             // 
             this.editSconto.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
@@ -530,7 +505,6 @@ namespace Web.GUI.FatturaAcquisto
         private Library.Controls.ButtonSeparatorV btnCalcoloTotali;
         private Library.Template.Controls.TemplateEditText editNote;
         private Library.Controls.ButtonSeparatorV btnPagamenti;
-        private Library.Template.Controls.TemplateEditDecimal editTotaleNoteCredito;
         private Library.Template.Controls.TemplateEditDecimal editSconto;
 
 

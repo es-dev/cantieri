@@ -11,31 +11,11 @@ namespace Web.GUI.NotaCredito
 {
 	public partial class NotaCreditoView : TemplateView
 	{
-        private WcfService.Dto.FatturaAcquistoDto fatturaAcquisto;
 
         public NotaCreditoView()
 		{ 
 			InitializeComponent();
 		}
-
-        public NotaCreditoView(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto)
-        {
-            InitializeComponent();
-            try
-            {
-                this.fatturaAcquisto = fatturaAcquisto;
-                var viewModel = (NotaCredito.NotaCreditoViewModel)ViewModel;
-                if (viewModel != null)
-                {
-                    viewModel.FatturaAcquisto = fatturaAcquisto;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
 
         private WcfService.Dto.FornitoreDto fornitore;
         public NotaCreditoView(WcfService.Dto.FornitoreDto fornitore)
@@ -75,7 +55,7 @@ namespace Web.GUI.NotaCredito
         {
             try
             {
-                var space = new NotaCreditoModel(fatturaAcquisto);
+                var space = new NotaCreditoModel(fornitore);
                 space.Title = "NUOVA NOTA DI CREDITO";
                 space.Model = new WcfService.Dto.NotaCreditoDto();
                 AddSpace(space);
