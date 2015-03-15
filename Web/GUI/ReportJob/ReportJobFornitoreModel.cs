@@ -240,11 +240,16 @@ namespace Web.GUI.ReportJob
                             var codificaFattura = "FATTURA: N." + fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") + " - TOTALE IVATO " + totaleFattura;
                             tablePagamenti.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "");
                             var pagamenti = (from q in fatturaAcquisto.Pagamentos orderby q.Data ascending select q).ToList();
-                            foreach(var pagamento in pagamenti)
+                            foreach (var pagamento in pagamenti)
                             {
                                 AddReportPagamentoFornitore(tablePagamenti, pagamento);
                             }
-
+                            var _sconto = UtilityValidation.GetDecimal(fatturaAcquisto.Sconto);
+                            if (_sconto > 0)
+                            {
+                                var sconto = UtilityValidation.GetEuro(_sconto);
+                                tablePagamenti.AddRow("", "", "", "", "SCONTO", sconto);
+                            }
                         }
                     }
                     report.Tables.Add(tableCommesse);
