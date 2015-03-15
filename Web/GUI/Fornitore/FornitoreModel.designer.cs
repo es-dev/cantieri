@@ -51,6 +51,7 @@ namespace Web.GUI.Fornitore
             this.btnFattureAcquisto = new Library.Controls.ButtonSeparatorV();
             this.btnPagamenti = new Library.Controls.ButtonSeparatorV();
             this.editTotaleNoteCredito = new Library.Template.Controls.TemplateEditDecimal();
+            this.btnNoteCredito = new Library.Controls.ButtonSeparatorV();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -108,6 +109,7 @@ namespace Web.GUI.Fornitore
             // 
             // panelCommands
             // 
+            this.panelCommands.Controls.Add(this.btnNoteCredito);
             this.panelCommands.Controls.Add(this.btnPagamenti);
             this.panelCommands.Controls.Add(this.btnFattureAcquisto);
             this.panelCommands.Controls.Add(this.btnCalcoloTotali);
@@ -119,6 +121,7 @@ namespace Web.GUI.Fornitore
             this.panelCommands.Controls.SetChildIndex(this.btnCalcoloTotali, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnFattureAcquisto, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnPagamenti, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnNoteCredito, 0);
             // 
             // btnDelete
             // 
@@ -437,7 +440,7 @@ namespace Web.GUI.Fornitore
             this.btnCalcoloTotali.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnCalcoloTotali.ImageButton = "";
             this.btnCalcoloTotali.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnCalcoloTotali.Location = new System.Drawing.Point(0, 361);
+            this.btnCalcoloTotali.Location = new System.Drawing.Point(0, 433);
             this.btnCalcoloTotali.Name = "btnCalcoloTotali";
             this.btnCalcoloTotali.Size = new System.Drawing.Size(100, 72);
             this.btnCalcoloTotali.TabIndex = 1002;
@@ -560,6 +563,19 @@ namespace Web.GUI.Fornitore
             this.editTotaleNoteCredito.Text = "TemplateEditNumeric";
             this.editTotaleNoteCredito.Value = null;
             // 
+            // btnNoteCredito
+            // 
+            this.btnNoteCredito.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.btnNoteCredito.BackColor = System.Drawing.Color.Transparent;
+            this.btnNoteCredito.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.btnNoteCredito.ImageButton = "";
+            this.btnNoteCredito.ImageSeparator = "Images.separator_ht_small.png";
+            this.btnNoteCredito.Location = new System.Drawing.Point(1, 361);
+            this.btnNoteCredito.Name = "btnNoteCredito";
+            this.btnNoteCredito.Size = new System.Drawing.Size(100, 72);
+            this.btnNoteCredito.TabIndex = 1002;
+            this.btnNoteCredito.TextButton = "Note di Credito";
+            // 
             // FornitoreModel
             // 
             this.Size = new System.Drawing.Size(1024, 799);
@@ -596,6 +612,7 @@ namespace Web.GUI.Fornitore
         private Library.Controls.ButtonSeparatorV btnFattureAcquisto;
         private Library.Controls.ButtonSeparatorV btnPagamenti;
         private Library.Template.Controls.TemplateEditDecimal editTotaleNoteCredito;
+        private Library.Controls.ButtonSeparatorV btnNoteCredito;
 
 
     }

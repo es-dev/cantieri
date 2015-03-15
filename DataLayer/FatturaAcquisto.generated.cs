@@ -285,6 +285,15 @@ namespace DataLayer
 			}
 		}
 		
+		private IList<Reso> _resos = new List<Reso>();
+		public virtual IList<Reso> Resos
+		{
+			get
+			{
+				return this._resos;
+			}
+		}
+		
 	}
 }
 #pragma warning restore 1591

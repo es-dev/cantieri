@@ -729,6 +729,16 @@ namespace WcfService.Assemblers
 				dto.PagamentoUnificatoFatturaAcquistos.Add(dtoItem);
 			}
 
+			ResoAssembler resoAssembler = new ResoAssembler();
+
+			dto.Resos = new List<ResoDto>();
+			foreach (Reso item in entity.Resos)
+			{
+				var dtoItem = resoAssembler.Assemble(item);
+				dtoItem.FatturaAcquisto = dto;
+				dto.Resos.Add(dtoItem);
+			}
+
 	    }
 	
 	}
@@ -1769,12 +1779,102 @@ namespace WcfService.Assemblers
 	
 	    public override void AssembleCollections(NotaCredito entity, NotaCreditoDto dto)
 	    {
+			ResoAssembler resoAssembler = new ResoAssembler();
+
+			dto.Resos = new List<ResoDto>();
+			foreach (Reso item in entity.Resos)
+			{
+				var dtoItem = resoAssembler.Assemble(item);
+				dtoItem.NotaCredito = dto;
+				dto.Resos.Add(dtoItem);
+			}
+
 	    }
 	
 	}
 	
 	
 	public partial class NotaCreditoAssembler : NotaCreditoAssemblerBase, INotaCreditoAssembler
+	{
+	    
+	}
+	
+	public partial interface IResoAssembler : IAssembler<ResoDto, Reso>
+	{ 
+	
+	}
+	
+	public partial class ResoAssemblerBase : Assembler<ResoDto, Reso>
+	{
+		/// <summary>
+	    /// Invoked after the ResoDto instance is assembled.
+	    /// </summary>
+	    /// <param name="dto"><see cref="ResoDto"/> The Dto instance.</param>
+		partial void OnDTOAssembled(ResoDto dto);
+	
+		/// <summary>
+	    /// Invoked after the Reso instance is assembled.
+	    /// </summary>
+	    /// <param name="entity">The <see cref="Reso"/> instance.</param>
+		partial void OnEntityAssembled(Reso entity);
+		
+	    public override Reso Assemble(Reso entity, ResoDto dto)
+	    {
+	        if (entity == null)
+	        {
+	            entity = new Reso();
+	        }
+			
+			entity.Id = dto.Id;
+			entity.NotaCreditoId = dto.NotaCreditoId;
+			entity.Data = dto.Data;
+			entity.Importo = dto.Importo;
+			entity.Note = dto.Note;
+			entity.Codice = dto.Codice;
+			entity.TipoPagamento = dto.TipoPagamento;
+			entity.Descrizione = dto.Descrizione;
+			entity.FatturaAcquistoId = dto.FatturaAcquistoId;
+	        this.OnEntityAssembled(entity);
+	        return entity;
+	    }
+	
+	    public override ResoDto Assemble(Reso entity)
+	    {
+	        ResoDto dto = new ResoDto();
+	        
+			ObjectKey key = KeyUtility.Instance.Create(entity);
+			dto.DtoKey = KeyUtility.Instance.Convert(key);
+			dto.Id = entity.Id;
+			dto.NotaCreditoId = entity.NotaCreditoId;
+			dto.Data = entity.Data;
+			dto.Importo = entity.Importo;
+			dto.Note = entity.Note;
+			dto.Codice = entity.Codice;
+			dto.TipoPagamento = entity.TipoPagamento;
+			dto.Descrizione = entity.Descrizione;
+			dto.FatturaAcquistoId = entity.FatturaAcquistoId;
+			this.OnDTOAssembled(dto); 
+	        return dto;
+	    }
+	
+	    public override void AssembleReferences(Reso entity, ResoDto dto)
+	    {
+			NotaCreditoAssembler notaCreditoAssembler = new NotaCreditoAssembler();
+			dto.NotaCredito = notaCreditoAssembler.Assemble(entity.NotaCredito);
+
+			FatturaAcquistoAssembler fatturaAcquistoAssembler = new FatturaAcquistoAssembler();
+			dto.FatturaAcquisto = fatturaAcquistoAssembler.Assemble(entity.FatturaAcquisto);
+
+	    }
+	
+	    public override void AssembleCollections(Reso entity, ResoDto dto)
+	    {
+	    }
+	
+	}
+	
+	
+	public partial class ResoAssembler : ResoAssemblerBase, IResoAssembler
 	{
 	    
 	}

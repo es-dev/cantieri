@@ -202,6 +202,14 @@ namespace DataLayer
 			}
 		}
 		
+		public IQueryable<Reso> Resos 
+		{
+			get
+			{
+				return this.GetAll<Reso>();
+			}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -297,6 +305,10 @@ namespace DataLayer
 			get;
 		}
 		IQueryable<NotaCredito> NotaCreditos
+		{
+			get;
+		}
+		IQueryable<Reso> Resos
 		{
 			get;
 		}

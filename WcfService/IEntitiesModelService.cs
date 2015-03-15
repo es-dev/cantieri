@@ -1809,6 +1809,105 @@ namespace WcfService
 	    
 	    #endregion
 	    
+	    #region Resos CRUD Operations
+	
+	    /// <summary>
+	    /// Returns all resos.
+	    /// </summary>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<ResoDto> ReadResos();
+	
+	    /// <summary>
+	    /// Returns a specified amount of resos from the given start index.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<ResoDto> ReadResosPaged(int startIndex, int pageSize);
+	
+	    /// <summary>
+	    /// Returns all resos filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<ResoDto> ReadResosFiltered(string sortExpression, string filterExpression);
+	
+	    /// <summary>
+	    /// Returns a specified amount of resos from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<ResoDto> ReadResosPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression);
+	
+	    /// <summary>
+	    /// Returns a reso with the specified dto key.
+	    /// </summary>
+	    /// <param name="dtoKey">The specified dto key value.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    ResoDto ReadReso(string dtoKey);
+	
+	    /// <summary>
+	    /// Returns all resos count.
+	    /// </summary>
+	    /// <returns></returns>
+	    [OperationContract]
+	    int ResosCount();
+	
+	    /// <summary>
+	    /// Returns all resos count filtered by the specified filter expression.
+	    /// </summary>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    int ResosCountFiltered(string filterExpression);
+	
+	    /// <summary>
+	    /// Adds a new reso from the given dto object into the database.
+	    /// </summary>
+	    /// <param name="reso">The dto object.</param>
+	    /// <returns>The dto key of the newly created reso.</returns>
+	    [OperationContract]
+	    string CreateReso(ResoDto reso);
+	
+	    /// <summary>
+	    /// Updates reso in the database from the given dto object.
+	    /// </summary>
+	    /// <param name="reso">The dto object.</param>
+	    [OperationContract]
+	    void UpdateReso(ResoDto reso);
+	
+	    /// <summary>
+	    /// Update an existing resos in the database from the given dto object list.
+	    /// </summary>
+	    /// <param name="resos">The dto object list.</param>
+	    [OperationContract]
+	    void UpdateResos(IEnumerable<ResoDto> resos);
+	
+	    /// <summary>
+	    /// Deletes reso from the database by the given dto object.
+	    /// </summary>
+	    /// <param name="reso">The dto object.</param>
+	    [OperationContract]
+	    void DeleteReso(ResoDto reso);
+	
+	    /// <summary>
+	    /// Delete resos from the database by the given dto object list.
+	    /// </summary>
+	    /// <param name="resos">The dto object list.</param>
+	    [OperationContract]
+	    void DeleteResos(IEnumerable<ResoDto> resos);
+	    
+	    #endregion
+	    
 	    #region SALs CRUD Operations
 	
 	    /// <summary>

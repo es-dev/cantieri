@@ -22,7 +22,7 @@ using DataLayer;
 
 namespace DataLayer	
 {
-	public partial class NotaCredito
+	public partial class Reso
 	{
 		private int _id;
 		public virtual int Id
@@ -37,16 +37,16 @@ namespace DataLayer
 			}
 		}
 		
-		private int _fornitoreId;
-		public virtual int FornitoreId
+		private int _notaCreditoId;
+		public virtual int NotaCreditoId
 		{
 			get
 			{
-				return this._fornitoreId;
+				return this._notaCreditoId;
 			}
 			set
 			{
-				this._fornitoreId = value;
+				this._notaCreditoId = value;
 			}
 		}
 		
@@ -128,25 +128,42 @@ namespace DataLayer
 			}
 		}
 		
-		private Fornitore _fornitore;
-		public virtual Fornitore Fornitore
+		private int _fatturaAcquistoId;
+		public virtual int FatturaAcquistoId
 		{
 			get
 			{
-				return this._fornitore;
+				return this._fatturaAcquistoId;
 			}
 			set
 			{
-				this._fornitore = value;
+				this._fatturaAcquistoId = value;
 			}
 		}
 		
-		private IList<Reso> _resos = new List<Reso>();
-		public virtual IList<Reso> Resos
+		private NotaCredito _notaCredito;
+		public virtual NotaCredito NotaCredito
 		{
 			get
 			{
-				return this._resos;
+				return this._notaCredito;
+			}
+			set
+			{
+				this._notaCredito = value;
+			}
+		}
+		
+		private FatturaAcquisto _fatturaAcquisto;
+		public virtual FatturaAcquisto FatturaAcquisto
+		{
+			get
+			{
+				return this._fatturaAcquisto;
+			}
+			set
+			{
+				this._fatturaAcquisto = value;
 			}
 		}
 		

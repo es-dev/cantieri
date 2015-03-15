@@ -439,5 +439,19 @@ namespace WcfService.Services
 	
 	    }
 	}
+	
+	public partial interface IResoService : IService<ResoDto, Reso>
+	{
+	
+	}
+	
+	public partial class ResoService : Service<ResoDto, Reso>, IResoService
+	{
+	    public ResoService(IResoAssembler assembler, IResoRepository repository)
+	        : base(assembler, repository)
+	    {
+	
+	    }
+	}
 }
 #pragma warning restore 1591

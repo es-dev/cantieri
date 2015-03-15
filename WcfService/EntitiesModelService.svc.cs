@@ -3226,6 +3226,182 @@ namespace WcfService
 	    #endregion
 	    
 	    /// <summary>
+	    /// A general purpose generated service used for all CRUD operations against Reso entity.
+	    /// </summary>
+	    private IResoService resoservice;
+	    
+	    /// <summary>
+	    /// Gets or sets the general purpose generated service used for all CRUD operations against Reso entity.
+	    /// </summary>
+	    public virtual IResoService ResoService
+	    {
+	        get
+	        {
+	            if (this.resoservice == null)
+	            {
+	                IResoAssembler assembler = new ResoAssembler();
+	                IResoRepository repository = new ResoRepository(this.UnitOfWork);
+	
+	                this.resoservice = new ResoService(assembler, repository);
+	            }
+	            return this.resoservice;
+	        }
+	    }
+	        
+	    #region Resos CRUD Operations
+	
+	    /// <summary>
+	    /// Returns all resos.
+	    /// </summary>
+	    /// <returns></returns>
+	    public IEnumerable<ResoDto> ReadResos()	
+	    {
+	        return this.ResoService.GetAll();
+	    }
+	
+	    /// <summary>
+	    /// Returns a specified amount of resos from the given start index.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <returns></returns>
+	    public IEnumerable<ResoDto> ReadResosPaged(int startIndex, int pageSize)
+	    {
+	        return this.ResoService.Find(startIndex, pageSize);
+	    }
+	
+	    /// <summary>
+	    /// Returns all resos filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public IEnumerable<ResoDto> ReadResosFiltered(string sortExpression, string filterExpression)
+	    {
+	        return this.ResoService.Find(sortExpression, filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Returns a specified amount of resos from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public IEnumerable<ResoDto> ReadResosPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression)
+	    {
+	        return this.ResoService.Find(startIndex, pageSize, sortExpression, filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Returns a reso with the specified dto key.
+	    /// </summary>
+	    /// <param name="dtoKey">The specified dto key value.</param>
+	    /// <returns></returns>
+	    public ResoDto ReadReso(string dtoKey)
+	    {
+	        return this.ResoService.GetByKey(dtoKey);
+	    }
+	    
+	    /// <summary>
+	    /// Returns all resos count.
+	    /// </summary>
+	    /// <returns></returns>
+	    public int ResosCount()
+	    {
+	        return this.ResoService.Count();
+	    }
+	    
+	    /// <summary>
+	    /// Returns all resos count filtered by the specified filter expression.
+	    /// </summary>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public int ResosCountFiltered(string filterExpression)
+	    {
+	        return this.ResoService.Count(filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Adds a new reso from the given dto object into the database.
+	    /// </summary>
+	    /// <param name="reso">The dto object.</param>
+	    /// <returns>The dto key of the newly created reso.</returns>
+	    public string CreateReso(ResoDto reso)
+	    {
+	        string key = this.ResoService.Add(reso);
+	        this.UnitOfWork.SaveChanges();
+	        return key;
+	    }
+	
+	    /// <summary>
+	    /// Updates an existing reso in the database from the given dto object.
+	    /// </summary>
+	    /// <param name="reso">The dto object.</param>
+	    public void UpdateReso(ResoDto reso)
+	    {
+	        this.ResoService.Update(reso);
+	        this.UnitOfWork.SaveChanges();
+	    }
+	
+	    /// <summary>
+	    /// Update resos in the database from the given dto object list.
+	    /// </summary>
+	    /// <param name="resos">The dto object list.</param>
+	    public void UpdateResos(IEnumerable<ResoDto> resos)
+	    {
+	        if (resos == null)
+	        {
+	            return;
+	        }
+	
+	        foreach (ResoDto reso in resos)
+	        {
+	            if (reso == null)
+	            {
+	                continue;
+	            }
+	            
+	            this.UpdateReso(reso);
+	        }
+	    }
+	
+	    /// <summary>
+	    /// Deletes reso from the database by the given dto object.
+	    /// </summary>
+	    /// <param name="reso">The dto object.</param>
+	    public void DeleteReso(ResoDto reso)
+	    {
+	        this.ResoService.Delete(reso);
+	        this.UnitOfWork.SaveChanges();		
+	    }
+	
+	    /// <summary>
+	    /// Delete resos from the database by the given dto object list.
+	    /// </summary>
+	    /// <param name="resos">The dto object list.</param>
+	    public void DeleteResos(IEnumerable<ResoDto> resos)
+	    {
+	        if (resos == null)
+	        {
+	            return;
+	        }
+	
+	        foreach (ResoDto reso in resos)
+	        {
+	            if (reso == null)
+	            {
+	                continue;
+	            }
+	            
+	            this.DeleteReso(reso);
+	        }
+	    }
+	    
+	    #endregion
+	    
+	    /// <summary>
 	    /// A general purpose generated service used for all CRUD operations against SAL entity.
 	    /// </summary>
 	    private ISALService salservice;

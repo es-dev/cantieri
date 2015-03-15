@@ -313,5 +313,18 @@ namespace WcfService.Repositories
 	    {
 	    }
 	}
+	
+	public partial interface IResoRepository : IRepository<Reso>
+	{ 
+	
+	}
+	
+	public partial class ResoRepository : Repository<Reso>, IResoRepository
+	{
+	    public ResoRepository(IEntitiesModelUnitOfWork unitOfWork)
+	        : base(unitOfWork)
+	    {
+	    }
+	}
 }
 #pragma warning restore 1591
