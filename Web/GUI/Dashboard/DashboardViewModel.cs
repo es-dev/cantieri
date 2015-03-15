@@ -25,6 +25,8 @@ using Web.GUI.Pagamento;
 using Web.GUI.SAL;
 using Web.GUI.Tools;
 using Web.GUI.ReportJob;
+using Web.GUI.Dashboard.Fatturazioni;
+using Web.GUI.Dashboard.Pagamento;
 
 namespace Web.GUI.Dashboard
 {
@@ -84,16 +86,20 @@ namespace Web.GUI.Dashboard
             try
             {
                 var dashboards = new List<Dashboard>();
-                var dashboardLavori = new Dashboard("Lavori e commesse", "LAV", "Gestisci i tuoi lavori e le commesse di lavorazione, inserisci i dati contrattuali, i fornitori, il committente. Potrai gestire le scadenze ed effettuare i SAL per una verifica dello stato di avanzamento dei lavori...", "Images.dashboard.lavoro.png", "", typeof(DashboardLavoriView), false);
-                var dashboardAnagrafiche = new Dashboard("Anagrafiche", "ANAG", "Inserisci le anagrafiche dei clienti, dei fornitori e degli articoli. Con un archivio strutturato potrai gestire i tuoi dati ed accedere facilmente alle informazioni...", "Images.dashboard.anagrafica.png", "", typeof(DashboardAnagraficheView), false);
-                var dashboardConfigurazione = new Dashboard("Configurazioni", "CONF", "Definisci le aziende che vuoi gestire nel sistema Enterprise Manager e configura i parametri principali come i Centri di Costo, le Impostazioni Generali...", "Images.dashboard.configurazione.png", "", typeof(DashboardConfigurazioneView), false);
+                var dashboardLavori = new Dashboard("Lavori e commesse", "LAV", "Gestisci i tuoi lavori e le commesse di lavorazione, inserisci i dati contrattuali, i fornitori e i committenti. Potrai gestire le scadenze ed effettuare un SAL per verificare lo stato di avanzamento lavori...", "Images.dashboard.lavori.png", "", typeof(DashboardLavoriView), false);
+                var dashboardFatturazioni = new Dashboard("Fatturazioni", "FA", "Inserisci le fatture di acquisto, di vendita e le note di credito per le tue commesse. Potrai verificare lo stato della fatturazione in dare/avere e analizzare in qualunque momento lo stato della contabilità generale...", "Images.dashboard.fatturazioni.png", "", typeof(DashboardFatturazioniView), false);
+                var dashboardPagamenti = new Dashboard("Pagamenti", "PA", "Gestisci i tuoi pagamenti e i tuoi incassi, organizza il flusso economico aziendale in ingresso e in uscita. Potrai effettuare un pagamento unificato specificando le fatture da pagare e indicare il fornitore beneficiario...", "Images.dashboard.pagamenti.png", "", typeof(DashboardPagamentoView), false);
                 var dashboardReports = new Dashboard("Reports lavori", "RPT", "Crea un report di bilancio economico o effettua un controllo amministrativo. Potrai tenere sotto controllo le tue commesse, i pagamenti, gli insoluti e gli incassi dei tuoi lavori...", "Images.dashboard.reportjob.png", "", typeof(ReportJobView));
+                var dashboardAnagrafiche = new Dashboard("Anagrafiche", "ANAG", "Inserisci le anagrafiche dei clienti, dei fornitori e degli articoli. Con un archivio strutturato potrai gestire i tuoi dati ed accedere facilmente alle informazioni...", "Images.dashboard.anagrafiche.png", "", typeof(DashboardAnagraficheView), false);
+                var dashboardConfigurazione = new Dashboard("Configurazioni", "CONF", "Definisci le aziende che vuoi gestire nel sistema Enterprise Manager e configura i parametri principali come i Centri di Costo, le Impostazioni Generali...", "Images.dashboard.configurazioni.png", "", typeof(DashboardConfigurazioneView), false);
                 var dashboardTools = new Dashboard("Strumenti amministrativi", "TOOLS", "Controlla lo stato del tuo applicativo mediante una serie di strumenti per la verifica degli archivi, delle configurazioni e dell'integrità dei dati...", "Images.dashboard.tools.png", "", typeof(ToolsModel), false);
 
                 dashboards.Add(dashboardLavori);
+                dashboards.Add(dashboardFatturazioni);
+                dashboards.Add(dashboardPagamenti);
+                dashboards.Add(dashboardReports);
                 dashboards.Add(dashboardConfigurazione);
                 dashboards.Add(dashboardAnagrafiche);
-                dashboards.Add(dashboardReports);
                 dashboards.Add(dashboardTools);
 
                 var query = dashboards.AsQueryable();
