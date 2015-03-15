@@ -15,7 +15,7 @@ namespace BusinessLogic
         {
             None,
             [Description("Cliente non assegnato")]
-            NonAssegnate,
+            NonAssegnata,
         }
 
         public enum TipoPagamento
@@ -27,6 +27,13 @@ namespace BusinessLogic
             Contanti,
             RIBA,
             RID
+        }
+
+        public enum TransazionePagamento
+        {
+            None,
+            Acconto,
+            Saldo
         }
 
         public enum ScadenzaPagamento

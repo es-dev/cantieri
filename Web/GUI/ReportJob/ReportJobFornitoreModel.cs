@@ -228,7 +228,7 @@ namespace Web.GUI.ReportJob
                         AddReportCommessaFornitore(elaborazione, tableCommesse, fornitore, commessa);
 
                         //totali per fattura
-                        var codificaCommessa = "COMMESSA: "+commessa.Codice + " - " + commessa.Denominazione;
+                        var codificaCommessa = "COMMESSA "+commessa.Codice + " - " + commessa.Denominazione;
                         tableFatture.AddRowMerge(Color.LightGray, codificaCommessa, "", "", "", "", "", "", "", "");
                         var fattureAcquisto = fornitore.FatturaAcquistos;
                         foreach (var fatturaAcquisto in fattureAcquisto)
@@ -239,7 +239,7 @@ namespace Web.GUI.ReportJob
                             var totaleFattura = UtilityValidation.GetEuro(fatturaAcquisto.Totale);
                             var _statoFattura = BusinessLogic.Fattura.GetStato(fatturaAcquisto);
                             var statoFattura = UtilityEnum.GetDescription<Tipi.StatoFattura>(_statoFattura);
-                            var codificaFattura = "FATTURA: N." + fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper();
+                            var codificaFattura = "FATTURA N." + fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper();
                             tablePagamenti.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "");
                             var pagamenti = (from q in fatturaAcquisto.Pagamentos orderby q.Data ascending select q).ToList();
                             foreach (var pagamento in pagamenti)
