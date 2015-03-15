@@ -65,6 +65,7 @@ namespace BusinessLogic
             None,
             Pagata, //fattura il cui totale pagamenti>=Totale fattura
             Insoluta, //fattura il cui totale pagamenti <totale fattura e today >scadenza=data fattura+ scadenza pagamento
+            [Description("Non pagata")]
             NonPagata, //fattura il cui totale pagamenti <totale fattura e today<=scadenza=data fattura+ scadenza pagamento
         }
         public enum StatoFornitore
@@ -72,6 +73,7 @@ namespace BusinessLogic
             None,
             Pagato, //fornitore il cui totale pagamenti>=Totale fattura
             Insoluto, //fornitore il cui totale pagamenti <totale fattura e....
+            [Description("Non pagato")]
             NonPagato, //fornitore il cui totale pagamenti <totale fattura e....
         }
 
@@ -80,6 +82,7 @@ namespace BusinessLogic
             None,
             Liquidato, //cliente il cui totale incassi>=Totale fattura
             Insoluto, //cliente il cui totale incassi <totale fattura e....
+            [Description("Non liquidato")]
             NonLiquidato, //cliente il cui totale incassi <totale fattura e....
         }
 

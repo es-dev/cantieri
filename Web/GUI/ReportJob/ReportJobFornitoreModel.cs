@@ -103,7 +103,7 @@ namespace Web.GUI.ReportJob
         {
             try
             {
-                var description = UtilityEnum.GetDescription<Tipi.TipoReport>(tipoReport.ToString());
+                var description = UtilityEnum.GetDescription<Tipi.TipoReport>(tipoReport);
                 var denominazione = "Report generato per l'analisi di: " + description;
                 return denominazione;
             }
@@ -237,7 +237,9 @@ namespace Web.GUI.ReportJob
 
                             //dettaglio pagamenti per fattura
                             var totaleFattura = UtilityValidation.GetEuro(fatturaAcquisto.Totale);
-                            var codificaFattura = "FATTURA: N." + fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") + " - TOTALE IVATO " + totaleFattura;
+                            var _statoFattura = BusinessLogic.Fattura.GetStato(fatturaAcquisto);
+                            var statoFattura = UtilityEnum.GetDescription<Tipi.StatoFattura>(_statoFattura);
+                            var codificaFattura = "FATTURA: N." + fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper();
                             tablePagamenti.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "");
                             var pagamenti = (from q in fatturaAcquisto.Pagamentos orderby q.Data ascending select q).ToList();
                             foreach (var pagamento in pagamenti)
