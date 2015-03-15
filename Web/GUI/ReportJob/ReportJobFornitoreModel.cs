@@ -221,6 +221,7 @@ namespace Web.GUI.ReportJob
                     //totali per commessa
                     var tableCommesse = new UtilityReport.Table("Commessa", "TotaleImponibile", "TotaleIVA", "TotaleFatture", "TotalePagamentiDato", "TotalePagamentiDare");
                     var tableFatture = new UtilityReport.Table("Numero", "Data", "Scadenza", "Descrizione", "Imponibile", "IVA", "Totale", "TotalePagamentiDato", "TotalePagamentiDare");
+                    var tablePagamenti = new UtilityReport.Table("Numero", "Data", "TipoPagamento", "Descrizione", "Note", "Importo");
                     foreach (var fornitore in fornitori)
                     {
                         var commessa = fornitore.Commessa;
@@ -231,11 +232,23 @@ namespace Web.GUI.ReportJob
                         tableFatture.AddRowMerge(Color.LightGray, codificaCommessa, "", "", "", "", "", "", "", "");
                         var fattureAcquisto = fornitore.FatturaAcquistos;
                         foreach (var fatturaAcquisto in fattureAcquisto)
+                        {
                             AddReportFatturaAcquistoFornitore(elaborazione, tableFatture, fatturaAcquisto);
-                    
+
+                            //dettaglio pagamenti per fattura
+                            var codificaFattura = "FATTURA: N." + fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy");
+                            tablePagamenti.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "");
+                            var pagamenti = fatturaAcquisto.Pagamentos;
+                            foreach(var pagamento in pagamenti)
+                            {
+                                AddReportPagamentoFornitore(elaborazione, tablePagamenti, pagamento);
+                            }
+
+                        }
                     }
                     report.Tables.Add(tableCommesse);
                     report.Tables.Add(tableFatture);
+                    report.Tables.Add(tablePagamenti);
 
                     bool performed = report.Create(pathTemplate, pathReport);
                     if (performed)
@@ -252,17 +265,19 @@ namespace Web.GUI.ReportJob
             }
         }
 
-        private void AddReportAzienda(AziendaDto azienda, DateTime elaborazione, UtilityReport.Report report)
+
+        private void AddReportPagamentoFornitore(DateTime elaborazione, UtilityReport.Table tablePagamenti, PagamentoDto pagamento)
         {
             try
             {
-                report.AddData("RagioneSocialeAzienda", azienda.RagioneSociale);
-                report.AddData("IndirizzoAzienda", azienda.Indirizzo + " " + azienda.CAP + " " + azienda.Comune+ " ("+azienda.Provincia+")");
-                report.AddData("TelefonoAzienda", azienda.Telefono, TypeFormat.StringND);
-                report.AddData("EmailAzienda", azienda.Email, TypeFormat.StringND);
-                report.AddData("PartitaIvaAzienda", azienda.PartitaIva, TypeFormat.StringND);
-                report.AddData("Elaborazione", elaborazione, TypeFormat.DateDDMMYYYY);
+                var numero = pagamento.Codice;
+                var data =  UtilityValidation.GetDataND(pagamento.Data);
+                var tipoPagamento = pagamento.TipoPagamento;
+                var descrizione = pagamento.Descrizione;
+                var note = pagamento.Note;
+                var importo = UtilityValidation.GetEuro(pagamento.Importo);
 
+                tablePagamenti.AddRow(numero, data, tipoPagamento, descrizione, note, importo);
             }
             catch (Exception ex)
             {
@@ -342,6 +357,24 @@ namespace Web.GUI.ReportJob
                 report.AddData("Localita", anagraficaFornitore.Localita);
                 report.AddData("Comune", anagraficaFornitore.Comune);
                 report.AddData("Provincia", anagraficaFornitore.Provincia);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void AddReportAzienda(AziendaDto azienda, DateTime elaborazione, UtilityReport.Report report)
+        {
+            try
+            {
+                report.AddData("RagioneSocialeAzienda", azienda.RagioneSociale);
+                report.AddData("IndirizzoAzienda", azienda.Indirizzo + " " + azienda.CAP + " " + azienda.Comune + " (" + azienda.Provincia + ")");
+                report.AddData("TelefonoAzienda", azienda.Telefono, TypeFormat.StringND);
+                report.AddData("EmailAzienda", azienda.Email, TypeFormat.StringND);
+                report.AddData("PartitaIvaAzienda", azienda.PartitaIva, TypeFormat.StringND);
+                report.AddData("Elaborazione", elaborazione, TypeFormat.DateDDMMYYYY);
 
             }
             catch (Exception ex)
