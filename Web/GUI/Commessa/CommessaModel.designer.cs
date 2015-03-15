@@ -55,8 +55,6 @@ namespace Web.GUI.Commessa
             this.label4 = new Gizmox.WebGUI.Forms.Label();
             this.editOggetto = new Library.Template.Controls.TemplateEditText();
             this.btnFornitori = new Library.Controls.ButtonSeparatorV();
-            this.btnPagamenti = new Library.Controls.ButtonSeparatorV();
-            this.btnLiquidazioni = new Library.Controls.ButtonSeparatorV();
             this.btnSAL = new Library.Controls.ButtonSeparatorV();
             this.editComune = new Library.Template.Controls.TemplateEditCountry();
             this.editLocalita = new Library.Template.Controls.TemplateEditText();
@@ -141,8 +139,6 @@ namespace Web.GUI.Commessa
             this.panelCommands.Controls.Add(this.bntClienti);
             this.panelCommands.Controls.Add(this.btnCalcoloAvanzamentoLavori);
             this.panelCommands.Controls.Add(this.btnSAL);
-            this.panelCommands.Controls.Add(this.btnLiquidazioni);
-            this.panelCommands.Controls.Add(this.btnPagamenti);
             this.panelCommands.Controls.Add(this.btnFornitori);
             this.panelCommands.Size = new System.Drawing.Size(101, 1051);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
@@ -150,8 +146,6 @@ namespace Web.GUI.Commessa
             this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnDelete, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnFornitori, 0);
-            this.panelCommands.Controls.SetChildIndex(this.btnPagamenti, 0);
-            this.panelCommands.Controls.SetChildIndex(this.btnLiquidazioni, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSAL, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnCalcoloAvanzamentoLavori, 0);
             this.panelCommands.Controls.SetChildIndex(this.bntClienti, 0);
@@ -675,34 +669,6 @@ namespace Web.GUI.Commessa
             this.btnFornitori.TextButton = "Fornitori";
             this.btnFornitori.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnFornitori_Click);
             // 
-            // btnPagamenti
-            // 
-            this.btnPagamenti.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.btnPagamenti.BackColor = System.Drawing.Color.Transparent;
-            this.btnPagamenti.Enabled = false;
-            this.btnPagamenti.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
-            this.btnPagamenti.ImageButton = "";
-            this.btnPagamenti.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnPagamenti.Location = new System.Drawing.Point(0, 432);
-            this.btnPagamenti.Name = "btnPagamenti";
-            this.btnPagamenti.Size = new System.Drawing.Size(100, 72);
-            this.btnPagamenti.TabIndex = 1002;
-            this.btnPagamenti.TextButton = "Acquisti";
-            // 
-            // btnLiquidazioni
-            // 
-            this.btnLiquidazioni.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.btnLiquidazioni.BackColor = System.Drawing.Color.Transparent;
-            this.btnLiquidazioni.Enabled = false;
-            this.btnLiquidazioni.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
-            this.btnLiquidazioni.ImageButton = "";
-            this.btnLiquidazioni.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnLiquidazioni.Location = new System.Drawing.Point(0, 504);
-            this.btnLiquidazioni.Name = "btnLiquidazioni";
-            this.btnLiquidazioni.Size = new System.Drawing.Size(100, 72);
-            this.btnLiquidazioni.TabIndex = 1002;
-            this.btnLiquidazioni.TextButton = "Incassi";
-            // 
             // btnSAL
             // 
             this.btnSAL.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
@@ -711,7 +677,7 @@ namespace Web.GUI.Commessa
             this.btnSAL.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnSAL.ImageButton = "";
             this.btnSAL.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnSAL.Location = new System.Drawing.Point(0, 576);
+            this.btnSAL.Location = new System.Drawing.Point(0, 432);
             this.btnSAL.Name = "btnSAL";
             this.btnSAL.Size = new System.Drawing.Size(100, 72);
             this.btnSAL.TabIndex = 1002;
@@ -852,8 +818,6 @@ namespace Web.GUI.Commessa
         private Library.Template.Controls.TemplateEditText editOggetto;
         private Library.Controls.ButtonSeparatorV btnFornitori;
         private Library.Controls.ButtonSeparatorV btnSAL;
-        private Library.Controls.ButtonSeparatorV btnLiquidazioni;
-        private Library.Controls.ButtonSeparatorV btnPagamenti;
         private Library.Template.Controls.TemplateEditCountry editComune;
         private Library.Template.Controls.TemplateEditText editLocalita;
         private Library.Template.Controls.TemplateEditText editNote;

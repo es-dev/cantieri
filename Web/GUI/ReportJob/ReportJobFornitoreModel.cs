@@ -227,7 +227,8 @@ namespace Web.GUI.ReportJob
                         AddReportCommessaFornitore(elaborazione, tableCommesse, fornitore, commessa);
 
                         //totali per fattura
-                        //todo: creare metodo AddRowMerge tableFatture.AddRow(commessa.Codice, "", "", "", "", "", "", "", "");
+                        var codificaCommessa = "COMMESSA: "+commessa.Codice + " - " + commessa.Denominazione;
+                        tableFatture.AddRowMerge(Color.LightGray, codificaCommessa, "", "", "", "", "", "", "", "");
                         var fattureAcquisto = fornitore.FatturaAcquistos;
                         foreach (var fatturaAcquisto in fattureAcquisto)
                             AddReportFatturaAcquistoFornitore(elaborazione, tableFatture, fatturaAcquisto);
