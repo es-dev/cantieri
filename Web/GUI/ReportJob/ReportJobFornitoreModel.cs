@@ -236,12 +236,13 @@ namespace Web.GUI.ReportJob
                             AddReportFatturaAcquistoFornitore(elaborazione, tableFatture, fatturaAcquisto);
 
                             //dettaglio pagamenti per fattura
-                            var codificaFattura = "FATTURA: N." + fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy");
+                            var totaleFattura = UtilityValidation.GetEuro(fatturaAcquisto.Totale);
+                            var codificaFattura = "FATTURA: N." + fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") + " - TOTALE IVATO " + totaleFattura;
                             tablePagamenti.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "");
-                            var pagamenti = fatturaAcquisto.Pagamentos;
+                            var pagamenti = (from q in fatturaAcquisto.Pagamentos orderby q.Data ascending select q).ToList();
                             foreach(var pagamento in pagamenti)
                             {
-                                AddReportPagamentoFornitore(elaborazione, tablePagamenti, pagamento);
+                                AddReportPagamentoFornitore(tablePagamenti, pagamento);
                             }
 
                         }
@@ -266,7 +267,7 @@ namespace Web.GUI.ReportJob
         }
 
 
-        private void AddReportPagamentoFornitore(DateTime elaborazione, UtilityReport.Table tablePagamenti, PagamentoDto pagamento)
+        private void AddReportPagamentoFornitore(UtilityReport.Table tablePagamenti, PagamentoDto pagamento)
         {
             try
             {
