@@ -101,7 +101,7 @@ namespace Web.GUI.Dashboard.Pagamento
             this.infoDescription.TabIndex = 1;
             this.infoDescription.Text = "Description";
             // 
-            // DashboardLavoriItem
+            // DashboardLavoroItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.jqContainer.Controls.Add(this.infoDescription);
