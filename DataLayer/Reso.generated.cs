@@ -102,19 +102,6 @@ namespace DataLayer
 			}
 		}
 		
-		private string _tipoPagamento;
-		public virtual string TipoPagamento
-		{
-			get
-			{
-				return this._tipoPagamento;
-			}
-			set
-			{
-				this._tipoPagamento = value;
-			}
-		}
-		
 		private string _descrizione;
 		public virtual string Descrizione
 		{
@@ -138,6 +125,32 @@ namespace DataLayer
 			set
 			{
 				this._fatturaAcquistoId = value;
+			}
+		}
+		
+		private decimal? _iVA;
+		public virtual decimal? IVA
+		{
+			get
+			{
+				return this._iVA;
+			}
+			set
+			{
+				this._iVA = value;
+			}
+		}
+		
+		private decimal? _totale;
+		public virtual decimal? Totale
+		{
+			get
+			{
+				return this._totale;
+			}
+			set
+			{
+				this._totale = value;
 			}
 		}
 		

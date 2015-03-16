@@ -511,7 +511,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public FatturaAcquistoDto(int _id, int _fornitoreId, DateTime? _data, string _numero, string _tipoPagamento, string _descrizione, decimal? _imponibile, decimal? _iVA, decimal? _totale, string _scadenzaPagamento, int _centroCostoId, decimal? _totalePagamenti, string _stato, string _note, decimal? _totaleNoteCredito, decimal? _sconto, CentroCostoDto _centroCosto, FornitoreDto _fornitore, IList<ArticoloDto> _articolos, IList<PagamentoDto> _pagamentos, IList<PagamentoUnificatoFatturaAcquistoDto> _pagamentoUnificatoFatturaAcquistos, IList<ResoDto> _resos)
+		public FatturaAcquistoDto(int _id, int _fornitoreId, DateTime? _data, string _numero, string _tipoPagamento, string _descrizione, decimal? _imponibile, decimal? _iVA, decimal? _totale, string _scadenzaPagamento, int _centroCostoId, decimal? _totalePagamenti, string _stato, string _note, decimal? _totaleResi, decimal? _sconto, CentroCostoDto _centroCosto, FornitoreDto _fornitore, IList<ArticoloDto> _articolos, IList<PagamentoDto> _pagamentos, IList<PagamentoUnificatoFatturaAcquistoDto> _pagamentoUnificatoFatturaAcquistos, IList<ResoDto> _resos)
 		{
 			this.Id = _id;
 			this.FornitoreId = _fornitoreId;
@@ -527,7 +527,7 @@ namespace WcfService.Dto
 			this.TotalePagamenti = _totalePagamenti;
 			this.Stato = _stato;
 			this.Note = _note;
-			this.TotaleNoteCredito = _totaleNoteCredito;
+			this.TotaleResi = _totaleResi;
 			this.Sconto = _sconto;
 			this.CentroCosto = _centroCosto;
 			this.Fornitore = _fornitore;
@@ -583,7 +583,7 @@ namespace WcfService.Dto
 		public virtual string Note { get;set; }
 
 		[DataMember]
-		public virtual decimal? TotaleNoteCredito { get;set; }
+		public virtual decimal? TotaleResi { get;set; }
 
 		[DataMember]
 		public virtual decimal? Sconto { get;set; }
@@ -1341,16 +1341,18 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public NotaCreditoDto(int _id, int _fornitoreId, DateTime? _data, decimal? _importo, string _note, string _codice, string _tipoPagamento, string _descrizione, FornitoreDto _fornitore, IList<ResoDto> _resos)
+		public NotaCreditoDto(int _id, int _fornitoreId, DateTime? _data, decimal? _imponibile, string _note, string _descrizione, string _numero, decimal? _iVA, decimal? _totale, string _stato, FornitoreDto _fornitore, IList<ResoDto> _resos)
 		{
 			this.Id = _id;
 			this.FornitoreId = _fornitoreId;
 			this.Data = _data;
-			this.Importo = _importo;
+			this.Imponibile = _imponibile;
 			this.Note = _note;
-			this.Codice = _codice;
-			this.TipoPagamento = _tipoPagamento;
 			this.Descrizione = _descrizione;
+			this.Numero = _numero;
+			this.IVA = _iVA;
+			this.Totale = _totale;
+			this.Stato = _stato;
 			this.Fornitore = _fornitore;
 			this.Resos = _resos;
 		}
@@ -1368,19 +1370,25 @@ namespace WcfService.Dto
 		public virtual DateTime? Data { get;set; }
 
 		[DataMember]
-		public virtual decimal? Importo { get;set; }
+		public virtual decimal? Imponibile { get;set; }
 
 		[DataMember]
 		public virtual string Note { get;set; }
 
 		[DataMember]
-		public virtual string Codice { get;set; }
-
-		[DataMember]
-		public virtual string TipoPagamento { get;set; }
-
-		[DataMember]
 		public virtual string Descrizione { get;set; }
+
+		[DataMember]
+		public virtual string Numero { get;set; }
+
+		[DataMember]
+		public virtual decimal? IVA { get;set; }
+
+		[DataMember]
+		public virtual decimal? Totale { get;set; }
+
+		[DataMember]
+		public virtual string Stato { get;set; }
 
 		[DataMember]
 		public virtual FornitoreDto Fornitore { get;set; }
@@ -1399,7 +1407,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public ResoDto(int _id, int _notaCreditoId, DateTime? _data, decimal? _importo, string _note, string _codice, string _tipoPagamento, string _descrizione, int _fatturaAcquistoId, NotaCreditoDto _notaCredito, FatturaAcquistoDto _fatturaAcquisto)
+		public ResoDto(int _id, int _notaCreditoId, DateTime? _data, decimal? _importo, string _note, string _codice, string _descrizione, int _fatturaAcquistoId, decimal? _iVA, decimal? _totale, NotaCreditoDto _notaCredito, FatturaAcquistoDto _fatturaAcquisto)
 		{
 			this.Id = _id;
 			this.NotaCreditoId = _notaCreditoId;
@@ -1407,9 +1415,10 @@ namespace WcfService.Dto
 			this.Importo = _importo;
 			this.Note = _note;
 			this.Codice = _codice;
-			this.TipoPagamento = _tipoPagamento;
 			this.Descrizione = _descrizione;
 			this.FatturaAcquistoId = _fatturaAcquistoId;
+			this.IVA = _iVA;
+			this.Totale = _totale;
 			this.NotaCredito = _notaCredito;
 			this.FatturaAcquisto = _fatturaAcquisto;
 		}
@@ -1436,13 +1445,16 @@ namespace WcfService.Dto
 		public virtual string Codice { get;set; }
 
 		[DataMember]
-		public virtual string TipoPagamento { get;set; }
-
-		[DataMember]
 		public virtual string Descrizione { get;set; }
 
 		[DataMember]
 		public virtual int FatturaAcquistoId { get;set; }
+
+		[DataMember]
+		public virtual decimal? IVA { get;set; }
+
+		[DataMember]
+		public virtual decimal? Totale { get;set; }
 
 		[DataMember]
 		public virtual NotaCreditoDto NotaCredito { get;set; }

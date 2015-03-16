@@ -1736,6 +1736,231 @@ namespace WcfService
         #endregion
         #endregion
 
+        #region Reso
+        #region CRUD
+        public Dto.ResoDto CreateReso(Dto.ResoDto reso)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var dtoKey = wcf.CreateReso(reso);
+                var id = UtilityPOCO.GetId(dtoKey);
+                var newReso = ReadReso(id);
+                return newReso;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<Dto.ResoDto> ReadResi()
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var resi = wcf.ReadResos();
+                return resi;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public bool UpdateReso(Dto.ResoDto reso)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                wcf.UpdateReso(reso);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
+        }
+
+        public bool DeleteReso(Dto.ResoDto reso)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                wcf.DeleteReso(reso);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
+        }
+
+        public int CountResi()
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var count = wcf.ResosCount();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+        #endregion
+        #region Custom
+        public IEnumerable<Dto.ResoDto> LoadResi(int skip, int take, string search = null)
+        {
+            try
+            {
+                var reso = QueryResi(search);
+                reso = (from q in reso select q).Skip(skip).Take(take);
+
+                var resiDto = UtilityPOCO.Assemble<Dto.ResoDto>(reso);
+                return resiDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<Dto.ResoDto> LoadResiNotaCredito(int skip, int take, Dto.NotaCreditoDto notaCredito, string search)
+        {
+            try
+            {
+                var resi = QueryResi(search);
+                resi = (from q in resi where q.NotaCreditoId == notaCredito.Id select q);
+                resi = (from q in resi select q).Skip(skip).Take(take);
+
+                var resiDto = UtilityPOCO.Assemble<Dto.ResoDto>(resi);
+                return resiDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<Dto.ResoDto> LoadResiFornitore(int skip, int take, Dto.FornitoreDto fornitore, string search)
+        {
+            try
+            {
+                var resi = QueryResi(search);
+                var noteCredito = fornitore.NotaCreditos;
+                var noteCreditoIds = (from q in noteCredito select q.Id);
+                resi = (from q in resi where noteCreditoIds.Contains(q.NotaCreditoId) select q);
+
+                resi = (from q in resi select q).Skip(skip).Take(take);
+
+                var resiDto = UtilityPOCO.Assemble<Dto.ResoDto>(resi);
+                return resiDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public int CountResi(string search = null)
+        {
+            try
+            {
+                var resi = QueryResi(search);
+                var count = resi.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+        public int CountResiNotaCredito(Dto.NotaCreditoDto notaCredito, string search = null)
+        {
+            try
+            {
+                var resi = QueryResi(search);
+                resi = (from q in resi where q.NotaCreditoId == notaCredito.Id select q);
+                var count = resi.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+        public int CountResiFornitore(Dto.FornitoreDto fornitore, string search = null)
+        {
+            try
+            {
+                var resi = QueryResi(search);
+                var noteCredito = fornitore.NotaCreditos;
+                var noteCreditoIds = (from q in noteCredito select q.Id);
+                resi = (from q in resi where noteCreditoIds.Contains(q.NotaCreditoId) select q);
+                var count = resi.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+
+        public Dto.ResoDto ReadReso(object id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
+                var reso = wcf.ReadReso(dtoKey);
+                return reso;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private IQueryable<DataLayer.Reso> QueryResi(string search)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var resi = (from q in ef.Resos select q);
+                if (search != null && search.Length > 0)
+                {
+                    var notaCreditoId = (from q in QueryNoteCredito(search) select q.Id).ToList();
+                    resi = (from q in resi
+                                 where q.Note.Contains(search) ||
+                                     notaCreditoId.Contains(q.NotaCreditoId)
+                                 select q);
+                }
+                resi = (from q in resi orderby q.Id descending select q);
+                return resi;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+        #endregion
+        #endregion
 
         #region PagamentoUnificato
         #region CRUD

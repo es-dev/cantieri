@@ -69,7 +69,7 @@ namespace BusinessLogic
                     var noteCredito = fornitore.NotaCreditos;
                     if (noteCredito != null)
                     {
-                        var totaleNoteCredito = (from q in noteCredito where q.Data <= data select q.Importo).Sum();
+                        var totaleNoteCredito = (from q in noteCredito where q.Data <= data select q.Totale).Sum();
                         totale = UtilityValidation.GetDecimal(totaleNoteCredito);
                     }
                     return totale;

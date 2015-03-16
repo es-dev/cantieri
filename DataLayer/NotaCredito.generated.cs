@@ -63,16 +63,16 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal? _importo;
-		public virtual decimal? Importo
+		private decimal? _imponibile;
+		public virtual decimal? Imponibile
 		{
 			get
 			{
-				return this._importo;
+				return this._imponibile;
 			}
 			set
 			{
-				this._importo = value;
+				this._imponibile = value;
 			}
 		}
 		
@@ -89,32 +89,6 @@ namespace DataLayer
 			}
 		}
 		
-		private string _codice;
-		public virtual string Codice
-		{
-			get
-			{
-				return this._codice;
-			}
-			set
-			{
-				this._codice = value;
-			}
-		}
-		
-		private string _tipoPagamento;
-		public virtual string TipoPagamento
-		{
-			get
-			{
-				return this._tipoPagamento;
-			}
-			set
-			{
-				this._tipoPagamento = value;
-			}
-		}
-		
 		private string _descrizione;
 		public virtual string Descrizione
 		{
@@ -125,6 +99,58 @@ namespace DataLayer
 			set
 			{
 				this._descrizione = value;
+			}
+		}
+		
+		private string _numero;
+		public virtual string Numero
+		{
+			get
+			{
+				return this._numero;
+			}
+			set
+			{
+				this._numero = value;
+			}
+		}
+		
+		private decimal? _iVA;
+		public virtual decimal? IVA
+		{
+			get
+			{
+				return this._iVA;
+			}
+			set
+			{
+				this._iVA = value;
+			}
+		}
+		
+		private decimal? _totale;
+		public virtual decimal? Totale
+		{
+			get
+			{
+				return this._totale;
+			}
+			set
+			{
+				this._totale = value;
+			}
+		}
+		
+		private string _stato;
+		public virtual string Stato
+		{
+			get
+			{
+				return this._stato;
+			}
+			set
+			{
+				this._stato = value;
 			}
 		}
 		
