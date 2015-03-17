@@ -75,10 +75,11 @@ namespace Web.GUI.Cliente
             return 0;
         }
 
-        public override bool Save(object model, bool creating)
+        public override bool Save(object model, bool creating)  
         {
             try
             {
+
                 if (model != null)
                 {
                     var wcf = new WcfService.Service();
@@ -102,7 +103,6 @@ namespace Web.GUI.Cliente
             }
             return false;
         }
-
 
         public override bool Delete(object model)
         {

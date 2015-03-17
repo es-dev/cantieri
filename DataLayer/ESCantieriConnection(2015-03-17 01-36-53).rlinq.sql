@@ -13,6 +13,11 @@ ALTER TABLE [NotaCredito] ADD [IVA] numeric(20,10) NULL
 
 go
 
+-- add column for field _numero
+ALTER TABLE [NotaCredito] ADD [Numero] varchar(max) NULL
+
+go
+
 -- add column for field _stato
 ALTER TABLE [NotaCredito] ADD [Stato] varchar(max) NULL
 
