@@ -83,7 +83,7 @@
           <elementListCompartment Id="42f943e8-d779-40eb-8f1f-20d0bee3f3f2" absoluteBounds="10.265, 18.211396484375, 1.8450000000000002, 0.44169108072916696" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
         </nestedChildShapes>
       </classShape>
-      <associationConnector edgePoints="[(10.25 : 16.2121940104167); (8.64583333333333 : 16.2121940104167 : JumpStart); (8.47916666666667 : 16.2121940104167 : JumpEnd); (7.625 : 16.2121940104167)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <associationConnector edgePoints="[(10.25 : 16.2121940104167); (7.625 : 16.2121940104167)]" fixedFrom="NotFixed" fixedTo="NotFixed">
         <AssociationMoniker Id="41eee6d8-a5b7-4fea-b639-08b8ca83cdcf" />
         <relativeChildShapes />
         <nodes>
@@ -171,7 +171,7 @@
           <classShapeMoniker Id="6bcca395-c326-4ffd-9969-a11f618c99af" />
         </nodes>
       </associationConnector>
-      <associationConnector edgePoints="[(7.625 : 13.7623450052083); (7.6875 : 13.7623450052083); (7.6875 : 11.3125); (9.8125 : 11.3125); (9.8125 : 12.0625); (10.875 : 12.0625); (10.875 : 12.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <associationConnector edgePoints="[(7.625 : 13.7623450052083); (7.6875 : 13.7623450052083); (7.6875 : 11.3125); (9.8125 : 11.3125); (9.8125 : 12.0625); (10.875 : 12.0625); (10.875 : 12.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
         <AssociationMoniker Id="8a1ec485-60f4-4ca4-8b26-6596dcdbd353" />
         <relativeChildShapes />
         <nodes>
@@ -227,7 +227,7 @@
           <classShapeMoniker Id="9718ff50-964e-497e-a63f-47291ec95282" />
         </nodes>
       </associationConnector>
-      <associationConnector edgePoints="[(4.875 : 13.8621394856771); (4.91666416666667 : 13.8621394856771 : JumpStart); (5.08333083333333 : 13.8621394856771 : JumpEnd); (5.375 : 13.8621394856771)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <associationConnector edgePoints="[(4.875 : 13.8621394856771); (5.375 : 13.8621394856771)]" fixedFrom="NotFixed" fixedTo="NotFixed">
         <AssociationMoniker Id="4a6f6ccf-42d3-402e-a9eb-f434e9307d24" />
         <relativeChildShapes />
         <nodes>
@@ -267,7 +267,7 @@
           <elementListCompartment Id="03b4a64e-4589-429a-976f-3980b16ad25d" absoluteBounds="7.765, 14.326793619791665, 1.8450000000000002, 0.633992513020833" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
         </nestedChildShapes>
       </classShape>
-      <associationConnector edgePoints="[(8.6875 : 11.375); (8.6875 : 8.90610642252604); (7.5 : 8.90610642252604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <associationConnector edgePoints="[(8.6875 : 11.375); (8.6875 : 8.90610642252604); (7.5 : 8.90610642252604)]" fixedFrom="NotFixed" fixedTo="NotFixed">
         <AssociationMoniker Id="07de2fe6-6a06-493f-afe7-53d44d91cad2" />
         <relativeChildShapes />
         <nodes>
@@ -283,7 +283,7 @@
           <elementListCompartment Id="8b173e25-efc4-4775-bc9f-4411a2db2b8a" absoluteBounds="7.39, 19.951793619791665, 1.9700000000000002, 0.63399251302083348" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
         </nestedChildShapes>
       </classShape>
-      <associationConnector edgePoints="[(8.5625 : 17); (8.5625 : 15.0607861328125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <associationConnector edgePoints="[(8.5625 : 17); (8.5625 : 15.0607861328125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
         <AssociationMoniker Id="148a13cd-e655-4199-9caa-e2423a5397ac" />
         <relativeChildShapes />
         <nodes>
@@ -291,7 +291,7 @@
           <classShapeMoniker Id="a635743d-7980-419f-ba96-623c16af1d2a" />
         </nodes>
       </associationConnector>
-      <associationConnector edgePoints="[(7.375 : 18.8428930664062); (6.4062495 : 18.8428930664062); (6.4062495 : 16.9838004557292)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <associationConnector edgePoints="[(7.375 : 18.8428930664062); (6.4062495 : 18.8428930664062); (6.4062495 : 16.9838004557292)]" fixedFrom="NotFixed" fixedTo="NotFixed">
         <AssociationMoniker Id="ebc73c72-0cc0-4c9c-8d88-6b85df8a6875" />
         <relativeChildShapes />
         <nodes>

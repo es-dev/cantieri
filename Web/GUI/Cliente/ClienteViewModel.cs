@@ -75,7 +75,7 @@ namespace Web.GUI.Cliente
             return 0;
         }
 
-        public override bool Save(object model, bool creating)  //salvataggio per modelli con relazioni entità 1-1 con modello parent
+        public override bool Save(object model, bool creating)
         {
             try
             {
@@ -83,12 +83,6 @@ namespace Web.GUI.Cliente
                 {
                     var wcf = new WcfService.Service();
                     var obj = (ClienteDto)model;
-                    var _obj = Read(obj.Id);
-                    creating = (_obj == null); //condizione di creazione --> non esistenza in db
-                    
-                    if (obj != null && obj.DtoKey != UtilityPOCO.GetDtoKey(obj)) //eliminazione del modello preassociato
-                        Delete(obj);
-
                     bool performed = false;
                     if (creating)
                     {
@@ -108,6 +102,7 @@ namespace Web.GUI.Cliente
             }
             return false;
         }
+
 
         public override bool Delete(object model)
         {
