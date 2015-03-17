@@ -90,12 +90,12 @@ namespace Web.GUI.Commessa
                     editImportoPerizie.Value = obj.ImportoPerizie;
                     editInizioLavori.Value = obj.InizioLavori;
                     editFineLavori.Value = obj.FineLavori;
-                    var azienda = obj.Azienda;
-                    if (azienda != null)
-                    {
-                        editAzienda.Model = azienda;
-                        editAzienda.Value = azienda.RagioneSociale;
-                    }
+                    
+                    BindViewAzienda(obj.Azienda);
+                    BindViewFornitori(obj.Fornitores);
+                    BindViewClienti(obj.Clientes);
+                    BindViewSALs(obj.SALs);
+
                 }
             }
             catch (Exception ex)
@@ -103,6 +103,64 @@ namespace Web.GUI.Commessa
                 UtilityError.Write(ex);
             }
         }
+
+        private void BindViewSALs(IList<SALDto> sals)
+        {
+            try
+            {
+                if (sals != null)
+                    btnSAL.TextButton = "SAL (" + sals.Count + ")";
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewClienti(IList<ClienteDto> clienti)
+        {
+            try
+            {
+                if (clienti != null)
+                    btnClienti.TextButton = "Clienti (" + clienti.Count + ")";
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewFornitori(IList<FornitoreDto> fornitori)
+        {
+            try
+            {
+                if (fornitori != null)
+                    btnFornitori.TextButton = "Fornitori (" + fornitori.Count + ")";
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+
+        private void BindViewAzienda(AziendaDto azienda)
+        {
+            try
+            {
+                if (azienda != null)
+                {
+                    editAzienda.Model = azienda;
+                    editAzienda.Value = azienda.RagioneSociale;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+       
 
         private decimal GetImportoAvanzamentLavori(WcfService.Dto.CommessaDto commessa)
         {
@@ -279,7 +337,7 @@ namespace Web.GUI.Commessa
             }
         }
 
-        private void bntClienti_Click(object sender, EventArgs e)
+        private void btnClienti_Click(object sender, EventArgs e)
         {
             try
             {
