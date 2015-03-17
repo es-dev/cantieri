@@ -32,11 +32,14 @@ namespace Web.GUI.NotaCredito
 		{
             this.editFornitore = new Library.Template.Controls.TemplateEditCombo();
             this.editData = new Library.Template.Controls.TemplateEditDate();
-            this.editImporto = new Library.Template.Controls.TemplateEditDecimal();
             this.editNote = new Library.Template.Controls.TemplateEditText();
-            this.editCodice = new Library.Template.Controls.TemplateEditText();
+            this.editNumero = new Library.Template.Controls.TemplateEditText();
             this.editTipoPagamento = new Library.Template.Controls.TemplateEditDropDown();
             this.editDescrizione = new Library.Template.Controls.TemplateEditText();
+            this.editTotale = new Library.Template.Controls.TemplateEditDecimal();
+            this.editIVA = new Library.Template.Controls.TemplateEditDecimal();
+            this.editImponibile = new Library.Template.Controls.TemplateEditDecimal();
+            this.editStato = new Library.Template.Controls.TemplateEditText();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -44,22 +47,28 @@ namespace Web.GUI.NotaCredito
             // 
             // container
             // 
+            this.container.Controls.Add(this.editStato);
+            this.container.Controls.Add(this.editImponibile);
+            this.container.Controls.Add(this.editIVA);
+            this.container.Controls.Add(this.editTotale);
             this.container.Controls.Add(this.editDescrizione);
             this.container.Controls.Add(this.editTipoPagamento);
-            this.container.Controls.Add(this.editCodice);
+            this.container.Controls.Add(this.editNumero);
             this.container.Controls.Add(this.editNote);
-            this.container.Controls.Add(this.editImporto);
             this.container.Controls.Add(this.editData);
             this.container.Controls.Add(this.editFornitore);
             this.container.Controls.SetChildIndex(this.infoSubtitleImage, 0);
             this.container.Controls.SetChildIndex(this.infoSubtitle, 0);
             this.container.Controls.SetChildIndex(this.editFornitore, 0);
             this.container.Controls.SetChildIndex(this.editData, 0);
-            this.container.Controls.SetChildIndex(this.editImporto, 0);
             this.container.Controls.SetChildIndex(this.editNote, 0);
-            this.container.Controls.SetChildIndex(this.editCodice, 0);
+            this.container.Controls.SetChildIndex(this.editNumero, 0);
             this.container.Controls.SetChildIndex(this.editTipoPagamento, 0);
             this.container.Controls.SetChildIndex(this.editDescrizione, 0);
+            this.container.Controls.SetChildIndex(this.editTotale, 0);
+            this.container.Controls.SetChildIndex(this.editIVA, 0);
+            this.container.Controls.SetChildIndex(this.editImponibile, 0);
+            this.container.Controls.SetChildIndex(this.editStato, 0);
             // 
             // infoSubtitle
             // 
@@ -107,7 +116,7 @@ namespace Web.GUI.NotaCredito
             this.editData.Editing = false;
             this.editData.Label = "Data";
             this.editData.LabelWidth = 175;
-            this.editData.Location = new System.Drawing.Point(25, 161);
+            this.editData.Location = new System.Drawing.Point(25, 157);
             this.editData.Name = "editData";
             this.editData.ReadOnly = false;
             this.editData.Required = false;
@@ -115,28 +124,6 @@ namespace Web.GUI.NotaCredito
             this.editData.TabIndex = 2;
             this.editData.Text = "EditControl";
             this.editData.Value = null;
-            // 
-            // editImporto
-            // 
-            this.editImporto.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editImporto.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editImporto.BackColor = System.Drawing.Color.Transparent;
-            this.editImporto.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editImporto.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editImporto.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editImporto.Changed = true;
-            this.editImporto.Editing = false;
-            this.editImporto.Label = "Importo";
-            this.editImporto.LabelWidth = 175;
-            this.editImporto.Location = new System.Drawing.Point(25, 204);
-            this.editImporto.Name = "editImporto";
-            this.editImporto.ReadOnly = false;
-            this.editImporto.Required = false;
-            this.editImporto.Size = new System.Drawing.Size(798, 30);
-            this.editImporto.TabIndex = 3;
-            this.editImporto.Text = "TemplateEditNumeric";
-            this.editImporto.Value = null;
             // 
             // editNote
             // 
@@ -151,36 +138,36 @@ namespace Web.GUI.NotaCredito
             this.editNote.Editing = false;
             this.editNote.Label = "Note";
             this.editNote.LabelWidth = 175;
-            this.editNote.Location = new System.Drawing.Point(25, 333);
+            this.editNote.Location = new System.Drawing.Point(25, 403);
             this.editNote.Name = "editNote";
             this.editNote.ReadOnly = false;
             this.editNote.Required = false;
             this.editNote.Size = new System.Drawing.Size(798, 30);
-            this.editNote.TabIndex = 6;
+            this.editNote.TabIndex = 8;
             this.editNote.Text = "EditControl";
             this.editNote.Value = null;
             // 
-            // editCodice
+            // editNumero
             // 
-            this.editCodice.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.editNumero.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editCodice.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editCodice.BackColor = System.Drawing.Color.Transparent;
-            this.editCodice.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editCodice.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editCodice.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editCodice.Changed = true;
-            this.editCodice.Editing = false;
-            this.editCodice.Label = "Codice";
-            this.editCodice.LabelWidth = 175;
-            this.editCodice.Location = new System.Drawing.Point(25, 118);
-            this.editCodice.Name = "editCodice";
-            this.editCodice.ReadOnly = false;
-            this.editCodice.Required = false;
-            this.editCodice.Size = new System.Drawing.Size(798, 30);
-            this.editCodice.TabIndex = 1;
-            this.editCodice.Text = "EditControl";
-            this.editCodice.Value = null;
+            this.editNumero.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editNumero.BackColor = System.Drawing.Color.Transparent;
+            this.editNumero.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editNumero.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editNumero.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editNumero.Changed = true;
+            this.editNumero.Editing = false;
+            this.editNumero.Label = "Numero";
+            this.editNumero.LabelWidth = 175;
+            this.editNumero.Location = new System.Drawing.Point(25, 116);
+            this.editNumero.Name = "editNumero";
+            this.editNumero.ReadOnly = false;
+            this.editNumero.Required = false;
+            this.editNumero.Size = new System.Drawing.Size(798, 30);
+            this.editNumero.TabIndex = 1;
+            this.editNumero.Text = "EditControl";
+            this.editNumero.Value = null;
             // 
             // editTipoPagamento
             // 
@@ -197,12 +184,12 @@ namespace Web.GUI.NotaCredito
             this.editTipoPagamento.Items = null;
             this.editTipoPagamento.Label = "Tipo pagamento";
             this.editTipoPagamento.LabelWidth = 175;
-            this.editTipoPagamento.Location = new System.Drawing.Point(25, 247);
+            this.editTipoPagamento.Location = new System.Drawing.Point(25, 321);
             this.editTipoPagamento.Name = "editTipoPagamento";
             this.editTipoPagamento.ReadOnly = false;
             this.editTipoPagamento.Required = false;
             this.editTipoPagamento.Size = new System.Drawing.Size(798, 30);
-            this.editTipoPagamento.TabIndex = 4;
+            this.editTipoPagamento.TabIndex = 6;
             this.editTipoPagamento.Text = "EditControl";
             this.editTipoPagamento.Value = null;
             // 
@@ -219,14 +206,102 @@ namespace Web.GUI.NotaCredito
             this.editDescrizione.Editing = false;
             this.editDescrizione.Label = "Descrizione";
             this.editDescrizione.LabelWidth = 175;
-            this.editDescrizione.Location = new System.Drawing.Point(25, 290);
+            this.editDescrizione.Location = new System.Drawing.Point(25, 362);
             this.editDescrizione.Name = "editDescrizione";
             this.editDescrizione.ReadOnly = false;
             this.editDescrizione.Required = false;
             this.editDescrizione.Size = new System.Drawing.Size(798, 30);
-            this.editDescrizione.TabIndex = 5;
+            this.editDescrizione.TabIndex = 7;
             this.editDescrizione.Text = "EditControl";
             this.editDescrizione.Value = null;
+            // 
+            // editTotale
+            // 
+            this.editTotale.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editTotale.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editTotale.BackColor = System.Drawing.Color.Transparent;
+            this.editTotale.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editTotale.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editTotale.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editTotale.Changed = true;
+            this.editTotale.Editing = false;
+            this.editTotale.Label = "Totale";
+            this.editTotale.LabelWidth = 175;
+            this.editTotale.Location = new System.Drawing.Point(25, 280);
+            this.editTotale.Name = "editTotale";
+            this.editTotale.ReadOnly = false;
+            this.editTotale.Required = false;
+            this.editTotale.Size = new System.Drawing.Size(798, 30);
+            this.editTotale.TabIndex = 5;
+            this.editTotale.Text = "TemplateEditNumeric";
+            this.editTotale.Value = null;
+            // 
+            // editIVA
+            // 
+            this.editIVA.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editIVA.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editIVA.BackColor = System.Drawing.Color.Transparent;
+            this.editIVA.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editIVA.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editIVA.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editIVA.Changed = true;
+            this.editIVA.Editing = false;
+            this.editIVA.Label = "IVA";
+            this.editIVA.LabelWidth = 175;
+            this.editIVA.Location = new System.Drawing.Point(25, 239);
+            this.editIVA.Name = "editIVA";
+            this.editIVA.ReadOnly = false;
+            this.editIVA.Required = false;
+            this.editIVA.Size = new System.Drawing.Size(798, 30);
+            this.editIVA.TabIndex = 4;
+            this.editIVA.Text = "TemplateEditNumeric";
+            this.editIVA.Value = null;
+            // 
+            // editImponibile
+            // 
+            this.editImponibile.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editImponibile.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editImponibile.BackColor = System.Drawing.Color.Transparent;
+            this.editImponibile.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editImponibile.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editImponibile.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editImponibile.Changed = true;
+            this.editImponibile.Editing = false;
+            this.editImponibile.Label = "Imponibile";
+            this.editImponibile.LabelWidth = 175;
+            this.editImponibile.Location = new System.Drawing.Point(25, 198);
+            this.editImponibile.Name = "editImponibile";
+            this.editImponibile.ReadOnly = false;
+            this.editImponibile.Required = false;
+            this.editImponibile.Size = new System.Drawing.Size(798, 30);
+            this.editImponibile.TabIndex = 3;
+            this.editImponibile.Text = "TemplateEditNumeric";
+            this.editImponibile.Value = null;
+            // 
+            // editStato
+            // 
+            this.editStato.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editStato.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editStato.BackColor = System.Drawing.Color.Transparent;
+            this.editStato.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editStato.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editStato.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editStato.Changed = true;
+            this.editStato.Editing = false;
+            this.editStato.Label = "Stato";
+            this.editStato.LabelWidth = 175;
+            this.editStato.Location = new System.Drawing.Point(25, 444);
+            this.editStato.Name = "editStato";
+            this.editStato.ReadOnly = false;
+            this.editStato.Required = false;
+            this.editStato.Size = new System.Drawing.Size(798, 30);
+            this.editStato.TabIndex = 9;
+            this.editStato.Text = "EditControl";
+            this.editStato.Value = null;
             // 
             // NotaCreditoModel
             // 
@@ -244,11 +319,14 @@ namespace Web.GUI.NotaCredito
 
         private Library.Template.Controls.TemplateEditDate editData;
         private Library.Template.Controls.TemplateEditCombo editFornitore;
-        private Library.Template.Controls.TemplateEditDecimal editImporto;
         private Library.Template.Controls.TemplateEditText editNote;
-        private Library.Template.Controls.TemplateEditText editCodice;
+        private Library.Template.Controls.TemplateEditText editNumero;
         private Library.Template.Controls.TemplateEditText editDescrizione;
         private Library.Template.Controls.TemplateEditDropDown editTipoPagamento;
+        private Library.Template.Controls.TemplateEditDecimal editImponibile;
+        private Library.Template.Controls.TemplateEditDecimal editIVA;
+        private Library.Template.Controls.TemplateEditDecimal editTotale;
+        private Library.Template.Controls.TemplateEditText editStato;
 
 
     }

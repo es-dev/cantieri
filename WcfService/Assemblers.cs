@@ -655,7 +655,7 @@ namespace WcfService.Assemblers
 			entity.TotalePagamenti = dto.TotalePagamenti;
 			entity.Stato = dto.Stato;
 			entity.Note = dto.Note;
-			entity.TotaleNoteCredito = dto.TotaleNoteCredito;
+			entity.TotaleResi = dto.TotaleResi;
 			entity.Sconto = dto.Sconto;
 	        this.OnEntityAssembled(entity);
 	        return entity;
@@ -681,7 +681,7 @@ namespace WcfService.Assemblers
 			dto.TotalePagamenti = entity.TotalePagamenti;
 			dto.Stato = entity.Stato;
 			dto.Note = entity.Note;
-			dto.TotaleNoteCredito = entity.TotaleNoteCredito;
+			dto.TotaleResi = entity.TotaleResi;
 			dto.Sconto = entity.Sconto;
 			this.OnDTOAssembled(dto); 
 	        return dto;
@@ -1743,11 +1743,13 @@ namespace WcfService.Assemblers
 			entity.Id = dto.Id;
 			entity.FornitoreId = dto.FornitoreId;
 			entity.Data = dto.Data;
-			entity.Importo = dto.Importo;
+			entity.Imponibile = dto.Imponibile;
 			entity.Note = dto.Note;
-			entity.Codice = dto.Codice;
-			entity.TipoPagamento = dto.TipoPagamento;
 			entity.Descrizione = dto.Descrizione;
+			entity.Numero = dto.Numero;
+			entity.IVA = dto.IVA;
+			entity.Totale = dto.Totale;
+			entity.Stato = dto.Stato;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1761,11 +1763,13 @@ namespace WcfService.Assemblers
 			dto.Id = entity.Id;
 			dto.FornitoreId = entity.FornitoreId;
 			dto.Data = entity.Data;
-			dto.Importo = entity.Importo;
+			dto.Imponibile = entity.Imponibile;
 			dto.Note = entity.Note;
-			dto.Codice = entity.Codice;
-			dto.TipoPagamento = entity.TipoPagamento;
 			dto.Descrizione = entity.Descrizione;
+			dto.Numero = entity.Numero;
+			dto.IVA = entity.IVA;
+			dto.Totale = entity.Totale;
+			dto.Stato = entity.Stato;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -1831,9 +1835,10 @@ namespace WcfService.Assemblers
 			entity.Importo = dto.Importo;
 			entity.Note = dto.Note;
 			entity.Codice = dto.Codice;
-			entity.TipoPagamento = dto.TipoPagamento;
 			entity.Descrizione = dto.Descrizione;
 			entity.FatturaAcquistoId = dto.FatturaAcquistoId;
+			entity.IVA = dto.IVA;
+			entity.Totale = dto.Totale;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1850,9 +1855,10 @@ namespace WcfService.Assemblers
 			dto.Importo = entity.Importo;
 			dto.Note = entity.Note;
 			dto.Codice = entity.Codice;
-			dto.TipoPagamento = entity.TipoPagamento;
 			dto.Descrizione = entity.Descrizione;
 			dto.FatturaAcquistoId = entity.FatturaAcquistoId;
+			dto.IVA = entity.IVA;
+			dto.Totale = entity.Totale;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }

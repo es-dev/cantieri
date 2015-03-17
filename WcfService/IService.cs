@@ -334,6 +334,47 @@ namespace WcfService
         #endregion
         #endregion
 
+        #region Reso
+        #region CRUD
+        [OperationContract]
+        Dto.ResoDto CreateReso(Dto.ResoDto reso);
+
+        [OperationContract]
+        IEnumerable<Dto.ResoDto> ReadResi();
+
+        [OperationContract]
+        bool UpdateReso(Dto.ResoDto reso);
+
+        [OperationContract]
+        bool DeleteReso(Dto.ResoDto reso);
+
+        [OperationContract]
+        int CountResi();
+        #endregion
+
+        #region Custom
+        [OperationContract]
+        IEnumerable<Dto.ResoDto> LoadResi(int skip, int take, string search = null);
+
+        [OperationContract]
+        int CountResi(string search = null);
+
+        [OperationContract]
+        IEnumerable<Dto.ResoDto> LoadResiNotaCredito(int skip, int take, Dto.NotaCreditoDto notaCredito, string search = null);
+
+        [OperationContract]
+        int CountResiNotaCredito(Dto.NotaCreditoDto notaCredito, string search = null);
+
+        [OperationContract]
+        IEnumerable<Dto.ResoDto> LoadResiFornitore(int skip, int take, Dto.FornitoreDto fornitore, string search = null);
+
+        [OperationContract]
+        int CountResiFornitore(Dto.FornitoreDto fornitore, string search = null);
+
+        [OperationContract]
+        Dto.ResoDto ReadReso(object id);
+        #endregion
+        #endregion
 
         #region PagamentoUnificato
         #region CRUD

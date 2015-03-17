@@ -26,16 +26,16 @@ namespace Web.GUI.NotaCredito
                 if (model != null)
                 {
                     var obj = (NotaCreditoDto)model;
-                    var importo = UtilityValidation.GetEuro(obj.Importo);
-                    var codice = UtilityValidation.GetStringND(obj.Codice);
+                    var totale = UtilityValidation.GetEuro(obj.Totale);
+                    var numero = UtilityValidation.GetStringND(obj.Numero);
                     var data = UtilityValidation.GetDataND(obj.Data);
                  
                     infoData.Text = "Resa il " + data;
                     infoImage.Image = "Images.dashboard.notacredito.png";
                     infoCodice.Text = "NC";
                     infoNote.Text = obj.Note;
-                    infoImporto.Text = "Importo: " + importo;
-                    infoNotaCredito.Text = "Nota di credito N." + codice;
+                    infoImporto.Text = "Importo: " + totale;
+                    infoNotaCredito.Text = "Nota di credito N." + numero;
                 }
             }
             catch (Exception ex)

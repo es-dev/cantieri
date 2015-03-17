@@ -206,16 +206,16 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal? _totaleNoteCredito;
-		public virtual decimal? TotaleNoteCredito
+		private decimal? _totaleResi;
+		public virtual decimal? TotaleResi
 		{
 			get
 			{
-				return this._totaleNoteCredito;
+				return this._totaleResi;
 			}
 			set
 			{
-				this._totaleNoteCredito = value;
+				this._totaleResi = value;
 			}
 		}
 		

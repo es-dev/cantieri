@@ -401,8 +401,8 @@
         <orm:field name="_note" property="Note" uniqueId="e08fcac6-bc31-461f-9130-330deaa4c717" type="System.String">
           <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
-        <orm:field name="_totaleNoteCredito" property="TotaleNoteCredito" uniqueId="b4d8fab7-30a1-470e-ba7b-31f6ef16f790" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="TotaleNoteCredito" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        <orm:field name="_totaleResi" property="TotaleResi" uniqueId="b4d8fab7-30a1-470e-ba7b-31f6ef16f790" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="TotaleResi" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         </orm:field>
         <orm:field name="_sconto" property="Sconto" uniqueId="46c9969c-2fc3-4d86-a49f-cc86cbb3794d" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="Sconto" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
@@ -1008,20 +1008,26 @@
         <orm:field name="_data" property="Data" uniqueId="032a2724-418b-4130-a78d-34fc5bc101cd" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="Data" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
-        <orm:field name="_importo" property="Importo" uniqueId="70666d12-8b93-488e-b3e1-95395dbcf39c" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+        <orm:field name="_imponibile" property="Imponibile" uniqueId="70666d12-8b93-488e-b3e1-95395dbcf39c" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
         <orm:field name="_note" property="Note" uniqueId="7db6de87-7e97-41ab-b064-aa517a72df17" type="System.String">
           <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_codice" property="Codice" uniqueId="7c4b18ec-6a37-4e61-8806-c053a6970801" type="System.String">
-          <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        </orm:field>
-        <orm:field name="_tipoPagamento" property="TipoPagamento" uniqueId="a5afb864-40cb-4b8f-bf28-5db5448602de" type="System.String">
-          <orm:column name="TipoPagamento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        </orm:field>
         <orm:field name="_descrizione" property="Descrizione" uniqueId="aea83c77-2984-44e9-9d35-44a6fd11d303" type="System.String">
           <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_numero" property="Numero" uniqueId="592f2e61-182a-489f-b0ce-3c0014910fd3" type="System.String">
+          <orm:column name="Numero" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_iVA" property="IVA" uniqueId="3e04bcee-6cce-4dcf-b102-85b3916f3b45" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="IVA" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        </orm:field>
+        <orm:field name="_totale" property="Totale" uniqueId="36ed1a4c-729c-4cb3-bf16-c4c8f4d5136f" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Totale" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        </orm:field>
+        <orm:field name="_stato" property="Stato" uniqueId="f9bf7f1f-a624-4214-a988-50ec5b717436" type="System.String">
+          <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
         <orm:field name="_fornitore" property="Fornitore" behavior="readwrite" uniqueId="0574b1bd-5076-4e0c-9d08-a2c9ea16ca7e" type="DataLayer.Fornitore">
           <orm:reference uniqueId="07de2fe6-6a06-493f-afe7-53d44d91cad2" association-name="NotaCreditoHasFornitore">
@@ -1063,14 +1069,17 @@
         <orm:field name="_codice" property="Codice" uniqueId="29f5f20d-7d7b-488a-a3f0-b13cdbea3186" type="System.String">
           <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
-        <orm:field name="_tipoPagamento" property="TipoPagamento" uniqueId="68a736cc-cc22-4d11-a966-8c87e797c764" type="System.String">
-          <orm:column name="TipoPagamento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        </orm:field>
         <orm:field name="_descrizione" property="Descrizione" uniqueId="4e758da3-7b7f-46c0-abf5-b1a0c2d0f90d" type="System.String">
           <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_fatturaAcquistoId" property="FatturaAcquistoId" uniqueId="4ab44f6c-4eeb-43ae-939c-9ed5d2293d67" type="System.Int32">
           <orm:column name="FatturaAcquistoId" sql-type="int" nullable="false" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_iVA" property="IVA" uniqueId="527e778f-c542-416f-904d-07471801a60e" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="IVA" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        </orm:field>
+        <orm:field name="_totale" property="Totale" uniqueId="3cb7c129-e6da-482f-bc73-df3803a24411" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="Totale" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         </orm:field>
         <orm:field name="_notaCredito" property="NotaCredito" behavior="readwrite" uniqueId="d6b6fe2c-2241-41c9-9dd7-59b5897b4f05" type="DataLayer.NotaCredito">
           <orm:reference uniqueId="148a13cd-e655-4199-9caa-e2423a5397ac" association-name="ResoHasNotaCredito">
@@ -1161,7 +1170,7 @@
         <orm:column name="TotalePagamenti" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
-        <orm:column name="TotaleNoteCredito" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        <orm:column name="TotaleResi" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         <orm:column name="Sconto" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         <orm:index name="idx_FtturaAcquisto_FornitoreId">
           <orm:columnMapping>
@@ -1404,10 +1413,12 @@
         <orm:column name="Data" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        <orm:column name="TipoPagamento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="FornitoreId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:column name="Numero" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="Totale" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        <orm:column name="IVA" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:index name="idx_NtCrdito_FatturaAcquistoId">
           <orm:columnMapping>
             <orm:column name="FornitoreId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -1420,10 +1431,11 @@
         <orm:column name="Importo" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        <orm:column name="TipoPagamento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="NotaCreditoId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         <orm:column name="FatturaAcquistoId" sql-type="int" nullable="false" length="0" scale="0" ado-type="" />
+        <orm:column name="IVA" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
+        <orm:column name="Totale" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         <orm:index name="idx_Reso_NotaCreditoId">
           <orm:columnMapping>
             <orm:column name="NotaCreditoId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -1675,7 +1687,7 @@
       <Property Id="106a13f4-4f0b-418b-a315-7f4129822f28" name="TotalePagamenti" type="Decimal" label="TotalePagamenti : Decimal" nullable="true" fieldName="_totalePagamenti" />
       <Property Id="8bf1edd0-d2fa-4dda-b1e4-07e759a77230" name="Stato" label="Stato : String" fieldName="_stato" />
       <Property Id="e08fcac6-bc31-461f-9130-330deaa4c717" name="Note" label="Note : String" fieldName="_note" />
-      <Property Id="b4d8fab7-30a1-470e-ba7b-31f6ef16f790" name="TotaleNoteCredito" type="Decimal" label="TotaleNoteCredito : Decimal" nullable="true" fieldName="_totaleNoteCredito" />
+      <Property Id="b4d8fab7-30a1-470e-ba7b-31f6ef16f790" name="TotaleResi" type="Decimal" label="TotaleResi : Decimal" nullable="true" fieldName="_totaleResi" />
       <Property Id="46c9969c-2fc3-4d86-a49f-cc86cbb3794d" name="Sconto" type="Decimal" label="Sconto : Decimal" nullable="true" fieldName="_sconto" />
       <AssociationTargets>
         <Association Id="9133edb8-9422-4c9c-a7d6-77def2077659" SourceMultiplicity="ZeroOne" name="FatturaAcquistoHasFornitore">
@@ -2055,11 +2067,13 @@
       <Property Id="496cebe6-49d3-4d4b-9fb7-22464874597f" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
       <Property Id="8cbae2c9-c58e-40ef-a4a1-24465ade2a72" name="FornitoreId" type="Int32" label="FornitoreId : Int32" fieldName="_fornitoreId" />
       <Property Id="032a2724-418b-4130-a78d-34fc5bc101cd" name="Data" type="DateTime" label="Data : DateTime" nullable="true" fieldName="_data" />
-      <Property Id="70666d12-8b93-488e-b3e1-95395dbcf39c" name="Importo" type="Decimal" label="Importo : Decimal" nullable="true" fieldName="_importo" />
-      <Property Id="7db6de87-7e97-41ab-b064-aa517a72df17" name="Note" label="Note : String" fieldName="_note" />
-      <Property Id="7c4b18ec-6a37-4e61-8806-c053a6970801" name="Codice" label="Codice : String" fieldName="_codice" />
-      <Property Id="a5afb864-40cb-4b8f-bf28-5db5448602de" name="TipoPagamento" label="TipoPagamento : String" fieldName="_tipoPagamento" />
+      <Property Id="592f2e61-182a-489f-b0ce-3c0014910fd3" name="Numero" label="Numero : String" fieldName="_numero" />
       <Property Id="aea83c77-2984-44e9-9d35-44a6fd11d303" name="Descrizione" label="Descrizione : String" fieldName="_descrizione" />
+      <Property Id="70666d12-8b93-488e-b3e1-95395dbcf39c" name="Imponibile" type="Decimal" label="Imponibile : Decimal" nullable="true" fieldName="_imponibile" />
+      <Property Id="3e04bcee-6cce-4dcf-b102-85b3916f3b45" name="IVA" type="Decimal" label="IVA : Decimal" nullable="true" fieldName="_iVA" />
+      <Property Id="36ed1a4c-729c-4cb3-bf16-c4c8f4d5136f" name="Totale" type="Decimal" label="Totale : Decimal" nullable="true" fieldName="_totale" />
+      <Property Id="7db6de87-7e97-41ab-b064-aa517a72df17" name="Note" label="Note : String" fieldName="_note" />
+      <Property Id="f9bf7f1f-a624-4214-a988-50ec5b717436" name="Stato" label="Stato : String" fieldName="_stato" />
       <AssociationTargets>
         <Association Id="07de2fe6-6a06-493f-afe7-53d44d91cad2" SourceMultiplicity="ZeroOne" name="NotaCreditoHasFornitore">
           <DomainClassMoniker name="/EntitiesModel/Fornitore" />
@@ -2091,9 +2105,10 @@
       <Property Id="8eef256a-76c1-4411-a572-f0ed7c1c35e7" name="Importo" type="Decimal" label="Importo : Decimal" nullable="true" fieldName="_importo" />
       <Property Id="400a54e1-31a6-40e7-b502-59e4c8ffcf77" name="Note" label="Note : String" fieldName="_note" />
       <Property Id="29f5f20d-7d7b-488a-a3f0-b13cdbea3186" name="Codice" label="Codice : String" fieldName="_codice" />
-      <Property Id="68a736cc-cc22-4d11-a966-8c87e797c764" name="TipoPagamento" label="TipoPagamento : String" fieldName="_tipoPagamento" />
       <Property Id="4e758da3-7b7f-46c0-abf5-b1a0c2d0f90d" name="Descrizione" label="Descrizione : String" fieldName="_descrizione" />
       <Property Id="4ab44f6c-4eeb-43ae-939c-9ed5d2293d67" name="FatturaAcquistoId" type="Int32" label="FatturaAcquistoId : Int32" fieldName="_fatturaAcquistoId" />
+      <Property Id="527e778f-c542-416f-904d-07471801a60e" name="IVA" type="Decimal" label="IVA : Decimal" nullable="true" fieldName="_iVA" />
+      <Property Id="3cb7c129-e6da-482f-bc73-df3803a24411" name="Totale" type="Decimal" label="Totale : Decimal" nullable="true" fieldName="_totale" />
       <AssociationTargets>
         <Association Id="148a13cd-e655-4199-9caa-e2423a5397ac" SourceMultiplicity="ZeroOne" name="ResoHasNotaCredito">
           <DomainClassMoniker name="/EntitiesModel/NotaCredito" />

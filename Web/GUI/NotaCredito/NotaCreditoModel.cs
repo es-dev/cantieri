@@ -62,9 +62,9 @@ namespace Web.GUI.NotaCredito
             try
             {
                 var obj = (NotaCreditoDto)model;
-                var codice = UtilityValidation.GetStringND(obj.Codice);
+                var numero = UtilityValidation.GetStringND(obj.Numero);
                 var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
-                infoSubtitle.Text = codice + " - " + descrizione;
+                infoSubtitle.Text = numero + " - " + descrizione;
                 infoSubtitleImage.Image = "Images.dashboard.notacredito.png";
             }
             catch (Exception ex)
@@ -80,11 +80,13 @@ namespace Web.GUI.NotaCredito
                 if (model != null)
                 {
                     var obj = (NotaCreditoDto)model;
-                    editCodice.Value = obj.Codice;
+                    editNumero.Value = obj.Numero;
                     editData.Value = obj.Data;
                     editNote.Value = obj.Note;
-                    editImporto.Value = obj.Importo;
-                    editTipoPagamento.Value = obj.TipoPagamento;
+                    editTotale.Value = obj.Totale;
+                    editImponibile.Value = obj.Imponibile;
+                    editIVA.Value = obj.IVA;
+                    editStato.Value = obj.Stato;
                     editDescrizione.Value = obj.Descrizione;
                     var fornitore = obj.Fornitore;
                     if (fornitore != null)
@@ -107,12 +109,14 @@ namespace Web.GUI.NotaCredito
                 if (model != null)
                 {
                     var obj = (NotaCreditoDto)model;
-                    obj.Codice = editCodice.Value;
+                    obj.Numero = editNumero.Value;
                     obj.Data = editData.Value;
-                    obj.Importo = editImporto.Value;
+                    obj.Totale = editTotale.Value;
+                    obj.IVA = editIVA.Value;
+                    obj.Imponibile = editImponibile.Value;
+                    obj.Stato = editStato.Value;
                     obj.Note = editNote.Value;
                     obj.Descrizione = editDescrizione.Value;
-                    obj.TipoPagamento = editTipoPagamento.Value;
                     var fornitore = (FornitoreDto)editFornitore.Model;
                     if(fornitore!=null)
                         obj.FornitoreId = fornitore.Id;
