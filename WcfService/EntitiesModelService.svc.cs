@@ -1574,7 +1574,6 @@ namespace WcfService
 	        this.UnitOfWork.SaveChanges();
 	        return key;
 	    }
-	
 	    /// <summary>
 	    /// Updates an existing commessa in the database from the given dto object.
 	    /// </summary>
