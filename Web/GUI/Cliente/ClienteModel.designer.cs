@@ -49,7 +49,7 @@ namespace Web.GUI.Cliente
             this.editLocalita = new Library.Template.Controls.TemplateEditText();
             this.editNote = new Library.Template.Controls.TemplateEditText();
             this.btnFattureVendita = new Library.Controls.ButtonSeparatorV();
-            this.btnIncassi = new Library.Controls.ButtonSeparatorV();
+            this.btnLiquidazioni = new Library.Controls.ButtonSeparatorV();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -106,7 +106,7 @@ namespace Web.GUI.Cliente
             // 
             // panelCommands
             // 
-            this.panelCommands.Controls.Add(this.btnIncassi);
+            this.panelCommands.Controls.Add(this.btnLiquidazioni);
             this.panelCommands.Controls.Add(this.btnFattureVendita);
             this.panelCommands.Controls.Add(this.btnCalcoloTotali);
             this.panelCommands.Size = new System.Drawing.Size(101, 747);
@@ -116,7 +116,7 @@ namespace Web.GUI.Cliente
             this.panelCommands.Controls.SetChildIndex(this.btnDelete, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnCalcoloTotali, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnFattureVendita, 0);
-            this.panelCommands.Controls.SetChildIndex(this.btnIncassi, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnLiquidazioni, 0);
             // 
             // btnDelete
             // 
@@ -522,19 +522,19 @@ namespace Web.GUI.Cliente
             this.btnFattureVendita.TextButton = "Fatture di vendita";
             this.btnFattureVendita.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnFattureVendita_Click);
             // 
-            // btnIncassi
+            // btnLiquidazioni
             // 
-            this.btnIncassi.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.btnIncassi.BackColor = System.Drawing.Color.Transparent;
-            this.btnIncassi.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
-            this.btnIncassi.ImageButton = "";
-            this.btnIncassi.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnIncassi.Location = new System.Drawing.Point(0, 289);
-            this.btnIncassi.Name = "btnIncassi";
-            this.btnIncassi.Size = new System.Drawing.Size(100, 72);
-            this.btnIncassi.TabIndex = 1002;
-            this.btnIncassi.TextButton = "Incassi";
-            this.btnIncassi.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnIncassi_Click);
+            this.btnLiquidazioni.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.btnLiquidazioni.BackColor = System.Drawing.Color.Transparent;
+            this.btnLiquidazioni.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.btnLiquidazioni.ImageButton = "";
+            this.btnLiquidazioni.ImageSeparator = "Images.separator_ht_small.png";
+            this.btnLiquidazioni.Location = new System.Drawing.Point(0, 289);
+            this.btnLiquidazioni.Name = "btnLiquidazioni";
+            this.btnLiquidazioni.Size = new System.Drawing.Size(100, 72);
+            this.btnLiquidazioni.TabIndex = 1002;
+            this.btnLiquidazioni.TextButton = "Incassi";
+            this.btnLiquidazioni.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnLiquidazioni_Click);
             // 
             // ClienteModel
             // 
@@ -570,7 +570,7 @@ namespace Web.GUI.Cliente
         private Library.Template.Controls.TemplateEditText editLocalita;
         private Library.Template.Controls.TemplateEditText editNote;
         private Library.Controls.ButtonSeparatorV btnFattureVendita;
-        private Library.Controls.ButtonSeparatorV btnIncassi;
+        private Library.Controls.ButtonSeparatorV btnLiquidazioni;
 
 
     }

@@ -76,19 +76,61 @@ namespace Web.GUI.Cliente
                     editTotaleFattureVendita.Value =GetTotaleFattureVendita(obj);
                     editStato.Value = GetStato(obj);
                     editTotaleLiquidazioni.Value = GetTotaleLiquidazioni(obj);
-                    var commessa = obj.Commessa;
-                    if (commessa != null)
-                    {
-                        editCommessa.Model = commessa;
-                        editCommessa.Value =  commessa.Codice + " - " + commessa.Denominazione;
-                    }
                     editCodiceCliente.Value = obj.Codice;
+
+                    BindViewCommessa(obj.Commessa);
+                    BindViewFattureVendita(obj.FatturaVenditas);
+                    BindViewLiquidazioni(obj);
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewLiquidazioni(ClienteDto cliente)
+        {
+            try
+            {
+                var viewModel = new Liquidazione.LiquidazioneViewModel(this);
+                viewModel.Cliente = cliente;
+                btnLiquidazioni.TextButton = "Incassi (" + viewModel.GetCount() + ")";
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewFattureVendita(IList<FatturaVenditaDto> fattureVendita)
+        {
+            try
+            {
+                if (fattureVendita != null)
+                    btnFattureVendita.TextButton = "Fatture di vendita (" + fattureVendita.Count + ")";
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewCommessa(CommessaDto commessa)
+        {
+            try
+            {
+                if (commessa != null)
+                {
+                    editCommessa.Model = commessa;
+                    editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            
         }
 
         private decimal GetTotaleLiquidazioni(WcfService.Dto.ClienteDto cliente)
@@ -399,7 +441,7 @@ namespace Web.GUI.Cliente
 
         }
 
-        private void btnIncassi_Click(object sender, EventArgs e)
+        private void btnLiquidazioni_Click(object sender, EventArgs e)
         {
             try
             {

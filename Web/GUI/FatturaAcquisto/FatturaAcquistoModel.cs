@@ -49,7 +49,7 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                editTipoPagamento.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.TipoPagamento>(); ;
+                editTipoPagamento.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.TipoPagamento>();
                 editScadenzaPagamento.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.ScadenzaPagamento>();
             }
             catch (Exception ex)
@@ -97,24 +97,49 @@ namespace Web.GUI.FatturaAcquisto
                     editTotalePagamenti.Value = GetTotalePagamenti(obj);
                     editStato.Value = obj.Stato;
                     editSconto.Value = obj.Sconto;
-                    var centroCosto = obj.CentroCosto;
-                    if (centroCosto != null)
-                    {
-                        editCentroCosto.Model = centroCosto;
-                        editCentroCosto.Value = centroCosto.Codice + " - " + centroCosto.Denominazione;
-                    }
-                    var fornitore = obj.Fornitore;
-                    if (fornitore != null)
-                    {
-                        editFornitore.Model = fornitore;
-                        editFornitore.Value =  fornitore.Codice + " - " + fornitore.RagioneSociale;
-                    }
+                    
+                    BindViewCentroCosto(obj.CentroCosto);
+                    BindViewFornitore(obj.Fornitore);
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewFornitore(FornitoreDto fornitore)
+        {
+            try
+            {
+                if (fornitore != null)
+                {
+                    editFornitore.Model = fornitore;
+                    editFornitore.Value = fornitore.Codice + " - " + fornitore.RagioneSociale;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+           
+        }
+
+        private void BindViewCentroCosto(CentroCostoDto centroCosto)
+        {
+            try
+            {
+                if (centroCosto != null)
+                {
+                    editCentroCosto.Model = centroCosto;
+                    editCentroCosto.Value = centroCosto.Codice + " - " + centroCosto.Denominazione;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            
         }
 
         private string GetStato(FatturaAcquistoDto fatturaAcquisto)

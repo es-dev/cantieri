@@ -32,7 +32,7 @@ namespace Web.GUI.Account
         {
             try
             {
-                editRuolo.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.TipoAccount>(); ;
+                editRuolo.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.TipoAccount>(); 
             }
             catch (Exception ex)
             {

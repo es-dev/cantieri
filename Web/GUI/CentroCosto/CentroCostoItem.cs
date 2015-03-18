@@ -31,7 +31,7 @@ namespace Web.GUI.CentroCosto
                     infoImage.Image = "Images.dashboard.centrocosto.png";
                     infoCodice.Text = "CC";
                     infoCodiceCentroCosto.Text = "CENTRO DI COSTO "+ codice;
-                    infoDenominazione.Text = denominazione; ;
+                    infoDenominazione.Text = denominazione; 
 
                 }
             }

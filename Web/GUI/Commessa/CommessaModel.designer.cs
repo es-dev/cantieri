@@ -774,7 +774,7 @@ namespace Web.GUI.Commessa
             this.btnClienti.Name = "btnClienti";
             this.btnClienti.Size = new System.Drawing.Size(100, 72);
             this.btnClienti.TabIndex = 1002;
-            this.btnClienti.TextButton = "Clienti";
+            this.btnClienti.TextButton = "Committenti";
             this.btnClienti.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnClienti_Click);
             // 
             // CommessaModel

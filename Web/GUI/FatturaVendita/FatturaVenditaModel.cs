@@ -93,7 +93,7 @@ namespace Web.GUI.FatturaVendita
                     editNote.Value = obj.Note;
                     editTotale.Value = obj.Totale;
                     editTotaleLiquidazioni.Value = GetTotaleLiquidazioni(obj);
-                    editStato.Value = GetStato(obj); ;
+                    editStato.Value = GetStato(obj); 
                     var cliente = obj.Cliente;
                     if (cliente != null)
                     {

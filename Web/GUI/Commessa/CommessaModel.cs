@@ -122,7 +122,7 @@ namespace Web.GUI.Commessa
             try
             {
                 if (clienti != null)
-                    btnClienti.TextButton = "Clienti (" + clienti.Count + ")";
+                    btnClienti.TextButton = "Committenti (" + clienti.Count + ")";
             }
             catch (Exception ex)
             {
