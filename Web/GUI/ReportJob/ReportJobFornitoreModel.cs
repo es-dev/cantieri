@@ -351,7 +351,6 @@ namespace Web.GUI.ReportJob
                 var totalePagamentiDare = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamentiDare(fornitore, elaborazione));
 
                 tableCommesse.AddRow(_commessa, totaleImponibile, totaleIVA, totaleFatture, totalePagamentiDato, totalePagamentiDare);
-
             }
             catch (Exception ex)
             {
@@ -363,12 +362,11 @@ namespace Web.GUI.ReportJob
         {
             try
             {
-                report.AddData("TotaleImponibileFornitore", BusinessLogic.Fornitore.GetTotaleImponibile(fornitori, elaborazione), TypeFormat.Euro);
-                report.AddData("TotaleIVAFornitore", BusinessLogic.Fornitore.GetTotaleIVA(fornitori, elaborazione), TypeFormat.Euro);
-                report.AddData("TotaleFattureFornitore", BusinessLogic.Fornitore.GetTotaleFatture(fornitori, elaborazione), TypeFormat.Euro);
-                report.AddData("TotalePagamentiDatoFornitore", BusinessLogic.Fornitore.GetTotalePagamenti(fornitori, elaborazione), TypeFormat.Euro);
-                report.AddData("TotalePagamentiDareFornitore", BusinessLogic.Fornitore.GetTotalePagamentiDare(fornitori, elaborazione), TypeFormat.Euro);
-
+                report.AddData("TotaleImponibileFornitore", BusinessLogic.Commessa.GetTotaleImponibile(fornitori, elaborazione), TypeFormat.Euro);
+                report.AddData("TotaleIVAFornitore", BusinessLogic.Commessa.GetTotaleIVA(fornitori, elaborazione), TypeFormat.Euro);
+                report.AddData("TotaleFattureFornitore", BusinessLogic.Commessa.GetTotaleFatture(fornitori, elaborazione), TypeFormat.Euro);
+                report.AddData("TotalePagamentiDatoFornitore", BusinessLogic.Commessa.GetTotalePagamenti(fornitori, elaborazione), TypeFormat.Euro);
+                report.AddData("TotalePagamentiDareFornitore", BusinessLogic.Commessa.GetTotalePagamentiDare(fornitori, elaborazione), TypeFormat.Euro);
             }
             catch (Exception ex)
             {
@@ -387,7 +385,6 @@ namespace Web.GUI.ReportJob
                 report.AddData("Localita", anagraficaFornitore.Localita);
                 report.AddData("Comune", anagraficaFornitore.Comune);
                 report.AddData("Provincia", anagraficaFornitore.Provincia);
-
             }
             catch (Exception ex)
             {
@@ -405,7 +402,6 @@ namespace Web.GUI.ReportJob
                 report.AddData("EmailAzienda", azienda.Email, TypeFormat.StringND);
                 report.AddData("PartitaIvaAzienda", azienda.PartitaIva, TypeFormat.StringND);
                 report.AddData("Elaborazione", elaborazione, TypeFormat.DateDDMMYYYY);
-
             }
             catch (Exception ex)
             {
@@ -420,7 +416,6 @@ namespace Web.GUI.ReportJob
                 var obj = (ReportJobDto)Model;
                 if (obj != null && obj.Id == 0)
                     SetNewValue();
-            
             }
             catch (Exception ex)
             {

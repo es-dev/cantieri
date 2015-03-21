@@ -29,7 +29,6 @@ namespace Web.GUI.Reso
                 {
                     viewModel.NotaCredito = notaCredito;
                 }
-
             }
             catch (Exception ex)
             {

@@ -71,11 +71,14 @@ namespace BusinessLogic
                 decimal totale = 0;
                 if (fatturaVendita != null)
                 {
-                    var liquidazioni = fatturaVendita.Liquidaziones;
+                    var liquidazioni = (from q in fatturaVendita.Liquidaziones where q.Data <= data select q);
                     if (liquidazioni != null)
                     {
-                        var totaleLiquidazioni = (from q in liquidazioni where q.Data <= data select q.Importo).Sum();
-                        totale = UtilityValidation.GetDecimal(totaleLiquidazioni);
+                        foreach (var liquidazione in liquidazioni)
+                        {
+                            var totaleLiquidazione = UtilityValidation.GetDecimal(liquidazione.Importo);
+                            totale += totaleLiquidazione;
+                        }
                     }
                     return totale;
                 }
@@ -94,11 +97,39 @@ namespace BusinessLogic
                 decimal totale = 0;
                 if (fatturaAcquisto != null)
                 {
-                    var pagamenti = fatturaAcquisto.Pagamentos;
+                    var pagamenti = (from q in fatturaAcquisto.Pagamentos where q.Data <= data select q);
                     if (pagamenti != null)
                     {
-                        var totalePagamenti = (from q in pagamenti where q.Data <= data select q.Importo).Sum();
-                        totale = UtilityValidation.GetDecimal(totalePagamenti);
+                        foreach (var pagamento in pagamenti)
+                        {
+                            var totalePagamento = UtilityValidation.GetDecimal(pagamento.Importo);
+                            totale += totalePagamento;
+                        }
+                    }
+                    return totale;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+        public static decimal GetTotaleResi(FatturaAcquistoDto fatturaAcquisto, DateTime data)
+        {
+            try
+            {
+                decimal totale = 0;
+                if (fatturaAcquisto != null)
+                {
+                    var resi = (from q in fatturaAcquisto.Resos where q.Data <= data select q);
+                    if (resi != null)
+                    {
+                        foreach (var reso in resi)
+                        {
+                            var totaleResi = UtilityValidation.GetDecimal(reso.Totale);
+                            totale += totaleResi;
+                        }
                     }
                     return totale;
                 }
@@ -110,15 +141,17 @@ namespace BusinessLogic
             return 0;
         }
 
-
-        public static DateTime GetScadenza(FatturaAcquistoDto fattura)
+        public static DateTime GetScadenza(FatturaAcquistoDto fatturaAcquisto)
         {
             try
             {
-                var data = UtilityValidation.GetData(fattura.Data);
-                var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(fattura.ScadenzaPagamento);
-                var scadenza = GetScadenza(data, scadenzaPagamento);
-                return scadenza;
+                if (fatturaAcquisto != null)
+                {
+                    var data = UtilityValidation.GetData(fatturaAcquisto.Data);
+                    var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(fatturaAcquisto.ScadenzaPagamento);
+                    var scadenza = GetScadenza(data, scadenzaPagamento);
+                    return scadenza;
+                }
             }
             catch (Exception ex)
             {
@@ -127,14 +160,17 @@ namespace BusinessLogic
             return DateTime.MinValue;
         }
 
-        public static DateTime GetScadenza(FatturaVenditaDto fattura)
+        public static DateTime GetScadenza(FatturaVenditaDto fatturaVendita)
         {
             try
             {
-                var data = UtilityValidation.GetData(fattura.Data);
-                var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(fattura.ScadenzaPagamento);
-                var scadenza = GetScadenza(data, scadenzaPagamento);
-                return scadenza;
+                if (fatturaVendita != null)
+                {
+                    var data = UtilityValidation.GetData(fatturaVendita.Data);
+                    var scadenzaPagamento = UtilityEnum.GetValue<Tipi.ScadenzaPagamento>(fatturaVendita.ScadenzaPagamento);
+                    var scadenza = GetScadenza(data, scadenzaPagamento);
+                    return scadenza;
+                }
             }
             catch (Exception ex)
             {
@@ -208,14 +244,17 @@ namespace BusinessLogic
             return null;
         }
 
-        public static string GetRitardo(FatturaAcquistoDto fattura)
+        public static string GetRitardo(FatturaAcquistoDto fatturaAcquisto)
         {
             try
             {
-                var today = DateTime.Today;
-                var scadenza = GetScadenza(fattura);
-                var ritardo = GetRitardo(today, scadenza);
-                return ritardo;
+                if (fatturaAcquisto != null)
+                {
+                    var today = DateTime.Today;
+                    var scadenza = GetScadenza(fatturaAcquisto);
+                    var ritardo = GetRitardo(today, scadenza);
+                    return ritardo;
+                }
             }
             catch (Exception ex)
             {
@@ -224,14 +263,17 @@ namespace BusinessLogic
             return null;
         }
 
-        public static string GetRitardo(FatturaVenditaDto fattura)
+        public static string GetRitardo(FatturaVenditaDto fatturaVendita)
         {
             try
             {
-                var today = DateTime.Today;
-                var scadenza = GetScadenza(fattura);
-                var ritardo = GetRitardo(today, scadenza);
-                return ritardo;
+                if (fatturaVendita != null)
+                {
+                    var today = DateTime.Today;
+                    var scadenza = GetScadenza(fatturaVendita);
+                    var ritardo = GetRitardo(today, scadenza);
+                    return ritardo;
+                }
             }
             catch (Exception ex)
             {
@@ -240,18 +282,19 @@ namespace BusinessLogic
             return null;
         }
 
-        public static Tipi.StatoFattura GetStato(FatturaAcquistoDto fattura)
+        public static Tipi.StatoFattura GetStato(FatturaAcquistoDto fatturaAcquisto)
         {
             try
             {
-                var today = DateTime.Today;
-                var scadenza = GetScadenza(fattura);
-                var sconto = UtilityValidation.GetDecimal(fattura.Sconto);
-                var totale = UtilityValidation.GetDecimal(fattura.Totale);
-                var totaleFattura = totale - sconto;
-                var totalePagamenti = GetTotalePagamenti(fattura, today);
-                var stato = GetStato(today, scadenza, totaleFattura, totalePagamenti);
-                return stato;
+                if (fatturaAcquisto != null)
+                {
+                    var today = DateTime.Today;
+                    var scadenza = GetScadenza(fatturaAcquisto);
+                    var totaleFattura = GetTotaleFattura(fatturaAcquisto, today);
+                    var totalePagamenti = GetTotalePagamenti(fatturaAcquisto, today);
+                    var stato = GetStato(today, scadenza, totaleFattura, totalePagamenti);
+                    return stato;
+                }
             }
             catch (Exception ex)
             {
@@ -260,16 +303,19 @@ namespace BusinessLogic
             return Tipi.StatoFattura.None;
         }
 
-        public static Tipi.StatoFattura GetStato(FatturaVenditaDto fattura)
+        public static Tipi.StatoFattura GetStato(FatturaVenditaDto fatturaVendita)
         {
             try
             {
-                var today = DateTime.Today;
-                var scadenza = GetScadenza(fattura);
-                var totaleFattura = UtilityValidation.GetDecimal(fattura.Totale);
-                var totaleLiquidazioni = GetTotaleLiquidazioni(fattura, today);
-                var stato = GetStato(today, scadenza, totaleFattura, totaleLiquidazioni);
-                return stato;
+                if (fatturaVendita != null)
+                {
+                    var today = DateTime.Today;
+                    var scadenza = GetScadenza(fatturaVendita);
+                    var totaleFattura = UtilityValidation.GetDecimal(fatturaVendita.Totale);
+                    var totaleLiquidazioni = GetTotaleLiquidazioni(fatturaVendita, today);
+                    var stato = GetStato(today, scadenza, totaleFattura, totaleLiquidazioni);
+                    return stato;
+                }
             }
             catch (Exception ex)
             {
@@ -304,21 +350,23 @@ namespace BusinessLogic
 
         }
 
-
-        public static string GetLista(IList<FatturaAcquistoDto> fatture)
+        public static string GetLista(IList<FatturaAcquistoDto> fattureAcquisto)
         {
             try
             {
                 string  listaFatture = null;
-                foreach (var fattura in fatture)
+                if (fattureAcquisto != null)
                 {
-                    if (listaFatture!=null)
-                        listaFatture += ", ";
-                    var numero = UtilityValidation.GetStringND(fattura.Numero);
-                    var data = UtilityValidation.GetData(fattura.Data);
-                    var anno = data.Year.ToString();
-                    var _fattura = numero + "/" + anno;
-                    listaFatture += _fattura;
+                    foreach (var fatturaAcquisto in fattureAcquisto)
+                    {
+                        if (listaFatture != null)
+                            listaFatture += ", ";
+                        var numero = UtilityValidation.GetStringND(fatturaAcquisto.Numero);
+                        var data = UtilityValidation.GetData(fatturaAcquisto.Data);
+                        var anno = data.Year.ToString();
+                        var _fattura = numero + "/" + anno;
+                        listaFatture += _fattura;
+                    }
                 }
                 return listaFatture;
             }
@@ -329,20 +377,23 @@ namespace BusinessLogic
             return null;
         }
 
-        public static string GetLista(IList<FatturaVenditaDto> fatture)
+        public static string GetLista(IList<FatturaVenditaDto> fattureVendita)
         {
             try
             {
                 string listaFatture = null;
-                foreach (var fattura in fatture)
+                if (fattureVendita != null)
                 {
-                    if (listaFatture != null)
-                        listaFatture += ", ";
-                    var numero = UtilityValidation.GetStringND(fattura.Numero);
-                    var data = UtilityValidation.GetData(fattura.Data);
-                    var anno = data.Year.ToString();
-                    var _fattura = numero + "/" + anno;
-                    listaFatture += _fattura;
+                    foreach (var fatturaVendita in fattureVendita)
+                    {
+                        if (listaFatture != null)
+                            listaFatture += ", ";
+                        var numero = UtilityValidation.GetStringND(fatturaVendita.Numero);
+                        var data = UtilityValidation.GetData(fatturaVendita.Data);
+                        var anno = data.Year.ToString();
+                        var _fattura = numero + "/" + anno;
+                        listaFatture += _fattura;
+                    }
                 }
                 return listaFatture;
             }
@@ -352,16 +403,18 @@ namespace BusinessLogic
             }
             return null;
         }
-
 
         public static decimal GetTotalePagamentiDare(FatturaAcquistoDto fatturaAcquisto, DateTime data)
         {
             try
             {
-                var totaleFatture = GetTotale(fatturaAcquisto);
-                var totalePagamentiDato = GetTotalePagamenti(fatturaAcquisto, data);
-                var totalePagamentiDare = totaleFatture - totalePagamentiDato;
-                return totalePagamentiDare;
+                if (fatturaAcquisto != null)
+                {
+                    var totaleFatture = GetTotaleFattura(fatturaAcquisto, data);
+                    var totalePagamentiDato = GetTotalePagamenti(fatturaAcquisto, data);
+                    var totalePagamentiDare = totaleFatture - totalePagamentiDato;
+                    return totalePagamentiDare;
+                }
             }
             catch (Exception ex)
             {
@@ -369,5 +422,94 @@ namespace BusinessLogic
             }
             return 0;
         }
+
+        internal static decimal GetTotaleFattura(FatturaAcquistoDto fatturaAcquisto, DateTime data)
+        {
+            try
+            {
+                if (fatturaAcquisto != null)
+                {
+                    var sconto = UtilityValidation.GetDecimal(fatturaAcquisto.Sconto);
+                    var totale = UtilityValidation.GetDecimal(fatturaAcquisto.Totale);
+                    var totaleResi = GetTotaleResi(fatturaAcquisto, data);
+                    var totaleFattura = totale - sconto - totaleResi;
+                    return totaleFattura;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal GetTotaleNotaCredito(NotaCreditoDto notaCredito, DateTime data)
+        {
+            try
+            {
+                if (notaCredito != null)
+                {
+                    decimal totale = 0;
+                    var resi = (from q in notaCredito.Resos where q.Data <= data select q);
+                    foreach (var reso in resi)
+                    {
+                        var totaleReso = UtilityValidation.GetDecimal(reso.Totale);
+                        totale += totaleReso;
+                    }
+                    return totale;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+        public static decimal GetIVANotaCredito(NotaCreditoDto notaCredito, DateTime data)
+        {
+            try
+            {
+                if (notaCredito != null)
+                {
+                    decimal totaleIVA = 0;
+                    var resi = (from q in notaCredito.Resos where q.Data <= data select q);
+                    foreach (var reso in resi)
+                    {
+                        var iva = UtilityValidation.GetDecimal(reso.IVA);
+                        totaleIVA += iva;
+                    }
+                    return totaleIVA;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal GetImponibileNotaCredito(NotaCreditoDto notaCredito, DateTime data)
+        {
+            try
+            {
+                if (notaCredito != null)
+                {
+                    decimal totaleImporto = 0;
+                    var resi = (from q in notaCredito.Resos where q.Data <= data select q);
+                    foreach (var reso in resi)
+                    {
+                        var importo = UtilityValidation.GetDecimal(reso.Importo);
+                        totaleImporto += importo;
+                    }
+                    return totaleImporto;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
     }
 }

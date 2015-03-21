@@ -143,6 +143,7 @@ namespace Web.GUI.Reso
             this.editImporto.TabIndex = 4;
             this.editImporto.Text = "TemplateEditNumeric";
             this.editImporto.Value = null;
+            this.editImporto.Leave += new System.EventHandler(this.editImportoIVA_Leave);
             // 
             // editNote
             // 
@@ -256,6 +257,7 @@ namespace Web.GUI.Reso
             this.editIVA.TabIndex = 5;
             this.editIVA.Text = "TemplateEditNumeric";
             this.editIVA.Value = null;
+            this.editIVA.Leave += new System.EventHandler(this.editImportoIVA_Leave);
             // 
             // editTotale
             // 

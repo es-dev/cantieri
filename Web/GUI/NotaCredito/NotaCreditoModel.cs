@@ -199,5 +199,56 @@ namespace Web.GUI.NotaCredito
             }
         }
 
+        private void btnCalcoloTotali_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Editing)
+                    CalcolaTotali();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void CalcolaTotali()
+        {
+            try
+            {
+                var data = editData.Value;
+                if (data!=null)
+                {
+                    var obj = (WcfService.Dto.NotaCreditoDto)Model;
+
+                    var imponibile = BusinessLogic.Fattura.GetImponibileNotaCredito(obj,data.Value);
+                    var iva = BusinessLogic.Fattura.GetIVANotaCredito(obj, data.Value);
+                    var totale = BusinessLogic.Fattura.GetTotaleNotaCredito(obj, data.Value);
+                    editImponibile.Value = imponibile;
+                    editIVA.Value = iva;
+                    editTotale.Value = totale;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void btnResi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (NotaCreditoDto)Model;
+                var space = new Reso.ResoView(obj);
+                space.Title = "RESI NOTA DI CREDITO N. " + obj.Numero;
+                Workspace.AddSpace(space);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
 	}
 }
