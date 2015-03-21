@@ -60,25 +60,43 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                     var obj = (PagamentoUnificatoFatturaAcquistoDto)model;
                     editNote.Value = obj.Note;
                     editSaldo.Value = obj.Saldo;
-                    var fatturaAcquisto = obj.FatturaAcquisto;
-                    if (fatturaAcquisto != null)
-                    {
-                        editFatturaAcquisto.Model = fatturaAcquisto;
-                        editFatturaAcquisto.Value = fatturaAcquisto.Numero +" del "+ fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy");
-                    }
-                    var pagamentoUnificato = obj.PagamentoUnificato;
-                    if (pagamentoUnificato != null)
-                    {
-                        editPagamentoUnificato.Model = pagamentoUnificato;
-                        editPagamentoUnificato.Value = pagamentoUnificato.Codice + "/" + pagamentoUnificato.Data.Value.Year.ToString();
-                    }
-
+                    
+                    BindViewFatturaAcquisto(obj.FatturaAcquisto);
+                    BindViewPagamentoUnificato(obj.PagamentoUnificato);
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewPagamentoUnificato(PagamentoUnificatoDto pagamentoUnificato)
+        {
+            try
+            {
+                editPagamentoUnificato.Model = pagamentoUnificato;
+                editPagamentoUnificato.Value = (pagamentoUnificato != null ? pagamentoUnificato.Codice + "/" + pagamentoUnificato.Data.Value.Year.ToString() : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            
+        }
+
+        private void BindViewFatturaAcquisto(FatturaAcquistoDto fatturaAcquisto)
+        {
+            try
+            {
+                editFatturaAcquisto.Model = fatturaAcquisto;
+                editFatturaAcquisto.Value = (fatturaAcquisto != null ? fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            
         }
 
         public override void BindModel(object model)

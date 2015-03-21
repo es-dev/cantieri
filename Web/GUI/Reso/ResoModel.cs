@@ -65,24 +65,43 @@ namespace Web.GUI.Reso
                     editDescrizione.Value = obj.Descrizione;
                     editIVA.Value = obj.IVA;
                     editTotale.Value = obj.Totale;
-                    var fatturaAcquisto = obj.FatturaAcquisto;
-                    if (fatturaAcquisto != null)
-                    {
-                        editFatturaAcquisto.Model = fatturaAcquisto;
-                        editFatturaAcquisto.Value = fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy");
-                    }
-                    var notaCredito = obj.NotaCredito;
-                    if (notaCredito != null)
-                    {
-                        editNotaCredito.Model = notaCredito;
-                        editNotaCredito.Value = notaCredito.Numero + " del " + notaCredito.Data.Value.ToString("dd/MM/yyyy");
-                    }
+
+                    BindViewFatturaAcquisto(obj.FatturaAcquisto);
+                    BindViewNotaCredito(obj.NotaCredito);
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewNotaCredito(NotaCreditoDto notaCredito)
+        {
+            try
+            {
+                editNotaCredito.Model = notaCredito;
+                editNotaCredito.Value = (notaCredito != null ? notaCredito.Numero + " del " + notaCredito.Data.Value.ToString("dd/MM/yyyy") : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            
+        }
+
+        private void BindViewFatturaAcquisto(FatturaAcquistoDto fatturaAcquisto)
+        {
+            try
+            {
+                editFatturaAcquisto.Model = fatturaAcquisto;
+                editFatturaAcquisto.Value = (fatturaAcquisto != null ? fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            
         }
 
         public override void BindModel(object model)

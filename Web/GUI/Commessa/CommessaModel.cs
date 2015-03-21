@@ -108,8 +108,7 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                if (sals != null)
-                    btnSAL.TextButton = "SAL (" + sals.Count + ")";
+                btnSAL.TextButton = "SAL (" + (sals!=null?sals.Count:0) + ")";
             }
             catch (Exception ex)
             {
@@ -121,8 +120,7 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                if (clienti != null)
-                    btnClienti.TextButton = "Committenti (" + clienti.Count + ")";
+                btnClienti.TextButton = "Committenti (" + (clienti!=null?clienti.Count:0) + ")";
             }
             catch (Exception ex)
             {
@@ -134,8 +132,7 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                if (fornitori != null)
-                    btnFornitori.TextButton = "Fornitori (" + fornitori.Count + ")";
+                btnFornitori.TextButton = "Fornitori (" + (fornitori!=null?fornitori.Count:0) + ")";
             }
             catch (Exception ex)
             {
@@ -148,11 +145,13 @@ namespace Web.GUI.Commessa
         {
             try
             {
+
                 if (azienda != null)
                 {
-                    editAzienda.Model = azienda;
-                    editAzienda.Value = azienda.RagioneSociale;
                 }
+
+                editAzienda.Model = azienda;
+                editAzienda.Value = azienda.RagioneSociale;
             }
             catch (Exception ex)
             {

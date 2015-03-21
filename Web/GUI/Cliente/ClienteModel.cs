@@ -107,8 +107,7 @@ namespace Web.GUI.Cliente
         {
             try
             {
-                if (fattureVendita != null)
-                    btnFattureVendita.TextButton = "Fatture di vendita (" + fattureVendita.Count + ")";
+                btnFattureVendita.TextButton = "Fatture di vendita (" + (fattureVendita!=null?fattureVendita.Count:0) + ")";
             }
             catch (Exception ex)
             {
@@ -120,11 +119,8 @@ namespace Web.GUI.Cliente
         {
             try
             {
-                if (commessa != null)
-                {
-                    editCommessa.Model = commessa;
-                    editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;
-                }
+                editCommessa.Model = commessa;
+                editCommessa.Value = (commessa!=null?commessa.Codice + " - " + commessa.Denominazione:null);
             }
             catch (Exception ex)
             {

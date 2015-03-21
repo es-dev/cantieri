@@ -88,18 +88,28 @@ namespace Web.GUI.NotaCredito
                     editIVA.Value = obj.IVA;
                     editStato.Value = obj.Stato;
                     editDescrizione.Value = obj.Descrizione;
-                    var fornitore = obj.Fornitore;
-                    if (fornitore != null)
-                    {
-                        editFornitore.Model = fornitore;
-                        editFornitore.Value = fornitore.Codice + " - " + fornitore.RagioneSociale;
-                    }
+                    
+                    BindViewFornitore(obj.Fornitore);
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewFornitore(FornitoreDto fornitore)
+        {
+            try
+            {
+                editFornitore.Model = fornitore;
+                editFornitore.Value = (fornitore!=null? fornitore.Codice + " - " + fornitore.RagioneSociale:null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            
         }
 
         public override void BindModel(object model)

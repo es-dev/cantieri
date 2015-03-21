@@ -100,7 +100,21 @@ namespace Web.GUI.FatturaAcquisto
                     
                     BindViewCentroCosto(obj.CentroCosto);
                     BindViewFornitore(obj.Fornitore);
+                    BindViewPagamenti(obj.Pagamentos);
+
                 }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewPagamenti(IList<PagamentoDto> pagamenti)
+        {
+            try
+            {
+                btnPagamenti.TextButton = "Pagamenti (" + (pagamenti != null ? pagamenti.Count + ")" : null);
             }
             catch (Exception ex)
             {
@@ -112,11 +126,8 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                if (fornitore != null)
-                {
-                    editFornitore.Model = fornitore;
-                    editFornitore.Value = fornitore.Codice + " - " + fornitore.RagioneSociale;
-                }
+                editFornitore.Model = fornitore;
+                editFornitore.Value = (fornitore!=null?fornitore.Codice + " - " + fornitore.RagioneSociale:null);
             }
             catch (Exception ex)
             {
@@ -129,11 +140,8 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                if (centroCosto != null)
-                {
-                    editCentroCosto.Model = centroCosto;
-                    editCentroCosto.Value = centroCosto.Codice + " - " + centroCosto.Denominazione;
-                }
+                editCentroCosto.Model = centroCosto;
+                editCentroCosto.Value = (centroCosto!=null?centroCosto.Codice + " - " + centroCosto.Denominazione:null);
             }
             catch (Exception ex)
             {

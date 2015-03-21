@@ -86,18 +86,28 @@ namespace Web.GUI.Pagamento
                     editImporto.Value = obj.Importo;
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editDescrizione.Value = obj.Descrizione;
-                    var fatturaAcquisto = obj.FatturaAcquisto;
-                    if (fatturaAcquisto != null)
-                    {
-                        editFatturaAcquisto.Model = fatturaAcquisto;
-                        editFatturaAcquisto.Value = fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy");
-                    }
+                    
+                    BindViewFatturaAcquisto(obj.FatturaAcquisto);
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewFatturaAcquisto(FatturaAcquistoDto fatturaAcquisto)
+        {
+            try
+            {
+                editFatturaAcquisto.Model = fatturaAcquisto;
+                editFatturaAcquisto.Value = (fatturaAcquisto != null ? fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+           
         }
 
         public override void BindModel(object model)

@@ -77,20 +77,70 @@ namespace Web.GUI.Fornitore
                     editStato.Value = GetStato(obj);
                     editTotalePagamenti.Value = GetTotalePagamenti(obj);
                     editTotaleNoteCredito.Value = GetTotaleNoteCredito(obj);
-
-                    var commessa = obj.Commessa;
-                    if (commessa != null)
-                    {
-                        editCommessa.Model = commessa;
-                        editCommessa.Value =  commessa.Codice + " - " +commessa.Denominazione;
-                    }
                     editCodiceFornitore.Value = obj.Codice;
+
+                    BindViewCommessa(obj.Commessa);
+                    BindViewFattureAcquisto(obj.FatturaAcquistos);
+                    BindViewNoteCredito(obj.NotaCreditos);
+                    BindViewPagamenti(obj);
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewPagamenti(FornitoreDto obj)
+        {
+            try
+            {
+                var viewModel = new Pagamento.PagamentoViewModel(this);
+                viewModel.Fornitore = obj;
+                btnPagamenti.TextButton = "Pagamenti (" + viewModel.GetCount() + ")";
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewNoteCredito(IList<NotaCreditoDto> noteCredito)
+        {
+            try
+            {
+                btnNoteCredito.TextButton = "Note credito (" + (noteCredito != null ? noteCredito.Count : 0) + ")";
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewFattureAcquisto(IList<FatturaAcquistoDto> fattureAcquisto)
+        {
+            try
+            {
+                btnFattureAcquisto.TextButton = "Fatture acquisto (" + (fattureAcquisto != null ? fattureAcquisto.Count : 0) + ")";
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewCommessa(CommessaDto commessa)
+        {
+            try
+            {
+                editCommessa.Model = commessa;
+                editCommessa.Value = (commessa != null ? commessa.Codice + " - " + commessa.Denominazione : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+           
         }
 
         private decimal GetTotalePagamenti(WcfService.Dto.FornitoreDto fornitore)

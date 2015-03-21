@@ -94,18 +94,41 @@ namespace Web.GUI.FatturaVendita
                     editTotale.Value = obj.Totale;
                     editTotaleLiquidazioni.Value = GetTotaleLiquidazioni(obj);
                     editStato.Value = GetStato(obj); 
-                    var cliente = obj.Cliente;
-                    if (cliente != null)
-                    {
-                        editCliente.Model = cliente;
-                        editCliente.Value =  cliente.Codice + " - " + cliente.RagioneSociale;
-                    }
+
+                    BindViewCliente(obj.Cliente);
+                    BindViewLiquidazioni(obj.Liquidaziones);
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewLiquidazioni(IList<LiquidazioneDto> liquidazioni)
+        {
+            try
+            {
+                btnLiquidazioni.TextButton = "Incassi (" + (liquidazioni != null ? liquidazioni.Count : 0) + ")";
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewCliente(ClienteDto cliente)
+        {
+            try
+            {
+                editCliente.Model = cliente;
+                editCliente.Value = (cliente != null ? cliente.Codice + " - " + cliente.RagioneSociale : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            
         }
 
         private string GetStato(WcfService.Dto.FatturaVenditaDto fatturaVendita)
@@ -344,7 +367,7 @@ namespace Web.GUI.FatturaVendita
             }
         }
 
-        private void btnIncassi_Click(object sender, EventArgs e)
+        private void btnLiquidazioni_Click(object sender, EventArgs e)
         {
             try
             {

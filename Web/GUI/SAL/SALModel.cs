@@ -53,18 +53,28 @@ namespace Web.GUI.SAL
                     editDenominazione.Value = obj.Denominazione;
                     editTotalePagamenti.Value = GatTotalePagamenti(obj);
                     editStato.Value = GetStato(obj); 
-                    var commessa = obj.Commessa;
-                    if (commessa != null)
-                    {
-                        editCommessa.Model = commessa;
-                        editCommessa.Value = commessa.Denominazione;
-                    }
+                    
+                    BindViewCommessa(obj.Commessa);
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewCommessa(CommessaDto commessa)
+        {
+            try
+            {
+                editCommessa.Model = commessa;
+                editCommessa.Value = (commessa != null ? commessa.Codice + " - " + commessa.Denominazione : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+           
         }
 
         private string GetStato(SALDto sal)

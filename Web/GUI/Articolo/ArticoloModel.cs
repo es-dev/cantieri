@@ -53,18 +53,28 @@ namespace Web.GUI.Articolo
                     editSconto.Value = obj.Sconto;
                     editTotale.Value = obj.Totale;
                     editNote.Value = obj.Note;
-                    var fatturaAcquisto = obj.Fattura;
-                    if (fatturaAcquisto != null)
-                    {
-                        editFatturaAcquisto.Model = fatturaAcquisto;
-                        editFatturaAcquisto.Value = fatturaAcquisto.Numero +" del "+fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy");
-                    }
+
+                    BindViewFatturaAcquisto(obj.Fattura);
                 }
             }
             catch (Exception ex) 
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewFatturaAcquisto(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto)
+        {
+            try
+            {
+                editFatturaAcquisto.Model = fatturaAcquisto;
+                editFatturaAcquisto.Value = (fatturaAcquisto != null ? fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            
         }
 
         public override void BindModel(object model)

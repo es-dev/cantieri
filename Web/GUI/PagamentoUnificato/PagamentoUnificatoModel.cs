@@ -71,19 +71,31 @@ namespace Web.GUI.PagamentoUnificato
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editDescrizione.Value = obj.Descrizione;
                     var codiceFornitore = obj.CodiceFornitore;
-                    var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
-                    var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
-                    if (anagraficaFornitore != null)
-                    {
-                        editFornitore.Model = anagraficaFornitore;
-                        editFornitore.Value = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
-                    }
+
+                    BindViewAnagraficaFornitore(codiceFornitore);
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewAnagraficaFornitore(string codiceFornitore)
+        {
+            try
+            {
+                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
+                
+                editFornitore.Model = anagraficaFornitore;
+                editFornitore.Value = (anagraficaFornitore != null ? anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            
         }
 
         public override void BindModel(object model)

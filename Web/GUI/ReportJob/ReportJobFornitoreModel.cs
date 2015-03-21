@@ -70,14 +70,6 @@ namespace Web.GUI.ReportJob
                 {
                     var obj = (ReportJobDto)model;
                     editNote.Value = obj.Note;
-                    var codiceFornitore = obj.CodiceFornitore;
-                    var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
-                    var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
-                    if (anagraficaFornitore != null)
-                    {
-                        editFornitore.Model = anagraficaFornitore;
-                        editFornitore.Value = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
-                    }
                     editCodice.Value = obj.Codice;
                     editDenominazione.Value = obj.Denominazione;
                     editElaborazione.Value = obj.Elaborazione;
@@ -85,18 +77,48 @@ namespace Web.GUI.ReportJob
                     editTipoReport.Value = obj.Tipo;
 
                     var fileName = obj.NomeFile;
-                    editNomeFile.Value = fileName;
-                    if (fileName != null && fileName.Length > 0)
-                    {
-                        var url = UtilityWeb.GetRootUrl(Context) + "/Resources/Reports/" + fileName;
-                        editNomeFile.Url = url;
-                    }
+                    BindViewReport(fileName);
+                    BindViewAnagraficaFornitore(obj.CodiceFornitore);
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewReport(string fileName)
+        {
+            try
+            {
+                string url = null;
+                if (fileName != null && fileName.Length > 0)
+                    url = UtilityWeb.GetRootUrl(Context) + "/Resources/Reports/" + fileName;
+                
+                editNomeFile.Url = url;
+                editNomeFile.Value = fileName;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            
+        }
+
+        private void BindViewAnagraficaFornitore(string codiceFornitore)
+        {
+            try
+            {
+                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
+                editFornitore.Model = anagraficaFornitore;
+                editFornitore.Value = (anagraficaFornitore != null ? anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+           
         }
 
         private string GetDenominazione(Tipi.TipoReport tipoReport)

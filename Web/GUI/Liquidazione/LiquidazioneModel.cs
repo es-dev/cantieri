@@ -88,18 +88,28 @@ namespace Web.GUI.Liquidazione
                     editNote.Value = obj.Note;
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editDescrizione.Value = obj.Descrizione;
-                    var fatturaVendita = obj.FatturaVendita;
-                    if (fatturaVendita != null)
-                    {
-                        editFatturaVendita.Model = fatturaVendita;
-                        editFatturaVendita.Value = fatturaVendita.Numero + " del " + fatturaVendita.Data.Value.ToString("dd/MM/yyyy");
-                    }
+
+                    BindViewFatturaVendita(obj.FatturaVendita);
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewFatturaVendita(FatturaVenditaDto fatturaVendita)
+        {
+            try
+            {
+                editFatturaVendita.Model = fatturaVendita;
+                editFatturaVendita.Value = (fatturaVendita != null ? fatturaVendita.Numero + " del " + fatturaVendita.Data.Value.ToString("dd/MM/yyyy") : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+           
         }
 
         public override void BindModel(object model)
