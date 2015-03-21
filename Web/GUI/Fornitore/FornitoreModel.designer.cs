@@ -570,11 +570,12 @@ namespace Web.GUI.Fornitore
             this.btnNoteCredito.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnNoteCredito.ImageButton = "";
             this.btnNoteCredito.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnNoteCredito.Location = new System.Drawing.Point(1, 361);
+            this.btnNoteCredito.Location = new System.Drawing.Point(0, 361);
             this.btnNoteCredito.Name = "btnNoteCredito";
             this.btnNoteCredito.Size = new System.Drawing.Size(100, 72);
             this.btnNoteCredito.TabIndex = 1002;
             this.btnNoteCredito.TextButton = "Note di Credito";
+            this.btnNoteCredito.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnNoteCredito_Click);
             // 
             // FornitoreModel
             // 

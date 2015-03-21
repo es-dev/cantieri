@@ -26,7 +26,7 @@ namespace Web.GUI.Reso
                 if (model != null)
                 {
                     var obj = (ResoDto)model;
-                    var importo = UtilityValidation.GetEuro(obj.Importo);
+                    var totale = UtilityValidation.GetEuro(obj.Totale);
                     var codice = UtilityValidation.GetStringND(obj.Codice);
                     var data = UtilityValidation.GetDataND(obj.Data);
                  
@@ -34,8 +34,8 @@ namespace Web.GUI.Reso
                     infoImage.Image = "Images.dashboard.pagamento.png";
                     infoCodice.Text = "PAG";
                     infoNote.Text = obj.Note;
-                    infoImporto.Text = "Importo: " + importo;
-                    infoPagamento.Text = "Pagamento N." + codice;
+                    infoImporto.Text = "Totale: " + totale;
+                    infoPagamento.Text = "Reso N." + codice;
                 }
             }
             catch (Exception ex)

@@ -40,6 +40,8 @@ namespace Web.GUI.NotaCredito
             this.editIVA = new Library.Template.Controls.TemplateEditDecimal();
             this.editImponibile = new Library.Template.Controls.TemplateEditDecimal();
             this.editStato = new Library.Template.Controls.TemplateEditText();
+            this.btnCalcoloTotali = new Library.Controls.ButtonSeparatorV();
+            this.btnResi = new Library.Controls.ButtonSeparatorV();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -77,6 +79,17 @@ namespace Web.GUI.NotaCredito
             // infoSubtitleImage
             // 
             this.infoSubtitleImage.Location = new System.Drawing.Point(610, 3);
+            // 
+            // panelCommands
+            // 
+            this.panelCommands.Controls.Add(this.btnResi);
+            this.panelCommands.Controls.Add(this.btnCalcoloTotali);
+            this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnDelete, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnCalcoloTotali, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnResi, 0);
             // 
             // editFornitore
             // 
@@ -303,6 +316,34 @@ namespace Web.GUI.NotaCredito
             this.editStato.Text = "EditControl";
             this.editStato.Value = null;
             // 
+            // btnCalcoloTotali
+            // 
+            this.btnCalcoloTotali.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.btnCalcoloTotali.BackColor = System.Drawing.Color.Transparent;
+            this.btnCalcoloTotali.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.btnCalcoloTotali.ImageButton = "";
+            this.btnCalcoloTotali.ImageSeparator = "Images.separator_ht_small.png";
+            this.btnCalcoloTotali.Location = new System.Drawing.Point(0, 289);
+            this.btnCalcoloTotali.Name = "btnCalcoloTotali";
+            this.btnCalcoloTotali.Size = new System.Drawing.Size(100, 72);
+            this.btnCalcoloTotali.TabIndex = 1002;
+            this.btnCalcoloTotali.TextButton = "Calcolo Totali";
+            this.btnCalcoloTotali.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnCalcoloTotali_Click);
+            // 
+            // btnResi
+            // 
+            this.btnResi.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.btnResi.BackColor = System.Drawing.Color.Transparent;
+            this.btnResi.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.btnResi.ImageButton = "";
+            this.btnResi.ImageSeparator = "Images.separator_ht_small.png";
+            this.btnResi.Location = new System.Drawing.Point(0, 217);
+            this.btnResi.Name = "btnResi";
+            this.btnResi.Size = new System.Drawing.Size(100, 72);
+            this.btnResi.TabIndex = 1002;
+            this.btnResi.TextButton = "Resi";
+            this.btnResi.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnResi_Click);
+            // 
             // NotaCreditoModel
             // 
             this.Load += new System.EventHandler(this.NotaCreditoModel_Load);
@@ -327,6 +368,8 @@ namespace Web.GUI.NotaCredito
         private Library.Template.Controls.TemplateEditDecimal editIVA;
         private Library.Template.Controls.TemplateEditDecimal editTotale;
         private Library.Template.Controls.TemplateEditText editStato;
+        private Library.Controls.ButtonSeparatorV btnCalcoloTotali;
+        private Library.Controls.ButtonSeparatorV btnResi;
 
 
     }

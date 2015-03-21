@@ -210,5 +210,35 @@ namespace Web.GUI.Reso
             }
         }
 
+        private void editImportoIVA_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Editing)
+                    CalcolaTotali();
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void CalcolaTotali()
+        {
+            try
+            {
+                var importo = UtilityValidation.GetDecimal(editImporto.Value);
+                var iva = UtilityValidation.GetDecimal(editIVA.Value);
+
+                var totale = BusinessLogic.Fattura.GetTotale(importo, iva);
+                editTotale.Value = totale;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
 	}
 }

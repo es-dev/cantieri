@@ -340,6 +340,7 @@ namespace Web.GUI.Fornitore
                 {
                     var totaleFatture = BusinessLogic.Fornitore.GetTotaleFatture(obj, today);
                     var totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamenti(obj, today);
+                    var totaleNoteCredito = BusinessLogic.Fornitore.GetTotaleNoteCredito(obj, today);
                     var fattureInsolute = BusinessLogic.Fornitore.GetFattureInsolute(fatture);
                     var fattureNonPagate = BusinessLogic.Fornitore.GetFattureNonPagate(fatture);
                     var statoFornitore = BusinessLogic.Fornitore.GetStato(obj);
@@ -348,6 +349,7 @@ namespace Web.GUI.Fornitore
                     editStato.Value = stato.ToString();
                     editTotaleFattureAcquisto.Value = totaleFatture;
                     editTotalePagamenti.Value= totalePagamenti;
+                    editTotaleNoteCredito.Value = totaleNoteCredito;
                 }
             }
             catch (Exception ex)
@@ -465,6 +467,21 @@ namespace Web.GUI.Fornitore
                     editCommessa.Model = commessa;
                     editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;
                 }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void btnNoteCredito_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (FornitoreDto)Model;
+                var space = new NotaCredito.NotaCreditoView(obj);
+                space.Title = "NOTE DI CREDITO DEL FORNITORE " + obj.RagioneSociale;
+                Workspace.AddSpace(space);
             }
             catch (Exception ex)
             {
