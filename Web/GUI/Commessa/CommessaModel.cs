@@ -145,13 +145,11 @@ namespace Web.GUI.Commessa
         {
             try
             {
-
                 if (azienda != null)
                 {
+                    editAzienda.Model = azienda;
+                    editAzienda.Value = azienda.RagioneSociale;
                 }
-
-                editAzienda.Model = azienda;
-                editAzienda.Value = azienda.RagioneSociale;
             }
             catch (Exception ex)
             {

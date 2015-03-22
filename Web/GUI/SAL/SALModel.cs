@@ -100,26 +100,26 @@ namespace Web.GUI.SAL
                 var commessaId = sal.CommessaId;
                 var viewModelCliente = new Commessa.CommessaViewModel(this);
                 var commessa = viewModelCliente.Read(commessaId);
-
-                var statoCommessa = commessa.Stato;
-                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                    stato = sal.Stato;
-                else
+                if (commessa != null)
                 {
-                    var today = DateTime.Today;
-                    var data = sal.Data;
-                    var fornitori = commessa.Fornitores;
-                    var totaleAcquisti = BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, data.Value);
-                    var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
-                    var margine = UtilityValidation.GetDecimal(commessa.Margine);
-                    var margineOperativo = importoLavori - totaleAcquisti;
-                    var statoSAL = BusinessLogic.SAL.GetStato(commessa, data.Value);
-                    var _stato = GetStato(importoLavori, margine, margineOperativo, statoSAL);
-                    stato = _stato.ToString();
+                    var statoCommessa = commessa.Stato;
+                    if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                        stato = sal.Stato;
+                    else
+                    {
+                        var today = DateTime.Today;
+                        var data = sal.Data;
+                        var fornitori = commessa.Fornitores;
+                        var totaleAcquisti = BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, data.Value);
+                        var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
+                        var margine = UtilityValidation.GetDecimal(commessa.Margine);
+                        var margineOperativo = importoLavori - totaleAcquisti;
+                        var statoSAL = BusinessLogic.SAL.GetStato(commessa, data.Value);
+                        var _stato = GetStato(importoLavori, margine, margineOperativo, statoSAL);
+                        stato = _stato.ToString();
+                    }
                 }
-
                 return stato;
-
             }
             catch (Exception ex)
             {
@@ -136,14 +136,17 @@ namespace Web.GUI.SAL
                 var commessaId = sal.CommessaId;
                 var viewModelCliente = new Commessa.CommessaViewModel(this);
                 var commessa = viewModelCliente.Read(commessaId);
-                var fornitori = commessa.Fornitores;
-                var statoCommessa = commessa.Stato;
-                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                    totalePagamenti = UtilityValidation.GetDecimal(sal.TotalePagamenti);
-                else
+                if (commessa != null)
                 {
-                    var data = sal.Data;
-                    totalePagamenti = BusinessLogic.SAL.GetTotalePagamenti(fornitori, data.Value);
+                    var fornitori = commessa.Fornitores;
+                    var statoCommessa = commessa.Stato;
+                    if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                        totalePagamenti = UtilityValidation.GetDecimal(sal.TotalePagamenti);
+                    else
+                    {
+                        var data = sal.Data;
+                        totalePagamenti = BusinessLogic.SAL.GetTotalePagamenti(fornitori, data.Value);
+                    }
                 }
                 return totalePagamenti;
             }
@@ -162,14 +165,17 @@ namespace Web.GUI.SAL
                 var commessaId = sal.CommessaId;
                 var viewModelCliente = new Commessa.CommessaViewModel(this);
                 var commessa = viewModelCliente.Read(commessaId);
-                var clienti = commessa.Clientes;
-                var statoCommessa = commessa.Stato;
-                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                    totaleLiquidazioni = UtilityValidation.GetDecimal(sal.TotaleLiquidazioni);
-                else
+                if (commessa != null)
                 {
-                    var data = sal.Data;
-                    totaleLiquidazioni = BusinessLogic.SAL.GetTotaleLiquidazioni(clienti, data.Value);
+                    var clienti = commessa.Clientes;
+                    var statoCommessa = commessa.Stato;
+                    if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                        totaleLiquidazioni = UtilityValidation.GetDecimal(sal.TotaleLiquidazioni);
+                    else
+                    {
+                        var data = sal.Data;
+                        totaleLiquidazioni = BusinessLogic.SAL.GetTotaleLiquidazioni(clienti, data.Value);
+                    }
                 }
                 return totaleLiquidazioni;
             }
@@ -188,14 +194,17 @@ namespace Web.GUI.SAL
                 var commessaId = sal.CommessaId;
                 var viewModelCliente = new Commessa.CommessaViewModel(this);
                 var commessa = viewModelCliente.Read(commessaId);
-                var clienti = commessa.Clientes;
-                var statoCommessa = commessa.Stato;
-                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                    totaleVendite = UtilityValidation.GetDecimal(sal.TotaleVendite);
-                else
+                if (commessa != null)
                 {
-                    var data = sal.Data;
-                    totaleVendite = BusinessLogic.SAL.GetTotaleFattureVendita(clienti, data.Value);
+                    var clienti = commessa.Clientes;
+                    var statoCommessa = commessa.Stato;
+                    if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                        totaleVendite = UtilityValidation.GetDecimal(sal.TotaleVendite);
+                    else
+                    {
+                        var data = sal.Data;
+                        totaleVendite = BusinessLogic.SAL.GetTotaleFattureVendita(clienti, data.Value);
+                    }
                 }
                 return totaleVendite;
             }
@@ -214,14 +223,17 @@ namespace Web.GUI.SAL
                 var commessaId = sal.CommessaId;
                 var viewModelCliente = new Commessa.CommessaViewModel(this);
                 var commessa = viewModelCliente.Read(commessaId);
-                var fornitori = commessa.Fornitores;
-                var statoCommessa = commessa.Stato;
-                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                    totaleAcquisti = UtilityValidation.GetDecimal(sal.TotaleAcquisti);
-                else
+                if (commessa != null)
                 {
-                    var data = sal.Data;
-                    totaleAcquisti = BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, data.Value);
+                    var fornitori = commessa.Fornitores;
+                    var statoCommessa = commessa.Stato;
+                    if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                        totaleAcquisti = UtilityValidation.GetDecimal(sal.TotaleAcquisti);
+                    else
+                    {
+                        var data = sal.Data;
+                        totaleAcquisti = BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, data.Value);
+                    }
                 }
                 return totaleAcquisti;
             }

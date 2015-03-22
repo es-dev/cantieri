@@ -1474,10 +1474,13 @@ namespace WcfService
             {
                 var pagamenti = QueryPagamenti(search);
                 var fattureAcquisto = fornitore.FatturaAcquistos;
-                var fattureAcquistoIds = (from q in fattureAcquisto select q.Id);
-                pagamenti = (from q in pagamenti where fattureAcquistoIds.Contains(q.FatturaAcquistoId) select q);
-                var count = pagamenti.Count();
-                return count;
+                if (fattureAcquisto != null)
+                {
+                    var fattureAcquistoIds = (from q in fattureAcquisto select q.Id);
+                    pagamenti = (from q in pagamenti where fattureAcquistoIds.Contains(q.FatturaAcquistoId) select q);
+                    var count = pagamenti.Count();
+                    return count;
+                }
             }
             catch (Exception ex)
             {
@@ -2823,10 +2826,13 @@ namespace WcfService
             {
                 var liquidazioni = QueryLiquidazioni(search);
                 var fattureVendita = cliente.FatturaVenditas;
-                var fattureVenditaIds = (from q in fattureVendita select q.Id);
-                liquidazioni = (from q in liquidazioni where fattureVenditaIds.Contains(q.FatturaVenditaId) select q);
-                var count = liquidazioni.Count();
-                return count;
+                if (fattureVendita != null)
+                {
+                    var fattureVenditaIds = (from q in fattureVendita select q.Id);
+                    liquidazioni = (from q in liquidazioni where fattureVenditaIds.Contains(q.FatturaVenditaId) select q);
+                    var count = liquidazioni.Count();
+                    return count;
+                }
             }
             catch (Exception ex)
             {
