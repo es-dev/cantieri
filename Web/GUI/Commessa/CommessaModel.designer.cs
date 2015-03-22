@@ -673,7 +673,6 @@ namespace Web.GUI.Commessa
             // 
             this.btnSAL.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.btnSAL.BackColor = System.Drawing.Color.Transparent;
-            this.btnSAL.Enabled = false;
             this.btnSAL.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnSAL.ImageButton = "";
             this.btnSAL.ImageSeparator = "Images.separator_ht_small.png";
@@ -682,6 +681,7 @@ namespace Web.GUI.Commessa
             this.btnSAL.Size = new System.Drawing.Size(100, 72);
             this.btnSAL.TabIndex = 1002;
             this.btnSAL.TextButton = "SAL";
+            this.btnSAL.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnSAL_Click);
             // 
             // editComune
             // 

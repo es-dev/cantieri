@@ -576,6 +576,12 @@ namespace WcfService
         int CountSALs(string search = null);
 
         [OperationContract]
+        IEnumerable<Dto.SALDto> LoadSALsCommessa(int skip, int take,Dto.CommessaDto commessa, string search = null);
+
+        [OperationContract]
+        int CountSALsCommessa(Dto.CommessaDto commessa, string search = null);
+
+        [OperationContract]
         Dto.SALDto ReadSAL(object id);
         #endregion
         #endregion

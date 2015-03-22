@@ -3009,11 +3009,44 @@ namespace WcfService
             return null;
         }
 
+        public IEnumerable<Dto.SALDto> LoadSALsCommessa(int skip, int take,Dto.CommessaDto commessa, string search = null)
+        {
+            try
+            {
+                var sals = QuerySALs(search);
+                sals = (from q in sals where q.CommessaId == commessa.Id select q);
+                sals = (from q in sals select q).Skip(skip).Take(take);
+                var salsDto = UtilityPOCO.Assemble<Dto.SALDto>(sals);
+                return salsDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         public int CountSALs(string search = null)
         {
             try
             {
                 var sals = QuerySALs(search);
+                var count = sals.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public int CountSALsCommessa(Dto.CommessaDto commessa, string search = null)
+        {
+            try
+            {
+                var sals = QuerySALs(search);
+                sals = (from q in sals where q.CommessaId == commessa.Id select q);
                 var count = sals.Count();
                 return count;
             }

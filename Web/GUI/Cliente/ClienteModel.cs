@@ -459,7 +459,6 @@ namespace Web.GUI.Cliente
                 var obj = (ClienteDto)Model;
                 if (obj != null && obj.Id == 0)
                     SetNewValue();
-
             }
             catch (Exception ex)
             {

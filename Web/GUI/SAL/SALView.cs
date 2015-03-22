@@ -12,10 +12,29 @@ namespace Web.GUI.SAL
 {
 	public partial class SALView : TemplateView
 	{
+    private CommessaDto commessa = null;
         public SALView()
 		{ 
 			InitializeComponent();
 		}
+
+        public SALView(WcfService.Dto.CommessaDto commessa)
+        {
+            InitializeComponent();
+            try
+            {
+                this.commessa = commessa;
+                var viewModel = (SAL.SALViewModel)ViewModel;
+                if (viewModel != null)
+                {
+                    viewModel.Commessa = commessa;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 
         public override void Init()
         {
@@ -34,7 +53,7 @@ namespace Web.GUI.SAL
         {
             try
             {
-                var space = new SALModel();
+                var space = new SALModel(commessa);
                 space.Title = "NUOVO SAL";
                 space.Model = new SALDto();
                 AddSpace(space);

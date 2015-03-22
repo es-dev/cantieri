@@ -16,10 +16,25 @@ namespace Web.GUI.SAL
 {
 	public partial class SALModel : TemplateModel
 	{
+        private CommessaDto commessa = null;
+
         public SALModel()
 		{
 			InitializeComponent();
 		}
+
+        public SALModel(CommessaDto commessa)
+        {
+            InitializeComponent();
+            try
+            {
+                this.commessa = commessa;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 
         public override void BindViewSubTitle(object model)
         {
@@ -386,6 +401,37 @@ namespace Web.GUI.SAL
                 UtilityError.Write(ex);
             }
         }
+
+        private void SALModel_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (SALDto)Model;
+                if (obj != null && obj.Id == 0)
+                    SetNewValue();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void SetNewValue()
+        {
+            try
+            {
+                if (commessa != null)
+                {
+                    editCommessa.Model = commessa;
+                    editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
 
 	}
 }
