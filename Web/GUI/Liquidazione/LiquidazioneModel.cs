@@ -49,6 +49,7 @@ namespace Web.GUI.Liquidazione
             try
             {
                 editTipoPagamento.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.TipoPagamento>();
+                editTransazionePagamento.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.TransazionePagamento>();
             }
             catch (Exception ex)
             {
@@ -88,7 +89,7 @@ namespace Web.GUI.Liquidazione
                     editNote.Value = obj.Note;
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editDescrizione.Value = obj.Descrizione;
-
+                    editTransazionePagamento.Value = obj.TransazionePagamento;
                     BindViewFatturaVendita(obj.FatturaVendita);
                 }
             }
@@ -125,6 +126,7 @@ namespace Web.GUI.Liquidazione
                     obj.Note = editNote.Value;
                     obj.Descrizione = editDescrizione.Value;
                     obj.TipoPagamento = editTipoPagamento.Value;
+                    obj.TransazionePagamento = editTransazionePagamento.Value;
                     var fatturaVendita = (WcfService.Dto.FatturaVenditaDto)editFatturaVendita.Model;
                     if(fatturaVendita!=null)
                         obj.FatturaVenditaId = fatturaVendita.Id;

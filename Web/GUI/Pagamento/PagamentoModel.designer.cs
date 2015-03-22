@@ -37,6 +37,7 @@ namespace Web.GUI.Pagamento
             this.editCodice = new Library.Template.Controls.TemplateEditText();
             this.editTipoPagamento = new Library.Template.Controls.TemplateEditDropDown();
             this.editDescrizione = new Library.Template.Controls.TemplateEditText();
+            this.editTransazionePagamento = new Library.Template.Controls.TemplateEditDropDown();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -44,6 +45,7 @@ namespace Web.GUI.Pagamento
             // 
             // container
             // 
+            this.container.Controls.Add(this.editTransazionePagamento);
             this.container.Controls.Add(this.editDescrizione);
             this.container.Controls.Add(this.editTipoPagamento);
             this.container.Controls.Add(this.editCodice);
@@ -60,6 +62,7 @@ namespace Web.GUI.Pagamento
             this.container.Controls.SetChildIndex(this.editCodice, 0);
             this.container.Controls.SetChildIndex(this.editTipoPagamento, 0);
             this.container.Controls.SetChildIndex(this.editDescrizione, 0);
+            this.container.Controls.SetChildIndex(this.editTransazionePagamento, 0);
             // 
             // infoSubtitle
             // 
@@ -228,6 +231,30 @@ namespace Web.GUI.Pagamento
             this.editDescrizione.Text = "EditControl";
             this.editDescrizione.Value = null;
             // 
+            // editTransazionePagamento
+            // 
+            this.editTransazionePagamento.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editTransazionePagamento.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editTransazionePagamento.BackColor = System.Drawing.Color.Transparent;
+            this.editTransazionePagamento.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editTransazionePagamento.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editTransazionePagamento.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editTransazionePagamento.Changed = true;
+            this.editTransazionePagamento.DisplayValues = null;
+            this.editTransazionePagamento.Editing = false;
+            this.editTransazionePagamento.Items = null;
+            this.editTransazionePagamento.Label = "Transazione pagamento";
+            this.editTransazionePagamento.LabelWidth = 175;
+            this.editTransazionePagamento.Location = new System.Drawing.Point(25, 379);
+            this.editTransazionePagamento.Name = "editTransazionePagamento";
+            this.editTransazionePagamento.ReadOnly = false;
+            this.editTransazionePagamento.Required = false;
+            this.editTransazionePagamento.Size = new System.Drawing.Size(798, 30);
+            this.editTransazionePagamento.TabIndex = 4;
+            this.editTransazionePagamento.Text = "EditControl";
+            this.editTransazionePagamento.Value = null;
+            // 
             // PagamentoModel
             // 
             this.Load += new System.EventHandler(this.PagamentoModel_Load);
@@ -249,6 +276,7 @@ namespace Web.GUI.Pagamento
         private Library.Template.Controls.TemplateEditText editCodice;
         private Library.Template.Controls.TemplateEditText editDescrizione;
         private Library.Template.Controls.TemplateEditDropDown editTipoPagamento;
+        private Library.Template.Controls.TemplateEditDropDown editTransazionePagamento;
 
 
     }

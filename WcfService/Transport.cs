@@ -686,7 +686,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public PagamentoDto(int _id, int _fatturaAcquistoId, DateTime? _data, decimal? _importo, string _note, string _codice, string _tipoPagamento, string _descrizione, int? _pagamentoUnificatoId, FatturaAcquistoDto _fatturaAcquisto, PagamentoUnificatoDto _pagamentoUnificato)
+		public PagamentoDto(int _id, int _fatturaAcquistoId, DateTime? _data, decimal? _importo, string _note, string _codice, string _tipoPagamento, string _descrizione, int? _pagamentoUnificatoId, string _transazionePagamento, FatturaAcquistoDto _fatturaAcquisto, PagamentoUnificatoDto _pagamentoUnificato)
 		{
 			this.Id = _id;
 			this.FatturaAcquistoId = _fatturaAcquistoId;
@@ -697,6 +697,7 @@ namespace WcfService.Dto
 			this.TipoPagamento = _tipoPagamento;
 			this.Descrizione = _descrizione;
 			this.PagamentoUnificatoId = _pagamentoUnificatoId;
+			this.TransazionePagamento = _transazionePagamento;
 			this.FatturaAcquisto = _fatturaAcquisto;
 			this.PagamentoUnificato = _pagamentoUnificato;
 		}
@@ -730,6 +731,9 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual int? PagamentoUnificatoId { get;set; }
+
+		[DataMember]
+		public virtual string TransazionePagamento { get;set; }
 
 		[DataMember]
 		public virtual FatturaAcquistoDto FatturaAcquisto { get;set; }
@@ -825,7 +829,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public LiquidazioneDto(int _id, int _fatturaVenditaId, DateTime? _data, decimal? _importo, string _note, string _codice, string _tipoPagamento, string _descrizione, FatturaVenditaDto _fatturaVendita)
+		public LiquidazioneDto(int _id, int _fatturaVenditaId, DateTime? _data, decimal? _importo, string _note, string _codice, string _tipoPagamento, string _descrizione, string _transazionePagamento, FatturaVenditaDto _fatturaVendita)
 		{
 			this.Id = _id;
 			this.FatturaVenditaId = _fatturaVenditaId;
@@ -835,6 +839,7 @@ namespace WcfService.Dto
 			this.Codice = _codice;
 			this.TipoPagamento = _tipoPagamento;
 			this.Descrizione = _descrizione;
+			this.TransazionePagamento = _transazionePagamento;
 			this.FatturaVendita = _fatturaVendita;
 		}
 		
@@ -864,6 +869,9 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual string Descrizione { get;set; }
+
+		[DataMember]
+		public virtual string TransazionePagamento { get;set; }
 
 		[DataMember]
 		public virtual FatturaVenditaDto FatturaVendita { get;set; }

@@ -49,6 +49,7 @@ namespace Web.GUI.Pagamento
             try
             {
                 editTipoPagamento.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.TipoPagamento>();
+                editTransazionePagamento.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.TransazionePagamento>();
             }
             catch (Exception ex)
             {
@@ -86,7 +87,7 @@ namespace Web.GUI.Pagamento
                     editImporto.Value = obj.Importo;
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editDescrizione.Value = obj.Descrizione;
-                    
+                    editTransazionePagamento.Value = obj.TransazionePagamento;
                     BindViewFatturaAcquisto(obj.FatturaAcquisto);
                 }
             }
@@ -123,6 +124,7 @@ namespace Web.GUI.Pagamento
                     obj.Note = editNote.Value;
                     obj.Descrizione = editDescrizione.Value;
                     obj.TipoPagamento = editTipoPagamento.Value;
+                    obj.TransazionePagamento = editTransazionePagamento.Value;
                     var fatturaAcquisto = (FatturaAcquistoDto)editFatturaAcquisto.Model;
                     if(fatturaAcquisto!=null)
                         obj.FatturaAcquistoId = fatturaAcquisto.Id;

@@ -31,11 +31,11 @@ namespace Web.GUI.Reso
                     var data = UtilityValidation.GetDataND(obj.Data);
                  
                     infoData.Text = "Pagato il " + data;
-                    infoImage.Image = "Images.dashboard.pagamento.png";
-                    infoCodice.Text = "PAG";
+                    infoImage.Image = "Images.dashboard.reso.png";
+                    infoCodice.Text = "RES";
                     infoNote.Text = obj.Note;
                     infoImporto.Text = "Totale: " + totale;
-                    infoPagamento.Text = "Reso N." + codice;
+                    infoReso.Text = "Reso N." + codice;
                 }
             }
             catch (Exception ex)

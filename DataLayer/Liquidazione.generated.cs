@@ -128,6 +128,19 @@ namespace DataLayer
 			}
 		}
 		
+		private string _transazionePagamento;
+		public virtual string TransazionePagamento
+		{
+			get
+			{
+				return this._transazionePagamento;
+			}
+			set
+			{
+				this._transazionePagamento = value;
+			}
+		}
+		
 		private FatturaVendita _fatturaVendita;
 		public virtual FatturaVendita FatturaVendita
 		{

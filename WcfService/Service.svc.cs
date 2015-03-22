@@ -1851,15 +1851,12 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.ResoDto> LoadResiFornitore(int skip, int take, Dto.FornitoreDto fornitore, string search)
+        public IEnumerable<Dto.ResoDto> LoadResiFatturaAcquisto(int skip, int take, Dto.FatturaAcquistoDto fatturaAcquisto, string search)
         {
             try
             {
                 var resi = QueryResi(search);
-                var noteCredito = fornitore.NotaCreditos;
-                var noteCreditoIds = (from q in noteCredito select q.Id);
-                resi = (from q in resi where noteCreditoIds.Contains(q.NotaCreditoId) select q);
-
+                resi = (from q in resi where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
                 resi = (from q in resi select q).Skip(skip).Take(take);
 
                 var resiDto = UtilityPOCO.Assemble<Dto.ResoDto>(resi);
@@ -1901,14 +1898,12 @@ namespace WcfService
             }
             return 0;
         }
-        public int CountResiFornitore(Dto.FornitoreDto fornitore, string search = null)
+        public int CountResiFatturaAcquisto(Dto.FatturaAcquistoDto fatturaAcquisto, string search = null)
         {
             try
             {
                 var resi = QueryResi(search);
-                var noteCredito = fornitore.NotaCreditos;
-                var noteCreditoIds = (from q in noteCredito select q.Id);
-                resi = (from q in resi where noteCreditoIds.Contains(q.NotaCreditoId) select q);
+                resi = (from q in resi where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
                 var count = resi.Count();
                 return count;
             }

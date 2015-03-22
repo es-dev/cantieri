@@ -25,17 +25,17 @@ namespace Web.GUI.Reso
             }
         }
 
-        private FornitoreDto fornitore = null;
+        private FatturaAcquistoDto fatturaAcquisto = null;
 
-        public FornitoreDto Fornitore
+        public FatturaAcquistoDto FatturaAcquisto
         {
             get
             {
-                return fornitore;
+                return fatturaAcquisto;
             }
             set
             {
-                fornitore = value;
+                fatturaAcquisto = value;
             }
         }
 
@@ -59,12 +59,12 @@ namespace Web.GUI.Reso
             {
                 var wcf = new WcfService.Service();
                 IEnumerable<ResoDto> objs = null;
-                if(notaCredito==null  && fornitore==null)
+                if (notaCredito == null && fatturaAcquisto == null)
                     objs = wcf.LoadResi(skip, take, search);
                 else if (notaCredito != null)
                     objs = wcf.LoadResiNotaCredito(skip, take, notaCredito, search);
-                else if (fornitore != null)
-                    objs = wcf.LoadResiFornitore(skip, take, fornitore, search);
+                else if (fatturaAcquisto != null)
+                    objs = wcf.LoadResiFatturaAcquisto(skip, take, fatturaAcquisto, search);
 
                 Load(objs);
             }
@@ -80,12 +80,12 @@ namespace Web.GUI.Reso
             {
                 var wcf = new WcfService.Service();
                 var count = 0;
-                if (notaCredito == null && fornitore == null)
+                if (notaCredito == null && fatturaAcquisto == null)
                     count = wcf.CountResi(search);
                 else if (notaCredito != null)
                     count = wcf.CountResiNotaCredito(notaCredito, search);
-                else if (fornitore != null)
-                    count = wcf.CountResiFornitore(fornitore, search);
+                else if (fatturaAcquisto != null)
+                    count = wcf.CountResiFatturaAcquisto(fatturaAcquisto, search);
                 return count;
             }
             catch (Exception ex)

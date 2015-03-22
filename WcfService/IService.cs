@@ -366,10 +366,10 @@ namespace WcfService
         int CountResiNotaCredito(Dto.NotaCreditoDto notaCredito, string search = null);
 
         [OperationContract]
-        IEnumerable<Dto.ResoDto> LoadResiFornitore(int skip, int take, Dto.FornitoreDto fornitore, string search = null);
+        IEnumerable<Dto.ResoDto> LoadResiFatturaAcquisto(int skip, int take, Dto.FatturaAcquistoDto fatturaAcquisto, string search);
 
         [OperationContract]
-        int CountResiFornitore(Dto.FornitoreDto fornitore, string search = null);
+        int CountResiFatturaAcquisto(Dto.FatturaAcquistoDto fatturaAcquisto, string search = null);
 
         [OperationContract]
         Dto.ResoDto ReadReso(object id);

@@ -371,7 +371,7 @@ namespace Web.GUI.FatturaAcquisto
                     var scadenza = BusinessLogic.Fattura.GetScadenza(obj);
                     var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
                     var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, today);
-                    //var totaleNoteCredito = BusinessLogic.Fattura.GetTotaleNoteCredito(obj, today);
+                    var totaleResi = BusinessLogic.Fattura.GetTotaleResi(obj, today);
 
                     var statoFattura = BusinessLogic.Fattura.GetStato(obj);
                     var stato = GetStato(today, scadenza, totaleFattura, totalePagamenti, statoFattura);
@@ -379,7 +379,7 @@ namespace Web.GUI.FatturaAcquisto
                     editStato.Value = stato.ToString();
                     editTotale.Value = totaleFattura;
                     editTotalePagamenti.Value = totalePagamenti;
-                    //editTotaleNoteCredito.Value = totaleNoteCredito;
+                    editTotaleResi.Value = totaleResi;
 
                 }
             }
@@ -494,6 +494,23 @@ namespace Web.GUI.FatturaAcquisto
                 UtilityError.Write(ex);
             }
         }
+
+        private void btnResi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (FatturaAcquistoDto)Model;
+                var space = new Reso.ResoView(obj);
+                space.Title = "RESI FATTURA N. " + obj.Numero;
+                Workspace.AddSpace(space);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
+        }
+
 
 
 	}
