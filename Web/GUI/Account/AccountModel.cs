@@ -70,18 +70,28 @@ namespace Web.GUI.Account
                     editAbilitato.Value = obj.Abilitato;
                     editNote.Value = obj.Note;
                     editCreazione.Value = obj.Creazione;
-                    var azienda = obj.Azienda;
-                    if (azienda != null)
-                    {
-                        editAzienda.Model = azienda;
-                        editAzienda.Value = azienda.RagioneSociale;
-                    }
+
+                    BindViewAzienda(obj.Azienda);
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewAzienda(WcfService.Dto.AziendaDto azienda)
+        {
+            try
+            {
+                editAzienda.Model = azienda;
+                editAzienda.Value = (azienda != null ? azienda.Codice + " - " + azienda.RagioneSociale : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            
         }
 
         public override void BindModel(object model)

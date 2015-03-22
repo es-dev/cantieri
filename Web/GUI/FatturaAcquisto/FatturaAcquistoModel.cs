@@ -30,6 +30,7 @@ namespace Web.GUI.FatturaAcquisto
                 UtilityError.Write(ex);
             }
 		}
+
         public FatturaAcquistoModel(FornitoreDto fornitore)
         {
             InitializeComponent();
@@ -43,7 +44,6 @@ namespace Web.GUI.FatturaAcquisto
                 UtilityError.Write(ex);
             }
         }
-
 
         private void InitCombo()
         {
@@ -76,7 +76,6 @@ namespace Web.GUI.FatturaAcquisto
                 UtilityError.Write(ex);
             }
         }
-        
 
         public override void BindView(object model)  
         {
@@ -94,8 +93,10 @@ namespace Web.GUI.FatturaAcquisto
                     editScadenzaPagamento.Value = obj.ScadenzaPagamento;
                     editNote.Value = obj.Note;
                     editTotale.Value = obj.Totale;
-                    editTotalePagamenti.Value = GetTotalePagamenti(obj);
-                    editStato.Value = obj.Stato;
+
+                    var commessa = GetCommessa(obj);
+                    editTotalePagamenti.Value = BusinessLogic.Fattura.GetTotalePagamenti(obj, commessa);
+                    editStato.Value = BusinessLogic.Fattura.GetStatoDescrizione(obj, commessa);
                     editSconto.Value = obj.Sconto;
                     
                     BindViewCentroCosto(obj.CentroCosto);
@@ -150,108 +151,38 @@ namespace Web.GUI.FatturaAcquisto
             
         }
 
-        private string GetStato(FatturaAcquistoDto fatturaAcquisto)
+        private void BindViewTotali()
         {
             try
             {
-                var stato = "N/D";
-                if (fatturaAcquisto != null)
+                var imponibile = UtilityValidation.GetDecimal(editImponibile.Value);
+                var iva = UtilityValidation.GetDecimal(editIVA.Value);
+                var data = editData.Value;
+                var _scadenzaPagamento = editScadenzaPagamento.Value;
+                var today = DateTime.Today;
+
+                if (data != null)
                 {
-                    var fornitoreId = fatturaAcquisto.FornitoreId;
-                    var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
-                    var fornitore = viewModelFornitore.Read(fornitoreId);
-                    var commessa = fornitore.Commessa;
-                    var statoCommessa = commessa.Stato;
-                    if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                        stato = fatturaAcquisto.Stato;
-                    else
-                    {
-                        var today = DateTime.Today;
-                        var imponibile = UtilityValidation.GetDecimal(fatturaAcquisto.Imponibile);
-                        var iva = UtilityValidation.GetDecimal(fatturaAcquisto.IVA);
-                        var scadenza = BusinessLogic.Fattura.GetScadenza(fatturaAcquisto);
-                        var totale = BusinessLogic.Fattura.GetTotale(imponibile, iva);
-                        var sconto = UtilityValidation.GetDecimal(fatturaAcquisto.Sconto);
-                        var totaleFattura = totale - sconto;
-                        var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(fatturaAcquisto, today);
-                        var statoFattura = BusinessLogic.Fattura.GetStato(fatturaAcquisto);
-                        var _stato = GetStato(today, scadenza, totaleFattura, totalePagamenti, statoFattura);
-                        stato = _stato.ToString();
-                    }
+                    var obj = (WcfService.Dto.FatturaAcquistoDto)Model;
+                    var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
+                    var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, today);
+                    //var totaleNoteCredito = BusinessLogic.Fattura.GetTotaleNoteCredito(obj, today);
+
+                    var commessa = GetCommessa(obj);
+                    var statoDescrizione = BusinessLogic.Fattura.GetStatoDescrizione(obj, commessa); // GetStato(today, scadenza, totaleFattura, totalePagamenti, statoFattura);
+
+                    editStato.Value = statoDescrizione;
+                    editTotale.Value = totaleFattura;
+                    editTotalePagamenti.Value = totalePagamenti;
+                    //editTotaleNoteCredito.Value = totaleNoteCredito;
+
                 }
-                return stato;
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
-            return null;
         }
-
-        private decimal GetTotalePagamenti(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto)
-        {
-            try
-            {
-                decimal totalePagamenti= 0;
-                if (fatturaAcquisto != null)
-                {
-                    var fornitoreId = fatturaAcquisto.FornitoreId;
-                    var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
-                    var fornitore = viewModelFornitore.Read(fornitoreId);
-                    if (fornitore != null)
-                    {
-                        var commessa = fornitore.Commessa;
-                        var statoCommessa = commessa.Stato;
-                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                            totalePagamenti = UtilityValidation.GetDecimal(fatturaAcquisto.TotalePagamenti);
-                        else
-                        {
-                            var today = DateTime.Today;
-                            totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(fatturaAcquisto, today);
-                        }
-                    }
-                }
-                return totalePagamenti;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-
-        //private decimal GetTotaleNoteCredito(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto)
-        //{
-        //    try
-        //    {
-        //        decimal totaleNoteCredito= 0;
-        //        if (fatturaAcquisto != null)
-        //        {
-        //            var fornitoreId = fatturaAcquisto.FornitoreId;
-        //            var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
-        //            var fornitore = viewModelFornitore.Read(fornitoreId);
-        //            if (fornitore != null)
-        //            {
-        //                var commessa = fornitore.Commessa;
-        //                var statoCommessa = commessa.Stato;
-        //                if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-        //                    totaleNoteCredito = UtilityValidation.GetDecimal(fatturaAcquisto.TotaleNoteCredito);
-        //                else
-        //                {
-        //                    var today = DateTime.Today;
-        //                    totaleNoteCredito = BusinessLogic.Fattura.GetTotaleNoteCredito(fatturaAcquisto, today);
-        //                }
-        //            }
-        //        }
-        //        return totaleNoteCredito;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        UtilityError.Write(ex);
-        //    }
-        //    return 0;
-        //}
-
 
         public override void BindModel(object model)
         {
@@ -285,6 +216,33 @@ namespace Web.GUI.FatturaAcquisto
                 UtilityError.Write(ex);
             }
         }
+
+
+        private CommessaDto GetCommessa(FatturaAcquistoDto fatturaAcquisto)
+        {
+            try
+            {
+                if (fatturaAcquisto != null)
+                {
+                    var fornitoreId = fatturaAcquisto.FornitoreId;
+                    var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
+                    var fornitore = viewModelFornitore.Read(fornitoreId);
+                    if(fornitore!=null)
+                    {
+                        var commessa = fornitore.Commessa;
+                        return commessa;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+
+       
 
         private void editFornitore_ComboClick()
         {
@@ -347,82 +305,12 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 if(Editing)
-                    CalcolaTotali();
+                    BindViewTotali();
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
-        }
-
-        private void CalcolaTotali()
-        {
-            try
-            {
-                var imponibile = UtilityValidation.GetDecimal(editImponibile.Value);
-                var iva = UtilityValidation.GetDecimal(editIVA.Value);
-                var data = editData.Value;
-                var _scadenzaPagamento = editScadenzaPagamento.Value;
-                var today= DateTime.Today;
-
-                if (data != null)
-                {
-                    var obj = (WcfService.Dto.FatturaAcquistoDto)Model;
-                    var scadenza = BusinessLogic.Fattura.GetScadenza(obj);
-                    var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
-                    var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, today);
-                    //var totaleNoteCredito = BusinessLogic.Fattura.GetTotaleNoteCredito(obj, today);
-
-                    var statoFattura = BusinessLogic.Fattura.GetStato(obj);
-                    var stato = GetStato(today, scadenza, totaleFattura, totalePagamenti, statoFattura);
-
-                    editStato.Value = stato.ToString();
-                    editTotale.Value = totaleFattura;
-                    editTotalePagamenti.Value = totalePagamenti;
-                    //editTotaleNoteCredito.Value = totaleNoteCredito;
-
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private StateDescriptionImage GetStato(DateTime data, DateTime scadenza, decimal totaleFattura, decimal totalePagamenti, BusinessLogic.Tipi.StatoFattura statoFattura)
-        {
-            try
-            {
-                var stato = TypeState.None;
-                var descrizione = "";
-                var ritardo = BusinessLogic.Fattura.GetRitardo(data, scadenza);
-                var _totalePagamenti = UtilityValidation.GetEuro(totalePagamenti);
-                var _totaleFattura = UtilityValidation.GetEuro(totaleFattura);
-                var _scadenza = UtilityValidation.GetDataND(scadenza);
-
-                if (statoFattura == Tipi.StatoFattura.Insoluta)
-                {
-                    descrizione = "La fattura risulta insoluta. Il totale pagamenti pari a " + _totalePagamenti + " è inferiore al totale della fattura pari a " + _totaleFattura + ". La fattura risulta scaduta il " + _scadenza+ " con un ritardo di pagamento pari a " + ritardo;
-                    stato = TypeState.Critical;
-                }
-                else if (statoFattura == Tipi.StatoFattura.NonPagata)
-                {
-                    descrizione = "La fattura risulta in pagamento. Il totale pagamenti pari a " + _totalePagamenti + " è inferiore al totale della fattura pari a " + _totaleFattura + ". La fattura scade il " + _scadenza;
-                    stato = TypeState.Warning;
-                }
-                else if (statoFattura == Tipi.StatoFattura.Pagata)
-                {
-                    descrizione = "La fattura è stata pagata";
-                    stato = TypeState.Normal;
-                }
-                var _stato = new StateDescriptionImage(stato, descrizione);
-                return _stato;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
         }
 
         private void btnCalcoloTotali_Click(object sender, EventArgs e)
@@ -430,7 +318,7 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 if (Editing)
-                    CalcolaTotali();
+                    BindViewTotali();
             }
             catch (Exception ex)
             {
@@ -479,6 +367,7 @@ namespace Web.GUI.FatturaAcquisto
                 UtilityError.Write(ex);
             }
         }
+
         private void SetNewValue()
         {
             try
@@ -494,7 +383,6 @@ namespace Web.GUI.FatturaAcquisto
                 UtilityError.Write(ex);
             }
         }
-
 
 	}
 }

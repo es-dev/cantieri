@@ -83,8 +83,8 @@ namespace Web.GUI.Commessa
                     editNote.Value = obj.Note;
                     editImporto.Value = obj.Importo;
                     editMargine.Value = obj.Margine;
-                    editImportoAvanzamentoLavori.Value = GetImportoAvanzamentLavori(obj);
-                    editPercentualeAvanzamento.Value = GetPercentualeAvanzamento(obj);
+                    editImportoAvanzamentoLavori.Value = BusinessLogic.Commessa.GetImportoAvanzamentoLavori(obj);
+                    editPercentualeAvanzamento.Value = BusinessLogic.Commessa.GetPercentualeAvanzamento(obj);
                     editEstremiContratto.Value = obj.EstremiContratto;
                     editOggetto.Value = obj.Oggetto;
                     editImportoPerizie.Value = obj.ImportoPerizie;
@@ -140,18 +140,12 @@ namespace Web.GUI.Commessa
             }
         }
 
-
         private void BindViewAzienda(AziendaDto azienda)
         {
             try
             {
-
-                if (azienda != null)
-                {
-                }
-
                 editAzienda.Model = azienda;
-                editAzienda.Value = azienda.RagioneSociale;
+                editAzienda.Value = (azienda != null ? azienda.Codice + " - " + azienda.RagioneSociale : null);
             }
             catch (Exception ex)
             {
@@ -159,55 +153,23 @@ namespace Web.GUI.Commessa
             }
         }
 
-       
-
-        private decimal GetImportoAvanzamentLavori(WcfService.Dto.CommessaDto commessa)
+        private void BindViewAvanzamentoLavori()
         {
             try
             {
-                decimal importoAvanzamentoLavori = 0;
-                if (commessa != null)
-                {
-                    var statoCommessa = commessa.Stato;
-                    if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                        importoAvanzamentoLavori = UtilityValidation.GetDecimal(commessa.ImportoAvanzamento);
-                    else
-                    {
-                        importoAvanzamentoLavori = BusinessLogic.Commessa.GetImportoAvanzamentoLavori(commessa);
-                    }
-                }
+                var obj = (WcfService.Dto.CommessaDto)Model;
+                var importoAvanzamentoLavori = BusinessLogic.Commessa.GetImportoAvanzamentoLavori(obj);
+                var percentualeAvanzamento = BusinessLogic.Commessa.GetPercentualeAvanzamento(obj);
+
+                editPercentualeAvanzamento.Value = percentualeAvanzamento;
+                editImportoAvanzamentoLavori.Value = importoAvanzamentoLavori;
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
-            return 0;
         }
-
-        private decimal GetPercentualeAvanzamento(WcfService.Dto.CommessaDto commessa)
-        {
-            try
-            {
-                decimal percentualeAvanzamento = 0;
-                if (commessa != null)
-                {
-                    var statoCommessa = commessa.Stato;
-                    if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                        percentualeAvanzamento = UtilityValidation.GetDecimal(commessa.Percentuale);
-                    else
-                    {
-                        percentualeAvanzamento = BusinessLogic.Commessa.GetPercentualeAvanzamento(commessa);
-                    }
-                }
-                return  percentualeAvanzamento;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-
+        
         public override void BindModel(object model)
         {
             try
@@ -240,67 +202,9 @@ namespace Web.GUI.Commessa
                     obj.InizioLavori = editInizioLavori.Value;
                     obj.FineLavori = editFineLavori.Value;
                     var azienda = (WcfService.Dto.AziendaDto)editAzienda.Model;
-                    if(azienda!=null)
+                    if (azienda != null)
                         obj.AziendaId = azienda.Id;
                 }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void editAzienda_ComboClick()
-        {
-            try
-            {
-                var view = new Azienda.AziendaView();
-                view.Title = "SELEZIONA UN'AZIENDA";
-                editAzienda.Show(view);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void editAzienda_ComboConfirm(object model)
-        {
-            try
-            {
-                var azienda = (WcfService.Dto.AziendaDto)model;
-                if (azienda != null)
-                    editAzienda.Value = azienda.RagioneSociale;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void btnCalcoloAvanzamentoLavori_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Editing)
-                    CalcoloAvanzamentoLavori();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void CalcoloAvanzamentoLavori()
-        {
-            try
-            {
-                var obj = (WcfService.Dto.CommessaDto)Model;
-                var importoAvanzamentoLavori = BusinessLogic.Commessa.GetImportoAvanzamentoLavori(obj);
-                var percentualeAvanzamento = BusinessLogic.Commessa.GetPercentualeAvanzamento(obj);
-
-                editPercentualeAvanzamento.Value = percentualeAvanzamento;
-                editImportoAvanzamentoLavori.Value = importoAvanzamentoLavori;
             }
             catch (Exception ex)
             {
@@ -351,5 +255,45 @@ namespace Web.GUI.Commessa
             }
         }
 
+        private void editAzienda_ComboClick()
+        {
+            try
+            {
+                var view = new Azienda.AziendaView();
+                view.Title = "SELEZIONA UN'AZIENDA";
+                editAzienda.Show(view);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editAzienda_ComboConfirm(object model)
+        {
+            try
+            {
+                var azienda = (WcfService.Dto.AziendaDto)model;
+                if (azienda != null)
+                    editAzienda.Value = azienda.RagioneSociale;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void btnCalcoloAvanzamentoLavori_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Editing)
+                    BindViewAvanzamentoLavori();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 	}
 }

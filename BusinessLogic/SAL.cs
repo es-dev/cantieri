@@ -10,6 +10,53 @@ namespace BusinessLogic
 {
     public class SAL
     {
+        public static decimal GetImportoAvanzamentoLavori(WcfService.Dto.CommessaDto commessa)
+        {
+            try
+            {
+                if (commessa != null)
+                {
+                    var SALs = commessa.SALs;
+                    if (SALs != null)
+                    {
+                        var lastSAL = (from q in SALs orderby q.Id descending select q).Take(1).FirstOrDefault();
+                        if (lastSAL != null)
+                        {
+                            var totaleLiquidazioni = UtilityValidation.GetDecimal(lastSAL.TotaleLiquidazioni);
+                            return totaleLiquidazioni;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal GetPercentualeAvanzamento(WcfService.Dto.CommessaDto commessa)
+        {
+            try
+            {
+                if (commessa != null)
+                {
+                    var importoAvanzamentoLavori = GetImportoAvanzamentoLavori(commessa);
+                    var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
+                    if (importoLavori > 0)
+                    {
+                        var percentualeAvanzamento = (importoAvanzamentoLavori / importoLavori) * 100;
+                        return percentualeAvanzamento;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
         public static decimal GetTotaleFattureAcquisto(IList<FornitoreDto> fornitori, DateTime data)
         {
             try
@@ -41,7 +88,7 @@ namespace BusinessLogic
                 {
                     foreach (var cliente in clienti)
                     {
-                        var totaleFattura = Cliente.GetTotaleFatture(cliente, data);
+                        var totaleFattura = Cliente.GetTotaleFattureVendita(cliente, data);
                         totale += totaleFattura;
                     }
                     return totale;

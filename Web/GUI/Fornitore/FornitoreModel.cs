@@ -508,6 +508,7 @@ namespace Web.GUI.Fornitore
                 UtilityError.Write(ex);
             }
         }
+
         private void SetNewValue()
         {
             try

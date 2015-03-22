@@ -10,53 +10,6 @@ namespace BusinessLogic
 {
     public class Commessa
     {
-        public static decimal GetImportoAvanzamentoLavori(WcfService.Dto.CommessaDto commessa)
-        {
-            try
-            {
-                if (commessa != null)
-                {
-                    var SALs = commessa.SALs;
-                    if (SALs != null)
-                    {
-                        var lastSAL = (from q in SALs orderby q.Id select q).Take(1).FirstOrDefault();
-                        if(lastSAL!=null)
-                        {
-                            var importoAvanzamentoLavori = UtilityValidation.GetDecimal(lastSAL.TotaleLiquidazioni);
-                            return importoAvanzamentoLavori;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-
-        public static decimal GetPercentualeAvanzamento(WcfService.Dto.CommessaDto commessa)
-        {
-            try
-            {
-                if (commessa != null)
-                {
-                    var importoAvanzamentoLavori = GetImportoAvanzamentoLavori(commessa);
-                    var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
-                    if (importoLavori > 0)
-                    {
-                        var percentualeAvanzamento = (importoAvanzamentoLavori / importoLavori) * 100;
-                        return percentualeAvanzamento;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-
         public static decimal GetTotaleImponibile(WcfService.Dto.CommessaDto commessa, DateTime data)
         {
             try
@@ -280,6 +233,7 @@ namespace BusinessLogic
             }
             return 0;
         }
+       
         public static decimal GetTotalePagamentiDare(IList<FornitoreDto> fornitori, DateTime data)
         {
             try
@@ -291,6 +245,53 @@ namespace BusinessLogic
                     var totalePagamentiDare = totaleFatture - totalePagamentiDato;
                     return totalePagamentiDare;
                 }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal GetImportoAvanzamentoLavori(WcfService.Dto.CommessaDto commessa)
+        {
+            try
+            {
+                decimal importoAvanzamentoLavori = 0;
+                if (commessa != null)
+                {
+                    var statoCommessa = commessa.Stato;
+                    if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                        importoAvanzamentoLavori = UtilityValidation.GetDecimal(commessa.ImportoAvanzamento);
+                    else
+                    {
+                        importoAvanzamentoLavori = BusinessLogic.SAL.GetImportoAvanzamentoLavori(commessa);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal GetPercentualeAvanzamento(WcfService.Dto.CommessaDto commessa)
+        {
+            try
+            {
+                decimal percentualeAvanzamento = 0;
+                if (commessa != null)
+                {
+                    var statoCommessa = commessa.Stato;
+                    if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                        percentualeAvanzamento = UtilityValidation.GetDecimal(commessa.Percentuale);
+                    else
+                    {
+                        percentualeAvanzamento = BusinessLogic.SAL.GetPercentualeAvanzamento(commessa);
+                    }
+                }
+                return percentualeAvanzamento;
             }
             catch (Exception ex)
             {

@@ -37,7 +37,7 @@ namespace Web.GUI.Articolo
             this.editImporto = new Library.Template.Controls.TemplateEditDecimal();
             this.editIVA = new Library.Template.Controls.TemplateEditDecimal();
             this.editTotale = new Library.Template.Controls.TemplateEditDecimal();
-            this.editCodiceArticolo = new Library.Template.Controls.TemplateEditCombo();
+            this.editCodice = new Library.Template.Controls.TemplateEditCombo();
             this.editPrezzounitario = new Library.Template.Controls.TemplateEditDecimal();
             this.editQuantita = new Library.Template.Controls.TemplateEditDecimal();
             this.editNote = new Library.Template.Controls.TemplateEditText();
@@ -51,7 +51,7 @@ namespace Web.GUI.Articolo
             this.container.Controls.Add(this.editNote);
             this.container.Controls.Add(this.editQuantita);
             this.container.Controls.Add(this.editPrezzounitario);
-            this.container.Controls.Add(this.editCodiceArticolo);
+            this.container.Controls.Add(this.editCodice);
             this.container.Controls.Add(this.editTotale);
             this.container.Controls.Add(this.editIVA);
             this.container.Controls.Add(this.editImporto);
@@ -68,7 +68,7 @@ namespace Web.GUI.Articolo
             this.container.Controls.SetChildIndex(this.editImporto, 0);
             this.container.Controls.SetChildIndex(this.editIVA, 0);
             this.container.Controls.SetChildIndex(this.editTotale, 0);
-            this.container.Controls.SetChildIndex(this.editCodiceArticolo, 0);
+            this.container.Controls.SetChildIndex(this.editCodice, 0);
             this.container.Controls.SetChildIndex(this.editPrezzounitario, 0);
             this.container.Controls.SetChildIndex(this.editQuantita, 0);
             this.container.Controls.SetChildIndex(this.editNote, 0);
@@ -242,30 +242,30 @@ namespace Web.GUI.Articolo
             this.editTotale.Text = "TemplateEditNumeric";
             this.editTotale.Value = null;
             // 
-            // editCodiceArticolo
+            // editCodice
             // 
-            this.editCodiceArticolo.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.editCodice.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editCodiceArticolo.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editCodiceArticolo.BackColor = System.Drawing.Color.Transparent;
-            this.editCodiceArticolo.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editCodiceArticolo.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editCodiceArticolo.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editCodiceArticolo.Changed = true;
-            this.editCodiceArticolo.Editing = false;
-            this.editCodiceArticolo.Label = "Codice articolo";
-            this.editCodiceArticolo.LabelWidth = 175;
-            this.editCodiceArticolo.Location = new System.Drawing.Point(25, 117);
-            this.editCodiceArticolo.Model = null;
-            this.editCodiceArticolo.Name = "editCodiceArticolo";
-            this.editCodiceArticolo.ReadOnly = false;
-            this.editCodiceArticolo.Required = false;
-            this.editCodiceArticolo.Size = new System.Drawing.Size(796, 30);
-            this.editCodiceArticolo.TabIndex = 1;
-            this.editCodiceArticolo.Text = "EditControl";
-            this.editCodiceArticolo.Value = null;
-            this.editCodiceArticolo.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editCodice_ComboConfirm);
-            this.editCodiceArticolo.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editCodice_ComboClick);
+            this.editCodice.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editCodice.BackColor = System.Drawing.Color.Transparent;
+            this.editCodice.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editCodice.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editCodice.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editCodice.Changed = true;
+            this.editCodice.Editing = false;
+            this.editCodice.Label = "Codice articolo";
+            this.editCodice.LabelWidth = 175;
+            this.editCodice.Location = new System.Drawing.Point(25, 117);
+            this.editCodice.Model = null;
+            this.editCodice.Name = "editCodice";
+            this.editCodice.ReadOnly = false;
+            this.editCodice.Required = false;
+            this.editCodice.Size = new System.Drawing.Size(796, 30);
+            this.editCodice.TabIndex = 1;
+            this.editCodice.Text = "EditControl";
+            this.editCodice.Value = null;
+            this.editCodice.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editCodice_ComboConfirm);
+            this.editCodice.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editCodice_ComboClick);
             // 
             // editPrezzounitario
             // 
@@ -351,7 +351,7 @@ namespace Web.GUI.Articolo
         private Library.Template.Controls.TemplateEditDecimal editImporto;
         private Library.Template.Controls.TemplateEditDecimal editCosto;
         private Library.Template.Controls.TemplateEditDecimal editSconto;
-        private Library.Template.Controls.TemplateEditCombo editCodiceArticolo;
+        private Library.Template.Controls.TemplateEditCombo editCodice;
         private Library.Template.Controls.TemplateEditDecimal editPrezzounitario;
         private Library.Template.Controls.TemplateEditDecimal editQuantita;
         private Library.Template.Controls.TemplateEditText editNote;

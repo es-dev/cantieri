@@ -44,7 +44,7 @@ namespace Web.GUI.Articolo
                 {
                     var obj = (WcfService.Dto.ArticoloDto)model;
                     editCosto.Value = obj.Costo;
-                    editCodiceArticolo.Value = obj.Codice;
+                    editCodice.Value = obj.Codice;
                     editDescrizione.Value = obj.Descrizione;
                     editPrezzounitario.Value = obj.PrezzoUnitario;
                     editImporto.Value = obj.Importo;
@@ -85,7 +85,7 @@ namespace Web.GUI.Articolo
                 {
                     var obj = (WcfService.Dto.ArticoloDto)model;
                     obj.Costo = editCosto.Value;
-                    obj.Codice = editCodiceArticolo.Value;
+                    obj.Codice = editCodice.Value;
                     obj.PrezzoUnitario = editPrezzounitario.Value;
                     obj.Descrizione = editDescrizione.Value;
                     obj.Importo = editImporto.Value;
@@ -124,8 +124,7 @@ namespace Web.GUI.Articolo
             try
             {
                 var fatturaAcquisto = (WcfService.Dto.FatturaAcquistoDto)model;
-                if (fatturaAcquisto != null)
-                    editFatturaAcquisto.Value = fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy");
+                BindViewFatturaAcquisto(fatturaAcquisto);
             }
             catch (Exception ex)
             {
@@ -139,7 +138,7 @@ namespace Web.GUI.Articolo
             {
                 var view = new AnagraficaArticolo.AnagraficaArticoloView();
                 view.Title = "SELEZIONA UN ARTICOLO";
-                editCodiceArticolo.Show(view);
+                editCodice.Show(view);
             }
             catch (Exception ex)
             {
@@ -154,7 +153,7 @@ namespace Web.GUI.Articolo
                 var anagraficaArticolo = (WcfService.Dto.AnagraficaArticoloDto)model;
                 if (anagraficaArticolo != null)
                 {
-                    editCodiceArticolo.Value = anagraficaArticolo.Codice;
+                    editCodice.Value = anagraficaArticolo.Codice;
                     editDescrizione.Value = anagraficaArticolo.Descrizione;
                 }
             }
@@ -168,13 +167,10 @@ namespace Web.GUI.Articolo
         {
             try
             {
-                var quantita = editQuantita.Value;
-                var prezzoUnitario = editPrezzounitario.Value;
-                if (quantita != null && prezzoUnitario != null)
-                {
-                    var importo = BusinessLogic.Articolo.GetImporto((decimal)quantita, (decimal)prezzoUnitario);
-                    editImporto.Value = importo;
-                }
+                var quantita = UtilityValidation.GetDecimal(editQuantita.Value);
+                var prezzoUnitario = UtilityValidation.GetDecimal(editPrezzounitario.Value);
+                var importo = BusinessLogic.Articolo.GetImporto(quantita, prezzoUnitario);
+                editImporto.Value = importo;
             }
             catch (Exception ex)
             {
@@ -187,14 +183,10 @@ namespace Web.GUI.Articolo
         {
             try
             {
-                var importo = editImporto.Value;
-                var sconto = editSconto.Value;
-                if (importo != null && sconto != null)
-                {
-                    //da una variabile decimal? puoi prelevare i valori dopo il controllo nullità, o mediante cast, o medinate .Value
-                    var costo = BusinessLogic.Articolo.GetCosto((decimal)importo, (decimal)sconto);
-                    editCosto.Value = costo;
-                }
+                var importo = UtilityValidation.GetDecimal(editImporto.Value);
+                var sconto = UtilityValidation.GetDecimal(editSconto.Value);
+                var costo = BusinessLogic.Articolo.GetCosto(importo, sconto);
+                editCosto.Value = costo;
             }
             catch (Exception ex)
             {
@@ -206,13 +198,10 @@ namespace Web.GUI.Articolo
         {
             try
             {
-                var costo = editCosto.Value;
-                var iva = editIVA.Value;
-                if (costo != null && iva != null)
-                {
-                    var totale = BusinessLogic.Articolo.GetTotale((decimal)costo, (decimal)iva);
-                    editTotale.Value = totale;
-                }
+                var costo = UtilityValidation.GetDecimal(editCosto.Value);
+                var iva = UtilityValidation.GetDecimal(editIVA.Value);
+                var totale = BusinessLogic.Articolo.GetTotale(costo, iva);
+                editTotale.Value = totale;
             }
             catch (Exception ex)
             {

@@ -511,5 +511,209 @@ namespace BusinessLogic
             return 0;
         }
 
+        public static decimal GetTotalePagamenti(FatturaAcquistoDto fatturaAcquisto, CommessaDto commessa)
+        {
+            try
+            {
+                decimal totalePagamenti = 0;
+                if (fatturaAcquisto != null)
+                {
+                    if (commessa != null)
+                    {
+                        var statoCommessa = commessa.Stato;
+                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                            totalePagamenti = UtilityValidation.GetDecimal(fatturaAcquisto.TotalePagamenti);
+                        else
+                        {
+                            var today = DateTime.Today;
+                            totalePagamenti = GetTotalePagamenti(fatturaAcquisto, today);
+                        }
+                    }
+                }
+                return totalePagamenti;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        private static StateDescriptionImage GetStatoDescrizione(FatturaAcquistoDto fatturaAcquisto, DateTime data)
+        {
+            try
+            {
+                if (fatturaAcquisto != null)
+                {
+                    var stato = TypeState.None;
+                    var descrizione = "";
+                    var scadenza = GetScadenza(fatturaAcquisto);
+                    var totalePagamenti = GetTotalePagamenti(fatturaAcquisto, data);
+                    var totaleFattura = GetTotaleFattura(fatturaAcquisto, data);
+                    var statoFattura = GetStato(fatturaAcquisto);
+                    var ritardo = GetRitardo(data, scadenza);
+                    var _totalePagamenti = UtilityValidation.GetEuro(totalePagamenti);
+                    var _totaleFattura = UtilityValidation.GetEuro(totaleFattura);
+                    var _scadenza = UtilityValidation.GetDataND(scadenza);
+
+                    if (statoFattura == Tipi.StatoFattura.Insoluta)
+                    {
+                        descrizione = "La fattura risulta insoluta. Il totale pagamenti pari a " + _totalePagamenti + " è inferiore al totale della fattura pari a " + _totaleFattura + ". La fattura risulta scaduta il " + _scadenza + " con un ritardo di pagamento pari a " + ritardo;
+                        stato = TypeState.Critical;
+                    }
+                    else if (statoFattura == Tipi.StatoFattura.NonPagata)
+                    {
+                        descrizione = "La fattura risulta in pagamento. Il totale pagamenti pari a " + _totalePagamenti + " è inferiore al totale della fattura pari a " + _totaleFattura + ". La fattura scade il " + _scadenza;
+                        stato = TypeState.Warning;
+                    }
+                    else if (statoFattura == Tipi.StatoFattura.Pagata)
+                    {
+                        descrizione = "La fattura è stata pagata";
+                        stato = TypeState.Normal;
+                    }
+                    var statoDescrizione = new StateDescriptionImage(stato, descrizione);
+                    return statoDescrizione;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public static string GetStatoDescrizione(FatturaAcquistoDto fatturaAcquisto, CommessaDto commessa)
+        {
+            try
+            {
+                var statoDescrizione = "N/D";
+                if (fatturaAcquisto != null)
+                {
+                    if (commessa != null)
+                    {
+                        var statoCommessa = commessa.Stato;
+                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                            statoDescrizione = fatturaAcquisto.Stato;
+                        else
+                        {
+                            var today = DateTime.Today;
+                            var _statoDescrizione = GetStatoDescrizione(fatturaAcquisto, today);
+                            statoDescrizione = _statoDescrizione.ToString();
+                        }
+                    }
+                }
+                return statoDescrizione;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+
+
+
+
+
+
+        public static string GetStatoDescrizione(FatturaVenditaDto fatturaVendita, CommessaDto commessa)
+        {
+            try
+            {
+                var statoDescrizione = "N/D";
+                if (fatturaVendita != null)
+                {
+                    if (commessa != null)
+                    {
+                        var statoCommessa = commessa.Stato;
+                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                            statoDescrizione = fatturaVendita.Stato;
+                        else
+                        {
+                            var today = DateTime.Today;
+                            var _statoDescrizione = GetStatoDescrizione(fatturaVendita, today);
+                            statoDescrizione = _statoDescrizione.ToString();
+                        }
+                    }
+                }
+                return statoDescrizione;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private static StateDescriptionImage GetStatoDescrizione(FatturaVenditaDto fatturaVendita, DateTime data)
+        {
+            try
+            {
+                var stato = TypeState.None;
+                var descrizione = "";
+                var scadenza = GetScadenza(fatturaVendita);
+                var totaleLiquidazioni = GetTotaleLiquidazioni(fatturaVendita, data);
+                var totaleFattura = GetTotale(fatturaVendita);
+                var statoFattura = GetStato(fatturaVendita);
+                var ritardo = GetRitardo(data, scadenza);
+                var _totaleLiquidazioni = UtilityValidation.GetEuro(totaleLiquidazioni);
+                var _totaleFattura = UtilityValidation.GetEuro(totaleFattura);
+                var _scadenza = UtilityValidation.GetDataND(scadenza);
+
+                if (statoFattura == Tipi.StatoFattura.Insoluta)
+                {
+                    descrizione = "La fattura risulta insoluta. Il totale incassi pari a " + _totaleLiquidazioni + " è inferiore al totale della fattura pari a " + _totaleFattura + ". La fattura risulta scaduta il " + _scadenza + " con un ritardo di liquidazione pari a " + ritardo;
+                    stato = TypeState.Critical;
+                }
+                else if (statoFattura == Tipi.StatoFattura.NonPagata)
+                {
+                    descrizione = "La fattura risulta non incassata. Il totale incassi pari a " + _totaleLiquidazioni + " è inferiore al totale della fattura pari a " + _totaleFattura + ". La fattura scade il " + _scadenza;
+                    stato = TypeState.Warning;
+                }
+                else if (statoFattura == Tipi.StatoFattura.Pagata)
+                {
+                    descrizione = "La fattura è stata incassata";
+                    stato = TypeState.Normal;
+                }
+                var _stato = new StateDescriptionImage(stato, descrizione);
+                return _stato;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public static decimal GetTotaleLiquidazioni(FatturaVenditaDto fatturaVendita, CommessaDto commessa)
+        {
+            try
+            {
+                decimal totaleLiquidazioni = 0;
+                if (fatturaVendita != null)
+                {
+                    if (commessa != null)
+                    {
+                        var statoCommessa = commessa.Stato;
+                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                            totaleLiquidazioni = UtilityValidation.GetDecimal(fatturaVendita.TotaleLiquidazioni);
+                        else
+                        {
+                            var today = DateTime.Today;
+                            totaleLiquidazioni = GetTotaleLiquidazioni(fatturaVendita, today);
+                        }
+                    }
+                }
+                return totaleLiquidazioni;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+
     }
 }

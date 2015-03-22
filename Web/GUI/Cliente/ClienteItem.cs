@@ -36,7 +36,7 @@ namespace Web.GUI.Cliente
                     var provincia = UtilityValidation.GetStringND(obj.Provincia);
                     var commessa = obj.Commessa;
                     var today = DateTime.Today;
-                    var totaleFatture = BusinessLogic.Cliente.GetTotaleFatture(obj, today);
+                    var totaleFatture = BusinessLogic.Cliente.GetTotaleFattureVendita(obj, today);
                     var totaleLiquidazioni = BusinessLogic.Cliente.GetTotaleLiquidazioni(obj, today);
                     var stato = GetStato(obj);
                     var _totaleLiquidazioni = UtilityValidation.GetEuro(totaleLiquidazioni);
