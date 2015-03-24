@@ -974,25 +974,34 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquistoFornitoreDare(int skip, int take, string search, Dto.AnagraficaFornitoreDto anagraficaFornitore)
+        //todo: questa funzione deve essere trasformata in LoadFattureAcquistoAnagraficaFornitore!!! perchè Wcf non può conoscere stati o logica
+        public IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquistoAnagraficaFornitore(int skip, int take, string search, Dto.AnagraficaFornitoreDto anagraficaFornitore)
         {
             try
             {
                 var fattureAcquistoId= new List<int>();
                 var fattureAcquisto = QueryFattureAcquisto(search);
                 fattureAcquisto = (from q in fattureAcquisto where q.Fornitore.Codice ==anagraficaFornitore.Codice select q);
-                foreach( var fatturaAcquisto in fattureAcquisto)
-                {
-                    var totale = UtilityValidation.GetDecimal(fatturaAcquisto.Totale);
-                    var pagamenti = fatturaAcquisto.Pagamentos;
-                    var totalePagamenti = UtilityValidation.GetDecimal((from q in pagamenti select q.Importo).Sum());
-                    if (totalePagamenti < totale)
-                    {
-                        fattureAcquistoId.Add(fatturaAcquisto.Id);
-                    }
-                }
-                fattureAcquisto = (from q in fattureAcquisto where fattureAcquistoId.Contains(q.Id) select q);
+                //punto in cui filtrare per fatture di tipo Dare = Insolute + NonPagate
+                //ma Dare lo sa solo la BL (Wcf non vede la BL)
                 fattureAcquisto = (from q in fattureAcquisto select q).Skip(skip).Take(take);
+                var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
+                return fattureAcquistoDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquistoAnagraficaFornitore(string search, Dto.AnagraficaFornitoreDto anagraficaFornitore)
+        {
+            try
+            {
+                var fattureAcquistoId = new List<int>();
+                var fattureAcquisto = QueryFattureAcquisto(search);
+                fattureAcquisto = (from q in fattureAcquisto where q.Fornitore.Codice == anagraficaFornitore.Codice select q);
                 var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
                 return fattureAcquistoDto;
             }
@@ -1036,24 +1045,13 @@ namespace WcfService
             return 0;
         }
 
-        public int CountFattureAcquistoFornitoreDare(string search, Dto.AnagraficaFornitoreDto anagraficaFornitore)
+        public int CountFattureAcquistoAnagraficaFornitore(string search, Dto.AnagraficaFornitoreDto anagraficaFornitore)
         {
             try
             {
                 var fattureAcquistoId = new List<int>();
                 var fattureAcquisto = QueryFattureAcquisto(search);
                 fattureAcquisto = (from q in fattureAcquisto where q.Fornitore.Codice == anagraficaFornitore.Codice select q);
-                foreach (var fatturaAcquisto in fattureAcquisto)
-                {
-                    var totale = UtilityValidation.GetDecimal(fatturaAcquisto.Totale);
-                    var pagamenti = fatturaAcquisto.Pagamentos;
-                    var totalePagamenti = UtilityValidation.GetDecimal((from q in pagamenti select q.Importo).Sum());
-                    if (totalePagamenti < totale)
-                    {
-                        fattureAcquistoId.Add(fatturaAcquisto.Id);
-                    }
-                }
-                fattureAcquisto = (from q in fattureAcquisto where fattureAcquistoId.Contains(q.Id) select q);
                 var count = fattureAcquisto.Count();
                 return count;
             }

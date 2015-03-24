@@ -196,7 +196,8 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                 if (fatturaAcquisto != null)
                 {
                     var today = DateTime.Today;
-                    var saldo = BusinessLogic.Fattura.GetTotalePagamentiDare(fatturaAcquisto, today);
+                    var saldo = BusinessLogic.Fattura.GetTotalePagamenti
+                        (fatturaAcquisto, today);
                     editSaldo.Value = saldo;
                 }
 
