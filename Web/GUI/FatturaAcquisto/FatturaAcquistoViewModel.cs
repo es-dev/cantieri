@@ -70,9 +70,15 @@ namespace Web.GUI.FatturaAcquisto
                 IEnumerable<FatturaAcquistoDto> objs = null;
                 if(anagraficaFornitore==null && fornitore==null)
                     objs = wcf.LoadFattureAcquisto(skip, take, search);
-                else if(anagraficaFornitore!=null && statoFattura== Tipi.StatoFattura.NonPagata || statoFattura== Tipi.StatoFattura.Insoluta)
-                    objs = wcf.LoadFattureAcquistoFornitoreDare(skip, take, search, anagraficaFornitore);
-                else if(fornitore!=null)
+                else if (anagraficaFornitore != null && (statoFattura == Tipi.StatoFattura.NonPagata || statoFattura == Tipi.StatoFattura.Insoluta))
+                {
+                    //richiamo le fatture per il fornitore e sfrutto la BL per ottenere la nonpagate + insolute
+                    var fattureAcquistoAnagraficaFornitore = wcf.ReadFattureAcquistoAnagraficaFornitore(search, anagraficaFornitore);
+                    var fattureAcquistoDare = BusinessLogic.Fornitore.GetFattureDare(fattureAcquistoAnagraficaFornitore);
+                    objs = (from q in fattureAcquistoDare select q).Skip(skip).Take(take).ToList();
+                    //objs = wcf.LoadFattureAcquistoAnagraficaFornitore(skip, take, search, anagraficaFornitore);
+                }
+                else if (fornitore != null)
                     objs = wcf.LoadFattureAcquistoFornitore(skip, take, fornitore, search);
                 Load(objs);
             }
@@ -90,8 +96,13 @@ namespace Web.GUI.FatturaAcquisto
                 int count = 0;
                 if(anagraficaFornitore==null && fornitore==null)
                      count = wcf.CountFattureAcquisto(search);
-                else if(anagraficaFornitore!=null && statoFattura== Tipi.StatoFattura.NonPagata || statoFattura== Tipi.StatoFattura.Insoluta)
-                    count = wcf.CountFattureAcquistoFornitoreDare(search, anagraficaFornitore);
+                else if (anagraficaFornitore != null && (statoFattura == Tipi.StatoFattura.NonPagata || statoFattura == Tipi.StatoFattura.Insoluta))
+                {
+                    var fattureAcquistoAnagraficaFornitore = wcf.ReadFattureAcquistoAnagraficaFornitore(search, anagraficaFornitore);
+                    var fattureAcquistoDare = BusinessLogic.Fornitore.GetFattureDare(fattureAcquistoAnagraficaFornitore);
+                    count = fattureAcquistoDare.Count();
+                    //count = wcf.CountFattureAcquistoAnagraficaFornitore(search, anagraficaFornitore);
+                }
                 else if (fornitore != null)
                     count = wcf.CountFattureAcquistoFornitore(fornitore, search);
 

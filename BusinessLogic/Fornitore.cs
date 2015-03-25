@@ -401,5 +401,28 @@ namespace BusinessLogic
             }
             return 0;
         }
+
+        public static IList<WcfService.Dto.FatturaAcquistoDto> GetFattureDare(IEnumerable<FatturaAcquistoDto> fattureAcquistoAnagraficaFornitore)
+        {
+            try
+            {
+                var fattureDare= new List<WcfService.Dto.FatturaAcquistoDto>();
+                if (fattureAcquistoAnagraficaFornitore!=null)
+                {
+                    foreach(var fatturaAcquistoAnagraficaFornitore in fattureAcquistoAnagraficaFornitore)
+                    {
+                        var statoFattura = Fattura.GetStato(fatturaAcquistoAnagraficaFornitore);
+                        if (statoFattura == Tipi.StatoFattura.Insoluta || statoFattura == Tipi.StatoFattura.NonPagata)
+                            fattureDare.Add(fatturaAcquistoAnagraficaFornitore);
+                    }
+                }
+                return fattureDare;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }
