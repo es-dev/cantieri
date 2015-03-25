@@ -47,6 +47,8 @@ namespace Web.GUI.FatturaAcquisto
             this.editNote = new Library.Template.Controls.TemplateEditText();
             this.btnPagamenti = new Library.Controls.ButtonSeparatorV();
             this.editSconto = new Library.Template.Controls.TemplateEditDecimal();
+            this.editTotaleResi = new Library.Template.Controls.TemplateEditDecimal();
+            this.btnResi = new Library.Controls.ButtonSeparatorV();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -54,6 +56,7 @@ namespace Web.GUI.FatturaAcquisto
             // 
             // container
             // 
+            this.container.Controls.Add(this.editTotaleResi);
             this.container.Controls.Add(this.editSconto);
             this.container.Controls.Add(this.editNote);
             this.container.Controls.Add(this.editTotalePagamenti);
@@ -87,6 +90,7 @@ namespace Web.GUI.FatturaAcquisto
             this.container.Controls.SetChildIndex(this.editTotalePagamenti, 0);
             this.container.Controls.SetChildIndex(this.editNote, 0);
             this.container.Controls.SetChildIndex(this.editSconto, 0);
+            this.container.Controls.SetChildIndex(this.editTotaleResi, 0);
             // 
             // infoSubtitle
             // 
@@ -98,6 +102,7 @@ namespace Web.GUI.FatturaAcquisto
             // 
             // panelCommands
             // 
+            this.panelCommands.Controls.Add(this.btnResi);
             this.panelCommands.Controls.Add(this.btnPagamenti);
             this.panelCommands.Controls.Add(this.btnCalcoloTotali);
             this.panelCommands.Size = new System.Drawing.Size(101, 665);
@@ -107,6 +112,7 @@ namespace Web.GUI.FatturaAcquisto
             this.panelCommands.Controls.SetChildIndex(this.btnDelete, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnCalcoloTotali, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnPagamenti, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnResi, 0);
             // 
             // btnDelete
             // 
@@ -373,7 +379,7 @@ namespace Web.GUI.FatturaAcquisto
             this.lblAndamento.BackColor = System.Drawing.Color.Gainsboro;
             this.lblAndamento.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAndamento.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblAndamento.Location = new System.Drawing.Point(13, 512);
+            this.lblAndamento.Location = new System.Drawing.Point(25, 507);
             this.lblAndamento.Name = "lblAndamento";
             this.lblAndamento.Size = new System.Drawing.Size(887, 30);
             this.lblAndamento.TabIndex = 1001;
@@ -409,7 +415,7 @@ namespace Web.GUI.FatturaAcquisto
             this.btnCalcoloTotali.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnCalcoloTotali.ImageButton = "";
             this.btnCalcoloTotali.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnCalcoloTotali.Location = new System.Drawing.Point(0, 289);
+            this.btnCalcoloTotali.Location = new System.Drawing.Point(0, 361);
             this.btnCalcoloTotali.Name = "btnCalcoloTotali";
             this.btnCalcoloTotali.Size = new System.Drawing.Size(100, 72);
             this.btnCalcoloTotali.TabIndex = 1002;
@@ -465,7 +471,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editSconto.Editing = false;
             this.editSconto.Label = "Sconto";
             this.editSconto.LabelWidth = 175;
-            this.editSconto.Location = new System.Drawing.Point(27, 438);
+            this.editSconto.Location = new System.Drawing.Point(25, 435);
             this.editSconto.Name = "editSconto";
             this.editSconto.ReadOnly = false;
             this.editSconto.Required = false;
@@ -473,6 +479,42 @@ namespace Web.GUI.FatturaAcquisto
             this.editSconto.TabIndex = 9;
             this.editSconto.Text = "TemplateEditNumeric";
             this.editSconto.Value = null;
+            // 
+            // editTotaleResi
+            // 
+            this.editTotaleResi.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editTotaleResi.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editTotaleResi.BackColor = System.Drawing.Color.Transparent;
+            this.editTotaleResi.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editTotaleResi.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editTotaleResi.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editTotaleResi.Changed = true;
+            this.editTotaleResi.Editing = false;
+            this.editTotaleResi.Label = "Totale resi";
+            this.editTotaleResi.LabelWidth = 175;
+            this.editTotaleResi.Location = new System.Drawing.Point(25, 579);
+            this.editTotaleResi.Name = "editTotaleResi";
+            this.editTotaleResi.ReadOnly = false;
+            this.editTotaleResi.Required = false;
+            this.editTotaleResi.Size = new System.Drawing.Size(798, 30);
+            this.editTotaleResi.TabIndex = 11;
+            this.editTotaleResi.Text = "TemplateEditNumeric";
+            this.editTotaleResi.Value = null;
+            // 
+            // btnResi
+            // 
+            this.btnResi.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.btnResi.BackColor = System.Drawing.Color.Transparent;
+            this.btnResi.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.btnResi.ImageButton = "";
+            this.btnResi.ImageSeparator = "Images.separator_ht_small.png";
+            this.btnResi.Location = new System.Drawing.Point(0, 289);
+            this.btnResi.Name = "btnResi";
+            this.btnResi.Size = new System.Drawing.Size(100, 72);
+            this.btnResi.TabIndex = 1002;
+            this.btnResi.TextButton = "Resi";
+            this.btnResi.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnResi_Click);
             // 
             // FatturaAcquistoModel
             // 
@@ -506,6 +548,8 @@ namespace Web.GUI.FatturaAcquisto
         private Library.Template.Controls.TemplateEditText editNote;
         private Library.Controls.ButtonSeparatorV btnPagamenti;
         private Library.Template.Controls.TemplateEditDecimal editSconto;
+        private Library.Template.Controls.TemplateEditDecimal editTotaleResi;
+        private Library.Controls.ButtonSeparatorV btnResi;
 
 
     }

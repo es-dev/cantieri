@@ -43,7 +43,7 @@ namespace Web.GUI.Reso
                 var codice = UtilityValidation.GetStringND(obj.Codice);
                 var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
                 infoSubtitle.Text = codice + " - " + descrizione;
-                infoSubtitleImage.Image = "Images.dashboard.pagamento.png";
+                infoSubtitleImage.Image = "Images.dashboard.reso.png";
             }
             catch (Exception ex)
             {
@@ -102,6 +102,22 @@ namespace Web.GUI.Reso
                 UtilityError.Write(ex);
             }
             
+        }
+
+        private void BindViewTotali()
+        {
+            try
+            {
+                var importo = UtilityValidation.GetDecimal(editImporto.Value);
+                var iva = UtilityValidation.GetDecimal(editIVA.Value);
+
+                var totale = BusinessLogic.Fattura.GetTotale(importo, iva);
+                editTotale.Value = totale;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
         }
 
         public override void BindModel(object model)
@@ -177,22 +193,6 @@ namespace Web.GUI.Reso
 
         }
 
-        private void SetNewValue()
-        {
-            try
-            {
-                if (notaCredito!=null)
-                {
-                    editNotaCredito.Model = notaCredito;
-                    editNotaCredito.Value = notaCredito.Numero + " del " + notaCredito.Data.Value.ToString("dd/MM/yyyy"); 
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
         private void editNotaCredito_ComboClick()
         {
             try
@@ -234,7 +234,7 @@ namespace Web.GUI.Reso
             try
             {
                 if (Editing)
-                    CalcolaTotali();
+                    BindViewTotali();
 
             }
             catch (Exception ex)
@@ -243,15 +243,15 @@ namespace Web.GUI.Reso
             }
         }
 
-        private void CalcolaTotali()
+        private void SetNewValue()
         {
             try
             {
-                var importo = UtilityValidation.GetDecimal(editImporto.Value);
-                var iva = UtilityValidation.GetDecimal(editIVA.Value);
-
-                var totale = BusinessLogic.Fattura.GetTotale(importo, iva);
-                editTotale.Value = totale;
+                if (notaCredito != null)
+                {
+                    editNotaCredito.Model = notaCredito;
+                    editNotaCredito.Value = notaCredito.Numero + " del " + notaCredito.Data.Value.ToString("dd/MM/yyyy");
+                }
             }
             catch (Exception ex)
             {

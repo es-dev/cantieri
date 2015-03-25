@@ -525,6 +525,9 @@
         <orm:field name="_pagamentoUnificatoId" property="PagamentoUnificatoId" uniqueId="2bc43c6c-ba84-45d7-93ff-3ab8fdb3f184" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="PagamentoUnificatoId" sql-type="int" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
+        <orm:field name="_transazionePagamento" property="TransazionePagamento" uniqueId="fa6f3401-f11a-4f10-8560-4f8916b34cc5" type="System.String">
+          <orm:column name="TransazionePagamento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
         <orm:field name="_fatturaAcquisto" property="FatturaAcquisto" behavior="readwrite" uniqueId="f717ab9e-9083-481c-afb9-aff821782252" type="DataLayer.FatturaAcquisto">
           <orm:reference uniqueId="c5b7ccac-23e7-4d05-9ef1-626f304fefdf" association-name="PagamentoHasFatturaAcquisto">
             <orm:sharedfield name="_fatturaAcquistoId" target-class="DataLayer.FatturaAcquisto" target-field="_id" />
@@ -633,6 +636,9 @@
         </orm:field>
         <orm:field name="_descrizione" property="Descrizione" uniqueId="d6beeed0-a88b-4e7b-a574-546e792554a5" type="System.String">
           <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
+        <orm:field name="_transazionePagamento" property="TransazionePagamento" uniqueId="2992f8aa-f4fc-4f21-a9c0-7ef8d7bbc7c5" type="System.String">
+          <orm:column name="TransazionePagamento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
         <orm:field name="_fatturaVendita" property="FatturaVendita" behavior="readwrite" uniqueId="f442223b-ae9c-4200-bc51-86d2e364dc58" type="DataLayer.FatturaVendita">
           <orm:reference uniqueId="3d93d254-2a67-4e4a-8665-f0d72e57af0f" association-name="LiquidazioneHasFatturaVendita">
@@ -1207,6 +1213,7 @@
         <orm:column name="TipoPagamento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="PagamentoUnificatoId" sql-type="int" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="TransazionePagamento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:index name="idx_Pgamento_FatturaAcquistoId">
           <orm:columnMapping>
             <orm:column name="FatturaAcquistoId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -1263,6 +1270,7 @@
         <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="TipoPagamento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        <orm:column name="TransazionePagamento" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:index name="idx_Lqdazione_FatturaVenditaId">
           <orm:columnMapping>
             <orm:column name="FatturaVenditaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -1782,6 +1790,7 @@
       <Property Id="847e9967-eadc-48f3-9cbd-7743b17273c8" name="TipoPagamento" label="TipoPagamento : String" fieldName="_tipoPagamento" />
       <Property Id="fc7ea997-bad5-4665-8fc7-6447aa26cdd9" name="Descrizione" label="Descrizione : String" fieldName="_descrizione" />
       <Property Id="2bc43c6c-ba84-45d7-93ff-3ab8fdb3f184" name="PagamentoUnificatoId" type="Int32" label="PagamentoUnificatoId : Int32" nullable="true" fieldName="_pagamentoUnificatoId" />
+      <Property Id="fa6f3401-f11a-4f10-8560-4f8916b34cc5" name="TransazionePagamento" label="TransazionePagamento : String" fieldName="_transazionePagamento" />
       <AssociationTargets>
         <Association Id="c5b7ccac-23e7-4d05-9ef1-626f304fefdf" SourceMultiplicity="ZeroOne" name="PagamentoHasFatturaAcquisto">
           <DomainClassMoniker name="/EntitiesModel/FatturaAcquisto" />
@@ -1866,6 +1875,7 @@
       <Property Id="5dca0326-62de-45b9-8567-11ce131e9556" name="Codice" label="Codice : String" fieldName="_codice" />
       <Property Id="f6180a73-3dd3-4dd7-8b9a-4ea827169ac4" name="TipoPagamento" label="TipoPagamento : String" fieldName="_tipoPagamento" />
       <Property Id="d6beeed0-a88b-4e7b-a574-546e792554a5" name="Descrizione" label="Descrizione : String" fieldName="_descrizione" />
+      <Property Id="2992f8aa-f4fc-4f21-a9c0-7ef8d7bbc7c5" name="TransazionePagamento" label="TransazionePagamento : String" fieldName="_transazionePagamento" />
       <AssociationTargets>
         <Association Id="3d93d254-2a67-4e4a-8665-f0d72e57af0f" SourceMultiplicity="ZeroOne" name="LiquidazioneHasFatturaVendita">
           <DomainClassMoniker name="/EntitiesModel/FatturaVendita" />

@@ -99,6 +99,25 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             
         }
 
+        private void BindViewSaldo()
+        {
+            try
+            {
+                var fatturaAcquisto = (FatturaAcquistoDto)editFatturaAcquisto.Model;
+                if (fatturaAcquisto != null)
+                {
+                    var today = DateTime.Today;
+                    var saldo = BusinessLogic.Fattura.GetTotalePagamentiDare(fatturaAcquisto, today);
+                    editSaldo.Value = saldo;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         public override void BindModel(object model)
         {
             try
@@ -149,7 +168,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                 if (fatturaAcquisto != null)
                 {
                     editFatturaAcquisto.Value = fatturaAcquisto.Numero + "/" + fatturaAcquisto.Data.Value.Year.ToString();
-                    CalcolaSaldo();
+                    BindViewSaldo();
                 }
             }
             catch (Exception ex)
@@ -181,25 +200,6 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                 {
                     editPagamentoUnificato.Value = pagamentoUnificato.Codice + "/" + pagamentoUnificato.Data.Value.Year.ToString();
                 }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void CalcolaSaldo()
-        {
-            try
-            {
-                var fatturaAcquisto = (FatturaAcquistoDto)editFatturaAcquisto.Model;
-                if (fatturaAcquisto != null)
-                {
-                    var today = DateTime.Today;
-                    var saldo = BusinessLogic.Fattura.GetTotalePagamentiDare(fatturaAcquisto, today);
-                    editSaldo.Value = saldo;
-                }
-
             }
             catch (Exception ex)
             {

@@ -1,4 +1,5 @@
 ﻿using Library.Code;
+using Library.Code.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,7 +60,6 @@ namespace BusinessLogic
             return 0;
         }
 
-
         public static decimal GetTotalePagamenti(FornitoreDto fornitore, DateTime data)
         {
             try
@@ -86,8 +86,7 @@ namespace BusinessLogic
             return 0;
         }
 
-
-        public static IList<WcfService.Dto.FatturaAcquistoDto> GetFattureInsolute(IList<FatturaAcquistoDto> fattureAcquisto)
+        public static IList<FatturaAcquistoDto> GetFattureInsolute(IList<FatturaAcquistoDto> fattureAcquisto)
         {
             try
             {
@@ -104,7 +103,7 @@ namespace BusinessLogic
             return null;
         }
 
-        public static IList<WcfService.Dto.FatturaAcquistoDto> GetFattureNonPagate(IList<FatturaAcquistoDto> fattureAcquisto)
+        public static IList<FatturaAcquistoDto> GetFattureNonPagate(IList<FatturaAcquistoDto> fattureAcquisto)
         {
             try
             {
@@ -121,7 +120,7 @@ namespace BusinessLogic
             return null;
         }
 
-        private static IList<WcfService.Dto.FatturaAcquistoDto> GetFatture(IList<FatturaAcquistoDto> fattureAcquisto, Tipi.StatoFattura stato)
+        private static IList<FatturaAcquistoDto> GetFatture(IList<FatturaAcquistoDto> fattureAcquisto, Tipi.StatoFattura stato)
         {
             try
             {
@@ -137,7 +136,6 @@ namespace BusinessLogic
             }
             return null;
         }
-
 
         public static Tipi.StatoFornitore GetStato(FornitoreDto fornitore)
         {
@@ -236,6 +234,166 @@ namespace BusinessLogic
                     var totalePagamentiDare = totaleFatture - totalePagamentiDato;
                     return totalePagamentiDare;
                 }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal GetTotalePagamenti(FornitoreDto fornitore)
+        {
+            try
+            {
+                decimal totalePagamenti = 0;
+                if (fornitore != null)
+                {
+                    var today = DateTime.Today;
+                    var commessa = fornitore.Commessa;
+                    if (commessa != null)
+                    {
+                        var statoCommessa = commessa.Stato;
+                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                            totalePagamenti = UtilityValidation.GetDecimal(fornitore.TotalePagamenti);
+                        else
+                            totalePagamenti = GetTotalePagamenti(fornitore, today);
+                    }
+                }
+                return totalePagamenti;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal GetTotaleNoteCredito(FornitoreDto fornitore)
+        {
+            try
+            {
+                decimal totaleNoteCredito = 0;
+                if (fornitore != null)
+                {
+                    var today = DateTime.Today;
+                    var commessa = fornitore.Commessa;
+                    if (commessa != null)
+                    {
+                        var statoCommessa = commessa.Stato;
+                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                            totaleNoteCredito = UtilityValidation.GetDecimal(fornitore.TotalePagamenti);
+                        else
+                            totaleNoteCredito = GetTotaleNoteCredito(fornitore, today);
+                    }
+                }
+                return totaleNoteCredito;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static string GetStatoDescrizione(FornitoreDto fornitore)
+        {
+            try
+            {
+                var statoDescrizione = "N/D";
+                if (fornitore != null)
+                {
+                    var commessa = fornitore.Commessa;
+                    if (commessa != null)
+                    {
+                        var statoCommessa = commessa.Stato;
+                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                            statoDescrizione = fornitore.Stato;
+                        else
+                        {
+                            var today = DateTime.Today;
+                            var fatture = fornitore.FatturaAcquistos;
+                            var totaleFatture = GetTotaleFatture(fornitore, today);
+                            var totalePagamenti = GetTotalePagamenti(fornitore, today);
+                            var fattureInsolute = GetFattureInsolute(fatture);
+                            var fattureNonPagate = GetFattureNonPagate(fatture);
+                            var statoFornitore = GetStato(fornitore);
+                            var _statoDescrizione = GetStatoDescrizione(totaleFatture, totalePagamenti, fattureInsolute, fattureNonPagate, statoFornitore);
+                            statoDescrizione = _statoDescrizione.ToString();
+                        }
+                    }
+                }
+                return statoDescrizione;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private static StateDescriptionImage GetStatoDescrizione(decimal totaleFatture, decimal totalePagamenti, IList<FatturaAcquistoDto> fattureInsolute,
+         IList<FatturaAcquistoDto> fattureNonPagate, Tipi.StatoFornitore statoFornitore)
+        {
+            try
+            {
+                var descrizione = "";
+                var stato = TypeState.None;
+                var existFattureInsolute = (fattureInsolute.Count >= 1);
+                var existFattureNonPagate = (fattureNonPagate.Count >= 1);
+                var listaFattureInsolute = BusinessLogic.Fattura.GetLista(fattureInsolute);
+                var listaFattureNonPagate = BusinessLogic.Fattura.GetLista(fattureNonPagate);
+                var _totalePagamenti = UtilityValidation.GetEuro(totalePagamenti);
+                var _totaleFatture = UtilityValidation.GetEuro(totaleFatture);
+
+                if (statoFornitore == Tipi.StatoFornitore.Insoluto) //condizione di non soluzione delle fatture, segnalo le fatture insolute ed eventualmente quelle non pagate
+                {
+                    descrizione = "Il fornitore risulta insoluto. Il totale pagamenti pari a " + _totalePagamenti + " è inferiore al totale delle fatture pari a " + _totaleFatture + ". Le fatture insolute sono " + listaFattureInsolute;
+                    if (existFattureNonPagate)
+                        descrizione += " Le fatture non pagate sono " + listaFattureNonPagate;
+                    stato = TypeState.Critical;
+                }
+                else if (statoFornitore == Tipi.StatoFornitore.NonPagato)
+                {
+                    descrizione = "Il fornitore risulta non pagato. Il totale pagamenti pari a " + _totalePagamenti + " è inferiore al totale delle fatture pari a " + _totaleFatture;
+                    if (existFattureNonPagate)
+                        descrizione += " Le fatture non pagate sono " + listaFattureNonPagate;
+                    stato = TypeState.Warning;
+                }
+                else if (statoFornitore == Tipi.StatoFornitore.Pagato)
+                {
+                    descrizione = "Il fornitore risulta pagato. Tutte le fatture sono state saldate";  //non so se ha senso indicargli anche insolute o no!!!!! per ora NO
+                    stato = TypeState.Normal;
+                }
+                var statoDescrizione = new StateDescriptionImage(stato, descrizione);
+                return statoDescrizione;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public static decimal GetTotaleFatturaAcquisto(FornitoreDto fornitore)
+        {
+            try
+            {
+                decimal totaleFatturaAcquisto = 0;
+                var today = DateTime.Today;
+                if (fornitore != null)
+                {
+                    var commessa = fornitore.Commessa;
+                    if (commessa != null)
+                    {
+                        var statoCommessa = commessa.Stato;
+                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                            totaleFatturaAcquisto = UtilityValidation.GetDecimal(fornitore.TotaleFattureAcquisto);
+                        else
+                            totaleFatturaAcquisto = BusinessLogic.Fornitore.GetTotaleFatture(fornitore, today);
+                    }
+                }
+                return totaleFatturaAcquisto;
             }
             catch (Exception ex)
             {

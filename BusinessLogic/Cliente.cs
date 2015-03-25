@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WcfService.Dto;
 
 namespace BusinessLogic
 {
     public class Cliente
     {
-        public static decimal GetTotaleFattureVendita(WcfService.Dto.ClienteDto cliente, DateTime data)
+        public static decimal GetTotaleFattureVendita(ClienteDto cliente, DateTime data)
         {
             try
             {
@@ -36,7 +37,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleFattureVendita(WcfService.Dto.ClienteDto cliente)
+        public static decimal GetTotaleFattureVendita(ClienteDto cliente)
         {
             try
             {
@@ -63,7 +64,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleLiquidazioni(WcfService.Dto.ClienteDto cliente, DateTime data)
+        public static decimal GetTotaleLiquidazioni(ClienteDto cliente, DateTime data)
         {
             try
             {
@@ -86,7 +87,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleLiquidazioni(WcfService.Dto.ClienteDto cliente)
+        public static decimal GetTotaleLiquidazioni(ClienteDto cliente)
         {
             try
             {
@@ -113,7 +114,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static IList<WcfService.Dto.FatturaVenditaDto> GetFattureInsolute(IList<WcfService.Dto.FatturaVenditaDto> fattureVendita)
+        public static IList<FatturaVenditaDto> GetFattureInsolute(IList<FatturaVenditaDto> fattureVendita)
         {
             try
             {
@@ -130,7 +131,7 @@ namespace BusinessLogic
             return null;
         }
 
-        public static IList<WcfService.Dto.FatturaVenditaDto> GetFattureNonLiquidate(IList<WcfService.Dto.FatturaVenditaDto> fattureVendita)
+        public static IList<FatturaVenditaDto> GetFattureNonLiquidate(IList<FatturaVenditaDto> fattureVendita)
         {
             try
             {
@@ -147,7 +148,7 @@ namespace BusinessLogic
             return null;
         }
 
-        private static IList<WcfService.Dto.FatturaVenditaDto> GetFatture(IList<WcfService.Dto.FatturaVenditaDto> fattureVendita, Tipi.StatoFattura stato)
+        private static IList<FatturaVenditaDto> GetFatture(IList<FatturaVenditaDto> fattureVendita, Tipi.StatoFattura stato)
         {
             try
             {
@@ -164,7 +165,7 @@ namespace BusinessLogic
             return null;
         }
 
-        public static Tipi.StatoCliente GetStato(WcfService.Dto.ClienteDto cliente)
+        public static Tipi.StatoCliente GetStato(ClienteDto cliente)
         {
             try
             {
@@ -198,7 +199,7 @@ namespace BusinessLogic
             return Tipi.StatoCliente.None;
         }
 
-        public static string GetStatoDescrizione(WcfService.Dto.ClienteDto cliente)
+        public static string GetStatoDescrizione(ClienteDto cliente)
         {
             try
             {
@@ -234,8 +235,9 @@ namespace BusinessLogic
             return null;
         }
 
-        private static StateDescriptionImage GetStatoDescrizione(decimal totaleFatture, decimal totaleLiquidazioni, IList<WcfService.Dto.FatturaVenditaDto> fattureInsolute,
-           IList<WcfService.Dto.FatturaVenditaDto> fattureNonLiquidate, Tipi.StatoCliente statoCliente)
+        //todo: da modificare
+        private static StateDescriptionImage GetStatoDescrizione(decimal totaleFatture, decimal totaleLiquidazioni, IList<FatturaVenditaDto> fattureInsolute,
+           IList<FatturaVenditaDto> fattureNonLiquidate, Tipi.StatoCliente statoCliente)
         {
             try
             {
@@ -276,7 +278,6 @@ namespace BusinessLogic
             }
             return null;
         }
-
     
     
     }

@@ -115,6 +115,7 @@ namespace BusinessLogic
             }
             return 0;
         }
+
         public static decimal GetTotaleResi(FatturaAcquistoDto fatturaAcquisto, DateTime data)
         {
             try
@@ -465,6 +466,7 @@ namespace BusinessLogic
             }
             return 0;
         }
+
         public static decimal GetIVANotaCredito(NotaCreditoDto notaCredito, DateTime data)
         {
             try
@@ -610,12 +612,6 @@ namespace BusinessLogic
             }
             return null;
         }
-
-
-
-
-
-
 
         public static string GetStatoDescrizione(FatturaVenditaDto fatturaVendita, CommessaDto commessa)
         {

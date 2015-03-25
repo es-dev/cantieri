@@ -867,6 +867,7 @@ namespace WcfService.Assemblers
 			entity.TipoPagamento = dto.TipoPagamento;
 			entity.Descrizione = dto.Descrizione;
 			entity.PagamentoUnificatoId = dto.PagamentoUnificatoId;
+			entity.TransazionePagamento = dto.TransazionePagamento;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -886,6 +887,7 @@ namespace WcfService.Assemblers
 			dto.TipoPagamento = entity.TipoPagamento;
 			dto.Descrizione = entity.Descrizione;
 			dto.PagamentoUnificatoId = entity.PagamentoUnificatoId;
+			dto.TransazionePagamento = entity.TransazionePagamento;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -1041,6 +1043,7 @@ namespace WcfService.Assemblers
 			entity.Codice = dto.Codice;
 			entity.TipoPagamento = dto.TipoPagamento;
 			entity.Descrizione = dto.Descrizione;
+			entity.TransazionePagamento = dto.TransazionePagamento;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1059,6 +1062,7 @@ namespace WcfService.Assemblers
 			dto.Codice = entity.Codice;
 			dto.TipoPagamento = entity.TipoPagamento;
 			dto.Descrizione = entity.Descrizione;
+			dto.TransazionePagamento = entity.TransazionePagamento;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }

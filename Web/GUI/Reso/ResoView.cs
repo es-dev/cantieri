@@ -36,17 +36,17 @@ namespace Web.GUI.Reso
             }
         }
 
-        private WcfService.Dto.FornitoreDto fornitore;
-        public ResoView(WcfService.Dto.FornitoreDto fornitore)
+        private WcfService.Dto.FatturaAcquistoDto fatturaAcquisto;
+        public ResoView(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto)
         {
             InitializeComponent();
             try
             {
-                this.fornitore = fornitore;
+                this.fatturaAcquisto = fatturaAcquisto;
                 var viewModel = (Reso.ResoViewModel)ViewModel;
                 if (viewModel != null)
                 {
-                    viewModel.Fornitore = fornitore;
+                    viewModel.FatturaAcquisto = fatturaAcquisto;
                 }
 
             }
@@ -55,7 +55,6 @@ namespace Web.GUI.Reso
                 UtilityError.Write(ex);
             }
         }
-
 
         public override void Init()
         {

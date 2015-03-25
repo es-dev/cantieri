@@ -40,7 +40,6 @@ namespace Web.GUI.PagamentoUnificato
             }
         }
 
-
         public override void BindViewSubTitle(object model)
         {
             try
@@ -98,6 +97,20 @@ namespace Web.GUI.PagamentoUnificato
             
         }
 
+        private void BindViewTotalePagamentoUnificato()
+        {
+            try
+            {
+                var obj = (PagamentoUnificatoDto)Model;
+                var importoPagamento = BusinessLogic.PagamentoUnificato.GetTotalePagamentoUnificato(obj);
+                editImporto.Value = importoPagamento;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         public override void BindModel(object model)
         {
             try
@@ -152,33 +165,17 @@ namespace Web.GUI.PagamentoUnificato
             }
         }
 
-
-        private void CalcolaTotalePagamentoUnificato()
-        {
-            try
-            {
-                var obj = (PagamentoUnificatoDto)Model;
-                var importoPagamento = BusinessLogic.PagamentoUnificato.GetTotalePagamentoUnificato(obj);
-                editImporto.Value = importoPagamento;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
         private void btnCalcoloSaldoImporto_Click(object sender, EventArgs e)
         {
             try
             {
-                CalcolaTotalePagamentoUnificato();
+                BindViewTotalePagamentoUnificato();
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
         }
-
 
         public override void SetEditing(bool editing, bool deleting)
         {
@@ -186,7 +183,7 @@ namespace Web.GUI.PagamentoUnificato
             {
                 base.SetEditing(editing, deleting);
                 btnCalcoloSaldoImporto.Enabled = editing;
-                btnFatture.Enabled = editing;
+                btnFattureAcquisto.Enabled = editing;
             }
             catch (Exception ex)
             {
@@ -194,7 +191,7 @@ namespace Web.GUI.PagamentoUnificato
             }
         }
 
-        private void btnFatture_Click(object sender, EventArgs e)
+        private void btnFattureAcquisto_Click(object sender, EventArgs e)
         {
             try
             {

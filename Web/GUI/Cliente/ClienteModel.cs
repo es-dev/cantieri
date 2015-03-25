@@ -156,7 +156,7 @@ namespace Web.GUI.Cliente
                     var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
                     if (commessa != null)
                         obj.CommessaId = commessa.Id;
-
+                    
                 }
             }
             catch (Exception ex)
@@ -164,7 +164,7 @@ namespace Web.GUI.Cliente
                 UtilityError.Write(ex);
             }
         }
-        
+
         private void BindViewTotali()
         {
             try
@@ -173,7 +173,7 @@ namespace Web.GUI.Cliente
                 var fatture = obj.FatturaVenditas;
                 var today = DateTime.Today;
                 if (fatture != null)
-                {
+            {
                     var totaleFatture = BusinessLogic.Cliente.GetTotaleFattureVendita(obj, today);
                     var totaleLiquidazioni = BusinessLogic.Cliente.GetTotaleLiquidazioni(obj, today);
                     var statoDescrizione = BusinessLogic.Cliente.GetStatoDescrizione(obj);

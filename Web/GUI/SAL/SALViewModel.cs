@@ -10,6 +10,19 @@ namespace Web.GUI.SAL
 {
     public class SALViewModel : Library.Template.MVVM.TemplateViewModel<SALDto, SALItem>
     {
+        private CommessaDto commessa = null;
+
+        public CommessaDto Commessa
+        {
+            get
+            {
+                return commessa;
+            }
+            set
+            {
+                commessa = value;
+            }
+        }
 
         public SALViewModel(ISpace space)
             : base(space) 
@@ -29,7 +42,11 @@ namespace Web.GUI.SAL
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadSALs(skip, take, search);
+                IEnumerable<SALDto> objs = null;
+                if (commessa==null)
+                    objs = wcf.LoadSALs(skip, take, search);
+                else
+                    objs = wcf.LoadSALsCommessa(skip, take, commessa, search);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +60,11 @@ namespace Web.GUI.SAL
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountSALs(search);
+                int count = 0;
+                if (commessa == null)
+                    count = wcf.CountSALs(search);
+                else
+                    count = wcf.CountSALsCommessa(commessa, search);
                 return count;
             }
             catch (Exception ex)

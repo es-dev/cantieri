@@ -56,7 +56,6 @@ namespace Web.GUI.NotaCredito
             }
         }
 
-
         public override void BindViewSubTitle(object model)
         {
             try
@@ -110,6 +109,29 @@ namespace Web.GUI.NotaCredito
                 UtilityError.Write(ex);
             }
             
+        }
+
+        private void BindViewTotali()
+        {
+            try
+            {
+                var data = editData.Value;
+                if (data != null)
+                {
+                    var obj = (WcfService.Dto.NotaCreditoDto)Model;
+
+                    var imponibile = BusinessLogic.Fattura.GetImponibileNotaCredito(obj, data.Value);
+                    var iva = BusinessLogic.Fattura.GetIVANotaCredito(obj, data.Value);
+                    var totale = BusinessLogic.Fattura.GetTotaleNotaCredito(obj, data.Value);
+                    editImponibile.Value = imponibile;
+                    editIVA.Value = iva;
+                    editTotale.Value = totale;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
         }
 
         public override void BindModel(object model)
@@ -183,51 +205,12 @@ namespace Web.GUI.NotaCredito
 
         }
 
-        private void SetNewValue()
-        {
-            try
-            {
-                if (fornitore!=null)
-                {
-                    editFornitore.Model = fornitore;
-                    editFornitore.Value = fornitore.Codice + " - " + fornitore.RagioneSociale;
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
         private void btnCalcoloTotali_Click(object sender, EventArgs e)
         {
             try
             {
                 if (Editing)
-                    CalcolaTotali();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void CalcolaTotali()
-        {
-            try
-            {
-                var data = editData.Value;
-                if (data!=null)
-                {
-                    var obj = (WcfService.Dto.NotaCreditoDto)Model;
-
-                    var imponibile = BusinessLogic.Fattura.GetImponibileNotaCredito(obj,data.Value);
-                    var iva = BusinessLogic.Fattura.GetIVANotaCredito(obj, data.Value);
-                    var totale = BusinessLogic.Fattura.GetTotaleNotaCredito(obj, data.Value);
-                    editImponibile.Value = imponibile;
-                    editIVA.Value = iva;
-                    editTotale.Value = totale;
-                }
+                    BindViewTotali();
             }
             catch (Exception ex)
             {
@@ -243,6 +226,22 @@ namespace Web.GUI.NotaCredito
                 var space = new Reso.ResoView(obj);
                 space.Title = "RESI NOTA DI CREDITO N. " + obj.Numero;
                 Workspace.AddSpace(space);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void SetNewValue()
+        {
+            try
+            {
+                if (fornitore != null)
+                {
+                    editFornitore.Model = fornitore;
+                    editFornitore.Value = fornitore.Codice + " - " + fornitore.RagioneSociale;
+                }
             }
             catch (Exception ex)
             {

@@ -1474,10 +1474,13 @@ namespace WcfService
             {
                 var pagamenti = QueryPagamenti(search);
                 var fattureAcquisto = fornitore.FatturaAcquistos;
-                var fattureAcquistoIds = (from q in fattureAcquisto select q.Id);
-                pagamenti = (from q in pagamenti where fattureAcquistoIds.Contains(q.FatturaAcquistoId) select q);
-                var count = pagamenti.Count();
-                return count;
+                if (fattureAcquisto != null)
+                {
+                    var fattureAcquistoIds = (from q in fattureAcquisto select q.Id);
+                    pagamenti = (from q in pagamenti where fattureAcquistoIds.Contains(q.FatturaAcquistoId) select q);
+                    var count = pagamenti.Count();
+                    return count;
+                }
             }
             catch (Exception ex)
             {
@@ -1851,15 +1854,12 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.ResoDto> LoadResiFornitore(int skip, int take, Dto.FornitoreDto fornitore, string search)
+        public IEnumerable<Dto.ResoDto> LoadResiFatturaAcquisto(int skip, int take, Dto.FatturaAcquistoDto fatturaAcquisto, string search)
         {
             try
             {
                 var resi = QueryResi(search);
-                var noteCredito = fornitore.NotaCreditos;
-                var noteCreditoIds = (from q in noteCredito select q.Id);
-                resi = (from q in resi where noteCreditoIds.Contains(q.NotaCreditoId) select q);
-
+                resi = (from q in resi where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
                 resi = (from q in resi select q).Skip(skip).Take(take);
 
                 var resiDto = UtilityPOCO.Assemble<Dto.ResoDto>(resi);
@@ -1901,14 +1901,12 @@ namespace WcfService
             }
             return 0;
         }
-        public int CountResiFornitore(Dto.FornitoreDto fornitore, string search = null)
+        public int CountResiFatturaAcquisto(Dto.FatturaAcquistoDto fatturaAcquisto, string search = null)
         {
             try
             {
                 var resi = QueryResi(search);
-                var noteCredito = fornitore.NotaCreditos;
-                var noteCreditoIds = (from q in noteCredito select q.Id);
-                resi = (from q in resi where noteCreditoIds.Contains(q.NotaCreditoId) select q);
+                resi = (from q in resi where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
                 var count = resi.Count();
                 return count;
             }
@@ -2828,10 +2826,13 @@ namespace WcfService
             {
                 var liquidazioni = QueryLiquidazioni(search);
                 var fattureVendita = cliente.FatturaVenditas;
-                var fattureVenditaIds = (from q in fattureVendita select q.Id);
-                liquidazioni = (from q in liquidazioni where fattureVenditaIds.Contains(q.FatturaVenditaId) select q);
-                var count = liquidazioni.Count();
-                return count;
+                if (fattureVendita != null)
+                {
+                    var fattureVenditaIds = (from q in fattureVendita select q.Id);
+                    liquidazioni = (from q in liquidazioni where fattureVenditaIds.Contains(q.FatturaVenditaId) select q);
+                    var count = liquidazioni.Count();
+                    return count;
+                }
             }
             catch (Exception ex)
             {
@@ -3014,11 +3015,44 @@ namespace WcfService
             return null;
         }
 
+        public IEnumerable<Dto.SALDto> LoadSALsCommessa(int skip, int take,Dto.CommessaDto commessa, string search = null)
+        {
+            try
+            {
+                var sals = QuerySALs(search);
+                sals = (from q in sals where q.CommessaId == commessa.Id select q);
+                sals = (from q in sals select q).Skip(skip).Take(take);
+                var salsDto = UtilityPOCO.Assemble<Dto.SALDto>(sals);
+                return salsDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         public int CountSALs(string search = null)
         {
             try
             {
                 var sals = QuerySALs(search);
+                var count = sals.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public int CountSALsCommessa(Dto.CommessaDto commessa, string search = null)
+        {
+            try
+            {
+                var sals = QuerySALs(search);
+                sals = (from q in sals where q.CommessaId == commessa.Id select q);
                 var count = sals.Count();
                 return count;
             }

@@ -147,6 +147,7 @@ namespace Web.GUI.Commessa
                 editAzienda.Model = azienda;
                 editAzienda.Value = (azienda != null ? azienda.Codice + " - " + azienda.RagioneSociale : null);
             }
+            }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
@@ -163,13 +164,13 @@ namespace Web.GUI.Commessa
 
                 editPercentualeAvanzamento.Value = percentualeAvanzamento;
                 editImportoAvanzamentoLavori.Value = importoAvanzamentoLavori;
-            }
+                    }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
         }
-        
+
         public override void BindModel(object model)
         {
             try

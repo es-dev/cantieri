@@ -76,7 +76,7 @@ namespace Web.GUI.FatturaAcquisto
                 UtilityError.Write(ex);
             }
         }
-
+        
         public override void BindView(object model)  
         {
             try
@@ -159,10 +159,10 @@ namespace Web.GUI.FatturaAcquisto
                 var iva = UtilityValidation.GetDecimal(editIVA.Value);
                 var data = editData.Value;
                 var _scadenzaPagamento = editScadenzaPagamento.Value;
-                var today = DateTime.Today;
+                        var today = DateTime.Today;
 
                 if (data != null)
-                {
+            {
                     var obj = (WcfService.Dto.FatturaAcquistoDto)Model;
                     var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
                     var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, today);
@@ -306,7 +306,7 @@ namespace Web.GUI.FatturaAcquisto
             {
                 if(Editing)
                     BindViewTotali();
-            }
+                }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
@@ -382,6 +382,22 @@ namespace Web.GUI.FatturaAcquisto
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void btnResi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (FatturaAcquistoDto)Model;
+                var space = new Reso.ResoView(obj);
+                space.Title = "RESI FATTURA N. " + obj.Numero;
+                Workspace.AddSpace(space);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
         }
 
 	}

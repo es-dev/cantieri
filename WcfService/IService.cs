@@ -366,10 +366,10 @@ namespace WcfService
         int CountResiNotaCredito(Dto.NotaCreditoDto notaCredito, string search = null);
 
         [OperationContract]
-        IEnumerable<Dto.ResoDto> LoadResiFornitore(int skip, int take, Dto.FornitoreDto fornitore, string search = null);
+        IEnumerable<Dto.ResoDto> LoadResiFatturaAcquisto(int skip, int take, Dto.FatturaAcquistoDto fatturaAcquisto, string search);
 
         [OperationContract]
-        int CountResiFornitore(Dto.FornitoreDto fornitore, string search = null);
+        int CountResiFatturaAcquisto(Dto.FatturaAcquistoDto fatturaAcquisto, string search = null);
 
         [OperationContract]
         Dto.ResoDto ReadReso(object id);
@@ -574,6 +574,12 @@ namespace WcfService
 
         [OperationContract]
         int CountSALs(string search = null);
+
+        [OperationContract]
+        IEnumerable<Dto.SALDto> LoadSALsCommessa(int skip, int take,Dto.CommessaDto commessa, string search = null);
+
+        [OperationContract]
+        int CountSALsCommessa(Dto.CommessaDto commessa, string search = null);
 
         [OperationContract]
         Dto.SALDto ReadSAL(object id);

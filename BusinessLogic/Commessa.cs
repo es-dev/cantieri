@@ -10,7 +10,7 @@ namespace BusinessLogic
 {
     public class Commessa
     {
-        public static decimal GetTotaleImponibile(WcfService.Dto.CommessaDto commessa, DateTime data)
+        public static decimal GetTotaleImponibile(CommessaDto commessa, DateTime data)
         {
             try
             {
@@ -29,7 +29,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleIVA(WcfService.Dto.CommessaDto commessa, DateTime data)
+        public static decimal GetTotaleIVA(CommessaDto commessa, DateTime data)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleFatture(WcfService.Dto.CommessaDto commessa, DateTime data)
+        public static decimal GetTotaleFatture(CommessaDto commessa, DateTime data)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotalePagamenti(WcfService.Dto.CommessaDto commessa, DateTime data)
+        public static decimal GetTotalePagamenti(CommessaDto commessa, DateTime data)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleNoteCredito(WcfService.Dto.CommessaDto commessa, DateTime data)
+        public static decimal GetTotaleNoteCredito(CommessaDto commessa, DateTime data)
         {
             try
             {
@@ -105,7 +105,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotalePagamentiDare(WcfService.Dto.CommessaDto commessa, DateTime data)
+        public static decimal GetTotalePagamentiDare(CommessaDto commessa, DateTime data)
         {
             try
             {
@@ -253,7 +253,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetImportoAvanzamentoLavori(WcfService.Dto.CommessaDto commessa)
+        public static decimal GetImportoAvanzamentoLavori(CommessaDto commessa)
         {
             try
             {
@@ -276,7 +276,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetPercentualeAvanzamento(WcfService.Dto.CommessaDto commessa)
+        public static decimal GetPercentualeAvanzamento(CommessaDto commessa)
         {
             try
             {

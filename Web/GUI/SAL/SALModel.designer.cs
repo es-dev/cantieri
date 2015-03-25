@@ -386,6 +386,7 @@ namespace Web.GUI.SAL
             // SALModel
             // 
             this.Size = new System.Drawing.Size(1024, 727);
+            this.Load += new System.EventHandler(this.SALModel_Load);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);

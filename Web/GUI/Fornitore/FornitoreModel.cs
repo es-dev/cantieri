@@ -73,10 +73,10 @@ namespace Web.GUI.Fornitore
                     editPartitaIVA.Value = obj.PartitaIva;
                     editLocalita.Value = obj.Localita;
                     editNote.Value = obj.Note;
-                    editTotaleFattureAcquisto.Value = GetTotaleFatturaAcquisto(obj);
-                    editStato.Value = GetStato(obj);
-                    editTotalePagamenti.Value = GetTotalePagamenti(obj);
-                    editTotaleNoteCredito.Value = GetTotaleNoteCredito(obj);
+                    editTotaleFattureAcquisto.Value = BusinessLogic.Fornitore.GetTotaleFatturaAcquisto(obj);
+                    editStato.Value = BusinessLogic.Fornitore.GetStatoDescrizione(obj);
+                    editTotalePagamenti.Value = BusinessLogic.Fornitore.GetTotalePagamenti(obj);
+                    editTotaleNoteCredito.Value = BusinessLogic.Fornitore.GetTotaleNoteCredito(obj);
                     editCodiceFornitore.Value = obj.Codice;
 
                     BindViewCommessa(obj.Commessa);
@@ -143,121 +143,30 @@ namespace Web.GUI.Fornitore
            
         }
 
-        private decimal GetTotalePagamenti(WcfService.Dto.FornitoreDto fornitore)
+        private void BindViewTotali()
         {
             try
             {
-                decimal totalePagamenti = 0;
-                if (fornitore != null)
-                {
-                    var today = DateTime.Today;
-                    var commessa = fornitore.Commessa;
-                    if (commessa != null)
-                    {
-                        var statoCommessa = commessa.Stato;
-                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                            totalePagamenti = UtilityValidation.GetDecimal(fornitore.TotalePagamenti);
-                        else
-                            totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamenti(fornitore, today);
-                    }
-                }
-                return totalePagamenti;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-
-        private decimal GetTotaleNoteCredito(WcfService.Dto.FornitoreDto fornitore)
-        {
-            try
-            {
-                decimal totaleNoteCredito = 0;
-                if (fornitore != null)
-                {
-                    var today = DateTime.Today;
-                    var commessa = fornitore.Commessa;
-                    if (commessa != null)
-                    {
-                        var statoCommessa = commessa.Stato;
-                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                            totaleNoteCredito = UtilityValidation.GetDecimal(fornitore.TotalePagamenti);
-                        else
-                            totaleNoteCredito = BusinessLogic.Fornitore.GetTotaleNoteCredito(fornitore, today);
-                    }
-                }
-                return totaleNoteCredito;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-
-        private string GetStato(WcfService.Dto.FornitoreDto fornitore)
-        {
-            try
-            {
-                var stato = "N/D";
-                if (fornitore != null)
-                {
-                    var commessa = fornitore.Commessa;
-                    if (commessa != null)
-                    {
-                        var statoCommessa = commessa.Stato;
-                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                            stato = fornitore.Stato;
-                        else
-                        {
-                            var today = DateTime.Today;
-                            var fatture = fornitore.FatturaAcquistos;
-                            var totaleFatture = BusinessLogic.Fornitore.GetTotaleFatture(fornitore, today);
-                            var totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamenti(fornitore, today);
-                            var fattureInsolute = BusinessLogic.Fornitore.GetFattureInsolute(fatture);
-                            var fattureNonPagate = BusinessLogic.Fornitore.GetFattureNonPagate(fatture);
-                            var statoFornitore = BusinessLogic.Fornitore.GetStato(fornitore);
-                            var _stato = GetStato(totaleFatture, totalePagamenti, fattureInsolute, fattureNonPagate, statoFornitore);
-                            stato = _stato.ToString();
-                        }
-                    }
-                }
-                return stato;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        private decimal GetTotaleFatturaAcquisto(WcfService.Dto.FornitoreDto fornitore)
-        {
-            try
-            {
-                decimal totaleFatturaAcquisto = 0;
+                var obj = (WcfService.Dto.FornitoreDto)Model;
+                var fatture = obj.FatturaAcquistos;
                 var today = DateTime.Today;
-                if (fornitore != null)
+                if (fatture != null)
                 {
-                    var commessa = fornitore.Commessa;
-                    if (commessa != null)
-                    {
-                        var statoCommessa = commessa.Stato;
-                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                            totaleFatturaAcquisto = UtilityValidation.GetDecimal(fornitore.TotaleFattureAcquisto);
-                        else
-                            totaleFatturaAcquisto = BusinessLogic.Fornitore.GetTotaleFatture(fornitore, today);
-                    }
+                    var totaleFatture = BusinessLogic.Fornitore.GetTotaleFatture(obj, today);
+                    var totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamenti(obj, today);
+                    var totaleNoteCredito = BusinessLogic.Fornitore.GetTotaleNoteCredito(obj, today);
+                    var statoDescrizione = BusinessLogic.Fornitore.GetStatoDescrizione(obj);
+
+                    editStato.Value = statoDescrizione;
+                    editTotaleFattureAcquisto.Value = totaleFatture;
+                    editTotalePagamenti.Value = totalePagamenti;
+                    editTotaleNoteCredito.Value = totaleNoteCredito;
                 }
-                return totaleFatturaAcquisto;
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
-            return 0;
         }
 
         public override void BindModel(object model)
@@ -286,7 +195,7 @@ namespace Web.GUI.Fornitore
                     obj.TotalePagamenti = editTotalePagamenti.Value;
                     obj.TotaleNoteCredito = editTotaleNoteCredito.Value;
                     var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
-                    if(commessa!=null)
+                    if (commessa != null)
                         obj.CommessaId = commessa.Id;
                 }
             }
@@ -295,6 +204,10 @@ namespace Web.GUI.Fornitore
                 UtilityError.Write(ex);
             }
         }
+
+
+       
+
 
         private void editCommessa_ComboClick()
         {
@@ -309,6 +222,7 @@ namespace Web.GUI.Fornitore
                 UtilityError.Write(ex);
             }
         }
+
         private void editCommessa_ComboConfirm(object model)
         {
             try
@@ -317,7 +231,7 @@ namespace Web.GUI.Fornitore
                 if (commessa != null)
                 {
                     editCommessa.Value =  commessa.Codice + " - " + commessa.Denominazione;
-                    CalcolaTotali();
+                    BindViewTotali();
                 }
             }
             catch (Exception ex)
@@ -370,7 +284,7 @@ namespace Web.GUI.Fornitore
             try
             {
                 if (Editing)
-                    CalcolaTotali();
+                    BindViewTotali();
             }
             catch (Exception ex)
             {
@@ -379,84 +293,14 @@ namespace Web.GUI.Fornitore
 
         }
 
-        private void CalcolaTotali()
+        private void btnNoteCredito_Click(object sender, EventArgs e)
         {
             try
             {
-                var obj = (WcfService.Dto.FornitoreDto)Model;
-                var fatture = obj.FatturaAcquistos;
-                var today= DateTime.Today;
-                if (fatture != null)
-                {
-                    var totaleFatture = BusinessLogic.Fornitore.GetTotaleFatture(obj, today);
-                    var totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamenti(obj, today);
-                    var totaleNoteCredito = BusinessLogic.Fornitore.GetTotaleNoteCredito(obj, today);
-                    var fattureInsolute = BusinessLogic.Fornitore.GetFattureInsolute(fatture);
-                    var fattureNonPagate = BusinessLogic.Fornitore.GetFattureNonPagate(fatture);
-                    var statoFornitore = BusinessLogic.Fornitore.GetStato(obj);
-                    var stato = GetStato(totaleFatture, totalePagamenti, fattureInsolute, fattureNonPagate, statoFornitore);
-
-                    editStato.Value = stato.ToString();
-                    editTotaleFattureAcquisto.Value = totaleFatture;
-                    editTotalePagamenti.Value= totalePagamenti;
-                    editTotaleNoteCredito.Value = totaleNoteCredito;
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private StateDescriptionImage GetStato(decimal totaleFatture, decimal totalePagamenti, IList<WcfService.Dto.FatturaAcquistoDto> fattureInsolute, 
-            IList<WcfService.Dto.FatturaAcquistoDto> fattureNonPagate, Tipi.StatoFornitore statoFornitore)
-        {
-            try
-            {
-                var descrizione = "";
-                var stato = TypeState.None;
-                var existFattureInsolute = (fattureInsolute.Count >= 1);
-                var existFattureNonPagate = (fattureNonPagate.Count >= 1);
-                var listaFattureInsolute = BusinessLogic.Fattura.GetLista(fattureInsolute);
-                var listaFattureNonPagate = BusinessLogic.Fattura.GetLista(fattureNonPagate);
-                var _totalePagamenti = UtilityValidation.GetEuro(totalePagamenti);
-                var _totaleFatture = UtilityValidation.GetEuro(totaleFatture);
-
-                if (statoFornitore == Tipi.StatoFornitore.Insoluto) //condizione di non soluzione delle fatture, segnalo le fatture insolute ed eventualmente quelle non pagate
-                {
-                    descrizione = "Il fornitore risulta insoluto. Il totale pagamenti pari a " + _totalePagamenti + " è inferiore al totale delle fatture pari a " + _totaleFatture + ". Le fatture insolute sono " + listaFattureInsolute;
-                    if (existFattureNonPagate)
-                        descrizione += " Le fatture non pagate sono " + listaFattureNonPagate;
-                    stato = TypeState.Critical;
-                }
-                else if (statoFornitore == Tipi.StatoFornitore.NonPagato)
-                {
-                    descrizione = "Il fornitore risulta non pagato. Il totale pagamenti pari a " + _totalePagamenti + " è inferiore al totale delle fatture pari a " + _totaleFatture;
-                    if (existFattureNonPagate)
-                        descrizione += " Le fatture non pagate sono " + listaFattureNonPagate;
-                    stato = TypeState.Warning;
-                }
-                else if (statoFornitore == Tipi.StatoFornitore.Pagato)
-                {
-                    descrizione = "Il fornitore risulta pagato. Tutte le fatture sono state saldate";  //non so se ha senso indicargli anche insolute o no!!!!! per ora NO
-                    stato = TypeState.Normal;
-                }
-                var _stato = new StateDescriptionImage(stato, descrizione);
-                return _stato;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        public override void SetEditing(bool editing, bool deleting)
-        {
-            try
-            {
-                base.SetEditing(editing, deleting);
-                btnCalcoloTotali.Enabled = editing;
+                var obj = (FornitoreDto)Model;
+                var space = new NotaCredito.NotaCreditoView(obj);
+                space.Title = "NOTE DI CREDITO DEL FORNITORE " + obj.RagioneSociale;
+                Workspace.AddSpace(space);
             }
             catch (Exception ex)
             {
@@ -525,20 +369,19 @@ namespace Web.GUI.Fornitore
             }
         }
 
-        private void btnNoteCredito_Click(object sender, EventArgs e)
+        public override void SetEditing(bool editing, bool deleting)
         {
             try
             {
-                var obj = (FornitoreDto)Model;
-                var space = new NotaCredito.NotaCreditoView(obj);
-                space.Title = "NOTE DI CREDITO DEL FORNITORE " + obj.RagioneSociale;
-                Workspace.AddSpace(space);
+                base.SetEditing(editing, deleting);
+                btnCalcoloTotali.Enabled = editing;
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
         }
+
 
 	}
 }
