@@ -146,8 +146,7 @@ namespace Web.GUI.Commessa
             {
                 editAzienda.Model = azienda;
                 editAzienda.Value = (azienda != null ? azienda.Codice + " - " + azienda.RagioneSociale : null);
-            }
-            }
+            }           
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
