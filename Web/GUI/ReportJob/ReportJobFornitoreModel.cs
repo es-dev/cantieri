@@ -407,14 +407,22 @@ namespace Web.GUI.ReportJob
                             tablePagamenti.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "");
                             var pagamenti = (from q in fatturaAcquisto.Pagamentos orderby q.Data ascending select q).ToList();
                             foreach (var pagamento in pagamenti)
-                            {
                                 AddReportPagamentoFornitore(tablePagamenti, pagamento);
-                            }
+                            
+                            //riporto sconto
                             var _sconto = UtilityValidation.GetDecimal(fatturaAcquisto.Sconto);
                             if (_sconto > 0)
                             {
                                 var sconto = UtilityValidation.GetEuro(_sconto);
                                 tablePagamenti.AddRow("", "", "", "", "SCONTO", sconto);
+                            }
+
+                            //riporto nota di credito/resi
+                            var _totaleResi = BusinessLogic.Fattura.GetTotaleResi(fatturaAcquisto);
+                            if (_totaleResi > 0)
+                            {
+                                var totaleResi = UtilityValidation.GetEuro(_totaleResi);
+                                tablePagamenti.AddRow("", "", "", "", "NOTA DI CREDITO", totaleResi);
                             }
                         }
                     }

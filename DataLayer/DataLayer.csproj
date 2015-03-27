@@ -167,10 +167,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ESCantieriConnection%282015-03-17 01-12-20%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-03-17 01-12-19%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-03-17 01-36-53%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-03-22 15-35-22%29.rlinq.sql" />
     <Content Include="ESCantieriConnection%282015-03-26 00-30-29%29.rlinq.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

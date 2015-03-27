@@ -710,6 +710,19 @@ namespace BusinessLogic
             return 0;
         }
 
-
+        public static decimal GetTotaleResi(FatturaAcquistoDto fatturaAcquisto)
+        {
+            try
+            {
+                var data = DateTime.Today;
+                var totaleResi = GetTotaleResi(fatturaAcquisto, data);
+                return totaleResi;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
     }
 }
