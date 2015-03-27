@@ -295,5 +295,21 @@ namespace Web.GUI.Commessa
                 UtilityError.Write(ex);
             }
         }
+
+        private void btnSAL_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (CommessaDto)Model;
+                var space = new SAL.SALView(obj);
+                space.Title = "SAL della commessa " + obj.Denominazione;
+                Workspace.AddSpace(space);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
 	}
 }

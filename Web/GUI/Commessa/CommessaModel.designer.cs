@@ -681,6 +681,7 @@ namespace Web.GUI.Commessa
             this.btnSAL.Size = new System.Drawing.Size(100, 72);
             this.btnSAL.TabIndex = 1002;
             this.btnSAL.TextButton = "SAL";
+            this.btnSAL.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnSAL_Click);
             // 
             // editComune
             // 
