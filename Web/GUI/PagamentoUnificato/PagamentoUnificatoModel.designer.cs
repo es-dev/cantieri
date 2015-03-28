@@ -248,7 +248,7 @@ namespace Web.GUI.PagamentoUnificato
             this.btnCalcoloSaldoImporto.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnCalcoloSaldoImporto.ImageButton = "";
             this.btnCalcoloSaldoImporto.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnCalcoloSaldoImporto.Location = new System.Drawing.Point(1, 289);
+            this.btnCalcoloSaldoImporto.Location = new System.Drawing.Point(1, 360);
             this.btnCalcoloSaldoImporto.Name = "btnCalcoloSaldoImporto";
             this.btnCalcoloSaldoImporto.Size = new System.Drawing.Size(100, 72);
             this.btnCalcoloSaldoImporto.TabIndex = 1002;
@@ -262,7 +262,7 @@ namespace Web.GUI.PagamentoUnificato
             this.btnFattureAcquisto.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnFattureAcquisto.ImageButton = "";
             this.btnFattureAcquisto.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnFattureAcquisto.Location = new System.Drawing.Point(1, 217);
+            this.btnFattureAcquisto.Location = new System.Drawing.Point(1, 288);
             this.btnFattureAcquisto.Name = "btnFattureAcquisto";
             this.btnFattureAcquisto.Size = new System.Drawing.Size(100, 72);
             this.btnFattureAcquisto.TabIndex = 1002;

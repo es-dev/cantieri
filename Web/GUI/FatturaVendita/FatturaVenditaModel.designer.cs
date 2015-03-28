@@ -94,7 +94,7 @@ namespace Web.GUI.FatturaVendita
             // 
             this.panelCommands.Controls.Add(this.btnLiquidazioni);
             this.panelCommands.Controls.Add(this.btnCalcoloTotali);
-            this.panelCommands.Size = new System.Drawing.Size(101, 656);
+            this.panelCommands.Size = new System.Drawing.Size(101, 724);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
@@ -104,7 +104,7 @@ namespace Web.GUI.FatturaVendita
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(0, 584);
+            this.btnDelete.Location = new System.Drawing.Point(0, 652);
             // 
             // editDescrizione
             // 
@@ -378,7 +378,7 @@ namespace Web.GUI.FatturaVendita
             this.btnCalcoloTotali.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnCalcoloTotali.ImageButton = "";
             this.btnCalcoloTotali.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnCalcoloTotali.Location = new System.Drawing.Point(0, 289);
+            this.btnCalcoloTotali.Location = new System.Drawing.Point(0, 360);
             this.btnCalcoloTotali.Name = "btnCalcoloTotali";
             this.btnCalcoloTotali.Size = new System.Drawing.Size(100, 72);
             this.btnCalcoloTotali.TabIndex = 1002;
@@ -414,7 +414,7 @@ namespace Web.GUI.FatturaVendita
             this.btnLiquidazioni.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnLiquidazioni.ImageButton = "";
             this.btnLiquidazioni.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnLiquidazioni.Location = new System.Drawing.Point(0, 217);
+            this.btnLiquidazioni.Location = new System.Drawing.Point(0, 288);
             this.btnLiquidazioni.Name = "btnLiquidazioni";
             this.btnLiquidazioni.Size = new System.Drawing.Size(100, 72);
             this.btnLiquidazioni.TabIndex = 1002;

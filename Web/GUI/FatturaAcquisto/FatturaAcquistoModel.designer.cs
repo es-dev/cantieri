@@ -106,7 +106,7 @@ namespace Web.GUI.FatturaAcquisto
             this.panelCommands.Controls.Add(this.btnResi);
             this.panelCommands.Controls.Add(this.btnPagamenti);
             this.panelCommands.Controls.Add(this.btnCalcoloTotali);
-            this.panelCommands.Size = new System.Drawing.Size(101, 665);
+            this.panelCommands.Size = new System.Drawing.Size(101, 733);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
@@ -117,7 +117,7 @@ namespace Web.GUI.FatturaAcquisto
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(0, 593);
+            this.btnDelete.Location = new System.Drawing.Point(0, 661);
             // 
             // editFornitore
             // 
@@ -416,7 +416,7 @@ namespace Web.GUI.FatturaAcquisto
             this.btnCalcoloTotali.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnCalcoloTotali.ImageButton = "";
             this.btnCalcoloTotali.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnCalcoloTotali.Location = new System.Drawing.Point(0, 361);
+            this.btnCalcoloTotali.Location = new System.Drawing.Point(0, 432);
             this.btnCalcoloTotali.Name = "btnCalcoloTotali";
             this.btnCalcoloTotali.Size = new System.Drawing.Size(100, 72);
             this.btnCalcoloTotali.TabIndex = 1002;
@@ -452,7 +452,7 @@ namespace Web.GUI.FatturaAcquisto
             this.btnPagamenti.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnPagamenti.ImageButton = "";
             this.btnPagamenti.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnPagamenti.Location = new System.Drawing.Point(0, 217);
+            this.btnPagamenti.Location = new System.Drawing.Point(0, 288);
             this.btnPagamenti.Name = "btnPagamenti";
             this.btnPagamenti.Size = new System.Drawing.Size(100, 72);
             this.btnPagamenti.TabIndex = 1002;
@@ -510,7 +510,7 @@ namespace Web.GUI.FatturaAcquisto
             this.btnResi.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnResi.ImageButton = "";
             this.btnResi.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnResi.Location = new System.Drawing.Point(0, 289);
+            this.btnResi.Location = new System.Drawing.Point(0, 360);
             this.btnResi.Name = "btnResi";
             this.btnResi.Size = new System.Drawing.Size(100, 72);
             this.btnResi.TabIndex = 1002;

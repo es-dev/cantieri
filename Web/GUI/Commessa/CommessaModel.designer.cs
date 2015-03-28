@@ -140,7 +140,7 @@ namespace Web.GUI.Commessa
             this.panelCommands.Controls.Add(this.btnCalcoloAvanzamentoLavori);
             this.panelCommands.Controls.Add(this.btnSAL);
             this.panelCommands.Controls.Add(this.btnFornitori);
-            this.panelCommands.Size = new System.Drawing.Size(101, 1051);
+            this.panelCommands.Size = new System.Drawing.Size(101, 1119);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
@@ -152,7 +152,11 @@ namespace Web.GUI.Commessa
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(0, 979);
+            this.btnDelete.Location = new System.Drawing.Point(0, 1047);
+            // 
+            // btnUpdateCancel
+            // 
+            this.btnUpdateCancel.Location = new System.Drawing.Point(1, 216);
             // 
             // editAzienda
             // 
@@ -393,7 +397,7 @@ namespace Web.GUI.Commessa
             this.editCodice.Location = new System.Drawing.Point(25, 98);
             this.editCodice.Name = "editCodice";
             this.editCodice.ReadOnly = false;
-            this.editCodice.Required = false;
+            this.editCodice.Required = true;
             this.editCodice.Size = new System.Drawing.Size(792, 30);
             this.editCodice.TabIndex = 1;
             this.editCodice.Text = "EditControl";
@@ -662,7 +666,7 @@ namespace Web.GUI.Commessa
             this.btnFornitori.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnFornitori.ImageButton = "";
             this.btnFornitori.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnFornitori.Location = new System.Drawing.Point(0, 288);
+            this.btnFornitori.Location = new System.Drawing.Point(0, 360);
             this.btnFornitori.Name = "btnFornitori";
             this.btnFornitori.Size = new System.Drawing.Size(100, 72);
             this.btnFornitori.TabIndex = 1002;
@@ -676,7 +680,7 @@ namespace Web.GUI.Commessa
             this.btnSAL.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnSAL.ImageButton = "";
             this.btnSAL.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnSAL.Location = new System.Drawing.Point(0, 432);
+            this.btnSAL.Location = new System.Drawing.Point(0, 504);
             this.btnSAL.Name = "btnSAL";
             this.btnSAL.Size = new System.Drawing.Size(100, 72);
             this.btnSAL.TabIndex = 1002;
@@ -756,7 +760,7 @@ namespace Web.GUI.Commessa
             this.btnCalcoloAvanzamentoLavori.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnCalcoloAvanzamentoLavori.ImageButton = "";
             this.btnCalcoloAvanzamentoLavori.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnCalcoloAvanzamentoLavori.Location = new System.Drawing.Point(0, 216);
+            this.btnCalcoloAvanzamentoLavori.Location = new System.Drawing.Point(0, 288);
             this.btnCalcoloAvanzamentoLavori.Name = "btnCalcoloAvanzamentoLavori";
             this.btnCalcoloAvanzamentoLavori.Size = new System.Drawing.Size(100, 72);
             this.btnCalcoloAvanzamentoLavori.TabIndex = 1002;
@@ -770,7 +774,7 @@ namespace Web.GUI.Commessa
             this.btnClienti.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnClienti.ImageButton = "";
             this.btnClienti.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnClienti.Location = new System.Drawing.Point(0, 360);
+            this.btnClienti.Location = new System.Drawing.Point(0, 432);
             this.btnClienti.Name = "btnClienti";
             this.btnClienti.Size = new System.Drawing.Size(100, 72);
             this.btnClienti.TabIndex = 1002;

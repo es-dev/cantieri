@@ -364,7 +364,6 @@ namespace Web.GUI.ReportJob
                     string pathTemplate = UtilityWeb.GetRootPath(Context) + @"Resources\Templates\TemplateSituazioneFornitore.doc";
                     var fileName = "SituazioneFornitore_" + codiceFornitore + "_" + data + ".PDF";
                     var pathReport = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileName;
-
                     var account = SessionManager.GetAccount(Context);
                     var viewModelAzienda = new Azienda.AziendaViewModel(this);
                     var azienda = viewModelAzienda.ReadAzienda(account);
