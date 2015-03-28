@@ -225,6 +225,24 @@ namespace Web.GUI.Commessa
             }
         }
 
+        public override TemplateModel.ValidationState IsValidated()
+        {
+            try
+            {
+                var validated = new ValidationState();
+
+                validated.State = false;
+                validated.Message = "Ciao Miriam, che bello che giochi con GB e Gaia, ti adorano e si vede";
+
+                return validated;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         private void btnFornitori_Click(object sender, EventArgs e)
         {
             try

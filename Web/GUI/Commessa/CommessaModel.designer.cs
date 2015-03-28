@@ -397,7 +397,7 @@ namespace Web.GUI.Commessa
             this.editCodice.Location = new System.Drawing.Point(25, 98);
             this.editCodice.Name = "editCodice";
             this.editCodice.ReadOnly = false;
-            this.editCodice.Required = false;
+            this.editCodice.Required = true;
             this.editCodice.Size = new System.Drawing.Size(792, 30);
             this.editCodice.TabIndex = 1;
             this.editCodice.Text = "EditControl";
