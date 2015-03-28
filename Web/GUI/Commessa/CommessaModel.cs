@@ -249,7 +249,7 @@ namespace Web.GUI.Commessa
             {
                 var obj = (CommessaDto)Model;
                 var space = new Fornitore.FornitoreView(obj);
-                space.Title = "FORNITORI DELLA COMMESSA " + obj.Denominazione.ToUpper();
+                space.Title = "FORNITORI DELLA COMMESSA " + obj.Denominazione;
                 Workspace.AddSpace(space);
             }
             catch (Exception ex)
@@ -264,7 +264,7 @@ namespace Web.GUI.Commessa
             {
                 var obj = (CommessaDto)Model;
                 var space = new Cliente.ClienteView(obj);
-                space.Title = "CLIENTI DELLA COMMESSA " + obj.Denominazione.ToUpper();
+                space.Title = "CLIENTI DELLA COMMESSA " + obj.Denominazione;
                 Workspace.AddSpace(space);
             }
             catch (Exception ex)

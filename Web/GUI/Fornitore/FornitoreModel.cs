@@ -314,7 +314,7 @@ namespace Web.GUI.Fornitore
             {
                 var obj = (FornitoreDto)Model;
                 var space = new FatturaAcquisto.FatturaAcquistoView(obj);
-                space.Title = "FATTURE ACQUISTO DEL FORNITORE " + obj.RagioneSociale.ToUpper();
+                space.Title = "FATTURE ACQUISTO DEL FORNITORE " + obj.RagioneSociale;
                 Workspace.AddSpace(space);
             }
             catch (Exception ex)
@@ -329,7 +329,7 @@ namespace Web.GUI.Fornitore
             {
                 var obj = (FornitoreDto)Model;
                 var space = new Pagamento.PagamentoView(obj);
-                space.Title = "PAGAMENTI FORNITORE " + obj.RagioneSociale.ToUpper();
+                space.Title = "PAGAMENTI FORNITORE " + obj.RagioneSociale;
                 Workspace.AddSpace(space);
 
             }

@@ -50,8 +50,9 @@ namespace Web.GUI.Azienda
             {
                 if (item != null)
                 {
+                    var obj = (WcfService.Dto.AziendaDto)Model;
                     var space = new AziendaModel();
-                    space.Title = "DETTAGLI AZIENDA";
+                    space.Title = "AZIENDA " + obj.RagioneSociale;
                     AddSpace(space);
                 }
             }

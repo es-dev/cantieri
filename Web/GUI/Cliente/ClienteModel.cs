@@ -224,7 +224,7 @@ namespace Web.GUI.Cliente
             {
                 var obj = (ClienteDto)Model;
                 var space = new FatturaVendita.FatturaVenditaView(obj);
-                space.Title = "FATTURE DI VENDITA - " + obj.RagioneSociale.ToUpper();
+                space.Title = "FATTURE DI VENDITA - " + obj.RagioneSociale;
                 Workspace.AddSpace(space);
             }
             catch (Exception ex)
@@ -240,7 +240,7 @@ namespace Web.GUI.Cliente
             {
                 var obj = (ClienteDto)Model;
                 var space = new Liquidazione.LiquidazioneView(obj);
-                space.Title = "INCASSI - " + obj.RagioneSociale.ToUpper();
+                space.Title = "INCASSI - " + obj.RagioneSociale;
                 Workspace.AddSpace(space);
             }
             catch (Exception ex)

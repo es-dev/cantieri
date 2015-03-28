@@ -103,8 +103,10 @@ namespace Web.GUI.Cliente
             {
                 if (item != null)
                 {
+                    var obj = (WcfService.Dto.ClienteDto)Model;
                     var space = new ClienteModel();
-                    space.Title = "DETTAGLI COMMITTENTE";
+                    var commessa = obj.Commessa;
+                    space.Title = "COMMITTENTE " + obj.RagioneSociale + " - COMMESSA " + commessa.Codice;
                     AddSpace(space);
                 }
             }

@@ -51,8 +51,9 @@ namespace Web.GUI.AnagraficaCliente
             {
                 if (item != null)
                 {
+                    var obj = (WcfService.Dto.AnagraficaClienteDto)Model;
                     var space = new AnagraficaClienteModel();
-                    space.Title = "DETTAGLI ANAGRAFICA COMMITTENTE";
+                    space.Title = "ANAGRAFICA COMMITTENTE " + obj.RagioneSociale;
                     AddSpace(space);
                 }
             }
