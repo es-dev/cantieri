@@ -92,7 +92,7 @@ namespace Web.GUI.SAL
             // panelCommands
             // 
             this.panelCommands.Controls.Add(this.btnCalcoloSAL);
-            this.panelCommands.Size = new System.Drawing.Size(101, 659);
+            this.panelCommands.Size = new System.Drawing.Size(101, 727);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
@@ -101,7 +101,7 @@ namespace Web.GUI.SAL
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(0, 587);
+            this.btnDelete.Location = new System.Drawing.Point(0, 655);
             // 
             // editCommessa
             // 
@@ -332,7 +332,7 @@ namespace Web.GUI.SAL
             this.btnCalcoloSAL.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnCalcoloSAL.ImageButton = "";
             this.btnCalcoloSAL.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnCalcoloSAL.Location = new System.Drawing.Point(0, 217);
+            this.btnCalcoloSAL.Location = new System.Drawing.Point(0, 288);
             this.btnCalcoloSAL.Name = "btnCalcoloSAL";
             this.btnCalcoloSAL.Size = new System.Drawing.Size(100, 72);
             this.btnCalcoloSAL.TabIndex = 1002;

@@ -242,7 +242,7 @@ namespace Web.GUI.ReportJob
             this.btnStampaReport.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnStampaReport.ImageButton = "";
             this.btnStampaReport.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnStampaReport.Location = new System.Drawing.Point(0, 217);
+            this.btnStampaReport.Location = new System.Drawing.Point(0, 288);
             this.btnStampaReport.Name = "btnStampaReport";
             this.btnStampaReport.Size = new System.Drawing.Size(100, 72);
             this.btnStampaReport.TabIndex = 1002;

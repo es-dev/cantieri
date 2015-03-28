@@ -45,6 +45,7 @@ namespace Web.GUI.Dashboard
             this.panelCommands.Controls.Add(this.btnCreateTicket);
             this.panelCommands.Controls.Add(this.btnManualeOperativo);
             this.panelCommands.Controls.Add(this.btnProgetto);
+            this.panelCommands.Controls.SetChildIndex(this.btnHome, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnRefresh, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnAdd, 0);
@@ -65,7 +66,7 @@ namespace Web.GUI.Dashboard
             this.btnProgetto.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnProgetto.ImageButton = "";
             this.btnProgetto.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnProgetto.Location = new System.Drawing.Point(0, 73);
+            this.btnProgetto.Location = new System.Drawing.Point(0, 78);
             this.btnProgetto.Name = "btnProgetto";
             this.btnProgetto.Size = new System.Drawing.Size(100, 72);
             this.btnProgetto.TabIndex = 2;
@@ -78,7 +79,7 @@ namespace Web.GUI.Dashboard
             this.btnManualeOperativo.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnManualeOperativo.ImageButton = "";
             this.btnManualeOperativo.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnManualeOperativo.Location = new System.Drawing.Point(0, 145);
+            this.btnManualeOperativo.Location = new System.Drawing.Point(0, 150);
             this.btnManualeOperativo.Name = "btnManualeOperativo";
             this.btnManualeOperativo.Size = new System.Drawing.Size(100, 72);
             this.btnManualeOperativo.TabIndex = 2;
@@ -91,7 +92,7 @@ namespace Web.GUI.Dashboard
             this.btnCreateTicket.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnCreateTicket.ImageButton = "";
             this.btnCreateTicket.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnCreateTicket.Location = new System.Drawing.Point(0, 217);
+            this.btnCreateTicket.Location = new System.Drawing.Point(0, 222);
             this.btnCreateTicket.Name = "btnCreateTicket";
             this.btnCreateTicket.Size = new System.Drawing.Size(100, 72);
             this.btnCreateTicket.TabIndex = 2;
@@ -104,7 +105,7 @@ namespace Web.GUI.Dashboard
             this.btnLogAttivita.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnLogAttivita.ImageButton = "";
             this.btnLogAttivita.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnLogAttivita.Location = new System.Drawing.Point(0, 289);
+            this.btnLogAttivita.Location = new System.Drawing.Point(0, 294);
             this.btnLogAttivita.Name = "btnLogAttivita";
             this.btnLogAttivita.Size = new System.Drawing.Size(100, 72);
             this.btnLogAttivita.TabIndex = 2;
@@ -117,7 +118,7 @@ namespace Web.GUI.Dashboard
             this.btnSendBug.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnSendBug.ImageButton = "";
             this.btnSendBug.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnSendBug.Location = new System.Drawing.Point(0, 361);
+            this.btnSendBug.Location = new System.Drawing.Point(0, 366);
             this.btnSendBug.Name = "btnSendBug";
             this.btnSendBug.Size = new System.Drawing.Size(100, 72);
             this.btnSendBug.TabIndex = 2;

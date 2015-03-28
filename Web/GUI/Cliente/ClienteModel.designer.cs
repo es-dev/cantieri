@@ -109,7 +109,7 @@ namespace Web.GUI.Cliente
             this.panelCommands.Controls.Add(this.btnLiquidazioni);
             this.panelCommands.Controls.Add(this.btnFattureVendita);
             this.panelCommands.Controls.Add(this.btnCalcoloTotali);
-            this.panelCommands.Size = new System.Drawing.Size(101, 747);
+            this.panelCommands.Size = new System.Drawing.Size(101, 815);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
@@ -120,7 +120,11 @@ namespace Web.GUI.Cliente
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(0, 675);
+            this.btnDelete.Location = new System.Drawing.Point(0, 743);
+            // 
+            // btnUpdateCancel
+            // 
+            this.btnUpdateCancel.Location = new System.Drawing.Point(1, 215);
             // 
             // editMobile
             // 
@@ -457,7 +461,7 @@ namespace Web.GUI.Cliente
             this.btnCalcoloTotali.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnCalcoloTotali.ImageButton = "";
             this.btnCalcoloTotali.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnCalcoloTotali.Location = new System.Drawing.Point(0, 361);
+            this.btnCalcoloTotali.Location = new System.Drawing.Point(1, 431);
             this.btnCalcoloTotali.Name = "btnCalcoloTotali";
             this.btnCalcoloTotali.Size = new System.Drawing.Size(100, 72);
             this.btnCalcoloTotali.TabIndex = 1002;
@@ -515,7 +519,7 @@ namespace Web.GUI.Cliente
             this.btnFattureVendita.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnFattureVendita.ImageButton = "";
             this.btnFattureVendita.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnFattureVendita.Location = new System.Drawing.Point(0, 217);
+            this.btnFattureVendita.Location = new System.Drawing.Point(1, 287);
             this.btnFattureVendita.Name = "btnFattureVendita";
             this.btnFattureVendita.Size = new System.Drawing.Size(100, 72);
             this.btnFattureVendita.TabIndex = 1002;
@@ -529,7 +533,7 @@ namespace Web.GUI.Cliente
             this.btnLiquidazioni.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnLiquidazioni.ImageButton = "";
             this.btnLiquidazioni.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnLiquidazioni.Location = new System.Drawing.Point(0, 289);
+            this.btnLiquidazioni.Location = new System.Drawing.Point(1, 359);
             this.btnLiquidazioni.Name = "btnLiquidazioni";
             this.btnLiquidazioni.Size = new System.Drawing.Size(100, 72);
             this.btnLiquidazioni.TabIndex = 1002;
