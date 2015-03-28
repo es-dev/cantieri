@@ -231,7 +231,7 @@ namespace Web.GUI.Commessa
             {
                 var obj = (CommessaDto)Model;
                 var space = new Fornitore.FornitoreView(obj);
-                space.Title = "Fornitori della commessa " + obj.Denominazione;
+                space.Title = "FORNITORI DELLA COMMESSA " + obj.Denominazione.ToUpper();
                 Workspace.AddSpace(space);
             }
             catch (Exception ex)
@@ -246,7 +246,7 @@ namespace Web.GUI.Commessa
             {
                 var obj = (CommessaDto)Model;
                 var space = new Cliente.ClienteView(obj);
-                space.Title = "Clienti della commessa " + obj.Denominazione;
+                space.Title = "CLIENTI DELLA COMMESSA " + obj.Denominazione.ToUpper();
                 Workspace.AddSpace(space);
             }
             catch (Exception ex)
@@ -302,7 +302,7 @@ namespace Web.GUI.Commessa
             {
                 var obj = (CommessaDto)Model;
                 var space = new SAL.SALView(obj);
-                space.Title = "SAL della commessa " + obj.Denominazione;
+                space.Title = "SAL DELLA COMMESSSA " + obj.Denominazione;
                 Workspace.AddSpace(space);
             }
             catch (Exception ex)
