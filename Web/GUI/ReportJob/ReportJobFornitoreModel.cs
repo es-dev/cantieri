@@ -358,11 +358,12 @@ namespace Web.GUI.ReportJob
                 var anagraficaFornitore = (AnagraficaFornitoreDto)editFornitore.Model;
                 if (anagraficaFornitore != null)
                 {
-                    var codiceFornitore = anagraficaFornitore.Codice;
+                    var ragioneSocialeFornitore = (anagraficaFornitore.RagioneSociale != null ? anagraficaFornitore.RagioneSociale.Replace(" ", "") : "N/D");
+                    //if abbreviato in c# -->   (condizione ? valoreTrue : valoreFalse);
                     var data = DateTime.Today.ToString("ddMMyyyy");
                     var elaborazione = UtilityValidation.GetData(editElaborazione.Value);
                     string pathTemplate = UtilityWeb.GetRootPath(Context) + @"Resources\Templates\TemplateSituazioneFornitore.doc";
-                    var fileName = "SituazioneFornitore_" + codiceFornitore + "_" + data + ".PDF";
+                    var fileName = "SituazioneFornitore_" + ragioneSocialeFornitore + "_" + data + ".PDF";
                     var pathReport = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileName;
                     var account = SessionManager.GetAccount(Context);
                     var viewModelAzienda = new Azienda.AziendaViewModel(this);
@@ -378,6 +379,7 @@ namespace Web.GUI.ReportJob
 
                     //totali fornitore
                     var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
+                    var codiceFornitore = anagraficaFornitore.Codice;
                     var fornitori = viewModelFornitore.ReadFornitori(codiceFornitore);
                     AddReportTotaliFornitore(elaborazione, fornitori.ToList(), report);
 
