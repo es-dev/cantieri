@@ -10,17 +10,17 @@ namespace Web.GUI.FatturaVendita
 {
     public class FatturaVenditaViewModel : Library.Template.MVVM.TemplateViewModel<FatturaVenditaDto, FatturaVenditaItem>
     {
-        private ClienteDto cliente = null;
+        private CommittenteDto committente = null;
 
-        public ClienteDto Cliente
+        public CommittenteDto Committente
         {
             get
             {
-                return cliente;
+                return committente;
             }
             set
             {
-                cliente = value;
+                committente = value;
             }
         }
 
@@ -43,10 +43,10 @@ namespace Web.GUI.FatturaVendita
             {
                 var wcf = new WcfService.Service();
                 IEnumerable<FatturaVenditaDto> objs = null;
-                if (cliente==null)
+                if (committente==null)
                     objs = wcf.LoadFattureVendita(skip, take, search);
                 else
-                    objs = wcf.LoadFattureVenditaCliente(skip, take,cliente, search);
+                    objs = wcf.LoadFattureVenditaCommittente(skip, take,committente, search);
                 Load(objs);
             }
             catch (Exception ex)
@@ -61,10 +61,10 @@ namespace Web.GUI.FatturaVendita
             {
                 var wcf = new WcfService.Service();
                 var count = 0;
-                if (cliente==null)
+                if (committente==null)
                     count = wcf.CountFattureVendita(search);
                 else
-                    count = wcf.CountFattureVenditaCliente(cliente, search);
+                    count = wcf.CountFattureVenditaCommittente(committente, search);
                 return count;
             }
             catch (Exception ex)

@@ -92,7 +92,7 @@ namespace Web.GUI.Commessa
                     
                     BindViewAzienda(obj.Azienda);
                     BindViewFornitori(obj.Fornitores);
-                    BindViewClienti(obj.Clientes);
+                    BindViewCommittenti(obj.Committentes);
                     BindViewSALs(obj.SALs);
 
                 }
@@ -115,11 +115,11 @@ namespace Web.GUI.Commessa
             }
         }
 
-        private void BindViewClienti(IList<ClienteDto> clienti)
+        private void BindViewCommittenti(IList<CommittenteDto> committenti)
         {
             try
             {
-                btnClienti.TextButton = "Committenti (" + (clienti!=null?clienti.Count:0) + ")";
+                btnCommittenti.TextButton = "Committenti (" + (committenti!=null?committenti.Count:0) + ")";
             }
             catch (Exception ex)
             {
@@ -255,13 +255,13 @@ namespace Web.GUI.Commessa
             }
         }
 
-        private void btnClienti_Click(object sender, EventArgs e)
+        private void btnCommittenti_Click(object sender, EventArgs e)
         {
             try
             {
                 var obj = (CommessaDto)Model;
-                var space = new Cliente.ClienteView(obj);
-                space.Title = "CLIENTI - COMMESSA " + obj.Denominazione;
+                var space = new Committente.CommittenteView(obj);
+                space.Title = "COMMITTENTI - COMMESSA " + obj.Denominazione;
                 Workspace.AddSpace(space);
             }
             catch (Exception ex)

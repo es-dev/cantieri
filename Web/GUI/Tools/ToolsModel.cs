@@ -72,10 +72,10 @@ namespace Web.GUI.Tools
                 warning = false;
                 CheckAziende(comuni);
                 CheckCommesse(comuni);
-                CheckClienti(comuni);
+                CheckCommittenti(comuni);
                 CheckFornitori(comuni);
                 CheckAnagraficheFornitori(comuni);
-                CheckAnagraficheClienti(comuni);
+                CheckAnagraficheCommittenti(comuni);
 
                 lblWarning.Text = (warning ? "Sono stati riscontrati errori nelle procedure di controllo, verificare i log ricercando la parola chiave ERROR per avere maggiori dettagli..." : "Tutti i controlli sono stati effettuati con successo...");
                 lblWarning.ForeColor = (warning ? Color.Red : Color.Blue);
@@ -87,31 +87,31 @@ namespace Web.GUI.Tools
             }
         }
 
-        private void CheckAnagraficheClienti(IList<Countries.City> comuni)
+        private void CheckAnagraficheCommittenti(IList<Countries.City> comuni)
         {
             try
             {
-                AddLog("Avvio controllo anagrafiche clienti");
-                var viewModel = new AnagraficaCliente.AnagraficaClienteViewModel(this);
-                var anagraficheClienti= viewModel.ReadAnagraficheClienti();
-                foreach (var anagraficaCliente in anagraficheClienti)
+                AddLog("Avvio controllo anagrafiche committenti");
+                var viewModel = new AnagraficaCommittente.AnagraficaCommittenteViewModel(this);
+                var anagraficheCommittenti= viewModel.ReadAnagraficheCommittenti();
+                foreach (var anagraficaCommittente in anagraficheCommittenti)
                 {
-                    var comune = (from q in comuni where q.Description == anagraficaCliente.Comune && q.County == anagraficaCliente.Provincia select q).FirstOrDefault();
+                    var comune = (from q in comuni where q.Description == anagraficaCommittente.Comune && q.County == anagraficaCommittente.Provincia select q).FirstOrDefault();
                     if (comune != null)
                     {
-                        anagraficaCliente.Comune = comune.Description;
-                        anagraficaCliente.CodiceCatastale = comune.Code;
-                        anagraficaCliente.Provincia = comune.County;
-                        viewModel.Save(anagraficaCliente, false);
-                        AddLog("Anagrafica committenti " + anagraficaCliente.RagioneSociale + " aggiornata con successo ... OK");
+                        anagraficaCommittente.Comune = comune.Description;
+                        anagraficaCommittente.CodiceCatastale = comune.Code;
+                        anagraficaCommittente.Provincia = comune.County;
+                        viewModel.Save(anagraficaCommittente, false);
+                        AddLog("Anagrafica committenti " + anagraficaCommittente.RagioneSociale + " aggiornata con successo ... OK");
                     }
                     else
                     {
-                        AddLog("Anagrafica committenti " + anagraficaCliente.RagioneSociale + " non aggiornata, comune " + anagraficaCliente.Comune + " non trovato... ERROR");
+                        AddLog("Anagrafica committenti " + anagraficaCommittente.RagioneSociale + " non aggiornata, comune " + anagraficaCommittente.Comune + " non trovato... ERROR");
                         warning = true;
                     }
                 }
-                AddLog("Fine controllo anagrafiche clienti");
+                AddLog("Fine controllo anagrafiche committenti");
                 
             }
             catch (Exception ex)
@@ -187,31 +187,31 @@ namespace Web.GUI.Tools
 
         }
 
-        private void CheckClienti(IList<Countries.City> comuni)
+        private void CheckCommittenti(IList<Countries.City> comuni)
         {
             try
             {
-                AddLog("Avvio controllo clienti");
-                var viewModel = new Cliente.ClienteViewModel(this);
-                var clienti = viewModel.ReadClienti();
-                foreach (var cliente in clienti)
+                AddLog("Avvio controllo committenti");
+                var viewModel = new Committente.CommittenteViewModel(this);
+                var committenti = viewModel.ReadCommittenti();
+                foreach (var committente in committenti)
                 {
-                    var comune = (from q in comuni where q.Description == cliente.Comune && q.County == cliente.Provincia select q).FirstOrDefault();
+                    var comune = (from q in comuni where q.Description == committente.Comune && q.County == committente.Provincia select q).FirstOrDefault();
                     if (comune != null)
                     {
-                        cliente.Comune = comune.Description;
-                        cliente.CodiceCatastale = comune.Code;
-                        cliente.Provincia = comune.County;
-                        viewModel.Save(cliente, false);
-                        AddLog("Cliente " + cliente.RagioneSociale + " aggiornato con successo ... OK");
+                        committente.Comune = comune.Description;
+                        committente.CodiceCatastale = comune.Code;
+                        committente.Provincia = comune.County;
+                        viewModel.Save(committente, false);
+                        AddLog("Committente " + committente.RagioneSociale + " aggiornato con successo ... OK");
                     }
                     else
                     {
-                        AddLog("Cliente " + cliente.RagioneSociale + " non aggiornato, comune " + cliente.Comune + " non trovato... ERROR");
+                        AddLog("Committente " + committente.RagioneSociale + " non aggiornato, comune " + committente.Comune + " non trovato... ERROR");
                         warning = true;
                     }
                 }
-                AddLog("Fine controllo clienti");
+                AddLog("Fine controllo committenti");
             }
             catch (Exception ex)
             {

@@ -216,14 +216,14 @@ namespace WcfService.Services
 	    }
 	}
 	
-	public partial interface IClienteService : IService<ClienteDto, Cliente>
+	public partial interface ICommittenteService : IService<CommittenteDto, Committente>
 	{
 	
 	}
 	
-	public partial class ClienteService : Service<ClienteDto, Cliente>, IClienteService
+	public partial class CommittenteService : Service<CommittenteDto, Committente>, ICommittenteService
 	{
-	    public ClienteService(IClienteAssembler assembler, IClienteRepository repository)
+	    public CommittenteService(ICommittenteAssembler assembler, ICommittenteRepository repository)
 	        : base(assembler, repository)
 	    {
 	
@@ -300,14 +300,14 @@ namespace WcfService.Services
 	    }
 	}
 	
-	public partial interface ILiquidazioneService : IService<LiquidazioneDto, Liquidazione>
+	public partial interface IIncassoService : IService<IncassoDto, Incasso>
 	{
 	
 	}
 	
-	public partial class LiquidazioneService : Service<LiquidazioneDto, Liquidazione>, ILiquidazioneService
+	public partial class IncassoService : Service<IncassoDto, Incasso>, IIncassoService
 	{
-	    public LiquidazioneService(ILiquidazioneAssembler assembler, ILiquidazioneRepository repository)
+	    public IncassoService(IIncassoAssembler assembler, IIncassoRepository repository)
 	        : base(assembler, repository)
 	    {
 	
@@ -328,14 +328,14 @@ namespace WcfService.Services
 	    }
 	}
 	
-	public partial interface IAnagraficaClienteService : IService<AnagraficaClienteDto, AnagraficaCliente>
+	public partial interface IAnagraficaCommittenteService : IService<AnagraficaCommittenteDto, AnagraficaCommittente>
 	{
 	
 	}
 	
-	public partial class AnagraficaClienteService : Service<AnagraficaClienteDto, AnagraficaCliente>, IAnagraficaClienteService
+	public partial class AnagraficaCommittenteService : Service<AnagraficaCommittenteDto, AnagraficaCommittente>, IAnagraficaCommittenteService
 	{
-	    public AnagraficaClienteService(IAnagraficaClienteAssembler assembler, IAnagraficaClienteRepository repository)
+	    public AnagraficaCommittenteService(IAnagraficaCommittenteAssembler assembler, IAnagraficaCommittenteRepository repository)
 	        : base(assembler, repository)
 	    {
 	

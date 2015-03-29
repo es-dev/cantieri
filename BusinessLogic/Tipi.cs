@@ -79,13 +79,13 @@ namespace BusinessLogic
             Anomalo //fornitore il cui totale pagamenti > totale fatture
         }
 
-        public enum StatoCliente
+        public enum StatoCommittente
         {
             None,
-            Incassato, //cliente il cui totale incassi >= Totale fattura
-            Insoluto, //cliente il cui totale incassi < totale fattura e per il quale ci sono fatture insolute
+            Incassato, //committente il cui totale incassi >= Totale fattura
+            Insoluto, //committente il cui totale incassi < totale fattura e per il quale ci sono fatture insolute
             [Description("Non incassato")]
-            NonIncassato //cliente il cui totale incassi < totale fattura e per il quale ci sono fatture non incassate
+            NonIncassato //committente il cui totale incassi < totale fattura e per il quale ci sono fatture non incassate
         }
 
         public enum TipoAccount
@@ -102,11 +102,11 @@ namespace BusinessLogic
             [Description("Situazione fornitore")]
             Fornitore,
             [Description("Situazione committente")]
-            Cliente,
+            Committente,
             [Description("Stato fornitori")]
             Fornitori,
             [Description("Stato committenti")]
-            Clienti,
+            Committenti,
             [Description("Stato pagamenti fatture")]
             FattureAcquisto,
             [Description("Stato incassi fatture")]

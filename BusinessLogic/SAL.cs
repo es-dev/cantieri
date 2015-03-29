@@ -23,8 +23,8 @@ namespace BusinessLogic
                         var lastSAL = (from q in SALs orderby q.Id descending select q).Take(1).FirstOrDefault();
                         if (lastSAL != null)
                         {
-                            var totaleLiquidazioni = UtilityValidation.GetDecimal(lastSAL.TotaleLiquidazioni);
-                            return totaleLiquidazioni;
+                            var totaleIncassi = UtilityValidation.GetDecimal(lastSAL.TotaleIncassi);
+                            return totaleIncassi;
                         }
                     }
                 }
@@ -80,16 +80,16 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleFattureVendita(IList<ClienteDto> clienti, DateTime data)
+        public static decimal GetTotaleFattureVendita(IList<CommittenteDto> committenti, DateTime data)
         {
             try
             {
                 decimal totale = 0;
-                if (clienti != null)
+                if (committenti != null)
                 {
-                    foreach (var cliente in clienti)
+                    foreach (var committente in committenti)
                     {
-                        var totaleFattura = Cliente.GetTotaleFattureVendita(cliente, data);
+                        var totaleFattura = Committente.GetTotaleFattureVendita(committente, data);
                         totale += totaleFattura;
                     }
                     return totale;
@@ -124,17 +124,17 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleLiquidazioni(IList<ClienteDto> clienti, DateTime data)
+        public static decimal GetTotaleIncassi(IList<CommittenteDto> committenti, DateTime data)
         {
             try
             {
                 decimal totale = 0;
-                if (clienti != null)
+                if (committenti != null)
                 {
-                    foreach (var cliente in clienti)
+                    foreach (var committente in committenti)
                     {
-                        var totaleLiquidazioni = Cliente.GetTotaleLiquidazioni(cliente, data);
-                        totale += totaleLiquidazioni;
+                        var totaleIncassi = Committente.GetTotaleIncassi(committente, data);
+                        totale += totaleIncassi;
                     }
                     return totale;
                 }
@@ -153,12 +153,12 @@ namespace BusinessLogic
                 if (commessa != null)
                 {
                     var fornitori = commessa.Fornitores;
-                    var clienti = commessa.Clientes;
+                    var committenti = commessa.Committentes;
 
                     var totaleAcquisti = GetTotaleFattureAcquisto(fornitori, data);
-                    var totaleVendite = GetTotaleFattureVendita(clienti, data);
+                    var totaleVendite = GetTotaleFattureVendita(committenti, data);
                     var totalePagamenti = GetTotalePagamenti(fornitori, data);
-                    var totaleLiquidazioni = GetTotaleLiquidazioni(clienti, data);
+                    var totaleIncassi = GetTotaleIncassi(committenti, data);
 
                     var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
                     var margine = UtilityValidation.GetDecimal(commessa.Margine);
@@ -277,24 +277,24 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleLiquidazioni(SALDto sal, CommessaDto commessa)
+        public static decimal GetTotaleIncassi(SALDto sal, CommessaDto commessa)
         {
             try
             {
-                decimal totaleLiquidazioni = 0;
+                decimal totaleIncassi = 0;
                 if (commessa != null)
                 {
-                    var clienti = commessa.Clientes;
+                    var committenti = commessa.Committentes;
                     var statoCommessa = commessa.Stato;
                     if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                        totaleLiquidazioni = UtilityValidation.GetDecimal(sal.TotaleLiquidazioni);
+                        totaleIncassi = UtilityValidation.GetDecimal(sal.TotaleIncassi);
                     else
                     {
                         var data = sal.Data;
-                        totaleLiquidazioni = GetTotaleLiquidazioni(clienti, data.Value);
+                        totaleIncassi = GetTotaleIncassi(committenti, data.Value);
                     }
                 }
-                return totaleLiquidazioni;
+                return totaleIncassi;
             }
             catch (Exception ex)
             {
@@ -310,14 +310,14 @@ namespace BusinessLogic
                 decimal totaleVendite = 0;
                 if (commessa != null)
                 {
-                    var clienti = commessa.Clientes;
+                    var committenti = commessa.Committentes;
                     var statoCommessa = commessa.Stato;
                     if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
                         totaleVendite = UtilityValidation.GetDecimal(sal.TotaleVendite);
                     else
                     {
                         var data = sal.Data;
-                        totaleVendite = GetTotaleFattureVendita(clienti, data.Value);
+                        totaleVendite = GetTotaleFattureVendita(committenti, data.Value);
                     }
                 }
                 return totaleVendite;

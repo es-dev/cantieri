@@ -12,23 +12,23 @@ namespace Web.GUI.FatturaVendita
 {
 	public partial class FatturaVenditaView : TemplateView
 	{
-        private ClienteDto cliente = null;
+        private CommittenteDto committente = null;
 
         public FatturaVenditaView()
 		{ 
 			InitializeComponent();
 		}
 
-        public FatturaVenditaView(ClienteDto cliente)
+        public FatturaVenditaView(CommittenteDto committente)
         {
             InitializeComponent();
             try
             {
-                this.cliente = cliente;
+                this.committente = committente;
                 var viewModel = (FatturaVendita.FatturaVenditaViewModel)ViewModel;
                 if (viewModel != null)
                 {
-                    viewModel.Cliente = cliente;
+                    viewModel.Committente = committente;
                 }
             }
             catch (Exception ex)
@@ -54,7 +54,7 @@ namespace Web.GUI.FatturaVendita
         {
             try
             {
-                var space = new FatturaVenditaModel(cliente);
+                var space = new FatturaVenditaModel(committente);
                 space.Title = "NUOVA FATTURA DI VENDITA";
                 space.Model = new WcfService.Dto.FatturaVenditaDto();
                 AddSpace(space);

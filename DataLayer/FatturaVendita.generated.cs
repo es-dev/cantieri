@@ -37,16 +37,16 @@ namespace DataLayer
 			}
 		}
 		
-		private int _clienteId;
-		public virtual int ClienteId
+		private int _committenteId;
+		public virtual int CommittenteId
 		{
 			get
 			{
-				return this._clienteId;
+				return this._committenteId;
 			}
 			set
 			{
-				this._clienteId = value;
+				this._committenteId = value;
 			}
 		}
 		
@@ -167,16 +167,16 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal? _totaleLiquidazioni;
-		public virtual decimal? TotaleLiquidazioni
+		private decimal? _totaleIncassi;
+		public virtual decimal? TotaleIncassi
 		{
 			get
 			{
-				return this._totaleLiquidazioni;
+				return this._totaleIncassi;
 			}
 			set
 			{
-				this._totaleLiquidazioni = value;
+				this._totaleIncassi = value;
 			}
 		}
 		
@@ -193,25 +193,25 @@ namespace DataLayer
 			}
 		}
 		
-		private Cliente _cliente;
-		public virtual Cliente Cliente
+		private Committente _committente;
+		public virtual Committente Committente
 		{
 			get
 			{
-				return this._cliente;
+				return this._committente;
 			}
 			set
 			{
-				this._cliente = value;
+				this._committente = value;
 			}
 		}
 		
-		private IList<Liquidazione> _liquidaziones = new List<Liquidazione>();
-		public virtual IList<Liquidazione> Liquidaziones
+		private IList<Incasso> _incassos = new List<Incasso>();
+		public virtual IList<Incasso> Incassos
 		{
 			get
 			{
-				return this._liquidaziones;
+				return this._incassos;
 			}
 		}
 		

@@ -60,7 +60,7 @@ namespace Web.GUI.Commessa
             this.editLocalita = new Library.Template.Controls.TemplateEditText();
             this.editNote = new Library.Template.Controls.TemplateEditText();
             this.btnCalcoloAvanzamentoLavori = new Library.Controls.ButtonSeparatorV();
-            this.btnClienti = new Library.Controls.ButtonSeparatorV();
+            this.btnCommittenti = new Library.Controls.ButtonSeparatorV();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -136,7 +136,7 @@ namespace Web.GUI.Commessa
             // 
             // panelCommands
             // 
-            this.panelCommands.Controls.Add(this.btnClienti);
+            this.panelCommands.Controls.Add(this.btnCommittenti);
             this.panelCommands.Controls.Add(this.btnCalcoloAvanzamentoLavori);
             this.panelCommands.Controls.Add(this.btnSAL);
             this.panelCommands.Controls.Add(this.btnFornitori);
@@ -148,7 +148,7 @@ namespace Web.GUI.Commessa
             this.panelCommands.Controls.SetChildIndex(this.btnFornitori, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSAL, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnCalcoloAvanzamentoLavori, 0);
-            this.panelCommands.Controls.SetChildIndex(this.btnClienti, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnCommittenti, 0);
             // 
             // btnDelete
             // 
@@ -767,19 +767,19 @@ namespace Web.GUI.Commessa
             this.btnCalcoloAvanzamentoLavori.TextButton = "Calcolo stato lavori";
             this.btnCalcoloAvanzamentoLavori.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnCalcoloAvanzamentoLavori_Click);
             // 
-            // btnClienti
+            // btnCommittenti
             // 
-            this.btnClienti.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.btnClienti.BackColor = System.Drawing.Color.Transparent;
-            this.btnClienti.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
-            this.btnClienti.ImageButton = "";
-            this.btnClienti.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnClienti.Location = new System.Drawing.Point(0, 432);
-            this.btnClienti.Name = "btnClienti";
-            this.btnClienti.Size = new System.Drawing.Size(100, 72);
-            this.btnClienti.TabIndex = 1002;
-            this.btnClienti.TextButton = "Committenti";
-            this.btnClienti.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnClienti_Click);
+            this.btnCommittenti.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.btnCommittenti.BackColor = System.Drawing.Color.Transparent;
+            this.btnCommittenti.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.btnCommittenti.ImageButton = "";
+            this.btnCommittenti.ImageSeparator = "Images.separator_ht_small.png";
+            this.btnCommittenti.Location = new System.Drawing.Point(0, 432);
+            this.btnCommittenti.Name = "btnCommittenti";
+            this.btnCommittenti.Size = new System.Drawing.Size(100, 72);
+            this.btnCommittenti.TabIndex = 1002;
+            this.btnCommittenti.TextButton = "Committenti";
+            this.btnCommittenti.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnCommittenti_Click);
             // 
             // CommessaModel
             // 
@@ -826,7 +826,7 @@ namespace Web.GUI.Commessa
         private Library.Template.Controls.TemplateEditText editLocalita;
         private Library.Template.Controls.TemplateEditText editNote;
         private Library.Controls.ButtonSeparatorV btnCalcoloAvanzamentoLavori;
-        private Library.Controls.ButtonSeparatorV btnClienti;
+        private Library.Controls.ButtonSeparatorV btnCommittenti;
 
 
     }

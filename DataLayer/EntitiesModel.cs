@@ -74,11 +74,11 @@ namespace DataLayer
 			}
 		}
 		
-		public IQueryable<Cliente> Clientes 
+		public IQueryable<Committente> Committentes 
 		{
 			get
 			{
-				return this.GetAll<Cliente>();
+				return this.GetAll<Committente>();
 			}
 		}
 		
@@ -122,11 +122,11 @@ namespace DataLayer
 			}
 		}
 		
-		public IQueryable<Liquidazione> Liquidaziones 
+		public IQueryable<Incasso> Incassos 
 		{
 			get
 			{
-				return this.GetAll<Liquidazione>();
+				return this.GetAll<Incasso>();
 			}
 		}
 		
@@ -138,11 +138,11 @@ namespace DataLayer
 			}
 		}
 		
-		public IQueryable<AnagraficaCliente> AnagraficaClientes 
+		public IQueryable<AnagraficaCommittente> AnagraficaCommittentes 
 		{
 			get
 			{
-				return this.GetAll<AnagraficaCliente>();
+				return this.GetAll<AnagraficaCommittente>();
 			}
 		}
 		
@@ -244,7 +244,7 @@ namespace DataLayer
 		{
 			get;
 		}
-		IQueryable<Cliente> Clientes
+		IQueryable<Committente> Committentes
 		{
 			get;
 		}
@@ -268,7 +268,7 @@ namespace DataLayer
 		{
 			get;
 		}
-		IQueryable<Liquidazione> Liquidaziones
+		IQueryable<Incasso> Incassos
 		{
 			get;
 		}
@@ -276,7 +276,7 @@ namespace DataLayer
 		{
 			get;
 		}
-		IQueryable<AnagraficaCliente> AnagraficaClientes
+		IQueryable<AnagraficaCommittente> AnagraficaCommittentes
 		{
 			get;
 		}

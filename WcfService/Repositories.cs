@@ -106,14 +106,14 @@ namespace WcfService.Repositories
 	    }
 	}
 	
-	public partial interface IClienteRepository : IRepository<Cliente>
+	public partial interface ICommittenteRepository : IRepository<Committente>
 	{ 
 	
 	}
 	
-	public partial class ClienteRepository : Repository<Cliente>, IClienteRepository
+	public partial class CommittenteRepository : Repository<Committente>, ICommittenteRepository
 	{
-	    public ClienteRepository(IEntitiesModelUnitOfWork unitOfWork)
+	    public CommittenteRepository(IEntitiesModelUnitOfWork unitOfWork)
 	        : base(unitOfWork)
 	    {
 	    }
@@ -184,14 +184,14 @@ namespace WcfService.Repositories
 	    }
 	}
 	
-	public partial interface ILiquidazioneRepository : IRepository<Liquidazione>
+	public partial interface IIncassoRepository : IRepository<Incasso>
 	{ 
 	
 	}
 	
-	public partial class LiquidazioneRepository : Repository<Liquidazione>, ILiquidazioneRepository
+	public partial class IncassoRepository : Repository<Incasso>, IIncassoRepository
 	{
-	    public LiquidazioneRepository(IEntitiesModelUnitOfWork unitOfWork)
+	    public IncassoRepository(IEntitiesModelUnitOfWork unitOfWork)
 	        : base(unitOfWork)
 	    {
 	    }
@@ -210,14 +210,14 @@ namespace WcfService.Repositories
 	    }
 	}
 	
-	public partial interface IAnagraficaClienteRepository : IRepository<AnagraficaCliente>
+	public partial interface IAnagraficaCommittenteRepository : IRepository<AnagraficaCommittente>
 	{ 
 	
 	}
 	
-	public partial class AnagraficaClienteRepository : Repository<AnagraficaCliente>, IAnagraficaClienteRepository
+	public partial class AnagraficaCommittenteRepository : Repository<AnagraficaCommittente>, IAnagraficaCommittenteRepository
 	{
-	    public AnagraficaClienteRepository(IEntitiesModelUnitOfWork unitOfWork)
+	    public AnagraficaCommittenteRepository(IEntitiesModelUnitOfWork unitOfWork)
 	        : base(unitOfWork)
 	    {
 	    }

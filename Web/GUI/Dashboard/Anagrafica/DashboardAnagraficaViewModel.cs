@@ -8,7 +8,7 @@ using System.Web;
 using Web.GUI.Dashboard;
 using Web.GUI.Dashboard.Configurazione;
 using Web.GUI.AnagraficaArticolo;
-using Web.GUI.AnagraficaCliente;
+using Web.GUI.AnagraficaCommittente;
 using Web.GUI.AnagraficaFornitore;
 
 namespace Web.GUI.Dashboard.Anagrafica
@@ -71,11 +71,11 @@ namespace Web.GUI.Dashboard.Anagrafica
             {
                 var dashboards = new List<DashboardAnagrafica>();
                 var dashboardAnagraficaFornitore = new DashboardAnagrafica("Anagrafiche fornitori", "AF", "Archivia i fornitori verso i quali effettui l'approvviggionamento delle risorse per una rapida gestione degli archivi...", "Images.dashboard.anagraficafornitore.png", "", typeof(AnagraficaFornitoreView));
-                var dashboardAnagraficaCliente = new DashboardAnagrafica("Anagrafiche committenti", "AC", "Archivia i committenti verso i quali esegui le commesse dei lavori assegnati  per una rapida gestione degli storici...", "Images.dashboard.anagraficacliente.png", "", typeof(AnagraficaClienteView));
+                var dashboardAnagraficaCommittente = new DashboardAnagrafica("Anagrafiche committenti", "AC", "Archivia i committenti verso i quali esegui le commesse dei lavori assegnati  per una rapida gestione degli storici...", "Images.dashboard.anagraficacommittente.png", "", typeof(AnagraficaCommittenteView));
                 var dashboardAnagraficaArticolo = new DashboardAnagrafica("Anagrafiche articoli", "AA", "Archivia gli articoli e i prodotti acquistati per una gestione rapida delle movimentazioni di fatturazione e di magazzino...", "Images.dashboard.anagraficaarticolo.png", "", typeof(AnagraficaArticoloView));
                
                 dashboards.Add(dashboardAnagraficaFornitore);
-                dashboards.Add(dashboardAnagraficaCliente);
+                dashboards.Add(dashboardAnagraficaCommittente);
                 dashboards.Add(dashboardAnagraficaArticolo);
 
                 var query = dashboards.AsQueryable();

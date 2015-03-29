@@ -225,35 +225,35 @@ namespace WcfService
 	    
 	    #endregion
 	    
-	    #region AnagraficaClientes CRUD Operations
+	    #region AnagraficaCommittentes CRUD Operations
 	
 	    /// <summary>
-	    /// Returns all anagraficaclientes.
+	    /// Returns all anagraficacommittentes.
 	    /// </summary>
 	    /// <returns></returns>
 	    [OperationContract]
-	    IEnumerable<AnagraficaClienteDto> ReadAnagraficaClientes();
+	    IEnumerable<AnagraficaCommittenteDto> ReadAnagraficaCommittentes();
 	
 	    /// <summary>
-	    /// Returns a specified amount of anagraficaclientes from the given start index.
+	    /// Returns a specified amount of anagraficacommittentes from the given start index.
 	    /// </summary>
 	    /// <param name="startIndex">The start index.</param>
 	    /// <param name="pageSize">The returned entities count.</param>
 	    /// <returns></returns>
 	    [OperationContract]
-	    IEnumerable<AnagraficaClienteDto> ReadAnagraficaClientesPaged(int startIndex, int pageSize);
+	    IEnumerable<AnagraficaCommittenteDto> ReadAnagraficaCommittentesPaged(int startIndex, int pageSize);
 	
 	    /// <summary>
-	    /// Returns all anagraficaclientes filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// Returns all anagraficacommittentes filtered by the specified filter expression and sorted by the specified sort expression.
 	    /// </summary>
 	    /// <param name="sortExpression">The sort expression.</param>
 	    /// <param name="filterExpression">The filter expression.</param>
 	    /// <returns></returns>
 	    [OperationContract]
-	    IEnumerable<AnagraficaClienteDto> ReadAnagraficaClientesFiltered(string sortExpression, string filterExpression);
+	    IEnumerable<AnagraficaCommittenteDto> ReadAnagraficaCommittentesFiltered(string sortExpression, string filterExpression);
 	
 	    /// <summary>
-	    /// Returns a specified amount of anagraficaclientes from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// Returns a specified amount of anagraficacommittentes from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
 	    /// </summary>
 	    /// <param name="startIndex">The start index.</param>
 	    /// <param name="pageSize">The returned entities count.</param>
@@ -261,66 +261,66 @@ namespace WcfService
 	    /// <param name="filterExpression">The filter expression.</param>
 	    /// <returns></returns>
 	    [OperationContract]
-	    IEnumerable<AnagraficaClienteDto> ReadAnagraficaClientesPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression);
+	    IEnumerable<AnagraficaCommittenteDto> ReadAnagraficaCommittentesPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression);
 	
 	    /// <summary>
-	    /// Returns a anagraficacliente with the specified dto key.
+	    /// Returns a anagraficacommittente with the specified dto key.
 	    /// </summary>
 	    /// <param name="dtoKey">The specified dto key value.</param>
 	    /// <returns></returns>
 	    [OperationContract]
-	    AnagraficaClienteDto ReadAnagraficaCliente(string dtoKey);
+	    AnagraficaCommittenteDto ReadAnagraficaCommittente(string dtoKey);
 	
 	    /// <summary>
-	    /// Returns all anagraficaclientes count.
+	    /// Returns all anagraficacommittentes count.
 	    /// </summary>
 	    /// <returns></returns>
 	    [OperationContract]
-	    int AnagraficaClientesCount();
+	    int AnagraficaCommittentesCount();
 	
 	    /// <summary>
-	    /// Returns all anagraficaclientes count filtered by the specified filter expression.
+	    /// Returns all anagraficacommittentes count filtered by the specified filter expression.
 	    /// </summary>
 	    /// <param name="filterExpression">The filter expression.</param>
 	    /// <returns></returns>
 	    [OperationContract]
-	    int AnagraficaClientesCountFiltered(string filterExpression);
+	    int AnagraficaCommittentesCountFiltered(string filterExpression);
 	
 	    /// <summary>
-	    /// Adds a new anagraficacliente from the given dto object into the database.
+	    /// Adds a new anagraficacommittente from the given dto object into the database.
 	    /// </summary>
-	    /// <param name="anagraficacliente">The dto object.</param>
-	    /// <returns>The dto key of the newly created anagraficacliente.</returns>
+	    /// <param name="anagraficacommittente">The dto object.</param>
+	    /// <returns>The dto key of the newly created anagraficacommittente.</returns>
 	    [OperationContract]
-	    string CreateAnagraficaCliente(AnagraficaClienteDto anagraficacliente);
+	    string CreateAnagraficaCommittente(AnagraficaCommittenteDto anagraficacommittente);
 	
 	    /// <summary>
-	    /// Updates anagraficacliente in the database from the given dto object.
+	    /// Updates anagraficacommittente in the database from the given dto object.
 	    /// </summary>
-	    /// <param name="anagraficacliente">The dto object.</param>
+	    /// <param name="anagraficacommittente">The dto object.</param>
 	    [OperationContract]
-	    void UpdateAnagraficaCliente(AnagraficaClienteDto anagraficacliente);
+	    void UpdateAnagraficaCommittente(AnagraficaCommittenteDto anagraficacommittente);
 	
 	    /// <summary>
-	    /// Update an existing anagraficaclientes in the database from the given dto object list.
+	    /// Update an existing anagraficacommittentes in the database from the given dto object list.
 	    /// </summary>
-	    /// <param name="anagraficaclientes">The dto object list.</param>
+	    /// <param name="anagraficacommittentes">The dto object list.</param>
 	    [OperationContract]
-	    void UpdateAnagraficaClientes(IEnumerable<AnagraficaClienteDto> anagraficaclientes);
+	    void UpdateAnagraficaCommittentes(IEnumerable<AnagraficaCommittenteDto> anagraficacommittentes);
 	
 	    /// <summary>
-	    /// Deletes anagraficacliente from the database by the given dto object.
+	    /// Deletes anagraficacommittente from the database by the given dto object.
 	    /// </summary>
-	    /// <param name="anagraficacliente">The dto object.</param>
+	    /// <param name="anagraficacommittente">The dto object.</param>
 	    [OperationContract]
-	    void DeleteAnagraficaCliente(AnagraficaClienteDto anagraficacliente);
+	    void DeleteAnagraficaCommittente(AnagraficaCommittenteDto anagraficacommittente);
 	
 	    /// <summary>
-	    /// Delete anagraficaclientes from the database by the given dto object list.
+	    /// Delete anagraficacommittentes from the database by the given dto object list.
 	    /// </summary>
-	    /// <param name="anagraficaclientes">The dto object list.</param>
+	    /// <param name="anagraficacommittentes">The dto object list.</param>
 	    [OperationContract]
-	    void DeleteAnagraficaClientes(IEnumerable<AnagraficaClienteDto> anagraficaclientes);
+	    void DeleteAnagraficaCommittentes(IEnumerable<AnagraficaCommittenteDto> anagraficacommittentes);
 	    
 	    #endregion
 	    
@@ -720,105 +720,6 @@ namespace WcfService
 	    
 	    #endregion
 	    
-	    #region Clientes CRUD Operations
-	
-	    /// <summary>
-	    /// Returns all clientes.
-	    /// </summary>
-	    /// <returns></returns>
-	    [OperationContract]
-	    IEnumerable<ClienteDto> ReadClientes();
-	
-	    /// <summary>
-	    /// Returns a specified amount of clientes from the given start index.
-	    /// </summary>
-	    /// <param name="startIndex">The start index.</param>
-	    /// <param name="pageSize">The returned entities count.</param>
-	    /// <returns></returns>
-	    [OperationContract]
-	    IEnumerable<ClienteDto> ReadClientesPaged(int startIndex, int pageSize);
-	
-	    /// <summary>
-	    /// Returns all clientes filtered by the specified filter expression and sorted by the specified sort expression.
-	    /// </summary>
-	    /// <param name="sortExpression">The sort expression.</param>
-	    /// <param name="filterExpression">The filter expression.</param>
-	    /// <returns></returns>
-	    [OperationContract]
-	    IEnumerable<ClienteDto> ReadClientesFiltered(string sortExpression, string filterExpression);
-	
-	    /// <summary>
-	    /// Returns a specified amount of clientes from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
-	    /// </summary>
-	    /// <param name="startIndex">The start index.</param>
-	    /// <param name="pageSize">The returned entities count.</param>
-	    /// <param name="sortExpression">The sort expression.</param>
-	    /// <param name="filterExpression">The filter expression.</param>
-	    /// <returns></returns>
-	    [OperationContract]
-	    IEnumerable<ClienteDto> ReadClientesPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression);
-	
-	    /// <summary>
-	    /// Returns a cliente with the specified dto key.
-	    /// </summary>
-	    /// <param name="dtoKey">The specified dto key value.</param>
-	    /// <returns></returns>
-	    [OperationContract]
-	    ClienteDto ReadCliente(string dtoKey);
-	
-	    /// <summary>
-	    /// Returns all clientes count.
-	    /// </summary>
-	    /// <returns></returns>
-	    [OperationContract]
-	    int ClientesCount();
-	
-	    /// <summary>
-	    /// Returns all clientes count filtered by the specified filter expression.
-	    /// </summary>
-	    /// <param name="filterExpression">The filter expression.</param>
-	    /// <returns></returns>
-	    [OperationContract]
-	    int ClientesCountFiltered(string filterExpression);
-	
-	    /// <summary>
-	    /// Adds a new cliente from the given dto object into the database.
-	    /// </summary>
-	    /// <param name="cliente">The dto object.</param>
-	    /// <returns>The dto key of the newly created cliente.</returns>
-	    [OperationContract]
-	    string CreateCliente(ClienteDto cliente);
-	
-	    /// <summary>
-	    /// Updates cliente in the database from the given dto object.
-	    /// </summary>
-	    /// <param name="cliente">The dto object.</param>
-	    [OperationContract]
-	    void UpdateCliente(ClienteDto cliente);
-	
-	    /// <summary>
-	    /// Update an existing clientes in the database from the given dto object list.
-	    /// </summary>
-	    /// <param name="clientes">The dto object list.</param>
-	    [OperationContract]
-	    void UpdateClientes(IEnumerable<ClienteDto> clientes);
-	
-	    /// <summary>
-	    /// Deletes cliente from the database by the given dto object.
-	    /// </summary>
-	    /// <param name="cliente">The dto object.</param>
-	    [OperationContract]
-	    void DeleteCliente(ClienteDto cliente);
-	
-	    /// <summary>
-	    /// Delete clientes from the database by the given dto object list.
-	    /// </summary>
-	    /// <param name="clientes">The dto object list.</param>
-	    [OperationContract]
-	    void DeleteClientes(IEnumerable<ClienteDto> clientes);
-	    
-	    #endregion
-	    
 	    #region Commessas CRUD Operations
 	
 	    /// <summary>
@@ -915,6 +816,105 @@ namespace WcfService
 	    /// <param name="commessas">The dto object list.</param>
 	    [OperationContract]
 	    void DeleteCommessas(IEnumerable<CommessaDto> commessas);
+	    
+	    #endregion
+	    
+	    #region Committentes CRUD Operations
+	
+	    /// <summary>
+	    /// Returns all committentes.
+	    /// </summary>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<CommittenteDto> ReadCommittentes();
+	
+	    /// <summary>
+	    /// Returns a specified amount of committentes from the given start index.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<CommittenteDto> ReadCommittentesPaged(int startIndex, int pageSize);
+	
+	    /// <summary>
+	    /// Returns all committentes filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<CommittenteDto> ReadCommittentesFiltered(string sortExpression, string filterExpression);
+	
+	    /// <summary>
+	    /// Returns a specified amount of committentes from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<CommittenteDto> ReadCommittentesPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression);
+	
+	    /// <summary>
+	    /// Returns a committente with the specified dto key.
+	    /// </summary>
+	    /// <param name="dtoKey">The specified dto key value.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    CommittenteDto ReadCommittente(string dtoKey);
+	
+	    /// <summary>
+	    /// Returns all committentes count.
+	    /// </summary>
+	    /// <returns></returns>
+	    [OperationContract]
+	    int CommittentesCount();
+	
+	    /// <summary>
+	    /// Returns all committentes count filtered by the specified filter expression.
+	    /// </summary>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    int CommittentesCountFiltered(string filterExpression);
+	
+	    /// <summary>
+	    /// Adds a new committente from the given dto object into the database.
+	    /// </summary>
+	    /// <param name="committente">The dto object.</param>
+	    /// <returns>The dto key of the newly created committente.</returns>
+	    [OperationContract]
+	    string CreateCommittente(CommittenteDto committente);
+	
+	    /// <summary>
+	    /// Updates committente in the database from the given dto object.
+	    /// </summary>
+	    /// <param name="committente">The dto object.</param>
+	    [OperationContract]
+	    void UpdateCommittente(CommittenteDto committente);
+	
+	    /// <summary>
+	    /// Update an existing committentes in the database from the given dto object list.
+	    /// </summary>
+	    /// <param name="committentes">The dto object list.</param>
+	    [OperationContract]
+	    void UpdateCommittentes(IEnumerable<CommittenteDto> committentes);
+	
+	    /// <summary>
+	    /// Deletes committente from the database by the given dto object.
+	    /// </summary>
+	    /// <param name="committente">The dto object.</param>
+	    [OperationContract]
+	    void DeleteCommittente(CommittenteDto committente);
+	
+	    /// <summary>
+	    /// Delete committentes from the database by the given dto object list.
+	    /// </summary>
+	    /// <param name="committentes">The dto object list.</param>
+	    [OperationContract]
+	    void DeleteCommittentes(IEnumerable<CommittenteDto> committentes);
 	    
 	    #endregion
 	    
@@ -1215,35 +1215,35 @@ namespace WcfService
 	    
 	    #endregion
 	    
-	    #region Liquidaziones CRUD Operations
+	    #region Incassos CRUD Operations
 	
 	    /// <summary>
-	    /// Returns all liquidaziones.
+	    /// Returns all incassos.
 	    /// </summary>
 	    /// <returns></returns>
 	    [OperationContract]
-	    IEnumerable<LiquidazioneDto> ReadLiquidaziones();
+	    IEnumerable<IncassoDto> ReadIncassos();
 	
 	    /// <summary>
-	    /// Returns a specified amount of liquidaziones from the given start index.
+	    /// Returns a specified amount of incassos from the given start index.
 	    /// </summary>
 	    /// <param name="startIndex">The start index.</param>
 	    /// <param name="pageSize">The returned entities count.</param>
 	    /// <returns></returns>
 	    [OperationContract]
-	    IEnumerable<LiquidazioneDto> ReadLiquidazionesPaged(int startIndex, int pageSize);
+	    IEnumerable<IncassoDto> ReadIncassosPaged(int startIndex, int pageSize);
 	
 	    /// <summary>
-	    /// Returns all liquidaziones filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// Returns all incassos filtered by the specified filter expression and sorted by the specified sort expression.
 	    /// </summary>
 	    /// <param name="sortExpression">The sort expression.</param>
 	    /// <param name="filterExpression">The filter expression.</param>
 	    /// <returns></returns>
 	    [OperationContract]
-	    IEnumerable<LiquidazioneDto> ReadLiquidazionesFiltered(string sortExpression, string filterExpression);
+	    IEnumerable<IncassoDto> ReadIncassosFiltered(string sortExpression, string filterExpression);
 	
 	    /// <summary>
-	    /// Returns a specified amount of liquidaziones from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// Returns a specified amount of incassos from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
 	    /// </summary>
 	    /// <param name="startIndex">The start index.</param>
 	    /// <param name="pageSize">The returned entities count.</param>
@@ -1251,66 +1251,66 @@ namespace WcfService
 	    /// <param name="filterExpression">The filter expression.</param>
 	    /// <returns></returns>
 	    [OperationContract]
-	    IEnumerable<LiquidazioneDto> ReadLiquidazionesPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression);
+	    IEnumerable<IncassoDto> ReadIncassosPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression);
 	
 	    /// <summary>
-	    /// Returns a liquidazione with the specified dto key.
+	    /// Returns a incasso with the specified dto key.
 	    /// </summary>
 	    /// <param name="dtoKey">The specified dto key value.</param>
 	    /// <returns></returns>
 	    [OperationContract]
-	    LiquidazioneDto ReadLiquidazione(string dtoKey);
+	    IncassoDto ReadIncasso(string dtoKey);
 	
 	    /// <summary>
-	    /// Returns all liquidaziones count.
+	    /// Returns all incassos count.
 	    /// </summary>
 	    /// <returns></returns>
 	    [OperationContract]
-	    int LiquidazionesCount();
+	    int IncassosCount();
 	
 	    /// <summary>
-	    /// Returns all liquidaziones count filtered by the specified filter expression.
+	    /// Returns all incassos count filtered by the specified filter expression.
 	    /// </summary>
 	    /// <param name="filterExpression">The filter expression.</param>
 	    /// <returns></returns>
 	    [OperationContract]
-	    int LiquidazionesCountFiltered(string filterExpression);
+	    int IncassosCountFiltered(string filterExpression);
 	
 	    /// <summary>
-	    /// Adds a new liquidazione from the given dto object into the database.
+	    /// Adds a new incasso from the given dto object into the database.
 	    /// </summary>
-	    /// <param name="liquidazione">The dto object.</param>
-	    /// <returns>The dto key of the newly created liquidazione.</returns>
+	    /// <param name="incasso">The dto object.</param>
+	    /// <returns>The dto key of the newly created incasso.</returns>
 	    [OperationContract]
-	    string CreateLiquidazione(LiquidazioneDto liquidazione);
+	    string CreateIncasso(IncassoDto incasso);
 	
 	    /// <summary>
-	    /// Updates liquidazione in the database from the given dto object.
+	    /// Updates incasso in the database from the given dto object.
 	    /// </summary>
-	    /// <param name="liquidazione">The dto object.</param>
+	    /// <param name="incasso">The dto object.</param>
 	    [OperationContract]
-	    void UpdateLiquidazione(LiquidazioneDto liquidazione);
+	    void UpdateIncasso(IncassoDto incasso);
 	
 	    /// <summary>
-	    /// Update an existing liquidaziones in the database from the given dto object list.
+	    /// Update an existing incassos in the database from the given dto object list.
 	    /// </summary>
-	    /// <param name="liquidaziones">The dto object list.</param>
+	    /// <param name="incassos">The dto object list.</param>
 	    [OperationContract]
-	    void UpdateLiquidaziones(IEnumerable<LiquidazioneDto> liquidaziones);
+	    void UpdateIncassos(IEnumerable<IncassoDto> incassos);
 	
 	    /// <summary>
-	    /// Deletes liquidazione from the database by the given dto object.
+	    /// Deletes incasso from the database by the given dto object.
 	    /// </summary>
-	    /// <param name="liquidazione">The dto object.</param>
+	    /// <param name="incasso">The dto object.</param>
 	    [OperationContract]
-	    void DeleteLiquidazione(LiquidazioneDto liquidazione);
+	    void DeleteIncasso(IncassoDto incasso);
 	
 	    /// <summary>
-	    /// Delete liquidaziones from the database by the given dto object list.
+	    /// Delete incassos from the database by the given dto object list.
 	    /// </summary>
-	    /// <param name="liquidaziones">The dto object list.</param>
+	    /// <param name="incassos">The dto object list.</param>
 	    [OperationContract]
-	    void DeleteLiquidaziones(IEnumerable<LiquidazioneDto> liquidaziones);
+	    void DeleteIncassos(IEnumerable<IncassoDto> incassos);
 	    
 	    #endregion
 	    
