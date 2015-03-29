@@ -145,14 +145,16 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
         {
             try
             {
-                var obj = (PagamentoUnificatoFatturaAcquistoDto)Model;
                 var pagamentoUnificato = (PagamentoUnificatoDto)editPagamentoUnificato.Model;
-                var codiceFornitore = pagamentoUnificato.CodiceFornitore;
-                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
-                var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
-                var view = new FatturaAcquisto.FatturaAcquistoView(anagraficaFornitore, Tipi.StatoFattura.NonPagata | Tipi.StatoFattura.Insoluta);
-                view.Title = "SELEZIONA LA FATTURA DI ACQUISTO";
-                editFatturaAcquisto.Show(view);
+                if (pagamentoUnificato != null)
+                {
+                    var codiceFornitore = pagamentoUnificato.CodiceFornitore;
+                    var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                    var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
+                    var view = new FatturaAcquisto.FatturaAcquistoView(anagraficaFornitore, Tipi.StatoFattura.NonPagata | Tipi.StatoFattura.Insoluta);
+                    view.Title = "SELEZIONA LA FATTURA DI ACQUISTO";
+                    editFatturaAcquisto.Show(view);
+                }
             }
             catch (Exception ex)
             {

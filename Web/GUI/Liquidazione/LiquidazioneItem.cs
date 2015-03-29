@@ -50,8 +50,10 @@ namespace Web.GUI.Liquidazione
             {
                 if (item != null)
                 {
+                    var obj = (WcfService.Dto.LiquidazioneDto)Model;
                     var space = new LiquidazioneModel();
-                    space.Title = "DETTAGLI INCASSO";
+                    var fatturaVendita= obj.FatturaVendita;
+                    space.Title = "INCASSO " + obj.Codice + " - FATTURA N." + fatturaVendita.Numero;
                     AddSpace(space);
                 }
             }

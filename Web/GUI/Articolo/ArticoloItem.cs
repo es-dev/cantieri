@@ -48,8 +48,9 @@ namespace Web.GUI.Articolo
             {
                 if (item != null)
                 {
+                    var obj = (WcfService.Dto.ArticoloDto)Model;
                     var space = new ArticoloModel();
-                    space.Title = "DETTAGLI ARTICOLO";
+                    space.Title = "ARTICOLO " + obj.Codice;
                     AddSpace(space);
                 }
             }

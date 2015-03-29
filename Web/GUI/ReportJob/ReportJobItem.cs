@@ -75,9 +75,12 @@ namespace Web.GUI.ReportJob
             {
                 if (item != null)
                 {
+                    var obj = (WcfService.Dto.ReportJobDto)Model;
                     var tipoReport = BusinessLogic.Tipi.TipoReport.Fornitore;
                     var space = new ReportJobFornitoreModel(tipoReport);
-                    space.Title = "DETTAGLI REPORT";
+                    space.Title = "REPORT " + obj.Codice.ToUpper();
+                    if (obj.CodiceFornitore!=null)
+                        space.Title += "FORNITORE " + (obj.CodiceFornitore!=null? obj.CodiceFornitore.ToUpper():"N/D");
                     AddSpace(space);
                 }
             }

@@ -101,8 +101,10 @@ namespace Web.GUI.Fornitore
             {
                 if (item != null)
                 {
+                    var obj = (WcfService.Dto.FornitoreDto)Model;
                     var space = new FornitoreModel();
-                    space.Title = "DETTAGLI FORNITORE";
+                    var commessa = obj.Commessa;
+                    space.Title = "FORNITORE " + obj.RagioneSociale + " - COMMESSA " + commessa.Codice;
                     AddSpace(space);
                 }
             }

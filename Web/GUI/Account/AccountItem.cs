@@ -47,8 +47,9 @@ namespace Web.GUI.Account
             {
                 if (item != null)
                 {
+                    var obj = (WcfService.Dto.AccountDto)Model;
                     var space = new AccountModel();
-                    space.Title = "DETTAGLI ACCOUNT";
+                    space.Title = "ACCOUNT " + obj.Nickname;
                     AddSpace(space);
                 }
             }

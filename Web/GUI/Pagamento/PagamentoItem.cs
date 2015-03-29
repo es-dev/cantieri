@@ -50,8 +50,13 @@ namespace Web.GUI.Pagamento
             {
                 if (item != null)
                 {
+                    var obj = (PagamentoDto)Model;
                     var space = new PagamentoModel();
-                    space.Title = "DETTAGLI PAGAMENTO";
+                    var fatturaAcquisto = obj.FatturaAcquisto;
+                    space.Title = "PAGAMENTO " + obj.Codice + " - FATTURA N." + fatturaAcquisto.Numero;
+                    var pagamentoUnificato = obj.PagamentoUnificato;
+                    if (pagamentoUnificato != null)
+                        space.Title += " - PAGAMENTO UNIFICATO " + pagamentoUnificato.Codice;
                     AddSpace(space);
                 }
             }

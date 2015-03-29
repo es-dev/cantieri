@@ -152,9 +152,20 @@ namespace Web.GUI.Reso
         {
             try
             {
-                var view = new FatturaAcquisto.FatturaAcquistoView();
-                view.Title = "SELEZIONA LA FATTURA DI ACQUISTO";
-                editFatturaAcquisto.Show(view);
+                var notaCredito = (NotaCreditoDto)editNotaCredito.Model;
+                if (notaCredito != null)
+                {
+                    var fornitore = notaCredito.Fornitore;
+                    if (fornitore != null)
+                    {
+                        var codiceFornitore = fornitore.Codice;
+                        var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                        var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
+                        var view = new FatturaAcquisto.FatturaAcquistoView(anagraficaFornitore, Tipi.StatoFattura.NonPagata | Tipi.StatoFattura.Insoluta);
+                        view.Title = "SELEZIONA LA FATTURA DI ACQUISTO";
+                        editFatturaAcquisto.Show(view);
+                    }
+                }
             }
             catch (Exception ex)
             {

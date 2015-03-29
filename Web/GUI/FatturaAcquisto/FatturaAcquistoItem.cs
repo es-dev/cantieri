@@ -92,8 +92,10 @@ namespace Web.GUI.FatturaAcquisto
             {
                 if (item != null)
                 {
+                    var obj = (WcfService.Dto.FatturaAcquistoDto)Model;
                     var space = new FatturaAcquistoModel();
-                    space.Title = "DETTAGLI FATTURA DI ACQUISTO";
+                    var fornitore= obj.Fornitore;
+                    space.Title = "FATTURA DI ACQUISTO N." + obj.Numero + " - " + fornitore.RagioneSociale;
                     AddSpace(space);
                 }
             }

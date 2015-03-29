@@ -50,8 +50,9 @@ namespace Web.GUI.PagamentoUnificato
             {
                 if (item != null)
                 {
+                    var obj = (PagamentoUnificatoDto)Model;
                     var space = new PagamentoUnificatoModel();
-                    space.Title = "DETTAGLI PAGAMENTO UNIFICATO";
+                    space.Title = "PAGAMENTO UNIFICATO " + obj.Codice;
                     AddSpace(space);
                 }
             }

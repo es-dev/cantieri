@@ -50,8 +50,10 @@ namespace Web.GUI.NotaCredito
             {
                 if (item != null)
                 {
+                    var obj = (NotaCreditoDto)Model;
                     var space = new NotaCreditoModel();
-                    space.Title = "DETTAGLI NOTA DI CREDITO";
+                    var fornitore = obj.Fornitore;
+                    space.Title = "NOTA DI CREDITO " + obj.Numero + " - " + fornitore.RagioneSociale;
                     AddSpace(space);
                 }
             }
