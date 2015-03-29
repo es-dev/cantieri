@@ -126,7 +126,6 @@ namespace Web.GUI.Cliente
             {
                 UtilityError.Write(ex);
             }
-            
         }
 
         public override void BindModel(object model)
@@ -231,7 +230,6 @@ namespace Web.GUI.Cliente
             {
                 UtilityError.Write(ex);
             }
-
         }
 
         private void btnLiquidazioni_Click(object sender, EventArgs e)
