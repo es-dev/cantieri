@@ -338,8 +338,10 @@ namespace BusinessLogic
                     else
                         stato = Tipi.StatoFattura.NonPagata;
                 }
-                else if (totalePagamentiLiquidazioni >= totaleFattura)
+                else if (totalePagamentiLiquidazioni == totaleFattura)
                     stato = Tipi.StatoFattura.Pagata;
+                else if (totalePagamentiLiquidazioni > totaleFattura)
+                    stato = Tipi.StatoFattura.Anomala;
 
                 return stato;
             }
@@ -568,6 +570,11 @@ namespace BusinessLogic
                         descrizione = "La fattura risulta in pagamento. Il totale pagamenti pari a " + _totalePagamenti + " è inferiore al totale della fattura pari a " + _totaleFattura + ". La fattura scade il " + _scadenza;
                         stato = TypeState.Warning;
                     }
+                    else if (statoFattura == Tipi.StatoFattura.Anomala)
+                    {
+                        descrizione = "La fattura è stata pagata ma risulta anomala. Il totale pagamenti pari a " + _totalePagamenti + " è superiore al totale della fattura pari a " + _totaleFattura + ".";
+                        stato = TypeState.Warning;
+                    }
                     else if (statoFattura == Tipi.StatoFattura.Pagata)
                     {
                         descrizione = "La fattura è stata pagata";
@@ -665,6 +672,11 @@ namespace BusinessLogic
                 else if (statoFattura == Tipi.StatoFattura.NonPagata)
                 {
                     descrizione = "La fattura risulta non incassata. Il totale incassi pari a " + _totaleLiquidazioni + " è inferiore al totale della fattura pari a " + _totaleFattura + ". La fattura scade il " + _scadenza;
+                    stato = TypeState.Warning;
+                }
+                else if (statoFattura == Tipi.StatoFattura.Anomala)
+                {
+                    descrizione = "La fattura è stata incassata. Il totale incassi pari a " + _totaleLiquidazioni + " è superiore al totale della fattura pari a " + _totaleFattura + ".";
                     stato = TypeState.Warning;
                 }
                 else if (statoFattura == Tipi.StatoFattura.Pagata)

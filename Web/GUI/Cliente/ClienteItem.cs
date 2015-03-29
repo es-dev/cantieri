@@ -71,12 +71,12 @@ namespace Web.GUI.Cliente
                 var image = "";
                 var descrizione = "";
                 var stato = BusinessLogic.Cliente.GetStato(cliente);
-                if (stato == Tipi.StatoCliente.Liquidato)
+                if (stato == Tipi.StatoCliente.Incassato)
                 {
                     image = "Images.messageConfirm.png";
                     descrizione = "Committente incassato";
                 }
-                else if (stato == Tipi.StatoCliente.NonLiquidato)
+                else if (stato == Tipi.StatoCliente.NonIncassato)
                 {
                     image = "Images.messageQuestion.png";
                     descrizione = "Committente non incassato, le fatture non incassate sono " + listaFattureNonLiquidate;

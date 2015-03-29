@@ -184,10 +184,10 @@ namespace BusinessLogic
                         if (existFattureInsolute)
                             stato = Tipi.StatoCliente.Insoluto;
                         else
-                            stato = Tipi.StatoCliente.NonLiquidato;
+                            stato = Tipi.StatoCliente.NonIncassato;
                     }
                     else if (totaleLiquidazioni >= totaleFatture)
-                        stato = Tipi.StatoCliente.Liquidato;
+                        stato = Tipi.StatoCliente.Incassato;
 
                     return stato;
                 }
@@ -257,14 +257,14 @@ namespace BusinessLogic
                         descrizione += " Le fatture non incassate sono " + listaFattureNonLiquidate;
                     stato = TypeState.Critical;
                 }
-                else if (statoCliente == Tipi.StatoCliente.NonLiquidato) //condizione di non pagamento (pagamenti nulli o non completi, se non completi segnalo le fatture non pagate)
+                else if (statoCliente == Tipi.StatoCliente.NonIncassato) //condizione di non pagamento (pagamenti nulli o non completi, se non completi segnalo le fatture non pagate)
                 {
                     descrizione = "Il committente risulta non incassato. Il totale incassi pari a " + _totaleLiquidazioni + " è inferiore al totale delle fatture pari a " + _totaleFatture;
                     if (existFattureNonLiquidate)
                         descrizione += " Le fatture non pagate sono " + listaFattureNonLiquidate;
                     stato = TypeState.Warning;
                 }
-                else if (statoCliente == Tipi.StatoCliente.Liquidato)
+                else if (statoCliente == Tipi.StatoCliente.Incassato)
                 {
                     descrizione = "Il committente risulta incassato. Tutte le fatture sono state liquidate";  //non so se ha senso indicargli anche insolute o no!!!!! per ora NO
                     stato = TypeState.Normal;
