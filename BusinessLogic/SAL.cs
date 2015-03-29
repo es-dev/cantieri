@@ -182,12 +182,6 @@ namespace BusinessLogic
         }
 
 
-
-
-
-
-
-
         public static string GetStatoDescrizione(SALDto sal, CommessaDto commessa)
         {
             try
@@ -200,7 +194,6 @@ namespace BusinessLogic
                         statoDescrizione = sal.Stato;
                     else
                     {
-                        var today = DateTime.Today;
                         var data = sal.Data;
                         var fornitori = commessa.Fornitores;
                         var totaleAcquisti = GetTotaleFattureAcquisto(fornitori, data.Value);

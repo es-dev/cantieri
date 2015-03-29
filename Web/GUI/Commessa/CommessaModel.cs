@@ -40,7 +40,6 @@ namespace Web.GUI.Commessa
                 UtilityError.Write(ex);
             }
         }
-
         
         public override void BindViewSubTitle(object model)
         {
@@ -108,7 +107,7 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                btnSAL.TextButton = "SAL (" + (sals!=null?sals.Count:0) + ")";
+                btnSAL.TextButton = "SAL (" + (sals != null ? sals.Count : 0) + ")";
             }
             catch (Exception ex)
             {
@@ -157,13 +156,13 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                var obj = (WcfService.Dto.CommessaDto)Model;
-                var importoAvanzamentoLavori = BusinessLogic.Commessa.GetImportoAvanzamentoLavori(obj);
-                var percentualeAvanzamento = BusinessLogic.Commessa.GetPercentualeAvanzamento(obj);
+                var obj = (CommessaDto)Model;
+                var importo = BusinessLogic.Commessa.GetImportoAvanzamentoLavori(obj);
+                var percentuale = BusinessLogic.Commessa.GetPercentualeAvanzamento(obj);
 
-                editPercentualeAvanzamento.Value = percentualeAvanzamento;
-                editImportoAvanzamentoLavori.Value = importoAvanzamentoLavori;
-                    }
+                editPercentualeAvanzamento.Value = percentuale;
+                editImportoAvanzamentoLavori.Value = importo;
+            }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
@@ -231,8 +230,6 @@ namespace Web.GUI.Commessa
             {
                 var validated = new ValidationState();
 
-                validated.State = false;
-                validated.Message = "Ciao Miriam, che bello che giochi con GB e Gaia, ti adorano e si vede";
 
                 return validated;
             }

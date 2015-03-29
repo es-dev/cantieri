@@ -399,8 +399,8 @@ namespace WcfService
             {
                 var commesse = QueryCommesse(search);
                 commesse = (from q in commesse select q).Skip(skip).Take(take);
-
-                var commesseDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commesse);
+                
+                var commesseDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commesse, false); //disabilitazione ricorsione (performances)
                 return commesseDto;
             }
             catch (Exception ex)
@@ -410,24 +410,6 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.CommessaDto> LoadCommesseNonAssegnate(int skip, int take, string search = null)
-        {
-            try
-            {
-                var commesse = QueryCommesse(search);
-                commesse = (from q in commesse where (q.Clientes == null && q.Clientes.Count == 0) select q); //filtro aggiuntivo per commesse non assegnate (cliente nullo)
-                commesse = (from q in commesse select q).Skip(skip).Take(take);
-
-                var commesseDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commesse);
-                return commesseDto;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-        
         public int CountCommesse(string search = null)
         {
             try
@@ -498,7 +480,7 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.CommessaDto> ReadCommesse(IEnumerable<Dto.FornitoreDto> fornitori) //dto parametrici, vanno solo in where etc... mai in dataset
+        public IEnumerable<Dto.CommessaDto> ReadCommesse(IEnumerable<Dto.FornitoreDto> fornitori) 
         {
             try
             {

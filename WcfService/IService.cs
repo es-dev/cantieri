@@ -97,9 +97,6 @@ namespace WcfService
         IEnumerable<Dto.CommessaDto> LoadCommesse(int skip, int take, string search = null);
 
         [OperationContract]
-        IEnumerable<Dto.CommessaDto> LoadCommesseNonAssegnate(int skip, int take, string search = null);
-
-        [OperationContract]
         int CountCommesse(string search = null);
 
         [OperationContract]

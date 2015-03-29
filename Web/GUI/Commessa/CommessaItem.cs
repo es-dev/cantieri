@@ -33,15 +33,15 @@ namespace Web.GUI.Commessa
                     var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
                     var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
                     var scadenza = UtilityValidation.GetDataND(obj.Scadenza);
-                    var stato = GetStato(obj);
+                    var descriptionImage = GetStato(obj.Stato);
 
                     infoStatoLavori.Text = "Scadenza lavori al " + scadenza;
                     infoImage.Image = "Images.dashboard.commessa.png";
                     infoCodice.Text = codice;
                     infoDenominazione.Text = numero + " - " + denominazione;
                     infoDescrizione.Text = descrizione;
-                    imgStato.Image = stato.Image;
-                    toolTip.SetToolTip(imgStato, stato.Description);
+                    imgStato.Image = descriptionImage.Image;
+                    toolTip.SetToolTip(imgStato, descriptionImage.Description);
 
                 }
             }
@@ -51,35 +51,35 @@ namespace Web.GUI.Commessa
             }
         }
 
-        private static DescriptionImage GetStato(CommessaDto commessa)
+        private static DescriptionImage GetStato(string stato)
         {
             try
             {
                 var image = "";
                 var descrizione = "";
-                var stato = UtilityEnum.GetValue<Tipi.StatoCommessa>(commessa.Stato);
-                if (stato == Tipi.StatoCommessa.Chiusa)
+                var _stato = UtilityEnum.GetValue<Tipi.StatoCommessa>(stato);
+                if (_stato == Tipi.StatoCommessa.Chiusa)
                 {
                     image = "Images.messageConfirm.png";
                     descrizione = "Commessa chiusa";
                 }
-                else if (stato == Tipi.StatoCommessa.InLavorazione)
+                else if (_stato == Tipi.StatoCommessa.InLavorazione)
                 {
                     image = "Images.messageQuestion.png";
                     descrizione = "Commessa in lavorazione";
                 }
-                else if (stato == Tipi.StatoCommessa.Sospesa)
+                else if (_stato == Tipi.StatoCommessa.Sospesa)
                 {
                     image = "Images.messageAlert.png";
                     descrizione = "Lavori sospesi per la commessa";
                 }
-                else if (stato == Tipi.StatoCommessa.Aperta)
+                else if (_stato == Tipi.StatoCommessa.Aperta)
                 {
                     image = "Images.messageInfo.png";
                     descrizione = "Commessa aperta";
                 }
-                var _stato = new DescriptionImage(descrizione, image);
-                return _stato;
+                var descriptionImage = new DescriptionImage(descrizione, image);
+                return descriptionImage;
             }
             catch (Exception ex)
             {
