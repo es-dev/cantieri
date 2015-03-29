@@ -40,7 +40,6 @@ namespace Web.GUI.Commessa
                 UtilityError.Write(ex);
             }
         }
-
         
         public override void BindViewSubTitle(object model)
         {
@@ -93,7 +92,7 @@ namespace Web.GUI.Commessa
                     
                     BindViewAzienda(obj.Azienda);
                     BindViewFornitori(obj.Fornitores);
-                    BindViewClienti(obj.Clientes);
+                    BindViewCommittenti(obj.Committentes);
                     BindViewSALs(obj.SALs);
 
                 }
@@ -108,7 +107,7 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                btnSAL.TextButton = "SAL (" + (sals!=null?sals.Count:0) + ")";
+                btnSAL.TextButton = "SAL (" + (sals != null ? sals.Count : 0) + ")";
             }
             catch (Exception ex)
             {
@@ -116,11 +115,11 @@ namespace Web.GUI.Commessa
             }
         }
 
-        private void BindViewClienti(IList<ClienteDto> clienti)
+        private void BindViewCommittenti(IList<CommittenteDto> committenti)
         {
             try
             {
-                btnClienti.TextButton = "Committenti (" + (clienti!=null?clienti.Count:0) + ")";
+                btnCommittenti.TextButton = "Committenti (" + (committenti!=null?committenti.Count:0) + ")";
             }
             catch (Exception ex)
             {
@@ -157,13 +156,13 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                var obj = (WcfService.Dto.CommessaDto)Model;
-                var importoAvanzamentoLavori = BusinessLogic.Commessa.GetImportoAvanzamentoLavori(obj);
-                var percentualeAvanzamento = BusinessLogic.Commessa.GetPercentualeAvanzamento(obj);
+                var obj = (CommessaDto)Model;
+                var importo = BusinessLogic.Commessa.GetImportoAvanzamentoLavori(obj);
+                var percentuale = BusinessLogic.Commessa.GetPercentualeAvanzamento(obj);
 
-                editPercentualeAvanzamento.Value = percentualeAvanzamento;
-                editImportoAvanzamentoLavori.Value = importoAvanzamentoLavori;
-                    }
+                editPercentualeAvanzamento.Value = percentuale;
+                editImportoAvanzamentoLavori.Value = importo;
+            }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
@@ -231,8 +230,6 @@ namespace Web.GUI.Commessa
             {
                 var validated = new ValidationState();
 
-                validated.State = false;
-                validated.Message = "Ciao Miriam, che bello che giochi con GB e Gaia, ti adorano e si vede";
 
                 return validated;
             }
@@ -249,7 +246,7 @@ namespace Web.GUI.Commessa
             {
                 var obj = (CommessaDto)Model;
                 var space = new Fornitore.FornitoreView(obj);
-                space.Title = "FORNITORI DELLA COMMESSA " + obj.Denominazione;
+                space.Title = "FORNITORI - COMMESSA " + obj.Denominazione;
                 Workspace.AddSpace(space);
             }
             catch (Exception ex)
@@ -258,13 +255,13 @@ namespace Web.GUI.Commessa
             }
         }
 
-        private void btnClienti_Click(object sender, EventArgs e)
+        private void btnCommittenti_Click(object sender, EventArgs e)
         {
             try
             {
                 var obj = (CommessaDto)Model;
-                var space = new Cliente.ClienteView(obj);
-                space.Title = "CLIENTI DELLA COMMESSA " + obj.Denominazione;
+                var space = new Committente.CommittenteView(obj);
+                space.Title = "COMMITTENTI - COMMESSA " + obj.Denominazione;
                 Workspace.AddSpace(space);
             }
             catch (Exception ex)
@@ -320,7 +317,7 @@ namespace Web.GUI.Commessa
             {
                 var obj = (CommessaDto)Model;
                 var space = new SAL.SALView(obj);
-                space.Title = "SAL DELLA COMMESSSA " + obj.Denominazione;
+                space.Title = "SAL - COMMESSSA " + obj.Denominazione;
                 Workspace.AddSpace(space);
             }
             catch (Exception ex)

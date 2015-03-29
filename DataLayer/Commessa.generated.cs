@@ -393,12 +393,12 @@ namespace DataLayer
 			}
 		}
 		
-		private IList<Cliente> _clientes = new List<Cliente>();
-		public virtual IList<Cliente> Clientes
+		private IList<Committente> _committentes = new List<Committente>();
+		public virtual IList<Committente> Committentes
 		{
 			get
 			{
-				return this._clientes;
+				return this._committentes;
 			}
 		}
 		

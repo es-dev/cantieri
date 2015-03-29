@@ -11,13 +11,6 @@ namespace BusinessLogic
 {
     public class Tipi
     {
-        public enum FiltroCommessa
-        {
-            None,
-            [Description("Cliente non assegnato")]
-            NonAssegnata,
-        }
-
         public enum TipoPagamento
         {
             None,
@@ -70,27 +63,29 @@ namespace BusinessLogic
         public enum StatoFattura
         {
             None,
-            Pagata, //fattura il cui totale pagamenti>=Totale fattura
-            Insoluta, //fattura il cui totale pagamenti <totale fattura e today >scadenza=data fattura+ scadenza pagamento
+            Pagata, //fattura il cui totale pagamenti >= Totale fattura
+            Insoluta, //fattura il cui totale pagamenti < totale fattura e today >scadenza=data fattura+ scadenza pagamento
             [Description("Non pagata")]
-            NonPagata, //fattura il cui totale pagamenti <totale fattura e today<=scadenza=data fattura+ scadenza pagamento
+            NonPagata, //fattura il cui totale pagamenti < totale fattura e today<=scadenza=data fattura+ scadenza pagamento
+            Anomala //fattura il cui totale pagamenti > totale fattura
         }
         public enum StatoFornitore
         {
             None,
-            Pagato, //fornitore il cui totale pagamenti>=Totale fattura
-            Insoluto, //fornitore il cui totale pagamenti <totale fattura e....
+            Pagato, //fornitore il cui totale pagamenti >= Totale fatture
+            Insoluto, //fornitore il cui totale pagamenti < totale fatture e per il quale ci sono fatture insolute
             [Description("Non pagato")]
-            NonPagato, //fornitore il cui totale pagamenti <totale fattura e....
+            NonPagato, //fornitore il cui totale pagamenti < totale fatture e per il quale ci sono fatture non pagate
+            Anomalo //fornitore il cui totale pagamenti > totale fatture
         }
 
-        public enum StatoCliente
+        public enum StatoCommittente
         {
             None,
-            Liquidato, //cliente il cui totale incassi>=Totale fattura
-            Insoluto, //cliente il cui totale incassi <totale fattura e....
-            [Description("Non liquidato")]
-            NonLiquidato, //cliente il cui totale incassi <totale fattura e....
+            Incassato, //committente il cui totale incassi >= Totale fattura
+            Insoluto, //committente il cui totale incassi < totale fattura e per il quale ci sono fatture insolute
+            [Description("Non incassato")]
+            NonIncassato //committente il cui totale incassi < totale fattura e per il quale ci sono fatture non incassate
         }
 
         public enum TipoAccount
@@ -107,11 +102,11 @@ namespace BusinessLogic
             [Description("Situazione fornitore")]
             Fornitore,
             [Description("Situazione committente")]
-            Cliente,
+            Committente,
             [Description("Stato fornitori")]
             Fornitori,
             [Description("Stato committenti")]
-            Clienti,
+            Committenti,
             [Description("Stato pagamenti fatture")]
             FattureAcquisto,
             [Description("Stato incassi fatture")]

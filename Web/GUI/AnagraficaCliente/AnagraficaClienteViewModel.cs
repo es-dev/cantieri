@@ -6,12 +6,12 @@ using System.Linq;
 using System.Web;
 using WcfService.Dto;
 
-namespace Web.GUI.AnagraficaCliente
+namespace Web.GUI.AnagraficaCommittente
 {
-    public class AnagraficaClienteViewModel : Library.Template.MVVM.TemplateViewModel<AnagraficaClienteDto, AnagraficaClienteItem>
+    public class AnagraficaCommittenteViewModel : Library.Template.MVVM.TemplateViewModel<AnagraficaCommittenteDto, AnagraficaCommittenteItem>
     {
 
-        public AnagraficaClienteViewModel(ISpace space)
+        public AnagraficaCommittenteViewModel(ISpace space)
             : base(space) 
         {
             try
@@ -29,7 +29,7 @@ namespace Web.GUI.AnagraficaCliente
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadAnagraficheClienti(skip, take, search);
+                var objs = wcf.LoadAnagraficheCommittenti(skip, take, search);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@ namespace Web.GUI.AnagraficaCliente
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountAnagraficheClienti(search);
+                var count = wcf.CountAnagraficheCommittenti(search);
                 return count;
             }
             catch (Exception ex)
@@ -60,17 +60,17 @@ namespace Web.GUI.AnagraficaCliente
                 if (model != null)
                 {
                     var wcf = new WcfService.Service();
-                    var obj = (AnagraficaClienteDto)model;
+                    var obj = (AnagraficaCommittenteDto)model;
                     bool performed = false;
                     if (creating)
                     {
-                        var newObj = wcf.CreateAnagraficaCliente(obj);
+                        var newObj = wcf.CreateAnagraficaCommittente(obj);
                         performed = (newObj != null);
                         if (performed)
                             obj = newObj;
                     }
                     else //updating
-                        performed = wcf.UpdateAnagraficaCliente(obj);
+                        performed = wcf.UpdateAnagraficaCommittente(obj);
                     return performed;
                 }
             }
@@ -88,8 +88,8 @@ namespace Web.GUI.AnagraficaCliente
                 if (model != null)
                 {
                     var wcf = new WcfService.Service();
-                    var obj = (AnagraficaClienteDto)model;
-                    bool performed = wcf.DeleteAnagraficaCliente(obj);
+                    var obj = (AnagraficaCommittenteDto)model;
+                    bool performed = wcf.DeleteAnagraficaCommittente(obj);
                     return performed;
                 }
             }
@@ -100,12 +100,12 @@ namespace Web.GUI.AnagraficaCliente
             return false;
         }
 
-        public new AnagraficaClienteDto Read(object id)
+        public new AnagraficaCommittenteDto Read(object id)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var obj = wcf.ReadAnagraficaCliente(id);
+                var obj = wcf.ReadAnagraficaCommittente(id);
                 return obj;
             }
             catch (Exception ex)
@@ -115,12 +115,12 @@ namespace Web.GUI.AnagraficaCliente
             return null;
         }
 
-        internal IEnumerable<AnagraficaClienteDto> ReadAnagraficheClienti()
+        internal IEnumerable<AnagraficaCommittenteDto> ReadAnagraficheCommittenti()
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.ReadAnagraficheClienti();
+                var objs = wcf.ReadAnagraficheCommittenti();
                 return objs;
             }
             catch (Exception ex)

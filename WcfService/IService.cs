@@ -97,9 +97,6 @@ namespace WcfService
         IEnumerable<Dto.CommessaDto> LoadCommesse(int skip, int take, string search = null);
 
         [OperationContract]
-        IEnumerable<Dto.CommessaDto> LoadCommesseNonAssegnate(int skip, int take, string search = null);
-
-        [OperationContract]
         int CountCommesse(string search = null);
 
         [OperationContract]
@@ -439,39 +436,39 @@ namespace WcfService
         #endregion
         #endregion
 
-        #region Cliente
+        #region Committente
         #region CRUD
         [OperationContract]
-        Dto.ClienteDto CreateCliente(Dto.ClienteDto cliente);
+        Dto.CommittenteDto CreateCommittente(Dto.CommittenteDto committente);
 
         [OperationContract]
-        IEnumerable<Dto.ClienteDto> ReadClienti();
+        IEnumerable<Dto.CommittenteDto> ReadCommittenti();
 
         [OperationContract]
-        bool UpdateCliente(Dto.ClienteDto cliente);
+        bool UpdateCommittente(Dto.CommittenteDto committente);
 
         [OperationContract]
-        bool DeleteCliente(Dto.ClienteDto cliente);
+        bool DeleteCommittente(Dto.CommittenteDto committente);
 
         [OperationContract]
-        int CountClienti();
+        int CountCommittenti();
         #endregion
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.ClienteDto> LoadClienti(int skip, int take, string search = null);
+        IEnumerable<Dto.CommittenteDto> LoadCommittenti(int skip, int take, string search = null);
 
         [OperationContract]
-        IEnumerable<Dto.ClienteDto> LoadClientiCommessa(int skip, int take, Dto.CommessaDto commessa, string search = null);
+        IEnumerable<Dto.CommittenteDto> LoadCommittentiCommessa(int skip, int take, Dto.CommessaDto commessa, string search = null);
 
         [OperationContract]
-        int CountClienti(string search = null);
+        int CountCommittenti(string search = null);
 
         [OperationContract]
-        int CountClientiCommessa(Dto.CommessaDto commessa, string search = null);
+        int CountCommittentiCommessa(Dto.CommessaDto commessa, string search = null);
 
         [OperationContract]
-        Dto.ClienteDto ReadCliente(object id);
+        Dto.CommittenteDto ReadCommittente(object id);
         #endregion
         #endregion
 
@@ -501,55 +498,55 @@ namespace WcfService
         int CountFattureVendita(string search = null);
         [OperationContract]
 
-        IEnumerable<Dto.FatturaVenditaDto> LoadFattureVenditaCliente(int skip, int take, Dto.ClienteDto cliente,  string search = null);
+        IEnumerable<Dto.FatturaVenditaDto> LoadFattureVenditaCommittente(int skip, int take, Dto.CommittenteDto committente,  string search = null);
 
         [OperationContract]
-        int CountFattureVenditaCliente(Dto.ClienteDto cliente, string search = null);
+        int CountFattureVenditaCommittente(Dto.CommittenteDto committente, string search = null);
 
         [OperationContract]
         Dto.FatturaVenditaDto ReadFatturaVendita(object id);
         #endregion
         #endregion
 
-        #region Liquidazione
+        #region Incasso
         #region CRUD
         [OperationContract]
-        Dto.LiquidazioneDto CreateLiquidazione(Dto.LiquidazioneDto liquidazione);
+        Dto.IncassoDto CreateIncasso(Dto.IncassoDto incasso);
 
         [OperationContract]
-        IEnumerable<Dto.LiquidazioneDto> ReadLiquidazioni();
+        IEnumerable<Dto.IncassoDto> ReadIncassi();
 
         [OperationContract]
-        bool UpdateLiquidazione(Dto.LiquidazioneDto liquidazione);
+        bool UpdateIncasso(Dto.IncassoDto incasso);
 
         [OperationContract]
-        bool DeleteLiquidazione(Dto.LiquidazioneDto liquidazione);
+        bool DeleteIncasso(Dto.IncassoDto incasso);
 
         [OperationContract]
-        int CountLiquidazioni();
+        int CountIncassi();
         #endregion
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.LiquidazioneDto> LoadLiquidazioni(int skip, int take, string search = null);
+        IEnumerable<Dto.IncassoDto> LoadIncassi(int skip, int take, string search = null);
 
         [OperationContract]
-        int CountLiquidazioni(string search = null);
+        int CountIncassi(string search = null);
 
         [OperationContract]
-        IEnumerable<Dto.LiquidazioneDto> LoadLiquidazioniCliente(int skip, int take,Dto.ClienteDto cliente, string search = null);
+        IEnumerable<Dto.IncassoDto> LoadIncassiCommittente(int skip, int take,Dto.CommittenteDto committente, string search = null);
 
         [OperationContract]
-        int CountLiquidazioniCliente(Dto.ClienteDto cliente, string search = null);
+        int CountIncassiCommittente(Dto.CommittenteDto committente, string search = null);
 
         [OperationContract]
-        IEnumerable<Dto.LiquidazioneDto> LoadLiquidazioniFatturaVendita(int skip, int take, Dto.FatturaVenditaDto fatturaVendita, string search = null);
+        IEnumerable<Dto.IncassoDto> LoadIncassiFatturaVendita(int skip, int take, Dto.FatturaVenditaDto fatturaVendita, string search = null);
 
         [OperationContract]
-        int CountLiquidazioniFatturaVendita(Dto.FatturaVenditaDto fatturaVendita, string search = null);
+        int CountIncassiFatturaVendita(Dto.FatturaVenditaDto fatturaVendita, string search = null);
 
         [OperationContract]
-        Dto.LiquidazioneDto ReadLiquidazione(object id);
+        Dto.IncassoDto ReadIncasso(object id);
         #endregion
         #endregion
 
@@ -623,33 +620,33 @@ namespace WcfService
         #endregion
         #endregion
 
-        #region AnagraficaCliente
+        #region AnagraficaCommittente
         #region CRUD
         [OperationContract]
-        Dto.AnagraficaClienteDto CreateAnagraficaCliente(Dto.AnagraficaClienteDto anagraficaCliente);
+        Dto.AnagraficaCommittenteDto CreateAnagraficaCommittente(Dto.AnagraficaCommittenteDto anagraficaCommittente);
 
         [OperationContract]
-        IEnumerable<Dto.AnagraficaClienteDto> ReadAnagraficheClienti();
+        IEnumerable<Dto.AnagraficaCommittenteDto> ReadAnagraficheCommittenti();
 
         [OperationContract]
-        bool UpdateAnagraficaCliente(Dto.AnagraficaClienteDto anagraficaCliente);
+        bool UpdateAnagraficaCommittente(Dto.AnagraficaCommittenteDto anagraficaCommittente);
 
         [OperationContract]
-        bool DeleteAnagraficaCliente(Dto.AnagraficaClienteDto anagraficaCliente);
+        bool DeleteAnagraficaCommittente(Dto.AnagraficaCommittenteDto anagraficaCommittente);
 
         [OperationContract]
-        int CountAnagraficheClienti();
+        int CountAnagraficheCommittenti();
         #endregion
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.AnagraficaClienteDto> LoadAnagraficheClienti(int skip, int take, string search = null);
+        IEnumerable<Dto.AnagraficaCommittenteDto> LoadAnagraficheCommittenti(int skip, int take, string search = null);
 
         [OperationContract]
-        int CountAnagraficheClienti(string search = null);
+        int CountAnagraficheCommittenti(string search = null);
 
         [OperationContract]
-        Dto.AnagraficaClienteDto ReadAnagraficaCliente(object id);
+        Dto.AnagraficaCommittenteDto ReadAnagraficaCommittente(object id);
         #endregion
         #endregion
 

@@ -1,8 +1,8 @@
 using System.Drawing;
 
-namespace Web.GUI.AnagraficaCliente
+namespace Web.GUI.AnagraficaCommittente
 {
-    partial class AnagraficaClienteView
+    partial class AnagraficaCommittenteView
 	{
 	        /// <summary>
 	        /// Required designer variable.

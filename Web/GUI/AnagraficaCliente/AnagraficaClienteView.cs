@@ -7,11 +7,11 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 
-namespace Web.GUI.AnagraficaCliente
+namespace Web.GUI.AnagraficaCommittente
 {
-	public partial class AnagraficaClienteView : TemplateView
+	public partial class AnagraficaCommittenteView : TemplateView
 	{
-        public AnagraficaClienteView()
+        public AnagraficaCommittenteView()
 		{ 
 			InitializeComponent();
 		}
@@ -21,7 +21,7 @@ namespace Web.GUI.AnagraficaCliente
             try
             {
                 Take = 10;
-                ViewModel = new AnagraficaClienteViewModel(this);
+                ViewModel = new AnagraficaCommittenteViewModel(this);
             }
             catch (Exception ex)
             {
@@ -33,9 +33,9 @@ namespace Web.GUI.AnagraficaCliente
         {
             try
             {
-                var space = new AnagraficaClienteModel();
+                var space = new AnagraficaCommittenteModel();
                 space.Title = "NUOVA ANAGRAFICA COMMITTENTE";
-                space.Model = new WcfService.Dto.AnagraficaClienteDto();
+                space.Model = new WcfService.Dto.AnagraficaCommittenteDto();
                 AddSpace(space);
             }
             catch (Exception ex)

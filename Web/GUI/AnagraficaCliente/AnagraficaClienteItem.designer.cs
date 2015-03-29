@@ -1,8 +1,8 @@
 using System.Drawing;
 
-namespace Web.GUI.AnagraficaCliente
+namespace Web.GUI.AnagraficaCommittente
 {
-    partial class AnagraficaClienteItem
+    partial class AnagraficaCommittenteItem
 	{
 	        /// <summary>
 	        /// Required designer variable.
@@ -111,7 +111,7 @@ namespace Web.GUI.AnagraficaCliente
             this.infoIndirizzo.TabIndex = 1;
             this.infoIndirizzo.Text = "Indirizzo";
             // 
-            // AnagraficaClienteItem
+            // AnagraficaCommittenteItem
             // 
             this.jqContainer.Controls.Add(this.infoRagioneSociale);
             this.jqContainer.Controls.Add(this.panelLeft);
@@ -119,7 +119,7 @@ namespace Web.GUI.AnagraficaCliente
             this.jqContainer.Controls.Add(this.infoIndirizzo); 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Size = new System.Drawing.Size(400, 100);
-            this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.AnagraficaClienteItem_ItemClick);
+            this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.AnagraficaCommittenteItem_ItemClick);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.jqContainer.ResumeLayout(false);

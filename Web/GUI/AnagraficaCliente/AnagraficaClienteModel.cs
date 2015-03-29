@@ -9,11 +9,11 @@ using System.Drawing;
 using System.Text;
 using Web.Code;
 
-namespace Web.GUI.AnagraficaCliente
+namespace Web.GUI.AnagraficaCommittente
 {
-	public partial class AnagraficaClienteModel : TemplateModel
+	public partial class AnagraficaCommittenteModel : TemplateModel
 	{
-        public AnagraficaClienteModel()
+        public AnagraficaCommittenteModel()
 		{
 			InitializeComponent();
 		}
@@ -24,11 +24,11 @@ namespace Web.GUI.AnagraficaCliente
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.AnagraficaClienteDto)model;
+                    var obj = (WcfService.Dto.AnagraficaCommittenteDto)model;
                     var codice = UtilityValidation.GetStringND(obj.Codice);
                     var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
                     infoSubtitle.Text = codice + " - " + ragioneSociale;
-                    infoSubtitleImage.Image = "Images.dashboard.anagraficacliente.png";
+                    infoSubtitleImage.Image = "Images.dashboard.anagraficacommittente.png";
                 }
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@ namespace Web.GUI.AnagraficaCliente
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.AnagraficaClienteDto)model;
+                    var obj = (WcfService.Dto.AnagraficaCommittenteDto)model;
                     editRagioneSociale.Value = obj.RagioneSociale;
                     editIndirizzo.Value = obj.Indirizzo;
                     editCAP.Value = obj.CAP;
@@ -70,7 +70,7 @@ namespace Web.GUI.AnagraficaCliente
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.AnagraficaClienteDto)model;
+                    var obj = (WcfService.Dto.AnagraficaCommittenteDto)model;
                     obj.RagioneSociale = editRagioneSociale.Value;
                     obj.Indirizzo = editIndirizzo.Value;
                     obj.CAP = editCAP.Value;

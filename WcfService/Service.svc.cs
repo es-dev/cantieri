@@ -399,8 +399,8 @@ namespace WcfService
             {
                 var commesse = QueryCommesse(search);
                 commesse = (from q in commesse select q).Skip(skip).Take(take);
-
-                var commesseDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commesse);
+                
+                var commesseDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commesse, false); //disabilitazione ricorsione (performances)
                 return commesseDto;
             }
             catch (Exception ex)
@@ -410,24 +410,6 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.CommessaDto> LoadCommesseNonAssegnate(int skip, int take, string search = null)
-        {
-            try
-            {
-                var commesse = QueryCommesse(search);
-                commesse = (from q in commesse where (q.Clientes == null && q.Clientes.Count == 0) select q); //filtro aggiuntivo per commesse non assegnate (cliente nullo)
-                commesse = (from q in commesse select q).Skip(skip).Take(take);
-
-                var commesseDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commesse);
-                return commesseDto;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-        
         public int CountCommesse(string search = null)
         {
             try
@@ -448,7 +430,7 @@ namespace WcfService
             try
             {
                 var commesse = QueryCommesse(search);
-                commesse = (from q in commesse where (q.Clientes==null && q.Clientes.Count==0) select q); //filtro aggiuntivo per commesse non assegnate (cliente nullo)
+                commesse = (from q in commesse where (q.Committentes==null && q.Committentes.Count==0) select q); //filtro aggiuntivo per commesse non assegnate (committente nullo)
                 var count = commesse.Count();
                 return count;
             }
@@ -498,7 +480,7 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.CommessaDto> ReadCommesse(IEnumerable<Dto.FornitoreDto> fornitori) //dto parametrici, vanno solo in where etc... mai in dataset
+        public IEnumerable<Dto.CommessaDto> ReadCommesse(IEnumerable<Dto.FornitoreDto> fornitori) 
         {
             try
             {
@@ -2308,17 +2290,17 @@ namespace WcfService
         #endregion
         #endregion
 
-        #region Cliente
+        #region Committente
         #region CRUD
-        public Dto.ClienteDto CreateCliente(Dto.ClienteDto cliente)
+        public Dto.CommittenteDto CreateCommittente(Dto.CommittenteDto committente)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var dtoKey = wcf.CreateCliente(cliente);
+                var dtoKey = wcf.CreateCommittente(committente);
                 var id = UtilityPOCO.GetId(dtoKey);
-                var newCliente = ReadCliente(id);
-                return newCliente;
+                var newCommittente = ReadCommittente(id);
+                return newCommittente;
             }
             catch (Exception ex)
             {
@@ -2327,13 +2309,13 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.ClienteDto> ReadClienti()
+        public IEnumerable<Dto.CommittenteDto> ReadCommittenti()
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var clienti = wcf.ReadClientes();
-                return clienti;
+                var committenti = wcf.ReadCommittentes();
+                return committenti;
             }
             catch (Exception ex)
             {
@@ -2342,12 +2324,12 @@ namespace WcfService
             return null;
         }
 
-        public bool UpdateCliente(Dto.ClienteDto cliente)
+        public bool UpdateCommittente(Dto.CommittenteDto committente)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                wcf.UpdateCliente(cliente);
+                wcf.UpdateCommittente(committente);
                 return true;
             }
             catch (Exception ex)
@@ -2357,12 +2339,12 @@ namespace WcfService
             return false;
         }
 
-        public bool DeleteCliente(Dto.ClienteDto cliente)
+        public bool DeleteCommittente(Dto.CommittenteDto committente)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                wcf.DeleteCliente(cliente);
+                wcf.DeleteCommittente(committente);
                 return true;
             }
             catch (Exception ex)
@@ -2372,12 +2354,12 @@ namespace WcfService
             return false;
         }
 
-        public int CountClienti()
+        public int CountCommittenti()
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var count = wcf.ClientesCount();
+                var count = wcf.CommittentesCount();
                 return count;
             }
             catch (Exception ex)
@@ -2388,15 +2370,15 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.ClienteDto> LoadClienti(int skip, int take, string search = null)
+        public IEnumerable<Dto.CommittenteDto> LoadCommittenti(int skip, int take, string search = null)
         {
             try
             {
-                var clienti = QueryClienti(search);
-                clienti = (from q in clienti select q).Skip(skip).Take(take);
+                var committenti = QueryCommittenti(search);
+                committenti = (from q in committenti select q).Skip(skip).Take(take);
 
-                var clientiDto = UtilityPOCO.Assemble<Dto.ClienteDto>(clienti);
-                return clientiDto;
+                var committentiDto = UtilityPOCO.Assemble<Dto.CommittenteDto>(committenti);
+                return committentiDto;
             }
             catch (Exception ex)
             {
@@ -2405,12 +2387,12 @@ namespace WcfService
             return null;
         }
 
-        public int CountClienti(string search = null)
+        public int CountCommittenti(string search = null)
         {
             try
             {
-                var clienti = QueryClienti(search);
-                var count = clienti.Count();
+                var committenti = QueryCommittenti(search);
+                var count = committenti.Count();
                 return count;
             }
             catch (Exception ex)
@@ -2420,16 +2402,16 @@ namespace WcfService
             return 0;
         }
 
-        public IEnumerable<Dto.ClienteDto> LoadClientiCommessa(int skip, int take, Dto.CommessaDto commessa, string search = null)
+        public IEnumerable<Dto.CommittenteDto> LoadCommittentiCommessa(int skip, int take, Dto.CommessaDto commessa, string search = null)
         {
             try
             {
-                var clienti = QueryClienti(search);
-                clienti = (from q in clienti where q.CommessaId == commessa.Id select q);
-                clienti = (from q in clienti select q).Skip(skip).Take(take);
+                var committenti = QueryCommittenti(search);
+                committenti = (from q in committenti where q.CommessaId == commessa.Id select q);
+                committenti = (from q in committenti select q).Skip(skip).Take(take);
 
-                var clientiDto = UtilityPOCO.Assemble<Dto.ClienteDto>(clienti);
-                return clientiDto;
+                var committentiDto = UtilityPOCO.Assemble<Dto.CommittenteDto>(committenti);
+                return committentiDto;
             }
             catch (Exception ex)
             {
@@ -2438,13 +2420,13 @@ namespace WcfService
             return null;
         }
 
-        public int CountClientiCommessa(Dto.CommessaDto commessa, string search = null)
+        public int CountCommittentiCommessa(Dto.CommessaDto commessa, string search = null)
         {
             try
             {
-                var clienti = QueryClienti(search);
-                clienti = (from q in clienti where q.CommessaId == commessa.Id select q);
-                var count = clienti.Count();
+                var committenti = QueryCommittenti(search);
+                committenti = (from q in committenti where q.CommessaId == commessa.Id select q);
+                var count = committenti.Count();
                 return count;
             }
             catch (Exception ex)
@@ -2454,14 +2436,14 @@ namespace WcfService
             return 0;
         }
 
-        public Dto.ClienteDto ReadCliente(object id)
+        public Dto.CommittenteDto ReadCommittente(object id)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
-                var cliente = (from q in ef.Clientes where q.Id == (int)id select q).FirstOrDefault();
-                var clienteDto = UtilityPOCO.Assemble<Dto.ClienteDto>(cliente);
-                return clienteDto;
+                var committente = (from q in ef.Committentes where q.Id == (int)id select q).FirstOrDefault();
+                var committenteDto = UtilityPOCO.Assemble<Dto.CommittenteDto>(committente);
+                return committenteDto;
             }
             catch (Exception ex)
             {
@@ -2470,24 +2452,24 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Cliente> QueryClienti(string search)
+        private IQueryable<DataLayer.Committente> QueryCommittenti(string search)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
-                var clienti = (from q in ef.Clientes select q);
+                var committenti = (from q in ef.Committentes select q);
                 if (search != null && search.Length > 0)
                 {
                     var commesseId = (from c in QueryCommesse(search) select c.Id).ToList();
-                    clienti = (from q in clienti
+                    committenti = (from q in committenti
                                where q.Codice.StartsWith(search) || q.PartitaIva.StartsWith(search) ||
                                  q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
                                  q.Comune.StartsWith(search) || q.Provincia.StartsWith(search) ||
                                  commesseId.Contains(q.Commessa.Id)
                                select q);
                 }
-                clienti = (from q in clienti orderby q.RagioneSociale select q);
-                return clienti;
+                committenti = (from q in committenti orderby q.RagioneSociale select q);
+                return committenti;
             }
             catch (Exception ex)
             {
@@ -2610,12 +2592,12 @@ namespace WcfService
             return 0;
         }
 
-        public IEnumerable<Dto.FatturaVenditaDto> LoadFattureVenditaCliente(int skip, int take, Dto.ClienteDto cliente, string search = null)
+        public IEnumerable<Dto.FatturaVenditaDto> LoadFattureVenditaCommittente(int skip, int take, Dto.CommittenteDto committente, string search = null)
         {
             try
             {
                 var fattureVendita = QueryFattureVendita(search);
-                fattureVendita = (from q in fattureVendita where q.ClienteId == cliente.Id select q);
+                fattureVendita = (from q in fattureVendita where q.CommittenteId == committente.Id select q);
                 fattureVendita = (from q in fattureVendita select q).Skip(skip).Take(take);
 
                 var fattureVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fattureVendita);
@@ -2628,12 +2610,12 @@ namespace WcfService
             return null;
         }
 
-        public int CountFattureVenditaCliente(Dto.ClienteDto cliente, string search = null)
+        public int CountFattureVenditaCommittente(Dto.CommittenteDto committente, string search = null)
         {
             try
             {
                 var fattureVendita = QueryFattureVendita(search);
-                fattureVendita = (from q in fattureVendita where q.ClienteId == cliente.Id select q);
+                fattureVendita = (from q in fattureVendita where q.CommittenteId == committente.Id select q);
                 var count = fattureVendita.Count();
                 return count;
             }
@@ -2668,10 +2650,10 @@ namespace WcfService
                 var fattureVendita = (from q in ef.FatturaVenditas select q);
                 if (search != null && search.Length > 0)
                 {
-                    var clientiId = (from c in QueryClienti(search) select c.Id).ToList();
+                    var committentiId = (from c in QueryCommittenti(search) select c.Id).ToList();
                     fattureVendita = (from q in fattureVendita
                                       where q.Numero.StartsWith(search) || q.Descrizione.Contains(search) || q.TipoPagamento.StartsWith(search) ||
-                                          clientiId.Contains(q.ClienteId)
+                                          committentiId.Contains(q.CommittenteId)
                                       select q);
                 }
                 fattureVendita = (from q in fattureVendita orderby q.Id descending select q);
@@ -2686,17 +2668,17 @@ namespace WcfService
         #endregion
         #endregion
 
-        #region Liquidazione
+        #region Incasso
         #region CRUD
-        public Dto.LiquidazioneDto CreateLiquidazione(Dto.LiquidazioneDto liquidazione)
+        public Dto.IncassoDto CreateIncasso(Dto.IncassoDto incasso)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var dtoKey = wcf.CreateLiquidazione(liquidazione);
+                var dtoKey = wcf.CreateIncasso(incasso);
                 var id = UtilityPOCO.GetId(dtoKey);
-                var newLiquidazione = ReadLiquidazione(id);
-                return newLiquidazione;
+                var newIncasso = ReadIncasso(id);
+                return newIncasso;
             }
             catch (Exception ex)
             {
@@ -2705,13 +2687,13 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.LiquidazioneDto> ReadLiquidazioni()
+        public IEnumerable<Dto.IncassoDto> ReadIncassi()
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var liquidazioni = wcf.ReadLiquidaziones();
-                return liquidazioni;
+                var incassi = wcf.ReadIncassos();
+                return incassi;
             }
             catch (Exception ex)
             {
@@ -2720,12 +2702,12 @@ namespace WcfService
             return null;
         }
 
-        public bool UpdateLiquidazione(Dto.LiquidazioneDto liquidazione)
+        public bool UpdateIncasso(Dto.IncassoDto incasso)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                wcf.UpdateLiquidazione(liquidazione);
+                wcf.UpdateIncasso(incasso);
                 return true;
             }
             catch (Exception ex)
@@ -2735,12 +2717,12 @@ namespace WcfService
             return false;
         }
 
-        public bool DeleteLiquidazione(Dto.LiquidazioneDto liquidazione)
+        public bool DeleteIncasso(Dto.IncassoDto incasso)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                wcf.DeleteLiquidazione(liquidazione);
+                wcf.DeleteIncasso(incasso);
                 return true;
             }
             catch (Exception ex)
@@ -2750,12 +2732,12 @@ namespace WcfService
             return false;
         }
 
-        public int CountLiquidazioni()
+        public int CountIncassi()
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var count = wcf.LiquidazionesCount();
+                var count = wcf.IncassosCount();
                 return count;
             }
             catch (Exception ex)
@@ -2766,15 +2748,15 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.LiquidazioneDto> LoadLiquidazioni(int skip, int take, string search = null)
+        public IEnumerable<Dto.IncassoDto> LoadIncassi(int skip, int take, string search = null)
         {
             try
             {
-                var liquidazioni = QueryLiquidazioni(search);
-                liquidazioni = (from q in liquidazioni select q).Skip(skip).Take(take);
+                var incassi = QueryIncassi(search);
+                incassi = (from q in incassi select q).Skip(skip).Take(take);
 
-                var liquidazioniDto = UtilityPOCO.Assemble<Dto.LiquidazioneDto>(liquidazioni);
-                return liquidazioniDto;
+                var incassiDto = UtilityPOCO.Assemble<Dto.IncassoDto>(incassi);
+                return incassiDto;
             }
             catch (Exception ex)
             {
@@ -2783,12 +2765,12 @@ namespace WcfService
             return null;
         }
 
-        public int CountLiquidazioni(string search = null)
+        public int CountIncassi(string search = null)
         {
             try
             {
-                var liquidazioni = QueryLiquidazioni(search);
-                var count = liquidazioni.Count();
+                var incassi = QueryIncassi(search);
+                var count = incassi.Count();
                 return count;
             }
             catch (Exception ex)
@@ -2798,18 +2780,18 @@ namespace WcfService
             return 0;
         }
 
-        public IEnumerable<Dto.LiquidazioneDto> LoadLiquidazioniCliente(int skip, int take,Dto.ClienteDto cliente, string search = null)
+        public IEnumerable<Dto.IncassoDto> LoadIncassiCommittente(int skip, int take,Dto.CommittenteDto committente, string search = null)
         {
             try
             {
-                var liquidazioni = QueryLiquidazioni(search);
-                var fattureVendita= cliente.FatturaVenditas;
+                var incassi = QueryIncassi(search);
+                var fattureVendita= committente.FatturaVenditas;
                 var fattureVenditaIds = (from q in fattureVendita select q.Id);
-                liquidazioni = (from q in liquidazioni where fattureVenditaIds.Contains(q.FatturaVenditaId) select q);
-                liquidazioni = (from q in liquidazioni select q).Skip(skip).Take(take);
+                incassi = (from q in incassi where fattureVenditaIds.Contains(q.FatturaVenditaId) select q);
+                incassi = (from q in incassi select q).Skip(skip).Take(take);
 
-                var liquidazioniDto = UtilityPOCO.Assemble<Dto.LiquidazioneDto>(liquidazioni);
-                return liquidazioniDto;
+                var incassiDto = UtilityPOCO.Assemble<Dto.IncassoDto>(incassi);
+                return incassiDto;
             }
             catch (Exception ex)
             {
@@ -2818,17 +2800,17 @@ namespace WcfService
             return null;
         }
 
-        public int CountLiquidazioniCliente(Dto.ClienteDto cliente, string search = null)
+        public int CountIncassiCommittente(Dto.CommittenteDto committente, string search = null)
         {
             try
             {
-                var liquidazioni = QueryLiquidazioni(search);
-                var fattureVendita = cliente.FatturaVenditas;
+                var incassi = QueryIncassi(search);
+                var fattureVendita = committente.FatturaVenditas;
                 if (fattureVendita != null)
                 {
                     var fattureVenditaIds = (from q in fattureVendita select q.Id);
-                    liquidazioni = (from q in liquidazioni where fattureVenditaIds.Contains(q.FatturaVenditaId) select q);
-                    var count = liquidazioni.Count();
+                    incassi = (from q in incassi where fattureVenditaIds.Contains(q.FatturaVenditaId) select q);
+                    var count = incassi.Count();
                     return count;
                 }
             }
@@ -2839,16 +2821,16 @@ namespace WcfService
             return 0;
         }
 
-        public IEnumerable<Dto.LiquidazioneDto> LoadLiquidazioniFatturaVendita(int skip, int take, Dto.FatturaVenditaDto fatturaVendita, string search = null)
+        public IEnumerable<Dto.IncassoDto> LoadIncassiFatturaVendita(int skip, int take, Dto.FatturaVenditaDto fatturaVendita, string search = null)
         {
             try
             {
-                var liquidazioni = QueryLiquidazioni(search);
-                liquidazioni = (from q in liquidazioni where q.FatturaVenditaId==fatturaVendita.Id select q);
-                liquidazioni = (from q in liquidazioni select q).Skip(skip).Take(take);
+                var incassi = QueryIncassi(search);
+                incassi = (from q in incassi where q.FatturaVenditaId==fatturaVendita.Id select q);
+                incassi = (from q in incassi select q).Skip(skip).Take(take);
 
-                var liquidazioniDto = UtilityPOCO.Assemble<Dto.LiquidazioneDto>(liquidazioni);
-                return liquidazioniDto;
+                var incassiDto = UtilityPOCO.Assemble<Dto.IncassoDto>(incassi);
+                return incassiDto;
             }
             catch (Exception ex)
             {
@@ -2857,13 +2839,13 @@ namespace WcfService
             return null;
         }
 
-        public int CountLiquidazioniFatturaVendita(Dto.FatturaVenditaDto fatturaVendita, string search = null)
+        public int CountIncassiFatturaVendita(Dto.FatturaVenditaDto fatturaVendita, string search = null)
         {
             try
             {
-                var liquidazioni = QueryLiquidazioni(search);
-                liquidazioni = (from q in liquidazioni where q.FatturaVenditaId == fatturaVendita.Id select q);
-                var count = liquidazioni.Count();
+                var incassi = QueryIncassi(search);
+                incassi = (from q in incassi where q.FatturaVenditaId == fatturaVendita.Id select q);
+                var count = incassi.Count();
                 return count;
             }
             catch (Exception ex)
@@ -2873,14 +2855,14 @@ namespace WcfService
             return 0;
         }
 
-        public Dto.LiquidazioneDto ReadLiquidazione(object id)
+        public Dto.IncassoDto ReadIncasso(object id)
         {
             try
             {
                 var wcf = new EntitiesModelService();
                 var dtoKey = UtilityPOCO.GetDtoKey((int)id);
-                var liquidazione = wcf.ReadLiquidazione(dtoKey);
-                return liquidazione;
+                var incasso = wcf.ReadIncasso(dtoKey);
+                return incasso;
             }
             catch (Exception ex)
             {
@@ -2889,22 +2871,22 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Liquidazione> QueryLiquidazioni(string search)
+        private IQueryable<DataLayer.Incasso> QueryIncassi(string search)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
-                var liquidazioni = (from q in ef.Liquidaziones select q);
+                var incassi = (from q in ef.Incassos select q);
                 if (search != null && search.Length > 0)
                 {
                     var fattureVenditaId = (from q in QueryFattureVendita(search) select q.Id).ToList();
-                    liquidazioni = (from q in liquidazioni
+                    incassi = (from q in incassi
                                     where q.Note.Contains(search) ||
                                         fattureVenditaId.Contains(q.FatturaVenditaId)
                                     select q);
                 }
-                liquidazioni = (from q in liquidazioni orderby q.Id descending select q);
-                return liquidazioni;
+                incassi = (from q in incassi orderby q.Id descending select q);
+                return incassi;
             }
             catch (Exception ex)
             {
@@ -3274,16 +3256,16 @@ namespace WcfService
         #endregion
         #endregion
 
-        #region AnagraficaCliente
+        #region AnagraficaCommittente
         #region CRUD
-        public Dto.AnagraficaClienteDto CreateAnagraficaCliente(Dto.AnagraficaClienteDto anagraficaCiente)
+        public Dto.AnagraficaCommittenteDto CreateAnagraficaCommittente(Dto.AnagraficaCommittenteDto anagraficaCiente)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var dtoKey = wcf.CreateAnagraficaCliente(anagraficaCiente);
-                var newAnagraficaCliente = wcf.ReadAnagraficaCliente(dtoKey);
-                return newAnagraficaCliente;
+                var dtoKey = wcf.CreateAnagraficaCommittente(anagraficaCiente);
+                var newAnagraficaCommittente = wcf.ReadAnagraficaCommittente(dtoKey);
+                return newAnagraficaCommittente;
             }
             catch (Exception ex)
             {
@@ -3292,13 +3274,13 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.AnagraficaClienteDto> ReadAnagraficheClienti()
+        public IEnumerable<Dto.AnagraficaCommittenteDto> ReadAnagraficheCommittenti()
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var anagraficheClienti = wcf.ReadAnagraficaClientes();
-                return anagraficheClienti;
+                var anagraficheCommittenti = wcf.ReadAnagraficaCommittentes();
+                return anagraficheCommittenti;
             }
             catch (Exception ex)
             {
@@ -3307,12 +3289,12 @@ namespace WcfService
             return null;
         }
 
-        public bool UpdateAnagraficaCliente(Dto.AnagraficaClienteDto anagraficaCliente)
+        public bool UpdateAnagraficaCommittente(Dto.AnagraficaCommittenteDto anagraficaCommittente)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                wcf.UpdateAnagraficaCliente(anagraficaCliente);
+                wcf.UpdateAnagraficaCommittente(anagraficaCommittente);
                 return true;
             }
             catch (Exception ex)
@@ -3322,12 +3304,12 @@ namespace WcfService
             return false;
         }
 
-        public bool DeleteAnagraficaCliente(Dto.AnagraficaClienteDto anagraficaCliente)
+        public bool DeleteAnagraficaCommittente(Dto.AnagraficaCommittenteDto anagraficaCommittente)
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                wcf.DeleteAnagraficaCliente(anagraficaCliente);
+                wcf.DeleteAnagraficaCommittente(anagraficaCommittente);
                 return true;
             }
             catch (Exception ex)
@@ -3337,12 +3319,12 @@ namespace WcfService
             return false;
         }
 
-        public int CountAnagraficheClienti()
+        public int CountAnagraficheCommittenti()
         {
             try
             {
                 var wcf = new EntitiesModelService();
-                var count = wcf.AnagraficaClientesCount();
+                var count = wcf.AnagraficaCommittentesCount();
                 return count;
             }
             catch (Exception ex)
@@ -3353,15 +3335,15 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.AnagraficaClienteDto> LoadAnagraficheClienti(int skip, int take, string search = null)
+        public IEnumerable<Dto.AnagraficaCommittenteDto> LoadAnagraficheCommittenti(int skip, int take, string search = null)
         {
             try
             {
-                var anagraficheClienti = QueryAnagraficheClienti(search);
-                anagraficheClienti = (from q in anagraficheClienti select q).Skip(skip).Take(take);
+                var anagraficheCommittenti = QueryAnagraficheCommittenti(search);
+                anagraficheCommittenti = (from q in anagraficheCommittenti select q).Skip(skip).Take(take);
 
-                var anagraficheClientiDto = UtilityPOCO.Assemble<Dto.AnagraficaClienteDto>(anagraficheClienti);
-                return anagraficheClientiDto;
+                var anagraficheCommittentiDto = UtilityPOCO.Assemble<Dto.AnagraficaCommittenteDto>(anagraficheCommittenti);
+                return anagraficheCommittentiDto;
             }
             catch (Exception ex)
             {
@@ -3370,12 +3352,12 @@ namespace WcfService
             return null;
         }
 
-        public int CountAnagraficheClienti(string search = null)
+        public int CountAnagraficheCommittenti(string search = null)
         {
             try
             {
-                var anagraficheClienti = QueryAnagraficheClienti(search);
-                var count = anagraficheClienti.Count();
+                var anagraficheCommittenti = QueryAnagraficheCommittenti(search);
+                var count = anagraficheCommittenti.Count();
                 return count;
             }
             catch (Exception ex)
@@ -3385,14 +3367,14 @@ namespace WcfService
             return 0;
         }
 
-        public Dto.AnagraficaClienteDto ReadAnagraficaCliente(object id)
+        public Dto.AnagraficaCommittenteDto ReadAnagraficaCommittente(object id)
         {
             try
             {
                 var wcf = new EntitiesModelService();
                 var dtoKey = UtilityPOCO.GetDtoKey((int)id);
-                var anagraficaCliente = wcf.ReadAnagraficaCliente(dtoKey);
-                return anagraficaCliente;
+                var anagraficaCommittente = wcf.ReadAnagraficaCommittente(dtoKey);
+                return anagraficaCommittente;
             }
             catch (Exception ex)
             {
@@ -3401,19 +3383,19 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.AnagraficaCliente> QueryAnagraficheClienti(string search)
+        private IQueryable<DataLayer.AnagraficaCommittente> QueryAnagraficheCommittenti(string search)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
-                var anagraficheClienti = (from q in ef.AnagraficaClientes select q);
+                var anagraficheCommittenti = (from q in ef.AnagraficaCommittentes select q);
                 if (search != null && search.Length > 0)
-                    anagraficheClienti = (from q in anagraficheClienti where q.Codice.StartsWith(search) || q.PartitaIva.StartsWith(search) ||
+                    anagraficheCommittenti = (from q in anagraficheCommittenti where q.Codice.StartsWith(search) || q.PartitaIva.StartsWith(search) ||
                                               q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
                                               q.Comune.StartsWith(search) || q.Provincia.StartsWith(search) select q);
 
-                anagraficheClienti = (from q in anagraficheClienti orderby q.RagioneSociale select q);
-                return anagraficheClienti;
+                anagraficheCommittenti = (from q in anagraficheCommittenti orderby q.RagioneSociale select q);
+                return anagraficheCommittenti;
             }
             catch (Exception ex)
             {

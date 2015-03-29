@@ -9,16 +9,16 @@ using WcfService.Dto;
 
 namespace BusinessLogic
 {
-    public class Cliente
+    public class Committente
     {
-        public static decimal GetTotaleFattureVendita(ClienteDto cliente, DateTime data)
+        public static decimal GetTotaleFattureVendita(CommittenteDto committente, DateTime data)
         {
             try
             {
                 decimal totale = 0;
-                if (cliente != null)
+                if (committente != null)
                 {
-                    var fattureVendita = (from q in cliente.FatturaVenditas where q.Data <= data select q);
+                    var fattureVendita = (from q in committente.FatturaVenditas where q.Data <= data select q);
                     if (fattureVendita != null)
                     {
                         foreach (var fatturaVendita in fattureVendita)
@@ -37,22 +37,22 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleFattureVendita(ClienteDto cliente)
+        public static decimal GetTotaleFattureVendita(CommittenteDto committente)
         {
             try
             {
                 decimal totaleFattureVendita = 0;
-                if (cliente != null)
+                if (committente != null)
                 {
                     var today = DateTime.Today;
-                    var commessa = cliente.Commessa;
+                    var commessa = committente.Commessa;
                     if (commessa != null)
                     {
                         var statoCommessa = commessa.Stato;
                         if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                            totaleFattureVendita = UtilityValidation.GetDecimal(cliente.TotaleFattureVendita);
+                            totaleFattureVendita = UtilityValidation.GetDecimal(committente.TotaleFattureVendita);
                         else
-                            totaleFattureVendita = GetTotaleFattureVendita(cliente, today);
+                            totaleFattureVendita = GetTotaleFattureVendita(committente, today);
                     }
                 }
                 return totaleFattureVendita;
@@ -64,18 +64,18 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleLiquidazioni(ClienteDto cliente, DateTime data)
+        public static decimal GetTotaleIncassi(CommittenteDto committente, DateTime data)
         {
             try
             {
                 decimal totale = 0;
-                if (cliente != null)
+                if (committente != null)
                 {
-                    var fattureVendita = cliente.FatturaVenditas;
+                    var fattureVendita = committente.FatturaVenditas;
                     foreach (var fatturaVendita in fattureVendita)
                     {
-                        var totaleLiquidazioni = Fattura.GetTotaleLiquidazioni(fatturaVendita, data);
-                        totale += totaleLiquidazioni;
+                        var totaleIncassi = Fattura.GetTotaleIncassi(fatturaVendita, data);
+                        totale += totaleIncassi;
                     }
                     return totale;
                 }
@@ -87,25 +87,25 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleLiquidazioni(ClienteDto cliente)
+        public static decimal GetTotaleIncassi(CommittenteDto committente)
         {
             try
             {
-                decimal totaleLiquidazioni = 0;
-                if (cliente != null)
+                decimal totaleIncassi = 0;
+                if (committente != null)
                 {
                     var today = DateTime.Today;
-                    var commessa = cliente.Commessa;
+                    var commessa = committente.Commessa;
                     if (commessa != null)
                     {
                         var statoCommessa = commessa.Stato;
                         if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                            totaleLiquidazioni = UtilityValidation.GetDecimal(cliente.TotaleLiquidazioni);
+                            totaleIncassi = UtilityValidation.GetDecimal(committente.TotaleIncassi);
                         else
-                            totaleLiquidazioni = BusinessLogic.Cliente.GetTotaleLiquidazioni(cliente, today);
+                            totaleIncassi = BusinessLogic.Committente.GetTotaleIncassi(committente, today);
                     }
                 }
-                return totaleLiquidazioni;
+                return totaleIncassi;
             }
             catch (Exception ex)
             {
@@ -165,29 +165,29 @@ namespace BusinessLogic
             return null;
         }
 
-        public static Tipi.StatoCliente GetStato(ClienteDto cliente)
+        public static Tipi.StatoCommittente GetStato(CommittenteDto committente)
         {
             try
             {
-                if (cliente != null)
+                if (committente != null)
                 {
                     var today = DateTime.Today;
-                    var totaleFatture = GetTotaleFattureVendita(cliente, today);
-                    var totaleLiquidazioni = GetTotaleLiquidazioni(cliente, today);
-                    var fatture = cliente.FatturaVenditas;
+                    var totaleFatture = GetTotaleFattureVendita(committente, today);
+                    var totaleIncassi = GetTotaleIncassi(committente, today);
+                    var fatture = committente.FatturaVenditas;
                     var fattureInsolute = GetFattureInsolute(fatture);
                     var existFattureInsolute = (fattureInsolute.Count >= 1);
 
-                    var stato = Tipi.StatoCliente.None;
-                    if (totaleLiquidazioni < totaleFatture)
+                    var stato = Tipi.StatoCommittente.None;
+                    if (totaleIncassi < totaleFatture)
                     {
                         if (existFattureInsolute)
-                            stato = Tipi.StatoCliente.Insoluto;
+                            stato = Tipi.StatoCommittente.Insoluto;
                         else
-                            stato = Tipi.StatoCliente.NonLiquidato;
+                            stato = Tipi.StatoCommittente.NonIncassato;
                     }
-                    else if (totaleLiquidazioni >= totaleFatture)
-                        stato = Tipi.StatoCliente.Liquidato;
+                    else if (totaleIncassi >= totaleFatture)
+                        stato = Tipi.StatoCommittente.Incassato;
 
                     return stato;
                 }
@@ -196,32 +196,32 @@ namespace BusinessLogic
             {
                 UtilityError.Write(ex);
             }
-            return Tipi.StatoCliente.None;
+            return Tipi.StatoCommittente.None;
         }
 
-        public static string GetStatoDescrizione(ClienteDto cliente)
+        public static string GetStatoDescrizione(CommittenteDto committente)
         {
             try
             {
                 var statoDescrizione = "N/D";
-                if (cliente != null)
+                if (committente != null)
                 {
-                    var commessa = cliente.Commessa;
+                    var commessa = committente.Commessa;
                     if (commessa != null)
                     {
                         var statoCommessa = commessa.Stato;
                         if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                            statoDescrizione = cliente.Stato;
+                            statoDescrizione = committente.Stato;
                         else
                         {
                             var today = DateTime.Today;
-                            var fatture = cliente.FatturaVenditas;
-                            var totaleFatture = GetTotaleFattureVendita(cliente, today);
-                            var totaleLiquidazioni = GetTotaleLiquidazioni(cliente, today);
+                            var fatture = committente.FatturaVenditas;
+                            var totaleFatture = GetTotaleFattureVendita(committente, today);
+                            var totaleIncassi = GetTotaleIncassi(committente, today);
                             var fattureInsolute = GetFattureInsolute(fatture);
                             var fattureNonLiquidate = GetFattureNonLiquidate(fatture);
-                            var statoCliente = GetStato(cliente);
-                            var _statoDescrizione = GetStatoDescrizione(totaleFatture, totaleLiquidazioni, fattureInsolute, fattureNonLiquidate, statoCliente);
+                            var statoCommittente = GetStato(committente);
+                            var _statoDescrizione = GetStatoDescrizione(totaleFatture, totaleIncassi, fattureInsolute, fattureNonLiquidate, statoCommittente);
                             statoDescrizione = _statoDescrizione.ToString();
                         }
                     }
@@ -236,8 +236,8 @@ namespace BusinessLogic
         }
 
         //todo: da modificare
-        private static StateDescriptionImage GetStatoDescrizione(decimal totaleFatture, decimal totaleLiquidazioni, IList<FatturaVenditaDto> fattureInsolute,
-           IList<FatturaVenditaDto> fattureNonLiquidate, Tipi.StatoCliente statoCliente)
+        private static StateDescriptionImage GetStatoDescrizione(decimal totaleFatture, decimal totaleIncassi, IList<FatturaVenditaDto> fattureInsolute,
+           IList<FatturaVenditaDto> fattureNonLiquidate, Tipi.StatoCommittente statoCommittente)
         {
             try
             {
@@ -247,24 +247,24 @@ namespace BusinessLogic
                 var existFattureNonLiquidate = (fattureNonLiquidate.Count >= 1);
                 var listaFattureInsolute = BusinessLogic.Fattura.GetLista(fattureInsolute);
                 var listaFattureNonLiquidate = BusinessLogic.Fattura.GetLista(fattureNonLiquidate);
-                var _totaleLiquidazioni = UtilityValidation.GetEuro(totaleLiquidazioni);
+                var _totaleIncassi = UtilityValidation.GetEuro(totaleIncassi);
                 var _totaleFatture = UtilityValidation.GetEuro(totaleFatture);
 
-                if (statoCliente == Tipi.StatoCliente.Insoluto) //condizione di non soluzione delle fatture, segalo le fatture insolute ed eventualmente quelle non pagate
+                if (statoCommittente == Tipi.StatoCommittente.Insoluto) //condizione di non soluzione delle fatture, segalo le fatture insolute ed eventualmente quelle non pagate
                 {
-                    descrizione = "Il committente risulta insoluto. Il totale incassi pari a " + _totaleLiquidazioni + " è inferiore al totale delle fatture pari a " + _totaleFatture + ". Le fatture insolute sono " + listaFattureInsolute;
+                    descrizione = "Il committente risulta insoluto. Il totale incassi pari a " + _totaleIncassi + " è inferiore al totale delle fatture pari a " + _totaleFatture + ". Le fatture insolute sono " + listaFattureInsolute;
                     if (existFattureNonLiquidate)
                         descrizione += " Le fatture non incassate sono " + listaFattureNonLiquidate;
                     stato = TypeState.Critical;
                 }
-                else if (statoCliente == Tipi.StatoCliente.NonLiquidato) //condizione di non pagamento (pagamenti nulli o non completi, se non completi segnalo le fatture non pagate)
+                else if (statoCommittente == Tipi.StatoCommittente.NonIncassato) //condizione di non pagamento (pagamenti nulli o non completi, se non completi segnalo le fatture non pagate)
                 {
-                    descrizione = "Il committente risulta non incassato. Il totale incassi pari a " + _totaleLiquidazioni + " è inferiore al totale delle fatture pari a " + _totaleFatture;
+                    descrizione = "Il committente risulta non incassato. Il totale incassi pari a " + _totaleIncassi + " è inferiore al totale delle fatture pari a " + _totaleFatture;
                     if (existFattureNonLiquidate)
                         descrizione += " Le fatture non pagate sono " + listaFattureNonLiquidate;
                     stato = TypeState.Warning;
                 }
-                else if (statoCliente == Tipi.StatoCliente.Liquidato)
+                else if (statoCommittente == Tipi.StatoCommittente.Incassato)
                 {
                     descrizione = "Il committente risulta incassato. Tutte le fatture sono state liquidate";  //non so se ha senso indicargli anche insolute o no!!!!! per ora NO
                     stato = TypeState.Normal;

@@ -1,5 +1,5 @@
 -- add column for field _transazionePagamento
-ALTER TABLE [Liquidazione] ADD [TransazionePagamento] varchar(max) NULL
+ALTER TABLE [Incasso] ADD [TransazionePagamento] varchar(max) NULL
 
 go
 

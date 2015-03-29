@@ -15,7 +15,7 @@ namespace Web.GUI.FatturaVendita
 {
 	public partial class FatturaVenditaModel : TemplateModel
 	{
-        private ClienteDto cliente = null;
+        private CommittenteDto committente = null;
 
         public FatturaVenditaModel()
 		{
@@ -30,12 +30,12 @@ namespace Web.GUI.FatturaVendita
             }
 		}
 
-        public FatturaVenditaModel(ClienteDto cliente)
+        public FatturaVenditaModel(CommittenteDto committente)
         {
             InitializeComponent();
             try
             {
-                this.cliente = cliente;
+                this.committente = committente;
                 InitCombo();
             }
             catch (Exception ex)
@@ -94,11 +94,11 @@ namespace Web.GUI.FatturaVendita
                     editTotale.Value = obj.Totale;
 
                     var commessa = GetCommessa(obj);
-                    editTotaleLiquidazioni.Value = BusinessLogic.Fattura.GetTotaleLiquidazioni(obj, commessa);
+                    editTotaleIncassi.Value = BusinessLogic.Fattura.GetTotaleIncassi(obj, commessa);
                     editStato.Value = BusinessLogic.Fattura.GetStatoDescrizione(obj,commessa); 
 
-                    BindViewCliente(obj.Cliente);
-                    BindViewLiquidazioni(obj.Liquidaziones);
+                    BindViewCommittente(obj.Committente);
+                    BindViewIncassi(obj.Incassos);
                 }
             }
             catch (Exception ex)
@@ -107,11 +107,11 @@ namespace Web.GUI.FatturaVendita
             }
         }
 
-        private void BindViewLiquidazioni(IList<LiquidazioneDto> liquidazioni)
+        private void BindViewIncassi(IList<IncassoDto> incassi)
         {
             try
             {
-                btnLiquidazioni.TextButton = "Incassi (" + (liquidazioni != null ? liquidazioni.Count : 0) + ")";
+                btnIncassi.TextButton = "Incassi (" + (incassi != null ? incassi.Count : 0) + ")";
             }
             catch (Exception ex)
             {
@@ -119,12 +119,12 @@ namespace Web.GUI.FatturaVendita
             }
         }
 
-        private void BindViewCliente(ClienteDto cliente)
+        private void BindViewCommittente(CommittenteDto committente)
         {
             try
             {
-                editCliente.Model = cliente;
-                editCliente.Value = (cliente != null ? cliente.Codice + " - " + cliente.RagioneSociale : null);
+                editCommittente.Model = committente;
+                editCommittente.Value = (committente != null ? committente.Codice + " - " + committente.RagioneSociale : null);
             }
             catch (Exception ex)
             {
@@ -147,14 +147,14 @@ namespace Web.GUI.FatturaVendita
                 {
                     var obj = (WcfService.Dto.FatturaVenditaDto)Model;
                     var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
-                    var totaleLiquidazioni = BusinessLogic.Fattura.GetTotaleLiquidazioni(obj, today);
+                    var totaleIncassi = BusinessLogic.Fattura.GetTotaleIncassi(obj, today);
 
                     var commessa = GetCommessa(obj);
                     var statoDescrizione = BusinessLogic.Fattura.GetStatoDescrizione(obj, commessa);
 
                     editStato.Value = statoDescrizione;
                     editTotale.Value = totaleFattura;
-                    editTotaleLiquidazioni.Value = totaleLiquidazioni;
+                    editTotaleIncassi.Value = totaleIncassi;
                 }
             }
             catch (Exception ex)
@@ -179,11 +179,11 @@ namespace Web.GUI.FatturaVendita
                     obj.ScadenzaPagamento = editScadenzaPagamento.Value;
                     obj.Note = editNote.Value;
                     obj.Totale = editTotale.Value;
-                    obj.TotaleLiquidazioni = editTotaleLiquidazioni.Value;
+                    obj.TotaleIncassi = editTotaleIncassi.Value;
                     obj.Stato = editStato.Value;
-                    var cliente = (WcfService.Dto.ClienteDto)editCliente.Model;
-                    if (cliente != null)
-                        obj.ClienteId = cliente.Id;
+                    var committente = (WcfService.Dto.CommittenteDto)editCommittente.Model;
+                    if (committente != null)
+                        obj.CommittenteId = committente.Id;
                 }
             }
             catch (Exception ex)
@@ -198,12 +198,12 @@ namespace Web.GUI.FatturaVendita
             {
                 if (fatturaVendita != null)
                 {
-                    var clienteId = fatturaVendita.ClienteId;
-                    var viewModelCliente = new Cliente.ClienteViewModel(this);
-                    var cliente = viewModelCliente.Read(clienteId);
-                    if (cliente != null)
+                    var committenteId = fatturaVendita.CommittenteId;
+                    var viewModelCommittente = new Committente.CommittenteViewModel(this);
+                    var committente = viewModelCommittente.Read(committenteId);
+                    if (committente != null)
                     {
-                        var commessa = cliente.Commessa;
+                        var commessa = committente.Commessa;
                         return commessa;
                     }
                 }
@@ -215,13 +215,13 @@ namespace Web.GUI.FatturaVendita
             return null;
         }
 
-        private void editCliente_ComboClick()
+        private void editCommittente_ComboClick()
         {
             try
             {
-                var view = new Cliente.ClienteView();
+                var view = new Committente.CommittenteView();
                 view.Title = "SELEZIONA UN COMMITTENTE";
-                editCliente.Show(view);
+                editCommittente.Show(view);
             }
             catch (Exception ex)
             {
@@ -229,13 +229,13 @@ namespace Web.GUI.FatturaVendita
             }
         }
 
-        private void editCliente_ComboConfirm(object model)
+        private void editCommittente_ComboConfirm(object model)
         {
             try
             {
-                var cliente = (WcfService.Dto.ClienteDto)model;
-                if (cliente != null)
-                    editCliente.Value = cliente.Codice + " - " + cliente.RagioneSociale;
+                var committente = (WcfService.Dto.CommittenteDto)model;
+                if (committente != null)
+                    editCommittente.Value = committente.Codice + " - " + committente.RagioneSociale;
             }
             catch (Exception ex)
             {
@@ -283,12 +283,12 @@ namespace Web.GUI.FatturaVendita
             }
         }
 
-        private void btnLiquidazioni_Click(object sender, EventArgs e)
+        private void btnIncassi_Click(object sender, EventArgs e)
         {
             try
             {
                 var obj = (FatturaVenditaDto)Model;
-                var space = new Liquidazione.LiquidazioneView(obj);
+                var space = new Incasso.IncassoView(obj);
                 space.Title = "INCASSI FATTURA N. " + obj.Numero;
                 Workspace.AddSpace(space);
 
@@ -319,10 +319,10 @@ namespace Web.GUI.FatturaVendita
         {
             try
             {
-                if (cliente != null)
+                if (committente != null)
                 {
-                    editCliente.Model = cliente;
-                    editCliente.Value = cliente.Codice + " - " + cliente.RagioneSociale;
+                    editCommittente.Model = committente;
+                    editCommittente.Value = committente.Codice + " - " + committente.RagioneSociale;
                 }
             }
             catch (Exception ex)

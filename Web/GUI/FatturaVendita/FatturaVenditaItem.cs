@@ -32,15 +32,15 @@ namespace Web.GUI.FatturaVendita
                     var data = UtilityValidation.GetDataND(obj.Data);
                     var today = DateTime.Today;
                     var totaleFattura = UtilityValidation.GetEuro(obj.Totale);
-                    var totaleLiquidazioni =UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotaleLiquidazioni(obj, today));
+                    var totaleIncassi =UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotaleIncassi(obj, today));
                     var stato = GetStato(obj);
-                    var cliente = obj.Cliente;
+                    var committente = obj.Committente;
 
                     infoImage.Image = "Images.dashboard.fatturavendita.png";
                     infoCodice.Text = "FA";
                     infoNumeroData.Text = "Fattura N." + numero + " del " + data;
-                    infoLiquidazioneTotale.Text = "Incassato " + totaleLiquidazioni +" su un totale di " + totaleFattura;
-                    infoCliente.Text = cliente.RagioneSociale;
+                    infoIncassoTotale.Text = "Incassato " + totaleIncassi +" su un totale di " + totaleFattura;
+                    infoCommittente.Text = committente.RagioneSociale;
                     imgStato.Image = stato.Image;
                     toolTip.SetToolTip(imgStato, stato.Description);
                 }
@@ -62,6 +62,11 @@ namespace Web.GUI.FatturaVendita
                 {
                     image = "Images.messageConfirm.png";
                     descrizione = "Fattura incassata";
+                }
+                else if (stato == Tipi.StatoFattura.Anomala)
+                {
+                    image = "Images.messageQuestion.png";
+                    descrizione = "Fattura anomala (incasso superiore al totale fattura)";
                 }
                 else if (stato == Tipi.StatoFattura.NonPagata)
                 {
@@ -92,8 +97,8 @@ namespace Web.GUI.FatturaVendita
                 {
                     var obj = (WcfService.Dto.FatturaVenditaDto)Model;
                     var space = new FatturaVenditaModel();
-                    var cliente = obj.Cliente;
-                    space.Title = "FATTURA DI VENDITA " + obj.Numero + " - " + cliente.RagioneSociale;
+                    var committente = obj.Committente;
+                    space.Title = "FATTURA DI VENDITA " + obj.Numero + " - " + committente.RagioneSociale;
                     AddSpace(space);
                 }
             }

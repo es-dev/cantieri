@@ -8,17 +8,17 @@ using System.Web;
 using Web.GUI.Dashboard;
 using Web.GUI.Dashboard.Configurazione;
 using Web.GUI.AnagraficaArticolo;
-using Web.GUI.AnagraficaCliente;
+using Web.GUI.AnagraficaCommittente;
 using Web.GUI.AnagraficaFornitore;
 using Web.GUI.Articolo;
 using Web.GUI.Azienda;
 using Web.GUI.CentroCosto;
-using Web.GUI.Cliente;
+using Web.GUI.Committente;
 using Web.GUI.Commessa;
 using Web.GUI.FatturaAcquisto;
 using Web.GUI.FatturaVendita;
 using Web.GUI.Fornitore;
-using Web.GUI.Liquidazione;
+using Web.GUI.Incasso;
 using Web.GUI.Pagamento;
 using Web.GUI.SAL;
 using Web.GUI.PagamentoUnificato;
@@ -87,14 +87,14 @@ namespace Web.GUI.Dashboard.Pagamento
                 var dashboards = new List<DashboardPagamento>();
 
                 var dashboardPagamenti = new DashboardPagamento("Pagamenti", "PAG", "Gestisci i pagamenti per le fattura inserite, controlla le scadenze, le passività e gli importi dati e in dare...", "Images.dashboard.pagamento.png", "", typeof(PagamentoView));
-                var dashboardLiquidazioni = new DashboardPagamento("Incassi", "INC", "Gestisci gli incassi corrispondenti alle fatture di vendita per le commesse inserite nel sistema, visualizza i movimenti in date e in dare...", "Images.dashboard.liquidazione.png", "", typeof(LiquidazioneView));
+                var dashboardIncassi = new DashboardPagamento("Incassi", "INC", "Gestisci gli incassi corrispondenti alle fatture di vendita per le commesse inserite nel sistema, visualizza i movimenti in date e in dare...", "Images.dashboard.incasso.png", "", typeof(IncassoView));
                 var dashboardResi = new DashboardPagamento("Resi", "RES", "Gestisci i resi specificando gli importi per i quali è stata eseguita una restituizione della merce. Puoi indicare la nota di credito di riferimento...", "Images.dashboard.reso.png", "", typeof(ResoView));
                 var dashboardPagamentiUnificati = new DashboardPagamento("Pagamenti unificati", "PU", "Gestisci i pagamenti unificati per i fornitori inseriti. Potrai saldare in un unico pagamento una o più fatture insolute...", "Images.dashboard.pagamentounificato.png", "", typeof(PagamentoUnificatoView));
                 var dashboardPagamentiUnificatiFatturaAcquisto = new DashboardPagamento("Dettaglio pagamenti unificati", "PU/FA", "Specifica le fatture di acquisto da associare la pagamento unificato. Il sistema valuterà in automatico il saldo da pagare...", "Images.dashboard.pagamentounificatofatturaacquisto.png", "", typeof(PagamentoUnificatoFatturaAcquistoView));
                
 
                 dashboards.Add(dashboardPagamenti);
-                dashboards.Add(dashboardLiquidazioni);
+                dashboards.Add(dashboardIncassi);
                 dashboards.Add(dashboardResi);
                 dashboards.Add(dashboardPagamentiUnificati);
                 dashboards.Add(dashboardPagamentiUnificatiFatturaAcquisto);

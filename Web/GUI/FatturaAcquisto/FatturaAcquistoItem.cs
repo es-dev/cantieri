@@ -65,6 +65,11 @@ namespace Web.GUI.FatturaAcquisto
                     image = "Images.messageConfirm.png";
                     descrizione = "Fattura pagata";
                 }
+                else if (stato == Tipi.StatoFattura.Anomala)
+                {
+                    image = "Images.messageQuestion.png";
+                    descrizione = "Fattura anomala (pagamento superiore al totale fattura)";
+                }
                 else if (stato == Tipi.StatoFattura.NonPagata)
                 {
                     image = "Images.messageQuestion.png";

@@ -64,20 +64,20 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleLiquidazioni(FatturaVenditaDto fatturaVendita, DateTime data)
+        public static decimal GetTotaleIncassi(FatturaVenditaDto fatturaVendita, DateTime data)
         {
             try
             {
                 decimal totale = 0;
                 if (fatturaVendita != null)
                 {
-                    var liquidazioni = (from q in fatturaVendita.Liquidaziones where q.Data <= data select q);
-                    if (liquidazioni != null)
+                    var incassi = (from q in fatturaVendita.Incassos where q.Data <= data select q);
+                    if (incassi != null)
                     {
-                        foreach (var liquidazione in liquidazioni)
+                        foreach (var incasso in incassi)
                         {
-                            var totaleLiquidazione = UtilityValidation.GetDecimal(liquidazione.Importo);
-                            totale += totaleLiquidazione;
+                            var totaleIncasso = UtilityValidation.GetDecimal(incasso.Importo);
+                            totale += totaleIncasso;
                         }
                     }
                     return totale;
@@ -313,8 +313,8 @@ namespace BusinessLogic
                     var today = DateTime.Today;
                     var scadenza = GetScadenza(fatturaVendita);
                     var totaleFattura = UtilityValidation.GetDecimal(fatturaVendita.Totale);
-                    var totaleLiquidazioni = GetTotaleLiquidazioni(fatturaVendita, today);
-                    var stato = GetStato(today, scadenza, totaleFattura, totaleLiquidazioni);
+                    var totaleIncassi = GetTotaleIncassi(fatturaVendita, today);
+                    var stato = GetStato(today, scadenza, totaleFattura, totaleIncassi);
                     return stato;
                 }
             }
@@ -325,21 +325,23 @@ namespace BusinessLogic
             return Tipi.StatoFattura.None;
         }
 
-        private static Tipi.StatoFattura GetStato(DateTime today, DateTime scadenza, decimal totaleFattura, decimal totalePagamentiLiquidazioni)
+        private static Tipi.StatoFattura GetStato(DateTime today, DateTime scadenza, decimal totaleFattura, decimal totalePagamentiIncassi)
         {
             try
             {
                 var stato = Tipi.StatoFattura.None;
                 var insoluta = (today > scadenza);
-                if (totalePagamentiLiquidazioni < totaleFattura)
+                if (totalePagamentiIncassi < totaleFattura)
                 {
                     if (insoluta)
                         stato = Tipi.StatoFattura.Insoluta;
                     else
                         stato = Tipi.StatoFattura.NonPagata;
                 }
-                else if (totalePagamentiLiquidazioni >= totaleFattura)
+                else if (totalePagamentiIncassi == totaleFattura)
                     stato = Tipi.StatoFattura.Pagata;
+                else if (totalePagamentiIncassi > totaleFattura)
+                    stato = Tipi.StatoFattura.Anomala;
 
                 return stato;
             }
@@ -568,6 +570,11 @@ namespace BusinessLogic
                         descrizione = "La fattura risulta in pagamento. Il totale pagamenti pari a " + _totalePagamenti + " è inferiore al totale della fattura pari a " + _totaleFattura + ". La fattura scade il " + _scadenza;
                         stato = TypeState.Warning;
                     }
+                    else if (statoFattura == Tipi.StatoFattura.Anomala)
+                    {
+                        descrizione = "La fattura è stata pagata ma risulta anomala. Il totale pagamenti pari a " + _totalePagamenti + " è superiore al totale della fattura pari a " + _totaleFattura + ".";
+                        stato = TypeState.Warning;
+                    }
                     else if (statoFattura == Tipi.StatoFattura.Pagata)
                     {
                         descrizione = "La fattura è stata pagata";
@@ -649,22 +656,27 @@ namespace BusinessLogic
                 var stato = TypeState.None;
                 var descrizione = "";
                 var scadenza = GetScadenza(fatturaVendita);
-                var totaleLiquidazioni = GetTotaleLiquidazioni(fatturaVendita, data);
+                var totaleIncassi = GetTotaleIncassi(fatturaVendita, data);
                 var totaleFattura = GetTotale(fatturaVendita);
                 var statoFattura = GetStato(fatturaVendita);
                 var ritardo = GetRitardo(data, scadenza);
-                var _totaleLiquidazioni = UtilityValidation.GetEuro(totaleLiquidazioni);
+                var _totaleIncassi = UtilityValidation.GetEuro(totaleIncassi);
                 var _totaleFattura = UtilityValidation.GetEuro(totaleFattura);
                 var _scadenza = UtilityValidation.GetDataND(scadenza);
 
                 if (statoFattura == Tipi.StatoFattura.Insoluta)
                 {
-                    descrizione = "La fattura risulta insoluta. Il totale incassi pari a " + _totaleLiquidazioni + " è inferiore al totale della fattura pari a " + _totaleFattura + ". La fattura risulta scaduta il " + _scadenza + " con un ritardo di liquidazione pari a " + ritardo;
+                    descrizione = "La fattura risulta insoluta. Il totale incassi pari a " + _totaleIncassi + " è inferiore al totale della fattura pari a " + _totaleFattura + ". La fattura risulta scaduta il " + _scadenza + " con un ritardo di incasso pari a " + ritardo;
                     stato = TypeState.Critical;
                 }
                 else if (statoFattura == Tipi.StatoFattura.NonPagata)
                 {
-                    descrizione = "La fattura risulta non incassata. Il totale incassi pari a " + _totaleLiquidazioni + " è inferiore al totale della fattura pari a " + _totaleFattura + ". La fattura scade il " + _scadenza;
+                    descrizione = "La fattura risulta non incassata. Il totale incassi pari a " + _totaleIncassi + " è inferiore al totale della fattura pari a " + _totaleFattura + ". La fattura scade il " + _scadenza;
+                    stato = TypeState.Warning;
+                }
+                else if (statoFattura == Tipi.StatoFattura.Anomala)
+                {
+                    descrizione = "La fattura è stata incassata. Il totale incassi pari a " + _totaleIncassi + " è superiore al totale della fattura pari a " + _totaleFattura + ".";
                     stato = TypeState.Warning;
                 }
                 else if (statoFattura == Tipi.StatoFattura.Pagata)
@@ -682,26 +694,26 @@ namespace BusinessLogic
             return null;
         }
 
-        public static decimal GetTotaleLiquidazioni(FatturaVenditaDto fatturaVendita, CommessaDto commessa)
+        public static decimal GetTotaleIncassi(FatturaVenditaDto fatturaVendita, CommessaDto commessa)
         {
             try
             {
-                decimal totaleLiquidazioni = 0;
+                decimal totaleIncassi = 0;
                 if (fatturaVendita != null)
                 {
                     if (commessa != null)
                     {
                         var statoCommessa = commessa.Stato;
                         if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                            totaleLiquidazioni = UtilityValidation.GetDecimal(fatturaVendita.TotaleLiquidazioni);
+                            totaleIncassi = UtilityValidation.GetDecimal(fatturaVendita.TotaleIncassi);
                         else
                         {
                             var today = DateTime.Today;
-                            totaleLiquidazioni = GetTotaleLiquidazioni(fatturaVendita, today);
+                            totaleIncassi = GetTotaleIncassi(fatturaVendita, today);
                         }
                     }
                 }
-                return totaleLiquidazioni;
+                return totaleIncassi;
             }
             catch (Exception ex)
             {
