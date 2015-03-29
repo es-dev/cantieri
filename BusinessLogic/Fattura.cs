@@ -341,7 +341,7 @@ namespace BusinessLogic
                 else if (totalePagamentiIncassi == totaleFattura)
                     stato = Tipi.StatoFattura.Pagata;
                 else if (totalePagamentiIncassi > totaleFattura)
-                    stato = Tipi.StatoFattura.Anomala;
+                    stato = Tipi.StatoFattura.Incoerente;
 
                 return stato;
             }
@@ -570,9 +570,9 @@ namespace BusinessLogic
                         descrizione = "La fattura risulta in pagamento. Il totale pagamenti pari a " + _totalePagamenti + " è inferiore al totale della fattura pari a " + _totaleFattura + ". La fattura scade il " + _scadenza;
                         stato = TypeState.Warning;
                     }
-                    else if (statoFattura == Tipi.StatoFattura.Anomala)
+                    else if (statoFattura == Tipi.StatoFattura.Incoerente)
                     {
-                        descrizione = "La fattura è stata pagata ma risulta anomala. Il totale pagamenti pari a " + _totalePagamenti + " è superiore al totale della fattura pari a " + _totaleFattura + ".";
+                        descrizione = "La fattura è stata pagata ma risulta incoerente. Il totale pagamenti pari a " + _totalePagamenti + " è superiore al totale della fattura pari a " + _totaleFattura + ".";
                         stato = TypeState.Warning;
                     }
                     else if (statoFattura == Tipi.StatoFattura.Pagata)
@@ -674,9 +674,9 @@ namespace BusinessLogic
                     descrizione = "La fattura risulta non incassata. Il totale incassi pari a " + _totaleIncassi + " è inferiore al totale della fattura pari a " + _totaleFattura + ". La fattura scade il " + _scadenza;
                     stato = TypeState.Warning;
                 }
-                else if (statoFattura == Tipi.StatoFattura.Anomala)
+                else if (statoFattura == Tipi.StatoFattura.Incoerente)
                 {
-                    descrizione = "La fattura è stata incassata. Il totale incassi pari a " + _totaleIncassi + " è superiore al totale della fattura pari a " + _totaleFattura + ".";
+                    descrizione = "La fattura è stata incassata ma risulta incoerente. Il totale incassi pari a " + _totaleIncassi + " è superiore al totale della fattura pari a " + _totaleFattura + ".";
                     stato = TypeState.Warning;
                 }
                 else if (statoFattura == Tipi.StatoFattura.Pagata)

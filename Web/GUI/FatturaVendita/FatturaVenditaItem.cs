@@ -63,10 +63,10 @@ namespace Web.GUI.FatturaVendita
                     image = "Images.messageConfirm.png";
                     descrizione = "Fattura incassata";
                 }
-                else if (stato == Tipi.StatoFattura.Anomala)
+                else if (stato == Tipi.StatoFattura.Incoerente)
                 {
                     image = "Images.messageQuestion.png";
-                    descrizione = "Fattura anomala (incasso superiore al totale fattura)";
+                    descrizione = "Fattura incoerente (incasso superiore al totale fattura)";
                 }
                 else if (stato == Tipi.StatoFattura.NonPagata)
                 {

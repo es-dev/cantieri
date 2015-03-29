@@ -186,8 +186,10 @@ namespace BusinessLogic
                         else
                             stato = Tipi.StatoCommittente.NonIncassato;
                     }
-                    else if (totaleIncassi >= totaleFatture)
+                    else if (totaleIncassi == totaleFatture)
                         stato = Tipi.StatoCommittente.Incassato;
+                    else if (totaleIncassi > totaleFatture)
+                        stato = Tipi.StatoCommittente.Incoerente;
 
                     return stato;
                 }
@@ -252,16 +254,21 @@ namespace BusinessLogic
 
                 if (statoCommittente == Tipi.StatoCommittente.Insoluto) //condizione di non soluzione delle fatture, segalo le fatture insolute ed eventualmente quelle non pagate
                 {
-                    descrizione = "Il committente risulta insoluto. Il totale incassi pari a " + _totaleIncassi + " è inferiore al totale delle fatture pari a " + _totaleFatture + ". Le fatture insolute sono " + listaFattureInsolute;
+                    descrizione = "Il committente risulta insoluto. Il totale incassi pari a " + _totaleIncassi + " è inferiore al totale fatture pari a " + _totaleFatture + ". Le fatture insolute sono " + listaFattureInsolute;
                     if (existFattureNonLiquidate)
                         descrizione += " Le fatture non incassate sono " + listaFattureNonLiquidate;
                     stato = TypeState.Critical;
                 }
                 else if (statoCommittente == Tipi.StatoCommittente.NonIncassato) //condizione di non pagamento (pagamenti nulli o non completi, se non completi segnalo le fatture non pagate)
                 {
-                    descrizione = "Il committente risulta non incassato. Il totale incassi pari a " + _totaleIncassi + " è inferiore al totale delle fatture pari a " + _totaleFatture;
+                    descrizione = "Il committente risulta non incassato. Il totale incassi pari a " + _totaleIncassi + " è inferiore al totale fatture pari a " + _totaleFatture;
                     if (existFattureNonLiquidate)
                         descrizione += " Le fatture non pagate sono " + listaFattureNonLiquidate;
+                    stato = TypeState.Warning;
+                }
+                else if (statoCommittente == Tipi.StatoCommittente.Incoerente) 
+                {
+                    descrizione = "Il committente risulta incassato ma è in uno stato incoerente. Il totale incassi pari a " + _totaleIncassi + " è superiore al totale fatture pari a " + _totaleFatture;
                     stato = TypeState.Warning;
                 }
                 else if (statoCommittente == Tipi.StatoCommittente.Incassato)

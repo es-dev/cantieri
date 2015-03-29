@@ -67,7 +67,7 @@ namespace BusinessLogic
             Insoluta, //fattura il cui totale pagamenti < totale fattura e today >scadenza=data fattura+ scadenza pagamento
             [Description("Non pagata")]
             NonPagata, //fattura il cui totale pagamenti < totale fattura e today<=scadenza=data fattura+ scadenza pagamento
-            Anomala //fattura il cui totale pagamenti > totale fattura
+            Incoerente //fattura il cui totale pagamenti > totale fattura
         }
         public enum StatoFornitore
         {
@@ -76,7 +76,7 @@ namespace BusinessLogic
             Insoluto, //fornitore il cui totale pagamenti < totale fatture e per il quale ci sono fatture insolute
             [Description("Non pagato")]
             NonPagato, //fornitore il cui totale pagamenti < totale fatture e per il quale ci sono fatture non pagate
-            Anomalo //fornitore il cui totale pagamenti > totale fatture
+            Incoerente //fornitore il cui totale pagamenti > totale fatture
         }
 
         public enum StatoCommittente
@@ -85,7 +85,8 @@ namespace BusinessLogic
             Incassato, //committente il cui totale incassi >= Totale fattura
             Insoluto, //committente il cui totale incassi < totale fattura e per il quale ci sono fatture insolute
             [Description("Non incassato")]
-            NonIncassato //committente il cui totale incassi < totale fattura e per il quale ci sono fatture non incassate
+            NonIncassato, //committente il cui totale incassi < totale fattura e per il quale ci sono fatture non incassate
+            Incoerente //committente il cui totale incassi > totale fatture
         }
 
         public enum TipoAccount

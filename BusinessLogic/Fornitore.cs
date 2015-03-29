@@ -158,8 +158,10 @@ namespace BusinessLogic
                         else
                             stato = Tipi.StatoFornitore.NonPagato;
                     }
-                    else if (totalePagamenti >= totaleFatture)
+                    else if (totalePagamenti == totaleFatture)
                         stato = Tipi.StatoFornitore.Pagato;
+                    else if (totalePagamenti > totaleFatture)
+                        stato = Tipi.StatoFornitore.Incoerente;
 
                     return stato;
                 }
@@ -348,21 +350,26 @@ namespace BusinessLogic
 
                 if (statoFornitore == Tipi.StatoFornitore.Insoluto) //condizione di non soluzione delle fatture, segnalo le fatture insolute ed eventualmente quelle non pagate
                 {
-                    descrizione = "Il fornitore risulta insoluto. Il totale pagamenti pari a " + _totalePagamenti + " è inferiore al totale delle fatture pari a " + _totaleFatture + ". Le fatture insolute sono " + listaFattureInsolute;
+                    descrizione = "Il fornitore risulta insoluto. Il totale pagamenti pari a " + _totalePagamenti + " è inferiore al totale fatture pari a " + _totaleFatture + ". Le fatture insolute sono " + listaFattureInsolute;
                     if (existFattureNonPagate)
                         descrizione += " Le fatture non pagate sono " + listaFattureNonPagate;
                     stato = TypeState.Critical;
                 }
                 else if (statoFornitore == Tipi.StatoFornitore.NonPagato)
                 {
-                    descrizione = "Il fornitore risulta non pagato. Il totale pagamenti pari a " + _totalePagamenti + " è inferiore al totale delle fatture pari a " + _totaleFatture;
+                    descrizione = "Il fornitore risulta non pagato. Il totale pagamenti pari a " + _totalePagamenti + " è inferiore al totale fatture pari a " + _totaleFatture;
                     if (existFattureNonPagate)
                         descrizione += " Le fatture non pagate sono " + listaFattureNonPagate;
                     stato = TypeState.Warning;
                 }
+                else if (statoFornitore == Tipi.StatoFornitore.Incoerente)
+                {
+                    descrizione = "Il fornitore risulta pagato ma è in uno stato incoerente. Tutte le fatture sono state saldate, tuttavia il totale pagamenti pari a " + _totalePagamenti + " è superiore al totale fatture pari a " + _totaleFatture;  
+                    stato = TypeState.Normal;
+                }
                 else if (statoFornitore == Tipi.StatoFornitore.Pagato)
                 {
-                    descrizione = "Il fornitore risulta pagato. Tutte le fatture sono state saldate";  //non so se ha senso indicargli anche insolute o no!!!!! per ora NO
+                    descrizione = "Il fornitore risulta pagato. Tutte le fatture sono state saldate";  
                     stato = TypeState.Normal;
                 }
                 var statoDescrizione = new StateDescriptionImage(stato, descrizione);

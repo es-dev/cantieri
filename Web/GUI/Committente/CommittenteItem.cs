@@ -76,6 +76,11 @@ namespace Web.GUI.Committente
                     image = "Images.messageConfirm.png";
                     descrizione = "Committente incassato";
                 }
+                else if (stato == Tipi.StatoCommittente.Incoerente)
+                {
+                    image = "Images.messageQuestion.png";
+                    descrizione = "Committente incoerente (incassi superiori al totale fatture)";
+                }
                 else if (stato == Tipi.StatoCommittente.NonIncassato)
                 {
                     image = "Images.messageQuestion.png";

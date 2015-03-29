@@ -75,6 +75,11 @@ namespace Web.GUI.Fornitore
                     image = "Images.messageConfirm.png";
                     descrizione = "Fornitore pagato";
                 }
+                else if (stato == Tipi.StatoFornitore.Incoerente)
+                {
+                    image = "Images.messageQuestion.png";
+                    descrizione = "Fornitore incoerente (pagamenti superiori al totale fatture)";
+                }
                 else if (stato == Tipi.StatoFornitore.NonPagato)
                 {
                     image = "Images.messageQuestion.png";
