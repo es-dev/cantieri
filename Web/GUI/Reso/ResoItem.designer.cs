@@ -35,8 +35,8 @@ namespace Web.GUI.Reso
             this.infoImage = new Gizmox.WebGUI.Forms.PictureBox();
             this.infoReso = new Gizmox.WebGUI.Forms.Label();
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
-            this.infoNote = new Gizmox.WebGUI.Forms.Label();
             this.infoData = new Gizmox.WebGUI.Forms.Label();
+            this.infoNote = new Gizmox.WebGUI.Forms.Label();
             this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
@@ -44,9 +44,9 @@ namespace Web.GUI.Reso
             // 
             // jqContainer
             // 
+            this.jqContainer.Controls.Add(this.infoNote);
             this.jqContainer.Controls.Add(this.panelLeft);
             this.jqContainer.Controls.Add(this.infoData);
-            this.jqContainer.Controls.Add(this.infoNote);
             this.jqContainer.Controls.Add(this.infoReso);
             this.jqContainer.Controls.Add(this.infoImporto);
             // 
@@ -108,19 +108,6 @@ namespace Web.GUI.Reso
             this.panelLeft.Size = new System.Drawing.Size(83, 96);
             this.panelLeft.TabIndex = 0;
             // 
-            // infoNote
-            // 
-            this.infoNote.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.infoNote.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoNote.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoNote.Location = new System.Drawing.Point(96, 32);
-            this.infoNote.Name = "infoNote";
-            this.infoNote.Size = new System.Drawing.Size(297, 34);
-            this.infoNote.TabIndex = 1;
-            this.infoNote.Text = "Note";
-            // 
             // infoData
             // 
             this.infoData.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
@@ -132,6 +119,19 @@ namespace Web.GUI.Reso
             this.infoData.Size = new System.Drawing.Size(154, 16);
             this.infoData.TabIndex = 1;
             this.infoData.Text = "Pagato il dd/MM/yyyy";
+            // 
+            // infoNote
+            // 
+            this.infoNote.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.infoNote.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoNote.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.infoNote.Location = new System.Drawing.Point(95, 35);
+            this.infoNote.Name = "infoNote";
+            this.infoNote.Size = new System.Drawing.Size(296, 35);
+            this.infoNote.TabIndex = 1;
+            this.infoNote.Text = "Note";
             // 
             // ResoItem
             // 
@@ -152,7 +152,7 @@ namespace Web.GUI.Reso
         private Gizmox.WebGUI.Forms.PictureBox infoImage;
         private Gizmox.WebGUI.Forms.Label infoReso;
         private Gizmox.WebGUI.Forms.Panel panelLeft;
-        private Gizmox.WebGUI.Forms.Label infoNote;
         private Gizmox.WebGUI.Forms.Label infoData;
+        private Gizmox.WebGUI.Forms.Label infoNote;
 	}
 }

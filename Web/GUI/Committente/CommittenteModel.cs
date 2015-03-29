@@ -126,7 +126,6 @@ namespace Web.GUI.Committente
             {
                 UtilityError.Write(ex);
             }
-            
         }
 
         public override void BindModel(object model)
@@ -231,7 +230,6 @@ namespace Web.GUI.Committente
             {
                 UtilityError.Write(ex);
             }
-
         }
 
         private void btnIncassi_Click(object sender, EventArgs e)
