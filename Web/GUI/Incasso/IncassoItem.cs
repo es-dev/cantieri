@@ -33,6 +33,7 @@ namespace Web.GUI.Incasso
                     infoData.Text = "Incassato il " + data;
                     infoImage.Image = "Images.dashboard.incasso.png";
                     infoCodice.Text = "LIQ";
+                    infoTransazionePagamento.Text = "Tipo transazione: " + obj.TransazionePagamento;
                     infoNote.Text = obj.Note;
                     infoImporto.Text = "Importo: " + importo;
                     infoIncasso.Text = "Incasso N." + codice;
