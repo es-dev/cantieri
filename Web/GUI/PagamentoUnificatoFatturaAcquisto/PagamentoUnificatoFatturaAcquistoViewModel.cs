@@ -11,7 +11,6 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
     public class PagamentoUnificatoFatturaAcquistoViewModel : Library.Template.MVVM.TemplateViewModel<PagamentoUnificatoFatturaAcquistoDto, PagamentoUnificatoFatturaAcquistoItem>
     {
         private PagamentoUnificatoDto pagamentoUnificato = null;
-
         public PagamentoUnificatoDto PagamentoUnificato
         {
             get
@@ -21,6 +20,32 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             set
             {
                 pagamentoUnificato = value;
+            }
+        }
+
+        private PagamentoUnificatoDto pagamentoUnificatoOld = null;
+        public PagamentoUnificatoDto PagamentoUnificatoOld
+        {
+            get
+            {
+                return pagamentoUnificatoOld;
+            }
+            set
+            {
+                pagamentoUnificatoOld = value;
+            }
+        }
+
+        private FatturaAcquistoDto fatturaAcquistoOld = null;
+        public FatturaAcquistoDto FatturaAcquistoOld
+        {
+            get
+            {
+                return fatturaAcquistoOld;
+            }
+            set
+            {
+                fatturaAcquistoOld = value;
             }
         }
         public PagamentoUnificatoFatturaAcquistoViewModel(ISpace space)
@@ -92,14 +117,19 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                     else //updating
                         performed = wcf.UpdatePagamentoUnificatoFatturaAcquisto(obj);
 
-                    if(performed) //sync  pagamento
+                    //sync pagamento
+                    if(performed)
                     {
                         var viewModelPagamento = new Pagamento.PagamentoViewModel(Space);
                         var pagamento = viewModelPagamento.ReadPagamentoPagamentoUnificatoFatturaAcquisto(obj);
+                        creating = (pagamento == null);
                         if(pagamento==null)
                         {
                             pagamento = GetPagamento(obj);
                         }
+                        var pagamentoOld = viewModelPagamento.ReadPagamentoOldPagamentoUnificatoFatturaAcquisto(pagamentoUnificatoOld, fatturaAcquistoOld);
+                        if (pagamentoOld!=null)
+                            viewModelPagamento.Delete(pagamentoOld);
                         viewModelPagamento.Save(pagamento, creating);
                     }
                     return performed;

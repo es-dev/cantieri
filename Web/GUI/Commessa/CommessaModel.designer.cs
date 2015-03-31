@@ -175,7 +175,7 @@ namespace Web.GUI.Commessa
             this.editAzienda.Model = null;
             this.editAzienda.Name = "editAzienda";
             this.editAzienda.ReadOnly = false;
-            this.editAzienda.Required = false;
+            this.editAzienda.Required = true;
             this.editAzienda.Size = new System.Drawing.Size(794, 30);
             this.editAzienda.TabIndex = 0;
             this.editAzienda.Text = "EditControl";
@@ -199,7 +199,7 @@ namespace Web.GUI.Commessa
             this.editNumero.Location = new System.Drawing.Point(25, 134);
             this.editNumero.Name = "editNumero";
             this.editNumero.ReadOnly = false;
-            this.editNumero.Required = false;
+            this.editNumero.Required = true;
             this.editNumero.Size = new System.Drawing.Size(792, 30);
             this.editNumero.TabIndex = 2;
             this.editNumero.Text = "EditControl";
@@ -221,7 +221,7 @@ namespace Web.GUI.Commessa
             this.editCreazione.Location = new System.Drawing.Point(25, 170);
             this.editCreazione.Name = "editCreazione";
             this.editCreazione.ReadOnly = false;
-            this.editCreazione.Required = false;
+            this.editCreazione.Required = true;
             this.editCreazione.Size = new System.Drawing.Size(792, 30);
             this.editCreazione.TabIndex = 3;
             this.editCreazione.Text = "TemplateEditData";
@@ -309,7 +309,7 @@ namespace Web.GUI.Commessa
             this.editDenominazione.Location = new System.Drawing.Point(25, 206);
             this.editDenominazione.Name = "editDenominazione";
             this.editDenominazione.ReadOnly = false;
-            this.editDenominazione.Required = false;
+            this.editDenominazione.Required = true;
             this.editDenominazione.Size = new System.Drawing.Size(792, 30);
             this.editDenominazione.TabIndex = 4;
             this.editDenominazione.Text = "EditControl";
@@ -375,7 +375,7 @@ namespace Web.GUI.Commessa
             this.editImporto.Location = new System.Drawing.Point(25, 818);
             this.editImporto.Name = "editImporto";
             this.editImporto.ReadOnly = false;
-            this.editImporto.Required = false;
+            this.editImporto.Required = true;
             this.editImporto.Size = new System.Drawing.Size(792, 30);
             this.editImporto.TabIndex = 18;
             this.editImporto.Text = "TemplateEditNumeric";

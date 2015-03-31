@@ -229,8 +229,12 @@ namespace Web.GUI.Commessa
             try
             {
                 var validated = new ValidationState();
-
-
+                var importo= UtilityValidation.GetDecimal(editImporto.Value);
+                if (importo < 1000)
+                {
+                    validated.State = false;
+                    validated.Message = "L'importo inserito non può essere negativo...";
+                }
                 return validated;
             }
             catch (Exception ex)
