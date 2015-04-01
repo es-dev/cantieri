@@ -92,7 +92,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                     else //updating
                         performed = wcf.UpdatePagamentoUnificatoFatturaAcquisto(obj);
 
-                    if(performed) //sync  pagamento
+                    if(performed) //sync pagamento
                     {
                         var viewModelPagamento = new Pagamento.PagamentoViewModel(Space);
                         var pagamento = viewModelPagamento.ReadPagamentoPagamentoUnificatoFatturaAcquisto(obj);
