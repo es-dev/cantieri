@@ -31,5 +31,32 @@ namespace BusinessLogic
             }
             return null;
         }
+
+        public static PagamentoDto GetPagamento(PagamentoUnificatoFatturaAcquistoDto pagamenoUnificatoFatturaAcquisto)
+        {
+            try
+            {
+                if (pagamenoUnificatoFatturaAcquisto != null)
+                {
+                    var fatturaAcquisto = pagamenoUnificatoFatturaAcquisto.FatturaAcquisto;
+                    var pagamentoUnificato = pagamenoUnificatoFatturaAcquisto.PagamentoUnificato;
+                    var pagamento = new PagamentoDto();
+                    pagamento.Codice = GetCodice(fatturaAcquisto);
+                    pagamento.Data = pagamentoUnificato.Data;
+                    pagamento.Descrizione = pagamentoUnificato.Descrizione;
+                    pagamento.FatturaAcquistoId = pagamenoUnificatoFatturaAcquisto.FatturaAcquistoId;
+                    pagamento.Importo = pagamenoUnificatoFatturaAcquisto.Saldo;
+                    pagamento.Note = "Pagamento unificato " + pagamentoUnificato.Codice;
+                    pagamento.PagamentoUnificatoId = pagamenoUnificatoFatturaAcquisto.PagamentoUnificatoId;
+                    pagamento.TipoPagamento = pagamentoUnificato.TipoPagamento;
+                    return pagamento;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }

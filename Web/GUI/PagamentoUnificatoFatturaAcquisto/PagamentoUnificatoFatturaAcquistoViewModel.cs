@@ -124,13 +124,12 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                         var pagamento = viewModelPagamento.ReadPagamentoPagamentoUnificatoFatturaAcquisto(obj);
                         creating = (pagamento == null);
                         if(pagamento==null)
-                        {
-                            pagamento = GetPagamento(obj);
-                        }
+                            pagamento = BusinessLogic.Pagamento.GetPagamento(obj);
+                        
                         var pagamentoOld = viewModelPagamento.ReadPagamentoOldPagamentoUnificatoFatturaAcquisto(pagamentoUnificatoOld, fatturaAcquistoOld);
                         if (pagamentoOld!=null)
                             viewModelPagamento.Delete(pagamentoOld);
-                        viewModelPagamento.Save(pagamento, creating);
+                        performed = viewModelPagamento.Save(pagamento, creating);
                     }
                     return performed;
                 }
@@ -142,32 +141,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             return false;
         }
 
-        private PagamentoDto GetPagamento(PagamentoUnificatoFatturaAcquistoDto obj)
-        {
-            try
-            {
-                if (obj != null)
-                {
-                    var fatturaAcquisto = obj.FatturaAcquisto;
-                    var pagamentoUnificato = obj.PagamentoUnificato;
-                    var pagamento = new PagamentoDto();
-                    pagamento.Codice = BusinessLogic.Pagamento.GetCodice(fatturaAcquisto);
-                    pagamento.Data = pagamentoUnificato.Data;
-                    pagamento.Descrizione = pagamentoUnificato.Descrizione;
-                    pagamento.FatturaAcquistoId = obj.FatturaAcquistoId;
-                    pagamento.Importo = obj.Saldo;
-                    pagamento.Note = "Pagamento unificato " + pagamentoUnificato.Codice;
-                    pagamento.PagamentoUnificatoId = obj.PagamentoUnificatoId;
-                    pagamento.TipoPagamento = pagamentoUnificato.TipoPagamento;
-                    return pagamento;
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
+       
 
         public override bool Delete(object model)
         {

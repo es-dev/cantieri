@@ -1514,12 +1514,17 @@ namespace WcfService
         {
             try
             {
-                var ef = new DataLayer.EntitiesModel();
-                var pagamento = (from q in ef.Pagamentos where q.FatturaAcquistoId==pagamentoUnificatoFatturaAcquisto.FatturaAcquistoId &&
-                                     q.PagamentoUnificatoId== pagamentoUnificatoFatturaAcquisto.PagamentoUnificatoId select q).FirstOrDefault();
+                if (pagamentoUnificatoFatturaAcquisto != null)
+                {
+                    var ef = new DataLayer.EntitiesModel();
+                    var pagamento = (from q in ef.Pagamentos
+                                     where q.FatturaAcquistoId == pagamentoUnificatoFatturaAcquisto.FatturaAcquistoId &&
+                                         q.PagamentoUnificatoId == pagamentoUnificatoFatturaAcquisto.PagamentoUnificatoId
+                                     select q).FirstOrDefault();
 
-                var pagamentoDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamento);
-                return pagamentoDto;
+                    var pagamentoDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamento);
+                    return pagamentoDto;
+                }
             }
             catch (Exception ex)
             {
@@ -1531,12 +1536,16 @@ namespace WcfService
         {
             try
             {
-                var ef = new DataLayer.EntitiesModel();
-                var pagamento = (from q in ef.Pagamentos where q.FatturaAcquistoId == fatturaAcquisto.Id && q.PagamentoUnificatoId == pagamentoUnificato.Id
-                                 select q).FirstOrDefault();
+                if (pagamentoUnificato != null && fatturaAcquisto != null)
+                {
+                    var ef = new DataLayer.EntitiesModel();
+                    var pagamento = (from q in ef.Pagamentos
+                                     where q.FatturaAcquistoId == fatturaAcquisto.Id && q.PagamentoUnificatoId == pagamentoUnificato.Id
+                                     select q).FirstOrDefault();
 
-                var pagamentoDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamento);
-                return pagamentoDto;
+                    var pagamentoDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamento);
+                    return pagamentoDto;
+                }
             }
             catch (Exception ex)
             {
