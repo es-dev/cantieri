@@ -17,7 +17,8 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
 	public partial class PagamentoUnificatoFatturaAcquistoModel : TemplateModel
 	{
         private PagamentoUnificatoDto pagamentoUnificato = null;
-
+        private PagamentoUnificatoDto pagamentoUnificatoOld = null;
+        private FatturaAcquistoDto fatturaAcquistoOld = null;
         public PagamentoUnificatoFatturaAcquistoModel()
 		{
 			InitializeComponent();
@@ -77,6 +78,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             {
                 editPagamentoUnificato.Model = pagamentoUnificato;
                 editPagamentoUnificato.Value = (pagamentoUnificato != null ? pagamentoUnificato.Codice + "/" + pagamentoUnificato.Data.Value.Year.ToString() : null);
+                pagamentoUnificatoOld = pagamentoUnificato;
             }
             catch (Exception ex)
             {
@@ -91,6 +93,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             {
                 editFatturaAcquisto.Model = fatturaAcquisto;
                 editFatturaAcquisto.Value = (fatturaAcquisto != null ? fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") : null);
+                fatturaAcquistoOld = fatturaAcquisto;
             }
             catch (Exception ex)
             {
@@ -133,6 +136,10 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                     var pagamentoUnificato = (PagamentoUnificatoDto)editPagamentoUnificato.Model;
                     if (pagamentoUnificato != null)
                         obj.PagamentoUnificatoId = pagamentoUnificato.Id;
+                   
+                    var viewModel = (PagamentoUnificatoFatturaAcquistoViewModel)ViewModel;
+                    viewModel.PagamentoUnificatoOld = pagamentoUnificatoOld;
+                    viewModel.FatturaAcquistoOld = fatturaAcquistoOld;
                 }
             }
             catch (Exception ex)

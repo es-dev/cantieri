@@ -1527,6 +1527,23 @@ namespace WcfService
             }
             return null;
         }
+        public Dto.PagamentoDto ReadPagamentoOldPagamentoUnificatoFatturaAcquisto(Dto.PagamentoUnificatoDto pagamentoUnificato, Dto.FatturaAcquistoDto fatturaAcquisto)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var pagamento = (from q in ef.Pagamentos where q.FatturaAcquistoId == fatturaAcquisto.Id && q.PagamentoUnificatoId == pagamentoUnificato.Id
+                                 select q).FirstOrDefault();
+
+                var pagamentoDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamento);
+                return pagamentoDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
 
         #endregion
         #endregion
@@ -3707,6 +3724,7 @@ namespace WcfService
 
         #endregion
         #endregion
+
 
 
 
