@@ -37,11 +37,23 @@ namespace Web.GUI.Commessa
             this.infoDescrizione = new Gizmox.WebGUI.Forms.Label();
             this.imgStato = new Gizmox.WebGUI.Forms.PictureBox();
             this.infoStatoLavori = new Gizmox.WebGUI.Forms.Label();
+            this.infoProgressBar = new Gizmox.WebGUI.Forms.ProgressBar();
+            this.infoProgress = new Gizmox.WebGUI.Forms.Label();
+            this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
-            this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgStato)).BeginInit();
             this.SuspendLayout();
+            // 
+            // jqContainer
+            // 
+            this.jqContainer.Controls.Add(this.infoProgress);
+            this.jqContainer.Controls.Add(this.infoProgressBar);
+            this.jqContainer.Controls.Add(this.panelLeft);
+            this.jqContainer.Controls.Add(this.infoDenominazione);
+            this.jqContainer.Controls.Add(this.infoDescrizione);
+            this.jqContainer.Controls.Add(this.infoStatoLavori);
+            this.jqContainer.Controls.Add(this.imgStato);
             // 
             // infoCodice
             // 
@@ -115,26 +127,41 @@ namespace Web.GUI.Commessa
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoStatoLavori.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoStatoLavori.ForeColor = System.Drawing.Color.DarkRed;
-            this.infoStatoLavori.Location = new System.Drawing.Point(91, 75);
+            this.infoStatoLavori.Location = new System.Drawing.Point(224, 75);
             this.infoStatoLavori.Name = "infoStatoLavori";
-            this.infoStatoLavori.Size = new System.Drawing.Size(265, 16);
+            this.infoStatoLavori.Size = new System.Drawing.Size(136, 16);
             this.infoStatoLavori.TabIndex = 1;
-            this.infoStatoLavori.Text = "Scadenza lavori dd/MM/yyyy";
+            this.infoStatoLavori.Text = "Scadenza dd/MM/yyyy";
             this.infoStatoLavori.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // infoProgressBar
+            // 
+            this.infoProgressBar.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.infoProgressBar.Location = new System.Drawing.Point(90, 75);
+            this.infoProgressBar.Name = "infoProgressBar";
+            this.infoProgressBar.Size = new System.Drawing.Size(100, 15);
+            this.infoProgressBar.TabIndex = 4;
+            // 
+            // infoProgress
+            // 
+            this.infoProgress.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.infoProgress.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoProgress.ForeColor = System.Drawing.Color.Blue;
+            this.infoProgress.Location = new System.Drawing.Point(195, 75);
+            this.infoProgress.Name = "infoProgress";
+            this.infoProgress.Size = new System.Drawing.Size(28, 16);
+            this.infoProgress.TabIndex = 1;
+            this.infoProgress.Text = "0%";
             // 
             // CommessaItem
             // 
-            this.jqContainer.Controls.Add(this.panelLeft);
-            this.jqContainer.Controls.Add(this.infoDenominazione);
-            this.jqContainer.Controls.Add(this.infoDescrizione);
-            this.jqContainer.Controls.Add(this.infoStatoLavori);
-            this.jqContainer.Controls.Add(this.imgStato);
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.CommessaItem_ItemClick);
+            this.jqContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
-            this.jqContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgStato)).EndInit();
             this.ResumeLayout(false);
 
@@ -149,5 +176,7 @@ namespace Web.GUI.Commessa
         private Gizmox.WebGUI.Forms.Label infoDescrizione;
         private Gizmox.WebGUI.Forms.Label infoStatoLavori;
         private Gizmox.WebGUI.Forms.PictureBox imgStato;
+        private Gizmox.WebGUI.Forms.ProgressBar infoProgressBar;
+        private Gizmox.WebGUI.Forms.Label infoProgress;
 	}
 }

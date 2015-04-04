@@ -164,6 +164,66 @@ namespace WcfService.Assemblers
 				dto.Accounts.Add(dtoItem);
 			}
 
+			ReportJobAssembler reportJobAssembler = new ReportJobAssembler();
+
+			dto.ReportJobs = new List<ReportJobDto>();
+			foreach (ReportJob item in entity.ReportJobs)
+			{
+				var dtoItem = reportJobAssembler.Assemble(item);
+				dtoItem.Azienda = dto;
+				dto.ReportJobs.Add(dtoItem);
+			}
+
+			PagamentoUnificatoAssembler pagamentoUnificatoAssembler = new PagamentoUnificatoAssembler();
+
+			dto.PagamentoUnificatos = new List<PagamentoUnificatoDto>();
+			foreach (PagamentoUnificato item in entity.PagamentoUnificatos)
+			{
+				var dtoItem = pagamentoUnificatoAssembler.Assemble(item);
+				dtoItem.Azienda = dto;
+				dto.PagamentoUnificatos.Add(dtoItem);
+			}
+
+			AnagraficaFornitoreAssembler anagraficaFornitoreAssembler = new AnagraficaFornitoreAssembler();
+
+			dto.AnagraficaFornitores = new List<AnagraficaFornitoreDto>();
+			foreach (AnagraficaFornitore item in entity.AnagraficaFornitores)
+			{
+				var dtoItem = anagraficaFornitoreAssembler.Assemble(item);
+				dtoItem.Azienda = dto;
+				dto.AnagraficaFornitores.Add(dtoItem);
+			}
+
+			AnagraficaCommittenteAssembler anagraficaCommittenteAssembler = new AnagraficaCommittenteAssembler();
+
+			dto.AnagraficaCommittentes = new List<AnagraficaCommittenteDto>();
+			foreach (AnagraficaCommittente item in entity.AnagraficaCommittentes)
+			{
+				var dtoItem = anagraficaCommittenteAssembler.Assemble(item);
+				dtoItem.Azienda = dto;
+				dto.AnagraficaCommittentes.Add(dtoItem);
+			}
+
+			AnagraficaArticoloAssembler anagraficaArticoloAssembler = new AnagraficaArticoloAssembler();
+
+			dto.AnagraficaArticolos = new List<AnagraficaArticoloDto>();
+			foreach (AnagraficaArticolo item in entity.AnagraficaArticolos)
+			{
+				var dtoItem = anagraficaArticoloAssembler.Assemble(item);
+				dtoItem.Azienda = dto;
+				dto.AnagraficaArticolos.Add(dtoItem);
+			}
+
+			CentroCostoAssembler centroCostoAssembler = new CentroCostoAssembler();
+
+			dto.CentroCostos = new List<CentroCostoDto>();
+			foreach (CentroCosto item in entity.CentroCostos)
+			{
+				var dtoItem = centroCostoAssembler.Assemble(item);
+				dtoItem.Azienda = dto;
+				dto.CentroCostos.Add(dtoItem);
+			}
+
 	    }
 	
 	}
@@ -571,6 +631,7 @@ namespace WcfService.Assemblers
 			entity.Codice = dto.Codice;
 			entity.Denominazione = dto.Denominazione;
 			entity.Note = dto.Note;
+			entity.AziendaId = dto.AziendaId;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -585,12 +646,16 @@ namespace WcfService.Assemblers
 			dto.Codice = entity.Codice;
 			dto.Denominazione = entity.Denominazione;
 			dto.Note = entity.Note;
+			dto.AziendaId = entity.AziendaId;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
 	
 	    public override void AssembleReferences(CentroCosto entity, CentroCostoDto dto)
 	    {
+			AziendaAssembler aziendaAssembler = new AziendaAssembler();
+			dto.Azienda = aziendaAssembler.Assemble(entity.Azienda);
+
 	    }
 	
 	    public override void AssembleCollections(CentroCosto entity, CentroCostoDto dto)
@@ -1127,6 +1192,7 @@ namespace WcfService.Assemblers
 			entity.CodiceCatastale = dto.CodiceCatastale;
 			entity.Localita = dto.Localita;
 			entity.Note = dto.Note;
+			entity.AziendaId = dto.AziendaId;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1152,12 +1218,16 @@ namespace WcfService.Assemblers
 			dto.CodiceCatastale = entity.CodiceCatastale;
 			dto.Localita = entity.Localita;
 			dto.Note = entity.Note;
+			dto.AziendaId = entity.AziendaId;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
 	
 	    public override void AssembleReferences(AnagraficaFornitore entity, AnagraficaFornitoreDto dto)
 	    {
+			AziendaAssembler aziendaAssembler = new AziendaAssembler();
+			dto.Azienda = aziendaAssembler.Assemble(entity.Azienda);
+
 	    }
 	
 	    public override void AssembleCollections(AnagraficaFornitore entity, AnagraficaFornitoreDto dto)
@@ -1213,6 +1283,7 @@ namespace WcfService.Assemblers
 			entity.CodiceCatastale = dto.CodiceCatastale;
 			entity.Localita = dto.Localita;
 			entity.Note = dto.Note;
+			entity.AziendaId = dto.AziendaId;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1238,12 +1309,16 @@ namespace WcfService.Assemblers
 			dto.CodiceCatastale = entity.CodiceCatastale;
 			dto.Localita = entity.Localita;
 			dto.Note = entity.Note;
+			dto.AziendaId = entity.AziendaId;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
 	
 	    public override void AssembleReferences(AnagraficaCommittente entity, AnagraficaCommittenteDto dto)
 	    {
+			AziendaAssembler aziendaAssembler = new AziendaAssembler();
+			dto.Azienda = aziendaAssembler.Assemble(entity.Azienda);
+
 	    }
 	
 	    public override void AssembleCollections(AnagraficaCommittente entity, AnagraficaCommittenteDto dto)
@@ -1369,6 +1444,7 @@ namespace WcfService.Assemblers
 			entity.Codice = dto.Codice;
 			entity.Descrizione = dto.Descrizione;
 			entity.Note = dto.Note;
+			entity.AziendaId = dto.AziendaId;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1383,12 +1459,16 @@ namespace WcfService.Assemblers
 			dto.Codice = entity.Codice;
 			dto.Descrizione = entity.Descrizione;
 			dto.Note = entity.Note;
+			dto.AziendaId = entity.AziendaId;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
 	
 	    public override void AssembleReferences(AnagraficaArticolo entity, AnagraficaArticoloDto dto)
 	    {
+			AziendaAssembler aziendaAssembler = new AziendaAssembler();
+			dto.Azienda = aziendaAssembler.Assemble(entity.Azienda);
+
 	    }
 	
 	    public override void AssembleCollections(AnagraficaArticolo entity, AnagraficaArticoloDto dto)
@@ -1515,6 +1595,7 @@ namespace WcfService.Assemblers
 			entity.Elaborazione = dto.Elaborazione;
 			entity.Note = dto.Note;
 			entity.NomeFile = dto.NomeFile;
+			entity.AziendaId = dto.AziendaId;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1534,12 +1615,16 @@ namespace WcfService.Assemblers
 			dto.Elaborazione = entity.Elaborazione;
 			dto.Note = entity.Note;
 			dto.NomeFile = entity.NomeFile;
+			dto.AziendaId = entity.AziendaId;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
 	
 	    public override void AssembleReferences(ReportJob entity, ReportJobDto dto)
 	    {
+			AziendaAssembler aziendaAssembler = new AziendaAssembler();
+			dto.Azienda = aziendaAssembler.Assemble(entity.Azienda);
+
 	    }
 	
 	    public override void AssembleCollections(ReportJob entity, ReportJobDto dto)
@@ -1588,6 +1673,7 @@ namespace WcfService.Assemblers
 			entity.TipoPagamento = dto.TipoPagamento;
 			entity.Descrizione = dto.Descrizione;
 			entity.CodiceFornitore = dto.CodiceFornitore;
+			entity.AziendaId = dto.AziendaId;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1606,12 +1692,16 @@ namespace WcfService.Assemblers
 			dto.TipoPagamento = entity.TipoPagamento;
 			dto.Descrizione = entity.Descrizione;
 			dto.CodiceFornitore = entity.CodiceFornitore;
+			dto.AziendaId = entity.AziendaId;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
 	
 	    public override void AssembleReferences(PagamentoUnificato entity, PagamentoUnificatoDto dto)
 	    {
+			AziendaAssembler aziendaAssembler = new AziendaAssembler();
+			dto.Azienda = aziendaAssembler.Assemble(entity.Azienda);
+
 	    }
 	
 	    public override void AssembleCollections(PagamentoUnificato entity, PagamentoUnificatoDto dto)

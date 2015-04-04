@@ -18,6 +18,7 @@ using Telerik.OpenAccess.Metadata;
 using Telerik.OpenAccess.Data.Common;
 using Telerik.OpenAccess.Metadata.Fluent;
 using Telerik.OpenAccess.Metadata.Fluent.Advanced;
+using DataLayer;
 
 namespace DataLayer	
 {
@@ -137,6 +138,32 @@ namespace DataLayer
 			set
 			{
 				this._nomeFile = value;
+			}
+		}
+		
+		private int _aziendaId;
+		public virtual int AziendaId
+		{
+			get
+			{
+				return this._aziendaId;
+			}
+			set
+			{
+				this._aziendaId = value;
+			}
+		}
+		
+		private Azienda _azienda;
+		public virtual Azienda Azienda
+		{
+			get
+			{
+				return this._azienda;
+			}
+			set
+			{
+				this._azienda = value;
 			}
 		}
 		

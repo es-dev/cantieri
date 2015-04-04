@@ -167,11 +167,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ESCantieriConnection%282015-03-26 00-30-29%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-03-29 18-20-28%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-03-29 18-56-37%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-03-29 19-13-54%29.rlinq.sql" />
-    <Content Include="ESCantieriConnection%282015-03-29 19-16-07%29.rlinq.sql" />
+    <Content Include="ESCantieriConnection%282015-04-04 20-00-52%29.rlinq.sql" />
+    <Content Include="ESCantieriConnection%282015-04-04 22-04-21%29.rlinq.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

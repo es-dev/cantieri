@@ -39,6 +39,7 @@ namespace Web.GUI.ReportJob
             this.editCodice = new Library.Template.Controls.TemplateEditText();
             this.btnStampaReport = new Library.Controls.ButtonSeparatorV();
             this.editNomeFile = new Library.Template.Controls.TemplateEditLink();
+            this.editAzienda = new Library.Template.Controls.TemplateEditCombo();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -46,6 +47,7 @@ namespace Web.GUI.ReportJob
             // 
             // container
             // 
+            this.container.Controls.Add(this.editAzienda);
             this.container.Controls.Add(this.editNomeFile);
             this.container.Controls.Add(this.editCodice);
             this.container.Controls.Add(this.editElaborazione);
@@ -64,6 +66,7 @@ namespace Web.GUI.ReportJob
             this.container.Controls.SetChildIndex(this.editElaborazione, 0);
             this.container.Controls.SetChildIndex(this.editCodice, 0);
             this.container.Controls.SetChildIndex(this.editNomeFile, 0);
+            this.container.Controls.SetChildIndex(this.editAzienda, 0);
             // 
             // infoSubtitle
             // 
@@ -76,6 +79,7 @@ namespace Web.GUI.ReportJob
             // panelCommands
             // 
             this.panelCommands.Controls.Add(this.btnStampaReport);
+            this.panelCommands.Controls.SetChildIndex(this.btnHome, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
@@ -95,12 +99,12 @@ namespace Web.GUI.ReportJob
             this.editDenominazione.Editing = false;
             this.editDenominazione.Label = "Denominazione";
             this.editDenominazione.LabelWidth = 175;
-            this.editDenominazione.Location = new System.Drawing.Point(25, 165);
+            this.editDenominazione.Location = new System.Drawing.Point(26, 209);
             this.editDenominazione.Name = "editDenominazione";
             this.editDenominazione.ReadOnly = false;
             this.editDenominazione.Required = false;
             this.editDenominazione.Size = new System.Drawing.Size(794, 30);
-            this.editDenominazione.TabIndex = 2;
+            this.editDenominazione.TabIndex = 3;
             this.editDenominazione.Text = "EditControl";
             this.editDenominazione.Value = null;
             // 
@@ -117,13 +121,13 @@ namespace Web.GUI.ReportJob
             this.editFornitore.Editing = false;
             this.editFornitore.Label = "Fornitore";
             this.editFornitore.LabelWidth = 175;
-            this.editFornitore.Location = new System.Drawing.Point(25, 207);
+            this.editFornitore.Location = new System.Drawing.Point(26, 253);
             this.editFornitore.Model = null;
             this.editFornitore.Name = "editFornitore";
             this.editFornitore.ReadOnly = false;
             this.editFornitore.Required = false;
             this.editFornitore.Size = new System.Drawing.Size(794, 30);
-            this.editFornitore.TabIndex = 3;
+            this.editFornitore.TabIndex = 4;
             this.editFornitore.Value = null;
             this.editFornitore.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editFornitore_ComboConfirm);
             this.editFornitore.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editFornitore_ComboClick);
@@ -143,12 +147,12 @@ namespace Web.GUI.ReportJob
             this.editTipoReport.Items = null;
             this.editTipoReport.Label = "Tipo";
             this.editTipoReport.LabelWidth = 175;
-            this.editTipoReport.Location = new System.Drawing.Point(25, 75);
+            this.editTipoReport.Location = new System.Drawing.Point(26, 121);
             this.editTipoReport.Name = "editTipoReport";
             this.editTipoReport.ReadOnly = false;
             this.editTipoReport.Required = false;
             this.editTipoReport.Size = new System.Drawing.Size(794, 30);
-            this.editTipoReport.TabIndex = 0;
+            this.editTipoReport.TabIndex = 1;
             this.editTipoReport.Value = null;
             // 
             // editNote
@@ -164,12 +168,12 @@ namespace Web.GUI.ReportJob
             this.editNote.Editing = false;
             this.editNote.Label = "Note";
             this.editNote.LabelWidth = 175;
-            this.editNote.Location = new System.Drawing.Point(25, 346);
+            this.editNote.Location = new System.Drawing.Point(26, 385);
             this.editNote.Name = "editNote";
             this.editNote.ReadOnly = false;
             this.editNote.Required = false;
             this.editNote.Size = new System.Drawing.Size(794, 30);
-            this.editNote.TabIndex = 6;
+            this.editNote.TabIndex = 7;
             this.editNote.Value = null;
             // 
             // editCreazione
@@ -185,12 +189,12 @@ namespace Web.GUI.ReportJob
             this.editCreazione.Editing = false;
             this.editCreazione.Label = "Creazione";
             this.editCreazione.LabelWidth = 175;
-            this.editCreazione.Location = new System.Drawing.Point(25, 253);
+            this.editCreazione.Location = new System.Drawing.Point(26, 297);
             this.editCreazione.Name = "editCreazione";
             this.editCreazione.ReadOnly = false;
             this.editCreazione.Required = false;
             this.editCreazione.Size = new System.Drawing.Size(794, 30);
-            this.editCreazione.TabIndex = 4;
+            this.editCreazione.TabIndex = 5;
             this.editCreazione.Value = null;
             // 
             // editElaborazione
@@ -206,12 +210,12 @@ namespace Web.GUI.ReportJob
             this.editElaborazione.Editing = false;
             this.editElaborazione.Label = "Elaborazione";
             this.editElaborazione.LabelWidth = 175;
-            this.editElaborazione.Location = new System.Drawing.Point(25, 303);
+            this.editElaborazione.Location = new System.Drawing.Point(26, 341);
             this.editElaborazione.Name = "editElaborazione";
             this.editElaborazione.ReadOnly = false;
             this.editElaborazione.Required = false;
             this.editElaborazione.Size = new System.Drawing.Size(794, 30);
-            this.editElaborazione.TabIndex = 5;
+            this.editElaborazione.TabIndex = 6;
             this.editElaborazione.Value = null;
             // 
             // editCodice
@@ -227,12 +231,12 @@ namespace Web.GUI.ReportJob
             this.editCodice.Editing = false;
             this.editCodice.Label = "Codice";
             this.editCodice.LabelWidth = 175;
-            this.editCodice.Location = new System.Drawing.Point(25, 122);
+            this.editCodice.Location = new System.Drawing.Point(26, 165);
             this.editCodice.Name = "editCodice";
             this.editCodice.ReadOnly = false;
             this.editCodice.Required = false;
             this.editCodice.Size = new System.Drawing.Size(794, 30);
-            this.editCodice.TabIndex = 1;
+            this.editCodice.TabIndex = 2;
             this.editCodice.Value = null;
             // 
             // btnStampaReport
@@ -262,14 +266,39 @@ namespace Web.GUI.ReportJob
             this.editNomeFile.Editing = false;
             this.editNomeFile.Label = "Report";
             this.editNomeFile.LabelWidth = 175;
-            this.editNomeFile.Location = new System.Drawing.Point(25, 389);
+            this.editNomeFile.Location = new System.Drawing.Point(26, 429);
             this.editNomeFile.Name = "templateEditLink1";
             this.editNomeFile.ReadOnly = false;
             this.editNomeFile.Required = false;
-            this.editNomeFile.Size = new System.Drawing.Size(792, 30);
-            this.editNomeFile.TabIndex = 7;
+            this.editNomeFile.Size = new System.Drawing.Size(794, 30);
+            this.editNomeFile.TabIndex = 8;
             this.editNomeFile.Url = null;
             this.editNomeFile.Value = null;
+            // 
+            // editAzienda
+            // 
+            this.editAzienda.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editAzienda.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editAzienda.BackColor = System.Drawing.Color.Transparent;
+            this.editAzienda.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editAzienda.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editAzienda.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editAzienda.Changed = true;
+            this.editAzienda.Editing = false;
+            this.editAzienda.Label = "Azienda";
+            this.editAzienda.LabelWidth = 175;
+            this.editAzienda.Location = new System.Drawing.Point(26, 77);
+            this.editAzienda.Model = null;
+            this.editAzienda.Name = "editAzienda";
+            this.editAzienda.ReadOnly = false;
+            this.editAzienda.Required = true;
+            this.editAzienda.Size = new System.Drawing.Size(794, 30);
+            this.editAzienda.TabIndex = 0;
+            this.editAzienda.Text = "EditControl";
+            this.editAzienda.Value = null;
+            this.editAzienda.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editAzienda_ComboConfirm);
+            this.editAzienda.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editAzienda_ComboClick);
             // 
             // ReportJobFornitoreModel
             // 
@@ -294,6 +323,7 @@ namespace Web.GUI.ReportJob
         private Library.Template.Controls.TemplateEditText editCodice;
         private Library.Controls.ButtonSeparatorV btnStampaReport;
         private Library.Template.Controls.TemplateEditLink editNomeFile;
+        private Library.Template.Controls.TemplateEditCombo editAzienda;
 
 
     }

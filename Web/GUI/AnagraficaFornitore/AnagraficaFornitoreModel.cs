@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.AnagraficaFornitore
@@ -24,7 +25,7 @@ namespace Web.GUI.AnagraficaFornitore
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.AnagraficaFornitoreDto)model;
+                    var obj = (AnagraficaFornitoreDto)model;
                     var codice = UtilityValidation.GetStringND(obj.Codice);
                     var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
                     infoSubtitle.Text = codice + " - " + ragioneSociale;
@@ -43,7 +44,7 @@ namespace Web.GUI.AnagraficaFornitore
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.AnagraficaFornitoreDto)model;
+                    var obj = (AnagraficaFornitoreDto)model;
                     editRagioneSociale.Value = obj.RagioneSociale;
                     editIndirizzo.Value = obj.Indirizzo;
                     editCAP.Value = obj.CAP;
@@ -56,7 +57,22 @@ namespace Web.GUI.AnagraficaFornitore
                     editPartitaIVA.Value = obj.PartitaIva;
                     editCodice.Value = obj.Codice;
                     editNote.Value = obj.Note;
+
+                    BindViewAzienda(obj.Azienda);
                 }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewAzienda(AziendaDto azienda)
+        {
+            try
+            {
+                editAzienda.Model = azienda;
+                editAzienda.Value = (azienda != null ? azienda.Codice + " - " + azienda.RagioneSociale : null);
             }
             catch (Exception ex)
             {
@@ -70,7 +86,7 @@ namespace Web.GUI.AnagraficaFornitore
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.AnagraficaFornitoreDto)model;
+                    var obj = (AnagraficaFornitoreDto)model;
                     obj.RagioneSociale = editRagioneSociale.Value;
                     obj.Indirizzo = editIndirizzo.Value;
                     obj.CAP = editCAP.Value;
@@ -85,6 +101,10 @@ namespace Web.GUI.AnagraficaFornitore
                     obj.PartitaIva = editPartitaIVA.Value;
                     obj.Codice = editCodice.Value;
                     obj.Note = editNote.Value;
+                
+                    var azienda = (AziendaDto)editAzienda.Model;
+                    if (azienda != null)
+                        obj.AziendaId = azienda.Id;
                 }
             }
             catch (Exception ex)
@@ -92,6 +112,35 @@ namespace Web.GUI.AnagraficaFornitore
                 UtilityError.Write(ex);
             }
         }
+
+        private void editAzienda_ComboClick()
+        {
+            try
+            {
+                var view = new Azienda.AziendaView();
+                view.Title = "SELEZIONA UN'AZIENDA";
+                editAzienda.Show(view);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editAzienda_ComboConfirm(object model)
+        {
+            try
+            {
+                var azienda = (AziendaDto)model;
+                if (azienda != null)
+                    editAzienda.Value = azienda.RagioneSociale;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
 
 	}
 }

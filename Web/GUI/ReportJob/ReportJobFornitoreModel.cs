@@ -79,7 +79,21 @@ namespace Web.GUI.ReportJob
                     var fileName = obj.NomeFile;
                     BindViewReport(fileName);
                     BindViewAnagraficaFornitore(obj.CodiceFornitore);
+                    BindViewAzienda(obj.Azienda);
                 }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewAzienda(AziendaDto azienda)
+        {
+            try
+            {
+                editAzienda.Model = azienda;
+                editAzienda.Value = (azienda != null ? azienda.Codice + " - " + azienda.RagioneSociale : null);
             }
             catch (Exception ex)
             {
@@ -135,9 +149,14 @@ namespace Web.GUI.ReportJob
                     obj.Elaborazione = editElaborazione.Value;
                     obj.Tipo = editTipoReport.Value;
                     obj.NomeFile = editNomeFile.Value;
+
                     var anagraficaFornitore = (AnagraficaFornitoreDto)editFornitore.Model;
                     if (anagraficaFornitore != null)
                         obj.CodiceFornitore = anagraficaFornitore.Codice;
+
+                    var azienda = (WcfService.Dto.AziendaDto)editAzienda.Model;
+                    if (azienda != null)
+                        obj.AziendaId = azienda.Id;
 
                 }
             }
@@ -445,6 +464,35 @@ namespace Web.GUI.ReportJob
                 UtilityError.Write(ex);
             }
         }
+
+        private void editAzienda_ComboClick()
+        {
+            try
+            {
+                var view = new Azienda.AziendaView();
+                view.Title = "SELEZIONA UN'AZIENDA";
+                editAzienda.Show(view);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editAzienda_ComboConfirm(object model)
+        {
+            try
+            {
+                var azienda = (WcfService.Dto.AziendaDto)model;
+                if (azienda != null)
+                    editAzienda.Value = azienda.RagioneSociale;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
 
 	}
 }

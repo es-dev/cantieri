@@ -200,6 +200,7 @@ namespace Web.GUI.Commessa
                     obj.ImportoPerizie = editImportoPerizie.Value;
                     obj.InizioLavori = editInizioLavori.Value;
                     obj.FineLavori = editFineLavori.Value;
+                    
                     var azienda = (WcfService.Dto.AziendaDto)editAzienda.Model;
                     if (azienda != null)
                         obj.AziendaId = azienda.Id;
@@ -292,7 +293,7 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                var azienda = (WcfService.Dto.AziendaDto)model;
+                var azienda = (AziendaDto)model;
                 if (azienda != null)
                     editAzienda.Value = azienda.RagioneSociale;
             }
@@ -306,8 +307,7 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                if (Editing)
-                    BindViewAvanzamentoLavori();
+                BindViewAvanzamentoLavori();
             }
             catch (Exception ex)
             {

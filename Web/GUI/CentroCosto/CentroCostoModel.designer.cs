@@ -33,6 +33,7 @@ namespace Web.GUI.CentroCosto
             this.editCodice = new Library.Template.Controls.TemplateEditText();
             this.editDenominazione = new Library.Template.Controls.TemplateEditText();
             this.editNote = new Library.Template.Controls.TemplateEditText();
+            this.editAzienda = new Library.Template.Controls.TemplateEditCombo();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -40,6 +41,7 @@ namespace Web.GUI.CentroCosto
             // 
             // container
             // 
+            this.container.Controls.Add(this.editAzienda);
             this.container.Controls.Add(this.editNote);
             this.container.Controls.Add(this.editDenominazione);
             this.container.Controls.Add(this.editCodice);
@@ -48,6 +50,7 @@ namespace Web.GUI.CentroCosto
             this.container.Controls.SetChildIndex(this.editCodice, 0);
             this.container.Controls.SetChildIndex(this.editDenominazione, 0);
             this.container.Controls.SetChildIndex(this.editNote, 0);
+            this.container.Controls.SetChildIndex(this.editAzienda, 0);
             // 
             // infoSubtitle
             // 
@@ -70,12 +73,12 @@ namespace Web.GUI.CentroCosto
             this.editCodice.Editing = false;
             this.editCodice.Label = "Codice";
             this.editCodice.LabelWidth = 175;
-            this.editCodice.Location = new System.Drawing.Point(25, 75);
+            this.editCodice.Location = new System.Drawing.Point(31, 120);
             this.editCodice.Name = "editCodice";
             this.editCodice.ReadOnly = false;
             this.editCodice.Required = false;
-            this.editCodice.Size = new System.Drawing.Size(800, 30);
-            this.editCodice.TabIndex = 0;
+            this.editCodice.Size = new System.Drawing.Size(794, 30);
+            this.editCodice.TabIndex = 1;
             this.editCodice.Text = "EditControl";
             this.editCodice.Value = null;
             // 
@@ -92,12 +95,12 @@ namespace Web.GUI.CentroCosto
             this.editDenominazione.Editing = false;
             this.editDenominazione.Label = "Denominazione";
             this.editDenominazione.LabelWidth = 175;
-            this.editDenominazione.Location = new System.Drawing.Point(25, 113);
+            this.editDenominazione.Location = new System.Drawing.Point(31, 159);
             this.editDenominazione.Name = "editDenominazione";
             this.editDenominazione.ReadOnly = false;
             this.editDenominazione.Required = false;
-            this.editDenominazione.Size = new System.Drawing.Size(798, 30);
-            this.editDenominazione.TabIndex = 1;
+            this.editDenominazione.Size = new System.Drawing.Size(794, 30);
+            this.editDenominazione.TabIndex = 2;
             this.editDenominazione.Text = "EditControl";
             this.editDenominazione.Value = null;
             // 
@@ -114,14 +117,39 @@ namespace Web.GUI.CentroCosto
             this.editNote.Editing = false;
             this.editNote.Label = "Note";
             this.editNote.LabelWidth = 175;
-            this.editNote.Location = new System.Drawing.Point(25, 151);
+            this.editNote.Location = new System.Drawing.Point(31, 198);
             this.editNote.Name = "editNote";
             this.editNote.ReadOnly = false;
             this.editNote.Required = false;
-            this.editNote.Size = new System.Drawing.Size(798, 30);
-            this.editNote.TabIndex = 2;
+            this.editNote.Size = new System.Drawing.Size(794, 30);
+            this.editNote.TabIndex = 3;
             this.editNote.Text = "EditControl";
             this.editNote.Value = null;
+            // 
+            // editAzienda
+            // 
+            this.editAzienda.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editAzienda.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editAzienda.BackColor = System.Drawing.Color.Transparent;
+            this.editAzienda.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editAzienda.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editAzienda.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editAzienda.Changed = true;
+            this.editAzienda.Editing = false;
+            this.editAzienda.Label = "Azienda";
+            this.editAzienda.LabelWidth = 175;
+            this.editAzienda.Location = new System.Drawing.Point(31, 81);
+            this.editAzienda.Model = null;
+            this.editAzienda.Name = "editAzienda";
+            this.editAzienda.ReadOnly = false;
+            this.editAzienda.Required = true;
+            this.editAzienda.Size = new System.Drawing.Size(794, 30);
+            this.editAzienda.TabIndex = 0;
+            this.editAzienda.Text = "EditControl";
+            this.editAzienda.Value = null;
+            this.editAzienda.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editAzienda_ComboConfirm);
+            this.editAzienda.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editAzienda_ComboClick);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
@@ -136,6 +164,7 @@ namespace Web.GUI.CentroCosto
         private Library.Template.Controls.TemplateEditText editDenominazione;
         private Library.Template.Controls.TemplateEditText editCodice;
         private Library.Template.Controls.TemplateEditText editNote;
+        private Library.Template.Controls.TemplateEditCombo editAzienda;
 
 
     }

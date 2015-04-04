@@ -400,7 +400,7 @@ namespace WcfService
                 var commesse = QueryCommesse(search);
                 commesse = (from q in commesse select q).Skip(skip).Take(take);
                 
-                var commesseDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commesse, false); //disabilitazione ricorsione (performances)
+                var commesseDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commesse); 
                 return commesseDto;
             }
             catch (Exception ex)
@@ -3733,9 +3733,6 @@ namespace WcfService
 
         #endregion
         #endregion
-
-
-
 
 
     }

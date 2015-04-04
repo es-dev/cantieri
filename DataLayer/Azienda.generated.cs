@@ -237,6 +237,60 @@ namespace DataLayer
 			}
 		}
 		
+		private IList<ReportJob> _reportJobs = new List<ReportJob>();
+		public virtual IList<ReportJob> ReportJobs
+		{
+			get
+			{
+				return this._reportJobs;
+			}
+		}
+		
+		private IList<PagamentoUnificato> _pagamentoUnificatos = new List<PagamentoUnificato>();
+		public virtual IList<PagamentoUnificato> PagamentoUnificatos
+		{
+			get
+			{
+				return this._pagamentoUnificatos;
+			}
+		}
+		
+		private IList<AnagraficaFornitore> _anagraficaFornitores = new List<AnagraficaFornitore>();
+		public virtual IList<AnagraficaFornitore> AnagraficaFornitores
+		{
+			get
+			{
+				return this._anagraficaFornitores;
+			}
+		}
+		
+		private IList<AnagraficaCommittente> _anagraficaCommittentes = new List<AnagraficaCommittente>();
+		public virtual IList<AnagraficaCommittente> AnagraficaCommittentes
+		{
+			get
+			{
+				return this._anagraficaCommittentes;
+			}
+		}
+		
+		private IList<AnagraficaArticolo> _anagraficaArticolos = new List<AnagraficaArticolo>();
+		public virtual IList<AnagraficaArticolo> AnagraficaArticolos
+		{
+			get
+			{
+				return this._anagraficaArticolos;
+			}
+		}
+		
+		private IList<CentroCosto> _centroCostos = new List<CentroCosto>();
+		public virtual IList<CentroCosto> CentroCostos
+		{
+			get
+			{
+				return this._centroCostos;
+			}
+		}
+		
 	}
 }
 #pragma warning restore 1591

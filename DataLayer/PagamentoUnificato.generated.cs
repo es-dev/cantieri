@@ -128,6 +128,32 @@ namespace DataLayer
 			}
 		}
 		
+		private int _aziendaId;
+		public virtual int AziendaId
+		{
+			get
+			{
+				return this._aziendaId;
+			}
+			set
+			{
+				this._aziendaId = value;
+			}
+		}
+		
+		private Azienda _azienda;
+		public virtual Azienda Azienda
+		{
+			get
+			{
+				return this._azienda;
+			}
+			set
+			{
+				this._azienda = value;
+			}
+		}
+		
 		private IList<Pagamento> _pagamentos = new List<Pagamento>();
 		public virtual IList<Pagamento> Pagamentos
 		{
