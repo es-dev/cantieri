@@ -106,15 +106,15 @@ namespace Web.GUI.SAL
                     var fornitori = commessa.Fornitores;
                     var committenti = commessa.Committentes;
 
-                    var totaleAcquisti = BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, data.Value);
-                    var totaleVendite = BusinessLogic.SAL.GetTotaleFattureVendita(committenti, data.Value);
+                    var totaleFattureAcquisto = BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, data.Value);
+                    var totaleFattureVendite = BusinessLogic.SAL.GetTotaleFattureVendita(committenti, data.Value);
                     var totalePagamenti = BusinessLogic.SAL.GetTotalePagamenti(fornitori, data.Value);
                     var totaleIncassi = BusinessLogic.SAL.GetTotaleIncassi(committenti, data.Value);
                     var statoDescrizione = BusinessLogic.SAL.GetStatoDescrizione(obj, commessa);
 
                     editStato.Value = statoDescrizione;
-                    editTotaleAcquisti.Value = totaleAcquisti;
-                    editTotaleVendite.Value = totaleVendite;
+                    editTotaleAcquisti.Value = totaleFattureAcquisto;
+                    editTotaleVendite.Value = totaleFattureVendite;
                     editTotalePagamenti.Value = totalePagamenti;
                     editTotaleIncassi.Value = totaleIncassi;
                 }
@@ -135,8 +135,8 @@ namespace Web.GUI.SAL
                     obj.Data = editData.Value;
                     obj.Codice = editCodice.Value;
                     obj.Note = editNote.Value;
-                    obj.TotaleAcquisti = editTotaleAcquisti.Value;
-                    obj.TotaleVendite = editTotaleVendite.Value;
+                    obj.TotaleFattureAcquisto = editTotaleAcquisti.Value;
+                    obj.TotaleFattureVendite = editTotaleVendite.Value;
                     obj.TotaleIncassi = editTotaleIncassi.Value;
                     obj.TotalePagamenti = editTotalePagamenti.Value;
                     obj.Denominazione = editDenominazione.Value;

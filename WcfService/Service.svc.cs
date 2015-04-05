@@ -447,7 +447,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var commessa = (from q in ef.Commessas where q.Id == (int)id select q).FirstOrDefault();
-                var commessaDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commessa);
+                var commessaDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commessa, true); //lettura ricorsiva
                 return commessaDto;
             }
             catch (Exception ex)
@@ -2942,13 +2942,14 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.SALDto> LoadSALs(int skip, int take, string search = null)
+
+        public IEnumerable<Dto.SALDto> LoadSALs(int skip, int take, string search = null, Dto.CommessaDto commessa=null)
         {
             try
             {
-                var sals = QuerySALs(search);
+                var sals = QuerySALs(search, commessa);
                 sals = (from q in sals select q).Skip(skip).Take(take);
-
+                
                 var salsDto = UtilityPOCO.Assemble<Dto.SALDto>(sals);
                 return salsDto;
             }
@@ -2959,28 +2960,11 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.SALDto> LoadSALsCommessa(int skip, int take,Dto.CommessaDto commessa, string search = null)
+        public int CountSALs(string search = null, Dto.CommessaDto commessa=null)
         {
             try
             {
-                var sals = QuerySALs(search);
-                sals = (from q in sals where q.CommessaId == commessa.Id select q);
-                sals = (from q in sals select q).Skip(skip).Take(take);
-                var salsDto = UtilityPOCO.Assemble<Dto.SALDto>(sals);
-                return salsDto;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        public int CountSALs(string search = null)
-        {
-            try
-            {
-                var sals = QuerySALs(search);
+                var sals = QuerySALs(search, commessa);
                 var count = sals.Count();
                 return count;
             }
@@ -3023,12 +3007,14 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.SAL> QuerySALs(string search)
+        private IQueryable<DataLayer.SAL> QuerySALs(string search=null, Dto.CommessaDto commessa=null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var sals = (from q in ef.SALs select q);
+                if(commessa!=null)
+                    sals = (from q in sals where q.CommessaId == commessa.Id select q);
                 if (search != null && search.Length > 0)
                 {
                     var commesseId = (from c in QueryCommesse(search) select c.Id).ToList();

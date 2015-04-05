@@ -28,27 +28,27 @@ namespace Web.GUI.SAL
                 if (model != null)
                 {
                     var obj = (SALDto)model;
-                    var data = UtilityValidation.GetDataND(obj.Data);
-                    var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
+                    var codice = obj.Codice;
+                    var data = UtilityValidation.GetData(obj.Data);
+                    
                     var commessaId = obj.CommessaId;
                     var viewModelCommessa = new Commessa.CommessaViewModel(this);
                     var commessa = (WcfService.Dto.CommessaDto)viewModelCommessa.Read(commessaId);
-                    var today = DateTime.Today;
-                    var fornitori = commessa.Fornitores;
-                    var totaleAcquisti = BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, today);
-                    var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
-                    var margine = UtilityValidation.GetDecimal(commessa.Margine);
-                    var margineOperativo = importoLavori - totaleAcquisti;
-                    var _margineOperativo = UtilityValidation.GetEuro(margineOperativo);
-                    var _importoLavori = UtilityValidation.GetEuro(importoLavori);
-                    var stato = GetStato(commessa, today);
+                    var importoLavori = UtilityValidation.GetEuro(commessa.Importo);
+                    var margineOperativo = BusinessLogic.SAL.GetMargineOperativo(commessa, data);
 
+                    var stato = GetStato(commessa, data);
+                    var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
+                    var _data = UtilityValidation.GetDataND(data);
+                    var _margineOperativo = UtilityValidation.GetEuro(margineOperativo);
+
+                    infoCodice.Text="SAL-" + codice;
                     infoImage.Image = "Images.dashboard.SAL.png";
                     infoCommesssa.Text = "Commessa " + commessa.Codice + " - " + commessa.Denominazione;
-                    infoDenominazioneData.Text = denominazione + " del " + data;
-                    infoAndamentoLavoro.Text = "Margine " + _margineOperativo + " su importo lavori di " + _importoLavori;
-                    toolTip.SetToolTip(imgStato, stato.Description);
+                    infoDenominazioneData.Text = denominazione + " del " + _data;
+                    infoAndamentoLavoro.Text = "Margine " + _margineOperativo + " su importo lavori di " + importoLavori;
                     imgStato.Image = stato.Image;
+                    toolTip.SetToolTip(imgStato, stato.Description);
 
                 }
             }
@@ -57,6 +57,8 @@ namespace Web.GUI.SAL
                 UtilityError.Write(ex);
             }
         }
+
+        
 
         private static DescriptionImage GetStato(CommessaDto commessa, DateTime data)
         {

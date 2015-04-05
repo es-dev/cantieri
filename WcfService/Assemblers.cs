@@ -1362,8 +1362,8 @@ namespace WcfService.Assemblers
 			entity.Id = dto.Id;
 			entity.CommessaId = dto.CommessaId;
 			entity.Data = dto.Data;
-			entity.TotaleAcquisti = dto.TotaleAcquisti;
-			entity.TotaleVendite = dto.TotaleVendite;
+			entity.TotaleFattureAcquisto = dto.TotaleFattureAcquisto;
+			entity.TotaleFattureVendite = dto.TotaleFattureVendite;
 			entity.Denominazione = dto.Denominazione;
 			entity.Codice = dto.Codice;
 			entity.TotaleIncassi = dto.TotaleIncassi;
@@ -1383,8 +1383,8 @@ namespace WcfService.Assemblers
 			dto.Id = entity.Id;
 			dto.CommessaId = entity.CommessaId;
 			dto.Data = entity.Data;
-			dto.TotaleAcquisti = entity.TotaleAcquisti;
-			dto.TotaleVendite = entity.TotaleVendite;
+			dto.TotaleFattureAcquisto = entity.TotaleFattureAcquisto;
+			dto.TotaleFattureVendite = entity.TotaleFattureVendite;
 			dto.Denominazione = entity.Denominazione;
 			dto.Codice = entity.Codice;
 			dto.TotaleIncassi = entity.TotaleIncassi;

@@ -818,11 +818,11 @@
         <orm:field name="_data" property="Data" uniqueId="b1b806c6-eae5-4001-a8e4-49734c1315c7" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="Data" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
-        <orm:field name="_totaleAcquisti" property="TotaleAcquisti" uniqueId="be14a63c-72d7-4cb1-a081-fe04c8a6b5c3" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="TotaleAcquisti" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_totaleFattureAcquisto" property="TotaleFattureAcquisto" uniqueId="be14a63c-72d7-4cb1-a081-fe04c8a6b5c3" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="TotaleFattureAcquisto" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
-        <orm:field name="_totaleVendite" property="TotaleVendite" uniqueId="e50f8b5c-1bbb-4bf2-8405-c3f9f88429f5" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
-          <orm:column name="TotaleVendite" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:field name="_totaleFattureVendite" property="TotaleFattureVendite" uniqueId="e50f8b5c-1bbb-4bf2-8405-c3f9f88429f5" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="TotaleFattureVendite" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         </orm:field>
         <orm:field name="_denominazione" property="Denominazione" uniqueId="2d2c0b19-361b-40de-8806-6d1a6f07afa6" type="System.String">
           <orm:column name="Denominazione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
@@ -1347,8 +1347,8 @@
       <orm:table name="SAL">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
         <orm:column name="Data" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
-        <orm:column name="TotaleAcquisti" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
-        <orm:column name="TotaleVendite" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:column name="TotaleFattureAcquisto" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
+        <orm:column name="TotaleFattureVendite" sql-type="numeric" nullable="true" length="20" scale="10" converter="OpenAccessRuntime.Data.DecimalConverter" ado-type="Numeric" />
         <orm:column name="Denominazione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="CommessaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
@@ -2085,8 +2085,8 @@
       <Property Id="43f46d78-44da-4e5d-bbc2-f559f63fe653" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
       <Property Id="6a72fb26-a4b7-4062-b3fe-736683e75469" name="CommessaId" type="Int32" label="CommessaId : Int32" fieldName="_commessaId" />
       <Property Id="b1b806c6-eae5-4001-a8e4-49734c1315c7" name="Data" type="DateTime" label="Data : DateTime" nullable="true" fieldName="_data" />
-      <Property Id="be14a63c-72d7-4cb1-a081-fe04c8a6b5c3" name="TotaleAcquisti" type="Decimal" label="TotaleAcquisti : Decimal" nullable="true" fieldName="_totaleAcquisti" />
-      <Property Id="e50f8b5c-1bbb-4bf2-8405-c3f9f88429f5" name="TotaleVendite" type="Decimal" label="TotaleVendite : Decimal" nullable="true" fieldName="_totaleVendite" />
+      <Property Id="be14a63c-72d7-4cb1-a081-fe04c8a6b5c3" name="TotaleFattureAcquisto" type="Decimal" label="TotaleFattureAcquisto : Decimal" nullable="true" fieldName="_totaleFattureAcquisto" />
+      <Property Id="e50f8b5c-1bbb-4bf2-8405-c3f9f88429f5" name="TotaleFattureVendite" type="Decimal" label="TotaleFattureVendite : Decimal" nullable="true" fieldName="_totaleFattureVendite" />
       <Property Id="2d2c0b19-361b-40de-8806-6d1a6f07afa6" name="Denominazione" label="Denominazione : String" fieldName="_denominazione" />
       <Property Id="ea76c4de-3ac9-4dfd-a6de-3475e701f853" name="Codice" label="Codice : String" fieldName="_codice" />
       <Property Id="94d3c2ab-f95a-491c-be14-5af0792e4922" name="TotaleIncassi" type="Decimal" label="TotaleIncassi : Decimal" nullable="true" fieldName="_totaleIncassi" />

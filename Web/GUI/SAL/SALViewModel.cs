@@ -42,11 +42,7 @@ namespace Web.GUI.SAL
             try
             {
                 var wcf = new WcfService.Service();
-                IEnumerable<SALDto> objs = null;
-                if (commessa==null)
-                    objs = wcf.LoadSALs(skip, take, search);
-                else
-                    objs = wcf.LoadSALsCommessa(skip, take, commessa, search);
+                var objs = wcf.LoadSALs(skip, take, search, commessa);
                 Load(objs);
             }
             catch (Exception ex)
@@ -60,11 +56,7 @@ namespace Web.GUI.SAL
             try
             {
                 var wcf = new WcfService.Service();
-                int count = 0;
-                if (commessa == null)
-                    count = wcf.CountSALs(search);
-                else
-                    count = wcf.CountSALsCommessa(commessa, search);
+                int count = wcf.CountSALs(search, commessa);
                 return count;
             }
             catch (Exception ex)

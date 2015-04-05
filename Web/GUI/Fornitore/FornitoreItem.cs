@@ -37,7 +37,7 @@ namespace Web.GUI.Fornitore
                     var partitaIva = UtilityValidation.GetStringND(obj.PartitaIva);
                     var commessa = obj.Commessa;
                     var today = DateTime.Today;
-                    var totaleFatture = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleFatture(obj, today));
+                    var totaleFattureAcquisto = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleFattureAcquisto(obj, today));
                     var totalePagamenti = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamenti(obj, today));
                     var stato = GetStato(obj);
 
@@ -47,7 +47,7 @@ namespace Web.GUI.Fornitore
                     infoRagioneSociale.Text = ragioneSociale;
                     infoCodice.Text = "FOR-" + codice;
                     infoPartitaIVA.Text = "Partita IVA " + partitaIva;
-                    infoPagamentoTotale.Text = "Pagato " + totalePagamenti + " su un totale di " + totaleFatture;
+                    infoPagamentoTotale.Text = "Pagato " + totalePagamenti + " su un totale di " + totaleFattureAcquisto;
                     infoCommesssa.Text = "Commessa " + commessa.Codice + " - " + commessa.Denominazione;
                 }
             }

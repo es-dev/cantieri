@@ -63,29 +63,29 @@ namespace DataLayer
 			}
 		}
 		
-		private decimal? _totaleAcquisti;
-		public virtual decimal? TotaleAcquisti
+		private decimal? _totaleFattureAcquisto;
+		public virtual decimal? TotaleFattureAcquisto
 		{
 			get
 			{
-				return this._totaleAcquisti;
+				return this._totaleFattureAcquisto;
 			}
 			set
 			{
-				this._totaleAcquisti = value;
+				this._totaleFattureAcquisto = value;
 			}
 		}
 		
-		private decimal? _totaleVendite;
-		public virtual decimal? TotaleVendite
+		private decimal? _totaleFattureVendite;
+		public virtual decimal? TotaleFattureVendite
 		{
 			get
 			{
-				return this._totaleVendite;
+				return this._totaleFattureVendite;
 			}
 			set
 			{
-				this._totaleVendite = value;
+				this._totaleFattureVendite = value;
 			}
 		}
 		

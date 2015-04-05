@@ -93,6 +93,7 @@ namespace Web.GUI.SAL
             // 
             this.panelCommands.Controls.Add(this.btnCalcoloSAL);
             this.panelCommands.Size = new System.Drawing.Size(101, 727);
+            this.panelCommands.Controls.SetChildIndex(this.btnHome, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
@@ -184,7 +185,7 @@ namespace Web.GUI.SAL
             this.editTotaleAcquisti.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editTotaleAcquisti.Changed = true;
             this.editTotaleAcquisti.Editing = false;
-            this.editTotaleAcquisti.Label = "Acquisti fornitori";
+            this.editTotaleAcquisti.Label = "Fatture fornitori";
             this.editTotaleAcquisti.LabelWidth = 175;
             this.editTotaleAcquisti.Location = new System.Drawing.Point(25, 327);
             this.editTotaleAcquisti.Name = "editTotaleAcquisti";
@@ -206,7 +207,7 @@ namespace Web.GUI.SAL
             this.editTotaleVendite.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editTotaleVendite.Changed = true;
             this.editTotaleVendite.Editing = false;
-            this.editTotaleVendite.Label = "Fatture al committente";
+            this.editTotaleVendite.Label = "Fatture committente";
             this.editTotaleVendite.LabelWidth = 175;
             this.editTotaleVendite.Location = new System.Drawing.Point(25, 369);
             this.editTotaleVendite.Name = "editTotaleVendite";

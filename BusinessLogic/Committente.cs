@@ -172,23 +172,23 @@ namespace BusinessLogic
                 if (committente != null)
                 {
                     var today = DateTime.Today;
-                    var totaleFatture = GetTotaleFattureVendita(committente, today);
+                    var totaleFattureVendita = GetTotaleFattureVendita(committente, today);
                     var totaleIncassi = GetTotaleIncassi(committente, today);
                     var fatture = committente.FatturaVenditas;
                     var fattureInsolute = GetFattureInsolute(fatture);
                     var existFattureInsolute = (fattureInsolute.Count >= 1);
 
                     var stato = Tipi.StatoCommittente.None;
-                    if (totaleIncassi < totaleFatture)
+                    if (totaleIncassi < totaleFattureVendita)
                     {
                         if (existFattureInsolute)
                             stato = Tipi.StatoCommittente.Insoluto;
                         else
                             stato = Tipi.StatoCommittente.NonIncassato;
                     }
-                    else if (totaleIncassi == totaleFatture)
+                    else if (totaleIncassi == totaleFattureVendita)
                         stato = Tipi.StatoCommittente.Incassato;
-                    else if (totaleIncassi > totaleFatture)
+                    else if (totaleIncassi > totaleFattureVendita)
                         stato = Tipi.StatoCommittente.Incoerente;
 
                     return stato;
@@ -218,12 +218,12 @@ namespace BusinessLogic
                         {
                             var today = DateTime.Today;
                             var fatture = committente.FatturaVenditas;
-                            var totaleFatture = GetTotaleFattureVendita(committente, today);
+                            var totaleFattureVendita = GetTotaleFattureVendita(committente, today);
                             var totaleIncassi = GetTotaleIncassi(committente, today);
                             var fattureInsolute = GetFattureInsolute(fatture);
                             var fattureNonLiquidate = GetFattureNonLiquidate(fatture);
                             var statoCommittente = GetStato(committente);
-                            var _statoDescrizione = GetStatoDescrizione(totaleFatture, totaleIncassi, fattureInsolute, fattureNonLiquidate, statoCommittente);
+                            var _statoDescrizione = GetStatoDescrizione(totaleFattureVendita, totaleIncassi, fattureInsolute, fattureNonLiquidate, statoCommittente);
                             statoDescrizione = _statoDescrizione.ToString();
                         }
                     }
@@ -238,7 +238,7 @@ namespace BusinessLogic
         }
 
         //todo: da modificare
-        private static StateDescriptionImage GetStatoDescrizione(decimal totaleFatture, decimal totaleIncassi, IList<FatturaVenditaDto> fattureInsolute,
+        private static StateDescriptionImage GetStatoDescrizione(decimal totaleFattureVendita, decimal totaleIncassi, IList<FatturaVenditaDto> fattureInsolute,
            IList<FatturaVenditaDto> fattureNonLiquidate, Tipi.StatoCommittente statoCommittente)
         {
             try
@@ -250,25 +250,25 @@ namespace BusinessLogic
                 var listaFattureInsolute = BusinessLogic.Fattura.GetLista(fattureInsolute);
                 var listaFattureNonLiquidate = BusinessLogic.Fattura.GetLista(fattureNonLiquidate);
                 var _totaleIncassi = UtilityValidation.GetEuro(totaleIncassi);
-                var _totaleFatture = UtilityValidation.GetEuro(totaleFatture);
+                var _totaleFattureVendita = UtilityValidation.GetEuro(totaleFattureVendita);
 
                 if (statoCommittente == Tipi.StatoCommittente.Insoluto) //condizione di non soluzione delle fatture, segalo le fatture insolute ed eventualmente quelle non pagate
                 {
-                    descrizione = "Il committente risulta insoluto. Il totale incassi pari a " + _totaleIncassi + " è inferiore al totale fatture pari a " + _totaleFatture + ". Le fatture insolute sono " + listaFattureInsolute;
+                    descrizione = "Il committente risulta insoluto. Il totale incassi pari a " + _totaleIncassi + " è inferiore al totale fatture pari a " + _totaleFattureVendita + ". Le fatture insolute sono " + listaFattureInsolute;
                     if (existFattureNonLiquidate)
                         descrizione += " Le fatture non incassate sono " + listaFattureNonLiquidate;
                     stato = TypeState.Critical;
                 }
                 else if (statoCommittente == Tipi.StatoCommittente.NonIncassato) //condizione di non pagamento (pagamenti nulli o non completi, se non completi segnalo le fatture non pagate)
                 {
-                    descrizione = "Il committente risulta non incassato. Il totale incassi pari a " + _totaleIncassi + " è inferiore al totale fatture pari a " + _totaleFatture;
+                    descrizione = "Il committente risulta non incassato. Il totale incassi pari a " + _totaleIncassi + " è inferiore al totale fatture pari a " + _totaleFattureVendita;
                     if (existFattureNonLiquidate)
                         descrizione += " Le fatture non pagate sono " + listaFattureNonLiquidate;
                     stato = TypeState.Warning;
                 }
                 else if (statoCommittente == Tipi.StatoCommittente.Incoerente) 
                 {
-                    descrizione = "Il committente risulta incassato ma è in uno stato incoerente. Il totale incassi pari a " + _totaleIncassi + " è superiore al totale fatture pari a " + _totaleFatture;
+                    descrizione = "Il committente risulta incassato ma è in uno stato incoerente. Il totale incassi pari a " + _totaleIncassi + " è superiore al totale fatture pari a " + _totaleFattureVendita;
                     stato = TypeState.Warning;
                 }
                 else if (statoCommittente == Tipi.StatoCommittente.Incassato)

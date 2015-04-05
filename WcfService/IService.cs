@@ -564,16 +564,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.SALDto> LoadSALs(int skip, int take, string search = null);
+        IEnumerable<Dto.SALDto> LoadSALs(int skip, int take, string search = null, Dto.CommessaDto commessa=null);
 
         [OperationContract]
-        int CountSALs(string search = null);
-
-        [OperationContract]
-        IEnumerable<Dto.SALDto> LoadSALsCommessa(int skip, int take,Dto.CommessaDto commessa, string search = null);
-
-        [OperationContract]
-        int CountSALsCommessa(Dto.CommessaDto commessa, string search = null);
+        int CountSALs(string search = null, Dto.CommessaDto commessa=null);
 
         [OperationContract]
         Dto.SALDto ReadSAL(object id);

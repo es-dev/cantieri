@@ -48,17 +48,16 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleFatture(CommessaDto commessa, DateTime data)
+        public static decimal GetTotaleFattureAcquisto(CommessaDto commessa, DateTime data)
         {
             try
             {
-                decimal totaleFatture = 0;
                 if (commessa != null)
                 {
                     var fornitori = commessa.Fornitores;
-                    totaleFatture = GetTotaleFatture(fornitori, data);
+                    var totaleFattureAcquisto = GetTotaleFattureAcquisto(fornitori, data);
+                    return totaleFattureAcquisto;
                 }
-                return totaleFatture;
             }
             catch (Exception ex)
             {
@@ -168,19 +167,19 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleFatture(IList<FornitoreDto> fornitori, DateTime data)
+        public static decimal GetTotaleFattureAcquisto(IList<FornitoreDto> fornitori, DateTime data)
         {
             try
             {
-                decimal totaleFatture = 0;
                 if (fornitori != null)
                 {
+                    decimal totaleFattureAcquisto = 0;
                     foreach (var fornitore in fornitori)
                     {
-                        var _totaleFatture = Fornitore.GetTotaleFatture(fornitore, data);
-                        totaleFatture += _totaleFatture;
+                        var _totaleFattureAcquisto = Fornitore.GetTotaleFattureAcquisto(fornitore, data);
+                        totaleFattureAcquisto += _totaleFattureAcquisto;
                     }
-                    return totaleFatture;
+                    return totaleFattureAcquisto;
                 }
             }
             catch (Exception ex)
@@ -240,9 +239,9 @@ namespace BusinessLogic
             {
                 if (fornitori != null)
                 {
-                    var totaleFatture = GetTotaleFatture(fornitori, data);
+                    var totaleFattureAcquisto = GetTotaleFattureAcquisto(fornitori, data);
                     var totalePagamentiDato = GetTotalePagamenti(fornitori, data);
-                    var totalePagamentiDare = totaleFatture - totalePagamentiDato;
+                    var totalePagamentiDare = totaleFattureAcquisto - totalePagamentiDato;
                     return totalePagamentiDare;
                 }
             }

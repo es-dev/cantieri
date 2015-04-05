@@ -152,13 +152,13 @@ namespace Web.GUI.Fornitore
                 var today = DateTime.Today;
                 if (fatture != null)
                 {
-                    var totaleFatture = BusinessLogic.Fornitore.GetTotaleFatture(obj, today);
+                    var totaleFattureAcquisto = BusinessLogic.Fornitore.GetTotaleFattureAcquisto(obj, today);
                     var totalePagamenti = BusinessLogic.Fornitore.GetTotalePagamenti(obj, today);
                     var totaleNoteCredito = BusinessLogic.Fornitore.GetTotaleNoteCredito(obj, today);
                     var statoDescrizione = BusinessLogic.Fornitore.GetStatoDescrizione(obj);
 
                     editStato.Value = statoDescrizione;
-                    editTotaleFattureAcquisto.Value = totaleFatture;
+                    editTotaleFattureAcquisto.Value = totaleFattureAcquisto;
                     editTotalePagamenti.Value = totalePagamenti;
                     editTotaleNoteCredito.Value = totaleNoteCredito;
                 }

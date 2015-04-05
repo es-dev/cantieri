@@ -247,11 +247,11 @@ namespace Web.GUI.ReportJob
                 var _commessa = commessa.Codice + " - " + commessa.Denominazione;
                 var totaleImponibile = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleImponibile(fornitore, elaborazione));
                 var totaleIVA = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleIVA(fornitore, elaborazione));
-                var totaleFatture = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleFatture(fornitore, elaborazione));
+                var totaleFattureAcquisto = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleFattureAcquisto(fornitore, elaborazione));
                 var totalePagamentiDato = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamenti(fornitore, elaborazione));
                 var totalePagamentiDare = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamentiDare(fornitore, elaborazione));
 
-                tableCommesse.AddRow(_commessa, totaleImponibile, totaleIVA, totaleFatture, totalePagamentiDato, totalePagamentiDare);
+                tableCommesse.AddRow(_commessa, totaleImponibile, totaleIVA, totaleFattureAcquisto, totalePagamentiDato, totalePagamentiDare);
             }
             catch (Exception ex)
             {
@@ -265,7 +265,7 @@ namespace Web.GUI.ReportJob
             {
                 report.AddData("TotaleImponibileFornitore", BusinessLogic.Commessa.GetTotaleImponibile(fornitori, elaborazione), TypeFormat.Euro);
                 report.AddData("TotaleIVAFornitore", BusinessLogic.Commessa.GetTotaleIVA(fornitori, elaborazione), TypeFormat.Euro);
-                report.AddData("TotaleFattureFornitore", BusinessLogic.Commessa.GetTotaleFatture(fornitori, elaborazione), TypeFormat.Euro);
+                report.AddData("TotaleFattureFornitore", BusinessLogic.Commessa.GetTotaleFattureAcquisto(fornitori, elaborazione), TypeFormat.Euro);
                 report.AddData("TotalePagamentiDatoFornitore", BusinessLogic.Commessa.GetTotalePagamenti(fornitori, elaborazione), TypeFormat.Euro);
                 report.AddData("TotalePagamentiDareFornitore", BusinessLogic.Commessa.GetTotalePagamentiDare(fornitori, elaborazione), TypeFormat.Euro);
             }

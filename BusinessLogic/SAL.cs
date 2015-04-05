@@ -11,6 +11,27 @@ namespace BusinessLogic
 {
     public class SAL
     {
+        public static decimal GetMargineOperativo(CommessaDto commessa, DateTime data)
+        {
+            try
+            {
+                if (commessa != null)
+                {
+                    var fornitori = commessa.Fornitores;
+                    var totaleFattureAcquisto = GetTotaleFattureAcquisto(fornitori, data);
+                    var margine = UtilityValidation.GetDecimal(commessa.Margine);
+                    var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
+                    var margineOperativo = importoLavori - totaleFattureAcquisto;
+                    return margineOperativo;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
         public static decimal GetImportoAvanzamentoLavori(CommessaDto commessa)
         {
             try
@@ -67,7 +88,7 @@ namespace BusinessLogic
                 {
                     foreach (var fornitore in fornitori)
                     {
-                        var totaleFatture = Fornitore.GetTotaleFatture(fornitore, data);
+                        var totaleFatture = Fornitore.GetTotaleFattureAcquisto(fornitore, data);
                         totale += totaleFatture;
                     }
                     return totale;
@@ -181,7 +202,6 @@ namespace BusinessLogic
             return Tipi.StatoSAL.None;
         }
 
-
         public static string GetStatoDescrizione(SALDto sal, CommessaDto commessa)
         {
             try
@@ -194,13 +214,11 @@ namespace BusinessLogic
                         statoDescrizione = sal.Stato;
                     else
                     {
-                        var data = sal.Data;
-                        var fornitori = commessa.Fornitores;
-                        var totaleAcquisti = GetTotaleFattureAcquisto(fornitori, data.Value);
+                        var data = UtilityValidation.GetData(sal.Data);
                         var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
                         var margine = UtilityValidation.GetDecimal(commessa.Margine);
-                        var margineOperativo = importoLavori - totaleAcquisti;
-                        var statoSAL = GetStato(commessa, data.Value);
+                        var margineOperativo = GetMargineOperativo(commessa, data);
+                        var statoSAL = GetStato(commessa, data);
                         var _statoDescrizione = GetStatoDescrizione(importoLavori, margine, margineOperativo, statoSAL);
                         statoDescrizione = _statoDescrizione.ToString();
                     }
@@ -213,8 +231,6 @@ namespace BusinessLogic
             }
             return null;
         }
-
-
 
         private static StateDescriptionImage GetStatoDescrizione(decimal importoLavori, decimal margine, decimal margineOperativo, Tipi.StatoSAL statoSAL)
         {
@@ -307,20 +323,20 @@ namespace BusinessLogic
         {
             try
             {
-                decimal totaleVendite = 0;
+                decimal totaleFattureVendite = 0;
                 if (commessa != null)
                 {
                     var committenti = commessa.Committentes;
                     var statoCommessa = commessa.Stato;
                     if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                        totaleVendite = UtilityValidation.GetDecimal(sal.TotaleVendite);
+                        totaleFattureVendite = UtilityValidation.GetDecimal(sal.TotaleFattureVendite);
                     else
                     {
-                        var data = sal.Data;
-                        totaleVendite = GetTotaleFattureVendita(committenti, data.Value);
+                        var data = UtilityValidation.GetData(sal.Data);
+                        totaleFattureVendite = GetTotaleFattureVendita(committenti, data);
                     }
                 }
-                return totaleVendite;
+                return totaleFattureVendite;
             }
             catch (Exception ex)
             {
@@ -333,20 +349,20 @@ namespace BusinessLogic
         {
             try
             {
-                decimal totaleAcquisti = 0;
+                decimal totaleFattureAcquisto = 0;
                 if (commessa != null)
                 {
                     var fornitori = commessa.Fornitores;
                     var statoCommessa = commessa.Stato;
                     if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                        totaleAcquisti = UtilityValidation.GetDecimal(sal.TotaleAcquisti);
+                        totaleFattureAcquisto = UtilityValidation.GetDecimal(sal.TotaleFattureAcquisto);
                     else
                     {
-                        var data = sal.Data;
-                        totaleAcquisti = GetTotaleFattureAcquisto(fornitori, data.Value);
+                        var data = UtilityValidation.GetData(sal.Data);
+                        totaleFattureAcquisto = GetTotaleFattureAcquisto(fornitori, data);
                     }
                 }
-                return totaleAcquisti;
+                return totaleFattureAcquisto;
             }
             catch (Exception ex)
             {
