@@ -62,8 +62,9 @@ namespace Web.GUI.NotaCredito
             {
                 var obj = (NotaCreditoDto)model;
                 var numero = UtilityValidation.GetStringND(obj.Numero);
+                var data = UtilityValidation.GetDataND(obj.Data);
                 var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
-                infoSubtitle.Text = numero + " - " + descrizione;
+                infoSubtitle.Text = "N." + numero +" del " + data + " - " + descrizione;
                 infoSubtitleImage.Image = "Images.dashboard.notacredito.png";
             }
             catch (Exception ex)

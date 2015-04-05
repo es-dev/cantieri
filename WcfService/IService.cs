@@ -256,22 +256,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.PagamentoDto> LoadPagamenti(int skip, int take, string search = null);
+        IEnumerable<Dto.PagamentoDto> LoadPagamenti(int skip, int take, string search = null, Dto.FornitoreDto fornitore=null, Dto.FatturaAcquistoDto fatturaAcquisto=null);
 
         [OperationContract]
-        int CountPagamenti(string search = null);
-
-        [OperationContract]
-        IEnumerable<Dto.PagamentoDto> LoadPagamentiFatturaAcquisto(int skip, int take, Dto.FatturaAcquistoDto fatturaAcquisto, string search = null);
-
-        [OperationContract]
-        int CountPagamentiFatturaAcquisto(Dto.FatturaAcquistoDto fatturaAcquisto, string search = null);
-
-        [OperationContract]
-        IEnumerable<Dto.PagamentoDto> LoadPagamentiFornitore(int skip, int take, Dto.FornitoreDto fornitore, string search = null);
-
-        [OperationContract]
-        int CountPagamentiFornitore(Dto.FornitoreDto fornitore, string search = null);
+        int CountPagamenti(string search = null, Dto.FornitoreDto fornitore = null, Dto.FatturaAcquistoDto fatturaAcquisto = null);
 
         [OperationContract]
         Dto.PagamentoDto ReadPagamento(object id);
@@ -304,16 +292,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.NotaCreditoDto> LoadNoteCredito(int skip, int take, string search = null);
+        IEnumerable<Dto.NotaCreditoDto> LoadNoteCredito(int skip, int take, string search = null, Dto.FornitoreDto fornitore=null);
 
         [OperationContract]
-        int CountNoteCredito(string search = null);
-
-        [OperationContract]
-        IEnumerable<Dto.NotaCreditoDto> LoadNoteCreditoFornitore(int skip, int take, Dto.FornitoreDto fornitore, string search = null);
-
-        [OperationContract]
-        int CountNoteCreditoFornitore(Dto.FornitoreDto fornitore, string search = null);
+        int CountNoteCredito(string search = null, Dto.FornitoreDto fornitore=null);
 
         [OperationContract]
         Dto.NotaCreditoDto ReadNotaCredito(object id);

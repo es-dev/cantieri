@@ -1253,11 +1253,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.PagamentoDto> LoadPagamenti(int skip, int take, string search = null)
+        public IEnumerable<Dto.PagamentoDto> LoadPagamenti(int skip, int take, string search = null, Dto.FornitoreDto fornitore=null, Dto.FatturaAcquistoDto fatturaAcquisto=null)
         {
             try
             {
-                var pagamenti = QueryPagamenti(search);
+                var pagamenti = QueryPagamenti(search, fornitore, fatturaAcquisto);
                 pagamenti = (from q in pagamenti select q).Skip(skip).Take(take);
 
                 var pagamentiDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamenti);
@@ -1270,50 +1270,11 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.PagamentoDto> LoadPagamentiFatturaAcquisto(int skip, int take, Dto.FatturaAcquistoDto fatturaAcquisto, string search)
+        public int CountPagamenti(string search = null, Dto.FornitoreDto fornitore = null, Dto.FatturaAcquistoDto fatturaAcquisto = null)
         {
             try
             {
-                var pagamenti = QueryPagamenti(search);
-                pagamenti = (from q in pagamenti where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
-                pagamenti = (from q in pagamenti select q).Skip(skip).Take(take);
-
-                var pagamentiDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamenti);
-                return pagamentiDto;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        public IEnumerable<Dto.PagamentoDto> LoadPagamentiFornitore(int skip, int take, Dto.FornitoreDto fornitore, string search)
-        {
-            try
-            {
-                var pagamenti = QueryPagamenti(search);
-                var fattureAcquisto = fornitore.FatturaAcquistos;
-                var fattureAcquistoIds = (from q in fattureAcquisto select q.Id);
-                pagamenti = (from q in pagamenti where fattureAcquistoIds.Contains(q.FatturaAcquistoId) select q);
-
-                pagamenti = (from q in pagamenti select q).Skip(skip).Take(take);
-
-                var pagamentiDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamenti);
-                return pagamentiDto;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        public int CountPagamenti(string search = null)
-        {
-            try
-            {
-                var pagamenti = QueryPagamenti(search);
+                var pagamenti = QueryPagamenti(search, fornitore, fatturaAcquisto);
                 var count = pagamenti.Count();
                 return count;
             }
@@ -1323,42 +1284,6 @@ namespace WcfService
             }
             return 0;
         }
-        public int CountPagamentiFatturaAcquisto(Dto.FatturaAcquistoDto fatturaAcquisto, string search = null)
-        {
-            try
-            {
-                var pagamenti = QueryPagamenti(search);
-                pagamenti = (from q in pagamenti where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
-                var count = pagamenti.Count();
-                return count;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-        public int CountPagamentiFornitore(Dto.FornitoreDto fornitore, string search = null)
-        {
-            try
-            {
-                var pagamenti = QueryPagamenti(search);
-                var fattureAcquisto = fornitore.FatturaAcquistos;
-                if (fattureAcquisto != null)
-                {
-                    var fattureAcquistoIds = (from q in fattureAcquisto select q.Id);
-                    pagamenti = (from q in pagamenti where fattureAcquistoIds.Contains(q.FatturaAcquistoId) select q);
-                    var count = pagamenti.Count();
-                    return count;
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-
 
         public Dto.PagamentoDto ReadPagamento(object id)
         {
@@ -1376,12 +1301,22 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Pagamento> QueryPagamenti(string search)
+        private IQueryable<DataLayer.Pagamento> QueryPagamenti(string search = null, Dto.FornitoreDto fornitore = null, Dto.FatturaAcquistoDto fatturaAcquisto = null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var pagamenti = (from q in ef.Pagamentos select q);
+                if (fatturaAcquisto != null)
+                    pagamenti = (from q in pagamenti where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
+
+                if(fornitore!=null)
+                {
+                    var fattureAcquisto = fornitore.FatturaAcquistos;
+                    var fattureAcquistoIds = (from q in fattureAcquisto select q.Id);
+                    pagamenti = (from q in pagamenti where fattureAcquistoIds.Contains(q.FatturaAcquistoId) select q);
+                }
+
                 if (search != null && search.Length > 0)
                 {
                     var fattureAcquistoId = (from q in QueryFattureAcquisto(search) select q.Id).ToList();
@@ -1527,11 +1462,12 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.NotaCreditoDto> LoadNoteCredito(int skip, int take, string search = null)
+
+        public IEnumerable<Dto.NotaCreditoDto> LoadNoteCredito(int skip, int take, string search=null, Dto.FornitoreDto fornitore=null)
         {
             try
             {
-                var noteCredito = QueryNoteCredito(search);
+                var noteCredito = QueryNoteCredito(search, fornitore);
                 noteCredito = (from q in noteCredito select q).Skip(skip).Take(take);
 
                 var noteCreditoDto = UtilityPOCO.Assemble<Dto.NotaCreditoDto>(noteCredito);
@@ -1544,44 +1480,11 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.NotaCreditoDto> LoadNoteCreditoFornitore(int skip, int take, Dto.FornitoreDto fornitore, string search)
+        public int CountNoteCredito(string search = null,Dto.FornitoreDto fornitore=null)
         {
             try
             {
-                var noteCredito = QueryNoteCredito(search);
-                noteCredito = (from q in noteCredito where q.FornitoreId == fornitore.Id select q);
-                noteCredito = (from q in noteCredito select q).Skip(skip).Take(take);
-
-                var noteCreditoDto = UtilityPOCO.Assemble<Dto.NotaCreditoDto>(noteCredito);
-                return noteCreditoDto;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        public int CountNoteCredito(string search = null)
-        {
-            try
-            {
-                var noteCredito = QueryNoteCredito(search);
-                var count = noteCredito.Count();
-                return count;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-        public int CountNoteCreditoFornitore(Dto.FornitoreDto fornitore, string search = null)
-        {
-            try
-            {
-                var noteCredito = QueryNoteCredito(search);
-                noteCredito = (from q in noteCredito where q.FornitoreId == fornitore.Id select q);
+                var noteCredito = QueryNoteCredito(search, fornitore);
                 var count = noteCredito.Count();
                 return count;
             }
@@ -1608,12 +1511,15 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.NotaCredito> QueryNoteCredito(string search)
+        private IQueryable<DataLayer.NotaCredito> QueryNoteCredito(string search=null, Dto.FornitoreDto fornitore=null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var noteCredito = (from q in ef.NotaCreditos select q);
+                if(fornitore!=null)
+                    noteCredito = (from q in noteCredito where q.FornitoreId == fornitore.Id select q);
+
                 if (search != null && search.Length > 0)
                 {
                     var fornitoreId = (from q in QueryFornitori(search) select q.Id).ToList();

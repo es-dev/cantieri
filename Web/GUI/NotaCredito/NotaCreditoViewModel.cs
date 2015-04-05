@@ -12,7 +12,6 @@ namespace Web.GUI.NotaCredito
     {
 
         private FornitoreDto fornitore = null;
-
         public FornitoreDto Fornitore
         {
             get
@@ -24,7 +23,6 @@ namespace Web.GUI.NotaCredito
                 fornitore = value;
             }
         }
-
 
         public NotaCreditoViewModel(ISpace space)
             : base(space)
@@ -44,12 +42,7 @@ namespace Web.GUI.NotaCredito
             try
             {
                 var wcf = new WcfService.Service();
-                IEnumerable<NotaCreditoDto> objs = null;
-                if(fornitore==null)
-                    objs = wcf.LoadNoteCredito(skip, take, search);
-                else
-                    objs = wcf.LoadNoteCreditoFornitore(skip, take, fornitore, search);
-
+                var objs = wcf.LoadNoteCredito(skip, take, search, fornitore);
                 Load(objs);
             }
             catch (Exception ex)
@@ -63,11 +56,7 @@ namespace Web.GUI.NotaCredito
             try
             {
                 var wcf = new WcfService.Service();
-                var count = 0;
-                if (fornitore == null)
-                    count = wcf.CountNoteCredito(search);
-                else 
-                    count = wcf.CountNoteCreditoFornitore(fornitore, search);
+                var count = wcf.CountNoteCredito(search, fornitore);
                 return count;
             }
             catch (Exception ex)

@@ -10,9 +10,7 @@ namespace Web.GUI.Pagamento
 {
     public class PagamentoViewModel : Library.Template.MVVM.TemplateViewModel<PagamentoDto, PagamentoItem>
     {
-
         private FatturaAcquistoDto fatturaAcquisto = null;
-
         public FatturaAcquistoDto FatturaAcquisto
         {
             get
@@ -26,7 +24,6 @@ namespace Web.GUI.Pagamento
         }
 
         private FornitoreDto fornitore = null;
-
         public FornitoreDto Fornitore
         {
             get
@@ -38,7 +35,6 @@ namespace Web.GUI.Pagamento
                 fornitore = value;
             }
         }
-
 
         public PagamentoViewModel(ISpace space)
             : base(space)
@@ -58,14 +54,7 @@ namespace Web.GUI.Pagamento
             try
             {
                 var wcf = new WcfService.Service();
-                IEnumerable<PagamentoDto> objs = null;
-                if(fatturaAcquisto==null  && fornitore==null)
-                    objs = wcf.LoadPagamenti(skip, take, search);
-                else if (fatturaAcquisto != null)
-                    objs = wcf.LoadPagamentiFatturaAcquisto(skip, take, fatturaAcquisto, search);
-                else if (fornitore != null)
-                    objs = wcf.LoadPagamentiFornitore(skip, take, fornitore, search);
-
+                var objs = wcf.LoadPagamenti(skip, take, search, fornitore, fatturaAcquisto);
                 Load(objs);
             }
             catch (Exception ex)
@@ -79,13 +68,7 @@ namespace Web.GUI.Pagamento
             try
             {
                 var wcf = new WcfService.Service();
-                var count = 0;
-                if (fatturaAcquisto == null && fornitore == null)
-                    count = wcf.CountPagamenti(search);
-                else if (fatturaAcquisto != null)
-                    count = wcf.CountPagamentiFatturaAcquisto(fatturaAcquisto, search);
-                else if (fornitore != null)
-                    count = wcf.CountPagamentiFornitore(fornitore, search);
+                var count = wcf.CountPagamenti(search, fornitore, fatturaAcquisto);
                 return count;
             }
             catch (Exception ex)
@@ -171,8 +154,6 @@ namespace Web.GUI.Pagamento
             }
             return null;
         }
-
-
 
         internal PagamentoDto ReadPagamentoOldPagamentoUnificatoFatturaAcquisto(PagamentoUnificatoDto pagamentoUnificato, FatturaAcquistoDto fatturaAcquisto)
         {

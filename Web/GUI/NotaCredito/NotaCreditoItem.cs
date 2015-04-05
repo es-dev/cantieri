@@ -32,7 +32,7 @@ namespace Web.GUI.NotaCredito
                  
                     infoData.Text = "Resa il " + data;
                     infoImage.Image = "Images.dashboard.notacredito.png";
-                    infoCodice.Text = "NC";
+                    infoCodice.Text = "NC-"+numero;
                     infoNote.Text = obj.Note;
                     infoImporto.Text = "Totale: " + totale;
                     infoNotaCredito.Text = "Nota di credito N." + numero;

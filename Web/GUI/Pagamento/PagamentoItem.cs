@@ -32,7 +32,7 @@ namespace Web.GUI.Pagamento
                  
                     infoData.Text = "Pagato il " + data;
                     infoImage.Image = "Images.dashboard.pagamento.png";
-                    infoCodice.Text = "PAG";
+                    infoCodice.Text = "PAG-"+codice;
                     infoTransazionePagamento.Text = "Tipo transazione: " + obj.TransazionePagamento;
                     infoNote.Text = obj.Note;
                     infoImporto.Text = "Importo: " + importo;

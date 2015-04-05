@@ -64,7 +64,7 @@ namespace Web.GUI.Pagamento
                 var obj = (PagamentoDto)model;
                 var codice = UtilityValidation.GetStringND(obj.Codice);
                 var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
-                infoSubtitle.Text = codice + " - " + descrizione;
+                infoSubtitle.Text = "N."+ codice + " - " + descrizione;
                 infoSubtitleImage.Image = "Images.dashboard.pagamento.png";
             }
             catch (Exception ex)
