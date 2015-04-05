@@ -472,16 +472,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.FatturaVenditaDto> LoadFattureVendita(int skip, int take, string search = null);
+        IEnumerable<Dto.FatturaVenditaDto> LoadFattureVendita(int skip, int take, string search = null, Dto.CommittenteDto committente=null);
 
         [OperationContract]
-        int CountFattureVendita(string search = null);
-        [OperationContract]
-
-        IEnumerable<Dto.FatturaVenditaDto> LoadFattureVenditaCommittente(int skip, int take, Dto.CommittenteDto committente,  string search = null);
-
-        [OperationContract]
-        int CountFattureVenditaCommittente(Dto.CommittenteDto committente, string search = null);
+        int CountFattureVendita(string search = null, Dto.CommittenteDto committente = null);
 
         [OperationContract]
         Dto.FatturaVenditaDto ReadFatturaVendita(object id);

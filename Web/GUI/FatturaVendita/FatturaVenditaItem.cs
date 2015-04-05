@@ -37,7 +37,7 @@ namespace Web.GUI.FatturaVendita
                     var committente = obj.Committente;
 
                     infoImage.Image = "Images.dashboard.fatturavendita.png";
-                    infoCodice.Text = "FA";
+                    infoCodice.Text = "FV-"+numero;
                     infoNumeroData.Text = "Fattura N." + numero + " del " + data;
                     infoIncassoTotale.Text = "Incassato " + totaleIncassi +" su un totale di " + totaleFattura;
                     infoCommittente.Text = committente.RagioneSociale;

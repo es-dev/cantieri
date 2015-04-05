@@ -42,11 +42,7 @@ namespace Web.GUI.FatturaVendita
             try
             {
                 var wcf = new WcfService.Service();
-                IEnumerable<FatturaVenditaDto> objs = null;
-                if (committente==null)
-                    objs = wcf.LoadFattureVendita(skip, take, search);
-                else
-                    objs = wcf.LoadFattureVenditaCommittente(skip, take,committente, search);
+                var objs = wcf.LoadFattureVendita(skip, take, search, committente);
                 Load(objs);
             }
             catch (Exception ex)
@@ -60,11 +56,7 @@ namespace Web.GUI.FatturaVendita
             try
             {
                 var wcf = new WcfService.Service();
-                var count = 0;
-                if (committente==null)
-                    count = wcf.CountFattureVendita(search);
-                else
-                    count = wcf.CountFattureVenditaCommittente(committente, search);
+                var count = wcf.CountFattureVendita(search, committente);
                 return count;
             }
             catch (Exception ex)

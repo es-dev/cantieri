@@ -2445,11 +2445,12 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.FatturaVenditaDto> LoadFattureVendita(int skip, int take, string search = null)
+       
+        public IEnumerable<Dto.FatturaVenditaDto> LoadFattureVendita(int skip, int take, string search = null, Dto.CommittenteDto committente=null)
         {
             try
             {
-                var fattureVendita = QueryFattureVendita(search);
+                var fattureVendita = QueryFattureVendita(search, committente);
                 fattureVendita = (from q in fattureVendita select q).Skip(skip).Take(take);
 
                 var fattureVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fattureVendita);
@@ -2462,45 +2463,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountFattureVendita(string search = null)
+        public int CountFattureVendita(string search = null, Dto.CommittenteDto committente=null)
         {
             try
             {
-                var fattureVendita = QueryFattureVendita(search);
-                var count = fattureVendita.Count();
-                return count;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-
-        public IEnumerable<Dto.FatturaVenditaDto> LoadFattureVenditaCommittente(int skip, int take, Dto.CommittenteDto committente, string search = null)
-        {
-            try
-            {
-                var fattureVendita = QueryFattureVendita(search);
-                fattureVendita = (from q in fattureVendita where q.CommittenteId == committente.Id select q);
-                fattureVendita = (from q in fattureVendita select q).Skip(skip).Take(take);
-
-                var fattureVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fattureVendita);
-                return fattureVenditaDto;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        public int CountFattureVenditaCommittente(Dto.CommittenteDto committente, string search = null)
-        {
-            try
-            {
-                var fattureVendita = QueryFattureVendita(search);
-                fattureVendita = (from q in fattureVendita where q.CommittenteId == committente.Id select q);
+                var fattureVendita = QueryFattureVendita(search,committente);
                 var count = fattureVendita.Count();
                 return count;
             }
@@ -2527,12 +2494,15 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.FatturaVendita> QueryFattureVendita(string search)
+        private IQueryable<DataLayer.FatturaVendita> QueryFattureVendita(string search=null, Dto.CommittenteDto committente=null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var fattureVendita = (from q in ef.FatturaVenditas select q);
+                if(committente!=null)
+                    fattureVendita = (from q in fattureVendita where q.CommittenteId == committente.Id select q);
+
                 if (search != null && search.Length > 0)
                 {
                     var committentiId = (from c in QueryCommittenti(search) select c.Id).ToList();

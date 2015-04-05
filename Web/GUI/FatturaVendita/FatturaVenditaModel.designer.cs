@@ -95,6 +95,7 @@ namespace Web.GUI.FatturaVendita
             this.panelCommands.Controls.Add(this.btnIncassi);
             this.panelCommands.Controls.Add(this.btnCalcoloTotali);
             this.panelCommands.Size = new System.Drawing.Size(101, 724);
+            this.panelCommands.Controls.SetChildIndex(this.btnHome, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
@@ -278,7 +279,7 @@ namespace Web.GUI.FatturaVendita
             this.editScadenzaPagamento.DisplayValues = null;
             this.editScadenzaPagamento.Editing = false;
             this.editScadenzaPagamento.Items = null;
-            this.editScadenzaPagamento.Label = "Scadenza pagamento";
+            this.editScadenzaPagamento.Label = "Scadenza";
             this.editScadenzaPagamento.LabelWidth = 175;
             this.editScadenzaPagamento.Location = new System.Drawing.Point(25, 239);
             this.editScadenzaPagamento.Name = "editScadenzaPagamento";
