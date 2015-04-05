@@ -128,16 +128,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.FornitoreDto> LoadFornitori(int skip, int take, string search = null);
+        IEnumerable<Dto.FornitoreDto> LoadFornitori(int skip, int take, string search = null, Dto.CommessaDto commessa=null);
 
         [OperationContract]
-        IEnumerable<Dto.FornitoreDto> LoadFornitoriCommessa(int skip, int take, Dto.CommessaDto commessa, string search = null);
-
-        [OperationContract]
-        int CountFornitori(string search = null);
-
-        [OperationContract]
-        int CountFornitoriCommessa(Dto.CommessaDto commessa, string search = null);
+        int CountFornitori(string search = null, Dto.CommessaDto commessa = null);
 
         [OperationContract]
         Dto.FornitoreDto ReadFornitore(object id);
@@ -462,16 +456,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.CommittenteDto> LoadCommittenti(int skip, int take, string search = null);
+        IEnumerable<Dto.CommittenteDto> LoadCommittenti(int skip, int take, string search = null, Dto.CommessaDto commessa=null);
 
         [OperationContract]
-        IEnumerable<Dto.CommittenteDto> LoadCommittentiCommessa(int skip, int take, Dto.CommessaDto commessa, string search = null);
-
-        [OperationContract]
-        int CountCommittenti(string search = null);
-
-        [OperationContract]
-        int CountCommittentiCommessa(Dto.CommessaDto commessa, string search = null);
+        int CountCommittenti(string search = null, Dto.CommessaDto commessa=null);
 
         [OperationContract]
         Dto.CommittenteDto ReadCommittente(object id);

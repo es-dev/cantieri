@@ -42,11 +42,7 @@ namespace Web.GUI.Fornitore
             try
             {
                 var wcf = new WcfService.Service();
-                IEnumerable<FornitoreDto> objs = null;
-                if (commessa==null)
-                    objs = wcf.LoadFornitori(skip, take, search);
-                else
-                    objs = wcf.LoadFornitoriCommessa(skip, take, commessa, search);
+                var objs = wcf.LoadFornitori(skip, take, search, commessa);
                 Load(objs);
             }
             catch (Exception ex)
@@ -60,11 +56,7 @@ namespace Web.GUI.Fornitore
             try
             {
                 var wcf = new WcfService.Service();
-                var count = 0;
-                if (commessa==null)
-                    count = wcf.CountFornitori(search);
-                else
-                    count = wcf.CountFornitoriCommessa(commessa, search);
+                var count = wcf.CountFornitori(search, commessa);
                 return count;
             }
             catch (Exception ex)

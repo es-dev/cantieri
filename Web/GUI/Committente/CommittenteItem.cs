@@ -46,7 +46,7 @@ namespace Web.GUI.Committente
                     imgStato.Image = stato.Image;
                     infoImage.Image = "Images.dashboard.committente.png";
                     infoRagioneSociale.Text = ragioneSociale;
-                    infoCodice.Text = codice;
+                    infoCodice.Text = "CT-" + codice;
                     infoIndirizzo.Text = indirizzo + " - " + cap + " - " + comune + " (" + provincia + ")";
                     infoIncassoTotale.Text = "Incassato " + _totaleIncassi +" su un totale di " + _totaleFatture;
                     infoCommesssa.Text = "Commessa " + commessa.Codice + " - " + commessa.Denominazione;

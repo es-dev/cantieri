@@ -42,12 +42,7 @@ namespace Web.GUI.Committente
             try
             {
                 var wcf = new WcfService.Service();
-                IEnumerable<CommittenteDto> objs = null;
-                if (commessa==null)
-                    objs = wcf.LoadCommittenti(skip, take, search);
-                else
-                    objs = wcf.LoadCommittentiCommessa(skip, take, commessa, search);
-
+                var objs = wcf.LoadCommittenti(skip, take, search, commessa);
                 Load(objs);
             }
             catch (Exception ex)
@@ -61,11 +56,7 @@ namespace Web.GUI.Committente
             try
             {
                 var wcf = new WcfService.Service();
-                int count = 0;
-                if (commessa == null)
-                    count = wcf.CountCommittenti(search);
-                else
-                    count = wcf.CountCommittentiCommessa(commessa, search);
+                int count = wcf.CountCommittenti(search, commessa);
                 return count;
             }
             catch (Exception ex)

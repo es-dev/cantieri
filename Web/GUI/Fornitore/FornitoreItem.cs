@@ -45,7 +45,7 @@ namespace Web.GUI.Fornitore
                     imgStato.Image = stato.Image;
                     infoImage.Image = "Images.dashboard.fornitore.png";
                     infoRagioneSociale.Text = ragioneSociale;
-                    infoCodice.Text = codice;
+                    infoCodice.Text = "FOR-" + codice;
                     infoPartitaIVA.Text = "Partita IVA " + partitaIva;
                     infoPagamentoTotale.Text = "Pagato " + totalePagamenti + " su un totale di " + totaleFatture;
                     infoCommesssa.Text = "Commessa " + commessa.Codice + " - " + commessa.Denominazione;

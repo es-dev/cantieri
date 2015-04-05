@@ -580,14 +580,14 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.FornitoreDto> LoadFornitori(int skip, int take, string search = null)
+        public IEnumerable<Dto.FornitoreDto> LoadFornitori(int skip, int take, string search = null, Dto.CommessaDto commessa = null)
         {
             try
             {
-                var fornitori = QueryFornitori(search);
+                var fornitori = QueryFornitori(search, commessa);
                 fornitori = (from q in fornitori select q).Skip(skip).Take(take);
 
-                var fornitoriDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitori);
+                var fornitoriDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitori, true); //lettura ricorsiva
                 return fornitoriDto;
             }
             catch (Exception ex)
@@ -597,29 +597,11 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.FornitoreDto> LoadFornitoriCommessa(int skip, int take,Dto.CommessaDto commessa, string search = null)
+        public int CountFornitori(string search = null, Dto.CommessaDto commessa = null)
         {
             try
             {
-                var fornitori = QueryFornitori(search);
-                fornitori = (from q in fornitori where q.CommessaId==commessa.Id select q);
-                fornitori = (from q in fornitori select q).Skip(skip).Take(take);
-
-                var fornitoriDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitori);
-                return fornitoriDto;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        public int CountFornitori(string search = null)
-        {
-            try
-            {
-                var fornitori = QueryFornitori(search);
+                var fornitori = QueryFornitori(search, commessa);
                 var count = fornitori.Count();
                 return count;
             }
@@ -630,21 +612,6 @@ namespace WcfService
             return 0;
         }
 
-        public int CountFornitoriCommessa(Dto.CommessaDto commessa, string search = null)
-        {
-            try
-            {
-                var fornitori = QueryFornitori(search);
-                fornitori = (from q in fornitori where q.CommessaId == commessa.Id select q);
-                var count = fornitori.Count();
-                return count;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
 
         public Dto.FornitoreDto ReadFornitore(object id)
         {
@@ -662,12 +629,14 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Fornitore> QueryFornitori(string search)
+        private IQueryable<DataLayer.Fornitore> QueryFornitori(string search=null, Dto.CommessaDto commessa =null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var fornitori = (from q in ef.Fornitores select q);
+                if(commessa!=null)
+                    fornitori = (from q in fornitori where q.CommessaId == commessa.Id select q);
                 if (search != null && search.Length > 0)
                 {
                     var commesseId = (from c in QueryCommesse(search) select c.Id).ToList();
@@ -2396,14 +2365,15 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.CommittenteDto> LoadCommittenti(int skip, int take, string search = null)
+
+        public IEnumerable<Dto.CommittenteDto> LoadCommittenti(int skip, int take, string search = null, Dto.CommessaDto commessa=null)
         {
             try
             {
-                var committenti = QueryCommittenti(search);
+                var committenti = QueryCommittenti(search, commessa);
                 committenti = (from q in committenti select q).Skip(skip).Take(take);
 
-                var committentiDto = UtilityPOCO.Assemble<Dto.CommittenteDto>(committenti);
+                var committentiDto = UtilityPOCO.Assemble<Dto.CommittenteDto>(committenti, true); //lettura ricorsiva
                 return committentiDto;
             }
             catch (Exception ex)
@@ -2413,45 +2383,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountCommittenti(string search = null)
+        public int CountCommittenti(string search = null, Dto.CommessaDto commessa = null)
         {
             try
             {
-                var committenti = QueryCommittenti(search);
-                var count = committenti.Count();
-                return count;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-
-        public IEnumerable<Dto.CommittenteDto> LoadCommittentiCommessa(int skip, int take, Dto.CommessaDto commessa, string search = null)
-        {
-            try
-            {
-                var committenti = QueryCommittenti(search);
-                committenti = (from q in committenti where q.CommessaId == commessa.Id select q);
-                committenti = (from q in committenti select q).Skip(skip).Take(take);
-
-                var committentiDto = UtilityPOCO.Assemble<Dto.CommittenteDto>(committenti);
-                return committentiDto;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        public int CountCommittentiCommessa(Dto.CommessaDto commessa, string search = null)
-        {
-            try
-            {
-                var committenti = QueryCommittenti(search);
-                committenti = (from q in committenti where q.CommessaId == commessa.Id select q);
+                var committenti = QueryCommittenti(search, commessa);
                 var count = committenti.Count();
                 return count;
             }
@@ -2478,12 +2414,14 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Committente> QueryCommittenti(string search)
+        private IQueryable<DataLayer.Committente> QueryCommittenti(string search=null, Dto.CommessaDto commessa=null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var committenti = (from q in ef.Committentes select q);
+                if(commessa!=null)
+                    committenti = (from q in committenti where q.CommessaId == commessa.Id select q);
                 if (search != null && search.Length > 0)
                 {
                     var commesseId = (from c in QueryCommesse(search) select c.Id).ToList();
