@@ -45,7 +45,7 @@ namespace Web.GUI.Commessa
             this.editInizioLavori = new Library.Template.Controls.TemplateEditDate();
             this.editFineLavori = new Library.Template.Controls.TemplateEditDate();
             this.editEstremiContratto = new Library.Template.Controls.TemplateEditText();
-            this.editPercentualeAvanzamento = new Library.Template.Controls.TemplateEditPercent();
+            this.editPercentualeAvanzamento = new Library.Template.Controls.TemplateEditProgress();
             this.editMargine = new Library.Template.Controls.TemplateEditDecimal();
             this.editImportoAvanzamentoLavori = new Library.Template.Controls.TemplateEditDecimal();
             this.editImportoPerizie = new Library.Template.Controls.TemplateEditDecimal();
@@ -813,7 +813,7 @@ namespace Web.GUI.Commessa
         private Library.Template.Controls.TemplateEditText editEstremiContratto;
         private Library.Template.Controls.TemplateEditDate editInizioLavori;
         private Library.Template.Controls.TemplateEditDate editFineLavori;
-        private Library.Template.Controls.TemplateEditPercent editPercentualeAvanzamento;
+        private Library.Template.Controls.TemplateEditProgress editPercentualeAvanzamento;
         private Library.Template.Controls.TemplateEditDecimal editImportoPerizie;
         private Gizmox.WebGUI.Forms.Label label4;
         private Gizmox.WebGUI.Forms.Label label3;

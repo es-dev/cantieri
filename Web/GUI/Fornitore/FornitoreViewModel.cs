@@ -46,7 +46,7 @@ namespace Web.GUI.Fornitore
                 if (commessa==null)
                     objs = wcf.LoadFornitori(skip, take, search);
                 else
-                    objs = wcf.LoadFornitoriCommessa(skip, take,commessa, search);
+                    objs = wcf.LoadFornitoriCommessa(skip, take, commessa, search);
                 Load(objs);
             }
             catch (Exception ex)

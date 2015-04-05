@@ -34,15 +34,15 @@ namespace Web.GUI.Commessa
                     var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
                     var scadenza = UtilityValidation.GetDataND(obj.Scadenza);
                     var descriptionImage = GetStato(obj.Stato);
-                    var progress = UtilityValidation.GetDecimal(obj.Percentuale);
+                    var percentuale = BusinessLogic.Commessa.GetPercentualeAvanzamento(obj);
 
                     infoStatoLavori.Text = "Scadenza il " + scadenza;
                     infoImage.Image = "Images.dashboard.commessa.png";
                     infoCodice.Text = "CM-" + codice;
                     infoDenominazione.Text = numero + " - " + denominazione;
                     infoDescrizione.Text = descrizione;
-                    infoProgressBar.Value = (int)progress;
-                    infoProgress.Text = (int)progress + "%";
+                    infoProgressBar.Value = (int)percentuale;
+                    infoProgress.Text = (int)percentuale + "%";
                     imgStato.Image = descriptionImage.Image;
                     toolTip.SetToolTip(imgStato, descriptionImage.Description);
 
