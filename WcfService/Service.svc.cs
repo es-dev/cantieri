@@ -908,11 +908,13 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquisto(int skip, int take, string search = null)
+
+        public IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquisto(int skip, int take, string search = null, Dto.FornitoreDto fornitore=null, 
+            Dto.AnagraficaFornitoreDto anagraficaFornitore=null, IList<string> stati =null)
         {
             try
             {
-                var fattureAcquisto = QueryFattureAcquisto(search);
+                var fattureAcquisto = QueryFattureAcquisto(search, fornitore, anagraficaFornitore, stati);
                 fattureAcquisto = (from q in fattureAcquisto select q).Skip(skip).Take(take);
 
                 var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
@@ -925,99 +927,11 @@ namespace WcfService
             return null;
         }
 
-        //todo: questa funzione deve essere trasformata in LoadFattureAcquistoAnagraficaFornitore!!! perchè Wcf non può conoscere stati o logica
-        public IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquistoAnagraficaFornitore(int skip, int take, string search, Dto.AnagraficaFornitoreDto anagraficaFornitore)
+        public int CountFattureAcquisto(string search = null, Dto.FornitoreDto fornitore = null, Dto.AnagraficaFornitoreDto anagraficaFornitore = null, IList<string> stati = null)
         {
             try
             {
-                var fattureAcquistoId= new List<int>();
-                var fattureAcquisto = QueryFattureAcquisto(search);
-                fattureAcquisto = (from q in fattureAcquisto where q.Fornitore.Codice ==anagraficaFornitore.Codice select q);
-                //punto in cui filtrare per fatture di tipo Dare = Insolute + NonPagate
-                //ma Dare lo sa solo la BL (Wcf non vede la BL)
-                fattureAcquisto = (from q in fattureAcquisto select q).Skip(skip).Take(take);
-                var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
-                return fattureAcquistoDto;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        public IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquistoAnagraficaFornitore(string search, Dto.AnagraficaFornitoreDto anagraficaFornitore)
-        {
-            try
-            {
-                var fattureAcquistoId = new List<int>();
-                var fattureAcquisto = QueryFattureAcquisto(search);
-                fattureAcquisto = (from q in fattureAcquisto where q.Fornitore.Codice == anagraficaFornitore.Codice select q);
-                var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
-                return fattureAcquistoDto;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        public IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquistoFornitore(int skip, int take, Dto.FornitoreDto fornitore, string search = null)
-        {
-            try
-            {
-                var fattureAcquisto = QueryFattureAcquisto(search);
-                fattureAcquisto = (from q in fattureAcquisto where q.FornitoreId == fornitore.Id select q);
-                fattureAcquisto = (from q in fattureAcquisto select q).Skip(skip).Take(take);
-
-                var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
-                return fattureAcquistoDto;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        public int CountFattureAcquisto(string search = null)
-        {
-            try
-            {
-                var fattureAcquisto = QueryFattureAcquisto(search);
-                var count = fattureAcquisto.Count();
-                return count;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-
-        public int CountFattureAcquistoAnagraficaFornitore(string search, Dto.AnagraficaFornitoreDto anagraficaFornitore)
-        {
-            try
-            {
-                var fattureAcquistoId = new List<int>();
-                var fattureAcquisto = QueryFattureAcquisto(search);
-                fattureAcquisto = (from q in fattureAcquisto where q.Fornitore.Codice == anagraficaFornitore.Codice select q);
-                var count = fattureAcquisto.Count();
-                return count;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-        public int CountFattureAcquistoFornitore(Dto.FornitoreDto fornitore, string search = null)
-        {
-            try
-            {
-                var fattureAcquisto = QueryFattureAcquisto(search);
-                fattureAcquisto = (from q in fattureAcquisto where q.FornitoreId == fornitore.Id select q);
+                var fattureAcquisto = QueryFattureAcquisto(search, fornitore, anagraficaFornitore, stati);
                 var count = fattureAcquisto.Count();
                 return count;
             }
@@ -1069,12 +983,19 @@ namespace WcfService
             return fattureAcquisto;
         }
 
-        private IQueryable<DataLayer.FatturaAcquisto> QueryFattureAcquisto(string search)
+        private IQueryable<DataLayer.FatturaAcquisto> QueryFattureAcquisto(string search=null, Dto.FornitoreDto fornitore=null, Dto.AnagraficaFornitoreDto anagraficaFornitore=null, 
+            IList<string> stati=null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var fattureAcquisto = (from q in ef.FatturaAcquistos select q);
+                if(fornitore!=null)
+                    fattureAcquisto = (from q in fattureAcquisto where q.FornitoreId == fornitore.Id select q);
+
+                if(anagraficaFornitore!=null) //ricerca fatture insolute/non pagate per un fornitore anagrafico
+                    fattureAcquisto = (from q in fattureAcquisto where q.Fornitore.Codice == anagraficaFornitore.Codice && stati.Contains(q.Stato) select q); 
+
                 if (search != null && search.Length > 0)
                 {
                     var fornitoriId = (from q in QueryFornitori(search) select q.Id).ToList();

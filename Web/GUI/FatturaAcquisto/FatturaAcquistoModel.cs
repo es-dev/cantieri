@@ -67,7 +67,8 @@ namespace Web.GUI.FatturaAcquisto
                     var obj = (FatturaAcquistoDto)model;
                     var numero = UtilityValidation.GetStringND(obj.Numero);
                     var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
-                    infoSubtitle.Text = numero + " - " + descrizione;
+                    var data = UtilityValidation.GetDataND(obj.Data)+" - "+ descrizione;
+                    infoSubtitle.Text = "N."+ numero + " del " + data;
                     infoSubtitleImage.Image = "Images.dashboard.fatturaacquisto.png";
                 }
             }
@@ -225,8 +226,8 @@ namespace Web.GUI.FatturaAcquisto
                 if (fatturaAcquisto != null)
                 {
                     var fornitoreId = fatturaAcquisto.FornitoreId;
-                    var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
-                    var fornitore = viewModelFornitore.Read(fornitoreId);
+                    var viewModel = new Fornitore.FornitoreViewModel(this);
+                    var fornitore = viewModel.Read(fornitoreId);
                     if(fornitore!=null)
                     {
                         var commessa = fornitore.Commessa;

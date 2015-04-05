@@ -33,8 +33,8 @@ namespace Web.GUI.SAL
             this.editCommessa = new Library.Template.Controls.TemplateEditCombo();
             this.editData = new Library.Template.Controls.TemplateEditDate();
             this.editDenominazione = new Library.Template.Controls.TemplateEditText();
-            this.editTotaleAcquisti = new Library.Template.Controls.TemplateEditDecimal();
-            this.editTotaleVendite = new Library.Template.Controls.TemplateEditDecimal();
+            this.editTotaleFattureAcquisto = new Library.Template.Controls.TemplateEditDecimal();
+            this.editTotaleFattureVendita = new Library.Template.Controls.TemplateEditDecimal();
             this.editCodice = new Library.Template.Controls.TemplateEditText();
             this.lblFatturato = new Gizmox.WebGUI.Forms.Label();
             this.lblPagamenti = new Gizmox.WebGUI.Forms.Label();
@@ -59,8 +59,8 @@ namespace Web.GUI.SAL
             this.container.Controls.Add(this.lblPagamenti);
             this.container.Controls.Add(this.lblFatturato);
             this.container.Controls.Add(this.editCodice);
-            this.container.Controls.Add(this.editTotaleVendite);
-            this.container.Controls.Add(this.editTotaleAcquisti);
+            this.container.Controls.Add(this.editTotaleFattureVendita);
+            this.container.Controls.Add(this.editTotaleFattureAcquisto);
             this.container.Controls.Add(this.editDenominazione);
             this.container.Controls.Add(this.editData);
             this.container.Controls.Add(this.editCommessa);
@@ -70,8 +70,8 @@ namespace Web.GUI.SAL
             this.container.Controls.SetChildIndex(this.editCommessa, 0);
             this.container.Controls.SetChildIndex(this.editData, 0);
             this.container.Controls.SetChildIndex(this.editDenominazione, 0);
-            this.container.Controls.SetChildIndex(this.editTotaleAcquisti, 0);
-            this.container.Controls.SetChildIndex(this.editTotaleVendite, 0);
+            this.container.Controls.SetChildIndex(this.editTotaleFattureAcquisto, 0);
+            this.container.Controls.SetChildIndex(this.editTotaleFattureVendita, 0);
             this.container.Controls.SetChildIndex(this.editCodice, 0);
             this.container.Controls.SetChildIndex(this.lblFatturato, 0);
             this.container.Controls.SetChildIndex(this.lblPagamenti, 0);
@@ -174,49 +174,49 @@ namespace Web.GUI.SAL
             this.editDenominazione.Text = "EditControl";
             this.editDenominazione.Value = null;
             // 
-            // editTotaleAcquisti
+            // editTotaleFattureAcquisto
             // 
-            this.editTotaleAcquisti.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.editTotaleFattureAcquisto.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editTotaleAcquisti.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editTotaleAcquisti.BackColor = System.Drawing.Color.Transparent;
-            this.editTotaleAcquisti.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editTotaleAcquisti.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editTotaleAcquisti.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editTotaleAcquisti.Changed = true;
-            this.editTotaleAcquisti.Editing = false;
-            this.editTotaleAcquisti.Label = "Fatture fornitori";
-            this.editTotaleAcquisti.LabelWidth = 175;
-            this.editTotaleAcquisti.Location = new System.Drawing.Point(25, 327);
-            this.editTotaleAcquisti.Name = "editTotaleAcquisti";
-            this.editTotaleAcquisti.ReadOnly = false;
-            this.editTotaleAcquisti.Required = false;
-            this.editTotaleAcquisti.Size = new System.Drawing.Size(798, 30);
-            this.editTotaleAcquisti.TabIndex = 3;
-            this.editTotaleAcquisti.Text = "TemplateEditNumeric";
-            this.editTotaleAcquisti.Value = null;
+            this.editTotaleFattureAcquisto.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editTotaleFattureAcquisto.BackColor = System.Drawing.Color.Transparent;
+            this.editTotaleFattureAcquisto.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editTotaleFattureAcquisto.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editTotaleFattureAcquisto.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editTotaleFattureAcquisto.Changed = true;
+            this.editTotaleFattureAcquisto.Editing = false;
+            this.editTotaleFattureAcquisto.Label = "Fatture fornitori";
+            this.editTotaleFattureAcquisto.LabelWidth = 175;
+            this.editTotaleFattureAcquisto.Location = new System.Drawing.Point(25, 327);
+            this.editTotaleFattureAcquisto.Name = "editTotaleFattureAcquisto";
+            this.editTotaleFattureAcquisto.ReadOnly = false;
+            this.editTotaleFattureAcquisto.Required = false;
+            this.editTotaleFattureAcquisto.Size = new System.Drawing.Size(798, 30);
+            this.editTotaleFattureAcquisto.TabIndex = 3;
+            this.editTotaleFattureAcquisto.Text = "TemplateEditNumeric";
+            this.editTotaleFattureAcquisto.Value = null;
             // 
-            // editTotaleVendite
+            // editTotaleFattureVendite
             // 
-            this.editTotaleVendite.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.editTotaleFattureVendita.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editTotaleVendite.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editTotaleVendite.BackColor = System.Drawing.Color.Transparent;
-            this.editTotaleVendite.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editTotaleVendite.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editTotaleVendite.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editTotaleVendite.Changed = true;
-            this.editTotaleVendite.Editing = false;
-            this.editTotaleVendite.Label = "Fatture committente";
-            this.editTotaleVendite.LabelWidth = 175;
-            this.editTotaleVendite.Location = new System.Drawing.Point(25, 369);
-            this.editTotaleVendite.Name = "editTotaleVendite";
-            this.editTotaleVendite.ReadOnly = false;
-            this.editTotaleVendite.Required = false;
-            this.editTotaleVendite.Size = new System.Drawing.Size(798, 30);
-            this.editTotaleVendite.TabIndex = 4;
-            this.editTotaleVendite.Text = "TemplateEditNumeric";
-            this.editTotaleVendite.Value = null;
+            this.editTotaleFattureVendita.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editTotaleFattureVendita.BackColor = System.Drawing.Color.Transparent;
+            this.editTotaleFattureVendita.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editTotaleFattureVendita.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editTotaleFattureVendita.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editTotaleFattureVendita.Changed = true;
+            this.editTotaleFattureVendita.Editing = false;
+            this.editTotaleFattureVendita.Label = "Fatture committente";
+            this.editTotaleFattureVendita.LabelWidth = 175;
+            this.editTotaleFattureVendita.Location = new System.Drawing.Point(25, 369);
+            this.editTotaleFattureVendita.Name = "editTotaleFattureVendite";
+            this.editTotaleFattureVendita.ReadOnly = false;
+            this.editTotaleFattureVendita.Required = false;
+            this.editTotaleFattureVendita.Size = new System.Drawing.Size(798, 30);
+            this.editTotaleFattureVendita.TabIndex = 4;
+            this.editTotaleFattureVendita.Text = "TemplateEditNumeric";
+            this.editTotaleFattureVendita.Value = null;
             // 
             // editCodice
             // 
@@ -402,8 +402,8 @@ namespace Web.GUI.SAL
         private Library.Template.Controls.TemplateEditText editDenominazione;
         private Library.Template.Controls.TemplateEditDate editData;
         private Library.Template.Controls.TemplateEditCombo editCommessa;
-        private Library.Template.Controls.TemplateEditDecimal editTotaleVendite;
-        private Library.Template.Controls.TemplateEditDecimal editTotaleAcquisti;
+        private Library.Template.Controls.TemplateEditDecimal editTotaleFattureVendita;
+        private Library.Template.Controls.TemplateEditDecimal editTotaleFattureAcquisto;
         private Library.Template.Controls.TemplateEditText editCodice;
         private Gizmox.WebGUI.Forms.Label lblPagamenti;
         private Gizmox.WebGUI.Forms.Label lblFatturato;

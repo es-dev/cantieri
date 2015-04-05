@@ -38,7 +38,7 @@ namespace Web.GUI.FatturaAcquisto
                     var fornitore = obj.Fornitore;
 
                     infoImage.Image = "Images.dashboard.fatturaacquisto.png";
-                    infoCodice.Text = "FA";
+                    infoCodice.Text = "FA-"+numero;
                     infoNumeroData.Text = "Fattura N." + numero + " del " + data;
                     infoPagamentoTotale.Text = "Pagato " + totalePagamenti + " su un totale di " + totaleFattura;
                     infoCentroCosto.Text = UtilityValidation.GetStringND(centroCosto.Denominazione);

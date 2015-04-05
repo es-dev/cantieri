@@ -30,12 +30,10 @@ namespace Web.GUI.SAL
                     var obj = (SALDto)model;
                     var codice = obj.Codice;
                     var data = UtilityValidation.GetData(obj.Data);
-                    
-                    var commessaId = obj.CommessaId;
-                    var viewModelCommessa = new Commessa.CommessaViewModel(this);
-                    var commessa = (WcfService.Dto.CommessaDto)viewModelCommessa.Read(commessaId);
+
+                    var commessa = GetCommessa(obj);
                     var importoLavori = UtilityValidation.GetEuro(commessa.Importo);
-                    var margineOperativo = BusinessLogic.SAL.GetMargineOperativo(commessa, data);
+                    var margineOperativo = BusinessLogic.SAL.GetMargineOperativo(obj, commessa);
 
                     var stato = GetStato(commessa, data);
                     var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
@@ -58,7 +56,24 @@ namespace Web.GUI.SAL
             }
         }
 
-        
+        private CommessaDto GetCommessa(SALDto sal)
+        {
+            try
+            {
+                if (sal != null)
+                {
+                    var commessaId = sal.CommessaId;
+                    var viewModel = new Commessa.CommessaViewModel(this);
+                    var commessa = viewModel.Read(commessaId);
+                    return commessa;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
 
         private static DescriptionImage GetStato(CommessaDto commessa, DateTime data)
         {

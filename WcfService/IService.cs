@@ -192,25 +192,11 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquisto(int skip, int take, string search = null);
+        IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquisto(int skip, int take, string search = null, Dto.FornitoreDto fornitore=null, 
+            Dto.AnagraficaFornitoreDto anagraficaFornitore=null, IList<string> stati=null);
 
         [OperationContract]
-        IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquistoAnagraficaFornitore(int skip, int take, string search, Dto.AnagraficaFornitoreDto anagraficaFornitore);
-        
-        [OperationContract]
-        IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquistoAnagraficaFornitore(string search, Dto.AnagraficaFornitoreDto anagraficaFornitore);
-
-        [OperationContract]
-        int CountFattureAcquisto(string search = null);
-
-        [OperationContract]
-        int CountFattureAcquistoAnagraficaFornitore(string search, Dto.AnagraficaFornitoreDto anagraficaFornitore);
-
-        [OperationContract]
-        IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquistoFornitore(int skip, int take, Dto.FornitoreDto fornitore, string search);
-
-        [OperationContract]
-        int CountFattureAcquistoFornitore(Dto.FornitoreDto fornitore, string search);
+        int CountFattureAcquisto(string search = null, Dto.FornitoreDto fornitore=null, Dto.AnagraficaFornitoreDto anagraficaFornitore=null, IList<string> stati=null);
 
         [OperationContract]
         IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquistoCommessa(Dto.CommessaDto commessa);

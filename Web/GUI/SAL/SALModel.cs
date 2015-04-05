@@ -64,8 +64,8 @@ namespace Web.GUI.SAL
                     editNote.Value = obj.Note;
 
                     var commessa = GetCommessa(obj);
-                    editTotaleAcquisti.Value = BusinessLogic.SAL.GetTotaleAcquisti(obj, commessa);
-                    editTotaleVendite.Value = BusinessLogic.SAL.GetTotaleVendite(obj, commessa);
+                    editTotaleFattureAcquisto.Value = BusinessLogic.SAL.GetTotaleFattureAcquisto(obj, commessa);
+                    editTotaleFattureVendita.Value = BusinessLogic.SAL.GetTotaleFattureVendita(obj, commessa);
                     editTotaleIncassi.Value = BusinessLogic.SAL.GetTotaleIncassi(obj, commessa);
                     editDenominazione.Value = obj.Denominazione;
                     editTotalePagamenti.Value = BusinessLogic.SAL.GatTotalePagamenti(obj, commessa);
@@ -107,14 +107,14 @@ namespace Web.GUI.SAL
                     var committenti = commessa.Committentes;
 
                     var totaleFattureAcquisto = BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, data.Value);
-                    var totaleFattureVendite = BusinessLogic.SAL.GetTotaleFattureVendita(committenti, data.Value);
+                    var totaleFattureVendita = BusinessLogic.SAL.GetTotaleFattureVendita(committenti, data.Value);
                     var totalePagamenti = BusinessLogic.SAL.GetTotalePagamenti(fornitori, data.Value);
                     var totaleIncassi = BusinessLogic.SAL.GetTotaleIncassi(committenti, data.Value);
                     var statoDescrizione = BusinessLogic.SAL.GetStatoDescrizione(obj, commessa);
 
                     editStato.Value = statoDescrizione;
-                    editTotaleAcquisti.Value = totaleFattureAcquisto;
-                    editTotaleVendite.Value = totaleFattureVendite;
+                    editTotaleFattureAcquisto.Value = totaleFattureAcquisto;
+                    editTotaleFattureVendita.Value = totaleFattureVendita;
                     editTotalePagamenti.Value = totalePagamenti;
                     editTotaleIncassi.Value = totaleIncassi;
                 }
@@ -135,8 +135,8 @@ namespace Web.GUI.SAL
                     obj.Data = editData.Value;
                     obj.Codice = editCodice.Value;
                     obj.Note = editNote.Value;
-                    obj.TotaleFattureAcquisto = editTotaleAcquisti.Value;
-                    obj.TotaleFattureVendite = editTotaleVendite.Value;
+                    obj.TotaleFattureAcquisto = editTotaleFattureAcquisto.Value;
+                    obj.TotaleFattureVendita = editTotaleFattureVendita.Value;
                     obj.TotaleIncassi = editTotaleIncassi.Value;
                     obj.TotalePagamenti = editTotalePagamenti.Value;
                     obj.Denominazione = editDenominazione.Value;
@@ -258,8 +258,8 @@ namespace Web.GUI.SAL
                 if (sal != null)
                 {
                     var commessaId = sal.CommessaId;
-                    var viewModelCommittente = new Commessa.CommessaViewModel(this);
-                    var commessa = viewModelCommittente.Read(commessaId);
+                    var viewModel = new Commessa.CommessaViewModel(this);
+                    var commessa = viewModel.Read(commessaId);
                     return commessa;
                 }
             }

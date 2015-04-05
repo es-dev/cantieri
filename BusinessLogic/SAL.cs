@@ -319,24 +319,24 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleVendite(SALDto sal, CommessaDto commessa)
+        public static decimal GetTotaleFattureVendita(SALDto sal, CommessaDto commessa)
         {
             try
             {
-                decimal totaleFattureVendite = 0;
+                decimal totaleFattureVendita = 0;
                 if (commessa != null)
                 {
                     var committenti = commessa.Committentes;
                     var statoCommessa = commessa.Stato;
                     if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                        totaleFattureVendite = UtilityValidation.GetDecimal(sal.TotaleFattureVendite);
+                        totaleFattureVendita = UtilityValidation.GetDecimal(sal.TotaleFattureVendita);
                     else
                     {
                         var data = UtilityValidation.GetData(sal.Data);
-                        totaleFattureVendite = GetTotaleFattureVendita(committenti, data);
+                        totaleFattureVendita = GetTotaleFattureVendita(committenti, data);
                     }
                 }
-                return totaleFattureVendite;
+                return totaleFattureVendita;
             }
             catch (Exception ex)
             {
@@ -345,7 +345,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        public static decimal GetTotaleAcquisti(SALDto sal, CommessaDto commessa)
+        public static decimal GetTotaleFattureAcquisto(SALDto sal, CommessaDto commessa)
         {
             try
             {
@@ -363,6 +363,32 @@ namespace BusinessLogic
                     }
                 }
                 return totaleFattureAcquisto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal GetMargineOperativo(SALDto sal, CommessaDto commessa)
+        {
+            try
+            {
+                decimal margineOperativo = 0;
+                if (commessa != null)
+                {
+                    var fornitori = commessa.Fornitores;
+                    var statoCommessa = commessa.Stato;
+                    if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                        margineOperativo = 0;
+                    else
+                    {
+                        var data = UtilityValidation.GetData(sal.Data);
+                        margineOperativo = GetMargineOperativo(commessa, data);
+                    }
+                }
+                return margineOperativo;
             }
             catch (Exception ex)
             {

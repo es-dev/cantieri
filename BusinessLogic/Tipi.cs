@@ -118,5 +118,21 @@ namespace BusinessLogic
             Commesse
         }
 
+        public static IList<string> GetStatiFattureInsoluteNonPagate()
+        {
+            try
+            {
+                var stati = new List<string>();
+                stati.Add(StatoFattura.Insoluta.ToString());
+                stati.Add(StatoFattura.NonPagata.ToString());
+                return stati;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
     }
 }
