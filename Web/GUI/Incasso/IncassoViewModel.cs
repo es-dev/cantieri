@@ -11,7 +11,6 @@ namespace Web.GUI.Incasso
     public class IncassoViewModel : Library.Template.MVVM.TemplateViewModel<IncassoDto, IncassoItem>
     {
         private CommittenteDto committente = null;
-
         public CommittenteDto Committente
         {
             get
@@ -25,7 +24,6 @@ namespace Web.GUI.Incasso
         }
 
         private FatturaVenditaDto fatturaVendita = null;
-
         public FatturaVenditaDto FatturaVendita
         {
             get
@@ -37,6 +35,7 @@ namespace Web.GUI.Incasso
                 fatturaVendita = value;
             }
         }
+
         public IncassoViewModel(ISpace space)
             : base(space) 
         {
@@ -55,13 +54,7 @@ namespace Web.GUI.Incasso
             try
             {
                 var wcf = new WcfService.Service();
-                IEnumerable<IncassoDto> objs = null;
-                if (committente == null && fatturaVendita == null)
-                    objs = wcf.LoadIncassi(skip, take, search);
-                else if (committente!=null)
-                    objs = wcf.LoadIncassiCommittente(skip, take, committente, search);
-                else if (fatturaVendita != null)
-                    objs = wcf.LoadIncassiFatturaVendita(skip, take, fatturaVendita, search);
+                var objs = wcf.LoadIncassi(skip, take, search, committente, fatturaVendita);
                 Load(objs);
             }
             catch (Exception ex)
@@ -75,13 +68,7 @@ namespace Web.GUI.Incasso
             try
             {
                 var wcf = new WcfService.Service();
-                var count = 0;
-                if (committente == null && fatturaVendita == null)
-                    count = wcf.CountIncassi(search);
-                else if (committente != null)
-                    count = wcf.CountIncassiCommittente(committente, search);
-                else if (fatturaVendita != null)
-                    count = wcf.CountIncassiFatturaVendita(fatturaVendita, search);
+                var count = wcf.CountIncassi(search, committente, fatturaVendita);
                 return count;
             }
             catch (Exception ex)

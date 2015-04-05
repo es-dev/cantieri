@@ -2509,11 +2509,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.IncassoDto> LoadIncassi(int skip, int take, string search = null)
+        public IEnumerable<Dto.IncassoDto> LoadIncassi(int skip, int take, string search = null, Dto.CommittenteDto committente=null, Dto.FatturaVenditaDto fatturaVendita=null)
         {
             try
             {
-                var incassi = QueryIncassi(search);
+                var incassi = QueryIncassi(search, committente,fatturaVendita);
                 incassi = (from q in incassi select q).Skip(skip).Take(take);
 
                 var incassiDto = UtilityPOCO.Assemble<Dto.IncassoDto>(incassi);
@@ -2526,86 +2526,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountIncassi(string search = null)
+        public int CountIncassi(string search = null, Dto.CommittenteDto committente = null, Dto.FatturaVenditaDto fatturaVendita = null)
         {
             try
             {
-                var incassi = QueryIncassi(search);
-                var count = incassi.Count();
-                return count;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-
-        public IEnumerable<Dto.IncassoDto> LoadIncassiCommittente(int skip, int take,Dto.CommittenteDto committente, string search = null)
-        {
-            try
-            {
-                var incassi = QueryIncassi(search);
-                var fattureVendita= committente.FatturaVenditas;
-                var fattureVenditaIds = (from q in fattureVendita select q.Id);
-                incassi = (from q in incassi where fattureVenditaIds.Contains(q.FatturaVenditaId) select q);
-                incassi = (from q in incassi select q).Skip(skip).Take(take);
-
-                var incassiDto = UtilityPOCO.Assemble<Dto.IncassoDto>(incassi);
-                return incassiDto;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        public int CountIncassiCommittente(Dto.CommittenteDto committente, string search = null)
-        {
-            try
-            {
-                var incassi = QueryIncassi(search);
-                var fattureVendita = committente.FatturaVenditas;
-                if (fattureVendita != null)
-                {
-                    var fattureVenditaIds = (from q in fattureVendita select q.Id);
-                    incassi = (from q in incassi where fattureVenditaIds.Contains(q.FatturaVenditaId) select q);
-                    var count = incassi.Count();
-                    return count;
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-
-        public IEnumerable<Dto.IncassoDto> LoadIncassiFatturaVendita(int skip, int take, Dto.FatturaVenditaDto fatturaVendita, string search = null)
-        {
-            try
-            {
-                var incassi = QueryIncassi(search);
-                incassi = (from q in incassi where q.FatturaVenditaId==fatturaVendita.Id select q);
-                incassi = (from q in incassi select q).Skip(skip).Take(take);
-
-                var incassiDto = UtilityPOCO.Assemble<Dto.IncassoDto>(incassi);
-                return incassiDto;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        public int CountIncassiFatturaVendita(Dto.FatturaVenditaDto fatturaVendita, string search = null)
-        {
-            try
-            {
-                var incassi = QueryIncassi(search);
-                incassi = (from q in incassi where q.FatturaVenditaId == fatturaVendita.Id select q);
+                var incassi = QueryIncassi(search, committente, fatturaVendita);
                 var count = incassi.Count();
                 return count;
             }
@@ -2632,12 +2557,22 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Incasso> QueryIncassi(string search)
+        private IQueryable<DataLayer.Incasso> QueryIncassi(string search=null, Dto.CommittenteDto committente=null, Dto.FatturaVenditaDto fatturaVendita=null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var incassi = (from q in ef.Incassos select q);
+                if(fatturaVendita!=null)
+                    incassi = (from q in incassi where q.FatturaVenditaId == fatturaVendita.Id select q);
+
+                if(committente!=null)
+                {
+                    var fattureVendita = committente.FatturaVenditas;
+                    var fattureVenditaIds = (from q in fattureVendita select q.Id);
+                    incassi = (from q in incassi where fattureVenditaIds.Contains(q.FatturaVenditaId) select q);
+                }
+
                 if (search != null && search.Length > 0)
                 {
                     var fattureVenditaId = (from q in QueryFattureVendita(search) select q.Id).ToList();

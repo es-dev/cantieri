@@ -12,7 +12,6 @@ namespace Web.GUI.Reso
     {
 
         private NotaCreditoDto notaCredito = null;
-
         public NotaCreditoDto NotaCredito
         {
             get
@@ -26,7 +25,6 @@ namespace Web.GUI.Reso
         }
 
         private FatturaAcquistoDto fatturaAcquisto = null;
-
         public FatturaAcquistoDto FatturaAcquisto
         {
             get

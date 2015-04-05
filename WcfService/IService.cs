@@ -484,22 +484,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.IncassoDto> LoadIncassi(int skip, int take, string search = null);
+        IEnumerable<Dto.IncassoDto> LoadIncassi(int skip, int take, string search = null, Dto.CommittenteDto committente = null, Dto.FatturaVenditaDto fatturaVendita=null);
 
         [OperationContract]
-        int CountIncassi(string search = null);
-
-        [OperationContract]
-        IEnumerable<Dto.IncassoDto> LoadIncassiCommittente(int skip, int take,Dto.CommittenteDto committente, string search = null);
-
-        [OperationContract]
-        int CountIncassiCommittente(Dto.CommittenteDto committente, string search = null);
-
-        [OperationContract]
-        IEnumerable<Dto.IncassoDto> LoadIncassiFatturaVendita(int skip, int take, Dto.FatturaVenditaDto fatturaVendita, string search = null);
-
-        [OperationContract]
-        int CountIncassiFatturaVendita(Dto.FatturaVenditaDto fatturaVendita, string search = null);
+        int CountIncassi(string search = null, Dto.CommittenteDto committente = null, Dto.FatturaVenditaDto fatturaVendita = null);
 
         [OperationContract]
         Dto.IncassoDto ReadIncasso(object id);
