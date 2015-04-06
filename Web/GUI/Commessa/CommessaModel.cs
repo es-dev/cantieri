@@ -225,11 +225,11 @@ namespace Web.GUI.Commessa
             }
         }
 
-        public override TemplateModel.ValidationState IsValidated()
+        public override UtilityValidation.ValidationState IsValidated()
         {
             try
             {
-                var validated = new ValidationState();
+                var validated = new UtilityValidation.ValidationState();
                 var importo= UtilityValidation.GetDecimal(editImporto.Value);
                 if (importo < 1000)
                 {

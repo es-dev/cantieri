@@ -259,7 +259,7 @@ namespace Web.GUI.SAL
                 {
                     var commessaId = sal.CommessaId;
                     var viewModel = new Commessa.CommessaViewModel(this);
-                    var commessa = viewModel.Read(commessaId);
+                    var commessa = viewModel.ReadCommessa(commessaId);
                     return commessa;
                 }
             }

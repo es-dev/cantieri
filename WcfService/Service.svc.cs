@@ -441,13 +441,14 @@ namespace WcfService
             return 0;
         }
 
-        public Dto.CommessaDto ReadCommessa(object id)
+        public Dto.CommessaDto ReadCommessa(object id, bool recursive=false)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var commessa = (from q in ef.Commessas where q.Id == (int)id select q).FirstOrDefault();
-                var commessaDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commessa, true); //lettura ricorsiva
+                
+                var commessaDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commessa, recursive); //lettura ricorsiva
                 return commessaDto;
             }
             catch (Exception ex)
@@ -657,13 +658,29 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.FornitoreDto> ReadFornitori(string codice)
+        public IEnumerable<Dto.FornitoreDto> ReadFornitori(Dto.AnagraficaFornitoreDto anagraficaFornitore)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
-                var fornitori = (from q in ef.Fornitores where q.Codice == codice select q);
+                var fornitori = (from q in ef.Fornitores where q.Codice == anagraficaFornitore.Codice select q);
                 var fornitoriDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitori, true); //lettura ricorsiva
+                return fornitoriDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<Dto.FornitoreDto> ReadFornitori(Dto.CommessaDto commessa)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var fornitori = (from q in ef.Fornitores where q.CommessaId == commessa.Id select q);
+                var fornitoriDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitori); 
                 return fornitoriDto;
             }
             catch (Exception ex)
@@ -2150,6 +2167,22 @@ namespace WcfService
             }
             return null;
         }
+
+        public IEnumerable<Dto.CommittenteDto> ReadCommittenti(Dto.CommessaDto commessa)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var committenti = (from q in ef.Committentes where q.CommessaId == commessa.Id select q);
+                var committentiDto = UtilityPOCO.Assemble<Dto.CommittenteDto>(committenti);
+                return committentiDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
         #endregion
         #endregion
 
@@ -2792,7 +2825,6 @@ namespace WcfService
             return null;
         }
 
-
         private IQueryable<DataLayer.AnagraficaFornitore> QueryAnagraficheFornitori(string search = null)
         {
             try
@@ -2939,6 +2971,22 @@ namespace WcfService
                 var dtoKey = UtilityPOCO.GetDtoKey((int)id);
                 var anagraficaCommittente = wcf.ReadAnagraficaCommittente(dtoKey);
                 return anagraficaCommittente;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public Dto.AnagraficaCommittenteDto ReadAnagraficaCommittente(string codice)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var anagraficaCommittente = (from q in ef.AnagraficaCommittentes where q.Codice == codice select q).FirstOrDefault();
+                var anagraficaCommittenteDto = UtilityPOCO.Assemble<Dto.AnagraficaCommittenteDto>(anagraficaCommittente);
+                return anagraficaCommittenteDto;
             }
             catch (Exception ex)
             {

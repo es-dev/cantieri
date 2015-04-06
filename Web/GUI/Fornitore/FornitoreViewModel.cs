@@ -143,12 +143,27 @@ namespace Web.GUI.Fornitore
             return null;
         }
 
-        internal IEnumerable<FornitoreDto> ReadFornitori(string codiceFornitore)
+        internal IEnumerable<FornitoreDto> ReadFornitori(AnagraficaFornitoreDto anagraficaFornitore)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.ReadFornitori(codiceFornitore);
+                var objs = wcf.ReadFornitori(anagraficaFornitore);
+                return objs;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        internal IEnumerable<FornitoreDto> ReadFornitori(CommessaDto commessa)
+        {
+            try
+            {
+                var wcf = new WcfService.Service();
+                var objs = wcf.ReadFornitori(commessa);
                 return objs;
             }
             catch (Exception ex)

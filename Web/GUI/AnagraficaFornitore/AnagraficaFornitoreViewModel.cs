@@ -130,13 +130,13 @@ namespace Web.GUI.AnagraficaFornitore
             return null;
         }
 
-        internal AnagraficaFornitoreDto ReadAnagraficaFornitore(string codiceFornitore)
+        internal AnagraficaFornitoreDto ReadAnagraficaFornitore(string codice)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.ReadAnagraficaFornitore(codiceFornitore);
-                return objs;
+                var obj = wcf.ReadAnagraficaFornitore(codice);
+                return obj;
 
             }
             catch (Exception ex)

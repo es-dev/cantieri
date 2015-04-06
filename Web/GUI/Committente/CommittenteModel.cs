@@ -342,5 +342,33 @@ namespace Web.GUI.Committente
             }
         }
 
+        public override UtilityValidation.ValidationState IsValidated()
+        {
+            try
+            {
+                var validated = new UtilityValidation.ValidationState();
+
+                var obj = (CommittenteDto)Model;
+                var viewModelCommittente = new Committente.CommittenteViewModel(this);
+                var commessa = (CommessaDto)editCommessa.Model;
+                var committenti = viewModelCommittente.ReadCommittenti(commessa);
+                var codiceCommittente = editCodiceCommittente.Value;
+                var viewModelAnagraficaCommittente = new AnagraficaCommittente.AnagraficaCommittenteViewModel(this);
+                var anagraficaCommittente = viewModelAnagraficaCommittente.ReadAnagraficaCommittente(codiceCommittente);
+                var validateCommittente = BusinessLogic.Diagnostico.ValidateCommittente(obj, committenti, anagraficaCommittente, commessa);
+                if (validateCommittente != null)
+                {
+                    validated.State = validateCommittente.State;
+                    validated.Message = validateCommittente.Message;
+                }
+                return validated;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
 	}
 }

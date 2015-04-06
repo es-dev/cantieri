@@ -143,5 +143,20 @@ namespace Web.GUI.Committente
             }
             return null;
         }
+
+        internal IEnumerable<CommittenteDto> ReadCommittenti(CommessaDto commessa)
+        {
+            try
+            {
+                var wcf = new WcfService.Service();
+                var objs = wcf.ReadCommittenti(commessa);
+                return objs;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }

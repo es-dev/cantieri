@@ -73,8 +73,8 @@ namespace Web.GUI.Fornitore
                     editPartitaIVA.Value = obj.PartitaIva;
                     editLocalita.Value = obj.Localita;
                     editNote.Value = obj.Note;
-                    editTotaleFattureAcquisto.Value = BusinessLogic.Fornitore.GetTotaleFatturaAcquisto(obj);
                     editStato.Value = BusinessLogic.Fornitore.GetStatoDescrizione(obj);
+                    editTotaleFattureAcquisto.Value = BusinessLogic.Fornitore.GetTotaleFatturaAcquisto(obj);
                     editTotalePagamenti.Value = BusinessLogic.Fornitore.GetTotalePagamenti(obj);
                     editTotaleNoteCredito.Value = BusinessLogic.Fornitore.GetTotaleNoteCredito(obj);
                     editCodiceFornitore.Value = obj.Codice;
@@ -188,12 +188,13 @@ namespace Web.GUI.Fornitore
                     obj.Email = editEmail.Value;
                     obj.Localita = editLocalita.Value;
                     obj.PartitaIva = editPartitaIVA.Value;
-                    obj.Codice = editCodiceFornitore.Value;
                     obj.Note = editNote.Value;
                     obj.TotaleFattureAcquisto = editTotaleFattureAcquisto.Value;
                     obj.Stato = editStato.Value;
                     obj.TotalePagamenti = editTotalePagamenti.Value;
                     obj.TotaleNoteCredito = editTotaleNoteCredito.Value;
+                    obj.Codice = editCodiceFornitore.Value;
+
                     var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
                     if (commessa != null)
                         obj.CommessaId = commessa.Id;
@@ -204,10 +205,6 @@ namespace Web.GUI.Fornitore
                 UtilityError.Write(ex);
             }
         }
-
-
-       
-
 
         private void editCommessa_ComboClick()
         {
@@ -258,7 +255,7 @@ namespace Web.GUI.Fornitore
         {
             try
             {
-                var anagraficaFornitore = (WcfService.Dto.AnagraficaFornitoreDto)model;
+                var anagraficaFornitore = (AnagraficaFornitoreDto)model;
                 if (anagraficaFornitore != null)
                 {
                     editCodiceFornitore.Value = anagraficaFornitore.Codice;
@@ -382,6 +379,32 @@ namespace Web.GUI.Fornitore
             }
         }
 
+        public override UtilityValidation.ValidationState IsValidated()
+        {
+            try
+            {
+                var validated = new UtilityValidation.ValidationState();
 
+                var obj = (FornitoreDto)Model;
+                var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
+                var commessa = (CommessaDto)editCommessa.Model;
+                var fornitori = viewModelFornitore.ReadFornitori(commessa);
+                var codiceFornitore = editCodiceFornitore.Value;
+                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
+                var validateFornitore = BusinessLogic.Diagnostico.ValidateFornitore(obj, fornitori, anagraficaFornitore, commessa);
+                if (validateFornitore != null)
+                {
+                    validated.State = validateFornitore.State;
+                    validated.Message = validateFornitore.Message;
+                }
+                return validated;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
 	}
 }

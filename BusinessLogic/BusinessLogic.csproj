@@ -71,6 +71,7 @@
     <Compile Include="Articolo.cs" />
     <Compile Include="Committente.cs" />
     <Compile Include="Commessa.cs" />
+    <Compile Include="Diagnostico.cs" />
     <Compile Include="Fattura.cs" />
     <Compile Include="Fornitore.cs" />
     <Compile Include="Incasso.cs" />

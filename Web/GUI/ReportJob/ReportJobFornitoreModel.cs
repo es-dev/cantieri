@@ -259,8 +259,7 @@ namespace Web.GUI.ReportJob
                     var viewModelAzienda = new Azienda.AziendaViewModel(this);
                     var azienda = viewModelAzienda.ReadAzienda(account);
                     var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
-                    var codiceFornitore = anagraficaFornitore.Codice;
-                    var fornitori = viewModelFornitore.ReadFornitori(codiceFornitore);
+                    var fornitori = viewModelFornitore.ReadFornitori(anagraficaFornitore);
 
                     var report = BusinessLogic.ReportJob.GetReportFornitore(azienda, anagraficaFornitore, fornitori, elaborazione);
                     if (report != null)

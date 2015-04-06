@@ -100,7 +100,7 @@ namespace WcfService
         int CountCommesse(string search = null);
 
         [OperationContract]
-        Dto.CommessaDto ReadCommessa(object id);
+        Dto.CommessaDto ReadCommessa(object id, bool recursive=false);
 
         [OperationContract]
         IEnumerable<Dto.CommessaDto> ReadCommesse(IEnumerable<Dto.FornitoreDto> fornitori);
@@ -137,7 +137,10 @@ namespace WcfService
         Dto.FornitoreDto ReadFornitore(object id);
 
         [OperationContract]
-        IEnumerable<Dto.FornitoreDto> ReadFornitori(string codice);
+        IEnumerable<Dto.FornitoreDto> ReadFornitori(Dto.AnagraficaFornitoreDto anagraficaFornitore);
+
+        [OperationContract]
+        IEnumerable<Dto.FornitoreDto> ReadFornitori(Dto.CommessaDto commessa);
 
         #endregion
         #endregion
@@ -416,6 +419,10 @@ namespace WcfService
 
         [OperationContract]
         Dto.CommittenteDto ReadCommittente(object id);
+
+        [OperationContract]
+        IEnumerable<Dto.CommittenteDto> ReadCommittenti(Dto.CommessaDto commessa);
+
         #endregion
         #endregion
 
@@ -570,6 +577,10 @@ namespace WcfService
 
         [OperationContract]
         Dto.AnagraficaCommittenteDto ReadAnagraficaCommittente(object id);
+
+        [OperationContract]
+        Dto.AnagraficaCommittenteDto ReadAnagraficaCommittente(string codice);
+
         #endregion
         #endregion
 

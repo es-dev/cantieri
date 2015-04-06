@@ -109,6 +109,21 @@ namespace Web.GUI.Commessa
             return null;
         }
 
+        public CommessaDto ReadCommessa(object id)
+        {
+            try
+            {
+                var wcf = new WcfService.Service();
+                var obj = wcf.ReadCommessa(id, true);
+                return obj;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         internal IEnumerable<CommessaDto> ReadCommesse()
         {
             try

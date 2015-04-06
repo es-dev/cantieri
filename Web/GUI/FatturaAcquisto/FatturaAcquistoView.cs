@@ -20,7 +20,7 @@ namespace Web.GUI.FatturaAcquisto
 			InitializeComponent();
 		}
 
-        public FatturaAcquistoView(WcfService.Dto.AnagraficaFornitoreDto anagraficaFornitore, Tipi.StatoFattura statoFattura)
+        public FatturaAcquistoView(AnagraficaFornitoreDto anagraficaFornitore, Tipi.StatoFattura statoFattura)
         {
             InitializeComponent();
             try
