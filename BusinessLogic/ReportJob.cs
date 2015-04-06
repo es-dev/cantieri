@@ -139,7 +139,7 @@ namespace BusinessLogic
                 var imponibile = UtilityValidation.GetEuro(fatturaAcquisto.Imponibile);
                 var iva = UtilityValidation.GetEuro(fatturaAcquisto.IVA);
                 var totale = UtilityValidation.GetEuro(fatturaAcquisto.Totale);
-                var totalePagamentiFatturaDato = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotalePagamenti(fatturaAcquisto, data));
+                var totalePagamentiFatturaDato = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotalePagamentiDato(fatturaAcquisto, data));
                 var totalePagamentiFatturaDare = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotalePagamentiDare(fatturaAcquisto, data));
 
                 tableFatture.AddRow(numero, dataFattura, scadenza, descrizione, imponibile, iva, totale, totalePagamentiFatturaDato, totalePagamentiFatturaDare);
@@ -159,7 +159,7 @@ namespace BusinessLogic
                 var totaleImponibile = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleImponibile(fornitore, data));
                 var totaleIVA = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleIVA(fornitore, data));
                 var totaleFattureAcquisto = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleFattureAcquisto(fornitore, data));
-                var totalePagamentiDato = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamenti(fornitore, data));
+                var totalePagamentiDato = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamentiDato(fornitore, data));
                 var totalePagamentiDare = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamentiDare(fornitore, data));
 
                 tableCommesse.AddRow(_commessa, totaleImponibile, totaleIVA, totaleFattureAcquisto, totalePagamentiDato, totalePagamentiDare);

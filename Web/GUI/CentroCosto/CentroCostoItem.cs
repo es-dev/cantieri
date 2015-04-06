@@ -29,7 +29,7 @@ namespace Web.GUI.CentroCosto
                     var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
                 
                     infoImage.Image = "Images.dashboard.centrocosto.png";
-                    infoCodice.Text = "CC";
+                    infoCodice.Text = "CC-"+codice;
                     infoCodiceCentroCosto.Text = "CENTRO DI COSTO "+ codice;
                     infoDenominazione.Text = denominazione; 
 
