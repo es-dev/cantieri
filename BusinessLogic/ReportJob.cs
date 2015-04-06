@@ -32,7 +32,7 @@ namespace BusinessLogic
             try
             {
                 var progressivo = count+1;
-                var codice = "RPT" + progressivo.ToString("000") + "/" + DateTime.Today.Year.ToString();
+                var codice = progressivo.ToString("000") + "/" + DateTime.Today.Year.ToString();
                 return codice;
             }
             catch (Exception ex)

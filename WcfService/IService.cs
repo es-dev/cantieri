@@ -199,9 +199,6 @@ namespace WcfService
         int CountFattureAcquisto(string search = null, Dto.FornitoreDto fornitore=null, Dto.AnagraficaFornitoreDto anagraficaFornitore=null, IList<string> stati=null);
 
         [OperationContract]
-        IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquistoCommessa(Dto.CommessaDto commessa);
-
-        [OperationContract]
         Dto.FatturaAcquistoDto ReadFatturaAcquisto(object id);
         #endregion
         #endregion

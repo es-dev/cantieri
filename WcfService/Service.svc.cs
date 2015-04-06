@@ -141,7 +141,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Azienda> QueryAziende(string search)
+        private IQueryable<DataLayer.Azienda> QueryAziende(string search=null)
         {
             try
             {
@@ -289,7 +289,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Account> QueryAccounts(string search)
+        private IQueryable<DataLayer.Account> QueryAccounts(string search=null)
         {
             try
             {
@@ -457,7 +457,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Commessa> QueryCommesse(string search)
+        private IQueryable<DataLayer.Commessa> QueryCommesse(string search = null)
         {
             try
             {
@@ -803,7 +803,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.CentroCosto> QueryCentriCosto(string search)
+        private IQueryable<DataLayer.CentroCosto> QueryCentriCosto(string search = null)
         {
             try
             {
@@ -956,31 +956,6 @@ namespace WcfService
                 UtilityError.Write(ex);
             }
             return null;
-        }
-
-        public IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquistoCommessa(Dto.CommessaDto commessa)
-        {
-            try
-            {
-                var fattureAcquisto = QueryFattureAcquistoCommessa(commessa);
-
-                var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
-                return fattureAcquistoDto;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        private static IQueryable<DataLayer.FatturaAcquisto> QueryFattureAcquistoCommessa(Dto.CommessaDto commessa)
-        {
-            var ef = new DataLayer.EntitiesModel();
-            var fornitoriCommessa = (from q in ef.Fornitores where q.CommessaId == commessa.Id select q);
-            var fornitoriCommessaId = (from q in fornitoriCommessa select q.Id);
-            var fattureAcquisto = (from q in ef.FatturaAcquistos where fornitoriCommessaId.Contains(q.FornitoreId) select q);
-            return fattureAcquisto;
         }
 
         private IQueryable<DataLayer.FatturaAcquisto> QueryFattureAcquisto(string search=null, Dto.FornitoreDto fornitore=null, Dto.AnagraficaFornitoreDto anagraficaFornitore=null, 
@@ -1145,7 +1120,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Articolo> QueryArticoli(string search)
+        private IQueryable<DataLayer.Articolo> QueryArticoli(string search=null)
         {
             try
             {
@@ -1831,7 +1806,7 @@ namespace WcfService
 
 
 
-        private IQueryable<DataLayer.PagamentoUnificato > QueryPagamentiUnificati(string search)
+        private IQueryable<DataLayer.PagamentoUnificato> QueryPagamentiUnificati(string search = null)
         {
             try
             {
@@ -2818,7 +2793,7 @@ namespace WcfService
         }
 
 
-        private IQueryable<DataLayer.AnagraficaFornitore> QueryAnagraficheFornitori(string search)
+        private IQueryable<DataLayer.AnagraficaFornitore> QueryAnagraficheFornitori(string search = null)
         {
             try
             {
@@ -2972,7 +2947,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.AnagraficaCommittente> QueryAnagraficheCommittenti(string search)
+        private IQueryable<DataLayer.AnagraficaCommittente> QueryAnagraficheCommittenti(string search = null)
         {
             try
             {
@@ -3124,7 +3099,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.AnagraficaArticolo> QueryAnagraficheArticoli(string search)
+        private IQueryable<DataLayer.AnagraficaArticolo> QueryAnagraficheArticoli(string search = null)
         {
             try
             {
@@ -3274,7 +3249,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.ReportJob> QueryReportJobs(string search)
+        private IQueryable<DataLayer.ReportJob> QueryReportJobs(string search = null)
         {
             try
             {

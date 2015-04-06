@@ -36,6 +36,7 @@ namespace Web.GUI.ReportJob
             this.infoCodiceReport = new Gizmox.WebGUI.Forms.Label();
             this.infoTipo = new Gizmox.WebGUI.Forms.Label();
             this.infoFornitore = new Gizmox.WebGUI.Forms.Label();
+            this.infoElaborazione = new Gizmox.WebGUI.Forms.Label();
             this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
@@ -43,6 +44,7 @@ namespace Web.GUI.ReportJob
             // 
             // jqContainer
             // 
+            this.jqContainer.Controls.Add(this.infoElaborazione);
             this.jqContainer.Controls.Add(this.panelLeft);
             this.jqContainer.Controls.Add(this.infoTipo);
             this.jqContainer.Controls.Add(this.infoFornitore);
@@ -115,12 +117,25 @@ namespace Web.GUI.ReportJob
             this.infoFornitore.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoFornitore.ForeColor = System.Drawing.Color.DarkRed;
             this.infoFornitore.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.infoFornitore.Location = new System.Drawing.Point(91, 71);
+            this.infoFornitore.Location = new System.Drawing.Point(91, 74);
             this.infoFornitore.Name = "infoFornitore";
             this.infoFornitore.Size = new System.Drawing.Size(305, 20);
             this.infoFornitore.TabIndex = 1;
             this.infoFornitore.Text = "Fornitore";
             this.infoFornitore.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // infoElaborazione
+            // 
+            this.infoElaborazione.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.infoElaborazione.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoElaborazione.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.infoElaborazione.Location = new System.Drawing.Point(90, 53);
+            this.infoElaborazione.Name = "infoElaborazione";
+            this.infoElaborazione.Size = new System.Drawing.Size(304, 21);
+            this.infoElaborazione.TabIndex = 1;
+            this.infoElaborazione.Text = "Elaborato il dd/MM/yyyy";
             // 
             // ReportJobItem
             // 
@@ -142,5 +157,6 @@ namespace Web.GUI.ReportJob
         private Gizmox.WebGUI.Forms.Label infoCodiceReport;
         private Gizmox.WebGUI.Forms.Label infoTipo;
         private Gizmox.WebGUI.Forms.Label infoFornitore;
+        private Gizmox.WebGUI.Forms.Label infoElaborazione;
 	}
 }

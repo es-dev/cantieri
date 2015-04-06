@@ -29,6 +29,8 @@ namespace Web.GUI.ReportJob
                     var codice = UtilityValidation.GetStringND(obj.Codice);
                     var codiceFornitore = UtilityValidation.GetStringND(obj.CodiceFornitore);
                     var tipo = UtilityValidation.GetStringND(obj.Tipo);
+                    var elaborazione = UtilityValidation.GetDataND(obj.Elaborazione);
+                    infoElaborazione.Text = "Elaborato il " + elaborazione;
                     infoImage.Image = "Images.dashboard.reportjob.png";
                     infoCodice.Text = "RPT-"+codice;
                     infoCodiceReport.Text = "REPORT N. " + codice;
