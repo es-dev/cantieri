@@ -37,6 +37,7 @@ namespace Web.GUI.ReportJob
             this.infoTipo = new Gizmox.WebGUI.Forms.Label();
             this.infoFornitore = new Gizmox.WebGUI.Forms.Label();
             this.infoElaborazione = new Gizmox.WebGUI.Forms.Label();
+            this.lnkReport = new Gizmox.WebGUI.Forms.LinkLabel();
             this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
@@ -44,6 +45,7 @@ namespace Web.GUI.ReportJob
             // 
             // jqContainer
             // 
+            this.jqContainer.Controls.Add(this.lnkReport);
             this.jqContainer.Controls.Add(this.infoElaborazione);
             this.jqContainer.Controls.Add(this.panelLeft);
             this.jqContainer.Controls.Add(this.infoTipo);
@@ -131,11 +133,25 @@ namespace Web.GUI.ReportJob
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoElaborazione.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoElaborazione.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoElaborazione.Location = new System.Drawing.Point(90, 53);
+            this.infoElaborazione.Location = new System.Drawing.Point(91, 53);
             this.infoElaborazione.Name = "infoElaborazione";
-            this.infoElaborazione.Size = new System.Drawing.Size(304, 21);
+            this.infoElaborazione.Size = new System.Drawing.Size(156, 21);
             this.infoElaborazione.TabIndex = 1;
             this.infoElaborazione.Text = "Elaborato il dd/MM/yyyy";
+            // 
+            // lnkReport
+            // 
+            this.lnkReport.Cursor = Gizmox.WebGUI.Forms.Cursors.Hand;
+            this.lnkReport.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lnkReport.LinkColor = System.Drawing.Color.Blue;
+            this.lnkReport.Location = new System.Drawing.Point(319, 54);
+            this.lnkReport.Name = "lnkReport";
+            this.lnkReport.Size = new System.Drawing.Size(76, 15);
+            this.lnkReport.TabIndex = 2;
+            this.lnkReport.TabStop = true;
+            this.lnkReport.Text = "Report (PDF)";
+            this.lnkReport.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lnkReport.Visible = false;
             // 
             // ReportJobItem
             // 
@@ -158,5 +174,6 @@ namespace Web.GUI.ReportJob
         private Gizmox.WebGUI.Forms.Label infoTipo;
         private Gizmox.WebGUI.Forms.Label infoFornitore;
         private Gizmox.WebGUI.Forms.Label infoElaborazione;
+        private Gizmox.WebGUI.Forms.LinkLabel lnkReport;
 	}
 }

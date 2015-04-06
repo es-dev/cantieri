@@ -30,6 +30,7 @@ namespace Web.GUI.ReportJob
                     var codiceFornitore = UtilityValidation.GetStringND(obj.CodiceFornitore);
                     var tipo = UtilityValidation.GetStringND(obj.Tipo);
                     var elaborazione = UtilityValidation.GetDataND(obj.Elaborazione);
+                    var fileName = obj.NomeFile;
                     infoElaborazione.Text = "Elaborato il " + elaborazione;
                     infoImage.Image = "Images.dashboard.reportjob.png";
                     infoCodice.Text = "RPT-"+codice;
@@ -37,12 +38,38 @@ namespace Web.GUI.ReportJob
                     infoTipo.Text = "Tipo report: " + tipo;
                     var descrizione = GetDescrizione(obj);
                     infoFornitore.Text = descrizione;
+
+                    BindViewReport(fileName);
+
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewReport(string fileName)
+        {
+            try
+            {
+                if (fileName != null && fileName.Length > 0)
+                {
+                    var url = UtilityWeb.GetRootUrl(Context) + "/Resources/Reports/" + fileName;
+                    lnkReport.Visible = true;
+                    lnkReport.RegisterClientAction("open", url);
+                }
+                else
+                {
+                    lnkReport.UnregisterClientAction();
+                    lnkReport.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            
         }
 
         private string GetDescrizione(WcfService.Dto.ReportJobDto obj)

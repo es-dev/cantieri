@@ -181,6 +181,19 @@ namespace Web.GUI.ReportJob
             }
         }
 
+        public override void SetEditing(bool editing, bool deleting)
+        {
+            try
+            {
+                base.SetEditing(editing, deleting);
+                btnStampaReport.Enabled = editing;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         private void SetNewValue()
         {
             try
