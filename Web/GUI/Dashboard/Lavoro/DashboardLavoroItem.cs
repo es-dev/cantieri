@@ -70,7 +70,7 @@ namespace Web.GUI.Dashboard.Lavoro
                         if (type != null)
                         {
                             var space = (ISpace)Activator.CreateInstance(type);
-                            space.Title = objDto.Title.ToUpper();
+                            space.Title = objDto.Title;
                             AddSpace(space);
                         }
                     }

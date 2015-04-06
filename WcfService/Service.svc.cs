@@ -663,7 +663,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var fornitori = (from q in ef.Fornitores where q.Codice == codice select q);
-                var fornitoriDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitori);
+                var fornitoriDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitori, true); //lettura ricorsiva
                 return fornitoriDto;
             }
             catch (Exception ex)

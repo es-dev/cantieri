@@ -26,10 +26,13 @@ namespace Web.GUI.ReportJob
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.ReportJobDto)model;
+                    var codice = UtilityValidation.GetStringND(obj.Codice);
+                    var codiceFornitore = UtilityValidation.GetStringND(obj.CodiceFornitore);
+                    var tipo = UtilityValidation.GetStringND(obj.Tipo);
                     infoImage.Image = "Images.dashboard.reportjob.png";
-                    infoCodice.Text = "RPT";
-                    infoCodiceReport.Text = "REPORT N. " + obj.Codice;
-                    infoTipo.Text = "Tipo report: " + UtilityValidation.GetStringND(obj.Tipo);
+                    infoCodice.Text = "RPT-"+codice;
+                    infoCodiceReport.Text = "REPORT N. " + codice;
+                    infoTipo.Text = "Tipo report: " + tipo;
                     var descrizione = GetDescrizione(obj);
                     infoFornitore.Text = descrizione;
                 }
@@ -76,11 +79,14 @@ namespace Web.GUI.ReportJob
                 if (item != null)
                 {
                     var obj = (WcfService.Dto.ReportJobDto)Model;
+                    var codiceFornitore = obj.CodiceFornitore;
+                    var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                    var anagraficaFornitore = viewModel.ReadAnagraficaFornitore(codiceFornitore);
+                    var ragioneSociale = (anagraficaFornitore != null ? anagraficaFornitore.RagioneSociale : "N/D");
+                    var codice = (obj.Codice != null ? obj.Codice : "N/D");
                     var tipoReport = BusinessLogic.Tipi.TipoReport.Fornitore;
                     var space = new ReportJobFornitoreModel(tipoReport);
-                    space.Title = "REPORT " + obj.Codice.ToUpper();
-                    if (obj.CodiceFornitore!=null)
-                        space.Title += "FORNITORE " + (obj.CodiceFornitore!=null? obj.CodiceFornitore.ToUpper():"N/D");
+                    space.Title = "REPORT " + codice + " - " + ragioneSociale;
                     AddSpace(space);
                 }
             }
