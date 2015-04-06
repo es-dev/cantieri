@@ -32,7 +32,7 @@ namespace Web.GUI.PagamentoUnificato
                  
                     infoData.Text = "Pagato il " + data;
                     infoImage.Image = "Images.dashboard.pagamentounificato.png";
-                    infoCodice.Text = "PAG";
+                    infoCodice.Text = "PU-"+codice;
                     infoNote.Text = obj.Note;
                     infoImporto.Text = "Importo: " + importo;
                     infoPagamento.Text = "Pagamento N." + codice;

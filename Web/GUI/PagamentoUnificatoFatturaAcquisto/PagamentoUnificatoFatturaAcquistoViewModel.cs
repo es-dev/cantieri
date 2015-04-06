@@ -66,11 +66,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             try
             {
                 var wcf = new WcfService.Service();
-                IEnumerable<PagamentoUnificatoFatturaAcquistoDto> objs = null;
-                if(pagamentoUnificato==null)
-                    objs = wcf.LoadPagamentiUnificatiFatturaAcquisto(skip, take, search);
-                else
-                    objs = wcf.LoadPagamentiUnificatiFatturaAcquistoPagamentoUnificato(skip, take, search, pagamentoUnificato);
+                var objs = wcf.LoadPagamentiUnificatiFatturaAcquisto(skip, take, search, pagamentoUnificato);
                 Load(objs);
             }
             catch (Exception ex)
@@ -84,11 +80,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             try
             {
                 var wcf = new WcfService.Service();
-                var count = 0;
-                if(pagamentoUnificato==null)
-                    count = wcf.CountPagamentiUnificatiFatturaAcquisto(search);
-                else
-                    count = wcf.CountPagamentiUnificatiFatturaAcquistoPagamentoUnificato(search, pagamentoUnificato);
+                var count = wcf.CountPagamentiUnificatiFatturaAcquisto(search, pagamentoUnificato);
                 return count;
             }
             catch (Exception ex)

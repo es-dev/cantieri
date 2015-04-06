@@ -75,6 +75,7 @@ namespace Web.GUI.PagamentoUnificato
             // 
             this.panelCommands.Controls.Add(this.btnFattureAcquisto);
             this.panelCommands.Controls.Add(this.btnCalcoloSaldoImporto);
+            this.panelCommands.Controls.SetChildIndex(this.btnHome, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
@@ -140,7 +141,7 @@ namespace Web.GUI.PagamentoUnificato
             this.editImporto.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editImporto.Changed = true;
             this.editImporto.Editing = false;
-            this.editImporto.Label = "Saldo importo";
+            this.editImporto.Label = "Importo";
             this.editImporto.LabelWidth = 175;
             this.editImporto.Location = new System.Drawing.Point(25, 204);
             this.editImporto.Name = "editImporto";

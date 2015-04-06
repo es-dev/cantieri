@@ -1939,7 +1939,7 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.PagamentoUnificatoFatturaAcquistoDto> LoadPagamentiUnificatiFatturaAcquisto(int skip, int take, string search = null)
+        public IEnumerable<Dto.PagamentoUnificatoFatturaAcquistoDto> LoadPagamentiUnificatiFatturaAcquisto(int skip, int take, string search = null, Dto.PagamentoUnificatoDto pagamentoUnificato=null)
         {
             try
             {
@@ -1956,26 +1956,7 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.PagamentoUnificatoFatturaAcquistoDto> LoadPagamentiUnificatiFatturaAcquistoPagamentoUnificato(int skip, int take, string search, Dto.PagamentoUnificatoDto pagamentoUnificato)
-        {
-            try
-            {
-                var pagamentiUnificatiFatturaAcquisto = QueryPagamentiUnificatiFatturaAcquisto(search);
-                pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto where q.PagamentoUnificatoId == pagamentoUnificato.Id select q);
-                pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto select q).Skip(skip).Take(take);
-
-                var pagamentiUnificatiFatturaAcquistoDto = UtilityPOCO.Assemble<Dto.PagamentoUnificatoFatturaAcquistoDto>(pagamentiUnificatiFatturaAcquisto);
-                return pagamentiUnificatiFatturaAcquistoDto;
-
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        public int CountPagamentiUnificatiFatturaAcquisto(string search = null)
+        public int CountPagamentiUnificatiFatturaAcquisto(string search = null, Dto.PagamentoUnificatoDto pagamentoUnificato = null)
         {
             try
             {
@@ -1989,22 +1970,6 @@ namespace WcfService
             }
             return 0;
         }
-        public int CountPagamentiUnificatiFatturaAcquistoPagamentoUnificato(string search, Dto.PagamentoUnificatoDto pagamentoUnificato)
-        {
-            try
-            {
-                var pagamentiUnificatiFatturaAcquisto = QueryPagamentiUnificatiFatturaAcquisto(search);
-                pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto where q.PagamentoUnificatoId == pagamentoUnificato.Id select q);
-                var count = pagamentiUnificatiFatturaAcquisto.Count();
-                return count;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-
 
 
         public Dto.PagamentoUnificatoFatturaAcquistoDto ReadPagamentoUnificatoFatturaAcquisto(object id)
@@ -2023,12 +1988,15 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.PagamentoUnificatoFatturaAcquisto> QueryPagamentiUnificatiFatturaAcquisto(string search)
+        private IQueryable<DataLayer.PagamentoUnificatoFatturaAcquisto> QueryPagamentiUnificatiFatturaAcquisto(string search=null, Dto.PagamentoUnificatoDto pagamentoUnificato=null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var pagamentiUnificatiFatturaAcquisto = (from q in ef.PagamentoUnificatoFatturaAcquistos select q);
+                if(pagamentoUnificato!=null)
+                    pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto where q.PagamentoUnificatoId == pagamentoUnificato.Id select q);
+
                 if (search != null && search.Length > 0)
                 {
                     var fatturaAcquistoId = (from q in QueryFattureAcquisto(search) select q.Id).ToList();

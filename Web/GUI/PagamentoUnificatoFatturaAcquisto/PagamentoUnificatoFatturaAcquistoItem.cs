@@ -30,7 +30,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                     var fatturaAcquisto = obj.FatturaAcquisto;
                     var pagamentoUnificato = obj.PagamentoUnificato;
                     infoImage.Image = "Images.dashboard.pagamentounificatofatturaacquisto.png";
-                    infoCodice.Text = "PU/FA";
+                    infoCodice.Text = "PU/FA-"+ fatturaAcquisto.Numero;
                     infoNote.Text = obj.Note;
                     infoImporto.Text = "Importo: " + saldo;
                     infoPagamento.Text="Pagamento: " + pagamentoUnificato.Codice  + " - Fattura: " + fatturaAcquisto.Numero;

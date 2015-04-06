@@ -382,10 +382,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.PagamentoUnificatoFatturaAcquistoDto> LoadPagamentiUnificatiFatturaAcquisto(int skip, int take, string search = null);
+        IEnumerable<Dto.PagamentoUnificatoFatturaAcquistoDto> LoadPagamentiUnificatiFatturaAcquisto(int skip, int take, string search = null, Dto.PagamentoUnificatoDto pagamentoUnificato = null);
 
         [OperationContract]
-        int CountPagamentiUnificatiFatturaAcquisto(string search = null);
+        int CountPagamentiUnificatiFatturaAcquisto(string search = null, Dto.PagamentoUnificatoDto pagamentoUnificato = null);
 
         [OperationContract]
         Dto.PagamentoUnificatoFatturaAcquistoDto ReadPagamentoUnificatoFatturaAcquisto(object id);
