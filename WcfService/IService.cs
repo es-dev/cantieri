@@ -322,22 +322,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.ResoDto> LoadResi(int skip, int take, string search = null);
+        IEnumerable<Dto.ResoDto> LoadResi(int skip, int take, string search = null, Dto.NotaCreditoDto notaCredito = null, Dto.FatturaAcquistoDto fatturaAcquisto=null);
 
         [OperationContract]
-        int CountResi(string search = null);
-
-        [OperationContract]
-        IEnumerable<Dto.ResoDto> LoadResiNotaCredito(int skip, int take, Dto.NotaCreditoDto notaCredito, string search = null);
-
-        [OperationContract]
-        int CountResiNotaCredito(Dto.NotaCreditoDto notaCredito, string search = null);
-
-        [OperationContract]
-        IEnumerable<Dto.ResoDto> LoadResiFatturaAcquisto(int skip, int take, Dto.FatturaAcquistoDto fatturaAcquisto, string search);
-
-        [OperationContract]
-        int CountResiFatturaAcquisto(Dto.FatturaAcquistoDto fatturaAcquisto, string search = null);
+        int CountResi(string search = null, Dto.NotaCreditoDto notaCredito = null, Dto.FatturaAcquistoDto fatturaAcquisto = null);
 
         [OperationContract]
         Dto.ResoDto ReadReso(object id);

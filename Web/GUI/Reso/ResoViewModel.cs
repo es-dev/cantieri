@@ -56,14 +56,7 @@ namespace Web.GUI.Reso
             try
             {
                 var wcf = new WcfService.Service();
-                IEnumerable<ResoDto> objs = null;
-                if (notaCredito == null && fatturaAcquisto == null)
-                    objs = wcf.LoadResi(skip, take, search);
-                else if (notaCredito != null)
-                    objs = wcf.LoadResiNotaCredito(skip, take, notaCredito, search);
-                else if (fatturaAcquisto != null)
-                    objs = wcf.LoadResiFatturaAcquisto(skip, take, fatturaAcquisto, search);
-
+                var objs = wcf.LoadResi(skip, take, search, notaCredito, fatturaAcquisto);
                 Load(objs);
             }
             catch (Exception ex)
@@ -77,13 +70,7 @@ namespace Web.GUI.Reso
             try
             {
                 var wcf = new WcfService.Service();
-                var count = 0;
-                if (notaCredito == null && fatturaAcquisto == null)
-                    count = wcf.CountResi(search);
-                else if (notaCredito != null)
-                    count = wcf.CountResiNotaCredito(notaCredito, search);
-                else if (fatturaAcquisto != null)
-                    count = wcf.CountResiFatturaAcquisto(fatturaAcquisto, search);
+                var count = wcf.CountResi(search, notaCredito, fatturaAcquisto);
                 return count;
             }
             catch (Exception ex)

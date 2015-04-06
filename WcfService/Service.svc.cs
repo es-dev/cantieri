@@ -1621,11 +1621,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.ResoDto> LoadResi(int skip, int take, string search = null)
+        public IEnumerable<Dto.ResoDto> LoadResi(int skip, int take, string search = null, Dto.NotaCreditoDto notaCredito = null, Dto.FatturaAcquistoDto fatturaAcquisto=null)
         {
             try
             {
-                var reso = QueryResi(search);
+                var reso = QueryResi(search, notaCredito, fatturaAcquisto);
                 reso = (from q in reso select q).Skip(skip).Take(take);
 
                 var resiDto = UtilityPOCO.Assemble<Dto.ResoDto>(reso);
@@ -1638,47 +1638,11 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.ResoDto> LoadResiNotaCredito(int skip, int take, Dto.NotaCreditoDto notaCredito, string search)
+        public int CountResi(string search = null, Dto.NotaCreditoDto notaCredito = null, Dto.FatturaAcquistoDto fatturaAcquisto = null)
         {
             try
             {
-                var resi = QueryResi(search);
-                resi = (from q in resi where q.NotaCreditoId == notaCredito.Id select q);
-                resi = (from q in resi select q).Skip(skip).Take(take);
-
-                var resiDto = UtilityPOCO.Assemble<Dto.ResoDto>(resi);
-                return resiDto;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        public IEnumerable<Dto.ResoDto> LoadResiFatturaAcquisto(int skip, int take, Dto.FatturaAcquistoDto fatturaAcquisto, string search)
-        {
-            try
-            {
-                var resi = QueryResi(search);
-                resi = (from q in resi where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
-                resi = (from q in resi select q).Skip(skip).Take(take);
-
-                var resiDto = UtilityPOCO.Assemble<Dto.ResoDto>(resi);
-                return resiDto;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        public int CountResi(string search = null)
-        {
-            try
-            {
-                var resi = QueryResi(search);
+                var resi = QueryResi(search, notaCredito, fatturaAcquisto);
                 var count = resi.Count();
                 return count;
             }
@@ -1688,37 +1652,6 @@ namespace WcfService
             }
             return 0;
         }
-        public int CountResiNotaCredito(Dto.NotaCreditoDto notaCredito, string search = null)
-        {
-            try
-            {
-                var resi = QueryResi(search);
-                resi = (from q in resi where q.NotaCreditoId == notaCredito.Id select q);
-                var count = resi.Count();
-                return count;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-        public int CountResiFatturaAcquisto(Dto.FatturaAcquistoDto fatturaAcquisto, string search = null)
-        {
-            try
-            {
-                var resi = QueryResi(search);
-                resi = (from q in resi where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
-                var count = resi.Count();
-                return count;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-
 
         public Dto.ResoDto ReadReso(object id)
         {
@@ -1736,12 +1669,18 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Reso> QueryResi(string search)
+        private IQueryable<DataLayer.Reso> QueryResi(string search=null, Dto.NotaCreditoDto notaCredito=null, Dto.FatturaAcquistoDto fatturaAcquisto=null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var resi = (from q in ef.Resos select q);
+                if(notaCredito!=null)
+                    resi = (from q in resi where q.NotaCreditoId == notaCredito.Id select q);
+
+                if(fatturaAcquisto!=null)
+                    resi = (from q in resi where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
+
                 if (search != null && search.Length > 0)
                 {
                     var notaCreditoId = (from q in QueryNoteCredito(search) select q.Id).ToList();
