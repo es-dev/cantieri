@@ -110,6 +110,7 @@ namespace Web.GUI.Committente
             this.panelCommands.Controls.Add(this.btnFattureVendita);
             this.panelCommands.Controls.Add(this.btnCalcoloTotali);
             this.panelCommands.Size = new System.Drawing.Size(101, 815);
+            this.panelCommands.Controls.SetChildIndex(this.btnHome, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
@@ -208,7 +209,7 @@ namespace Web.GUI.Committente
             this.editCAP.Location = new System.Drawing.Point(25, 227);
             this.editCAP.Name = "editCAP";
             this.editCAP.ReadOnly = false;
-            this.editCAP.Required = false;
+            this.editCAP.Required = true;
             this.editCAP.Size = new System.Drawing.Size(796, 30);
             this.editCAP.TabIndex = 4;
             this.editCAP.Text = "EditControl";
@@ -230,7 +231,7 @@ namespace Web.GUI.Committente
             this.editIndirizzo.Location = new System.Drawing.Point(25, 189);
             this.editIndirizzo.Name = "editIndirizzo";
             this.editIndirizzo.ReadOnly = false;
-            this.editIndirizzo.Required = false;
+            this.editIndirizzo.Required = true;
             this.editIndirizzo.Size = new System.Drawing.Size(796, 30);
             this.editIndirizzo.TabIndex = 3;
             this.editIndirizzo.Text = "EditControl";
@@ -252,7 +253,7 @@ namespace Web.GUI.Committente
             this.editRagioneSociale.Location = new System.Drawing.Point(25, 151);
             this.editRagioneSociale.Name = "editRagioneSociale";
             this.editRagioneSociale.ReadOnly = false;
-            this.editRagioneSociale.Required = false;
+            this.editRagioneSociale.Required = true;
             this.editRagioneSociale.Size = new System.Drawing.Size(796, 30);
             this.editRagioneSociale.TabIndex = 2;
             this.editRagioneSociale.Text = "EditControl";
@@ -275,7 +276,7 @@ namespace Web.GUI.Committente
             this.editCommessa.Model = null;
             this.editCommessa.Name = "editCommessa";
             this.editCommessa.ReadOnly = false;
-            this.editCommessa.Required = false;
+            this.editCommessa.Required = true;
             this.editCommessa.Size = new System.Drawing.Size(798, 30);
             this.editCommessa.TabIndex = 0;
             this.editCommessa.Text = "EditControl";
@@ -300,7 +301,7 @@ namespace Web.GUI.Committente
             this.editCodiceCommittente.Model = null;
             this.editCodiceCommittente.Name = "editCodiceCommittente";
             this.editCodiceCommittente.ReadOnly = false;
-            this.editCodiceCommittente.Required = false;
+            this.editCodiceCommittente.Required = true;
             this.editCodiceCommittente.Size = new System.Drawing.Size(796, 30);
             this.editCodiceCommittente.TabIndex = 1;
             this.editCodiceCommittente.Text = "EditControl";
@@ -346,7 +347,7 @@ namespace Web.GUI.Committente
             this.editPartitaIVA.Location = new System.Drawing.Point(25, 493);
             this.editPartitaIVA.Name = "editPartitaIVA";
             this.editPartitaIVA.ReadOnly = false;
-            this.editPartitaIVA.Required = false;
+            this.editPartitaIVA.Required = true;
             this.editPartitaIVA.Size = new System.Drawing.Size(796, 30);
             this.editPartitaIVA.TabIndex = 11;
             this.editPartitaIVA.Text = "TemplateEditPartitaIva";
@@ -368,7 +369,7 @@ namespace Web.GUI.Committente
             this.editComune.Location = new System.Drawing.Point(25, 265);
             this.editComune.Name = "editComune";
             this.editComune.ReadOnly = false;
-            this.editComune.Required = false;
+            this.editComune.Required = true;
             this.editComune.Size = new System.Drawing.Size(796, 30);
             this.editComune.TabIndex = 5;
             this.editComune.Text = "EditControl";

@@ -28,12 +28,15 @@ namespace Web.GUI.Account
                     var creazione = UtilityValidation.GetDataND(obj.Creazione);
                     var nickname = UtilityValidation.GetStringND(obj.Nickname);
                     var ruolo = UtilityValidation.GetStringND(obj.Ruolo);
+                    var abilitato = UtilityValidation.GetBoolean(obj.Abilitato);
 
                     infoCodice.Text = "ACC-" + obj.Id;
                     infoImage.Image = "Images.dashboard.account.png";
                     infoNickname.Text = nickname;
-                    infoCreazione.Text = creazione;
+                    infoCreazione.Text = "Creato il "+ creazione;
                     infoRuolo.Text = ruolo;
+                    infoAbilitato.Text = (abilitato?"Abilitato":"Non abilitato");
+                    infoAbilitato.ForeColor = (abilitato ? Color.Blue : Color.Gray);
                 }
             }
             catch (Exception ex)

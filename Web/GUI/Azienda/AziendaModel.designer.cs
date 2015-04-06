@@ -100,7 +100,7 @@ namespace Web.GUI.Azienda
             this.editRagioneSociale.Location = new System.Drawing.Point(25, 118);
             this.editRagioneSociale.Name = "editRagioneSociale";
             this.editRagioneSociale.ReadOnly = false;
-            this.editRagioneSociale.Required = false;
+            this.editRagioneSociale.Required = true;
             this.editRagioneSociale.Size = new System.Drawing.Size(813, 30);
             this.editRagioneSociale.TabIndex = 1;
             this.editRagioneSociale.Text = "EditControl";
@@ -122,7 +122,7 @@ namespace Web.GUI.Azienda
             this.editIndirizzo.Location = new System.Drawing.Point(25, 161);
             this.editIndirizzo.Name = "editIndirizzo";
             this.editIndirizzo.ReadOnly = false;
-            this.editIndirizzo.Required = false;
+            this.editIndirizzo.Required = true;
             this.editIndirizzo.Size = new System.Drawing.Size(813, 30);
             this.editIndirizzo.TabIndex = 2;
             this.editIndirizzo.Text = "EditControl";
@@ -144,7 +144,7 @@ namespace Web.GUI.Azienda
             this.editCAP.Location = new System.Drawing.Point(25, 204);
             this.editCAP.Name = "editCAP";
             this.editCAP.ReadOnly = false;
-            this.editCAP.Required = false;
+            this.editCAP.Required = true;
             this.editCAP.Size = new System.Drawing.Size(813, 30);
             this.editCAP.TabIndex = 3;
             this.editCAP.Text = "EditControl";
@@ -254,7 +254,7 @@ namespace Web.GUI.Azienda
             this.editPartitaIVA.Location = new System.Drawing.Point(25, 462);
             this.editPartitaIVA.Name = "editPartitaIVA";
             this.editPartitaIVA.ReadOnly = false;
-            this.editPartitaIVA.Required = false;
+            this.editPartitaIVA.Required = true;
             this.editPartitaIVA.Size = new System.Drawing.Size(813, 30);
             this.editPartitaIVA.TabIndex = 9;
             this.editPartitaIVA.Text = "TemplateEditPartitaIva";
@@ -276,7 +276,7 @@ namespace Web.GUI.Azienda
             this.editCodice.Location = new System.Drawing.Point(25, 75);
             this.editCodice.Name = "templateEditText1";
             this.editCodice.ReadOnly = false;
-            this.editCodice.Required = false;
+            this.editCodice.Required = true;
             this.editCodice.Size = new System.Drawing.Size(815, 30);
             this.editCodice.TabIndex = 0;
             this.editCodice.Text = "EditControl";
@@ -298,7 +298,7 @@ namespace Web.GUI.Azienda
             this.editComune.Location = new System.Drawing.Point(25, 247);
             this.editComune.Name = "editComune";
             this.editComune.ReadOnly = false;
-            this.editComune.Required = false;
+            this.editComune.Required = true;
             this.editComune.Size = new System.Drawing.Size(813, 30);
             this.editComune.TabIndex = 4;
             this.editComune.Text = "EditControl";

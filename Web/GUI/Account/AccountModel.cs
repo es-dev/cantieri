@@ -10,6 +10,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using Web.Code;
+using WcfService.Dto;
 
 namespace Web.GUI.Account
 {
@@ -63,7 +64,7 @@ namespace Web.GUI.Account
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.AccountDto)model;
+                    var obj = (AccountDto)model;
                     editUsername.Value = obj.Username;
                     editNickname.Value = obj.Nickname;
                     editRuolo.Value = obj.Ruolo;
@@ -108,7 +109,9 @@ namespace Web.GUI.Account
                     obj.Password = editPassword.Value;
                     obj.Abilitato = editAbilitato.Value;
                     obj.Note = editNote.Value;
-                    obj.Creazione = editCreazione.Value;
+                    if(obj.Creazione==null)
+                        obj.Creazione = editCreazione.Value;
+
                     var azienda = (WcfService.Dto.AziendaDto)editAzienda.Model;
                     if (azienda != null)
                         obj.AziendaId = azienda.Id;
@@ -141,6 +144,34 @@ namespace Web.GUI.Account
                 var azienda = (WcfService.Dto.AziendaDto)model;
                 if (azienda != null)
                     editAzienda.Value = azienda.RagioneSociale;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void AccountModel_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (AccountDto)Model;
+                if (obj != null && obj.Id == 0)
+                    SetNewValue();
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void SetNewValue()
+        {
+            try
+            {
+                editCreazione.Value = DateTime.Now;
+                editAbilitato.Value = true;
             }
             catch (Exception ex)
             {

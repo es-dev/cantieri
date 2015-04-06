@@ -84,6 +84,7 @@ namespace Web.GUI.NotaCredito
             // 
             this.panelCommands.Controls.Add(this.btnResi);
             this.panelCommands.Controls.Add(this.btnCalcoloTotali);
+            this.panelCommands.Controls.SetChildIndex(this.btnHome, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
@@ -108,7 +109,7 @@ namespace Web.GUI.NotaCredito
             this.editFornitore.Model = null;
             this.editFornitore.Name = "editFornitore";
             this.editFornitore.ReadOnly = false;
-            this.editFornitore.Required = false;
+            this.editFornitore.Required = true;
             this.editFornitore.Size = new System.Drawing.Size(800, 30);
             this.editFornitore.TabIndex = 0;
             this.editFornitore.Text = "EditControl";
@@ -132,7 +133,7 @@ namespace Web.GUI.NotaCredito
             this.editData.Location = new System.Drawing.Point(25, 157);
             this.editData.Name = "editData";
             this.editData.ReadOnly = false;
-            this.editData.Required = false;
+            this.editData.Required = true;
             this.editData.Size = new System.Drawing.Size(798, 30);
             this.editData.TabIndex = 2;
             this.editData.Text = "EditControl";
@@ -176,7 +177,7 @@ namespace Web.GUI.NotaCredito
             this.editNumero.Location = new System.Drawing.Point(25, 116);
             this.editNumero.Name = "editNumero";
             this.editNumero.ReadOnly = false;
-            this.editNumero.Required = false;
+            this.editNumero.Required = true;
             this.editNumero.Size = new System.Drawing.Size(798, 30);
             this.editNumero.TabIndex = 1;
             this.editNumero.Text = "EditControl";

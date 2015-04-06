@@ -77,7 +77,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             this.editFatturaAcquisto.Model = null;
             this.editFatturaAcquisto.Name = "editFatturaAcquisto";
             this.editFatturaAcquisto.ReadOnly = false;
-            this.editFatturaAcquisto.Required = false;
+            this.editFatturaAcquisto.Required = true;
             this.editFatturaAcquisto.Size = new System.Drawing.Size(798, 30);
             this.editFatturaAcquisto.TabIndex = 1;
             this.editFatturaAcquisto.Text = "EditControl";
@@ -96,12 +96,12 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             this.editSaldo.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editSaldo.Changed = true;
             this.editSaldo.Editing = false;
-            this.editSaldo.Label = "Saldo";
+            this.editSaldo.Label = "Importo";
             this.editSaldo.LabelWidth = 175;
             this.editSaldo.Location = new System.Drawing.Point(25, 163);
             this.editSaldo.Name = "editSaldo";
             this.editSaldo.ReadOnly = false;
-            this.editSaldo.Required = false;
+            this.editSaldo.Required = true;
             this.editSaldo.Size = new System.Drawing.Size(798, 30);
             this.editSaldo.TabIndex = 2;
             this.editSaldo.Text = "TemplateEditNumeric";
@@ -146,7 +146,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             this.editPagamentoUnificato.Model = null;
             this.editPagamentoUnificato.Name = "editPagamentoUnificato";
             this.editPagamentoUnificato.ReadOnly = false;
-            this.editPagamentoUnificato.Required = false;
+            this.editPagamentoUnificato.Required = true;
             this.editPagamentoUnificato.Size = new System.Drawing.Size(800, 30);
             this.editPagamentoUnificato.TabIndex = 0;
             this.editPagamentoUnificato.Text = "EditControl";

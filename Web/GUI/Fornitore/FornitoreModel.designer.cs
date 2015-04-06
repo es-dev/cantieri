@@ -114,6 +114,7 @@ namespace Web.GUI.Fornitore
             this.panelCommands.Controls.Add(this.btnFattureAcquisto);
             this.panelCommands.Controls.Add(this.btnCalcoloTotali);
             this.panelCommands.Size = new System.Drawing.Size(101, 799);
+            this.panelCommands.Controls.SetChildIndex(this.btnHome, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
@@ -144,7 +145,7 @@ namespace Web.GUI.Fornitore
             this.editCommessa.Model = null;
             this.editCommessa.Name = "editCommessa";
             this.editCommessa.ReadOnly = false;
-            this.editCommessa.Required = false;
+            this.editCommessa.Required = true;
             this.editCommessa.Size = new System.Drawing.Size(815, 30);
             this.editCommessa.TabIndex = 0;
             this.editCommessa.Text = "EditControl";
@@ -168,7 +169,7 @@ namespace Web.GUI.Fornitore
             this.editRagioneSociale.Location = new System.Drawing.Point(20, 139);
             this.editRagioneSociale.Name = "editRagioneSociale";
             this.editRagioneSociale.ReadOnly = false;
-            this.editRagioneSociale.Required = false;
+            this.editRagioneSociale.Required = true;
             this.editRagioneSociale.Size = new System.Drawing.Size(813, 30);
             this.editRagioneSociale.TabIndex = 2;
             this.editRagioneSociale.Text = "EditControl";
@@ -190,7 +191,7 @@ namespace Web.GUI.Fornitore
             this.editIndirizzo.Location = new System.Drawing.Point(20, 176);
             this.editIndirizzo.Name = "editIndirizzo";
             this.editIndirizzo.ReadOnly = false;
-            this.editIndirizzo.Required = false;
+            this.editIndirizzo.Required = true;
             this.editIndirizzo.Size = new System.Drawing.Size(813, 30);
             this.editIndirizzo.TabIndex = 3;
             this.editIndirizzo.Text = "EditControl";
@@ -212,7 +213,7 @@ namespace Web.GUI.Fornitore
             this.editCAP.Location = new System.Drawing.Point(20, 213);
             this.editCAP.Name = "editCAP";
             this.editCAP.ReadOnly = false;
-            this.editCAP.Required = false;
+            this.editCAP.Required = true;
             this.editCAP.Size = new System.Drawing.Size(813, 30);
             this.editCAP.TabIndex = 4;
             this.editCAP.Text = "EditControl";
@@ -301,7 +302,7 @@ namespace Web.GUI.Fornitore
             this.editCodiceFornitore.Model = null;
             this.editCodiceFornitore.Name = "editCodiceFornitore";
             this.editCodiceFornitore.ReadOnly = false;
-            this.editCodiceFornitore.Required = false;
+            this.editCodiceFornitore.Required = true;
             this.editCodiceFornitore.Size = new System.Drawing.Size(813, 30);
             this.editCodiceFornitore.TabIndex = 1;
             this.editCodiceFornitore.Text = "EditControl";
@@ -347,7 +348,7 @@ namespace Web.GUI.Fornitore
             this.editPartitaIVA.Location = new System.Drawing.Point(20, 472);
             this.editPartitaIVA.Name = "editPartitaIVA";
             this.editPartitaIVA.ReadOnly = false;
-            this.editPartitaIVA.Required = false;
+            this.editPartitaIVA.Required = true;
             this.editPartitaIVA.Size = new System.Drawing.Size(813, 30);
             this.editPartitaIVA.TabIndex = 11;
             this.editPartitaIVA.Text = "TemplateEditPartitaIva";
@@ -369,7 +370,7 @@ namespace Web.GUI.Fornitore
             this.editComune.Location = new System.Drawing.Point(20, 250);
             this.editComune.Name = "editComune";
             this.editComune.ReadOnly = false;
-            this.editComune.Required = false;
+            this.editComune.Required = true;
             this.editComune.Size = new System.Drawing.Size(813, 30);
             this.editComune.TabIndex = 5;
             this.editComune.Text = "EditControl";

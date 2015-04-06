@@ -102,7 +102,7 @@ namespace Web.GUI.ReportJob
             this.editDenominazione.Location = new System.Drawing.Point(26, 209);
             this.editDenominazione.Name = "editDenominazione";
             this.editDenominazione.ReadOnly = false;
-            this.editDenominazione.Required = false;
+            this.editDenominazione.Required = true;
             this.editDenominazione.Size = new System.Drawing.Size(794, 30);
             this.editDenominazione.TabIndex = 3;
             this.editDenominazione.Text = "EditControl";
@@ -125,7 +125,7 @@ namespace Web.GUI.ReportJob
             this.editFornitore.Model = null;
             this.editFornitore.Name = "editFornitore";
             this.editFornitore.ReadOnly = false;
-            this.editFornitore.Required = false;
+            this.editFornitore.Required = true;
             this.editFornitore.Size = new System.Drawing.Size(794, 30);
             this.editFornitore.TabIndex = 4;
             this.editFornitore.Value = null;
@@ -150,7 +150,7 @@ namespace Web.GUI.ReportJob
             this.editTipoReport.Location = new System.Drawing.Point(26, 121);
             this.editTipoReport.Name = "editTipoReport";
             this.editTipoReport.ReadOnly = false;
-            this.editTipoReport.Required = false;
+            this.editTipoReport.Required = true;
             this.editTipoReport.Size = new System.Drawing.Size(794, 30);
             this.editTipoReport.TabIndex = 1;
             this.editTipoReport.Value = null;
@@ -213,7 +213,7 @@ namespace Web.GUI.ReportJob
             this.editElaborazione.Location = new System.Drawing.Point(26, 341);
             this.editElaborazione.Name = "editElaborazione";
             this.editElaborazione.ReadOnly = false;
-            this.editElaborazione.Required = false;
+            this.editElaborazione.Required = true;
             this.editElaborazione.Size = new System.Drawing.Size(794, 30);
             this.editElaborazione.TabIndex = 6;
             this.editElaborazione.Value = null;
@@ -234,7 +234,7 @@ namespace Web.GUI.ReportJob
             this.editCodice.Location = new System.Drawing.Point(26, 165);
             this.editCodice.Name = "editCodice";
             this.editCodice.ReadOnly = false;
-            this.editCodice.Required = false;
+            this.editCodice.Required = true;
             this.editCodice.Size = new System.Drawing.Size(794, 30);
             this.editCodice.TabIndex = 2;
             this.editCodice.Value = null;

@@ -98,7 +98,7 @@ namespace Web.GUI.Articolo
             this.editFatturaAcquisto.Model = null;
             this.editFatturaAcquisto.Name = "editFatturaAcquisto";
             this.editFatturaAcquisto.ReadOnly = false;
-            this.editFatturaAcquisto.Required = false;
+            this.editFatturaAcquisto.Required = true;
             this.editFatturaAcquisto.Size = new System.Drawing.Size(798, 30);
             this.editFatturaAcquisto.TabIndex = 0;
             this.editFatturaAcquisto.Text = "EditControl";
@@ -122,7 +122,7 @@ namespace Web.GUI.Articolo
             this.editDescrizione.Location = new System.Drawing.Point(25, 159);
             this.editDescrizione.Name = "editDescrizione";
             this.editDescrizione.ReadOnly = false;
-            this.editDescrizione.Required = false;
+            this.editDescrizione.Required = true;
             this.editDescrizione.Size = new System.Drawing.Size(796, 30);
             this.editDescrizione.TabIndex = 2;
             this.editDescrizione.Text = "EditControl";
@@ -259,7 +259,7 @@ namespace Web.GUI.Articolo
             this.editCodice.Model = null;
             this.editCodice.Name = "editCodice";
             this.editCodice.ReadOnly = false;
-            this.editCodice.Required = false;
+            this.editCodice.Required = true;
             this.editCodice.Size = new System.Drawing.Size(796, 30);
             this.editCodice.TabIndex = 1;
             this.editCodice.Text = "EditControl";
@@ -283,7 +283,7 @@ namespace Web.GUI.Articolo
             this.editPrezzounitario.Location = new System.Drawing.Point(25, 243);
             this.editPrezzounitario.Name = "editPrezzounitario";
             this.editPrezzounitario.ReadOnly = false;
-            this.editPrezzounitario.Required = false;
+            this.editPrezzounitario.Required = true;
             this.editPrezzounitario.Size = new System.Drawing.Size(796, 30);
             this.editPrezzounitario.TabIndex = 4;
             this.editPrezzounitario.Text = "EditControl";
@@ -306,7 +306,7 @@ namespace Web.GUI.Articolo
             this.editQuantita.Location = new System.Drawing.Point(25, 201);
             this.editQuantita.Name = "editQuantita";
             this.editQuantita.ReadOnly = false;
-            this.editQuantita.Required = false;
+            this.editQuantita.Required = true;
             this.editQuantita.Size = new System.Drawing.Size(796, 30);
             this.editQuantita.TabIndex = 3;
             this.editQuantita.Text = "EditControl";

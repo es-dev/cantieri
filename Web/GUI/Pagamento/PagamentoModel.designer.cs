@@ -89,8 +89,8 @@ namespace Web.GUI.Pagamento
             this.editFatturaAcquisto.Model = null;
             this.editFatturaAcquisto.Name = "editFatturaAcquisto";
             this.editFatturaAcquisto.ReadOnly = false;
-            this.editFatturaAcquisto.Required = false;
-            this.editFatturaAcquisto.Size = new System.Drawing.Size(800, 30);
+            this.editFatturaAcquisto.Required = true;
+            this.editFatturaAcquisto.Size = new System.Drawing.Size(796, 30);
             this.editFatturaAcquisto.TabIndex = 0;
             this.editFatturaAcquisto.Text = "EditControl";
             this.editFatturaAcquisto.Value = null;
@@ -110,12 +110,12 @@ namespace Web.GUI.Pagamento
             this.editData.Editing = false;
             this.editData.Label = "Data";
             this.editData.LabelWidth = 175;
-            this.editData.Location = new System.Drawing.Point(25, 161);
+            this.editData.Location = new System.Drawing.Point(25, 201);
             this.editData.Name = "editData";
             this.editData.ReadOnly = false;
-            this.editData.Required = false;
-            this.editData.Size = new System.Drawing.Size(798, 30);
-            this.editData.TabIndex = 2;
+            this.editData.Required = true;
+            this.editData.Size = new System.Drawing.Size(796, 30);
+            this.editData.TabIndex = 3;
             this.editData.Text = "EditControl";
             this.editData.Value = null;
             // 
@@ -132,12 +132,12 @@ namespace Web.GUI.Pagamento
             this.editImporto.Editing = false;
             this.editImporto.Label = "Importo";
             this.editImporto.LabelWidth = 175;
-            this.editImporto.Location = new System.Drawing.Point(25, 204);
+            this.editImporto.Location = new System.Drawing.Point(25, 243);
             this.editImporto.Name = "editImporto";
             this.editImporto.ReadOnly = false;
-            this.editImporto.Required = false;
-            this.editImporto.Size = new System.Drawing.Size(798, 30);
-            this.editImporto.TabIndex = 3;
+            this.editImporto.Required = true;
+            this.editImporto.Size = new System.Drawing.Size(796, 30);
+            this.editImporto.TabIndex = 4;
             this.editImporto.Text = "TemplateEditNumeric";
             this.editImporto.Value = null;
             // 
@@ -154,12 +154,12 @@ namespace Web.GUI.Pagamento
             this.editNote.Editing = false;
             this.editNote.Label = "Note";
             this.editNote.LabelWidth = 175;
-            this.editNote.Location = new System.Drawing.Point(25, 333);
+            this.editNote.Location = new System.Drawing.Point(25, 369);
             this.editNote.Name = "editNote";
             this.editNote.ReadOnly = false;
             this.editNote.Required = false;
-            this.editNote.Size = new System.Drawing.Size(798, 30);
-            this.editNote.TabIndex = 6;
+            this.editNote.Size = new System.Drawing.Size(796, 30);
+            this.editNote.TabIndex = 7;
             this.editNote.Text = "EditControl";
             this.editNote.Value = null;
             // 
@@ -176,12 +176,12 @@ namespace Web.GUI.Pagamento
             this.editCodice.Editing = false;
             this.editCodice.Label = "Codice";
             this.editCodice.LabelWidth = 175;
-            this.editCodice.Location = new System.Drawing.Point(25, 118);
+            this.editCodice.Location = new System.Drawing.Point(25, 159);
             this.editCodice.Name = "editCodice";
             this.editCodice.ReadOnly = false;
-            this.editCodice.Required = false;
-            this.editCodice.Size = new System.Drawing.Size(798, 30);
-            this.editCodice.TabIndex = 1;
+            this.editCodice.Required = true;
+            this.editCodice.Size = new System.Drawing.Size(796, 30);
+            this.editCodice.TabIndex = 2;
             this.editCodice.Text = "EditControl";
             this.editCodice.Value = null;
             // 
@@ -200,12 +200,12 @@ namespace Web.GUI.Pagamento
             this.editTipoPagamento.Items = null;
             this.editTipoPagamento.Label = "Tipo pagamento";
             this.editTipoPagamento.LabelWidth = 175;
-            this.editTipoPagamento.Location = new System.Drawing.Point(25, 247);
+            this.editTipoPagamento.Location = new System.Drawing.Point(25, 285);
             this.editTipoPagamento.Name = "editTipoPagamento";
             this.editTipoPagamento.ReadOnly = false;
-            this.editTipoPagamento.Required = false;
-            this.editTipoPagamento.Size = new System.Drawing.Size(798, 30);
-            this.editTipoPagamento.TabIndex = 4;
+            this.editTipoPagamento.Required = true;
+            this.editTipoPagamento.Size = new System.Drawing.Size(796, 30);
+            this.editTipoPagamento.TabIndex = 5;
             this.editTipoPagamento.Text = "EditControl";
             this.editTipoPagamento.Value = null;
             // 
@@ -222,12 +222,12 @@ namespace Web.GUI.Pagamento
             this.editDescrizione.Editing = false;
             this.editDescrizione.Label = "Descrizione";
             this.editDescrizione.LabelWidth = 175;
-            this.editDescrizione.Location = new System.Drawing.Point(25, 290);
+            this.editDescrizione.Location = new System.Drawing.Point(25, 327);
             this.editDescrizione.Name = "editDescrizione";
             this.editDescrizione.ReadOnly = false;
             this.editDescrizione.Required = false;
-            this.editDescrizione.Size = new System.Drawing.Size(798, 30);
-            this.editDescrizione.TabIndex = 5;
+            this.editDescrizione.Size = new System.Drawing.Size(796, 30);
+            this.editDescrizione.TabIndex = 6;
             this.editDescrizione.Text = "EditControl";
             this.editDescrizione.Value = null;
             // 
@@ -244,14 +244,14 @@ namespace Web.GUI.Pagamento
             this.editTransazionePagamento.DisplayValues = null;
             this.editTransazionePagamento.Editing = false;
             this.editTransazionePagamento.Items = null;
-            this.editTransazionePagamento.Label = "Transazione pagamento";
+            this.editTransazionePagamento.Label = "Tipo transazione";
             this.editTransazionePagamento.LabelWidth = 175;
-            this.editTransazionePagamento.Location = new System.Drawing.Point(25, 379);
+            this.editTransazionePagamento.Location = new System.Drawing.Point(25, 117);
             this.editTransazionePagamento.Name = "editTransazionePagamento";
             this.editTransazionePagamento.ReadOnly = false;
-            this.editTransazionePagamento.Required = false;
+            this.editTransazionePagamento.Required = true;
             this.editTransazionePagamento.Size = new System.Drawing.Size(798, 30);
-            this.editTransazionePagamento.TabIndex = 4;
+            this.editTransazionePagamento.TabIndex = 1;
             this.editTransazionePagamento.Text = "EditControl";
             this.editTransazionePagamento.Value = null;
             // 

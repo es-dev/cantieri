@@ -88,7 +88,7 @@ namespace Web.GUI.Account
             this.editUsername.Location = new System.Drawing.Point(25, 122);
             this.editUsername.Name = "editUsername";
             this.editUsername.ReadOnly = false;
-            this.editUsername.Required = false;
+            this.editUsername.Required = true;
             this.editUsername.Size = new System.Drawing.Size(792, 30);
             this.editUsername.TabIndex = 1;
             this.editUsername.Text = "EditControl";
@@ -133,7 +133,7 @@ namespace Web.GUI.Account
             this.editAzienda.Model = null;
             this.editAzienda.Name = "editAzienda";
             this.editAzienda.ReadOnly = false;
-            this.editAzienda.Required = false;
+            this.editAzienda.Required = true;
             this.editAzienda.Size = new System.Drawing.Size(794, 30);
             this.editAzienda.TabIndex = 0;
             this.editAzienda.Text = "EditControl";
@@ -183,6 +183,7 @@ namespace Web.GUI.Account
             this.editAbilitato.TabIndex = 7;
             this.editAbilitato.TextFalse = "No";
             this.editAbilitato.TextTrue = "Si";
+            this.editAbilitato.TrueWidth = 104;
             this.editAbilitato.Value = null;
             // 
             // editRuolo
@@ -203,7 +204,7 @@ namespace Web.GUI.Account
             this.editRuolo.Location = new System.Drawing.Point(25, 263);
             this.editRuolo.Name = "editRuolo";
             this.editRuolo.ReadOnly = false;
-            this.editRuolo.Required = false;
+            this.editRuolo.Required = true;
             this.editRuolo.Size = new System.Drawing.Size(792, 30);
             this.editRuolo.TabIndex = 4;
             this.editRuolo.Value = null;
@@ -224,7 +225,7 @@ namespace Web.GUI.Account
             this.editNickname.Location = new System.Drawing.Point(25, 216);
             this.editNickname.Name = "templateEditText1";
             this.editNickname.ReadOnly = false;
-            this.editNickname.Required = false;
+            this.editNickname.Required = true;
             this.editNickname.Size = new System.Drawing.Size(792, 30);
             this.editNickname.TabIndex = 3;
             this.editNickname.Text = "EditControl";
@@ -246,10 +247,14 @@ namespace Web.GUI.Account
             this.editPassword.Location = new System.Drawing.Point(25, 169);
             this.editPassword.Name = "editPassword";
             this.editPassword.ReadOnly = false;
-            this.editPassword.Required = false;
+            this.editPassword.Required = true;
             this.editPassword.Size = new System.Drawing.Size(792, 30);
             this.editPassword.TabIndex = 2;
             this.editPassword.Value = "---";
+            // 
+            // AccountModel
+            // 
+            this.Load += new System.EventHandler(this.AccountModel_Load);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);

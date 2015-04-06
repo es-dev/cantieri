@@ -76,7 +76,7 @@ namespace Web.GUI.CentroCosto
             this.editCodice.Location = new System.Drawing.Point(31, 120);
             this.editCodice.Name = "editCodice";
             this.editCodice.ReadOnly = false;
-            this.editCodice.Required = false;
+            this.editCodice.Required = true;
             this.editCodice.Size = new System.Drawing.Size(794, 30);
             this.editCodice.TabIndex = 1;
             this.editCodice.Text = "EditControl";
@@ -98,7 +98,7 @@ namespace Web.GUI.CentroCosto
             this.editDenominazione.Location = new System.Drawing.Point(31, 159);
             this.editDenominazione.Name = "editDenominazione";
             this.editDenominazione.ReadOnly = false;
-            this.editDenominazione.Required = false;
+            this.editDenominazione.Required = true;
             this.editDenominazione.Size = new System.Drawing.Size(794, 30);
             this.editDenominazione.TabIndex = 2;
             this.editDenominazione.Text = "EditControl";

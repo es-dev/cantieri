@@ -169,7 +169,7 @@ namespace Web.GUI.AnagraficaFornitore
             this.editCAP.Location = new System.Drawing.Point(27, 234);
             this.editCAP.Name = "editCAP";
             this.editCAP.ReadOnly = false;
-            this.editCAP.Required = false;
+            this.editCAP.Required = true;
             this.editCAP.Size = new System.Drawing.Size(824, 30);
             this.editCAP.TabIndex = 4;
             this.editCAP.Text = "EditControl";
@@ -191,7 +191,7 @@ namespace Web.GUI.AnagraficaFornitore
             this.editIndirizzo.Location = new System.Drawing.Point(27, 192);
             this.editIndirizzo.Name = "editIndirizzo";
             this.editIndirizzo.ReadOnly = false;
-            this.editIndirizzo.Required = false;
+            this.editIndirizzo.Required = true;
             this.editIndirizzo.Size = new System.Drawing.Size(824, 30);
             this.editIndirizzo.TabIndex = 3;
             this.editIndirizzo.Text = "EditControl";
@@ -213,7 +213,7 @@ namespace Web.GUI.AnagraficaFornitore
             this.editRagioneSociale.Location = new System.Drawing.Point(27, 150);
             this.editRagioneSociale.Name = "editRagioneSociale";
             this.editRagioneSociale.ReadOnly = false;
-            this.editRagioneSociale.Required = false;
+            this.editRagioneSociale.Required = true;
             this.editRagioneSociale.Size = new System.Drawing.Size(824, 30);
             this.editRagioneSociale.TabIndex = 2;
             this.editRagioneSociale.Text = "EditControl";
@@ -235,7 +235,7 @@ namespace Web.GUI.AnagraficaFornitore
             this.editCodice.Location = new System.Drawing.Point(27, 108);
             this.editCodice.Name = "templateEditText1";
             this.editCodice.ReadOnly = false;
-            this.editCodice.Required = false;
+            this.editCodice.Required = true;
             this.editCodice.Size = new System.Drawing.Size(824, 30);
             this.editCodice.TabIndex = 1;
             this.editCodice.Text = "EditControl";
@@ -279,7 +279,7 @@ namespace Web.GUI.AnagraficaFornitore
             this.editPartitaIVA.Location = new System.Drawing.Point(27, 528);
             this.editPartitaIVA.Name = "editPartitaIVA";
             this.editPartitaIVA.ReadOnly = false;
-            this.editPartitaIVA.Required = false;
+            this.editPartitaIVA.Required = true;
             this.editPartitaIVA.Size = new System.Drawing.Size(824, 30);
             this.editPartitaIVA.TabIndex = 11;
             this.editPartitaIVA.Text = "TemplateEditPartitaIva";
@@ -301,7 +301,7 @@ namespace Web.GUI.AnagraficaFornitore
             this.editComune.Location = new System.Drawing.Point(27, 276);
             this.editComune.Name = "editComune";
             this.editComune.ReadOnly = false;
-            this.editComune.Required = false;
+            this.editComune.Required = true;
             this.editComune.Size = new System.Drawing.Size(824, 30);
             this.editComune.TabIndex = 5;
             this.editComune.Text = "EditControl";

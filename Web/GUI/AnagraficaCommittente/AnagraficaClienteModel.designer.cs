@@ -103,7 +103,7 @@ namespace Web.GUI.AnagraficaCommittente
             this.editIndirizzo.Location = new System.Drawing.Point(24, 189);
             this.editIndirizzo.Name = "editIndirizzo";
             this.editIndirizzo.ReadOnly = false;
-            this.editIndirizzo.Required = false;
+            this.editIndirizzo.Required = true;
             this.editIndirizzo.Size = new System.Drawing.Size(794, 30);
             this.editIndirizzo.TabIndex = 3;
             this.editIndirizzo.Text = "EditControl";
@@ -125,7 +125,7 @@ namespace Web.GUI.AnagraficaCommittente
             this.editCAP.Location = new System.Drawing.Point(24, 230);
             this.editCAP.Name = "editCAP";
             this.editCAP.ReadOnly = false;
-            this.editCAP.Required = false;
+            this.editCAP.Required = true;
             this.editCAP.Size = new System.Drawing.Size(794, 30);
             this.editCAP.TabIndex = 4;
             this.editCAP.Text = "EditControl";
@@ -213,7 +213,7 @@ namespace Web.GUI.AnagraficaCommittente
             this.editRagioneSociale.Location = new System.Drawing.Point(24, 148);
             this.editRagioneSociale.Name = "editRagioneSociale";
             this.editRagioneSociale.ReadOnly = false;
-            this.editRagioneSociale.Required = false;
+            this.editRagioneSociale.Required = true;
             this.editRagioneSociale.Size = new System.Drawing.Size(794, 30);
             this.editRagioneSociale.TabIndex = 2;
             this.editRagioneSociale.Text = "EditControl";
@@ -235,7 +235,7 @@ namespace Web.GUI.AnagraficaCommittente
             this.editCodice.Location = new System.Drawing.Point(24, 107);
             this.editCodice.Name = "editCodice";
             this.editCodice.ReadOnly = false;
-            this.editCodice.Required = false;
+            this.editCodice.Required = true;
             this.editCodice.Size = new System.Drawing.Size(794, 30);
             this.editCodice.TabIndex = 1;
             this.editCodice.Text = "EditControl";
@@ -257,7 +257,7 @@ namespace Web.GUI.AnagraficaCommittente
             this.editPartitaIVA.Location = new System.Drawing.Point(24, 517);
             this.editPartitaIVA.Name = "editPartitaIVA";
             this.editPartitaIVA.ReadOnly = false;
-            this.editPartitaIVA.Required = false;
+            this.editPartitaIVA.Required = true;
             this.editPartitaIVA.Size = new System.Drawing.Size(794, 30);
             this.editPartitaIVA.TabIndex = 11;
             this.editPartitaIVA.Text = "TemplateEditPartitaIva";
@@ -301,7 +301,7 @@ namespace Web.GUI.AnagraficaCommittente
             this.editComune.Location = new System.Drawing.Point(24, 271);
             this.editComune.Name = "editComune";
             this.editComune.ReadOnly = false;
-            this.editComune.Required = false;
+            this.editComune.Required = true;
             this.editComune.Size = new System.Drawing.Size(794, 30);
             this.editComune.TabIndex = 5;
             this.editComune.Text = "EditControl";

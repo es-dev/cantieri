@@ -29,11 +29,14 @@ namespace Web.GUI.Reso
                     var totale = UtilityValidation.GetEuro(obj.Totale);
                     var codice = UtilityValidation.GetStringND(obj.Codice);
                     var data = UtilityValidation.GetDataND(obj.Data);
-                 
-                    infoData.Text = "Pagato il " + data;
+                    var fatturaAcquisto = obj.FatturaAcquisto;
+                    var notaCredito = obj.NotaCredito;
+                    
+                    infoData.Text = "Reso il " + data;
                     infoImage.Image = "Images.dashboard.reso.png";
                     infoCodice.Text = "RES";
-                    infoNote.Text = obj.Note;
+                    infoDescrizione.Text = "Rif. Nota di credito N." +notaCredito.Numero + " del " + UtilityValidation.GetDataND(notaCredito.Data) + " - Fattura N." + fatturaAcquisto.Numero+ 
+                        " del " + UtilityValidation.GetDataND(fatturaAcquisto.Data);
                     infoImporto.Text = "Totale: " + totale;
                     infoReso.Text = "Reso N." + codice;
                 }

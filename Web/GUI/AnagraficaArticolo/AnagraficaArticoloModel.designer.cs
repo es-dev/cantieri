@@ -76,7 +76,7 @@ namespace Web.GUI.AnagraficaArticolo
             this.editDescrizione.Location = new System.Drawing.Point(27, 166);
             this.editDescrizione.Name = "editDescrizione";
             this.editDescrizione.ReadOnly = false;
-            this.editDescrizione.Required = false;
+            this.editDescrizione.Required = true;
             this.editDescrizione.Size = new System.Drawing.Size(794, 30);
             this.editDescrizione.TabIndex = 2;
             this.editDescrizione.Text = "EditControl";
@@ -98,7 +98,7 @@ namespace Web.GUI.AnagraficaArticolo
             this.editCodice.Location = new System.Drawing.Point(27, 122);
             this.editCodice.Name = "editCodice";
             this.editCodice.ReadOnly = false;
-            this.editCodice.Required = false;
+            this.editCodice.Required = true;
             this.editCodice.Size = new System.Drawing.Size(794, 30);
             this.editCodice.TabIndex = 1;
             this.editCodice.Text = "EditControl";

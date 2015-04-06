@@ -100,7 +100,7 @@ namespace Web.GUI.PagamentoUnificato
             this.editFornitore.Model = null;
             this.editFornitore.Name = "editFornitore";
             this.editFornitore.ReadOnly = false;
-            this.editFornitore.Required = false;
+            this.editFornitore.Required = true;
             this.editFornitore.Size = new System.Drawing.Size(800, 30);
             this.editFornitore.TabIndex = 0;
             this.editFornitore.Text = "EditControl";
@@ -124,7 +124,7 @@ namespace Web.GUI.PagamentoUnificato
             this.editData.Location = new System.Drawing.Point(25, 161);
             this.editData.Name = "editData";
             this.editData.ReadOnly = false;
-            this.editData.Required = false;
+            this.editData.Required = true;
             this.editData.Size = new System.Drawing.Size(798, 30);
             this.editData.TabIndex = 2;
             this.editData.Text = "EditControl";
@@ -146,7 +146,7 @@ namespace Web.GUI.PagamentoUnificato
             this.editImporto.Location = new System.Drawing.Point(25, 204);
             this.editImporto.Name = "editImporto";
             this.editImporto.ReadOnly = false;
-            this.editImporto.Required = false;
+            this.editImporto.Required = true;
             this.editImporto.Size = new System.Drawing.Size(798, 30);
             this.editImporto.TabIndex = 3;
             this.editImporto.Text = "TemplateEditNumeric";
@@ -190,7 +190,7 @@ namespace Web.GUI.PagamentoUnificato
             this.editCodice.Location = new System.Drawing.Point(25, 118);
             this.editCodice.Name = "editCodice";
             this.editCodice.ReadOnly = false;
-            this.editCodice.Required = false;
+            this.editCodice.Required = true;
             this.editCodice.Size = new System.Drawing.Size(798, 30);
             this.editCodice.TabIndex = 1;
             this.editCodice.Text = "EditControl";
@@ -214,7 +214,7 @@ namespace Web.GUI.PagamentoUnificato
             this.editTipoPagamento.Location = new System.Drawing.Point(25, 247);
             this.editTipoPagamento.Name = "editTipoPagamento";
             this.editTipoPagamento.ReadOnly = false;
-            this.editTipoPagamento.Required = false;
+            this.editTipoPagamento.Required = true;
             this.editTipoPagamento.Size = new System.Drawing.Size(798, 30);
             this.editTipoPagamento.TabIndex = 4;
             this.editTipoPagamento.Text = "EditControl";

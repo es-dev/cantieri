@@ -141,6 +141,7 @@ namespace Web.GUI.Commessa
             this.panelCommands.Controls.Add(this.btnSAL);
             this.panelCommands.Controls.Add(this.btnFornitori);
             this.panelCommands.Size = new System.Drawing.Size(101, 1119);
+            this.panelCommands.Controls.SetChildIndex(this.btnHome, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
@@ -243,7 +244,7 @@ namespace Web.GUI.Commessa
             this.editScadenza.Location = new System.Drawing.Point(25, 746);
             this.editScadenza.Name = "editScadenza";
             this.editScadenza.ReadOnly = false;
-            this.editScadenza.Required = false;
+            this.editScadenza.Required = true;
             this.editScadenza.Size = new System.Drawing.Size(792, 30);
             this.editScadenza.TabIndex = 17;
             this.editScadenza.Text = "TemplateEditData";

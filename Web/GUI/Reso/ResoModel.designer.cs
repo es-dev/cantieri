@@ -92,7 +92,7 @@ namespace Web.GUI.Reso
             this.editFatturaAcquisto.Model = null;
             this.editFatturaAcquisto.Name = "editFatturaAcquisto";
             this.editFatturaAcquisto.ReadOnly = false;
-            this.editFatturaAcquisto.Required = false;
+            this.editFatturaAcquisto.Required = true;
             this.editFatturaAcquisto.Size = new System.Drawing.Size(798, 30);
             this.editFatturaAcquisto.TabIndex = 1;
             this.editFatturaAcquisto.Text = "EditControl";
@@ -116,7 +116,7 @@ namespace Web.GUI.Reso
             this.editData.Location = new System.Drawing.Point(25, 201);
             this.editData.Name = "editData";
             this.editData.ReadOnly = false;
-            this.editData.Required = false;
+            this.editData.Required = true;
             this.editData.Size = new System.Drawing.Size(798, 30);
             this.editData.TabIndex = 3;
             this.editData.Text = "EditControl";
@@ -138,7 +138,7 @@ namespace Web.GUI.Reso
             this.editImporto.Location = new System.Drawing.Point(25, 243);
             this.editImporto.Name = "editImporto";
             this.editImporto.ReadOnly = false;
-            this.editImporto.Required = false;
+            this.editImporto.Required = true;
             this.editImporto.Size = new System.Drawing.Size(798, 30);
             this.editImporto.TabIndex = 4;
             this.editImporto.Text = "TemplateEditNumeric";
@@ -183,7 +183,7 @@ namespace Web.GUI.Reso
             this.editCodice.Location = new System.Drawing.Point(25, 159);
             this.editCodice.Name = "editCodice";
             this.editCodice.ReadOnly = false;
-            this.editCodice.Required = false;
+            this.editCodice.Required = true;
             this.editCodice.Size = new System.Drawing.Size(798, 30);
             this.editCodice.TabIndex = 2;
             this.editCodice.Text = "EditControl";
@@ -228,7 +228,7 @@ namespace Web.GUI.Reso
             this.editNotaCredito.Model = null;
             this.editNotaCredito.Name = "editNotaCredito";
             this.editNotaCredito.ReadOnly = false;
-            this.editNotaCredito.Required = false;
+            this.editNotaCredito.Required = true;
             this.editNotaCredito.Size = new System.Drawing.Size(800, 30);
             this.editNotaCredito.TabIndex = 0;
             this.editNotaCredito.Text = "EditControl";
@@ -252,7 +252,7 @@ namespace Web.GUI.Reso
             this.editIVA.Location = new System.Drawing.Point(25, 285);
             this.editIVA.Name = "editIVA";
             this.editIVA.ReadOnly = false;
-            this.editIVA.Required = false;
+            this.editIVA.Required = true;
             this.editIVA.Size = new System.Drawing.Size(798, 30);
             this.editIVA.TabIndex = 5;
             this.editIVA.Text = "TemplateEditNumeric";

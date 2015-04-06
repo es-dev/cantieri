@@ -121,7 +121,7 @@ namespace Web.GUI.SAL
             this.editCommessa.Model = null;
             this.editCommessa.Name = "editCommessa";
             this.editCommessa.ReadOnly = false;
-            this.editCommessa.Required = false;
+            this.editCommessa.Required = true;
             this.editCommessa.Size = new System.Drawing.Size(800, 30);
             this.editCommessa.TabIndex = 0;
             this.editCommessa.Text = "EditControl";
@@ -145,7 +145,7 @@ namespace Web.GUI.SAL
             this.editData.Location = new System.Drawing.Point(25, 201);
             this.editData.Name = "editData";
             this.editData.ReadOnly = false;
-            this.editData.Required = false;
+            this.editData.Required = true;
             this.editData.Size = new System.Drawing.Size(798, 30);
             this.editData.TabIndex = 2;
             this.editData.Text = "EditControl";
@@ -168,7 +168,7 @@ namespace Web.GUI.SAL
             this.editDenominazione.Location = new System.Drawing.Point(25, 159);
             this.editDenominazione.Name = "editDenominazione";
             this.editDenominazione.ReadOnly = false;
-            this.editDenominazione.Required = false;
+            this.editDenominazione.Required = true;
             this.editDenominazione.Size = new System.Drawing.Size(798, 30);
             this.editDenominazione.TabIndex = 6;
             this.editDenominazione.Text = "EditControl";
@@ -196,7 +196,7 @@ namespace Web.GUI.SAL
             this.editTotaleFattureAcquisto.Text = "TemplateEditNumeric";
             this.editTotaleFattureAcquisto.Value = null;
             // 
-            // editTotaleFattureVendite
+            // editTotaleFattureVendita
             // 
             this.editTotaleFattureVendita.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
@@ -234,7 +234,7 @@ namespace Web.GUI.SAL
             this.editCodice.Location = new System.Drawing.Point(25, 117);
             this.editCodice.Name = "editCodice";
             this.editCodice.ReadOnly = false;
-            this.editCodice.Required = false;
+            this.editCodice.Required = true;
             this.editCodice.Size = new System.Drawing.Size(798, 30);
             this.editCodice.TabIndex = 1000;
             this.editCodice.Text = "EditControl";

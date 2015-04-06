@@ -107,6 +107,7 @@ namespace Web.GUI.FatturaAcquisto
             this.panelCommands.Controls.Add(this.btnPagamenti);
             this.panelCommands.Controls.Add(this.btnCalcoloTotali);
             this.panelCommands.Size = new System.Drawing.Size(101, 733);
+            this.panelCommands.Controls.SetChildIndex(this.btnHome, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnSave, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
@@ -136,7 +137,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editFornitore.Model = null;
             this.editFornitore.Name = "editFornitore";
             this.editFornitore.ReadOnly = false;
-            this.editFornitore.Required = false;
+            this.editFornitore.Required = true;
             this.editFornitore.Size = new System.Drawing.Size(796, 30);
             this.editFornitore.TabIndex = 0;
             this.editFornitore.Text = "EditControl";
@@ -160,7 +161,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editData.Location = new System.Drawing.Point(25, 147);
             this.editData.Name = "editData";
             this.editData.ReadOnly = false;
-            this.editData.Required = false;
+            this.editData.Required = true;
             this.editData.Size = new System.Drawing.Size(796, 30);
             this.editData.TabIndex = 2;
             this.editData.Text = "EditControl";
@@ -182,7 +183,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editNumero.Location = new System.Drawing.Point(25, 183);
             this.editNumero.Name = "editNumero";
             this.editNumero.ReadOnly = false;
-            this.editNumero.Required = false;
+            this.editNumero.Required = true;
             this.editNumero.Size = new System.Drawing.Size(796, 30);
             this.editNumero.TabIndex = 3;
             this.editNumero.Text = "EditControl";
@@ -226,7 +227,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editImponibile.Location = new System.Drawing.Point(25, 327);
             this.editImponibile.Name = "editImponibile";
             this.editImponibile.ReadOnly = false;
-            this.editImponibile.Required = false;
+            this.editImponibile.Required = true;
             this.editImponibile.Size = new System.Drawing.Size(796, 30);
             this.editImponibile.TabIndex = 7;
             this.editImponibile.Text = "TemplateEditNumeric";
@@ -249,7 +250,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editIVA.Location = new System.Drawing.Point(25, 363);
             this.editIVA.Name = "editIVA";
             this.editIVA.ReadOnly = false;
-            this.editIVA.Required = false;
+            this.editIVA.Required = true;
             this.editIVA.Size = new System.Drawing.Size(796, 30);
             this.editIVA.TabIndex = 8;
             this.editIVA.Text = "TemplateEditNumeric";
@@ -296,7 +297,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editTipoPagamento.Location = new System.Drawing.Point(25, 219);
             this.editTipoPagamento.Name = "editTipoPagamento";
             this.editTipoPagamento.ReadOnly = false;
-            this.editTipoPagamento.Required = false;
+            this.editTipoPagamento.Required = true;
             this.editTipoPagamento.Size = new System.Drawing.Size(796, 30);
             this.editTipoPagamento.TabIndex = 4;
             this.editTipoPagamento.Text = "EditControl";
@@ -315,12 +316,12 @@ namespace Web.GUI.FatturaAcquisto
             this.editScadenzaPagamento.DisplayValues = null;
             this.editScadenzaPagamento.Editing = false;
             this.editScadenzaPagamento.Items = null;
-            this.editScadenzaPagamento.Label = "Scadenza pagamento";
+            this.editScadenzaPagamento.Label = "Scadenza";
             this.editScadenzaPagamento.LabelWidth = 175;
             this.editScadenzaPagamento.Location = new System.Drawing.Point(25, 255);
             this.editScadenzaPagamento.Name = "editScadenzaPagamento";
             this.editScadenzaPagamento.ReadOnly = false;
-            this.editScadenzaPagamento.Required = false;
+            this.editScadenzaPagamento.Required = true;
             this.editScadenzaPagamento.Size = new System.Drawing.Size(796, 30);
             this.editScadenzaPagamento.TabIndex = 5;
             this.editScadenzaPagamento.Text = "EditControl";
