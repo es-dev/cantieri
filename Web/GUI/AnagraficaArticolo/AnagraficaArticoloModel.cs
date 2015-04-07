@@ -120,5 +120,29 @@ namespace Web.GUI.AnagraficaArticolo
             }
         }
 
+        public override UtilityValidation.ValidationState IsValidated()
+        {
+            try
+            {
+                var validated = new UtilityValidation.ValidationState();
+
+                var obj = (AnagraficaArticoloDto)Model;
+                var viewModel = (AnagraficaArticoloViewModel)ViewModel;
+                var anagraficheArticoli = viewModel.ReadArticoli();
+                var validateAnagraficaArticolo = BusinessLogic.Diagnostico.ValidateAnagraficaArticolo(obj, anagraficheArticoli);
+                if (validateAnagraficaArticolo != null)
+                {
+                    validated.State = validateAnagraficaArticolo.State;
+                    validated.Message = validateAnagraficaArticolo.Message;
+                }
+                return validated;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
 	}
 }

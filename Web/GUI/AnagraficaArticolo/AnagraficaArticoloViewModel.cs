@@ -114,5 +114,20 @@ namespace Web.GUI.AnagraficaArticolo
             }
             return null;
         }
+
+        internal IEnumerable<AnagraficaArticoloDto> ReadArticoli()
+        {
+            try
+            {
+                var wcf = new WcfService.Service();
+                var objs = wcf.ReadAnagraficheArticoli();
+                return objs;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }

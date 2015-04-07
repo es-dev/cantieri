@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.Articolo
@@ -209,5 +210,6 @@ namespace Web.GUI.Articolo
             }
         }
 
-	}
+       
+    }
 }

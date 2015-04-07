@@ -225,26 +225,6 @@ namespace Web.GUI.Commessa
             }
         }
 
-        public override UtilityValidation.ValidationState IsValidated()
-        {
-            try
-            {
-                var validated = new UtilityValidation.ValidationState();
-                var importo= UtilityValidation.GetDecimal(editImporto.Value);
-                if (importo < 1000)
-                {
-                    validated.State = false;
-                    validated.Message = "L'importo inserito non può essere negativo...";
-                }
-                return validated;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
         private void btnFornitori_Click(object sender, EventArgs e)
         {
             try

@@ -141,6 +141,28 @@ namespace Web.GUI.AnagraficaFornitore
             }
         }
 
+        public override UtilityValidation.ValidationState IsValidated()
+        {
+            try
+            {
+                var validated = new UtilityValidation.ValidationState();
 
+                var obj = (AnagraficaFornitoreDto)Model;
+                var viewModel = (AnagraficaFornitoreViewModel)ViewModel;
+                var anagraficheFornitori = viewModel.ReadAnagraficheFornitori();
+                var validateAnagraficaFornitore = BusinessLogic.Diagnostico.ValidateAnagraficaFornitore(obj, anagraficheFornitori);
+                if (validateAnagraficaFornitore != null)
+                {
+                    validated.State = validateAnagraficaFornitore.State;
+                    validated.Message = validateAnagraficaFornitore.Message;
+                }
+                return validated;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
 	}
 }
