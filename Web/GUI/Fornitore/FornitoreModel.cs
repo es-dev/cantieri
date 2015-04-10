@@ -392,6 +392,7 @@ namespace Web.GUI.Fornitore
                 var codiceFornitore = editCodiceFornitore.Value;
                 var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
                 var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
+                
                 var validateFornitore = BusinessLogic.Diagnostico.ValidateFornitore(obj, fornitori, anagraficaFornitore, commessa);
                 if (validateFornitore != null)
                 {
