@@ -47,7 +47,7 @@ namespace Web
                 var account = new AccountDto(); //da sostituire con chiamata al servizio Authentication(username, password)
                 account.Username = username;
                 account.Password = password;
-                if (username == "admin" && password == "3g") //todo: da implementare profilazione utente
+                if (true)//username == "admin" && password == "3g") //todo: da implementare profilazione utente
                 {
                     SessionManager.Login(Context, account);
                     Context.Redirect("cantieri-homepage.aspx");

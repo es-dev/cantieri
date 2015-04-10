@@ -2,6 +2,7 @@
 using Library.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 
@@ -37,6 +38,10 @@ namespace Web.GUI.Agenda
 
                 //objs.AddRange(objsFattureScadenza);
                 //objs.AddRange(objsPagamenti);
+
+                objs = new List<EventoDto>();
+                for (int i = 1; i <= 10;i++ )
+                    objs.Add(new EventoDto() { Data = DateTime.Now.AddHours(2*i), Color = Color.Yellow, Titolo = "Titolo "+i });
                 Load(objs);
             }
             catch (Exception ex)
