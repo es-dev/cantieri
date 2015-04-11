@@ -31,14 +31,14 @@ namespace Web.GUI.Agenda
                 var objs = new List<AgendaDto>();
                 var wcf = new WcfService.Service();
                 var fattureAcquistoScadenza = wcf.ReadFattureAcquistoScadenza((DateTime)start, (DateTime)end, search);
-                if (fattureAcquistoScadenza != null && fattureAcquistoScadenza.Count() > 0)
+                if (fattureAcquistoScadenza!=null)
                 {
                     var objsFattureScadenza = GetEventiAgenda(fattureAcquistoScadenza);
                     objs.AddRange(objsFattureScadenza);
                 }
 
                 var pagamenti = wcf.ReadPagamentiData((DateTime)start, (DateTime)end, search);
-                if (pagamenti != null && pagamenti.Count()>0)
+                if (pagamenti != null)
                 {
                     var objsPagamenti = GetEventiAgenda(pagamenti);
                     objs.AddRange(objsPagamenti);
@@ -62,7 +62,7 @@ namespace Web.GUI.Agenda
                     var evento = new AgendaDto();
                     evento.Data = UtilityValidation.GetData(pagamentoData.Data);
                     evento.Model = pagamentoData;
-                    evento.Color = Color.Blue;
+                    evento.Color = Color.RoyalBlue;
 
                     var data = (DateTime)pagamentoData.Data;
                     evento.Titolo = "Pagamento n." + pagamentoData.Codice + " del " + data.ToString("dd/MM/yyyy") + " per un importo di " + UtilityValidation.GetEuro(pagamentoData.Importo);
@@ -98,7 +98,9 @@ namespace Web.GUI.Agenda
                     var pagamentiDare= UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotalePagamentiDare(fatturaAcquistoScadenza, today));
                     var pagamentiDato=UtilityValidation.GetEuro( BusinessLogic.Fattura.GetTotalePagamentiDato(fatturaAcquistoScadenza, today));
                     var data = (DateTime)fatturaAcquistoScadenza.Data;
-                    evento.Titolo = "Fattura di acquisto n." + fatturaAcquistoScadenza.Numero + " del " + data.ToString("dd/MM/yyyy") + " con scadenza il " + evento.Data.ToString("dd/MM/yyyy") + " per un importo di " + saldoFatturaAcquisto.ToString() + ". Totale pagato = " + pagamentiDato.ToString() + ", totale a pagare = " + pagamentiDare.ToString();
+                    evento.Titolo = "Fattura di acquisto n." + fatturaAcquistoScadenza.Numero + " del " + data.ToString("dd/MM/yyyy") + " con scadenza il " + 
+                        evento.Data.ToString("dd/MM/yyyy") + " per un importo di " + saldoFatturaAcquisto.ToString() + ". Totale pagato = " +
+                        pagamentiDato.ToString() + ", totale a pagare = " + pagamentiDare.ToString();
 
                     var stato = BusinessLogic.Fattura.GetStato(fatturaAcquistoScadenza);
                     if (stato == BusinessLogic.Tipi.StatoFattura.Insoluta)

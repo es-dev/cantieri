@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using WcfService.Dto;
+using Web.GUI.FatturaAcquisto;
+using Web.GUI.Pagamento;
 
 namespace Web.GUI.Agenda
 {
@@ -52,13 +54,24 @@ namespace Web.GUI.Agenda
                     if (model.GetType() == typeof(FatturaAcquistoDto))
                     {
                         var obj = (FatturaAcquistoDto)model;
-                        var space = new FatturaAcquisto.FatturaAcquistoModel();
+                        var space = new FatturaAcquistoModel();
                         var fornitore = obj.Fornitore;
                         space.Title = "FATTURA DI ACQUISTO N." + obj.Numero + " - " + fornitore.RagioneSociale;
                         space.Model = obj;
                         AddSpace(space);
                     }
-                    //gestione degli altri casi
+                    else if (model.GetType() == typeof(PagamentoDto))
+                    {
+                        var obj = (PagamentoDto)model;
+                        var space = new PagamentoModel();
+                        var fatturaAcquisto = obj.FatturaAcquisto;
+                        space.Title = "PAGAMENTO " + obj.Codice + " - FATTURA N." + fatturaAcquisto.Numero;
+                        var pagamentoUnificato = obj.PagamentoUnificato;
+                        if (pagamentoUnificato != null)
+                            space.Title += " - PAGAMENTO UNIFICATO " + pagamentoUnificato.Codice;
+                        space.Model = obj;
+                        AddSpace(space);
+                    }
                 }
             }
             catch (Exception ex)
