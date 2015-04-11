@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Web;
+using WcfService.Dto;
 
 namespace Web.GUI.Agenda
 {
-    public class AgendaViewModel : Library.Template.MVVM.TemplateViewModel<EventoDto, AgendaItem> 
+    public class AgendaViewModel : Library.Template.MVVM.TemplateViewModel<AgendaDto, AgendaItem> 
     {
         public AgendaViewModel(ISpace space)
             : base(space) 
@@ -27,21 +28,17 @@ namespace Web.GUI.Agenda
         {
             try
             {
-                List<EventoDto> objs = null;
+                var objs = new List<AgendaDto>();
                 var wcf = new WcfService.Service();
-                //qui richiamo da db tutto ciò che mi occorre rappresentare come eventi, fatture in scadenza, creazione fatture, pagamenti effettuati, note di credito ....
-                //var fattureAcquistoScadenza = wcf.ReadFattureAcquistoScadenza(start, end, search);
-                //var objsFattureScadenza = GetEventi(fattureAcquisto);  //qui dalle fatture ricavo gli eventi
+                var fattureAcquistoScadenza = wcf.LoadFattureAcquisto(0,1000); // wcf.ReadFattureAcquistoScadenza(start, end, search);
+                var objsFattureScadenza = GetEventiAgenda(fattureAcquistoScadenza);  
 
                 //var pagamenti = wcf.ReadPagamenti(start, end, search);
                 //var objsPagamenti = GetEventi(pagamenti); 
 
-                //objs.AddRange(objsFattureScadenza);
+                objs.AddRange(objsFattureScadenza);
                 //objs.AddRange(objsPagamenti);
 
-                objs = new List<EventoDto>();
-                for (int i = 1; i <= 10;i++ )
-                    objs.Add(new EventoDto() { Data = DateTime.Now.AddHours(2*i), Color = Color.Yellow, Titolo = "Titolo "+i });
                 Load(objs);
             }
             catch (Exception ex)
@@ -50,12 +47,35 @@ namespace Web.GUI.Agenda
             }
         }
 
+        private IList<AgendaDto> GetEventiAgenda(IEnumerable<FatturaAcquistoDto> fattureAcquistoScadenza)
+        {
+            try
+            {
+                var eventi = new List<AgendaDto>();
+                foreach(var fatturaAcquistoScadenza in fattureAcquistoScadenza)
+                {
+                    var evento = new AgendaDto();
+                    evento.Color = Color.Yellow;
+                    evento.Data = UtilityValidation.GetData(fatturaAcquistoScadenza.Data);
+                    evento.Model = fatturaAcquistoScadenza;
+                    evento.Titolo = "Fattura di acquisto n."+ fatturaAcquistoScadenza.Numero + " del " + evento.Data.ToString("dd/MM/yyyy");
+
+                    eventi.Add(evento);
+                }
+                return eventi;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         public override int GetCount(string search=null)
         {
             try
             {
-                var wcf = new WcfService.Service();
-                var count = 0;// wcf.CountAziende(search);
+                var count = Items.Count;
                 return count;
             }
             catch (Exception ex)

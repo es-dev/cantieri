@@ -30,19 +30,6 @@ namespace Web.GUI.Agenda
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //var space = new AziendaModel();
-                //space.Title = "NUOVA AZIENDA";
-                //space.Model = new WcfService.Dto.AziendaDto() ;
-                //AddSpace(space);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
-        }
+       
 	}
 }

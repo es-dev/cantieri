@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Web.GUI.Agenda
 {
-    public class EventoDto
+    public class AgendaDto
     {
         public string Titolo = null;
         public DateTime Data = DateTime.MinValue;
         public System.Drawing.Color Color = System.Drawing.Color.Red;
+        public object Model = null;
     }
 }
