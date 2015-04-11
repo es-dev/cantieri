@@ -31,13 +31,18 @@ namespace Web.GUI.Agenda
                 var objs = new List<AgendaDto>();
                 var wcf = new WcfService.Service();
                 var fattureAcquistoScadenza = wcf.ReadFattureAcquistoScadenza((DateTime)start, (DateTime)end, search);
-                var objsFattureScadenza = GetEventiAgenda(fattureAcquistoScadenza);  
+                if (fattureAcquistoScadenza != null && fattureAcquistoScadenza.Count() > 0)
+                {
+                    var objsFattureScadenza = GetEventiAgenda(fattureAcquistoScadenza);
+                    objs.AddRange(objsFattureScadenza);
+                }
 
-                //var pagamenti = wcf.ReadPagamentiScadenza(start, end, search);
-                //var objsPagamenti = GetEventi(pagamenti); 
-
-                objs.AddRange(objsFattureScadenza);
-                //objs.AddRange(objsPagamenti);
+                var pagamenti = wcf.ReadPagamentiData((DateTime)start, (DateTime)end, search);
+                if (pagamenti != null && pagamenti.Count()>0)
+                {
+                    var objsPagamenti = GetEventiAgenda(pagamenti);
+                    objs.AddRange(objsPagamenti);
+                }
 
                 Load(objs);
             }
@@ -45,6 +50,36 @@ namespace Web.GUI.Agenda
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private IList<AgendaDto> GetEventiAgenda(IEnumerable<PagamentoDto> pagamentiData)
+        {
+            try
+            {
+                var eventi = new List<AgendaDto>();
+                foreach (var pagamentoData in pagamentiData)
+                {
+                    var evento = new AgendaDto();
+                    evento.Data = UtilityValidation.GetData(pagamentoData.Data);
+                    evento.Model = pagamentoData;
+                    evento.Color = Color.Blue;
+
+                    var data = (DateTime)pagamentoData.Data;
+                    evento.Titolo = "Pagamento n." + pagamentoData.Codice + " del " + data.ToString("dd/MM/yyyy") + " per un importo di " + UtilityValidation.GetEuro(pagamentoData.Importo);
+                    var fatturaAcquisto = pagamentoData.FatturaAcquisto;
+                    if (fatturaAcquisto != null)
+                        evento.Titolo += " relativo alla fattura " + fatturaAcquisto.Numero;
+
+                    eventi.Add(evento);
+                }
+                return eventi;
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
 
         private IList<AgendaDto> GetEventiAgenda(IEnumerable<FatturaAcquistoDto> fattureAcquistoScadenza)
@@ -90,8 +125,9 @@ namespace Web.GUI.Agenda
             {
                 var wcf = new WcfService.Service();
                 var countFattureAcquistoScadenza = wcf.CountFattureAcquisto(search);
+                var countPagamenti = wcf.CountPagamenti(search);
 
-                var count = countFattureAcquistoScadenza;
+                var count = countFattureAcquistoScadenza + countPagamenti;
                 return count;
             }
             catch (Exception ex)

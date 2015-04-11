@@ -1312,7 +1312,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Pagamento> QueryPagamenti(string search = null, Dto.FornitoreDto fornitore = null, Dto.FatturaAcquistoDto fatturaAcquisto = null)
+        private IQueryable<DataLayer.Pagamento> QueryPagamenti(string search = null, Dto.FornitoreDto fornitore = null, Dto.FatturaAcquistoDto fatturaAcquisto = null,DateTime? start = null, DateTime? end = null)
         {
             try
             {
@@ -1327,6 +1327,9 @@ namespace WcfService
                     var fattureAcquistoIds = (from q in fattureAcquisto select q.Id);
                     pagamenti = (from q in pagamenti where fattureAcquistoIds.Contains(q.FatturaAcquistoId) select q);
                 }
+
+                if (start != null && end != null)
+                    pagamenti = (from q in pagamenti where start <= q.Data && q.Data <= end select q);
 
                 if (search != null && search.Length > 0)
                 {
@@ -1389,6 +1392,22 @@ namespace WcfService
             }
             return null;
         }
+
+        public IEnumerable<Dto.PagamentoDto> ReadPagamentiData(DateTime start, DateTime end, string search)
+        {
+            try
+            {
+                var pagamenti = QueryPagamenti(search,null,null, start, end);
+                var pagamentiDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamenti);
+                return pagamentiDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
 
         #endregion
         #endregion
@@ -3341,5 +3360,10 @@ namespace WcfService
 
 
 
+
+        public object ReadPagamentiData(object start, object end, string search)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
