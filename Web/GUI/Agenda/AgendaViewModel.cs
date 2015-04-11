@@ -62,7 +62,7 @@ namespace Web.GUI.Agenda
                     var evento = new AgendaDto();
                     evento.Data = UtilityValidation.GetData(pagamentoData.Data);
                     evento.Model = pagamentoData;
-                    evento.Color = Color.RoyalBlue;
+                    evento.Color = Color.LightBlue;
 
                     var data = (DateTime)pagamentoData.Data;
                     evento.Titolo = "Pagamento n." + pagamentoData.Codice + " del " + data.ToString("dd/MM/yyyy") + " per un importo di " + UtilityValidation.GetEuro(pagamentoData.Importo);
@@ -106,7 +106,7 @@ namespace Web.GUI.Agenda
                     if (stato == BusinessLogic.Tipi.StatoFattura.Insoluta)
                         evento.Color = Color.Red;
                     if (stato == BusinessLogic.Tipi.StatoFattura.Pagata)
-                        evento.Color = Color.Green;
+                        evento.Color = Color.LightGreen;
                     if (stato == BusinessLogic.Tipi.StatoFattura.NonPagata)
                         evento.Color = Color.Yellow;
 
