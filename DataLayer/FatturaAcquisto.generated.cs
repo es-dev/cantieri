@@ -232,6 +232,19 @@ namespace DataLayer
 			}
 		}
 		
+		private DateTime? _scadenza;
+		public virtual DateTime? Scadenza
+		{
+			get
+			{
+				return this._scadenza;
+			}
+			set
+			{
+				this._scadenza = value;
+			}
+		}
+		
 		private CentroCosto _centroCosto;
 		public virtual CentroCosto CentroCosto
 		{

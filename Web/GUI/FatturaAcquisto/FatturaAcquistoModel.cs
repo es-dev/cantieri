@@ -204,6 +204,7 @@ namespace Web.GUI.FatturaAcquisto
                     obj.TotalePagamenti = editTotalePagamenti.Value;
                     obj.Stato = editStato.Value;
                     obj.Sconto = editSconto.Value;
+                    obj.Scadenza = BusinessLogic.Fattura.GetScadenza(obj);                    
                     var centroCosto = (WcfService.Dto.CentroCostoDto)editCentroCosto.Model;
                     if (centroCosto != null)
                         obj.CentroCostoId = centroCosto.Id;

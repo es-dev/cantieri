@@ -722,6 +722,7 @@ namespace WcfService.Assemblers
 			entity.Note = dto.Note;
 			entity.TotaleResi = dto.TotaleResi;
 			entity.Sconto = dto.Sconto;
+			entity.Scadenza = dto.Scadenza;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -748,6 +749,7 @@ namespace WcfService.Assemblers
 			dto.Note = entity.Note;
 			dto.TotaleResi = entity.TotaleResi;
 			dto.Sconto = entity.Sconto;
+			dto.Scadenza = entity.Scadenza;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }
@@ -1018,6 +1020,7 @@ namespace WcfService.Assemblers
 			entity.Stato = dto.Stato;
 			entity.TotaleIncassi = dto.TotaleIncassi;
 			entity.Note = dto.Note;
+			entity.Scadenza = dto.Scadenza;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1041,6 +1044,7 @@ namespace WcfService.Assemblers
 			dto.Stato = entity.Stato;
 			dto.TotaleIncassi = entity.TotaleIncassi;
 			dto.Note = entity.Note;
+			dto.Scadenza = entity.Scadenza;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }

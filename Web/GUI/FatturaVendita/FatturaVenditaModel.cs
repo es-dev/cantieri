@@ -182,6 +182,7 @@ namespace Web.GUI.FatturaVendita
                     obj.Totale = editTotale.Value;
                     obj.TotaleIncassi = editTotaleIncassi.Value;
                     obj.Stato = editStato.Value;
+                    obj.Scadenza = BusinessLogic.Fattura.GetScadenza(obj);                    
                     var committente = (WcfService.Dto.CommittenteDto)editCommittente.Model;
                     if (committente != null)
                         obj.CommittenteId = committente.Id;

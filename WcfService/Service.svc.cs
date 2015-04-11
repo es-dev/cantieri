@@ -976,7 +976,7 @@ namespace WcfService
         }
 
         private IQueryable<DataLayer.FatturaAcquisto> QueryFattureAcquisto(string search=null, Dto.FornitoreDto fornitore=null, Dto.AnagraficaFornitoreDto anagraficaFornitore=null, 
-            IList<string> stati=null)
+            IList<string> stati=null, DateTime? start = null, DateTime? end= null)
         {
             try
             {
@@ -987,6 +987,9 @@ namespace WcfService
 
                 if(anagraficaFornitore!=null) //ricerca fatture insolute/non pagate per un fornitore anagrafico
                     fattureAcquisto = (from q in fattureAcquisto where q.Fornitore.Codice == anagraficaFornitore.Codice && stati.Contains(q.Stato) select q); 
+                
+                if(start!=null && end!=null)
+                    fattureAcquisto = (from q in fattureAcquisto where start <= q.Scadenza && q.Scadenza <= end select q);
 
                 if (search != null && search.Length > 0)
                 {
@@ -998,6 +1001,22 @@ namespace WcfService
                 }
                 fattureAcquisto = (from q in fattureAcquisto orderby q.Id descending select q);
                 return fattureAcquisto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquistoScadenza(DateTime start, DateTime end, string search= null)
+        {
+            try
+            {
+                var fattureAcquisto = QueryFattureAcquisto(search,null,null,null,start,end);
+
+                var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
+                return fattureAcquistoDto;
             }
             catch (Exception ex)
             {
@@ -3319,6 +3338,7 @@ namespace WcfService
 
         #endregion
         #endregion
+
 
 
     }

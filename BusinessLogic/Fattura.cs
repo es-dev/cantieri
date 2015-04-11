@@ -446,7 +446,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        internal static decimal GetTotaleSaldoFatturaAcquisto(FatturaAcquistoDto fatturaAcquisto, DateTime data)
+        public static decimal GetTotaleSaldoFatturaAcquisto(FatturaAcquistoDto fatturaAcquisto, DateTime data)
         {
             try
             {
