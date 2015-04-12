@@ -35,7 +35,7 @@ namespace Web.GUI.Reso
             }
         }
 
-        public override void BindViewSubTitle(object model)
+        public override void BindViewTitle(object model)
         {
             try
             {

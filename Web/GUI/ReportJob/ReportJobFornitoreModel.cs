@@ -44,7 +44,7 @@ namespace Web.GUI.ReportJob
             }
         }
 
-        public override void BindViewSubTitle(object model)
+        public override void BindViewTitle(object model)
         {
             try
             {

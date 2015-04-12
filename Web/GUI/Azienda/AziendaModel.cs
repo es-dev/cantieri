@@ -18,7 +18,7 @@ namespace Web.GUI.Azienda
 			InitializeComponent();
 		}
 
-        public override void BindViewSubTitle(object model)
+        public override void BindViewTitle(object model)
         {
             try
             {

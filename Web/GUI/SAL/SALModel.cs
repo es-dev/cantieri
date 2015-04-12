@@ -36,7 +36,7 @@ namespace Web.GUI.SAL
             }
         }
 
-        public override void BindViewSubTitle(object model)
+        public override void BindViewTitle(object model)
         {
             try
             {
