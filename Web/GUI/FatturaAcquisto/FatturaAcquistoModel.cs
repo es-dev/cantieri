@@ -157,27 +157,23 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
+                var obj = (WcfService.Dto.FatturaAcquistoDto)Model;
                 var imponibile = UtilityValidation.GetDecimal(editImponibile.Value);
                 var iva = UtilityValidation.GetDecimal(editIVA.Value);
                 var data = editData.Value;
-                var _scadenzaPagamento = editScadenzaPagamento.Value;
                 var today = DateTime.Today;
 
-                if (data != null)
-                {
-                    var obj = (WcfService.Dto.FatturaAcquistoDto)Model;
-                    var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
-                    var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, today);
-                    //var totaleNoteCredito = BusinessLogic.Fattura.GetTotaleNoteCredito(obj, today);
+                var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
+                var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, today);
+                //var totaleNoteCredito = BusinessLogic.Fattura.GetTotaleNoteCredito(obj, today);
 
-                    var commessa = GetCommessa(obj);
-                    var statoDescrizione = BusinessLogic.Fattura.GetStatoDescrizione(obj, commessa); // GetStato(today, scadenza, totaleFattura, totalePagamenti, statoFattura);
+                var commessa = GetCommessa(obj);
+                var statoDescrizione = BusinessLogic.Fattura.GetStatoDescrizione(obj, commessa); // GetStato(today, scadenza, totaleFattura, totalePagamenti, statoFattura);
 
-                    editStato.Value = statoDescrizione;
-                    editTotale.Value = totaleFattura;
-                    editTotalePagamenti.Value = totalePagamenti;
-                    //editTotaleNoteCredito.Value = totaleNoteCredito;
-                }
+                editStato.Value = statoDescrizione;
+                editTotale.Value = totaleFattura;
+                editTotalePagamenti.Value = totalePagamenti;
+                //editTotaleNoteCredito.Value = totaleNoteCredito;
             }
             catch (Exception ex)
             {
@@ -400,6 +396,7 @@ namespace Web.GUI.FatturaAcquisto
                 UtilityError.Write(ex);
             }
         }
+
 
 	}
 }
