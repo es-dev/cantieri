@@ -67,7 +67,7 @@ namespace Web.GUI.PagamentoUnificato
                         var newObj = wcf.CreatePagamentoUnificato(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdatePagamentoUnificato(obj);
@@ -100,7 +100,7 @@ namespace Web.GUI.PagamentoUnificato
             return false;
         }
 
-        public new PagamentoUnificatoDto Read(object id)
+        public override object Read(object id)
         {
             try
             {

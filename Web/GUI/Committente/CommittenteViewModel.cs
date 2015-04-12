@@ -81,7 +81,7 @@ namespace Web.GUI.Committente
                         var newObj = wcf.CreateCommittente(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdateCommittente(obj);
@@ -114,7 +114,7 @@ namespace Web.GUI.Committente
             return false;
         }
 
-        public new CommittenteDto Read(object id)
+        public override object Read(object id)
         {
             try
             {

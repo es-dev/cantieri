@@ -67,7 +67,7 @@ namespace Web.GUI.Articolo
                         var newObj = wcf.CreateArticolo(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdateArticolo(obj);
@@ -100,7 +100,7 @@ namespace Web.GUI.Articolo
             return false;
         }
 
-        public new ArticoloDto Read(object id)
+        public override object Read(object id)
         {
             try
             {

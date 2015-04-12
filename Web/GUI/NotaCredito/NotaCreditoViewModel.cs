@@ -80,7 +80,7 @@ namespace Web.GUI.NotaCredito
                         var newObj = wcf.CreateNotaCredito(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdateNotaCredito(obj);
@@ -113,7 +113,7 @@ namespace Web.GUI.NotaCredito
             return false;
         }
 
-        public new NotaCreditoDto Read(object id)
+        public override object Read(object id)
         {
             try
             {

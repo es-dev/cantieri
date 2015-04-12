@@ -104,7 +104,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                         var newObj = wcf.CreatePagamentoUnificatoFatturaAcquisto(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdatePagamentoUnificatoFatturaAcquisto(obj);
@@ -161,7 +161,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             return false;
         }
 
-        public new PagamentoUnificatoFatturaAcquistoDto Read(object id)
+        public override object Read(object id)
         {
             try
             {

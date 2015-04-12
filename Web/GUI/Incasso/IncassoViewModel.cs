@@ -92,7 +92,7 @@ namespace Web.GUI.Incasso
                         var newObj = wcf.CreateIncasso(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdateIncasso(obj);
@@ -125,7 +125,7 @@ namespace Web.GUI.Incasso
             return false;
         }
 
-        public new IncassoDto Read(object id)
+        public override object Read(object id)
         {
             try
             {
