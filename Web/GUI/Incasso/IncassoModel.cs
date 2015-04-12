@@ -162,6 +162,18 @@ namespace Web.GUI.Incasso
         {
             try
             {
+                SetFatturaVendita(model);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void SetFatturaVendita(object model)
+        {
+            try
+            {
                 var fatturaVendita = (WcfService.Dto.FatturaVenditaDto)model;
                 if (fatturaVendita != null)
                 {
@@ -190,7 +202,7 @@ namespace Web.GUI.Incasso
             {
                 var obj = (IncassoDto)Model;
                 if (obj != null && obj.Id == 0)
-                    SetNewValue();
+                    SetNewValue(obj);
 
             }
             catch (Exception ex)
@@ -199,19 +211,11 @@ namespace Web.GUI.Incasso
             }
         }
 
-        private void SetNewValue()
+        private void SetNewValue(object model)
         {
             try
             {
-                if (fatturaVendita != null)
-                {
-                    editFatturaVendita.Model = fatturaVendita;
-                    var viewModelFatturaVendita = new FatturaVendita.FatturaVenditaViewModel(this);
-                    var fatturaVenditaId = fatturaVendita.Id;
-                    var _fatturaVendita = (FatturaVenditaDto)viewModelFatturaVendita.Read(fatturaVenditaId);
-                    var committente = _fatturaVendita.Committente;
-                    editFatturaVendita.Value = (fatturaVendita != null ? fatturaVendita.Numero + " del " + fatturaVendita.Data.Value.ToString("dd/MM/yyyy") : null) + " del committente: " + committente.Codice + " - " + committente.RagioneSociale;
-                }
+                SetFatturaVendita(model);
             }
             catch (Exception ex)
             {
