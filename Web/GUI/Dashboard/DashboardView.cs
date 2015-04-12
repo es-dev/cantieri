@@ -45,8 +45,9 @@ namespace Web.GUI.Dashboard
                     var viewModel = space.ViewModel;
                     if (viewModel != null)
                     {
-                        item.Count = viewModel.GetCount();
                         item.CountVisible = model.CountVisible;
+                        if(item.CountVisible)
+                            item.Count = viewModel.GetCount();
                     }
                 }
             }
