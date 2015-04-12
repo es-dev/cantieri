@@ -140,25 +140,21 @@ namespace Web.GUI.FatturaVendita
         {
             try
             {
+                var obj = (WcfService.Dto.FatturaVenditaDto)Model;
                 var imponibile = UtilityValidation.GetDecimal(editImponibile.Value);
                 var iva = UtilityValidation.GetDecimal(editIVA.Value);
                 var data = editData.Value;
-                var _scadenzaPagamento = editScadenzaPagamento.Value;
                 var today = DateTime.Today;
 
-                if (data != null)
-                {
-                    var obj = (WcfService.Dto.FatturaVenditaDto)Model;
-                    var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
-                    var totaleIncassi = BusinessLogic.Fattura.GetTotaleIncassi(obj, today);
+                var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
+                var totaleIncassi = BusinessLogic.Fattura.GetTotaleIncassi(obj, today);
 
-                    var commessa = GetCommessa(obj);
-                    var statoDescrizione = BusinessLogic.Fattura.GetStatoDescrizione(obj, commessa);
+                var commessa = GetCommessa(obj);
+                var statoDescrizione = BusinessLogic.Fattura.GetStatoDescrizione(obj, commessa);
 
-                    editStato.Value = statoDescrizione;
-                    editTotale.Value = totaleFattura;
-                    editTotaleIncassi.Value = totaleIncassi;
-                }
+                editStato.Value = statoDescrizione;
+                editTotale.Value = totaleFattura;
+                editTotaleIncassi.Value = totaleIncassi;
             }
             catch (Exception ex)
             {
