@@ -34,7 +34,6 @@ namespace Web.GUI.Azienda
             try
             {
                 var space = new AziendaModel();
-                space.Title = "NUOVA AZIENDA";
                 space.Model = new WcfService.Dto.AziendaDto() ;
                 AddSpace(space);
             }

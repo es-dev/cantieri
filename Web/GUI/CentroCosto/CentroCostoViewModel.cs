@@ -67,7 +67,7 @@ namespace Web.GUI.CentroCosto
                         var newObj = wcf.CreateCentroCosto(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdateCentroCosto(obj);
@@ -100,7 +100,7 @@ namespace Web.GUI.CentroCosto
             return false;
         }
 
-        public new CentroCostoDto Read(object id)
+        public override object Read(object id)
         {
             try
             {

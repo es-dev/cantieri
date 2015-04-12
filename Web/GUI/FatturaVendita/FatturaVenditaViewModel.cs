@@ -80,7 +80,7 @@ namespace Web.GUI.FatturaVendita
                         var newObj = wcf.CreateFatturaVendita(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdateFatturaVendita(obj);
@@ -113,7 +113,7 @@ namespace Web.GUI.FatturaVendita
             return false;
         }
 
-        public new FatturaVenditaDto Read(object id)
+        public override object Read(object id)
         {
             try
             {

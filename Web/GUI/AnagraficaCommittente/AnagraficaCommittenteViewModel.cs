@@ -67,7 +67,7 @@ namespace Web.GUI.AnagraficaCommittente
                         var newObj = wcf.CreateAnagraficaCommittente(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdateAnagraficaCommittente(obj);
@@ -100,7 +100,7 @@ namespace Web.GUI.AnagraficaCommittente
             return false;
         }
 
-        public new AnagraficaCommittenteDto Read(object id)
+        public override object Read(object id)
         {
             try
             {

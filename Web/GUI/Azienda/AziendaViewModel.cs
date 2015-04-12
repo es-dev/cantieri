@@ -67,7 +67,7 @@ namespace Web.GUI.Azienda
                         var newObj = wcf.CreateAzienda(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdateAzienda(obj);
@@ -100,7 +100,7 @@ namespace Web.GUI.Azienda
             return false;
         }
 
-        public new AziendaDto Read(object id)
+        public override object Read(object id)
         {
             try
             {

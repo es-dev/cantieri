@@ -61,7 +61,7 @@ namespace Web.GUI.Commessa
                         var newObj = wcf.CreateCommessa(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdateCommessa(obj);
@@ -94,7 +94,7 @@ namespace Web.GUI.Commessa
             return false;
         }
 
-        public new CommessaDto Read(object id)
+        public override object Read(object id)
         {
             try
             {

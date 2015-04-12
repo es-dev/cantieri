@@ -67,7 +67,7 @@ namespace Web.GUI.AnagraficaArticolo
                         var newObj = wcf.CreateAnagraficaArticolo(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdateAnagraficaArticolo(obj);
@@ -100,7 +100,7 @@ namespace Web.GUI.AnagraficaArticolo
             return false;
         }
 
-        public new AnagraficaArticoloDto Read(object id)
+        public override object Read(object id)
         {
             try
             {

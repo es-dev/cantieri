@@ -80,7 +80,7 @@ namespace Web.GUI.Fornitore
                         var newObj = wcf.CreateFornitore(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdateFornitore(obj);
@@ -113,7 +113,7 @@ namespace Web.GUI.Fornitore
             return false;
         }
 
-        public new FornitoreDto Read(object id)
+        public override object Read(object id)
         {
             try
             {

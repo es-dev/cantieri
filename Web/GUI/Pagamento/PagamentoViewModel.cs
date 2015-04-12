@@ -92,7 +92,7 @@ namespace Web.GUI.Pagamento
                         var newObj = wcf.CreatePagamento(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdatePagamento(obj);
@@ -125,7 +125,7 @@ namespace Web.GUI.Pagamento
             return false;
         }
 
-        public new PagamentoDto Read(object id)
+        public override object Read(object id)
         {
             try
             {

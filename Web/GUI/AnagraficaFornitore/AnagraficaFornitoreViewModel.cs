@@ -67,7 +67,7 @@ namespace Web.GUI.AnagraficaFornitore
                         var newObj = wcf.CreateAnagraficaFornitore(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdateAnagraficaFornitore(obj);
@@ -100,7 +100,7 @@ namespace Web.GUI.AnagraficaFornitore
             return false;
         }
 
-        public new AnagraficaFornitoreDto Read(object id)
+        public override object Read(object id)
         {
             try
             {

@@ -228,7 +228,7 @@ namespace Web.GUI.FatturaAcquisto
                 {
                     var fornitoreId = fatturaAcquisto.FornitoreId;
                     var viewModel = new Fornitore.FornitoreViewModel(this);
-                    var fornitore = viewModel.Read(fornitoreId);
+                    var fornitore = (FornitoreDto)viewModel.Read(fornitoreId);
                     if(fornitore!=null)
                     {
                         var commessa = fornitore.Commessa;

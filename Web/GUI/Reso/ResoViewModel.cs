@@ -94,7 +94,7 @@ namespace Web.GUI.Reso
                         var newObj = wcf.CreateReso(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdateReso(obj);
@@ -127,7 +127,7 @@ namespace Web.GUI.Reso
             return false;
         }
 
-        public new ResoDto Read(object id)
+        public override object Read(object id)
         {
             try
             {

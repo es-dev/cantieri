@@ -202,7 +202,7 @@ namespace Web.GUI.FatturaVendita
                 {
                     var committenteId = fatturaVendita.CommittenteId;
                     var viewModel = new Committente.CommittenteViewModel(this);
-                    var committente = viewModel.Read(committenteId);
+                    var committente = (CommittenteDto)viewModel.Read(committenteId);
                     if (committente != null)
                     {
                         var commessa = committente.Commessa;

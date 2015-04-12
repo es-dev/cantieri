@@ -67,7 +67,7 @@ namespace Web.GUI.Account
                         var newObj = wcf.CreateAccount(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdateAccount(obj);
@@ -100,7 +100,7 @@ namespace Web.GUI.Account
             return false;
         }
 
-        public new AccountDto Read(object id)
+        public override object Read(object id)
         {
             try
             {

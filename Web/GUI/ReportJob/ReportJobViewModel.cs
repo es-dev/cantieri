@@ -67,7 +67,7 @@ namespace Web.GUI.ReportJob
                         var newObj = wcf.CreateReportJob(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdateReportJob(obj);
@@ -100,7 +100,7 @@ namespace Web.GUI.ReportJob
             return false;
         }
 
-        public new ReportJobDto Read(object id)
+        public override object Read(object id)
         {
             try
             {

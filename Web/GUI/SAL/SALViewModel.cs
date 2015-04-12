@@ -80,7 +80,7 @@ namespace Web.GUI.SAL
                         var newObj = wcf.CreateSAL(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdateSAL(obj);
@@ -113,7 +113,7 @@ namespace Web.GUI.SAL
             return false;
         }
 
-        public new SALDto Read(object id)
+        public override object Read(object id)
         {
             try
             {

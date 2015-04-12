@@ -107,7 +107,7 @@ namespace Web.GUI.FatturaAcquisto
                         var newObj = wcf.CreateFatturaAcquisto(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj = newObj;
+                            obj.Id = newObj.Id;
                     }
                     else //updating
                         performed = wcf.UpdateFatturaAcquisto(obj);
@@ -140,7 +140,7 @@ namespace Web.GUI.FatturaAcquisto
             return false;
         }
 
-        public new FatturaAcquistoDto Read(object id)
+        public override object Read(object id)
         {
             try
             {
