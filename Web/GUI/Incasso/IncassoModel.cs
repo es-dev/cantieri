@@ -104,7 +104,11 @@ namespace Web.GUI.Incasso
             try
             {
                 editFatturaVendita.Model = fatturaVendita;
-                editFatturaVendita.Value = (fatturaVendita != null ? fatturaVendita.Numero + " del " + fatturaVendita.Data.Value.ToString("dd/MM/yyyy") : null);
+                var viewModelFatturaVendita = new FatturaVendita.FatturaVenditaViewModel(this);
+                var fatturaVenditaId = fatturaVendita.Id;
+                var _fatturaVendita= (FatturaVenditaDto)viewModelFatturaVendita.Read(fatturaVenditaId);
+                var committente = _fatturaVendita.Committente;
+                editFatturaVendita.Value = (fatturaVendita != null ? fatturaVendita.Numero + " del " + fatturaVendita.Data.Value.ToString("dd/MM/yyyy") : null) + " del committente: " + committente.Codice + " - " + committente.RagioneSociale;
             }
             catch (Exception ex)
             {
@@ -159,7 +163,11 @@ namespace Web.GUI.Incasso
                 var fatturaVendita = (WcfService.Dto.FatturaVenditaDto)model;
                 if (fatturaVendita != null)
                 {
-                    editFatturaVendita.Value = fatturaVendita.Numero + " del " + fatturaVendita.Data.Value.ToString("dd/MM/yyyy");
+                    var viewModelFatturaVendita = new FatturaVendita.FatturaVenditaViewModel(this);
+                    var fatturaVenditaId = fatturaVendita.Id;
+                    var _fatturaVendita = (FatturaVenditaDto)viewModelFatturaVendita.Read(fatturaVenditaId);
+                    var committente = _fatturaVendita.Committente;
+                    editFatturaVendita.Value = (fatturaVendita != null ? fatturaVendita.Numero + " del " + fatturaVendita.Data.Value.ToString("dd/MM/yyyy") : null) + " del committente: " + committente.Codice + " - " + committente.RagioneSociale;
                     var obj = (WcfService.Dto.IncassoDto)Model;
                     if (obj != null && obj.Id == 0)
                     {
@@ -196,7 +204,11 @@ namespace Web.GUI.Incasso
                 if (fatturaVendita != null)
                 {
                     editFatturaVendita.Model = fatturaVendita;
-                    editFatturaVendita.Value = fatturaVendita.Numero + " del " + fatturaVendita.Data.Value.ToString("dd/MM/yyyy");
+                    var viewModelFatturaVendita = new FatturaVendita.FatturaVenditaViewModel(this);
+                    var fatturaVenditaId = fatturaVendita.Id;
+                    var _fatturaVendita = (FatturaVenditaDto)viewModelFatturaVendita.Read(fatturaVenditaId);
+                    var committente = _fatturaVendita.Committente;
+                    editFatturaVendita.Value = (fatturaVendita != null ? fatturaVendita.Numero + " del " + fatturaVendita.Data.Value.ToString("dd/MM/yyyy") : null) + " del committente: " + committente.Codice + " - " + committente.RagioneSociale;
                 }
             }
             catch (Exception ex)
