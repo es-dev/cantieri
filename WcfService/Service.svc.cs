@@ -1300,10 +1300,11 @@ namespace WcfService
         {
             try
             {
-                var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
-                var pagamento = wcf.ReadPagamento(dtoKey);
-                return pagamento;
+                var ef = new DataLayer.EntitiesModel();
+                var pagamento = (from q in ef.Pagamentos where q.Id == (int)id select q).FirstOrDefault();
+
+                var pagamentoDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamento);
+                return pagamentoDto;
             }
             catch (Exception ex)
             {
@@ -2498,10 +2499,11 @@ namespace WcfService
         {
             try
             {
-                var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
-                var incasso = wcf.ReadIncasso(dtoKey);
-                return incasso;
+                var ef = new DataLayer.EntitiesModel();
+                var incasso = (from q in ef.Incassos where q.Id == (int)id select q).FirstOrDefault();
+
+                var incassoDto = UtilityPOCO.Assemble<Dto.IncassoDto>(incasso);
+                return incassoDto;
             }
             catch (Exception ex)
             {

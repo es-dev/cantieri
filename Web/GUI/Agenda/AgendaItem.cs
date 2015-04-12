@@ -55,8 +55,6 @@ namespace Web.GUI.Agenda
                     {
                         var obj = (FatturaAcquistoDto)model;
                         var space = new FatturaAcquistoModel();
-                        var fornitore = obj.Fornitore;
-                        space.Title = "FATTURA DI ACQUISTO N." + obj.Numero + " - " + fornitore.RagioneSociale;
                         space.Model = obj;
                         AddSpace(space);
                     }
@@ -64,11 +62,6 @@ namespace Web.GUI.Agenda
                     {
                         var obj = (PagamentoDto)model;
                         var space = new PagamentoModel();
-                        var fatturaAcquisto = obj.FatturaAcquisto;
-                        space.Title = "PAGAMENTO " + obj.Codice + " - FATTURA N." + fatturaAcquisto.Numero;
-                        var pagamentoUnificato = obj.PagamentoUnificato;
-                        if (pagamentoUnificato != null)
-                            space.Title += " - PAGAMENTO UNIFICATO " + pagamentoUnificato.Codice;
                         space.Model = obj;
                         AddSpace(space);
                     }

@@ -69,7 +69,8 @@ namespace Web.GUI.Incasso
                     infoSubtitle.Text = codice + " - " + descrizione;
                     infoSubtitleImage.Image = "Images.dashboard.incasso.png";
                     var fatturaVendita = obj.FatturaVendita;
-                    infoTitle.Text = (obj.Id!=0? "INCASSO " + obj.Codice + " - FATTURA N." + fatturaVendita.Numero:"NUOVO INCASSO");
+                    string title = "INCASSO " + obj.Codice + " - FATTURA N." + (fatturaVendita != null ? fatturaVendita.Numero : "N/D");
+                    infoTitle.Text = (obj.Id!=0? title:"NUOVO INCASSO");
                 }
             }
             catch (Exception ex)
