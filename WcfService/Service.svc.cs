@@ -986,7 +986,7 @@ namespace WcfService
                     fattureAcquisto = (from q in fattureAcquisto where q.FornitoreId == fornitore.Id select q);
 
                 if(anagraficaFornitore!=null) //ricerca fatture insolute/non pagate per un fornitore anagrafico
-                    fattureAcquisto = (from q in fattureAcquisto where q.Fornitore.Codice == anagraficaFornitore.Codice && stati.Contains(q.Stato) select q); 
+                    fattureAcquisto = (from q in fattureAcquisto where q.Fornitore.Codice == anagraficaFornitore.Codice select q); //todo: && stati.Contains(q.Stato)
                 
                 if(start!=null && end!=null)
                     fattureAcquisto = (from q in fattureAcquisto where start <= q.Scadenza && q.Scadenza <= end select q);
