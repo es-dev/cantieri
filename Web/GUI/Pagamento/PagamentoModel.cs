@@ -162,6 +162,18 @@ namespace Web.GUI.Pagamento
         {
             try
             {
+                SetFatturaAcquisto(model);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void SetFatturaAcquisto(object model)
+        {
+            try
+            {
                 var fatturaAcquisto = (FatturaAcquistoDto)model;
                 if (fatturaAcquisto != null)
                 {
@@ -190,7 +202,7 @@ namespace Web.GUI.Pagamento
             {
                 var obj = (PagamentoDto)Model;
                 if (obj != null && obj.Id == 0)
-                    SetNewValue();
+                    SetNewValue(obj);
             }
             catch (Exception ex)
             {
@@ -199,19 +211,11 @@ namespace Web.GUI.Pagamento
 
         }
 
-        private void SetNewValue()
+        private void SetNewValue(object model)
         {
             try
             {
-                if (fatturaAcquisto!=null)
-                {
-                    editFatturaAcquisto.Model = fatturaAcquisto;
-                    var viewModelFatturaAcquisto = new FatturaAcquisto.FatturaAcquistoViewModel(this);
-                    var fatturaAcquistoId = fatturaAcquisto.Id;
-                    var _fatturaAcquisto = (FatturaAcquistoDto)viewModelFatturaAcquisto.Read(fatturaAcquistoId);
-                    var fornitore = _fatturaAcquisto.Fornitore;
-                    editFatturaAcquisto.Value = (fatturaAcquisto != null ? fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") : null) + " del fornitore: " + fornitore.Codice + " - " + fornitore.RagioneSociale;
-                }
+                SetFatturaAcquisto(model);
             }
             catch (Exception ex)
             {
