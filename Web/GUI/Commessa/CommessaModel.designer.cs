@@ -128,11 +128,11 @@ namespace Web.GUI.Commessa
             // 
             // infoSubtitle
             // 
-            this.infoSubtitle.Location = new System.Drawing.Point(658, 3);
+            this.infoSubtitle.Location = new System.Drawing.Point(666, 3);
             // 
             // infoSubtitleImage
             // 
-            this.infoSubtitleImage.Location = new System.Drawing.Point(602, 3);
+            this.infoSubtitleImage.Location = new System.Drawing.Point(610, 3);
             // 
             // panelCommands
             // 
@@ -786,8 +786,6 @@ namespace Web.GUI.Commessa
             // 
             this.Location = new System.Drawing.Point(0, -168);
             this.Size = new System.Drawing.Size(1024, 1119);
-            this.Controls.SetChildIndex(this.panelCommands, 0);
-            this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
             this.panelCommands.ResumeLayout(false);

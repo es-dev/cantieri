@@ -344,7 +344,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editCentroCosto.Model = null;
             this.editCentroCosto.Name = "editCentroCosto";
             this.editCentroCosto.ReadOnly = false;
-            this.editCentroCosto.Required = false;
+            this.editCentroCosto.Required = true;
             this.editCentroCosto.Size = new System.Drawing.Size(796, 30);
             this.editCentroCosto.TabIndex = 1;
             this.editCentroCosto.Text = "EditControl";

@@ -27,7 +27,7 @@ namespace Web.GUI.Azienda
                     var obj = (WcfService.Dto.AziendaDto)model;
                     var codice = UtilityValidation.GetStringND(obj.Codice);
                     var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
-                    //infoTitle.Text = (obj.Id!=0? "AZIENDA " + ragioneSociale:"NUOVA AZIENDA");
+                    infoTitle.Text = (obj.Id!=0? "AZIENDA " + ragioneSociale:"NUOVA AZIENDA");
                     infoSubtitle.Text = codice + " - " + ragioneSociale;
                     infoSubtitleImage.Image = "Images.dashboard.azienda.png";
                 }
