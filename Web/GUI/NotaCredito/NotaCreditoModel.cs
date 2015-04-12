@@ -22,7 +22,6 @@ namespace Web.GUI.NotaCredito
 			InitializeComponent();
             try
             {
-                InitCombo();
             }
             catch (Exception ex)
             {
@@ -35,20 +34,7 @@ namespace Web.GUI.NotaCredito
             InitializeComponent();
             try
             {
-                InitCombo();
                 this.fornitore = fornitore;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void InitCombo()
-        {
-            try
-            {
-                editTipoPagamento.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.TipoPagamento>();
             }
             catch (Exception ex)
             {
@@ -90,7 +76,7 @@ namespace Web.GUI.NotaCredito
                     editIVA.Value = obj.IVA;
                     editStato.Value = obj.Stato;
                     editDescrizione.Value = obj.Descrizione;
-                    
+
                     BindViewFornitore(obj.Fornitore);
                 }
             }

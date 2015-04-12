@@ -34,7 +34,6 @@ namespace Web.GUI.NotaCredito
             this.editData = new Library.Template.Controls.TemplateEditDate();
             this.editNote = new Library.Template.Controls.TemplateEditText();
             this.editNumero = new Library.Template.Controls.TemplateEditText();
-            this.editTipoPagamento = new Library.Template.Controls.TemplateEditDropDown();
             this.editDescrizione = new Library.Template.Controls.TemplateEditText();
             this.editTotale = new Library.Template.Controls.TemplateEditDecimal();
             this.editIVA = new Library.Template.Controls.TemplateEditDecimal();
@@ -54,7 +53,6 @@ namespace Web.GUI.NotaCredito
             this.container.Controls.Add(this.editIVA);
             this.container.Controls.Add(this.editTotale);
             this.container.Controls.Add(this.editDescrizione);
-            this.container.Controls.Add(this.editTipoPagamento);
             this.container.Controls.Add(this.editNumero);
             this.container.Controls.Add(this.editNote);
             this.container.Controls.Add(this.editData);
@@ -65,7 +63,6 @@ namespace Web.GUI.NotaCredito
             this.container.Controls.SetChildIndex(this.editData, 0);
             this.container.Controls.SetChildIndex(this.editNote, 0);
             this.container.Controls.SetChildIndex(this.editNumero, 0);
-            this.container.Controls.SetChildIndex(this.editTipoPagamento, 0);
             this.container.Controls.SetChildIndex(this.editDescrizione, 0);
             this.container.Controls.SetChildIndex(this.editTotale, 0);
             this.container.Controls.SetChildIndex(this.editIVA, 0);
@@ -152,7 +149,7 @@ namespace Web.GUI.NotaCredito
             this.editNote.Editing = false;
             this.editNote.Label = "Note";
             this.editNote.LabelWidth = 175;
-            this.editNote.Location = new System.Drawing.Point(25, 403);
+            this.editNote.Location = new System.Drawing.Point(25, 362);
             this.editNote.Name = "editNote";
             this.editNote.ReadOnly = false;
             this.editNote.Required = false;
@@ -183,30 +180,6 @@ namespace Web.GUI.NotaCredito
             this.editNumero.Text = "EditControl";
             this.editNumero.Value = null;
             // 
-            // editTipoPagamento
-            // 
-            this.editTipoPagamento.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editTipoPagamento.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editTipoPagamento.BackColor = System.Drawing.Color.Transparent;
-            this.editTipoPagamento.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editTipoPagamento.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editTipoPagamento.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editTipoPagamento.Changed = true;
-            this.editTipoPagamento.DisplayValues = null;
-            this.editTipoPagamento.Editing = false;
-            this.editTipoPagamento.Items = null;
-            this.editTipoPagamento.Label = "Tipo pagamento";
-            this.editTipoPagamento.LabelWidth = 175;
-            this.editTipoPagamento.Location = new System.Drawing.Point(25, 321);
-            this.editTipoPagamento.Name = "editTipoPagamento";
-            this.editTipoPagamento.ReadOnly = false;
-            this.editTipoPagamento.Required = false;
-            this.editTipoPagamento.Size = new System.Drawing.Size(798, 30);
-            this.editTipoPagamento.TabIndex = 6;
-            this.editTipoPagamento.Text = "EditControl";
-            this.editTipoPagamento.Value = null;
-            // 
             // editDescrizione
             // 
             this.editDescrizione.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
@@ -220,7 +193,7 @@ namespace Web.GUI.NotaCredito
             this.editDescrizione.Editing = false;
             this.editDescrizione.Label = "Descrizione";
             this.editDescrizione.LabelWidth = 175;
-            this.editDescrizione.Location = new System.Drawing.Point(25, 362);
+            this.editDescrizione.Location = new System.Drawing.Point(25, 321);
             this.editDescrizione.Name = "editDescrizione";
             this.editDescrizione.ReadOnly = false;
             this.editDescrizione.Required = false;
@@ -244,7 +217,7 @@ namespace Web.GUI.NotaCredito
             this.editTotale.LabelWidth = 175;
             this.editTotale.Location = new System.Drawing.Point(25, 280);
             this.editTotale.Name = "editTotale";
-            this.editTotale.ReadOnly = false;
+            this.editTotale.ReadOnly = true;
             this.editTotale.Required = false;
             this.editTotale.Size = new System.Drawing.Size(798, 30);
             this.editTotale.TabIndex = 5;
@@ -266,7 +239,7 @@ namespace Web.GUI.NotaCredito
             this.editIVA.LabelWidth = 175;
             this.editIVA.Location = new System.Drawing.Point(25, 239);
             this.editIVA.Name = "editIVA";
-            this.editIVA.ReadOnly = false;
+            this.editIVA.ReadOnly = true;
             this.editIVA.Required = false;
             this.editIVA.Size = new System.Drawing.Size(798, 30);
             this.editIVA.TabIndex = 4;
@@ -288,7 +261,7 @@ namespace Web.GUI.NotaCredito
             this.editImponibile.LabelWidth = 175;
             this.editImponibile.Location = new System.Drawing.Point(25, 198);
             this.editImponibile.Name = "editImponibile";
-            this.editImponibile.ReadOnly = false;
+            this.editImponibile.ReadOnly = true;
             this.editImponibile.Required = false;
             this.editImponibile.Size = new System.Drawing.Size(798, 30);
             this.editImponibile.TabIndex = 3;
@@ -308,7 +281,7 @@ namespace Web.GUI.NotaCredito
             this.editStato.Editing = false;
             this.editStato.Label = "Stato";
             this.editStato.LabelWidth = 175;
-            this.editStato.Location = new System.Drawing.Point(25, 444);
+            this.editStato.Location = new System.Drawing.Point(25, 403);
             this.editStato.Name = "editStato";
             this.editStato.ReadOnly = false;
             this.editStato.Required = false;
@@ -364,7 +337,6 @@ namespace Web.GUI.NotaCredito
         private Library.Template.Controls.TemplateEditText editNote;
         private Library.Template.Controls.TemplateEditText editNumero;
         private Library.Template.Controls.TemplateEditText editDescrizione;
-        private Library.Template.Controls.TemplateEditDropDown editTipoPagamento;
         private Library.Template.Controls.TemplateEditDecimal editImponibile;
         private Library.Template.Controls.TemplateEditDecimal editIVA;
         private Library.Template.Controls.TemplateEditDecimal editTotale;

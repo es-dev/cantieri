@@ -107,13 +107,16 @@ namespace Web.GUI.Pagamento
             try
             {
                 editFatturaAcquisto.Model = fatturaAcquisto;
-                editFatturaAcquisto.Value = (fatturaAcquisto != null ? fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") : null);
+                var viewModelFatturaAcquisto = new FatturaAcquisto.FatturaAcquistoViewModel(this);
+                var fatturaAcquistoId = fatturaAcquisto.Id;
+                var _fatturaAcquisto = (FatturaAcquistoDto)viewModelFatturaAcquisto.Read(fatturaAcquistoId);
+                var fornitore = _fatturaAcquisto.Fornitore;
+                editFatturaAcquisto.Value = (fatturaAcquisto != null ? fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") : null) + " del fornitore: " + fornitore.Codice +" - " + fornitore.RagioneSociale;
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
-           
         }
 
         public override void BindModel(object model)
@@ -162,7 +165,11 @@ namespace Web.GUI.Pagamento
                 var fatturaAcquisto = (FatturaAcquistoDto)model;
                 if (fatturaAcquisto != null)
                 {
-                    editFatturaAcquisto.Value = fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy");
+                    var viewModelFatturaAcquisto = new FatturaAcquisto.FatturaAcquistoViewModel(this);
+                    var fatturaAcquistoId = fatturaAcquisto.Id;
+                    var _fatturaAcquisto = (FatturaAcquistoDto)viewModelFatturaAcquisto.Read(fatturaAcquistoId);
+                    var fornitore = _fatturaAcquisto.Fornitore;
+                    editFatturaAcquisto.Value = (fatturaAcquisto != null ? fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") : null) + " del fornitore: " + fornitore.Codice + " - " + fornitore.RagioneSociale;
                     var obj = (PagamentoDto)Model;
                     if (obj != null && obj.Id == 0)
                     {
@@ -199,7 +206,11 @@ namespace Web.GUI.Pagamento
                 if (fatturaAcquisto!=null)
                 {
                     editFatturaAcquisto.Model = fatturaAcquisto;
-                    editFatturaAcquisto.Value = fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy");
+                    var viewModelFatturaAcquisto = new FatturaAcquisto.FatturaAcquistoViewModel(this);
+                    var fatturaAcquistoId = fatturaAcquisto.Id;
+                    var _fatturaAcquisto = (FatturaAcquistoDto)viewModelFatturaAcquisto.Read(fatturaAcquistoId);
+                    var fornitore = _fatturaAcquisto.Fornitore;
+                    editFatturaAcquisto.Value = (fatturaAcquisto != null ? fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") : null) + " del fornitore: " + fornitore.Codice + " - " + fornitore.RagioneSociale;
                 }
             }
             catch (Exception ex)
