@@ -149,7 +149,6 @@ namespace Web.GUI.FatturaAcquisto
             {
                 UtilityError.Write(ex);
             }
-            
         }
 
         private void BindViewTotali()
@@ -160,10 +159,10 @@ namespace Web.GUI.FatturaAcquisto
                 var iva = UtilityValidation.GetDecimal(editIVA.Value);
                 var data = editData.Value;
                 var _scadenzaPagamento = editScadenzaPagamento.Value;
-                        var today = DateTime.Today;
+                var today = DateTime.Today;
 
                 if (data != null)
-            {
+                {
                     var obj = (WcfService.Dto.FatturaAcquistoDto)Model;
                     var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
                     var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, today);
@@ -176,7 +175,6 @@ namespace Web.GUI.FatturaAcquisto
                     editTotale.Value = totaleFattura;
                     editTotalePagamenti.Value = totalePagamenti;
                     //editTotaleNoteCredito.Value = totaleNoteCredito;
-
                 }
             }
             catch (Exception ex)
@@ -306,9 +304,9 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                if(Editing)
+                if (Editing)
                     BindViewTotali();
-                }
+            }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
@@ -399,7 +397,6 @@ namespace Web.GUI.FatturaAcquisto
             {
                 UtilityError.Write(ex);
             }
-
         }
 
 	}

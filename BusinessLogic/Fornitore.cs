@@ -173,22 +173,26 @@ namespace BusinessLogic
                     var totaleSaldoFattureAcquisto = GetTotaleSaldoFattureAcquisto(fornitore, today);
                     var totalePagamenti = GetTotalePagamenti(fornitore, today);
                     var fatture = fornitore.FatturaAcquistos;
-                    var fattureInsolute = GetFattureInsolute(fatture);
-                    var existFattureInsolute = (fattureInsolute.Count >= 1);
-
                     var stato = Tipi.StatoFornitore.None;
-                    if (totalePagamenti < totaleSaldoFattureAcquisto)
-                    {
-                        if (existFattureInsolute)
-                            stato = Tipi.StatoFornitore.Insoluto;
-                        else
-                            stato = Tipi.StatoFornitore.NonPagato;
-                    }
-                    else if (totalePagamenti == totaleSaldoFattureAcquisto)
-                        stato = Tipi.StatoFornitore.Pagato;
-                    else if (totalePagamenti > totaleSaldoFattureAcquisto)
-                        stato = Tipi.StatoFornitore.Incoerente;
 
+                    if (fatture != null && fatture.Count>0)
+                    {
+                        var fattureInsolute = GetFattureInsolute(fatture);
+                        var existFattureInsolute = (fattureInsolute.Count >= 1);
+
+                        if (totalePagamenti < totaleSaldoFattureAcquisto)
+                        {
+                            if (existFattureInsolute)
+                                stato = Tipi.StatoFornitore.Insoluto;
+                            else
+                                stato = Tipi.StatoFornitore.NonPagato;
+                        }
+                        else if (totalePagamenti == totaleSaldoFattureAcquisto)
+                            stato = Tipi.StatoFornitore.Pagato;
+                        else if (totalePagamenti > totaleSaldoFattureAcquisto)
+                            stato = Tipi.StatoFornitore.Incoerente;
+
+                    }
                     return stato;
                 }
             }

@@ -217,7 +217,7 @@ namespace Web.GUI.NotaCredito
             this.editTotale.LabelWidth = 175;
             this.editTotale.Location = new System.Drawing.Point(25, 280);
             this.editTotale.Name = "editTotale";
-            this.editTotale.ReadOnly = false;
+            this.editTotale.ReadOnly = true;
             this.editTotale.Required = false;
             this.editTotale.Size = new System.Drawing.Size(798, 30);
             this.editTotale.TabIndex = 5;
@@ -239,7 +239,7 @@ namespace Web.GUI.NotaCredito
             this.editIVA.LabelWidth = 175;
             this.editIVA.Location = new System.Drawing.Point(25, 239);
             this.editIVA.Name = "editIVA";
-            this.editIVA.ReadOnly = false;
+            this.editIVA.ReadOnly = true;
             this.editIVA.Required = false;
             this.editIVA.Size = new System.Drawing.Size(798, 30);
             this.editIVA.TabIndex = 4;
@@ -261,7 +261,7 @@ namespace Web.GUI.NotaCredito
             this.editImponibile.LabelWidth = 175;
             this.editImponibile.Location = new System.Drawing.Point(25, 198);
             this.editImponibile.Name = "editImponibile";
-            this.editImponibile.ReadOnly = false;
+            this.editImponibile.ReadOnly = true;
             this.editImponibile.Required = false;
             this.editImponibile.Size = new System.Drawing.Size(798, 30);
             this.editImponibile.TabIndex = 3;

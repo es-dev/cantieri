@@ -2519,11 +2519,14 @@ namespace WcfService
                 if(fatturaVendita!=null)
                     incassi = (from q in incassi where q.FatturaVenditaId == fatturaVendita.Id select q);
 
-                if(committente!=null)
+                if (committente != null)
                 {
                     var fattureVendita = committente.FatturaVenditas;
-                    var fattureVenditaIds = (from q in fattureVendita select q.Id);
-                    incassi = (from q in incassi where fattureVenditaIds.Contains(q.FatturaVenditaId) select q);
+                    if (fattureVendita != null)
+                    {
+                        var fattureVenditaIds = (from q in fattureVendita select q.Id);
+                        incassi = (from q in incassi where fattureVenditaIds.Contains(q.FatturaVenditaId) select q);
+                    }
                 }
 
                 if (search != null && search.Length > 0)
