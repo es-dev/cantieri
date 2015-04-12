@@ -47,6 +47,8 @@ namespace Web.GUI.Fornitore
                     var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
                     infoSubtitle.Text = codice + " - " + ragioneSociale;
                     infoSubtitleImage.Image = "Images.dashboard.fornitore.png";
+                    var commessa = obj.Commessa;
+                    infoTitle.Text= (obj.Id!=0? "FORNITORE " + obj.RagioneSociale + " - COMMESSA " + commessa.Codice:"NUOVO FORNITORE");
                 }
             }
             catch (Exception ex)

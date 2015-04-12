@@ -74,7 +74,6 @@ namespace Web.GUI.Reso
             try
             {
                 var space = new ResoModel(notaCredito);
-                space.Title = "NUOVO RESO";
                 space.Model = new WcfService.Dto.ResoDto();
                 AddSpace(space);
             }

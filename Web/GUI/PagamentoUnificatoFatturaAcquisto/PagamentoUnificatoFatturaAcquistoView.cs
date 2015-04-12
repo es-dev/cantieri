@@ -56,7 +56,6 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             try
             {
                 var space = new PagamentoUnificatoFatturaAcquistoModel(pagamentoUnificato);
-                space.Title = "FATTURA DI ACQUISTO PER PAGAMENTO UNIFICATO";
                 space.Model = new WcfService.Dto.PagamentoUnificatoFatturaAcquistoDto();
                 AddSpace(space);
             }

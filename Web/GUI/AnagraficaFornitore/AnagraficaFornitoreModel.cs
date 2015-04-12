@@ -30,6 +30,7 @@ namespace Web.GUI.AnagraficaFornitore
                     var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
                     infoSubtitle.Text = codice + " - " + ragioneSociale;
                     infoSubtitleImage.Image = "Images.dashboard.anagraficafornitore.png";
+                    infoTitle.Text = (obj.Id!=0? "ANAGRAFICA FORNITORE " + obj.RagioneSociale:"NUOVA ANAGRAFICA FORNITORE");
                 }
             }
             catch (Exception ex)

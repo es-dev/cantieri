@@ -34,7 +34,6 @@ namespace Web.GUI.AnagraficaFornitore
             try
             {
                 var space = new AnagraficaFornitoreModel();
-                space.Title = "NUOVA ANAGRAFICA FORNITORE";
                 space.Model = new WcfService.Dto.AnagraficaFornitoreDto();
                 AddSpace(space);
             }

@@ -108,10 +108,7 @@ namespace Web.GUI.Committente
             {
                 if (item != null)
                 {
-                    var obj = (WcfService.Dto.CommittenteDto)Model;
                     var space = new CommittenteModel();
-                    var commessa = obj.Commessa;
-                    space.Title = "COMMITTENTE " + obj.RagioneSociale + " - COMMESSA " + commessa.Codice;
                     AddSpace(space);
                 }
             }

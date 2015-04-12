@@ -76,7 +76,6 @@ namespace Web.GUI.Pagamento
             try
             {
                 var space = new PagamentoModel(fatturaAcquisto);
-                space.Title = "NUOVO PAGAMENTO";
                 space.Model = new WcfService.Dto.PagamentoDto();
                 AddSpace(space);
             }

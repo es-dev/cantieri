@@ -70,6 +70,8 @@ namespace Web.GUI.FatturaAcquisto
                     var data = UtilityValidation.GetDataND(obj.Data)+" - "+ descrizione;
                     infoSubtitle.Text = "N."+ numero + " del " + data;
                     infoSubtitleImage.Image = "Images.dashboard.fatturaacquisto.png";
+                    var fornitore = obj.Fornitore;
+                    infoTitle.Text = (obj.Id!=0?"FATTURA DI ACQUISTO N." + obj.Numero + " - " + fornitore.RagioneSociale: "NUOVA FATTURA DI ACQUISTO");
                 }
             }
             catch (Exception ex)

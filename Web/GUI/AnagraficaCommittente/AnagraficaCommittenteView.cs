@@ -34,7 +34,6 @@ namespace Web.GUI.AnagraficaCommittente
             try
             {
                 var space = new AnagraficaCommittenteModel();
-                space.Title = "NUOVA ANAGRAFICA COMMITTENTE";
                 space.Model = new WcfService.Dto.AnagraficaCommittenteDto();
                 AddSpace(space);
             }

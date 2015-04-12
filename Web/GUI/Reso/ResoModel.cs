@@ -44,6 +44,8 @@ namespace Web.GUI.Reso
                 var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
                 infoSubtitle.Text = codice + " - " + descrizione;
                 infoSubtitleImage.Image = "Images.dashboard.reso.png";
+                var notaCredito = obj.NotaCredito;
+                infoTitle.Text = (obj.Id!=0? "RESO " + obj.Codice + " - NOTA DI CREDITO N." + notaCredito.Numero:"NUOVO RESO");
             }
             catch (Exception ex)
             {

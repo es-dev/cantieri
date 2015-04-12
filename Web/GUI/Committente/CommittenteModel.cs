@@ -47,6 +47,8 @@ namespace Web.GUI.Committente
                     var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
                     infoSubtitle.Text = codice + " - " + ragioneSociale;
                     infoSubtitleImage.Image = "Images.dashboard.committente.png";
+                    var commessa = obj.Commessa;
+                    infoTitle.Text = (obj.Id!=0? "COMMITTENTE " + obj.RagioneSociale + " - COMMESSA " + commessa.Codice: "NUOVO COMMITTENTE");
                 }
             }
             catch (Exception ex)

@@ -66,6 +66,12 @@ namespace Web.GUI.Pagamento
                 var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
                 infoSubtitle.Text = "N."+ codice + " - " + descrizione;
                 infoSubtitleImage.Image = "Images.dashboard.pagamento.png";
+                var fatturaAcquisto = obj.FatturaAcquisto;
+                string title = "PAGAMENTO " + obj.Codice + " - FATTURA N." + fatturaAcquisto.Numero;
+                var pagamentoUnificato = obj.PagamentoUnificato;
+                if (pagamentoUnificato != null)
+                    title += " - PAGAMENTO UNIFICATO " + pagamentoUnificato.Codice;
+                infoTitle.Text = (obj.Id!=0? title: "NUOVO PAGAMENTO");
             }
             catch (Exception ex)
             {

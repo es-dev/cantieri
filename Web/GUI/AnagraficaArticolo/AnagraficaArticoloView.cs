@@ -34,7 +34,6 @@ namespace Web.GUI.AnagraficaArticolo
             try
             {
                 var space = new AnagraficaArticoloModel();
-                space.Title = "NUOVA ANAGRAFICA ARTICOLO";
                 space.Model = new WcfService.Dto.AnagraficaArticoloDto();
                 AddSpace(space);
             }

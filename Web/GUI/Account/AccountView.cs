@@ -34,7 +34,6 @@ namespace Web.GUI.Account
             try
             {
                 var space = new AccountModel();
-                space.Title = "NUOVO ACCOUNT";
                 space.Model = new WcfService.Dto.AccountDto();
                 AddSpace(space);
             }

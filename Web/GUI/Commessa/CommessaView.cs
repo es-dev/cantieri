@@ -36,7 +36,6 @@ namespace Web.GUI.Commessa
             try
             {
                 var space = new CommessaModel();
-                space.Title = "NUOVA COMMESSA";
                 space.Model = new WcfService.Dto.CommessaDto();
                 AddSpace(space);
             }

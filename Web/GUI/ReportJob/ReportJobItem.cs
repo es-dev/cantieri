@@ -72,6 +72,8 @@ namespace Web.GUI.ReportJob
             
         }
 
+        //todo: portare in BL
+
         private string GetDescrizione(WcfService.Dto.ReportJobDto obj)
         {
             try
@@ -107,15 +109,8 @@ namespace Web.GUI.ReportJob
             {
                 if (item != null)
                 {
-                    var obj = (WcfService.Dto.ReportJobDto)Model;
-                    var codiceFornitore = obj.CodiceFornitore;
-                    var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
-                    var anagraficaFornitore = viewModel.ReadAnagraficaFornitore(codiceFornitore);
-                    var ragioneSociale = (anagraficaFornitore != null ? anagraficaFornitore.RagioneSociale : "N/D");
-                    var codice = (obj.Codice != null ? obj.Codice : "N/D");
                     var tipoReport = BusinessLogic.Tipi.TipoReport.Fornitore;
                     var space = new ReportJobFornitoreModel(tipoReport);
-                    space.Title = "REPORT " + codice + " - " + ragioneSociale;
                     AddSpace(space);
                 }
             }

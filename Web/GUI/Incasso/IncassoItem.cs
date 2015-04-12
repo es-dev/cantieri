@@ -51,10 +51,7 @@ namespace Web.GUI.Incasso
             {
                 if (item != null)
                 {
-                    var obj = (WcfService.Dto.IncassoDto)Model;
                     var space = new IncassoModel();
-                    var fatturaVendita= obj.FatturaVendita;
-                    space.Title = "INCASSO " + obj.Codice + " - FATTURA N." + fatturaVendita.Numero;
                     AddSpace(space);
                 }
             }

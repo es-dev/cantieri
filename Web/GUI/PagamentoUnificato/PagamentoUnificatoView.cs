@@ -34,7 +34,6 @@ namespace Web.GUI.PagamentoUnificato
             try
             {
                 var space = new PagamentoUnificatoModel();
-                space.Title = "NUOVO PAGAMENTO UNIFICATO";
                 space.Model = new WcfService.Dto.PagamentoUnificatoDto();
                 AddSpace(space);
             }

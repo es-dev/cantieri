@@ -48,12 +48,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             {
                 if (item != null)
                 {
-                    var obj = (PagamentoUnificatoFatturaAcquistoDto)Model;
-
                     var space = new PagamentoUnificatoFatturaAcquistoModel();
-                    var fatturaAcquisto= obj.FatturaAcquisto;
-                    var pagamentoUnificato = obj.PagamentoUnificato;
-                    space.Title = "PAGAMENTO UNIFICATO " + pagamentoUnificato.Codice+ " - FATTURA DI ACQUISTO N." + fatturaAcquisto.Numero;
                     AddSpace(space);
                 }
             }

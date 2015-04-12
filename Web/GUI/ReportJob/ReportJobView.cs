@@ -35,7 +35,6 @@ namespace Web.GUI.ReportJob
             {
                 var tipoReport = BusinessLogic.Tipi.TipoReport.Fornitore;
                 var space = new ReportJobFornitoreModel(tipoReport);
-                space.Title = "NUOVO REPORT";
                 space.Model = new WcfService.Dto.ReportJobDto();
                 AddSpace(space);
             }

@@ -50,6 +50,7 @@ namespace Web.GUI.Account
                     var obj = (WcfService.Dto.AccountDto)model;
                     infoSubtitle.Text = obj.Nickname + " - " + obj.Ruolo;
                     infoSubtitleImage.Image = "Images.dashboard.account.png";
+                    infoTitle.Text = (obj.Id!=0? "ACCOUNT " + obj.Nickname: "NUOVO ACCOUNT");
                 }
             }
             catch (Exception ex)

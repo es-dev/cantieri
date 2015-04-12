@@ -50,7 +50,6 @@ namespace Web.GUI.Azienda
             {
                 if (item != null)
                 {
-                    var obj = (WcfService.Dto.AziendaDto)Model;
                     var space = new AziendaModel();
                     AddSpace(space);
                 }

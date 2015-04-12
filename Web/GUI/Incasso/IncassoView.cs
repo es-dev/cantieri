@@ -74,7 +74,6 @@ namespace Web.GUI.Incasso
             try
             {
                 var space = new IncassoModel(fatturaVendita);
-                space.Title = "NUOVO INCASSO";
                 space.Model = new WcfService.Dto.IncassoDto();
                 AddSpace(space);
             }
