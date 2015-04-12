@@ -53,10 +53,7 @@ namespace Web.GUI.Reso
             {
                 if (item != null)
                 {
-                    var obj = (ResoDto)Model;
                     var space = new ResoModel();
-                    var notaCredito = obj.NotaCredito;
-                    space.Title = "RESO " + obj.Codice + " - NOTA DI CREDITO N." + notaCredito.Numero;
                     AddSpace(space);
                 }
             }

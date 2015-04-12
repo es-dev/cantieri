@@ -97,9 +97,7 @@ namespace Web.GUI.Commessa
             {
                 if (item != null)
                 {
-                    var obj = (WcfService.Dto.CommessaDto)Model;
                     var space = new CommessaModel();
-                    space.Title = "COMMESSA " + obj.Codice + " - " + obj.Denominazione; 
                     AddSpace(space);
                 }
             }

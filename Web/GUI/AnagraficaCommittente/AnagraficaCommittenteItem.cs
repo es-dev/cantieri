@@ -51,9 +51,7 @@ namespace Web.GUI.AnagraficaCommittente
             {
                 if (item != null)
                 {
-                    var obj = (WcfService.Dto.AnagraficaCommittenteDto)Model;
                     var space = new AnagraficaCommittenteModel();
-                    space.Title = "ANAGRAFICA COMMITTENTE " + obj.RagioneSociale;
                     AddSpace(space);
                 }
             }

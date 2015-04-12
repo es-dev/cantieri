@@ -56,7 +56,6 @@ namespace Web.GUI.NotaCredito
             try
             {
                 var space = new NotaCreditoModel(fornitore);
-                space.Title = "NUOVA NOTA DI CREDITO";
                 space.Model = new WcfService.Dto.NotaCreditoDto();
                 AddSpace(space);
             }

@@ -29,6 +29,7 @@ namespace Web.GUI.Articolo
                     var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
                     infoSubtitle.Text = codice + " - " + descrizione;
                     infoSubtitleImage.Image = "Images.dashboard.articolo.png";
+                    infoTitle.Text = (obj.Id!=0? "ARTICOLO " + obj.Codice:"NUOVO ARTICOLO");
                 }
             }
             catch (Exception ex)

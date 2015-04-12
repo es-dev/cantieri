@@ -95,10 +95,7 @@ namespace Web.GUI.FatturaVendita
             {
                 if (item != null)
                 {
-                    var obj = (WcfService.Dto.FatturaVenditaDto)Model;
                     var space = new FatturaVenditaModel();
-                    var committente = obj.Committente;
-                    space.Title = "FATTURA DI VENDITA " + obj.Numero + " - " + committente.RagioneSociale;
                     AddSpace(space);
                 }
             }

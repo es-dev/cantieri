@@ -34,7 +34,6 @@ namespace Web.GUI.CentroCosto
             try
             {
                 var space = new CentroCostoModel();
-                space.Title = "NUOVO CENTRO DI COSTO";
                 space.Model = new WcfService.Dto.CentroCostoDto();
                 AddSpace(space);
             }

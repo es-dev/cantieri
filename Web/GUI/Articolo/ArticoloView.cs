@@ -34,7 +34,6 @@ namespace Web.GUI.Articolo
             try
             {
                 var space = new ArticoloModel();
-                space.Title = "NUOVO ARTICOLO";
                 space.Model = new WcfService.Dto.ArticoloDto();
                 AddSpace(space);
             }

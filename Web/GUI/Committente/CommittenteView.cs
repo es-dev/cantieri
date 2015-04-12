@@ -55,7 +55,6 @@ namespace Web.GUI.Committente
             try
             {
                 var space = new CommittenteModel(commessa);
-                space.Title = "NUOVO COMMITTENTE";
                 space.Model = new WcfService.Dto.CommittenteDto();
                 AddSpace(space);
             }

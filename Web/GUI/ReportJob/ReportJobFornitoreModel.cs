@@ -55,6 +55,11 @@ namespace Web.GUI.ReportJob
                     var codiceFornitore = UtilityValidation.GetStringND(obj.CodiceFornitore);
                     infoSubtitle.Text = "RTP N." + codice + " - CODICE FORNITORE " + codiceFornitore;
                     infoSubtitleImage.Image = "Images.dashboard.reportjob.png";
+
+                    var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                    var anagraficaFornitore = viewModel.ReadAnagraficaFornitore(codiceFornitore);
+                    var ragioneSociale = (anagraficaFornitore != null ? anagraficaFornitore.RagioneSociale : "N/D");
+                    infoTitle.Text = (obj.Id!=0? "REPORT " + codice + " - " + ragioneSociale:"NUOVO REPORT");
                 }
             }
             catch (Exception ex)

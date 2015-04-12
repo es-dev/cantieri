@@ -52,6 +52,8 @@ namespace Web.GUI.NotaCredito
                 var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
                 infoSubtitle.Text = "N." + numero +" del " + data + " - " + descrizione;
                 infoSubtitleImage.Image = "Images.dashboard.notacredito.png";
+                var fornitore = obj.Fornitore;
+                infoTitle.Text = (obj.Id!=0? "NOTA DI CREDITO " + obj.Numero + " - " + fornitore.RagioneSociale:"NUOVA NOTA DI CREDITO");
             }
             catch (Exception ex)
             {

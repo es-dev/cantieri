@@ -30,6 +30,7 @@ namespace Web.GUI.AnagraficaCommittente
                     var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
                     infoSubtitle.Text = codice + " - " + ragioneSociale;
                     infoSubtitleImage.Image = "Images.dashboard.anagraficacommittente.png";
+                    infoTitle.Text = (obj.Id!=0? "ANAGRAFICA COMMITTENTE " + obj.RagioneSociale:"NUOVA ANAGRAFICA COMMITTENTE");
                 }
             }
             catch (Exception ex)

@@ -52,6 +52,7 @@ namespace Web.GUI.Commessa
                     var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
                     infoSubtitle.Text = codice + " - " + denominazione;
                     infoSubtitleImage.Image = "Images.dashboard.commessa.png";
+                    infoTitle.Text = (obj.Id!=0? "COMMESSA " + obj.Codice + " - " + obj.Denominazione:"NUOVA COMMESSA");
                 }
             }
             catch (Exception ex)

@@ -29,6 +29,7 @@ namespace Web.GUI.AnagraficaArticolo
                     var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
                     infoSubtitle.Text = codice + " - " + descrizione;
                     infoSubtitleImage.Image = "Images.dashboard.anagraficaarticolo.png";
+                    infoTitle.Text = (obj.Id!=0? "ANAGRAFICA ARTICOLO " + obj.Codice: "NUOVA ANAGRAFICA ARTICOLO");
                 }
             }
             catch (Exception ex)

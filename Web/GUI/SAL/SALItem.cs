@@ -113,10 +113,7 @@ namespace Web.GUI.SAL
             {
                 if (item != null)
                 {
-                    var obj = (SALDto)Model;
                     var space = new SALModel();
-                    var commessa = obj.Commessa;
-                    space.Title = "SAL " + obj.Codice + " - COMMESSA " + commessa.Codice;
                     AddSpace(space);
                 }
             }

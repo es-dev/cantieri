@@ -45,6 +45,8 @@ namespace Web.GUI.SAL
                 var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
                 infoSubtitle.Text = codice + " - " + denominazione;
                 infoSubtitleImage.Image = "Images.dashboard.SAL.png";
+                var commessa = obj.Commessa;
+                infoTitle.Text =(obj.Id!=0? "SAL " + obj.Codice + " - COMMESSA " + commessa.Codice:"NUOVO SAL");
             }
             catch (Exception ex)
             {

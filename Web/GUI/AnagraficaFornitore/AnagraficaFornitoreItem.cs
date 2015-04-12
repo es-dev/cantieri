@@ -52,9 +52,7 @@ namespace Web.GUI.AnagraficaFornitore
             {
                 if (item != null)
                 {
-                    var obj = (WcfService.Dto.AnagraficaFornitoreDto)Model;
                     var space = new AnagraficaFornitoreModel();
-                    space.Title = "ANAGRAFICA FORNITORE " + obj.RagioneSociale;
                     AddSpace(space);
                 }
             }

@@ -54,7 +54,6 @@ namespace Web.GUI.SAL
             try
             {
                 var space = new SALModel(commessa);
-                space.Title = "NUOVO SAL";
                 space.Model = new SALDto();
                 AddSpace(space);
             }

@@ -74,7 +74,6 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 var space = new FatturaAcquistoModel(fornitore);
-                space.Title = "NUOVA FATTURA DI ACQUISTO";
                 space.Model = new WcfService.Dto.FatturaAcquistoDto();
                 AddSpace(space);
             }

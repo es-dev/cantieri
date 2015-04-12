@@ -56,7 +56,6 @@ namespace Web.GUI.Fornitore
             try
             {
                 var space = new FornitoreModel(commessa);
-                space.Title = "NUOVO FORNITORE";
                 space.Model = new WcfService.Dto.FornitoreDto() ;
                 AddSpace(space);
             }

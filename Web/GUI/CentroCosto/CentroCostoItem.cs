@@ -47,9 +47,7 @@ namespace Web.GUI.CentroCosto
             {
                 if (item != null)
                 {
-                    var obj = (WcfService.Dto.CentroCostoDto)Model;
                     var space = new CentroCostoModel();
-                    space.Title = "CENTRO DI COSTO " + obj.Codice;
                     AddSpace(space);
                 }
             }

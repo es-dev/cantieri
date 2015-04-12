@@ -45,9 +45,7 @@ namespace Web.GUI.AnagraficaArticolo
             {
                 if (item != null)
                 {
-                    var obj = (WcfService.Dto.AnagraficaArticoloDto)Model;
                     var space = new AnagraficaArticoloModel();
-                    space.Title = "ANAGRAFICA ARTICOLO " + obj.Codice;
                     AddSpace(space);
                 }
             }

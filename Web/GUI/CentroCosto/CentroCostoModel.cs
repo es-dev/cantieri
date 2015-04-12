@@ -27,6 +27,7 @@ namespace Web.GUI.CentroCosto
                 var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
                 infoSubtitle.Text = codice + " - " + denominazione; 
                 infoSubtitleImage.Image = "Images.dashboard.centrocosto.png";
+                infoTitle.Text = (obj.Id!=0? "CENTRO DI COSTO " + obj.Codice:"NUOVO CENTRO DI COSTO");
             }
             catch (Exception ex)
             {

@@ -49,6 +49,7 @@ namespace Web.GUI.PagamentoUnificato
                 var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
                 infoSubtitle.Text = codice + " - " + descrizione;
                 infoSubtitleImage.Image = "Images.dashboard.pagamentounificato.png";
+                infoTitle.Text = (obj.Id!=0? "PAGAMENTO UNIFICATO " + obj.Codice:"NUOVO PAGAMENTO UNIFICATO");
             }
             catch (Exception ex)
             {
