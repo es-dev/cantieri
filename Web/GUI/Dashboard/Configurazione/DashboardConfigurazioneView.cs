@@ -37,7 +37,7 @@ namespace Web.GUI.Dashboard.Configurazione
             try
             {
                 var items = Items;
-                foreach(TemplateItem item in items)
+                foreach (TemplateItem item in items)
                 {
                     var model = (DashboardConfigurazione)item.Model;
                     var type = model.TypeSpace;
@@ -45,8 +45,9 @@ namespace Web.GUI.Dashboard.Configurazione
                     var viewModel = space.ViewModel;
                     if (viewModel != null)
                     {
-                        item.Count = viewModel.GetCount();
                         item.CountVisible = model.CountVisible;
+                        if (item.CountVisible)
+                            item.Count = viewModel.GetCount();
                     }
                 }
             }

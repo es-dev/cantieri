@@ -58,10 +58,10 @@ namespace Web.GUI.Dashboard.Fatturazione
                 var viewModel = space.ViewModel;
                 if (viewModel != null)
                 {
-                    item.Count = viewModel.GetCount();
                     item.CountVisible = model.CountVisible;
+                    if (item.CountVisible)
+                        item.Count = viewModel.GetCount();
                 }
-
             }
             catch (Exception ex)
             {
