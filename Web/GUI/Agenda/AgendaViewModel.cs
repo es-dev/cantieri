@@ -68,8 +68,11 @@ namespace Web.GUI.Agenda
                     evento.Titolo = "Pagamento n." + pagamentoData.Codice + " del " + data.ToString("dd/MM/yyyy") + " per un importo di " + UtilityValidation.GetEuro(pagamentoData.Importo);
                     var fatturaAcquisto = pagamentoData.FatturaAcquisto;
                     if (fatturaAcquisto != null)
-                        evento.Titolo += " relativo alla fattura " + fatturaAcquisto.Numero;
-
+                    {
+                        var dataFatturaAcquisto = (DateTime)fatturaAcquisto.Data;
+                        var scadenzaFatturaAcquisto = (DateTime)fatturaAcquisto.Scadenza;
+                        evento.Titolo += " relativo alla fattura " + fatturaAcquisto.Numero + " del " + dataFatturaAcquisto.ToString("dd/MM/yyyy") + " con scadenza " + scadenzaFatturaAcquisto.ToString("dd/MM/yyyy");
+                    }
                     eventi.Add(evento);
                 }
                 return eventi;
