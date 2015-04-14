@@ -55,6 +55,20 @@ namespace Web.GUI.ReportJob
                  
                 space.Model = new WcfService.Dto.ReportJobDto();
                 AddSpace(space);
+                panelTipoReport.Visible = false;
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void btnCancelTipoReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                panelTipoReport.Visible = false;
             }
             catch (Exception ex)
             {

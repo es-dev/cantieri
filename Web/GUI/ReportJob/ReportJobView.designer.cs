@@ -32,11 +32,11 @@ namespace Web.GUI.ReportJob
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportJobView));
             this.panelTipoReport = new Gizmox.WebGUI.Forms.Panel();
-            this.label1 = new Gizmox.WebGUI.Forms.Label();
-            this.optSituazioneFornitore = new Gizmox.WebGUI.Forms.RadioButton();
-            this.optResocontoFornitori = new Gizmox.WebGUI.Forms.RadioButton();
-            this.btnConfirmTipoReport = new Gizmox.WebGUI.Forms.Button();
             this.btnCancelTipoReport = new Gizmox.WebGUI.Forms.Button();
+            this.btnConfirmTipoReport = new Gizmox.WebGUI.Forms.Button();
+            this.optResocontoFornitori = new Gizmox.WebGUI.Forms.RadioButton();
+            this.optSituazioneFornitore = new Gizmox.WebGUI.Forms.RadioButton();
+            this.label1 = new Gizmox.WebGUI.Forms.Label();
             this.panelCommands.SuspendLayout();
             this.panelTipoReport.SuspendLayout();
             this.SuspendLayout();
@@ -48,6 +48,8 @@ namespace Web.GUI.ReportJob
             // panelTipoReport
             // 
             this.panelTipoReport.BackColor = System.Drawing.Color.White;
+            this.panelTipoReport.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.Silver);
+            this.panelTipoReport.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
             this.panelTipoReport.Controls.Add(this.btnCancelTipoReport);
             this.panelTipoReport.Controls.Add(this.btnConfirmTipoReport);
             this.panelTipoReport.Controls.Add(this.optResocontoFornitori);
@@ -59,37 +61,19 @@ namespace Web.GUI.ReportJob
             this.panelTipoReport.TabIndex = 13;
             this.panelTipoReport.Visible = false;
             // 
-            // label1
+            // btnCancelTipoReport
             // 
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(549, 39);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Seleziona un tipo di report";
-            // 
-            // optSituazioneFornitore
-            // 
-            this.optSituazioneFornitore.Checked = true;
-            this.optSituazioneFornitore.Cursor = Gizmox.WebGUI.Forms.Cursors.Hand;
-            this.optSituazioneFornitore.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.optSituazioneFornitore.Location = new System.Drawing.Point(34, 51);
-            this.optSituazioneFornitore.Name = "optSituazioneFornitore";
-            this.optSituazioneFornitore.Size = new System.Drawing.Size(495, 47);
-            this.optSituazioneFornitore.TabIndex = 1;
-            this.optSituazioneFornitore.Text = "Situazione fornitore (genera un report presentando la situazione completa per un " +
-    "singolo fornitore)";
-            // 
-            // optResocontoFornitori
-            // 
-            this.optResocontoFornitori.Cursor = Gizmox.WebGUI.Forms.Cursors.Hand;
-            this.optResocontoFornitori.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.optResocontoFornitori.Location = new System.Drawing.Point(34, 100);
-            this.optResocontoFornitori.Name = "optResocontoFornitori";
-            this.optResocontoFornitori.Size = new System.Drawing.Size(495, 47);
-            this.optResocontoFornitori.TabIndex = 1;
-            this.optResocontoFornitori.Text = "Resoconto fornitori (genera un report contenente la situazione generale di tutti " +
-    "i fornitori, le somme da pagare e le scadenze imminenti)";
+            this.btnCancelTipoReport.CustomStyle = "F";
+            this.btnCancelTipoReport.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Flat;
+            this.btnCancelTipoReport.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnCancelTipoReport.Image = new Gizmox.WebGUI.Common.Resources.ImageResourceHandle(resources.GetString("btnCancelTipoReport.Image"));
+            this.btnCancelTipoReport.Location = new System.Drawing.Point(356, 163);
+            this.btnCancelTipoReport.Name = "btnCancelTipoReport";
+            this.btnCancelTipoReport.Size = new System.Drawing.Size(97, 31);
+            this.btnCancelTipoReport.TabIndex = 2;
+            this.btnCancelTipoReport.Text = "Annulla";
+            this.btnCancelTipoReport.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCancelTipoReport.Click += new System.EventHandler(this.btnCancelTipoReport_Click);
             // 
             // btnConfirmTipoReport
             // 
@@ -105,18 +89,37 @@ namespace Web.GUI.ReportJob
             this.btnConfirmTipoReport.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.ImageBeforeText;
             this.btnConfirmTipoReport.Click += new System.EventHandler(this.btnConfirmTipoReport_Click);
             // 
-            // btnCancelTipoReport
+            // optResocontoFornitori
             // 
-            this.btnCancelTipoReport.CustomStyle = "F";
-            this.btnCancelTipoReport.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Flat;
-            this.btnCancelTipoReport.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.btnCancelTipoReport.Image = new Gizmox.WebGUI.Common.Resources.ImageResourceHandle(resources.GetString("btnCancelTipoReport.Image"));
-            this.btnCancelTipoReport.Location = new System.Drawing.Point(356, 163);
-            this.btnCancelTipoReport.Name = "btnCancelTipoReport";
-            this.btnCancelTipoReport.Size = new System.Drawing.Size(97, 31);
-            this.btnCancelTipoReport.TabIndex = 2;
-            this.btnCancelTipoReport.Text = "Annulla";
-            this.btnCancelTipoReport.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.ImageBeforeText;
+            this.optResocontoFornitori.Cursor = Gizmox.WebGUI.Forms.Cursors.Hand;
+            this.optResocontoFornitori.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.optResocontoFornitori.Location = new System.Drawing.Point(34, 100);
+            this.optResocontoFornitori.Name = "optResocontoFornitori";
+            this.optResocontoFornitori.Size = new System.Drawing.Size(495, 47);
+            this.optResocontoFornitori.TabIndex = 1;
+            this.optResocontoFornitori.Text = "Resoconto fornitori (genera un report contenente la situazione generale di tutti " +
+    "i fornitori, le somme da pagare e le scadenze imminenti)";
+            // 
+            // optSituazioneFornitore
+            // 
+            this.optSituazioneFornitore.Checked = true;
+            this.optSituazioneFornitore.Cursor = Gizmox.WebGUI.Forms.Cursors.Hand;
+            this.optSituazioneFornitore.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.optSituazioneFornitore.Location = new System.Drawing.Point(34, 51);
+            this.optSituazioneFornitore.Name = "optSituazioneFornitore";
+            this.optSituazioneFornitore.Size = new System.Drawing.Size(495, 47);
+            this.optSituazioneFornitore.TabIndex = 1;
+            this.optSituazioneFornitore.Text = "Situazione fornitore (genera un report presentando la situazione completa per un " +
+    "singolo fornitore)";
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 5);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(549, 39);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Seleziona un tipo di report";
             // 
             // ReportJobView
             // 
