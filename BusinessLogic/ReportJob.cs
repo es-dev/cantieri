@@ -232,7 +232,7 @@ namespace BusinessLogic
                 var anagraficheFornitoriDare = GetAnagraficheFornitoriDare(anagraficheFornitori, fornitori, data);
 
                 AddReportAzienda(azienda, report, data);
-                AddReportProspettoFornitori(anagraficheFornitori, fornitori, report);
+                AddReportProspettoFornitori(anagraficheFornitoriDare, fornitori, report);
 
                 var tableFornitori = new UtilityReport.Table("RagioneSociale", "TotaleFatture", "TotalePagamentiDato", "TotalePagamentiDare");
                 var tableFatture = new UtilityReport.Table("Numero", "Data", "Scadenza", "Descrizione", "Imponibile", "IVA", "Totale", "TotalePagamentiDato", "TotalePagamentiDare");
