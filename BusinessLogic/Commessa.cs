@@ -237,12 +237,37 @@ namespace BusinessLogic
         {
             try
             {
+                decimal totalePagamentiDare = 0;
                 if (fornitori != null)
                 {
-                    var totaleFattureAcquisto = GetTotaleFattureAcquisto(fornitori, data);
-                    var totalePagamentiDato = GetTotalePagamenti(fornitori, data);
-                    var totalePagamentiDare = totaleFattureAcquisto - totalePagamentiDato;
+                    foreach (var fornitore in fornitori)
+                    {
+                        var _totalePagamentiDare = Fornitore.GetTotalePagamentiDare(fornitore, data);
+                        totalePagamentiDare += _totalePagamentiDare;
+                    }
                     return totalePagamentiDare;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public static decimal GetTotalePagamentiDato(IList<FornitoreDto> fornitori, DateTime data)
+        {
+            try
+            {
+                decimal totalePagamentiDato = 0;
+                if (fornitori != null)
+                {
+                    foreach (var fornitore in fornitori)
+                    {
+                        var _totalePagamentiDato = Fornitore.GetTotalePagamentiDato(fornitore, data);
+                        totalePagamentiDato += _totalePagamentiDato;
+                    }
+                    return totalePagamentiDato;
                 }
             }
             catch (Exception ex)

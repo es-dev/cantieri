@@ -17,31 +17,10 @@ namespace Web.GUI.ReportJob
 {
 	public partial class ReportJobFornitoreModel : TemplateModel
 	{
-        private BusinessLogic.Tipi.TipoReport tipoReport = Tipi.TipoReport.None;
-        public ReportJobFornitoreModel(BusinessLogic.Tipi.TipoReport tipoReport = Tipi.TipoReport.None)
+        private Tipi.TipoReport tipoReport = Tipi.TipoReport.Fornitore;
+        public ReportJobFornitoreModel()
         {
             InitializeComponent();
-            try
-            {
-                InitCombo();
-                this.tipoReport = tipoReport;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void InitCombo()
-        {
-            try
-            {
-                editTipoReport.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.TipoReport>();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
         }
 
         public override void BindViewTitle(object model)
@@ -53,7 +32,7 @@ namespace Web.GUI.ReportJob
                     var obj = (ReportJobDto)model;
                     var codice = UtilityValidation.GetStringND(obj.Codice);
                     var codiceFornitore = UtilityValidation.GetStringND(obj.CodiceFornitore);
-                    infoSubtitle.Text = "RTP N." + codice + " - CODICE FORNITORE " + codiceFornitore;
+                    infoSubtitle.Text = "RTP N." + codice + " - Tipo " + obj.Tipo;
                     infoSubtitleImage.Image = "Images.dashboard.reportjob.png";
 
                     var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
@@ -80,7 +59,6 @@ namespace Web.GUI.ReportJob
                     editDenominazione.Value = obj.Denominazione;
                     editElaborazione.Value = obj.Elaborazione;
                     editCreazione.Value = obj.Creazione;
-                    editTipoReport.Value = obj.Tipo;
 
                     var fileName = obj.NomeFile;
                     BindViewReport(fileName);
@@ -153,7 +131,7 @@ namespace Web.GUI.ReportJob
                     obj.Note= editNote.Value;
                     obj.Creazione = editCreazione.Value;
                     obj.Elaborazione = editElaborazione.Value;
-                    obj.Tipo = editTipoReport.Value;
+                    obj.Tipo = tipoReport.ToString();
                     obj.NomeFile = editNomeFile.Value;
 
                     var anagraficaFornitore = (AnagraficaFornitoreDto)editFornitore.Model;
@@ -209,7 +187,6 @@ namespace Web.GUI.ReportJob
                 editDenominazione.Value = BusinessLogic.ReportJob.GetDenominazione(tipoReport);
                 editElaborazione.Value = DateTime.Today;
                 editCreazione.Value = DateTime.Today;
-                editTipoReport.Value = tipoReport.ToString();
             }
             catch (Exception ex)
             {
@@ -266,7 +243,7 @@ namespace Web.GUI.ReportJob
                     var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
                     var fornitori = viewModelFornitore.ReadFornitori(anagraficaFornitore);
 
-                    var report = BusinessLogic.ReportJob.GetReportFornitore(azienda, anagraficaFornitore, fornitori, elaborazione);
+                    var report = BusinessLogic.ReportJob.GetReportFornitore(azienda, anagraficaFornitore, fornitori.ToList(), elaborazione);
                     if (report != null)
                     {
                         bool performed = report.Create(pathTemplate, pathReport);

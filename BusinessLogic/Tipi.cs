@@ -104,9 +104,9 @@ namespace BusinessLogic
             Fornitore,
             [Description("Situazione committente")]
             Committente,
-            [Description("Stato fornitori")]
+            [Description("Resoconto fornitori")]
             Fornitori,
-            [Description("Stato committenti")]
+            [Description("Resoconto committenti")]
             Committenti,
             [Description("Stato pagamenti fatture")]
             FattureAcquisto,

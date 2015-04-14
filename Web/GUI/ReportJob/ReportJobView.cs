@@ -1,4 +1,5 @@
 using Library.Code;
+using Library.Interfaces;
 using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
@@ -33,15 +34,32 @@ namespace Web.GUI.ReportJob
         {
             try
             {
-                var tipoReport = BusinessLogic.Tipi.TipoReport.Fornitore;
-                var space = new ReportJobFornitoreModel(tipoReport);
+                panelTipoReport.Visible = true;
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            } 
+        }
+
+        private void btnConfirmTipoReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                IModel space = null;
+                if (optSituazioneFornitore.Checked)
+                    space = new ReportJobFornitoreModel();
+                else if(optResocontoFornitori.Checked)
+                    space = new ReportJobFornitoriModel();
+                 
                 space.Model = new WcfService.Dto.ReportJobDto();
                 AddSpace(space);
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
-            } 
+            }
         }
 
 	}

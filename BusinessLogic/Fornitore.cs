@@ -465,7 +465,7 @@ namespace BusinessLogic
             return null;
         }
 
-        public static IList<FatturaAcquistoDto> GetFattureDare(IEnumerable<FatturaAcquistoDto> fattureAcquisto)
+        public static IList<FatturaAcquistoDto> GetFattureDare(IList<FatturaAcquistoDto> fattureAcquisto)
         {
             try
             {

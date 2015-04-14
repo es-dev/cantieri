@@ -690,6 +690,27 @@ namespace WcfService
             return null;
         }
 
+        public IEnumerable<Dto.FornitoreDto> ReadFornitori(IEnumerable<Dto.AnagraficaFornitoreDto> anagraficheFornitori)
+        {
+            try
+            {
+                if (anagraficheFornitori != null)
+                {
+                    var ef = new DataLayer.EntitiesModel();
+                    var codiciFornitori = (from q in anagraficheFornitori select q.Codice).ToList();
+                    var fornitori = (from q in ef.Fornitores where codiciFornitori.Contains(q.Codice) select q);
+                    var fornitoriDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitori, true); //lettura ricorsiva
+                    return fornitoriDto;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+
         #endregion
         #endregion
 

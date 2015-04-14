@@ -55,15 +55,15 @@ namespace Web.GUI.Agenda
                     {
                         var obj = (FatturaAcquistoDto)model;
                         var space = new FatturaAcquistoModel();
-                        space.Model = obj;
-                        AddSpace(space);
+                        var viewModel = new FatturaAcquistoViewModel(this);
+                        AddSpace(space, obj, viewModel);
                     }
                     else if (model.GetType() == typeof(PagamentoDto))
                     {
                         var obj = (PagamentoDto)model;
                         var space = new PagamentoModel();
-                        space.Model = obj;
-                        AddSpace(space);
+                        var viewModel = new PagamentoViewModel(this);
+                        AddSpace(space, obj, viewModel);
                     }
                 }
             }

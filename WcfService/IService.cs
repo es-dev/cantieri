@@ -142,6 +142,8 @@ namespace WcfService
         [OperationContract]
         IEnumerable<Dto.FornitoreDto> ReadFornitori(Dto.CommessaDto commessa);
 
+        [OperationContract]
+        IEnumerable<Dto.FornitoreDto> ReadFornitori(IEnumerable<Dto.AnagraficaFornitoreDto> anagraficheFornitori);
         #endregion
         #endregion
 

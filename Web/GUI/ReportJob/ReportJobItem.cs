@@ -109,8 +109,15 @@ namespace Web.GUI.ReportJob
             {
                 if (item != null)
                 {
-                    var tipoReport = BusinessLogic.Tipi.TipoReport.Fornitore;
-                    var space = new ReportJobFornitoreModel(tipoReport);
+                    var model = item.Model;
+                    var obj = (WcfService.Dto.ReportJobDto)model;
+                    var tipo = UtilityValidation.GetStringND(obj.Tipo);
+                    ISpace space = null;
+                    if (tipo == Tipi.TipoReport.Fornitore.ToString())
+                        space = new ReportJobFornitoreModel();
+                    else if (tipo == Tipi.TipoReport.Fornitori.ToString())
+                        space = new ReportJobFornitoriModel();
+                    
                     AddSpace(space);
                 }
             }
