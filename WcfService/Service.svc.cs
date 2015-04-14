@@ -3349,10 +3349,11 @@ namespace WcfService
         {
             try
             {
-                var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
-                var reportJob = wcf.ReadReportJob(dtoKey);
-                return reportJob;
+                var ef = new DataLayer.EntitiesModel();
+                var reportJob = (from q in ef.ReportJobs where q.Id == (int)id select q).FirstOrDefault();
+
+                var reportJobDto = UtilityPOCO.Assemble<Dto.ReportJobDto>(reportJob);
+                return reportJobDto;
             }
             catch (Exception ex)
             {

@@ -373,7 +373,7 @@ namespace BusinessLogic
                 var commesse = GetCommesse(fornitori);
                 var pagamenti = GetPagamenti(fattureAcquisto);
                 var resi = GetResi(noteCredito);
-
+                
                 report.AddData("NumeroFornitori", anagraficheFornitori.Count());
                 report.AddData("NumeroFattureAcquisto", fattureAcquisto.Count());
                 report.AddData("NumeroNoteCredito", noteCredito.Count());
