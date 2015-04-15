@@ -47,8 +47,12 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                 infoSubtitle.Text = codice+" - "+note;
                 infoSubtitleImage.Image = "Images.dashboard.pagamentounificatofatturaacquisto.png";
                 var fatturaAcquisto = obj.FatturaAcquisto;
+                var numeroFatturaAcquisto = (fatturaAcquisto != null ? fatturaAcquisto.Numero : "N/D");
                 var pagamentoUnificato = obj.PagamentoUnificato;
-                infoTitle.Text = (obj.Id!=0? "PAGAMENTO UNIFICATO " + pagamentoUnificato.Codice + " - FATTURA DI ACQUISTO N." + fatturaAcquisto.Numero:"FATTURA DI ACQUISTO PER PAGAMENTO UNIFICATO");
+                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(pagamentoUnificato);
+                var ragioneSociale = (anagraficaFornitore != null ? anagraficaFornitore.RagioneSociale : "N/D");
+                infoTitle.Text = (obj.Id!=0? "PAGAMENTO UNIFICATO " + pagamentoUnificato.Codice + " - FATTURA DI ACQUISTO N." +numeroFatturaAcquisto +" - " + ragioneSociale:"NUOVA FATTURA DI ACQUISTO PER PAGAMENTO UNIFICATO");
             }
             catch (Exception ex)
             {

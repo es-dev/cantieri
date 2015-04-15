@@ -188,5 +188,23 @@ namespace Web.GUI.Fornitore
             }
             return null;
         }
+
+        internal FornitoreDto ReadFornitore(NotaCreditoDto notaCredito)
+        {
+            try
+            {
+                if(notaCredito!=null)
+                {
+                    var fornitoreId = notaCredito.FornitoreId;
+                    var fornitore = (FornitoreDto)Read(fornitoreId);
+                    return fornitore;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }

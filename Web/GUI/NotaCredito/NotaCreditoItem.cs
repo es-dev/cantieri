@@ -29,19 +29,33 @@ namespace Web.GUI.NotaCredito
                     var totale = UtilityValidation.GetEuro(obj.Totale);
                     var numero = UtilityValidation.GetStringND(obj.Numero);
                     var data = UtilityValidation.GetDataND(obj.Data);
-                 
+
+                    infoNotaCredito.Text = "Nota di credito N." + numero;
                     infoData.Text = "Resa il " + data;
                     infoImage.Image = "Images.dashboard.notacredito.png";
                     infoCodice.Text = "NC-"+numero;
-                    infoNote.Text = obj.Note;
-                    infoImporto.Text = "Totale: " + totale;
-                    infoNotaCredito.Text = "Nota di credito N." + numero;
+                    infoImporto.Text = "Totale di " + totale;
+                 
+                    BindViewFornitore(obj.Fornitore);
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewFornitore(FornitoreDto fornitore)
+        {
+            try
+            {
+                infoFornitore.Text = (fornitore!=null? fornitore.RagioneSociale:"N/D");
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+         
         }
 
         private void NotaCreditoItem_ItemClick(IItem item)

@@ -145,5 +145,41 @@ namespace Web.GUI.AnagraficaFornitore
             }
             return null;
         }
+
+        public AnagraficaFornitoreDto ReadAnagraficaFornitore(FornitoreDto fornitore)
+        {
+            try
+            {
+                if (fornitore != null)
+                {
+                    var codiceFornitore = fornitore.Codice;
+                    var anagraficaFornitore = ReadAnagraficaFornitore(codiceFornitore);
+                    return anagraficaFornitore;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        internal AnagraficaFornitoreDto ReadAnagraficaFornitore(PagamentoUnificatoDto pagamentoUnificato)
+        {
+            try
+            {
+                if(pagamentoUnificato!=null)
+                {
+                    var codiceFornitore = pagamentoUnificato.CodiceFornitore;
+                    var anagraficaFornitore = ReadAnagraficaFornitore(codiceFornitore);
+                    return anagraficaFornitore;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }

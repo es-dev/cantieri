@@ -45,7 +45,13 @@ namespace Web.GUI.Reso
                 infoSubtitle.Text = codice + " - " + descrizione;
                 infoSubtitleImage.Image = "Images.dashboard.reso.png";
                 var notaCredito = obj.NotaCredito;
-                infoTitle.Text = (obj.Id!=0? "RESO " + obj.Codice + " - NOTA DI CREDITO N." + notaCredito.Numero:"NUOVO RESO");
+                var numeroNotaCredito = (notaCredito!=null? notaCredito.Numero: "N/D");
+                var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
+                var fornitore = viewModelFornitore.ReadFornitore(notaCredito);
+                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(fornitore);
+                var ragioneSociale = (anagraficaFornitore!=null? anagraficaFornitore.RagioneSociale:"N/D");
+                infoTitle.Text = (obj.Id != 0 ? "RESO " + obj.Codice + " - NOTA DI CREDITO N." + numeroNotaCredito + " - " + ragioneSociale : "NUOVO RESO");
             }
             catch (Exception ex)
             {
@@ -157,16 +163,13 @@ namespace Web.GUI.Reso
                 var notaCredito = (NotaCreditoDto)editNotaCredito.Model;
                 if (notaCredito != null)
                 {
-                    var fornitore = notaCredito.Fornitore;
-                    if (fornitore != null)
-                    {
-                        var codiceFornitore = fornitore.Codice;
-                        var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
-                        var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
-                        var view = new FatturaAcquisto.FatturaAcquistoView(anagraficaFornitore, Tipi.StatoFattura.NonPagata | Tipi.StatoFattura.Insoluta);
-                        view.Title = "SELEZIONA LA FATTURA DI ACQUISTO";
-                        editFatturaAcquisto.Show(view);
-                    }
+                    var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
+                    var fornitore = viewModelFornitore.ReadFornitore(notaCredito);
+                    var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                    var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(fornitore);
+                    var view = new FatturaAcquisto.FatturaAcquistoView(anagraficaFornitore, Tipi.StatoFattura.NonPagata | Tipi.StatoFattura.Insoluta);
+                    view.Title = "SELEZIONA LA FATTURA DI ACQUISTO";
+                    editFatturaAcquisto.Show(view);
                 }
             }
             catch (Exception ex)
@@ -174,6 +177,8 @@ namespace Web.GUI.Reso
                 UtilityError.Write(ex);
             }
         }
+
+        
 
         private void editFatturaAcquisto_ComboConfirm(object model)
         {
