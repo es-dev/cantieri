@@ -64,14 +64,12 @@ namespace Web.GUI.Agenda
                     evento.Model = pagamentoData;
                     evento.Color = Color.LightBlue;
 
-                    var data = (DateTime)pagamentoData.Data;
-                    evento.Titolo = "Pagamento n." + pagamentoData.Codice + " del " + data.ToString("dd/MM/yyyy") + " per un importo di " + UtilityValidation.GetEuro(pagamentoData.Importo);
+                    evento.Titolo = BusinessLogic.Pagamento.GetCodifica(pagamentoData) + " per un importo di " + UtilityValidation.GetEuro(pagamentoData.Importo);
                     var fatturaAcquisto = pagamentoData.FatturaAcquisto;
                     if (fatturaAcquisto != null)
                     {
-                        var dataFatturaAcquisto = (DateTime)fatturaAcquisto.Data;
                         var scadenzaFatturaAcquisto = (DateTime)fatturaAcquisto.Scadenza;
-                        evento.Titolo += " relativo alla fattura " + fatturaAcquisto.Numero + " del " + dataFatturaAcquisto.ToString("dd/MM/yyyy") + " con scadenza " + scadenzaFatturaAcquisto.ToString("dd/MM/yyyy");
+                        evento.Titolo += " relativo alla " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) + " con scadenza " + scadenzaFatturaAcquisto.ToString("dd/MM/yyyy");
                     }
                     eventi.Add(evento);
                 }
@@ -85,30 +83,30 @@ namespace Web.GUI.Agenda
             return null;
         }
 
-        private IList<AgendaDto> GetEventiAgenda(IEnumerable<FatturaAcquistoDto> fattureAcquistoScadenza)
+        private IList<AgendaDto> GetEventiAgenda(IEnumerable<FatturaAcquistoDto> fattureAcquisto)
         {
             try
             {
                 var eventi = new List<AgendaDto>();
-                foreach(var fatturaAcquistoScadenza in fattureAcquistoScadenza)
+                foreach(var fatturaAcquisto in fattureAcquisto)
                 {
                     var evento = new AgendaDto();
-                    evento.Data = UtilityValidation.GetData(fatturaAcquistoScadenza.Scadenza);
-                    evento.Model = fatturaAcquistoScadenza;
+                    evento.Data = UtilityValidation.GetData(fatturaAcquisto.Scadenza);
+                    evento.Model = fatturaAcquisto;
                     
                     var today = DateTime.Today;
-                    var saldoFatturaAcquisto = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotaleSaldoFatturaAcquisto(fatturaAcquistoScadenza, today));
-                    var pagamentiDare= BusinessLogic.Fattura.GetTotalePagamentiDare(fatturaAcquistoScadenza, today);
-                    var pagamentiDato=BusinessLogic.Fattura.GetTotalePagamentiDato(fatturaAcquistoScadenza, today);
-                    var data = (DateTime)fatturaAcquistoScadenza.Data;
-                    evento.Titolo = "Fattura di acquisto n." + fatturaAcquistoScadenza.Numero + " del " + data.ToString("dd/MM/yyyy") + " con scadenza il " +
-                        evento.Data.ToString("dd/MM/yyyy") + " per un importo di " + saldoFatturaAcquisto.ToString();
+                    var saldoFatturaAcquisto = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotaleSaldoFatturaAcquisto(fatturaAcquisto, today));
+                    var pagamentiDare= BusinessLogic.Fattura.GetTotalePagamentiDare(fatturaAcquisto, today);
+                    var pagamentiDato=BusinessLogic.Fattura.GetTotalePagamentiDato(fatturaAcquisto, today);
+                    
+                    evento.Titolo = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) + " con scadenza il " +
+                                    evento.Data.ToString("dd/MM/yyyy") + " per un importo di " + saldoFatturaAcquisto.ToString();
                     if(pagamentiDato > 0)
                         evento.Titolo+=". Totale pagato = " + (UtilityValidation.GetEuro(pagamentiDato)).ToString();
                     if(pagamentiDare > 0)
-                        evento.Titolo += ", totale a pagare = " + (UtilityValidation.GetEuro(pagamentiDare)).ToString();
+                        evento.Titolo += ", totale da pagare = " + (UtilityValidation.GetEuro(pagamentiDare)).ToString();
 
-                    var stato = BusinessLogic.Fattura.GetStato(fatturaAcquistoScadenza);
+                    var stato = BusinessLogic.Fattura.GetStato(fatturaAcquisto);
                     if (stato == BusinessLogic.Tipi.StatoFattura.Insoluta)
                         evento.Color = Color.Red;
                     if (stato == BusinessLogic.Tipi.StatoFattura.Pagata)

@@ -12,6 +12,64 @@ namespace BusinessLogic
 {
     public class Fattura
     {
+        public static string GetCodifica(FatturaAcquistoDto fatturaAcquisto, bool label=true)
+        {
+            try
+            {
+                if (fatturaAcquisto != null)
+                {
+                    var numero = UtilityValidation.GetStringND(fatturaAcquisto.Numero);
+                    var data = UtilityValidation.GetDataND(fatturaAcquisto.Data);
+                    string codfica = (label?"Fattura n.":null) + numero + " del " + data;
+                    return codfica;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public static string GetCodifica(FatturaVenditaDto fatturaVendita, bool label = true)
+        {
+            try
+            {
+                if (fatturaVendita != null)
+                {
+                    var numero = UtilityValidation.GetStringND(fatturaVendita.Numero);
+                    var data = UtilityValidation.GetDataND(fatturaVendita.Data);
+                    string codfica = (label?"Fattura n.":null) + numero + " del " + data;
+                    return codfica;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public static string GetCodifica(NotaCreditoDto notaCredito, bool label = true)
+        {
+            try
+            {
+                if (notaCredito != null)
+                {
+                    var numero = UtilityValidation.GetStringND(notaCredito.Numero);
+                    var data = UtilityValidation.GetDataND(notaCredito.Data);
+                    string codfica = (label?"Nota credito n.":null) + numero + " del " + data;
+                    return codfica;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+
         public static decimal GetTotale(decimal imponibile, decimal iva)
         {
             try

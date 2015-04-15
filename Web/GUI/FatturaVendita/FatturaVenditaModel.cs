@@ -67,7 +67,7 @@ namespace Web.GUI.FatturaVendita
                     var numero = UtilityValidation.GetStringND(obj.Numero);
                     var data = UtilityValidation.GetDataND(obj.Data);
                     var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
-                    infoSubtitle.Text = "N."+ numero + " del " + data + " - " + descrizione;
+                    infoSubtitle.Text = BusinessLogic.Fattura.GetCodifica(obj) + " - " + descrizione;
                     infoSubtitleImage.Image = "Images.dashboard.fatturavendita.png";
                     var committente = obj.Committente;
                     infoTitle.Text = (obj.Id!=0? "FATTURA DI VENDITA " + obj.Numero + " - " + committente.RagioneSociale:"NUOVA FATTURA DI VENDITA");

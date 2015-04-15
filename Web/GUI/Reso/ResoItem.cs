@@ -35,8 +35,7 @@ namespace Web.GUI.Reso
                     infoData.Text = "Reso il " + data;
                     infoImage.Image = "Images.dashboard.reso.png";
                     infoCodice.Text = "RES";
-                    infoDescrizione.Text = "Rif. Nota di credito N." +notaCredito.Numero + " del " + UtilityValidation.GetDataND(notaCredito.Data) + " - Fattura N." + fatturaAcquisto.Numero+ 
-                        " del " + UtilityValidation.GetDataND(fatturaAcquisto.Data);
+                    infoDescrizione.Text = "Rif. " + BusinessLogic.Fattura.GetCodifica(notaCredito) + " - " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
                     infoImporto.Text = "Totale: " + totale;
                     infoReso.Text = "Reso N." + codice;
                 }

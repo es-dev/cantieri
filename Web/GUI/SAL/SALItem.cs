@@ -28,7 +28,6 @@ namespace Web.GUI.SAL
                 if (model != null)
                 {
                     var obj = (SALDto)model;
-                    var codice = obj.Codice;
                     var data = UtilityValidation.GetData(obj.Data);
 
                     var commessa = GetCommessa(obj);
@@ -36,14 +35,13 @@ namespace Web.GUI.SAL
                     var margineOperativo = BusinessLogic.SAL.GetMargineOperativo(obj, commessa);
 
                     var stato = GetStato(commessa, data);
-                    var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
-                    var _data = UtilityValidation.GetDataND(data);
+                    var codice = UtilityValidation.GetStringND(obj.Codice);
                     var _margineOperativo = UtilityValidation.GetEuro(margineOperativo);
 
                     infoCodice.Text="SAL-" + codice;
                     infoImage.Image = "Images.dashboard.SAL.png";
                     infoCommesssa.Text = "Commessa " + commessa.Codice + " - " + commessa.Denominazione;
-                    infoDenominazioneData.Text = denominazione + " del " + _data;
+                    infoSAL.Text = BusinessLogic.SAL.GetCodifica(obj);
                     infoAndamentoLavoro.Text = "Margine " + _margineOperativo + " su importo lavori di " + importoLavori;
                     imgStato.Image = stato.Image;
                     toolTip.SetToolTip(imgStato, stato.Description);

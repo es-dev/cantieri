@@ -829,10 +829,10 @@ namespace WcfService
         {
             try
             {
-                var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
-                var centroCosto = wcf.ReadCentroCosto(dtoKey);
-                return centroCosto;
+                var ef = new DataLayer.EntitiesModel();
+                var centroCosto = (from q in ef.CentroCostos where q.Id == (int)id select q).FirstOrDefault();
+                var centroCostoDto = UtilityPOCO.Assemble<Dto.CentroCostoDto>(centroCosto);
+                return centroCostoDto;
             }
             catch (Exception ex)
             {
@@ -948,11 +948,11 @@ namespace WcfService
         #region Custom
 
         public IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquisto(int skip, int take, string search = null, Dto.FornitoreDto fornitore=null, 
-            Dto.AnagraficaFornitoreDto anagraficaFornitore=null, IList<string> stati =null)
+            Dto.AnagraficaFornitoreDto anagraficaFornitore=null)
         {
             try
             {
-                var fattureAcquisto = QueryFattureAcquisto(search, fornitore, anagraficaFornitore, stati);
+                var fattureAcquisto = QueryFattureAcquisto(search, fornitore, anagraficaFornitore);
                 fattureAcquisto = (from q in fattureAcquisto select q).Skip(skip).Take(take);
 
                 var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
@@ -965,11 +965,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountFattureAcquisto(string search = null, Dto.FornitoreDto fornitore = null, Dto.AnagraficaFornitoreDto anagraficaFornitore = null, IList<string> stati = null)
+        public int CountFattureAcquisto(string search = null, Dto.FornitoreDto fornitore = null, Dto.AnagraficaFornitoreDto anagraficaFornitore = null)
         {
             try
             {
-                var fattureAcquisto = QueryFattureAcquisto(search, fornitore, anagraficaFornitore, stati);
+                var fattureAcquisto = QueryFattureAcquisto(search, fornitore, anagraficaFornitore);
                 var count = fattureAcquisto.Count();
                 return count;
             }
@@ -997,7 +997,7 @@ namespace WcfService
         }
 
         private IQueryable<DataLayer.FatturaAcquisto> QueryFattureAcquisto(string search=null, Dto.FornitoreDto fornitore=null, Dto.AnagraficaFornitoreDto anagraficaFornitore=null, 
-            IList<string> stati=null, DateTime? start = null, DateTime? end= null)
+            DateTime? start = null, DateTime? end= null)
         {
             try
             {
@@ -1007,7 +1007,7 @@ namespace WcfService
                     fattureAcquisto = (from q in fattureAcquisto where q.FornitoreId == fornitore.Id select q);
 
                 if(anagraficaFornitore!=null) //ricerca fatture insolute/non pagate per un fornitore anagrafico
-                    fattureAcquisto = (from q in fattureAcquisto where q.Fornitore.Codice == anagraficaFornitore.Codice select q); //todo: && stati.Contains(q.Stato)
+                    fattureAcquisto = (from q in fattureAcquisto where q.Fornitore.Codice == anagraficaFornitore.Codice select q); 
                 
                 if(start!=null && end!=null)
                     fattureAcquisto = (from q in fattureAcquisto where start <= q.Scadenza && q.Scadenza <= end select q);
@@ -1034,7 +1034,7 @@ namespace WcfService
         {
             try
             {
-                var fattureAcquisto = QueryFattureAcquisto(search,null,null,null,start,end);
+                var fattureAcquisto = QueryFattureAcquisto(search,null,null,start,end);
 
                 var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
                 return fattureAcquistoDto;
@@ -1165,10 +1165,10 @@ namespace WcfService
         {
             try
             {
-                var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
-                var articolo = wcf.ReadArticolo(dtoKey);
-                return articolo;
+                var ef = new DataLayer.EntitiesModel();
+                var articolo = (from q in ef.Articolos where q.Id == (int)id select q).FirstOrDefault();
+                var articoloDto = UtilityPOCO.Assemble<Dto.ArticoloDto>(articolo);
+                return articoloDto;
             }
             catch (Exception ex)
             {
@@ -1323,7 +1323,6 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var pagamento = (from q in ef.Pagamentos where q.Id == (int)id select q).FirstOrDefault();
-
                 var pagamentoDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamento);
                 return pagamentoDto;
             }
@@ -1551,10 +1550,10 @@ namespace WcfService
         {
             try
             {
-                var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
-                var notaCredito = wcf.ReadNotaCredito(dtoKey);
-                return notaCredito;
+                var ef = new DataLayer.EntitiesModel();
+                var notaCredito = (from q in ef.NotaCreditos where q.Id == (int)id select q).FirstOrDefault();
+                var notaCreditoDto = UtilityPOCO.Assemble<Dto.NotaCreditoDto>(notaCredito);
+                return notaCreditoDto;
             }
             catch (Exception ex)
             {
@@ -1709,10 +1708,11 @@ namespace WcfService
         {
             try
             {
-                var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
-                var reso = wcf.ReadReso(dtoKey);
-                return reso;
+                var ef = new DataLayer.EntitiesModel();
+                var reso = (from q in ef.Resos where q.Id == (int)id select q).FirstOrDefault();
+                var resoDto = UtilityPOCO.Assemble<Dto.ResoDto>(reso);
+                return resoDto;
+
             }
             catch (Exception ex)
             {
@@ -2522,7 +2522,6 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var incasso = (from q in ef.Incassos where q.Id == (int)id select q).FirstOrDefault();
-
                 var incassoDto = UtilityPOCO.Assemble<Dto.IncassoDto>(incasso);
                 return incassoDto;
             }
@@ -2706,10 +2705,10 @@ namespace WcfService
         {
             try
             {
-                var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
-                var SAL = wcf.ReadSAL(dtoKey);
-                return SAL;
+                var ef = new DataLayer.EntitiesModel();
+                var sal = (from q in ef.SALs where q.Id == (int)id select q).FirstOrDefault();
+                var salDto = UtilityPOCO.Assemble<Dto.SALDto>(sal);
+                return salDto;
             }
             catch (Exception ex)
             {
@@ -2861,10 +2860,10 @@ namespace WcfService
         {
             try
             {
-                var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
-                var anagraficaFornitore = wcf.ReadAnagraficaFornitore(dtoKey);
-                return anagraficaFornitore;
+                var ef = new DataLayer.EntitiesModel();
+                var anagraficaFornitore = (from q in ef.AnagraficaFornitores where q.Id == (int)id select q).FirstOrDefault();
+                var anagraficaFornitoreDto = UtilityPOCO.Assemble<Dto.AnagraficaFornitoreDto>(anagraficaFornitore);
+                return anagraficaFornitoreDto;
             }
             catch (Exception ex)
             {
@@ -3031,10 +3030,10 @@ namespace WcfService
         {
             try
             {
-                var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
-                var anagraficaCommittente = wcf.ReadAnagraficaCommittente(dtoKey);
-                return anagraficaCommittente;
+                var ef = new DataLayer.EntitiesModel();
+                var anagraficaCommittente = (from q in ef.AnagraficaFornitores where q.Id == (int)id select q).FirstOrDefault();
+                var anagraficaCommittenteDto = UtilityPOCO.Assemble<Dto.AnagraficaCommittenteDto>(anagraficaCommittente);
+                return anagraficaCommittenteDto;
             }
             catch (Exception ex)
             {
@@ -3199,10 +3198,10 @@ namespace WcfService
         {
             try
             {
-                var wcf = new EntitiesModelService();
-                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
-                var anagraficaArticolo = wcf.ReadAnagraficaArticolo(dtoKey);
-                return anagraficaArticolo;
+                var ef = new DataLayer.EntitiesModel();
+                var anagraficaArticolo = (from q in ef.AnagraficaFornitores where q.Id == (int)id select q).FirstOrDefault();
+                var anagraficaArticoloDto = UtilityPOCO.Assemble<Dto.AnagraficaArticoloDto>(anagraficaArticolo);
+                return anagraficaArticoloDto;
             }
             catch (Exception ex)
             {
@@ -3351,7 +3350,6 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var reportJob = (from q in ef.ReportJobs where q.Id == (int)id select q).FirstOrDefault();
-
                 var reportJobDto = UtilityPOCO.Assemble<Dto.ReportJobDto>(reportJob);
                 return reportJobDto;
             }

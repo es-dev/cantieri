@@ -29,7 +29,6 @@ namespace Web.GUI.FatturaAcquisto
                 {
                     var obj = (WcfService.Dto.FatturaAcquistoDto)model;
                     var numero = UtilityValidation.GetStringND(obj.Numero);
-                    var data = UtilityValidation.GetDataND(obj.Data);
                     var today = DateTime.Today;
                     var totaleFattura = UtilityValidation.GetEuro(obj.Totale);
                     var totalePagamenti = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotalePagamenti(obj, today));
@@ -39,7 +38,7 @@ namespace Web.GUI.FatturaAcquisto
 
                     infoImage.Image = "Images.dashboard.fatturaacquisto.png";
                     infoCodice.Text = "FA-"+numero;
-                    infoNumeroData.Text = "Fattura N." + numero + " del " + data;
+                    infoNumeroData.Text = BusinessLogic.Fattura.GetCodifica(obj);
                     infoPagamentoTotale.Text = "Pagato " + totalePagamenti + " su un totale di " + totaleFattura;
                     infoCentroCosto.Text = UtilityValidation.GetStringND(centroCosto.Denominazione);
                     infoFornitore.Text = UtilityValidation.GetStringND(fornitore.RagioneSociale);

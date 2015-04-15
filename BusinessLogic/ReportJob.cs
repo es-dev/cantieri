@@ -73,7 +73,7 @@ namespace BusinessLogic
                         var totaleFattura = UtilityValidation.GetEuro(fatturaAcquisto.Totale);
                         var _statoFattura = BusinessLogic.Fattura.GetStato(fatturaAcquisto);
                         var statoFattura = UtilityEnum.GetDescription<Tipi.StatoFattura>(_statoFattura);
-                        var codificaFattura = "FATTURA N." + fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper();
+                        var codificaFattura = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper();
                         tablePagamenti.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "");
                         var pagamenti = (from q in fatturaAcquisto.Pagamentos orderby q.Data ascending select q).ToList();
                         foreach (var pagamento in pagamenti)
@@ -108,6 +108,8 @@ namespace BusinessLogic
             }
             return null;
         }
+
+      
 
         private static void AddReportPagamentoFornitore(UtilityReport.Table tablePagamenti, PagamentoDto pagamento)
         {
@@ -261,7 +263,7 @@ namespace BusinessLogic
                                 var totaleFattura = UtilityValidation.GetEuro(fatturaAcquisto.Totale);
                                 var _statoFattura = BusinessLogic.Fattura.GetStato(fatturaAcquisto);
                                 var statoFattura = UtilityEnum.GetDescription<Tipi.StatoFattura>(_statoFattura);
-                                var codificaFattura = "FATTURA N." + fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper();
+                                var codificaFattura = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto)  + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper();
                                 tablePagamenti.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "");
                                 var pagamenti = (from q in fatturaAcquisto.Pagamentos orderby q.Data ascending select q).ToList();
                                 foreach (var pagamento in pagamenti)

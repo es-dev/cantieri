@@ -111,7 +111,7 @@ namespace Web.GUI.Incasso
                 var fatturaVenditaId = fatturaVendita.Id;
                 var _fatturaVendita= (FatturaVenditaDto)viewModelFatturaVendita.Read(fatturaVenditaId);
                 var committente = _fatturaVendita.Committente;
-                editFatturaVendita.Value = (fatturaVendita != null ? fatturaVendita.Numero + " del " + fatturaVendita.Data.Value.ToString("dd/MM/yyyy") : null) + " del committente: " + committente.Codice + " - " + committente.RagioneSociale;
+                editFatturaVendita.Value = (fatturaVendita != null ? BusinessLogic.Fattura.GetCodifica(fatturaVendita, false) : null) + " - " + committente.RagioneSociale;
             }
             catch (Exception ex)
             {
@@ -182,7 +182,7 @@ namespace Web.GUI.Incasso
                     var fatturaVenditaId = fatturaVendita.Id;
                     var _fatturaVendita = (FatturaVenditaDto)viewModelFatturaVendita.Read(fatturaVenditaId);
                     var committente = _fatturaVendita.Committente;
-                    editFatturaVendita.Value = (fatturaVendita != null ? fatturaVendita.Numero + " del " + fatturaVendita.Data.Value.ToString("dd/MM/yyyy") : null) + " del committente: " + committente.Codice + " - " + committente.RagioneSociale;
+                    editFatturaVendita.Value = (fatturaVendita != null ? BusinessLogic.Fattura.GetCodifica(fatturaVendita, false) : null) + " - " + committente.RagioneSociale;
                     var obj = (WcfService.Dto.IncassoDto)Model;
                     if (obj != null && obj.Id == 0)
                     {

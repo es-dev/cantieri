@@ -29,7 +29,6 @@ namespace Web.GUI.FatturaVendita
                 {
                     var obj = (WcfService.Dto.FatturaVenditaDto)model;
                     var numero = UtilityValidation.GetStringND(obj.Numero);
-                    var data = UtilityValidation.GetDataND(obj.Data);
                     var today = DateTime.Today;
                     var totaleFattura = UtilityValidation.GetEuro(obj.Totale);
                     var totaleIncassi =UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotaleIncassi(obj, today));
@@ -38,7 +37,7 @@ namespace Web.GUI.FatturaVendita
 
                     infoImage.Image = "Images.dashboard.fatturavendita.png";
                     infoCodice.Text = "FV-"+numero;
-                    infoNumeroData.Text = "Fattura N." + numero + " del " + data;
+                    infoNumeroData.Text = BusinessLogic.Fattura.GetCodifica(obj);
                     infoIncassoTotale.Text = "Incassato " + totaleIncassi +" su un totale di " + totaleFattura;
                     infoCommittente.Text = committente.RagioneSociale;
                     imgStato.Image = stato.Image;

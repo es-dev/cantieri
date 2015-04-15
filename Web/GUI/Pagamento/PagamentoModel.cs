@@ -111,7 +111,7 @@ namespace Web.GUI.Pagamento
                 var fatturaAcquistoId = fatturaAcquisto.Id;
                 var _fatturaAcquisto = (FatturaAcquistoDto)viewModelFatturaAcquisto.Read(fatturaAcquistoId);
                 var fornitore = _fatturaAcquisto.Fornitore;
-                editFatturaAcquisto.Value = (fatturaAcquisto != null ? fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") : null) + " del fornitore: " + fornitore.Codice +" - " + fornitore.RagioneSociale;
+                editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false) : null) + " - " + fornitore.RagioneSociale;
             }
             catch (Exception ex)
             {
@@ -181,7 +181,7 @@ namespace Web.GUI.Pagamento
                     var fatturaAcquistoId = fatturaAcquisto.Id;
                     var _fatturaAcquisto = (FatturaAcquistoDto)viewModelFatturaAcquisto.Read(fatturaAcquistoId);
                     var fornitore = _fatturaAcquisto.Fornitore;
-                    editFatturaAcquisto.Value = (fatturaAcquisto != null ? fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") : null) + " del fornitore: " + fornitore.Codice + " - " + fornitore.RagioneSociale;
+                    editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false) : null) + " - " + fornitore.RagioneSociale;
                     var obj = (PagamentoDto)Model;
                     if (obj != null && obj.Id == 0)
                     {

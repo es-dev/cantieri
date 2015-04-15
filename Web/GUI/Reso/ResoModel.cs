@@ -83,7 +83,7 @@ namespace Web.GUI.Reso
             try
             {
                 editNotaCredito.Model = notaCredito;
-                editNotaCredito.Value = (notaCredito != null ? notaCredito.Numero + " del " + notaCredito.Data.Value.ToString("dd/MM/yyyy") : null);
+                editNotaCredito.Value = (notaCredito != null ? BusinessLogic.Fattura.GetCodifica(notaCredito, false) : null);
             }
             catch (Exception ex)
             {
@@ -97,7 +97,7 @@ namespace Web.GUI.Reso
             try
             {
                 editFatturaAcquisto.Model = fatturaAcquisto;
-                editFatturaAcquisto.Value = (fatturaAcquisto != null ? fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") : null);
+                editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false) : null);
             }
             catch (Exception ex)
             {
@@ -181,9 +181,8 @@ namespace Web.GUI.Reso
             {
                 var fatturaAcquisto = (FatturaAcquistoDto)model;
                 if (fatturaAcquisto != null)
-                {
-                    editFatturaAcquisto.Value = fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy");
-                }
+                    editFatturaAcquisto.Value = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false);
+            
             }
             catch (Exception ex)
             {
@@ -227,7 +226,7 @@ namespace Web.GUI.Reso
                 var notaCredito = (NotaCreditoDto)model;
                 if (notaCredito != null)
                 {
-                    editNotaCredito.Value = notaCredito.Numero + " del " + notaCredito.Data.Value.ToString("dd/MM/yyyy");
+                    editNotaCredito.Value = BusinessLogic.Fattura.GetCodifica(notaCredito, false);
                     var obj = (ResoDto)Model;
                     if (obj != null && obj.Id == 0)
                     {
@@ -263,7 +262,7 @@ namespace Web.GUI.Reso
                 if (notaCredito != null)
                 {
                     editNotaCredito.Model = notaCredito;
-                    editNotaCredito.Value = notaCredito.Numero + " del " + notaCredito.Data.Value.ToString("dd/MM/yyyy");
+                    editNotaCredito.Value = BusinessLogic.Fattura.GetCodifica(notaCredito, false);
                 }
             }
             catch (Exception ex)
