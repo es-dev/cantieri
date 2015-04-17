@@ -36,19 +36,28 @@ namespace Web.GUI.AnagraficaFornitore
             this.infoRagioneSociale = new Gizmox.WebGUI.Forms.Label();
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
             this.infoIndirizzo = new Gizmox.WebGUI.Forms.Label();
+            this.infoTelefono = new Gizmox.WebGUI.Forms.Label();
+            this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
-            this.jqContainer.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // jqContainer
+            // 
+            this.jqContainer.Controls.Add(this.infoTelefono);
+            this.jqContainer.Controls.Add(this.panelLeft);
+            this.jqContainer.Controls.Add(this.infoRagioneSociale);
+            this.jqContainer.Controls.Add(this.infoPartitaIVA);
+            this.jqContainer.Controls.Add(this.infoIndirizzo);
             // 
             // infoPartitaIVA
             // 
             this.infoPartitaIVA.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoPartitaIVA.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoPartitaIVA.ForeColor = System.Drawing.Color.DarkRed;
-            this.infoPartitaIVA.Location = new System.Drawing.Point(91, 71);
+            this.infoPartitaIVA.Location = new System.Drawing.Point(239, 71);
             this.infoPartitaIVA.Name = "infoPartitaIVA";
-            this.infoPartitaIVA.Size = new System.Drawing.Size(305, 18);
+            this.infoPartitaIVA.Size = new System.Drawing.Size(156, 18);
             this.infoPartitaIVA.TabIndex = 1;
             this.infoPartitaIVA.Text = "Partita IVA";
             this.infoPartitaIVA.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -109,18 +118,25 @@ namespace Web.GUI.AnagraficaFornitore
             this.infoIndirizzo.TabIndex = 1;
             this.infoIndirizzo.Text = "Indirizzo";
             // 
+            // infoTelefono
+            // 
+            this.infoTelefono.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left)));
+            this.infoTelefono.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoTelefono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.infoTelefono.Location = new System.Drawing.Point(93, 71);
+            this.infoTelefono.Name = "infoTelefono";
+            this.infoTelefono.Size = new System.Drawing.Size(146, 20);
+            this.infoTelefono.TabIndex = 1;
+            this.infoTelefono.Text = "Telefono";
+            // 
             // AnagraficaFornitoreItem
             // 
-            this.jqContainer.Controls.Add(this.panelLeft);
-            this.jqContainer.Controls.Add(this.infoRagioneSociale);
-            this.jqContainer.Controls.Add(this.infoPartitaIVA);
-            this.jqContainer.Controls.Add(this.infoIndirizzo); 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.AnagraficaFornitoreItem_ItemClick);
+            this.jqContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
-            this.jqContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
@@ -133,5 +149,6 @@ namespace Web.GUI.AnagraficaFornitore
         private Gizmox.WebGUI.Forms.Label infoRagioneSociale;
         private Gizmox.WebGUI.Forms.Panel panelLeft;
         private Gizmox.WebGUI.Forms.Label infoIndirizzo;
+        private Gizmox.WebGUI.Forms.Label infoTelefono;
 	}
 }

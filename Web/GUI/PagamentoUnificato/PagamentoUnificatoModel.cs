@@ -70,9 +70,10 @@ namespace Web.GUI.PagamentoUnificato
                     editImporto.Value = obj.Importo;
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editDescrizione.Value = obj.Descrizione;
+                    
                     var codiceFornitore = obj.CodiceFornitore;
-
                     BindViewAnagraficaFornitore(codiceFornitore);
+                    BindViewAzienda(obj.Azienda);
                 }
             }
             catch (Exception ex)
@@ -80,6 +81,20 @@ namespace Web.GUI.PagamentoUnificato
                 UtilityError.Write(ex);
             }
         }
+
+        private void BindViewAzienda(AziendaDto azienda)
+        {
+            try
+            {
+                editAzienda.Model = azienda;
+                editAzienda.Value = (azienda != null ? azienda.Codice + " - " + azienda.RagioneSociale : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
 
         private void BindViewAnagraficaFornitore(string codiceFornitore)
         {
@@ -128,6 +143,10 @@ namespace Web.GUI.PagamentoUnificato
                     var anagraficaFornitore = (AnagraficaFornitoreDto)editFornitore.Model;
                     if (anagraficaFornitore != null)
                         obj.CodiceFornitore = anagraficaFornitore.Codice;
+
+                    var azienda = (AziendaDto)editAzienda.Model;
+                    if (azienda != null)
+                        obj.AziendaId = azienda.Id;
                 }
             }
             catch (Exception ex)
@@ -206,6 +225,34 @@ namespace Web.GUI.PagamentoUnificato
                 UtilityError.Write(ex);
             }
 
+        }
+
+        private void editAzienda_ComboClick()
+        {
+            try
+            {
+                var view = new Azienda.AziendaView();
+                view.Title = "SELEZIONA UN'AZIENDA";
+                editAzienda.Show(view);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editAzienda_ComboConfirm(object model)
+        {
+            try
+            {
+                var azienda = (AziendaDto)model;
+                if (azienda != null)
+                    editAzienda.Value = azienda.RagioneSociale;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
         }
 
 	}

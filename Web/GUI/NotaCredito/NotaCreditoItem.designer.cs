@@ -35,7 +35,7 @@ namespace Web.GUI.NotaCredito
             this.infoImage = new Gizmox.WebGUI.Forms.PictureBox();
             this.infoNotaCredito = new Gizmox.WebGUI.Forms.Label();
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
-            this.infoNote = new Gizmox.WebGUI.Forms.Label();
+            this.infoFornitore = new Gizmox.WebGUI.Forms.Label();
             this.infoData = new Gizmox.WebGUI.Forms.Label();
             this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
@@ -46,7 +46,7 @@ namespace Web.GUI.NotaCredito
             // 
             this.jqContainer.Controls.Add(this.panelLeft);
             this.jqContainer.Controls.Add(this.infoData);
-            this.jqContainer.Controls.Add(this.infoNote);
+            this.jqContainer.Controls.Add(this.infoFornitore);
             this.jqContainer.Controls.Add(this.infoNotaCredito);
             this.jqContainer.Controls.Add(this.infoImporto);
             // 
@@ -59,7 +59,7 @@ namespace Web.GUI.NotaCredito
             this.infoImporto.Name = "infoImporto";
             this.infoImporto.Size = new System.Drawing.Size(140, 16);
             this.infoImporto.TabIndex = 1;
-            this.infoImporto.Text = "Importo 0,00€";
+            this.infoImporto.Text = "Totale 0,00€";
             this.infoImporto.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // infoCodice
@@ -108,18 +108,18 @@ namespace Web.GUI.NotaCredito
             this.panelLeft.Size = new System.Drawing.Size(83, 96);
             this.panelLeft.TabIndex = 0;
             // 
-            // infoNote
+            // infoFornitore
             // 
-            this.infoNote.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
+            this.infoFornitore.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.infoNote.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoNote.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoNote.Location = new System.Drawing.Point(96, 32);
-            this.infoNote.Name = "infoNote";
-            this.infoNote.Size = new System.Drawing.Size(297, 34);
-            this.infoNote.TabIndex = 1;
-            this.infoNote.Text = "Note";
+            this.infoFornitore.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoFornitore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.infoFornitore.Location = new System.Drawing.Point(96, 32);
+            this.infoFornitore.Name = "infoFornitore";
+            this.infoFornitore.Size = new System.Drawing.Size(297, 34);
+            this.infoFornitore.TabIndex = 1;
+            this.infoFornitore.Text = "Fornitore";
             // 
             // infoData
             // 
@@ -131,7 +131,7 @@ namespace Web.GUI.NotaCredito
             this.infoData.Name = "infoData";
             this.infoData.Size = new System.Drawing.Size(154, 16);
             this.infoData.TabIndex = 1;
-            this.infoData.Text = "Pagato il dd/MM/yyyy";
+            this.infoData.Text = "Resa il dd/MM/yyyy";
             // 
             // NotaCreditoItem
             // 
@@ -152,7 +152,7 @@ namespace Web.GUI.NotaCredito
         private Gizmox.WebGUI.Forms.PictureBox infoImage;
         private Gizmox.WebGUI.Forms.Label infoNotaCredito;
         private Gizmox.WebGUI.Forms.Panel panelLeft;
-        private Gizmox.WebGUI.Forms.Label infoNote;
+        private Gizmox.WebGUI.Forms.Label infoFornitore;
         private Gizmox.WebGUI.Forms.Label infoData;
 	}
 }

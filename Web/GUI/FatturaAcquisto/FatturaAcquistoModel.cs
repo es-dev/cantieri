@@ -65,10 +65,7 @@ namespace Web.GUI.FatturaAcquisto
                 if (model != null)
                 {
                     var obj = (FatturaAcquistoDto)model;
-                    var numero = UtilityValidation.GetStringND(obj.Numero);
-                    var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
-                    var data = UtilityValidation.GetDataND(obj.Data)+" - "+ descrizione;
-                    infoSubtitle.Text = "N."+ numero + " del " + data;
+                    infoSubtitle.Text = BusinessLogic.Fattura.GetCodifica(obj);
                     infoSubtitleImage.Image = "Images.dashboard.fatturaacquisto.png";
                     var fornitore = obj.Fornitore;
                     infoTitle.Text = (obj.Id!=0?"FATTURA DI ACQUISTO N." + obj.Numero + " - " + fornitore.RagioneSociale: "NUOVA FATTURA DI ACQUISTO");

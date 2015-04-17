@@ -36,10 +36,19 @@ namespace Web.GUI.AnagraficaCommittente
             this.infoRagioneSociale = new Gizmox.WebGUI.Forms.Label();
             this.infoPartitaIVA = new Gizmox.WebGUI.Forms.Label();
             this.infoIndirizzo = new Gizmox.WebGUI.Forms.Label();
+            this.infoTelefono = new Gizmox.WebGUI.Forms.Label();
+            this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
-            this.jqContainer.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // jqContainer
+            // 
+            this.jqContainer.Controls.Add(this.infoTelefono);
+            this.jqContainer.Controls.Add(this.infoRagioneSociale);
+            this.jqContainer.Controls.Add(this.panelLeft);
+            this.jqContainer.Controls.Add(this.infoPartitaIVA);
+            this.jqContainer.Controls.Add(this.infoIndirizzo);
             // 
             // infoCodice
             // 
@@ -65,7 +74,7 @@ namespace Web.GUI.AnagraficaCommittente
             // 
             // panelLeft
             // 
-            this.panelLeft.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom)
+            this.panelLeft.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Left)));
             this.panelLeft.BackColor = System.Drawing.Color.Gainsboro;
             this.panelLeft.Controls.Add(this.infoCodice);
@@ -77,7 +86,7 @@ namespace Web.GUI.AnagraficaCommittente
             // 
             // infoRagioneSociale
             // 
-            this.infoRagioneSociale.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left)
+            this.infoRagioneSociale.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoRagioneSociale.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoRagioneSociale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
@@ -92,16 +101,16 @@ namespace Web.GUI.AnagraficaCommittente
             this.infoPartitaIVA.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoPartitaIVA.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoPartitaIVA.ForeColor = System.Drawing.Color.DarkRed;
-            this.infoPartitaIVA.Location = new System.Drawing.Point(91, 71);
+            this.infoPartitaIVA.Location = new System.Drawing.Point(283, 71);
             this.infoPartitaIVA.Name = "infoPartitaIVA";
-            this.infoPartitaIVA.Size = new System.Drawing.Size(305, 20);
+            this.infoPartitaIVA.Size = new System.Drawing.Size(112, 20);
             this.infoPartitaIVA.TabIndex = 1;
             this.infoPartitaIVA.Text = "Partita IVA";
             this.infoPartitaIVA.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // infoIndirizzo
             // 
-            this.infoIndirizzo.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left)
+            this.infoIndirizzo.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoIndirizzo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoIndirizzo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -111,18 +120,25 @@ namespace Web.GUI.AnagraficaCommittente
             this.infoIndirizzo.TabIndex = 1;
             this.infoIndirizzo.Text = "Indirizzo";
             // 
+            // infoTelefono
+            // 
+            this.infoTelefono.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left)));
+            this.infoTelefono.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoTelefono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.infoTelefono.Location = new System.Drawing.Point(91, 73);
+            this.infoTelefono.Name = "infoTelefono";
+            this.infoTelefono.Size = new System.Drawing.Size(146, 20);
+            this.infoTelefono.TabIndex = 1;
+            this.infoTelefono.Text = "Telefono";
+            // 
             // AnagraficaCommittenteItem
             // 
-            this.jqContainer.Controls.Add(this.infoRagioneSociale);
-            this.jqContainer.Controls.Add(this.panelLeft);
-            this.jqContainer.Controls.Add(this.infoPartitaIVA);
-            this.jqContainer.Controls.Add(this.infoIndirizzo); 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.AnagraficaCommittenteItem_ItemClick);
+            this.jqContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
-            this.jqContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -135,5 +151,6 @@ namespace Web.GUI.AnagraficaCommittente
         private Gizmox.WebGUI.Forms.Label infoRagioneSociale;
         private Gizmox.WebGUI.Forms.Label infoPartitaIVA;
         private Gizmox.WebGUI.Forms.Label infoIndirizzo;
+        private Gizmox.WebGUI.Forms.Label infoTelefono;
 	}
 }

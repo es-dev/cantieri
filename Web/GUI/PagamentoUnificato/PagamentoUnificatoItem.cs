@@ -29,19 +29,39 @@ namespace Web.GUI.PagamentoUnificato
                     var importo = UtilityValidation.GetEuro(obj.Importo);
                     var codice = UtilityValidation.GetStringND(obj.Codice);
                     var data = UtilityValidation.GetDataND(obj.Data);
-                 
+
+                    infoPagamento.Text = "Pagamento N." + codice;
                     infoData.Text = "Pagato il " + data;
                     infoImage.Image = "Images.dashboard.pagamentounificato.png";
                     infoCodice.Text = "PU-"+codice;
-                    infoNote.Text = obj.Note;
-                    infoImporto.Text = "Importo: " + importo;
-                    infoPagamento.Text = "Pagamento N." + codice;
+                    infoImporto.Text = "Totale di " + importo;
+
+                    BindViewFornitore(obj);
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewFornitore(PagamentoUnificatoDto obj)
+        {
+            try
+            {
+                if (obj != null)
+                {
+                    var codiceFornitore = obj.CodiceFornitore;
+                    var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                    var anagraficaFornitore = viewModel.ReadAnagraficaFornitore(codiceFornitore);
+                    infoFornitore.Text = (anagraficaFornitore != null ? anagraficaFornitore.RagioneSociale : "N/D");
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
         }
 
         private void PagamentoUnificatoItem_ItemClick(IItem item)

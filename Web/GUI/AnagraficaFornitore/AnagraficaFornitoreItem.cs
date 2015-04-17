@@ -38,6 +38,7 @@ namespace Web.GUI.AnagraficaFornitore
                     infoCodice.Text = codice;
                     infoPartitaIVA.Text = "P.IVA " + partitaIVA;
                     infoIndirizzo.Text = indirizzo + " - " + cap + " - " + comune + " (" + provincia + ")";
+                    infoTelefono.Text = "Telefono: " + UtilityValidation.GetStringND(obj.Telefono);
                 }
             }
             catch (Exception ex)

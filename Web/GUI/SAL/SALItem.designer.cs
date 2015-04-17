@@ -32,16 +32,24 @@ namespace Web.GUI.SAL
 		{
             this.infoCodice = new Gizmox.WebGUI.Forms.Label();
             this.infoImage = new Gizmox.WebGUI.Forms.PictureBox();
-            this.infoDenominazioneData = new Gizmox.WebGUI.Forms.Label();
+            this.infoSAL = new Gizmox.WebGUI.Forms.Label();
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
             this.infoCommesssa = new Gizmox.WebGUI.Forms.Label();
             this.infoAndamentoLavoro = new Gizmox.WebGUI.Forms.Label();
             this.imgStato = new Gizmox.WebGUI.Forms.PictureBox();
+            this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
-            this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgStato)).BeginInit();
             this.SuspendLayout();
+            // 
+            // jqContainer
+            // 
+            this.jqContainer.Controls.Add(this.panelLeft);
+            this.jqContainer.Controls.Add(this.infoSAL);
+            this.jqContainer.Controls.Add(this.imgStato);
+            this.jqContainer.Controls.Add(this.infoAndamentoLavoro);
+            this.jqContainer.Controls.Add(this.infoCommesssa);
             // 
             // infoCodice
             // 
@@ -65,17 +73,17 @@ namespace Web.GUI.SAL
             this.infoImage.TabIndex = 1;
             this.infoImage.TabStop = false;
             // 
-            // infoDenominazioneData
+            // infoSAL
             // 
-            this.infoDenominazioneData.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.infoSAL.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.infoDenominazioneData.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoDenominazioneData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
-            this.infoDenominazioneData.Location = new System.Drawing.Point(87, 2);
-            this.infoDenominazioneData.Name = "infoDenominazioneData";
-            this.infoDenominazioneData.Size = new System.Drawing.Size(267, 30);
-            this.infoDenominazioneData.TabIndex = 1;
-            this.infoDenominazioneData.Text = "DENOMINAZIONE";
+            this.infoSAL.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoSAL.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.infoSAL.Location = new System.Drawing.Point(87, 2);
+            this.infoSAL.Name = "infoSAL";
+            this.infoSAL.Size = new System.Drawing.Size(267, 30);
+            this.infoSAL.TabIndex = 1;
+            this.infoSAL.Text = "DENOMINAZIONE";
             // 
             // panelLeft
             // 
@@ -127,17 +135,12 @@ namespace Web.GUI.SAL
             // 
             // SALItem
             // 
-            this.jqContainer.Controls.Add(this.panelLeft);
-            this.jqContainer.Controls.Add(this.infoDenominazioneData);
-            this.jqContainer.Controls.Add(this.imgStato);
-            this.jqContainer.Controls.Add(this.infoAndamentoLavoro);
-            this.jqContainer.Controls.Add(this.infoCommesssa);
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.SALItem_ItemClick);
+            this.jqContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
-            this.jqContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgStato)).EndInit();
             this.ResumeLayout(false);
 
@@ -147,7 +150,7 @@ namespace Web.GUI.SAL
 
         private Gizmox.WebGUI.Forms.Label infoCodice;
         private Gizmox.WebGUI.Forms.PictureBox infoImage;
-        private Gizmox.WebGUI.Forms.Label infoDenominazioneData;
+        private Gizmox.WebGUI.Forms.Label infoSAL;
         private Gizmox.WebGUI.Forms.Panel panelLeft;
         private Gizmox.WebGUI.Forms.Label infoCommesssa;
         private Gizmox.WebGUI.Forms.PictureBox imgStato;

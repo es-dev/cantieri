@@ -58,5 +58,24 @@ namespace BusinessLogic
             }
             return null;
         }
+
+        public static string GetCodifica(PagamentoDto pagamento)
+        {
+            try
+            {
+                if(pagamento!=null)
+                {
+                    var codice = UtilityValidation.GetStringND(pagamento.Codice);
+                    var data = UtilityValidation.GetDataND(pagamento.Data);
+                    var codifica = "Pagamento n." + codice + " del " + data;
+                    return codifica;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }

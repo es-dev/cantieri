@@ -67,7 +67,7 @@ namespace Web.GUI.AnagraficaArticolo
                         var newObj = wcf.CreateAnagraficaArticolo(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj.Id = newObj.Id;
+                            Update(obj, newObj);
                     }
                     else //updating
                         performed = wcf.UpdateAnagraficaArticolo(obj);

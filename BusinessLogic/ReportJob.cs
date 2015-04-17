@@ -73,7 +73,7 @@ namespace BusinessLogic
                         var totaleFattura = UtilityValidation.GetEuro(fatturaAcquisto.Totale);
                         var _statoFattura = BusinessLogic.Fattura.GetStato(fatturaAcquisto);
                         var statoFattura = UtilityEnum.GetDescription<Tipi.StatoFattura>(_statoFattura);
-                        var codificaFattura = "FATTURA N." + fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper();
+                        var codificaFattura = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper();
                         tablePagamenti.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "");
                         var pagamenti = (from q in fatturaAcquisto.Pagamentos orderby q.Data ascending select q).ToList();
                         foreach (var pagamento in pagamenti)
@@ -108,6 +108,8 @@ namespace BusinessLogic
             }
             return null;
         }
+
+      
 
         private static void AddReportPagamentoFornitore(UtilityReport.Table tablePagamenti, PagamentoDto pagamento)
         {
@@ -229,10 +231,11 @@ namespace BusinessLogic
             {
                 var report = new UtilityReport.Report();
 
-                var anagraficheFornitoriDare = GetAnagraficheFornitoriDare(anagraficheFornitori, fornitori, data);
+                var fornitoriDare = GetFornitoriDare(fornitori, data);
+                var anagraficheFornitoriDare = GetAnagraficheFornitoriDare(anagraficheFornitori, fornitoriDare);
 
                 AddReportAzienda(azienda, report, data);
-                AddReportProspettoFornitori(anagraficheFornitoriDare, fornitori, report);
+                AddReportProspettoFornitori(anagraficheFornitoriDare, fornitoriDare, report);
 
                 var tableFornitori = new UtilityReport.Table("RagioneSociale", "TotaleFatture", "TotalePagamentiDato", "TotalePagamentiDare");
                 var tableFatture = new UtilityReport.Table("Numero", "Data", "Scadenza", "Descrizione", "Imponibile", "IVA", "Totale", "TotalePagamentiDato", "TotalePagamentiDare");
@@ -240,7 +243,7 @@ namespace BusinessLogic
 
                 foreach (var anagraficaFornitore in anagraficheFornitoriDare)
                 {
-                    var fornitoriAnagrafica = (from q in fornitori where q.Codice == anagraficaFornitore.Codice select q).ToList();
+                    var fornitoriAnagrafica = (from q in fornitoriDare where q.Codice == anagraficaFornitore.Codice select q).ToList();
                     if (fornitoriAnagrafica != null && fornitoriAnagrafica.Count >= 1)
                     {
                         AddReportFornitore(tableFornitori, anagraficaFornitore, fornitoriAnagrafica, data);
@@ -251,7 +254,8 @@ namespace BusinessLogic
                         {
                             //fatture per fornitore
                             var fattureAcquisto = fornitore.FatturaAcquistos;
-                            foreach (var fatturaAcquisto in fattureAcquisto)
+                            var fattureAcquistoDare = GetFattureAcquistoDare(fattureAcquisto, data);
+                            foreach (var fatturaAcquisto in fattureAcquistoDare)
                             {
                                 AddReportFatturaAcquistoFornitore(tableFatture, fatturaAcquisto, data);
 
@@ -259,7 +263,7 @@ namespace BusinessLogic
                                 var totaleFattura = UtilityValidation.GetEuro(fatturaAcquisto.Totale);
                                 var _statoFattura = BusinessLogic.Fattura.GetStato(fatturaAcquisto);
                                 var statoFattura = UtilityEnum.GetDescription<Tipi.StatoFattura>(_statoFattura);
-                                var codificaFattura = "FATTURA N." + fatturaAcquisto.Numero + " del " + fatturaAcquisto.Data.Value.ToString("dd/MM/yyyy") + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper();
+                                var codificaFattura = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto)  + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper();
                                 tablePagamenti.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "");
                                 var pagamenti = (from q in fatturaAcquisto.Pagamentos orderby q.Data ascending select q).ToList();
                                 foreach (var pagamento in pagamenti)
@@ -297,11 +301,40 @@ namespace BusinessLogic
             return null;
         }
 
-        private static IList<AnagraficaFornitoreDto> GetAnagraficheFornitoriDare(IList<AnagraficaFornitoreDto> anagraficheFornitori, IList<FornitoreDto> fornitori, DateTime data)
+        private static IList<FatturaAcquistoDto> GetFattureAcquistoDare(IList<FatturaAcquistoDto> fattureAcquisto, DateTime data)
         {
             try
             {
-                var codiciFornitoriDare = (from q in fornitori where BusinessLogic.Fornitore.GetTotalePagamentiDare(q, data) > 0 select q.Codice).Distinct().ToList();
+                var fattureAcquistoDare = (from q in fattureAcquisto where BusinessLogic.Fattura.GetTotalePagamentiDare(q, data) > 0 select q).ToList();
+                return fattureAcquistoDare;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private static IList<FornitoreDto> GetFornitoriDare(IList<FornitoreDto> fornitori, DateTime data)
+        {
+            try
+            {
+                var fornitoriDare = (from q in fornitori where BusinessLogic.Fornitore.GetTotalePagamentiDare(q, data) > 0 select q).ToList();
+                return fornitoriDare;
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private static IList<AnagraficaFornitoreDto> GetAnagraficheFornitoriDare(IList<AnagraficaFornitoreDto> anagraficheFornitori, IList<FornitoreDto> fornitoriDare)
+        {
+            try
+            {
+                var codiciFornitoriDare = (from q in fornitoriDare select q.Codice).Distinct().ToList();
                 var anagraficheFornitoriDare = (from q in anagraficheFornitori where codiciFornitoriDare.Contains(q.Codice) select q).ToList();
                 return anagraficheFornitoriDare;
             }
@@ -342,7 +375,7 @@ namespace BusinessLogic
                 var commesse = GetCommesse(fornitori);
                 var pagamenti = GetPagamenti(fattureAcquisto);
                 var resi = GetResi(noteCredito);
-
+                
                 report.AddData("NumeroFornitori", anagraficheFornitori.Count());
                 report.AddData("NumeroFattureAcquisto", fattureAcquisto.Count());
                 report.AddData("NumeroNoteCredito", noteCredito.Count());
@@ -391,13 +424,18 @@ namespace BusinessLogic
             return null;
         }
 
-
-
         private static IList<CommessaDto> GetCommesse(IList<FornitoreDto> fornitori)
         {
             try
             {
-                var commesse = (from q in fornitori select q.Commessa).Distinct().ToList();
+                var commesse = new List<CommessaDto>();
+                foreach(var fornitore in fornitori)
+                {
+                    var commessa=fornitore.Commessa;
+                    var exist = ((from q in commesse where q.Id == commessa.Id select q).Count()>=1);
+                    if (!exist)
+                        commesse.Add(commessa);
+                }
                 return commesse;
             }
             catch (Exception ex)

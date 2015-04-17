@@ -61,7 +61,7 @@ namespace Web.GUI.Commessa
                         var newObj = wcf.CreateCommessa(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj.Id = newObj.Id;
+                            Update(obj, newObj);
                     }
                     else //updating
                         performed = wcf.UpdateCommessa(obj);

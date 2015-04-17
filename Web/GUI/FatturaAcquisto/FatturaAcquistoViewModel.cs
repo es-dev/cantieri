@@ -67,8 +67,7 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 var wcf = new WcfService.Service();
-                var stati = (anagraficaFornitore != null ? BusinessLogic.Tipi.GetStatiFattureInsoluteNonPagate() : null);
-                var objs = wcf.LoadFattureAcquisto(skip, take, search, fornitore, anagraficaFornitore, stati);
+                var objs = wcf.LoadFattureAcquisto(skip, take, search, fornitore, anagraficaFornitore);
                 Load(objs);
             }
             catch (Exception ex)
@@ -82,8 +81,7 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 var wcf = new WcfService.Service();
-                var stati = (anagraficaFornitore!=null? BusinessLogic.Tipi.GetStatiFattureInsoluteNonPagate():null);
-                int count = wcf.CountFattureAcquisto(search, fornitore, anagraficaFornitore, stati);
+                int count = wcf.CountFattureAcquisto(search, fornitore, anagraficaFornitore);
                 return count;
             }
             catch (Exception ex)
@@ -107,7 +105,7 @@ namespace Web.GUI.FatturaAcquisto
                         var newObj = wcf.CreateFatturaAcquisto(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj.Id = newObj.Id;
+                            Update(obj, newObj);
                     }
                     else //updating
                         performed = wcf.UpdateFatturaAcquisto(obj);

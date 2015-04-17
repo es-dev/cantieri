@@ -67,7 +67,8 @@ namespace Web.GUI.PagamentoUnificato
                         var newObj = wcf.CreatePagamentoUnificato(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj.Id = newObj.Id;
+                            Update(obj, newObj);
+                    
                     }
                     else //updating
                         performed = wcf.UpdatePagamentoUnificato(obj);
@@ -81,6 +82,7 @@ namespace Web.GUI.PagamentoUnificato
             return false;
         }
 
+       
         public override bool Delete(object model)
         {
             try

@@ -30,7 +30,29 @@ namespace Web.GUI.Agenda
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
+            this.panelCommands.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // btnMonth
+            // 
+            this.btnMonth.Location = new System.Drawing.Point(0, 288);
+            // 
+            // btnDay
+            // 
+            this.btnDay.Location = new System.Drawing.Point(0, 144);
+            // 
+            // btnWeek
+            // 
+            this.btnWeek.Location = new System.Drawing.Point(0, 216);
+            this.Controls.SetChildIndex(this.panelCommands, 0);
+            this.Controls.SetChildIndex(this.txtSearch, 0);
+            this.Controls.SetChildIndex(this.btnOrderBy, 0);
+            this.Controls.SetChildIndex(this.btnAdvancedSearch, 0);
+            this.Controls.SetChildIndex(this.btnPrevious, 0);
+            this.Controls.SetChildIndex(this.btnNext, 0);
+            this.panelCommands.ResumeLayout(false);
+            this.ResumeLayout(false);
+
 		}
 
 		#endregion

@@ -396,5 +396,24 @@ namespace BusinessLogic
             }
             return 0;
         }
+
+        public static string GetCodifica(SALDto sal)
+        {
+            try
+            {
+                if (sal != null)
+                {
+                    var codice = UtilityValidation.GetStringND(sal.Codice);
+                    var data = UtilityValidation.GetDataND(sal.Data);
+                    string codfica = "SAL n." + codice + " del " + data;
+                    return codfica;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }

@@ -67,7 +67,7 @@ namespace Web.GUI.Articolo
                         var newObj = wcf.CreateArticolo(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj.Id = newObj.Id;
+                            Update(obj, newObj);
                     }
                     else //updating
                         performed = wcf.UpdateArticolo(obj);

@@ -198,10 +198,10 @@ namespace WcfService
         #region Custom
         [OperationContract]
         IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquisto(int skip, int take, string search = null, Dto.FornitoreDto fornitore=null, 
-            Dto.AnagraficaFornitoreDto anagraficaFornitore=null, IList<string> stati=null);
+            Dto.AnagraficaFornitoreDto anagraficaFornitore=null);
 
         [OperationContract]
-        int CountFattureAcquisto(string search = null, Dto.FornitoreDto fornitore=null, Dto.AnagraficaFornitoreDto anagraficaFornitore=null, IList<string> stati=null);
+        int CountFattureAcquisto(string search = null, Dto.FornitoreDto fornitore=null, Dto.AnagraficaFornitoreDto anagraficaFornitore=null);
 
         [OperationContract]
         Dto.FatturaAcquistoDto ReadFatturaAcquisto(object id);

@@ -80,7 +80,7 @@ namespace Web.GUI.Fornitore
                         var newObj = wcf.CreateFornitore(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj.Id = newObj.Id;
+                            Update(obj, newObj);
                     }
                     else //updating
                         performed = wcf.UpdateFornitore(obj);
@@ -181,6 +181,24 @@ namespace Web.GUI.Fornitore
                 var wcf = new WcfService.Service();
                 var objs = wcf.ReadFornitori(anagraficheFornitori);
                 return objs;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        internal FornitoreDto ReadFornitore(NotaCreditoDto notaCredito)
+        {
+            try
+            {
+                if(notaCredito!=null)
+                {
+                    var fornitoreId = notaCredito.FornitoreId;
+                    var fornitore = (FornitoreDto)Read(fornitoreId);
+                    return fornitore;
+                }
             }
             catch (Exception ex)
             {
