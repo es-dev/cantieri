@@ -1840,7 +1840,7 @@ namespace WcfService
                 var pagamentiUnificati = QueryPagamentiUnificati(search);
                 pagamentiUnificati = (from q in pagamentiUnificati select q).Skip(skip).Take(take);
 
-                var pagamentiUnificatiDto = UtilityPOCO.Assemble<Dto.PagamentoUnificatoDto>(pagamentiUnificati);
+                var pagamentiUnificatiDto = UtilityPOCO.Assemble<Dto.PagamentoUnificatoDto>(pagamentiUnificati, true ); //lettura iterativa
                 return pagamentiUnificatiDto;
             }
             catch (Exception ex)
@@ -1871,7 +1871,8 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var pagamentoUnificato = (from q in ef.PagamentoUnificatos where q.Id == (int)id select q).FirstOrDefault();
-                var pagamentoUnificatoDto = UtilityPOCO.Assemble<Dto.PagamentoUnificatoDto>(pagamentoUnificato);
+
+                var pagamentoUnificatoDto = UtilityPOCO.Assemble<Dto.PagamentoUnificatoDto>(pagamentoUnificato, true);
                 return pagamentoUnificatoDto;
             }
             catch (Exception ex)
@@ -1995,7 +1996,7 @@ namespace WcfService
         {
             try
             {
-                var pagamentiUnificatiFatturaAcquisto = QueryPagamentiUnificatiFatturaAcquisto(search);
+                var pagamentiUnificatiFatturaAcquisto = QueryPagamentiUnificatiFatturaAcquisto(search, pagamentoUnificato);
                 pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto select q).Skip(skip).Take(take);
 
                 var pagamentiUnificatiFatturaAcquistoDto = UtilityPOCO.Assemble<Dto.PagamentoUnificatoFatturaAcquistoDto>(pagamentiUnificatiFatturaAcquisto);
@@ -3384,11 +3385,5 @@ namespace WcfService
         #endregion
 
 
-
-
-        public object ReadPagamentiData(object start, object end, string search)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

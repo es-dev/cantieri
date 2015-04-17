@@ -189,7 +189,11 @@ namespace Web.GUI.PagamentoUnificato
         {
             try
             {
-                BindViewTotalePagamentoUnificato();
+                bool saved = Save();
+                if (saved)
+                {
+                    BindViewTotalePagamentoUnificato();
+                }
             }
             catch (Exception ex)
             {
@@ -215,10 +219,14 @@ namespace Web.GUI.PagamentoUnificato
         {
             try
             {
-                var obj = (PagamentoUnificatoDto)Model;
-                var space = new PagamentoUnificatoFatturaAcquisto.PagamentoUnificatoFatturaAcquistoView(obj);
-                space.Title = "FATTURE PAGAMENTO UNIFICATO " + obj.Codice;
-                Workspace.AddSpace(space);
+                bool saved = Save();
+                if (saved)
+                {
+                    var obj = (PagamentoUnificatoDto)Model;
+                    var space = new PagamentoUnificatoFatturaAcquisto.PagamentoUnificatoFatturaAcquistoView(obj);
+                    space.Title = "FATTURE PAGAMENTO UNIFICATO " + obj.Codice;
+                    Workspace.AddSpace(space);
+                }
             }
             catch (Exception ex)
             {

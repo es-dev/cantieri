@@ -15,15 +15,18 @@ namespace BusinessLogic
         {
             try
             {
+                decimal totale = 0;
                 if (pagamentoUnificato != null)
                 {
                     var pagamentiUnificatiFattureAcquisto = pagamentoUnificato.PagamentoUnificatoFatturaAcquistos;
                     if (pagamentiUnificatiFattureAcquisto != null)
                     {
-                        var totale = UtilityValidation.GetDecimal((from q in pagamentiUnificatiFattureAcquisto where q.Saldo!=null select q.Saldo).Sum());
-                        return totale;
+                        foreach (var pagamentoUnificatoFatturaAcquisto in pagamentiUnificatiFattureAcquisto)
+                            totale += UtilityValidation.GetDecimal(pagamentoUnificatoFatturaAcquisto.Saldo);
+
                     }
                 }
+                return totale;
             }
             catch (Exception ex)
             {
