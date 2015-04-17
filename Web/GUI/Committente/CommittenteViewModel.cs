@@ -81,7 +81,7 @@ namespace Web.GUI.Committente
                         var newObj = wcf.CreateCommittente(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj.Id = newObj.Id;
+                            Update(obj, newObj);
                     }
                     else //updating
                         performed = wcf.UpdateCommittente(obj);

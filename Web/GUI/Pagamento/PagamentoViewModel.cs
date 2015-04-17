@@ -92,7 +92,7 @@ namespace Web.GUI.Pagamento
                         var newObj = wcf.CreatePagamento(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj.Id = newObj.Id;
+                            Update(obj, newObj);
                     }
                     else //updating
                         performed = wcf.UpdatePagamento(obj);

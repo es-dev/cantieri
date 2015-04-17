@@ -80,7 +80,7 @@ namespace Web.GUI.SAL
                         var newObj = wcf.CreateSAL(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj.Id = newObj.Id;
+                            Update(obj, newObj);
                     }
                     else //updating
                         performed = wcf.UpdateSAL(obj);

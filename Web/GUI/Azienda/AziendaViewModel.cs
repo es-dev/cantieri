@@ -67,7 +67,7 @@ namespace Web.GUI.Azienda
                         var newObj = wcf.CreateAzienda(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj.Id = newObj.Id;
+                            Update(obj, newObj);
                     }
                     else //updating
                         performed = wcf.UpdateAzienda(obj);

@@ -67,7 +67,7 @@ namespace Web.GUI.CentroCosto
                         var newObj = wcf.CreateCentroCosto(obj);
                         performed = (newObj != null);
                         if (performed)
-                            obj.Id = newObj.Id;
+                            Update(obj, newObj);
                     }
                     else //updating
                         performed = wcf.UpdateCentroCosto(obj);

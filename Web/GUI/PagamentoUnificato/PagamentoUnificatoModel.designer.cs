@@ -39,6 +39,7 @@ namespace Web.GUI.PagamentoUnificato
             this.editDescrizione = new Library.Template.Controls.TemplateEditText();
             this.btnCalcoloSaldoImporto = new Library.Controls.ButtonSeparatorV();
             this.btnFattureAcquisto = new Library.Controls.ButtonSeparatorV();
+            this.editAzienda = new Library.Template.Controls.TemplateEditCombo();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -46,6 +47,7 @@ namespace Web.GUI.PagamentoUnificato
             // 
             // container
             // 
+            this.container.Controls.Add(this.editAzienda);
             this.container.Controls.Add(this.editDescrizione);
             this.container.Controls.Add(this.editTipoPagamento);
             this.container.Controls.Add(this.editCodice);
@@ -62,6 +64,7 @@ namespace Web.GUI.PagamentoUnificato
             this.container.Controls.SetChildIndex(this.editCodice, 0);
             this.container.Controls.SetChildIndex(this.editTipoPagamento, 0);
             this.container.Controls.SetChildIndex(this.editDescrizione, 0);
+            this.container.Controls.SetChildIndex(this.editAzienda, 0);
             // 
             // infoSubtitle
             // 
@@ -96,13 +99,13 @@ namespace Web.GUI.PagamentoUnificato
             this.editFornitore.Editing = false;
             this.editFornitore.Label = "Fornitore";
             this.editFornitore.LabelWidth = 175;
-            this.editFornitore.Location = new System.Drawing.Point(25, 75);
+            this.editFornitore.Location = new System.Drawing.Point(33, 116);
             this.editFornitore.Model = null;
             this.editFornitore.Name = "editFornitore";
             this.editFornitore.ReadOnly = false;
             this.editFornitore.Required = true;
-            this.editFornitore.Size = new System.Drawing.Size(800, 30);
-            this.editFornitore.TabIndex = 0;
+            this.editFornitore.Size = new System.Drawing.Size(824, 30);
+            this.editFornitore.TabIndex = 1;
             this.editFornitore.Text = "EditControl";
             this.editFornitore.Value = null;
             this.editFornitore.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editFornitore_ComboConfirm);
@@ -121,12 +124,12 @@ namespace Web.GUI.PagamentoUnificato
             this.editData.Editing = false;
             this.editData.Label = "Data";
             this.editData.LabelWidth = 175;
-            this.editData.Location = new System.Drawing.Point(25, 161);
+            this.editData.Location = new System.Drawing.Point(33, 202);
             this.editData.Name = "editData";
             this.editData.ReadOnly = false;
             this.editData.Required = true;
-            this.editData.Size = new System.Drawing.Size(798, 30);
-            this.editData.TabIndex = 2;
+            this.editData.Size = new System.Drawing.Size(824, 30);
+            this.editData.TabIndex = 3;
             this.editData.Text = "EditControl";
             this.editData.Value = null;
             // 
@@ -143,12 +146,12 @@ namespace Web.GUI.PagamentoUnificato
             this.editImporto.Editing = false;
             this.editImporto.Label = "Importo";
             this.editImporto.LabelWidth = 175;
-            this.editImporto.Location = new System.Drawing.Point(25, 204);
+            this.editImporto.Location = new System.Drawing.Point(33, 245);
             this.editImporto.Name = "editImporto";
             this.editImporto.ReadOnly = false;
             this.editImporto.Required = true;
-            this.editImporto.Size = new System.Drawing.Size(798, 30);
-            this.editImporto.TabIndex = 3;
+            this.editImporto.Size = new System.Drawing.Size(824, 30);
+            this.editImporto.TabIndex = 4;
             this.editImporto.Text = "TemplateEditNumeric";
             this.editImporto.Value = null;
             // 
@@ -165,12 +168,12 @@ namespace Web.GUI.PagamentoUnificato
             this.editNote.Editing = false;
             this.editNote.Label = "Note";
             this.editNote.LabelWidth = 175;
-            this.editNote.Location = new System.Drawing.Point(25, 333);
+            this.editNote.Location = new System.Drawing.Point(33, 374);
             this.editNote.Name = "editNote";
             this.editNote.ReadOnly = false;
             this.editNote.Required = false;
-            this.editNote.Size = new System.Drawing.Size(798, 30);
-            this.editNote.TabIndex = 6;
+            this.editNote.Size = new System.Drawing.Size(824, 30);
+            this.editNote.TabIndex = 7;
             this.editNote.Text = "EditControl";
             this.editNote.Value = null;
             // 
@@ -187,12 +190,12 @@ namespace Web.GUI.PagamentoUnificato
             this.editCodice.Editing = false;
             this.editCodice.Label = "Codice";
             this.editCodice.LabelWidth = 175;
-            this.editCodice.Location = new System.Drawing.Point(25, 118);
+            this.editCodice.Location = new System.Drawing.Point(33, 159);
             this.editCodice.Name = "editCodice";
             this.editCodice.ReadOnly = false;
             this.editCodice.Required = true;
-            this.editCodice.Size = new System.Drawing.Size(798, 30);
-            this.editCodice.TabIndex = 1;
+            this.editCodice.Size = new System.Drawing.Size(824, 30);
+            this.editCodice.TabIndex = 2;
             this.editCodice.Text = "EditControl";
             this.editCodice.Value = null;
             // 
@@ -211,12 +214,12 @@ namespace Web.GUI.PagamentoUnificato
             this.editTipoPagamento.Items = null;
             this.editTipoPagamento.Label = "Tipo pagamento";
             this.editTipoPagamento.LabelWidth = 175;
-            this.editTipoPagamento.Location = new System.Drawing.Point(25, 247);
+            this.editTipoPagamento.Location = new System.Drawing.Point(33, 288);
             this.editTipoPagamento.Name = "editTipoPagamento";
             this.editTipoPagamento.ReadOnly = false;
             this.editTipoPagamento.Required = true;
-            this.editTipoPagamento.Size = new System.Drawing.Size(798, 30);
-            this.editTipoPagamento.TabIndex = 4;
+            this.editTipoPagamento.Size = new System.Drawing.Size(824, 30);
+            this.editTipoPagamento.TabIndex = 5;
             this.editTipoPagamento.Text = "EditControl";
             this.editTipoPagamento.Value = null;
             // 
@@ -233,12 +236,12 @@ namespace Web.GUI.PagamentoUnificato
             this.editDescrizione.Editing = false;
             this.editDescrizione.Label = "Descrizione";
             this.editDescrizione.LabelWidth = 175;
-            this.editDescrizione.Location = new System.Drawing.Point(25, 290);
+            this.editDescrizione.Location = new System.Drawing.Point(33, 331);
             this.editDescrizione.Name = "editDescrizione";
             this.editDescrizione.ReadOnly = false;
             this.editDescrizione.Required = false;
-            this.editDescrizione.Size = new System.Drawing.Size(798, 30);
-            this.editDescrizione.TabIndex = 5;
+            this.editDescrizione.Size = new System.Drawing.Size(824, 30);
+            this.editDescrizione.TabIndex = 6;
             this.editDescrizione.Text = "EditControl";
             this.editDescrizione.Value = null;
             // 
@@ -269,8 +272,31 @@ namespace Web.GUI.PagamentoUnificato
             this.btnFattureAcquisto.TabIndex = 1002;
             this.btnFattureAcquisto.TextButton = "Fatture";
             this.btnFattureAcquisto.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnFattureAcquisto_Click);
-            this.Controls.SetChildIndex(this.panelCommands, 0);
-            this.Controls.SetChildIndex(this.container, 0);
+            // 
+            // editAzienda
+            // 
+            this.editAzienda.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editAzienda.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editAzienda.BackColor = System.Drawing.Color.Transparent;
+            this.editAzienda.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editAzienda.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editAzienda.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editAzienda.Changed = true;
+            this.editAzienda.Editing = false;
+            this.editAzienda.Label = "Azienda";
+            this.editAzienda.LabelWidth = 175;
+            this.editAzienda.Location = new System.Drawing.Point(33, 77);
+            this.editAzienda.Model = null;
+            this.editAzienda.Name = "editAzienda";
+            this.editAzienda.ReadOnly = false;
+            this.editAzienda.Required = true;
+            this.editAzienda.Size = new System.Drawing.Size(824, 30);
+            this.editAzienda.TabIndex = 0;
+            this.editAzienda.Text = "EditControl";
+            this.editAzienda.Value = null;
+            this.editAzienda.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editAzienda_ComboConfirm);
+            this.editAzienda.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editAzienda_ComboClick);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
             this.panelCommands.ResumeLayout(false);
@@ -289,6 +315,7 @@ namespace Web.GUI.PagamentoUnificato
         private Library.Template.Controls.TemplateEditDropDown editTipoPagamento;
         private Library.Controls.ButtonSeparatorV btnCalcoloSaldoImporto;
         private Library.Controls.ButtonSeparatorV btnFattureAcquisto;
+        private Library.Template.Controls.TemplateEditCombo editAzienda;
 
 
     }
