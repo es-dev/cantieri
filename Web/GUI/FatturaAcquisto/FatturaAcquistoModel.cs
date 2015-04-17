@@ -395,6 +395,5 @@ namespace Web.GUI.FatturaAcquisto
             }
         }
 
-
 	}
 }
