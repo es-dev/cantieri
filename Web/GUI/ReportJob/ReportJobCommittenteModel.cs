@@ -134,7 +134,7 @@ namespace Web.GUI.ReportJob
                     obj.Tipo = tipoReport.ToString();
                     obj.NomeFile = editNomeFile.Value;
 
-                    var anagraficaCommittente = (AnagraficaFornitoreDto)editCommittente.Model;
+                    var anagraficaCommittente = (AnagraficaCommittenteDto)editCommittente.Model;
                     if (anagraficaCommittente != null)
                         obj.CodiceCommittente = anagraficaCommittente.Codice;
 
