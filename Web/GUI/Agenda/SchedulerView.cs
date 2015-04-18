@@ -5,14 +5,14 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 
-using Library.Template.MVVM;
+using Library.Template.Scheduler;
 using Library.Code;
 
 namespace Web.GUI.Agenda
 {
-	public partial class AgendaView : TemplateSchedulerView
+	public partial class SchedulerView : TemplateView
 	{
-		public AgendaView()
+		public SchedulerView()
 		{
 			InitializeComponent();
 		}		
@@ -21,8 +21,7 @@ namespace Web.GUI.Agenda
         {
             try
             {
-                Take = 10;
-                ViewModel = new AgendaViewModel(this);
+                ViewModel = new SchedulerViewModel(this);
             }
             catch (Exception ex)
             {

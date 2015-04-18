@@ -2,7 +2,7 @@ using System.Drawing;
 
 namespace Web.GUI.Agenda
 {
-	partial class AgendaView
+	partial class SchedulerView
 	{
 	        /// <summary>
 	        /// Required designer variable.

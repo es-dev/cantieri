@@ -1,7 +1,6 @@
 using Library.Code;
 using Library.Interfaces;
 using Library.Template.Dashboard;
-using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +12,7 @@ namespace Web.GUI.Dashboard.Anagrafica
 {
 	public partial class DashboardAnagraficaView : TemplateView
 	{
-        public DashboardAnagraficaView()
+        public DashboardAnagraficaView() : base()
 		{
 			InitializeComponent();
 		}
@@ -33,54 +32,6 @@ namespace Web.GUI.Dashboard.Anagrafica
             }
         }
 
-        private void RefreshCount()
-        {
-            try
-            {
-                var items = Items;
-                foreach(TemplateItem item in items)
-                {
-                    var model = (DashboardDto)item.Model;
-                    var type = model.TypeSpace;
-                    var space = (ISpace)Activator.CreateInstance(type);
-                    var viewModel = space.ViewModel;
-                    if (viewModel != null)
-                    {
-                        item.CountVisible = model.CountVisible;
-                        if(item.CountVisible)
-                            item.Count = viewModel.GetCount();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        public override void RefreshItems()
-        {
-            try
-            {
-                base.RefreshItems();
-                RefreshCount();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void DashboardAnagraficheView_Opened()
-        {
-            try
-            {
-                RefreshCount();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
+       
 	}
 }
