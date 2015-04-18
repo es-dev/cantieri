@@ -228,30 +228,34 @@ namespace Web.GUI.ReportJob
         {
             try
             {
-                var anagraficaFornitore = (AnagraficaFornitoreDto)editFornitore.Model;
-                if (anagraficaFornitore != null)
+                bool saved = Save();
+                if (saved)
                 {
-                    var ragioneSocialeFornitore = (anagraficaFornitore.RagioneSociale != null ? anagraficaFornitore.RagioneSociale.Replace(" ", "") : "N/D");
-                    var data = DateTime.Today.ToString("ddMMyyyy");
-                    var elaborazione = UtilityValidation.GetData(editElaborazione.Value);
-                    string pathTemplate = UtilityWeb.GetRootPath(Context) + @"Resources\Templates\TemplateSituazioneFornitore.doc";
-                    var fileName = "SituazioneFornitore_" + ragioneSocialeFornitore + "_" + data + ".PDF";
-                    var pathReport = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileName;
-                    var account = SessionManager.GetAccount(Context);
-                    var viewModelAzienda = new Azienda.AziendaViewModel(this);
-                    var azienda = viewModelAzienda.ReadAzienda(account);
-                    var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
-                    var fornitori = viewModelFornitore.ReadFornitori(anagraficaFornitore);
-
-                    var report = BusinessLogic.ReportJob.GetReportFornitore(azienda, anagraficaFornitore, fornitori.ToList(), elaborazione);
-                    if (report != null)
+                    var anagraficaFornitore = (AnagraficaFornitoreDto)editFornitore.Model;
+                    if (anagraficaFornitore != null)
                     {
-                        bool performed = report.Create(pathTemplate, pathReport);
-                        if (performed)
+                        var ragioneSocialeFornitore = (anagraficaFornitore.RagioneSociale != null ? anagraficaFornitore.RagioneSociale.Replace(" ", "") : "N/D");
+                        var data = DateTime.Today.ToString("ddMMyyyy");
+                        var elaborazione = UtilityValidation.GetData(editElaborazione.Value);
+                        string pathTemplate = UtilityWeb.GetRootPath(Context) + @"Resources\Templates\TemplateSituazioneFornitore.doc";
+                        var fileName = "SituazioneFornitore_" + ragioneSocialeFornitore + "_" + data + ".PDF";
+                        var pathReport = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileName;
+                        var account = SessionManager.GetAccount(Context);
+                        var viewModelAzienda = new Azienda.AziendaViewModel(this);
+                        var azienda = viewModelAzienda.ReadAzienda(account);
+                        var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
+                        var fornitori = viewModelFornitore.ReadFornitori(anagraficaFornitore);
+
+                        var report = BusinessLogic.ReportJob.GetReportFornitore(azienda, anagraficaFornitore, fornitori.ToList(), elaborazione);
+                        if (report != null)
                         {
-                            string url = UtilityWeb.GetRootUrl(Context) + @"/Resources/Reports/" + fileName;
-                            editNomeFile.Url = url;
-                            editNomeFile.Value = fileName;
+                            bool performed = report.Create(pathTemplate, pathReport);
+                            if (performed)
+                            {
+                                string url = UtilityWeb.GetRootUrl(Context) + @"/Resources/Reports/" + fileName;
+                                editNomeFile.Url = url;
+                                editNomeFile.Value = fileName;
+                            }
                         }
                     }
                 }

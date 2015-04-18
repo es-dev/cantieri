@@ -67,7 +67,7 @@ namespace Web.GUI.Pagamento
                 infoSubtitle.Text = "N."+ codice + " - " + descrizione;
                 infoSubtitleImage.Image = "Images.dashboard.pagamento.png";
                 var fatturaAcquisto = obj.FatturaAcquisto;
-                string title = "PAGAMENTO " + obj.Codice + " - FATTURA N." + (fatturaAcquisto!=null? fatturaAcquisto.Numero:"N/D");
+                string title = "PAGAMENTO " + obj.Codice + " - " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
                 var pagamentoUnificato = obj.PagamentoUnificato;
                 if (pagamentoUnificato != null)
                     title += " - PAGAMENTO UNIFICATO " + pagamentoUnificato.Codice;
@@ -93,6 +93,7 @@ namespace Web.GUI.Pagamento
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editDescrizione.Value = obj.Descrizione;
                     editTransazionePagamento.Value = obj.TransazionePagamento;
+
                     BindViewFatturaAcquisto(obj.FatturaAcquisto);
                 }
             }

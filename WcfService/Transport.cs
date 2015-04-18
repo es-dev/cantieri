@@ -659,7 +659,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public ArticoloDto(int _id, int _fatturaAcquistoId, string _codice, string _descrizione, decimal? _quantita, decimal? _sconto, decimal? _costo, decimal? _importo, decimal? _iVA, decimal? _totale, decimal? _prezzoUnitario, string _note, FatturaAcquistoDto _fattura)
+		public ArticoloDto(int _id, int _fatturaAcquistoId, string _codice, string _descrizione, decimal? _quantita, decimal? _sconto, decimal? _costo, decimal? _importo, decimal? _iVA, decimal? _totale, decimal? _prezzoUnitario, string _note, FatturaAcquistoDto _fatturaAcquisto)
 		{
 			this.Id = _id;
 			this.FatturaAcquistoId = _fatturaAcquistoId;
@@ -673,7 +673,7 @@ namespace WcfService.Dto
 			this.Totale = _totale;
 			this.PrezzoUnitario = _prezzoUnitario;
 			this.Note = _note;
-			this.Fattura = _fattura;
+			this.FatturaAcquisto = _fatturaAcquisto;
 		}
 		
 		[DataMember]
@@ -716,7 +716,7 @@ namespace WcfService.Dto
 		public virtual string Note { get;set; }
 
 		[DataMember]
-		public virtual FatturaAcquistoDto Fattura { get;set; }
+		public virtual FatturaAcquistoDto FatturaAcquisto { get;set; }
 
 	}
 	

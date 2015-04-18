@@ -196,6 +196,8 @@ namespace Web.GUI.Committente
             {
                 base.SetEditing(editing, deleting);
                 btnCalcoloTotali.Enabled = editing;
+                btnFattureVendita.Enabled = editing;
+                btnIncassi.Enabled = editing;
             }
             catch (Exception ex)
             {
@@ -223,10 +225,14 @@ namespace Web.GUI.Committente
         {
             try
             {
-                var obj = (CommittenteDto)Model;
-                var space = new FatturaVendita.FatturaVenditaView(obj);
-                space.Title = "FATTURE DI VENDITA - " + obj.RagioneSociale;
-                Workspace.AddSpace(space);
+                bool saved = Save();
+                if (saved)
+                {
+                    var obj = (CommittenteDto)Model;
+                    var space = new FatturaVendita.FatturaVenditaView(obj);
+                    space.Title = "FATTURE DI VENDITA - " + obj.RagioneSociale;
+                    Workspace.AddSpace(space);
+                }
             }
             catch (Exception ex)
             {
@@ -238,10 +244,14 @@ namespace Web.GUI.Committente
         {
             try
             {
-                var obj = (CommittenteDto)Model;
-                var space = new Incasso.IncassoView(obj);
-                space.Title = "INCASSI - " + obj.RagioneSociale;
-                Workspace.AddSpace(space);
+                bool saved = Save();
+                if (saved)
+                {
+                    var obj = (CommittenteDto)Model;
+                    var space = new Incasso.IncassoView(obj);
+                    space.Title = "INCASSI - " + obj.RagioneSociale;
+                    Workspace.AddSpace(space);
+                }
             }
             catch (Exception ex)
             {
@@ -335,8 +345,11 @@ namespace Web.GUI.Committente
         {
             try
             {
-                if (Editing)
+                bool saved = Save();
+                if (saved)
+                {
                     BindViewTotali();
+                }
             }
             catch (Exception ex)
             {

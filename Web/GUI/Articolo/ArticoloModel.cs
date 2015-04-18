@@ -56,7 +56,7 @@ namespace Web.GUI.Articolo
                     editTotale.Value = obj.Totale;
                     editNote.Value = obj.Note;
 
-                    BindViewFatturaAcquisto(obj.Fattura);
+                    BindViewFatturaAcquisto(obj.FatturaAcquisto);
                 }
             }
             catch (Exception ex) 

@@ -310,8 +310,11 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                if (Editing)
+                bool saved = Save();
+                if (saved)
+                {
                     BindViewTotali();
+                }
             }
             catch (Exception ex)
             {
@@ -325,6 +328,8 @@ namespace Web.GUI.FatturaAcquisto
             {
                 base.SetEditing(editing, deleting);
                 btnCalcoloTotali.Enabled = editing;
+                btnPagamenti.Enabled = editing;
+                btnResi.Enabled = editing;
             }
             catch (Exception ex)
             {
@@ -336,10 +341,14 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                var obj = (FatturaAcquistoDto)Model;
-                var space = new Pagamento.PagamentoView(obj);
-                space.Title = "PAGAMENTI FATTURA N. " + obj.Numero;
-                Workspace.AddSpace(space);
+                bool saved = Save();
+                if (saved)
+                {
+                    var obj = (FatturaAcquistoDto)Model;
+                    var space = new Pagamento.PagamentoView(obj);
+                    space.Title = "PAGAMENTI " + BusinessLogic.Fattura.GetCodifica(obj);
+                    Workspace.AddSpace(space);
+                }
             }
             catch (Exception ex)
             {
@@ -381,10 +390,14 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                var obj = (FatturaAcquistoDto)Model;
-                var space = new Reso.ResoView(obj);
-                space.Title = "RESI FATTURA N. " + obj.Numero;
-                Workspace.AddSpace(space);
+                bool saved = Save();
+                if (saved)
+                {
+                    var obj = (FatturaAcquistoDto)Model;
+                    var space = new Reso.ResoView(obj);
+                    space.Title = "RESI " + BusinessLogic.Fattura.GetCodifica(obj);
+                    Workspace.AddSpace(space);
+                }
             }
             catch (Exception ex)
             {
