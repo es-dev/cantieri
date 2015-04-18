@@ -814,5 +814,23 @@ namespace BusinessLogic
             }
             return 0;
         }
+        public static decimal GetTotaleIncassiAvere(FatturaVenditaDto fatturaVendita, DateTime data)
+        {
+            try
+            {
+                if (fatturaVendita != null)
+                {
+                    var totaleFattureVendita = GetTotaleFatturaVendita(fatturaVendita);
+                    var totaleIncassiAvuti = GetTotaleIncassi(fatturaVendita, data);
+                    var totaleIncassiAvere = totaleFattureVendita - totaleIncassiAvuti;
+                    return totaleIncassiAvere;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
     }
 }

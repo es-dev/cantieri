@@ -972,6 +972,9 @@
         <orm:field name="_aziendaId" property="AziendaId" uniqueId="fd936646-61ee-4252-a352-d06b1db641dd" type="System.Int32">
           <orm:column name="AziendaId" sql-type="int" nullable="false" length="0" scale="0" ado-type="" />
         </orm:field>
+        <orm:field name="_codiceCommittente" property="CodiceCommittente" behavior="readwrite" uniqueId="4945e016-53af-42ce-a7d3-cda35c72aa22" type="System.String">
+          <orm:column name="CodiceCommittente" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
         <orm:field name="_azienda" property="Azienda" behavior="readwrite" uniqueId="96c518c2-cb51-40ea-8195-b7c0f50076a4" type="DataLayer.Azienda">
           <orm:reference uniqueId="13ca2129-2d94-42eb-928c-608b1ceed55f" association-name="ReportJobHasAzienda">
             <orm:sharedfield name="_aziendaId" target-class="DataLayer.Azienda" target-field="_id" />
@@ -1467,6 +1470,7 @@
         <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="NomeFile" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="AziendaId" sql-type="int" nullable="false" length="0" scale="0" ado-type="" />
+        <orm:column name="CodiceCommittente" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
       </orm:table>
       <orm:table name="PagamentoUnificatoFatturaAcquisto">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
@@ -2193,6 +2197,7 @@
       <Property Id="7a88c3ed-fc34-45cd-8f64-bf456fb8f122" name="Note" label="Note : String" fieldName="_note" />
       <Property Id="01691b9f-7127-4325-8474-1274b8ca4202" name="NomeFile" label="NomeFile : String" fieldName="_nomeFile" />
       <Property Id="fd936646-61ee-4252-a352-d06b1db641dd" name="AziendaId" type="Int32" label="AziendaId : Int32" fieldName="_aziendaId" />
+      <Property Id="4945e016-53af-42ce-a7d3-cda35c72aa22" name="CodiceCommittente" label="CodiceCommittente : String" kind="Persistent" fieldName="_codiceCommittente" />
       <AssociationTargets>
         <Association Id="13ca2129-2d94-42eb-928c-608b1ceed55f" SourceMultiplicity="ZeroOne" name="ReportJobHasAzienda">
           <DomainClassMoniker name="/EntitiesModel/Azienda" />

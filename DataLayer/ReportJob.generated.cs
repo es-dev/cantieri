@@ -154,6 +154,19 @@ namespace DataLayer
 			}
 		}
 		
+		private string _codiceCommittente;
+		public virtual string CodiceCommittente
+		{
+			get
+			{
+				return this._codiceCommittente;
+			}
+			set
+			{
+				this._codiceCommittente = value;
+			}
+		}
+		
 		private Azienda _azienda;
 		public virtual Azienda Azienda
 		{

@@ -23,11 +23,11 @@ namespace BusinessLogic
                     {
                         foreach (var fatturaVendita in fattureVendita)
                         {
-                            var totaleImponibile = UtilityValidation.GetDecimal(fatturaVendita.Imponibile);
-                            totale += totaleImponibile;
+                            var totaleFatturaVendita = Fattura.GetTotaleFatturaVendita(fatturaVendita);
+                            totale += totaleFatturaVendita;
                         }
-                        return totale;
                     }
+                    return totale;
                 }
             }
             catch (Exception ex)
@@ -36,6 +36,7 @@ namespace BusinessLogic
             }
             return 0;
         }
+
 
         public static decimal GetTotaleFattureVendita(CommittenteDto committente)
         {
@@ -285,8 +286,77 @@ namespace BusinessLogic
             }
             return null;
         }
-    
-    
+
+        internal static decimal GetTotaleImponibile(CommittenteDto committente, DateTime data)
+        {
+            try
+            {
+                decimal totale = 0;
+                if (committente != null)
+                {
+                    var fattureVentita = (from q in committente.FatturaVenditas where q.Data <= data select q);
+                    if (fattureVentita != null)
+                    {
+                        foreach (var fatturaVentita in fattureVentita)
+                        {
+                            var totaleImponibile = UtilityValidation.GetDecimal(fatturaVentita.Imponibile);
+                            totale += totaleImponibile;
+                        }
+                    }
+                    return totale;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        internal static decimal GetTotaleIVA(CommittenteDto committente, DateTime data)
+        {
+            try
+            {
+                decimal totale = 0;
+                if (committente != null)
+                {
+                    var fattureVentita = (from q in committente.FatturaVenditas where q.Data <= data select q);
+                    if (fattureVentita != null)
+                    {
+                        foreach (var fatturaVentita in fattureVentita)
+                        {
+                            var totaleIVA = UtilityValidation.GetDecimal(fatturaVentita.IVA);
+                            totale += totaleIVA;
+                        }
+                    }
+                    return totale;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        internal static decimal GetTotaleIncassiAvere(CommittenteDto committente, DateTime data)
+        {
+            try
+            {
+                if (committente != null)
+                {
+                    var totaleFattureVendita = GetTotaleFattureVendita(committente, data);
+                    var totaleIncassiAvuti = GetTotaleIncassi(committente, data);
+                    var totaleIncassiAvere = totaleFattureVendita - totaleIncassiAvuti;
+                    return totaleIncassiAvere;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
     }
 
 }
