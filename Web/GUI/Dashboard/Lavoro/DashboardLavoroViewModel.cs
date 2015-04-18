@@ -1,6 +1,5 @@
 ﻿using Library.Code;
 using Library.Interfaces;
-using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,60 +36,15 @@ namespace Web.GUI.Dashboard.Lavoro
 
         }
 
-        public override void Load(int skip, int take, string search=null)
-        {
-            try
-            {
-                var objDtos = LoadDashboards(skip, take);
-                Load(objDtos);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        public override int GetCount(string search=null)
-        {
-            try
-            {
-                var query = QueryDashboards();
-                int count = query.Count();
-                return count;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-
-        private IList<DashboardDto> LoadDashboards(int skip, int take)
-        {
-            try
-            {
-                var query = QueryDashboards();
-                var objDtos = query.Skip(skip).Take(take).ToList();
-                return objDtos;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        private IQueryable<DashboardDto> QueryDashboards()
+        public override IQueryable<DashboardDto> QueryDashboards()
         {
             try
             {
                 var dashboards = new List<DashboardDto>();
-
                 var dashboardCommessa = new DashboardDto("Commesse", "CM", "Visualizza le tue commesse, verifica i bilanci e il margine operativo mediante l'utilizzo di strumenti grafici e di analisi statistiche...", "Images.dashboard.commessa.png", "", typeof(CommessaView));
                 var dashboardFornitore = new DashboardDto("Fornitori", "FOR", "Specifica i fornitori per le commesse inserite nel sistema, inserisci i dati identificativi e i dati di fornitura...", "Images.dashboard.fornitore.png", "", typeof(FornitoreView));
                 var dashboardCommittente = new DashboardDto("Committenti", "CT", "Specifica i committenti per le commesse inserite nel sistema, definisci gli importi attribuiti ai vari SAL...", "Images.dashboard.committente.png", "", typeof(CommittenteView));
                 var dashboardSAL = new DashboardDto("SAL", "SAL", "Crea uno Stato di Avanzamento Lavori (SAL), controlla i bilanci delle tue commesse, evidenzia i movimenti in attivo/passivo...", "Images.dashboard.SAL.png", "", typeof(SALView));
-               
 
                 dashboards.Add(dashboardCommessa);
                 dashboards.Add(dashboardFornitore);

@@ -1,7 +1,6 @@
 using Library.Code;
 using Library.Interfaces;
 using Library.Template.Dashboard;
-using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +12,7 @@ namespace Web.GUI.Dashboard.Lavoro
 {
 	public partial class DashboardLavoroView : TemplateView
 	{
-        public DashboardLavoroView()
+        public DashboardLavoroView() : base()
 		{
 			InitializeComponent();
 		}
@@ -33,66 +32,5 @@ namespace Web.GUI.Dashboard.Lavoro
             }
         }
 
-        private void RefreshCount()
-        {
-            try
-            {
-                var items = Items;
-                foreach(TemplateItem item in items)
-                {
-                    RefreshCount(item);
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private static void RefreshCount(TemplateItem item)
-        {
-            try
-            {
-                var model = (DashboardDto)item.Model;
-                var type = model.TypeSpace;
-                var space = (ISpace)Activator.CreateInstance(type);
-                var viewModel = space.ViewModel;
-                if (viewModel != null)
-                {
-                    item.CountVisible = model.CountVisible;
-                    if (item.CountVisible)
-                        item.Count = viewModel.GetCount();
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        public override void RefreshItems()
-        {
-            try
-            {
-                base.RefreshItems();
-                RefreshCount();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void DashboardLavoroView_Opened()
-        {
-            try
-            {
-                RefreshCount();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
 	}
 }

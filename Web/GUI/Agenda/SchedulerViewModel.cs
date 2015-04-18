@@ -1,5 +1,6 @@
 ﻿using Library.Code;
 using Library.Interfaces;
+using Library.Template.Scheduler;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,9 +10,9 @@ using WcfService.Dto;
 
 namespace Web.GUI.Agenda
 {
-    public class AgendaViewModel : Library.Template.MVVM.TemplateViewModel<AgendaDto, AgendaItem> 
+    public class SchedulerViewModel : Library.Template.Scheduler.TemplateViewModel<SchedulerDto, SchedulerItem> 
     {
-        public AgendaViewModel(ISpace space)
+        public SchedulerViewModel(ISpace space)
             : base(space) 
         {
             try
@@ -28,7 +29,7 @@ namespace Web.GUI.Agenda
         {
             try
             {
-                var objs = new List<AgendaDto>();
+                var objs = new List<SchedulerDto>();
                 var wcf = new WcfService.Service();
                 var fattureAcquistoScadenza = wcf.ReadFattureAcquistoScadenza((DateTime)start, (DateTime)end, search);
                 if (fattureAcquistoScadenza!=null)
@@ -52,25 +53,27 @@ namespace Web.GUI.Agenda
             }
         }
 
-        private IList<AgendaDto> GetEventiAgenda(IEnumerable<PagamentoDto> pagamentiData)
+        private IList<SchedulerDto> GetEventiAgenda(IEnumerable<PagamentoDto> pagamentiData)
         {
             try
             {
-                var eventi = new List<AgendaDto>();
+                var eventi = new List<SchedulerDto>();
                 foreach (var pagamentoData in pagamentiData)
                 {
-                    var evento = new AgendaDto();
-                    evento.Data = UtilityValidation.GetData(pagamentoData.Data);
+                    var evento = new SchedulerDto();
+                    evento.Start = UtilityValidation.GetData(pagamentoData.Data);
                     evento.Model = pagamentoData;
-                    evento.Color = Color.LightBlue;
+                    evento.BackgroundColor = Color.LightBlue;
 
-                    evento.Titolo = BusinessLogic.Pagamento.GetCodifica(pagamentoData) + " per un importo di " + UtilityValidation.GetEuro(pagamentoData.Importo);
+                    var titolo = BusinessLogic.Pagamento.GetCodifica(pagamentoData) + " per un importo di " + UtilityValidation.GetEuro(pagamentoData.Importo);
                     var fatturaAcquisto = pagamentoData.FatturaAcquisto;
                     if (fatturaAcquisto != null)
                     {
-                        var scadenzaFatturaAcquisto = (DateTime)fatturaAcquisto.Scadenza;
-                        evento.Titolo += " relativo alla " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) + " con scadenza " + scadenzaFatturaAcquisto.ToString("dd/MM/yyyy");
+                        var scadenza = (DateTime)fatturaAcquisto.Scadenza;
+                        titolo += " relativo alla " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) + " con scadenza " + scadenza.ToString("dd/MM/yyyy");
                     }
+                    evento.Subject = titolo;
+
                     eventi.Add(evento);
                 }
                 return eventi;
@@ -83,15 +86,16 @@ namespace Web.GUI.Agenda
             return null;
         }
 
-        private IList<AgendaDto> GetEventiAgenda(IEnumerable<FatturaAcquistoDto> fattureAcquisto)
+        private IList<SchedulerDto> GetEventiAgenda(IEnumerable<FatturaAcquistoDto> fattureAcquisto)
         {
             try
             {
-                var eventi = new List<AgendaDto>();
+                var eventi = new List<SchedulerDto>();
                 foreach(var fatturaAcquisto in fattureAcquisto)
                 {
-                    var evento = new AgendaDto();
-                    evento.Data = UtilityValidation.GetData(fatturaAcquisto.Scadenza);
+                    var evento = new SchedulerDto();
+                    var scadenza = UtilityValidation.GetData(fatturaAcquisto.Scadenza);
+                    evento.Start = scadenza;
                     evento.Model = fatturaAcquisto;
                     
                     var today = DateTime.Today;
@@ -99,22 +103,24 @@ namespace Web.GUI.Agenda
                     var pagamentiDare= BusinessLogic.Fattura.GetTotalePagamentiDare(fatturaAcquisto, today);
                     var pagamentiDato=BusinessLogic.Fattura.GetTotalePagamentiDato(fatturaAcquisto, today);
                     
-                    evento.Titolo = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) + " con scadenza il " +
-                                    evento.Data.ToString("dd/MM/yyyy") + " per un importo di " + saldoFatturaAcquisto.ToString();
+                    var titolo = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) + " con scadenza il " + scadenza.ToString("dd/MM/yyyy") + " per un importo di " + saldoFatturaAcquisto.ToString();
                     if(pagamentiDato > 0)
-                        evento.Titolo+=". Totale pagato = " + (UtilityValidation.GetEuro(pagamentiDato)).ToString();
+                        titolo+=". Totale pagato = " + (UtilityValidation.GetEuro(pagamentiDato)).ToString();
                     if(pagamentiDare > 0)
-                        evento.Titolo += ", totale da pagare = " + (UtilityValidation.GetEuro(pagamentiDare)).ToString();
+                        titolo += ", totale da pagare = " + (UtilityValidation.GetEuro(pagamentiDare)).ToString();
+                    evento.Subject = titolo;
 
+                    var color = Color.Red;
                     var stato = BusinessLogic.Fattura.GetStato(fatturaAcquisto);
                     if (stato == BusinessLogic.Tipi.StatoFattura.Insoluta)
-                        evento.Color = Color.Red;
+                        color = Color.Red;
                     if (stato == BusinessLogic.Tipi.StatoFattura.Pagata)
-                        evento.Color = Color.LightGreen;
+                        color = Color.LightGreen;
                     if (stato == BusinessLogic.Tipi.StatoFattura.NonPagata)
-                        evento.Color = Color.Yellow;
+                        color = Color.Yellow;
                     if (stato == BusinessLogic.Tipi.StatoFattura.Incoerente)
-                        evento.Color = Color.Orange;
+                        color = Color.Orange;
+                    evento.BackgroundColor = color;
 
                     eventi.Add(evento);
                 }

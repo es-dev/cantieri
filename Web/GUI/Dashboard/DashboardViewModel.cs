@@ -1,6 +1,5 @@
 ﻿using Library.Code;
 using Library.Interfaces;
-using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,56 +38,13 @@ namespace Web.GUI.Dashboard
         {
 
         }
-
-        public override void Load(int skip, int take, string search=null)
-        {
-            try
-            {
-                var objDtos = LoadDashboards(skip, take);
-                Load(objDtos);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        public override int GetCount(string search=null)
-        {
-            try
-            {
-                var query = QueryDashboards();
-                int count = query.Count();
-                return count;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-        
-        private IList<DashboardDto> LoadDashboards(int skip, int take)
-        {
-            try
-            {
-                var query = QueryDashboards();
-                var objDtos = query.Skip(skip).Take(take).ToList();
-                return objDtos;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        private IQueryable<DashboardDto> QueryDashboards()
+       
+        public override IQueryable<DashboardDto> QueryDashboards()
         {
             try
             {
                 var dashboards = new List<DashboardDto>();
-                var dashboardAgenda = new DashboardDto("Agenda e scadenzario", "AG-SCA", "Organizza il tuo lavoro in una comoda e pratica agenda digitale. Visualizza le scadenze imminenti e i pagamenti effettuati. Pianifica i tuoi lavori e gli stati di avanzamento lavori...", "Images.dashboard.agenda.png", "", typeof(AgendaView), false);
+                var dashboardAgenda = new DashboardDto("Agenda e scadenzario", "AG-SCA", "Organizza il tuo lavoro in una comoda e pratica agenda digitale. Visualizza le scadenze imminenti e i pagamenti effettuati. Pianifica i tuoi lavori e gli stati di avanzamento lavori...", "Images.dashboard.agenda.png", "", typeof(SchedulerView), false);
                 var dashboardLavori = new DashboardDto("Lavori e commesse", "LAV", "Gestisci i tuoi lavori e le commesse di lavorazione, inserisci i dati contrattuali, i fornitori e i committenti. Potrai gestire le scadenze ed effettuare un SAL per verificare lo stato di avanzamento lavori...", "Images.dashboard.lavori.png", "", typeof(DashboardLavoroView), false);
                 var dashboardFatturazioni = new DashboardDto("Fatturazioni", "FA", "Inserisci le fatture di acquisto, di vendita e le note di credito per le tue commesse. Potrai verificare lo stato della fatturazione in dare/avere e analizzare in qualunque momento lo stato della contabilità generale...", "Images.dashboard.fatturazioni.png", "", typeof(DashboardFatturazioneView), false);
                 var dashboardPagamenti = new DashboardDto("Pagamenti", "PA", "Gestisci i tuoi pagamenti e i tuoi incassi, organizza il flusso economico aziendale in ingresso e in uscita. Potrai effettuare un pagamento unificato specificando le fatture da pagare e indicare il fornitore beneficiario...", "Images.dashboard.pagamenti.png", "", typeof(DashboardPagamentoView), false);

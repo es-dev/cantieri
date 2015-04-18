@@ -1,5 +1,6 @@
 ﻿using Library.Code;
 using Library.Interfaces;
+using Library.Template.Scheduler;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ using Web.GUI.Pagamento;
 
 namespace Web.GUI.Agenda
 {
-    public class AgendaItem : Library.Template.MVVM.TemplateSchedulerItem 
+    public class SchedulerItem : TemplateItem 
     {
-        public AgendaItem()
+        public SchedulerItem()
 		{
             try
             {
@@ -30,11 +31,11 @@ namespace Web.GUI.Agenda
             {
                 if (model != null)
                 {
-                    var obj = (AgendaDto)model;
-                    this.Subject = obj.Titolo;
-                    this.Start = obj.Data;
-                    this.End = obj.Data.AddHours(1);
-                    this.BackgroundColor = obj.Color;
+                    var obj = (SchedulerDto)model;
+                    this.Subject = obj.Subject;
+                    this.Start = obj.Start;
+                    this.End = obj.Start.AddHours(1);
+                    this.BackgroundColor = obj.BackgroundColor;
                 }
             }
             catch (Exception ex)
@@ -49,7 +50,7 @@ namespace Web.GUI.Agenda
             {
                 if (item != null)
                 {
-                    var agenda = (AgendaDto)Model;
+                    var agenda = (SchedulerDto)Model;
                     var model = agenda.Model;
                     if (model.GetType() == typeof(FatturaAcquistoDto))
                     {

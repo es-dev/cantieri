@@ -1,6 +1,5 @@
 ﻿using Library.Code;
 using Library.Interfaces;
-using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,50 +22,7 @@ namespace Web.GUI.Dashboard.Anagrafica
 
         }
 
-        public override void Load(int skip, int take, string search=null)
-        {
-            try
-            {
-                var objDtos = LoadDashboards(skip, take);
-                Load(objDtos);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        public override int GetCount(string search=null)
-        {
-            try
-            {
-                var query = QueryDashboards();
-                int count = query.Count();
-                return count;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-
-        private IList<DashboardDto> LoadDashboards(int skip, int take)
-        {
-            try
-            {
-                var query = QueryDashboards();
-                var objDtos = query.Skip(skip).Take(take).ToList();
-                return objDtos;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
-        private IQueryable<DashboardDto> QueryDashboards()
+        public override IQueryable<DashboardDto> QueryDashboards()
         {
             try
             {
