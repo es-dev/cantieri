@@ -323,5 +323,116 @@ namespace BusinessLogic
             }
             return 0;
         }
+
+        internal static decimal GetTotaleImponibile(List<CommittenteDto> committenti, DateTime data)
+        {
+            try
+            {
+                decimal totaleImponibile = 0;
+                if (committenti != null)
+                {
+                    foreach (var committente in committenti)
+                    {
+                        var _totaleImponibile = Committente.GetTotaleImponibile(committente, data);
+                        totaleImponibile += _totaleImponibile;
+                    }
+                    return totaleImponibile;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        internal static decimal GetTotaleIVA(List<CommittenteDto> committenti, DateTime data)
+        {
+            try
+            {
+                decimal totaleIVA = 0;
+                if (committenti != null)
+                {
+                    foreach (var committente in committenti)
+                    {
+                        var _totaleIVA = Committente.GetTotaleIVA(committente, data);
+                        totaleIVA += _totaleIVA;
+                    }
+                }
+                return totaleIVA;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        internal static decimal GetTotaleFattureVendita(List<CommittenteDto> committenti, DateTime data)
+        {
+            try
+            {
+                if (committenti != null)
+                {
+                    decimal totaleFattureVendita = 0;
+                    foreach (var committente in committenti)
+                    {
+                        var _totaleFattureVendita = Committente.GetTotaleFattureVendita(committente, data);
+                        totaleFattureVendita += _totaleFattureVendita;
+                    }
+                    return totaleFattureVendita;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        internal static decimal GetTotaleIncassi(List<CommittenteDto> committenti, DateTime data)
+        {
+            try
+            {
+                decimal totaleIncassi = 0;
+                if (committenti != null)
+                {
+                    foreach (var committente in committenti)
+                    {
+                        var _totaleIncassi = Committente.GetTotaleIncassi(committente, data);
+                        totaleIncassi += _totaleIncassi;
+                    }
+                    return totaleIncassi;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        internal static decimal GetTotaleIncassiAvere(List<CommittenteDto> committenti, DateTime data)
+        {
+            try
+            {
+                decimal totaleIncassiAvere = 0;
+                if (committenti != null)
+                {
+                    foreach (var committente in committenti)
+                    {
+                        var _totaleIncassiAvere = Committente.GetTotaleIncassiAvere(committente, data);
+                        totaleIncassiAvere += _totaleIncassiAvere;
+                    }
+                    return totaleIncassiAvere;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
     }
 }

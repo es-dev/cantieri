@@ -1600,6 +1600,7 @@ namespace WcfService.Assemblers
 			entity.Note = dto.Note;
 			entity.NomeFile = dto.NomeFile;
 			entity.AziendaId = dto.AziendaId;
+			entity.CodiceCommittente = dto.CodiceCommittente;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1620,6 +1621,7 @@ namespace WcfService.Assemblers
 			dto.Note = entity.Note;
 			dto.NomeFile = entity.NomeFile;
 			dto.AziendaId = entity.AziendaId;
+			dto.CodiceCommittente = entity.CodiceCommittente;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }

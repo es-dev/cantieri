@@ -158,5 +158,21 @@ namespace Web.GUI.Committente
             }
             return null;
         }
+
+        internal IEnumerable<CommittenteDto> ReadCommittenti(AnagraficaCommittenteDto anagraficaCommittente)
+        {
+            try
+            {
+                var wcf = new WcfService.Service();
+                var objs = wcf.ReadCommittenti(anagraficaCommittente);
+                return objs;
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }

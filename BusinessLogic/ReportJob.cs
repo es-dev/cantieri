@@ -109,8 +109,6 @@ namespace BusinessLogic
             return null;
         }
 
-      
-
         private static void AddReportPagamentoFornitore(UtilityReport.Table tablePagamenti, PagamentoDto pagamento)
         {
             try
@@ -477,6 +475,172 @@ namespace BusinessLogic
                 UtilityError.Write(ex);
             }
             return null;
+        }
+
+        public static UtilityReport.Report GetReportCommittente(AziendaDto azienda, AnagraficaCommittenteDto anagraficaCommittente, List<CommittenteDto> committenti, DateTime data)
+        {
+            try
+            {
+                var report = new UtilityReport.Report();
+
+                AddReportAzienda(azienda, report, data);
+                AddReportProspettoCommittente(anagraficaCommittente, report);
+                AddReportTotaliCommittente(committenti, report, data);
+
+                var tableCommesse = new UtilityReport.Table("Commessa", "TotaleImponibile", "TotaleIVA", "TotaleFatture", "TotaleIncassiAvuto", "TotaleIncassiAvere");
+                var tableFatture = new UtilityReport.Table("Numero", "Data", "Scadenza", "Descrizione", "Imponibile", "IVA", "Totale", "TotaleIncassiAvuto", "TotaleIncassiAvere");
+                var tableIncassi = new UtilityReport.Table("Numero", "Data", "TipoPagamento", "Descrizione", "Note", "Importo");
+                foreach (var committente in committenti)
+                {
+                    //totali per commessa
+                    var commessa = committente.Commessa;
+                    AddReportCommessaCommittente(tableCommesse, committente, commessa, data);
+
+                    //fatture per commessa
+                    var codificaCommessa = "COMMESSA " + commessa.Codice + " - " + commessa.Denominazione;
+                    tableFatture.AddRowMerge(Color.LightGray, codificaCommessa, "", "", "", "", "", "", "", "");
+                    var fattureVendita = committente.FatturaVenditas;
+                    foreach (var fatturaVendita in fattureVendita)
+                    {
+                        AddReportFatturaVenditaCommittente(tableFatture, fatturaVendita, data);
+
+                        //pagamenti per fattura
+                        var totaleFattura = UtilityValidation.GetEuro(fatturaVendita.Totale);
+                        var _statoFattura = BusinessLogic.Fattura.GetStato(fatturaVendita);
+                        var statoFattura = UtilityEnum.GetDescription<Tipi.StatoFattura>(_statoFattura);
+                        var codificaFattura = BusinessLogic.Fattura.GetCodifica(fatturaVendita) + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper();
+                        tableIncassi.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "");
+                        var incassi = (from q in fatturaVendita.Incassos orderby q.Data ascending select q).ToList();
+                        foreach (var incasso in incassi)
+                            AddReportIncassoCommittente(tableIncassi, incasso);
+
+                        ////sconto
+                        //var _sconto = UtilityValidation.GetDecimal(fatturaVendita.Sconto);
+                        //if (_sconto > 0)
+                        //{
+                        //    var sconto = UtilityValidation.GetEuro(_sconto);
+                        //    tableIncassi.AddRow("", "", "", "", "SCONTO", sconto);
+                        //}
+
+                        ////nota di credito/resi
+                        //var _totaleResi = BusinessLogic.Fattura.GetTotaleResi(fatturaVendita);
+                        //if (_totaleResi > 0)
+                        //{
+                        //    var totaleResi = UtilityValidation.GetEuro(_totaleResi);
+                        //    tableIncassi.AddRow("", "", "", "", "NOTA DI CREDITO", totaleResi);
+                        //}
+                    }
+                }
+                report.Tables.Add(tableCommesse);
+                report.Tables.Add(tableFatture);
+                report.Tables.Add(tableIncassi);
+
+                return report;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private static void AddReportIncassoCommittente(UtilityReport.Table tableIncassi, IncassoDto incasso)
+        {
+            try
+            {
+                var numero = incasso.Codice;
+                var data = UtilityValidation.GetDataND(incasso.Data);
+                var tipoPagamento = incasso.TipoPagamento;
+                var descrizione = incasso.Descrizione;
+                var note = incasso.Note;
+                var importo = UtilityValidation.GetEuro(incasso.Importo);
+
+                tableIncassi.AddRow(numero, data, tipoPagamento, descrizione, note, importo);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+
+        private static void AddReportFatturaVenditaCommittente(UtilityReport.Table tableFatture, FatturaVenditaDto fatturaVendita, DateTime data)
+        {
+            try
+            {
+                var numero = fatturaVendita.Numero;
+                var dataFattura = UtilityValidation.GetDataND(fatturaVendita.Data);
+                var scadenza = UtilityValidation.GetDataND(BusinessLogic.Fattura.GetScadenza(fatturaVendita));
+                var descrizione = fatturaVendita.Descrizione;
+                var imponibile = UtilityValidation.GetEuro(fatturaVendita.Imponibile);
+                var iva = UtilityValidation.GetEuro(fatturaVendita.IVA);
+                var totale = UtilityValidation.GetEuro(fatturaVendita.Totale);
+                var totaleIncassiFatturaAvuto = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotaleIncassi(fatturaVendita, data));
+                var totaleIncassiFatturaFatturaAvere = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotaleIncassiAvere(fatturaVendita, data));
+
+                tableFatture.AddRow(numero, dataFattura, scadenza, descrizione, imponibile, iva, totale, totaleIncassiFatturaAvuto, totaleIncassiFatturaFatturaAvere);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+
+        private static void AddReportCommessaCommittente(UtilityReport.Table tableCommesse, CommittenteDto committente, CommessaDto commessa, DateTime data)
+        {
+            try
+            {
+                var _commessa = commessa.Codice + " - " + commessa.Denominazione;
+                var totaleImponibile = UtilityValidation.GetEuro(BusinessLogic.Committente.GetTotaleImponibile(committente, data));
+                var totaleIVA = UtilityValidation.GetEuro(BusinessLogic.Committente.GetTotaleIVA(committente, data));
+                var totaleFattureVendita = UtilityValidation.GetEuro(BusinessLogic.Committente.GetTotaleFattureVendita(committente, data));
+                var totaleIncassiAvuto = UtilityValidation.GetEuro(BusinessLogic.Committente.GetTotaleIncassi(committente, data));
+                var totaleIncassiAvere = UtilityValidation.GetEuro(BusinessLogic.Committente.GetTotaleIncassiAvere(committente, data));
+
+                tableCommesse.AddRow(_commessa, totaleImponibile, totaleIVA, totaleFattureVendita, totaleIncassiAvuto, totaleIncassiAvere);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+
+
+        private static void AddReportTotaliCommittente(List<CommittenteDto> committenti, UtilityReport.Report report, DateTime data)
+        {
+            try
+            {
+                report.AddData("TotaleImponibileCommittente", BusinessLogic.Commessa.GetTotaleImponibile(committenti, data), TypeFormat.Euro);
+                report.AddData("TotaleIVACommittente", BusinessLogic.Commessa.GetTotaleIVA(committenti, data), TypeFormat.Euro);
+                report.AddData("TotaleFattureCommittente", BusinessLogic.Commessa.GetTotaleFattureVendita(committenti, data), TypeFormat.Euro);
+                report.AddData("TotaleIncassiAvutoCommittente", BusinessLogic.Commessa.GetTotaleIncassi(committenti, data), TypeFormat.Euro);
+                report.AddData("TotaleIncassiAvereCommittente", BusinessLogic.Commessa.GetTotaleIncassiAvere(committenti, data), TypeFormat.Euro);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private static void AddReportProspettoCommittente(AnagraficaCommittenteDto anagraficaCommittente, UtilityReport.Report report)
+        {
+            try
+            {
+                report.AddData("RagioneSociale", anagraficaCommittente.RagioneSociale);
+                report.AddData("PartitaIva", anagraficaCommittente.PartitaIva);
+                report.AddData("Indirizzo", anagraficaCommittente.Indirizzo);
+                report.AddData("CAP", anagraficaCommittente.CAP);
+                report.AddData("Localita", anagraficaCommittente.Localita);
+                report.AddData("Comune", anagraficaCommittente.Comune);
+                report.AddData("Provincia", anagraficaCommittente.Provincia);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
         }
     }
 }
