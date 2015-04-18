@@ -27,11 +27,10 @@ namespace Web.GUI.Articolo
                     var obj = (WcfService.Dto.ArticoloDto)model;
                     var codice = UtilityValidation.GetStringND(obj.Codice);
                     var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
-                    var fattura = obj.Fattura;
-                    var numeroFattura = UtilityValidation.GetStringND(fattura.Numero);
+                    var fatturaAcquisto = obj.FatturaAcquisto;
                     infoImage.Image = "Images.dashboard.articolo.png";
                     infoCodice.Text = "ART";
-                    infoFattura.Text = "Fattura N." + numeroFattura;
+                    infoFattura.Text = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
                     infoDescrizione.Text = descrizione;
                     infoCodiceArticolo.Text = codice;
                 }

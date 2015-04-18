@@ -163,6 +163,7 @@ namespace Web.GUI.Fornitore
                     editTotaleFattureAcquisto.Value = totaleFattureAcquisto;
                     editTotalePagamenti.Value = totalePagamenti;
                     editTotaleNoteCredito.Value = totaleNoteCredito;
+                    
                 }
             }
             catch (Exception ex)
@@ -282,8 +283,11 @@ namespace Web.GUI.Fornitore
         {
             try
             {
-                if (Editing)
+                bool saved = Save();
+                if (saved)
+                {
                     BindViewTotali();
+                }
             }
             catch (Exception ex)
             {
@@ -296,10 +300,14 @@ namespace Web.GUI.Fornitore
         {
             try
             {
-                var obj = (FornitoreDto)Model;
-                var space = new NotaCredito.NotaCreditoView(obj);
-                space.Title = "NOTE DI CREDITO DEL FORNITORE " + obj.RagioneSociale;
-                Workspace.AddSpace(space);
+                bool saved = Save();
+                if (saved)
+                {
+                    var obj = (FornitoreDto)Model;
+                    var space = new NotaCredito.NotaCreditoView(obj);
+                    space.Title = "NOTE DI CREDITO DEL FORNITORE " + obj.RagioneSociale;
+                    Workspace.AddSpace(space);
+                }
             }
             catch (Exception ex)
             {
@@ -311,10 +319,14 @@ namespace Web.GUI.Fornitore
         {
             try
             {
-                var obj = (FornitoreDto)Model;
-                var space = new FatturaAcquisto.FatturaAcquistoView(obj);
-                space.Title = "FATTURE ACQUISTO DEL FORNITORE " + obj.RagioneSociale;
-                Workspace.AddSpace(space);
+                bool saved = Save();
+                if (saved)
+                {
+                    var obj = (FornitoreDto)Model;
+                    var space = new FatturaAcquisto.FatturaAcquistoView(obj);
+                    space.Title = "FATTURE ACQUISTO DEL FORNITORE " + obj.RagioneSociale;
+                    Workspace.AddSpace(space);
+                }
             }
             catch (Exception ex)
             {
@@ -326,11 +338,15 @@ namespace Web.GUI.Fornitore
         {
             try
             {
-                var obj = (FornitoreDto)Model;
-                var space = new Pagamento.PagamentoView(obj);
-                space.Title = "PAGAMENTI FORNITORE " + obj.RagioneSociale;
-                Workspace.AddSpace(space);
+                bool saved = Save();
+                if (saved)
+                {
+                    var obj = (FornitoreDto)Model;
+                    var space = new Pagamento.PagamentoView(obj);
+                    space.Title = "PAGAMENTI FORNITORE " + obj.RagioneSociale;
+                    Workspace.AddSpace(space);
 
+                }
             }
             catch (Exception ex)
             {
@@ -374,6 +390,9 @@ namespace Web.GUI.Fornitore
             {
                 base.SetEditing(editing, deleting);
                 btnCalcoloTotali.Enabled = editing;
+                btnFattureAcquisto.Enabled = editing;
+                btnNoteCredito.Enabled = editing;
+                btnPagamenti.Enabled = editing;
             }
             catch (Exception ex)
             {

@@ -447,7 +447,7 @@
           </orm:reference>
         </orm:field>
         <orm:field name="_articolos" property="Articolos" behavior="readwrite" uniqueId="515d5967-162f-419b-96c0-b2634982ade5" type="DataLayer.Articolo">
-          <orm:collection element-class="DataLayer.Articolo" inverse-field="_fattura" order-by="" uniqueId="41eee6d8-a5b7-4fea-b639-08b8ca83cdcf" />
+          <orm:collection element-class="DataLayer.Articolo" inverse-field="_fatturaAcquisto" order-by="" uniqueId="41eee6d8-a5b7-4fea-b639-08b8ca83cdcf" />
         </orm:field>
         <orm:field name="_pagamentos" property="Pagamentos" behavior="readwrite" uniqueId="e729c44d-e2ae-4052-8ad4-1683d392a794" type="DataLayer.Pagamento">
           <orm:collection element-class="DataLayer.Pagamento" inverse-field="_fatturaAcquisto" order-by="" uniqueId="c5b7ccac-23e7-4d05-9ef1-626f304fefdf" />
@@ -508,7 +508,7 @@
         <orm:field name="_note" property="Note" uniqueId="8c0e8dfd-b088-427f-b464-386a8b3bf0b2" type="System.String">
           <orm:column name="Note" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         </orm:field>
-        <orm:field name="_fattura" property="Fattura" behavior="readwrite" uniqueId="58ab2dc7-6dfd-49b4-9d0a-4bc30dc32b47" type="DataLayer.FatturaAcquisto">
+        <orm:field name="_fatturaAcquisto" property="FatturaAcquisto" behavior="readwrite" uniqueId="58ab2dc7-6dfd-49b4-9d0a-4bc30dc32b47" type="DataLayer.FatturaAcquisto">
           <orm:reference uniqueId="41eee6d8-a5b7-4fea-b639-08b8ca83cdcf" association-name="ArticoloHasFattura">
             <orm:sharedfield name="_fatturaAcquistoId" target-class="DataLayer.FatturaAcquisto" target-field="_id" />
           </orm:reference>
@@ -1890,14 +1890,14 @@
           </targetNavigationalProperty>
           <sourceNavigationalProperty>
             <associationDefinesSourceProperty Id="f38f058b-7519-4afa-8991-834ccb867d0c">
-              <NavigationalPropertyMoniker name="/EntitiesModel/Articolo/Fattura" />
+              <NavigationalPropertyMoniker name="/EntitiesModel/Articolo/FatturaAcquisto" />
             </associationDefinesSourceProperty>
           </sourceNavigationalProperty>
         </Association>
       </AssociationTargets>
       <navigationalProperties>
         <classHasNavigationalProperties Id="b9221193-3b27-4412-b55c-b054cc4db67c">
-          <NavigationalProperty Id="58ab2dc7-6dfd-49b4-9d0a-4bc30dc32b47" name="Fattura" type="Fattura" label="Fattura : Fattura" nullable="true" kind="Persistent" fieldName="_fattura" isDependent="false" isManaged="false" />
+          <NavigationalProperty Id="58ab2dc7-6dfd-49b4-9d0a-4bc30dc32b47" name="FatturaAcquisto" type="Fattura" label="FatturaAcquisto : Fattura" nullable="true" kind="Persistent" fieldName="_fatturaAcquisto" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>

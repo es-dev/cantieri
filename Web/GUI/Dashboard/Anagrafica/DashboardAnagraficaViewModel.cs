@@ -10,10 +10,11 @@ using Web.GUI.Dashboard.Configurazione;
 using Web.GUI.AnagraficaArticolo;
 using Web.GUI.AnagraficaCommittente;
 using Web.GUI.AnagraficaFornitore;
+using Library.Template.Dashboard;
 
 namespace Web.GUI.Dashboard.Anagrafica
 {
-    public class DashboardAnagraficaViewModel: TemplateViewModel<DashboardAnagrafica, DashboardAnagraficaItem>
+    public class DashboardAnagraficaViewModel: TemplateViewModel<DashboardDto, DashboardAnagraficaItem>
     {
 
         public DashboardAnagraficaViewModel(ISpace space)
@@ -50,7 +51,7 @@ namespace Web.GUI.Dashboard.Anagrafica
             return 0;
         }
 
-        private IList<DashboardAnagrafica> LoadDashboards(int skip, int take)
+        private IList<DashboardDto> LoadDashboards(int skip, int take)
         {
             try
             {
@@ -65,14 +66,14 @@ namespace Web.GUI.Dashboard.Anagrafica
             return null;
         }
 
-        private IQueryable<DashboardAnagrafica> QueryDashboards()
+        private IQueryable<DashboardDto> QueryDashboards()
         {
             try
             {
-                var dashboards = new List<DashboardAnagrafica>();
-                var dashboardAnagraficaFornitore = new DashboardAnagrafica("Anagrafiche fornitori", "AF", "Archivia i fornitori verso i quali effettui l'approvviggionamento delle risorse per una rapida gestione degli archivi...", "Images.dashboard.anagraficafornitore.png", "", typeof(AnagraficaFornitoreView));
-                var dashboardAnagraficaCommittente = new DashboardAnagrafica("Anagrafiche committenti", "AC", "Archivia i committenti verso i quali esegui le commesse dei lavori assegnati  per una rapida gestione degli storici...", "Images.dashboard.anagraficacommittente.png", "", typeof(AnagraficaCommittenteView));
-                var dashboardAnagraficaArticolo = new DashboardAnagrafica("Anagrafiche articoli", "AA", "Archivia gli articoli e i prodotti acquistati per una gestione rapida delle movimentazioni di fatturazione e di magazzino...", "Images.dashboard.anagraficaarticolo.png", "", typeof(AnagraficaArticoloView));
+                var dashboards = new List<DashboardDto>();
+                var dashboardAnagraficaFornitore = new DashboardDto("Anagrafiche fornitori", "AF", "Archivia i fornitori verso i quali effettui l'approvviggionamento delle risorse per una rapida gestione degli archivi...", "Images.dashboard.anagraficafornitore.png", "", typeof(AnagraficaFornitoreView));
+                var dashboardAnagraficaCommittente = new DashboardDto("Anagrafiche committenti", "AC", "Archivia i committenti verso i quali esegui le commesse dei lavori assegnati  per una rapida gestione degli storici...", "Images.dashboard.anagraficacommittente.png", "", typeof(AnagraficaCommittenteView));
+                var dashboardAnagraficaArticolo = new DashboardDto("Anagrafiche articoli", "AA", "Archivia gli articoli e i prodotti acquistati per una gestione rapida delle movimentazioni di fatturazione e di magazzino...", "Images.dashboard.anagraficaarticolo.png", "", typeof(AnagraficaArticoloView));
                
                 dashboards.Add(dashboardAnagraficaFornitore);
                 dashboards.Add(dashboardAnagraficaCommittente);

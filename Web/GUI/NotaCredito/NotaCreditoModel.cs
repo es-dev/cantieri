@@ -196,8 +196,11 @@ namespace Web.GUI.NotaCredito
         {
             try
             {
-                if (Editing)
+                bool saved = Save();
+                if (saved)
+                {
                     BindViewTotali();
+                }
             }
             catch (Exception ex)
             {
@@ -209,10 +212,14 @@ namespace Web.GUI.NotaCredito
         {
             try
             {
-                var obj = (NotaCreditoDto)Model;
-                var space = new Reso.ResoView(obj);
-                space.Title = "RESI NOTA DI CREDITO N. " + obj.Numero;
-                Workspace.AddSpace(space);
+                bool saved = Save();
+                if (saved)
+                {
+                    var obj = (NotaCreditoDto)Model;
+                    var space = new Reso.ResoView(obj);
+                    space.Title = "RESI NOTA DI CREDITO N. " + obj.Numero;
+                    Workspace.AddSpace(space);
+                }
             }
             catch (Exception ex)
             {
@@ -229,6 +236,20 @@ namespace Web.GUI.NotaCredito
                     editFornitore.Model = fornitore;
                     editFornitore.Value = fornitore.Codice + " - " + fornitore.RagioneSociale;
                 }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        public override void SetEditing(bool editing, bool deleting)
+        {
+            try
+            {
+                base.SetEditing(editing, deleting);
+                btnCalcoloTotali.Enabled = editing;
+                btnResi.Enabled = editing;
             }
             catch (Exception ex)
             {

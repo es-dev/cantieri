@@ -1,5 +1,6 @@
 using Library.Code;
 using Library.Interfaces;
+using Library.Template.Dashboard;
 using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
@@ -52,7 +53,7 @@ namespace Web.GUI.Dashboard.Pagamento
         {
             try
             {
-                var model = (DashboardPagamento)item.Model;
+                var model = (DashboardDto)item.Model;
                 var type = model.TypeSpace;
                 var space = (ISpace)Activator.CreateInstance(type);
                 var viewModel = space.ViewModel;

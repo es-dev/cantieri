@@ -247,9 +247,11 @@ namespace Web.GUI.FatturaVendita
         {
             try
             {
-                if (Editing)
+                bool saved = Save();
+                if (saved)
+                {
                     BindViewTotali();
-
+                }
             }
             catch (Exception ex)
             {
@@ -276,6 +278,7 @@ namespace Web.GUI.FatturaVendita
             {
                 base.SetEditing(editing, deleting);
                 btnCalcoloTotali.Enabled = editing;
+                btnIncassi.Enabled = editing;
             }
             catch (Exception ex)
             {
@@ -287,11 +290,15 @@ namespace Web.GUI.FatturaVendita
         {
             try
             {
-                var obj = (FatturaVenditaDto)Model;
-                var space = new Incasso.IncassoView(obj);
-                space.Title = "INCASSI FATTURA N. " + obj.Numero;
-                Workspace.AddSpace(space);
+                bool saved = Save();
+                if (saved)
+                {
+                    var obj = (FatturaVenditaDto)Model;
+                    var space = new Incasso.IncassoView(obj);
+                    space.Title = "INCASSI " + BusinessLogic.Fattura.GetCodifica(obj);
+                    Workspace.AddSpace(space);
 
+                }
             }
             catch (Exception ex)
             {

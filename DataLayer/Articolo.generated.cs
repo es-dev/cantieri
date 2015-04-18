@@ -180,16 +180,16 @@ namespace DataLayer
 			}
 		}
 		
-		private FatturaAcquisto _fattura;
-		public virtual FatturaAcquisto Fattura
+		private FatturaAcquisto _fatturaAcquisto;
+		public virtual FatturaAcquisto FatturaAcquisto
 		{
 			get
 			{
-				return this._fattura;
+				return this._fatturaAcquisto;
 			}
 			set
 			{
-				this._fattura = value;
+				this._fatturaAcquisto = value;
 			}
 		}
 		

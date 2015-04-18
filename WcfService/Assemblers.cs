@@ -772,7 +772,7 @@ namespace WcfService.Assemblers
 			foreach (Articolo item in entity.Articolos)
 			{
 				var dtoItem = articoloAssembler.Assemble(item);
-				dtoItem.Fattura = dto;
+				dtoItem.FatturaAcquisto = dto;
 				dto.Articolos.Add(dtoItem);
 			}
 
@@ -883,7 +883,7 @@ namespace WcfService.Assemblers
 	    public override void AssembleReferences(Articolo entity, ArticoloDto dto)
 	    {
 			FatturaAcquistoAssembler fatturaAcquistoAssembler = new FatturaAcquistoAssembler();
-			dto.Fattura = fatturaAcquistoAssembler.Assemble(entity.Fattura);
+			dto.FatturaAcquisto = fatturaAcquistoAssembler.Assemble(entity.FatturaAcquisto);
 
 	    }
 	

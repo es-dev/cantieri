@@ -219,6 +219,9 @@ namespace Web.GUI.Commessa
             {
                 base.SetEditing(editing, deleting);
                 btnCalcoloAvanzamentoLavori.Enabled = editing;
+                btnCommittenti.Enabled = editing;
+                btnFornitori.Enabled = editing;
+                btnSAL.Enabled = editing;
             }
             catch (Exception ex)
             {
@@ -230,10 +233,14 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                var obj = (CommessaDto)Model;
-                var space = new Fornitore.FornitoreView(obj);
-                space.Title = "FORNITORI - COMMESSA " + obj.Denominazione;
-                Workspace.AddSpace(space);
+                bool saved = Save();
+                if (saved)
+                {
+                    var obj = (CommessaDto)Model;
+                    var space = new Fornitore.FornitoreView(obj);
+                    space.Title = "FORNITORI - COMMESSA " + obj.Denominazione;
+                    Workspace.AddSpace(space);
+                }
             }
             catch (Exception ex)
             {
@@ -245,10 +252,14 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                var obj = (CommessaDto)Model;
-                var space = new Committente.CommittenteView(obj);
-                space.Title = "COMMITTENTI - COMMESSA " + obj.Denominazione;
-                Workspace.AddSpace(space);
+                bool saved = Save();
+                if (saved)
+                {
+                    var obj = (CommessaDto)Model;
+                    var space = new Committente.CommittenteView(obj);
+                    space.Title = "COMMITTENTI - COMMESSA " + obj.Denominazione;
+                    Workspace.AddSpace(space);
+                }
             }
             catch (Exception ex)
             {
@@ -288,12 +299,16 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                var obj = (CommessaDto)Model;
-                var sals = obj.SALs;
-                if (sals != null && sals.Count > 0)
-                    BindViewAvanzamentoLavori();
-                else
-                    UtilityMessage.Show(this, "Calcolo avanzamento lavori", "Non è possibile effettuare il calcolo dello stato di avanzamento lavori se non è stato creato almeno un SAL", TypeMessage.Alert);
+                bool saved = Save();
+                if (saved)
+                {
+                    var obj = (CommessaDto)Model;
+                    var sals = obj.SALs;
+                    if (sals != null && sals.Count > 0)
+                        BindViewAvanzamentoLavori();
+                    else
+                        UtilityMessage.Show(this, "Calcolo avanzamento lavori", "Non è possibile effettuare il calcolo dello stato di avanzamento lavori se non è stato creato almeno un SAL", TypeMessage.Alert);
+                }
             }
             catch (Exception ex)
             {
@@ -305,10 +320,14 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                var obj = (CommessaDto)Model;
-                var space = new SAL.SALView(obj);
-                space.Title = "SAL - COMMESSSA " + obj.Denominazione;
-                Workspace.AddSpace(space);
+                bool saved = Save();
+                if (saved)
+                {
+                    var obj = (CommessaDto)Model;
+                    var space = new SAL.SALView(obj);
+                    space.Title = "SAL - COMMESSSA " + obj.Denominazione;
+                    Workspace.AddSpace(space);
+                }
             }
             catch (Exception ex)
             {
