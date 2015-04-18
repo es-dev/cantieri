@@ -46,7 +46,7 @@ namespace Web.GUI.ReportJob
                 UtilityError.Write(ex);
             }
         }
-
+        
         public override void BindView(object model)  
         {
             try
