@@ -2259,6 +2259,27 @@ namespace WcfService
             return null;
         }
 
+
+        public IEnumerable<Dto.CommittenteDto> ReadCommittenti(IEnumerable<Dto.AnagraficaCommittenteDto> anagraficheCommittenti)
+        {
+            try
+            {
+                if (anagraficheCommittenti != null)
+                {
+                    var ef = new DataLayer.EntitiesModel();
+                    var codiciCommittenti = (from q in anagraficheCommittenti select q.Codice).ToList();
+                    var committenti = (from q in ef.Committentes where codiciCommittenti.Contains(q.Codice) select q);
+                    var committentiDto = UtilityPOCO.Assemble<Dto.CommittenteDto>(committenti, true); //lettura ricorsiva
+                    return committentiDto;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         #endregion
         #endregion
 
@@ -3095,7 +3116,7 @@ namespace WcfService
             return null;
         }
 
-      
+
         #endregion
         #endregion
 
@@ -3398,6 +3419,7 @@ namespace WcfService
 
         #endregion
         #endregion
+
 
     }
 }

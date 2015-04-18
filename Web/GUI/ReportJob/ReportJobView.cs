@@ -54,6 +54,8 @@ namespace Web.GUI.ReportJob
                     space = new ReportJobFornitoriModel();
                 else if (optSituazioneCommittente.Checked)
                     space = new ReportJobCommittenteModel();
+                else if (optResocontoCommittenti.Checked)
+                    space = new ReportJobCommittentiModel();
 
                 space.Model = new WcfService.Dto.ReportJobDto();
                 AddSpace(space);
