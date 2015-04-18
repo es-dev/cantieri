@@ -163,6 +163,7 @@ namespace Web.GUI.Fornitore
                     editTotaleFattureAcquisto.Value = totaleFattureAcquisto;
                     editTotalePagamenti.Value = totalePagamenti;
                     editTotaleNoteCredito.Value = totaleNoteCredito;
+                    
                 }
             }
             catch (Exception ex)

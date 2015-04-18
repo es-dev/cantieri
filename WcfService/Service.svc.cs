@@ -587,7 +587,6 @@ namespace WcfService
             {
                 var fornitori = QueryFornitori(search, commessa);
                 fornitori = (from q in fornitori select q).Skip(skip).Take(take);
-
                 var fornitoriDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitori, true); //lettura ricorsiva
                 return fornitoriDto;
             }
@@ -613,14 +612,13 @@ namespace WcfService
             return 0;
         }
 
-
         public Dto.FornitoreDto ReadFornitore(object id)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var fornitore = (from q in ef.Fornitores where q.Id == (int)id select q).FirstOrDefault();
-                var fornitoreDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitore);
+                var fornitoreDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitore, true);
                 return fornitoreDto;
             }
             catch (Exception ex)
@@ -2191,7 +2189,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var committente = (from q in ef.Committentes where q.Id == (int)id select q).FirstOrDefault();
-                var committenteDto = UtilityPOCO.Assemble<Dto.CommittenteDto>(committente);
+                var committenteDto = UtilityPOCO.Assemble<Dto.CommittenteDto>(committente, true);
                 return committenteDto;
             }
             catch (Exception ex)
