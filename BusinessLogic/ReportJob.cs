@@ -513,22 +513,6 @@ namespace BusinessLogic
                         var incassi = (from q in fatturaVendita.Incassos orderby q.Data ascending select q).ToList();
                         foreach (var incasso in incassi)
                             AddReportIncassoCommittente(tableIncassi, incasso);
-
-                        ////sconto
-                        //var _sconto = UtilityValidation.GetDecimal(fatturaVendita.Sconto);
-                        //if (_sconto > 0)
-                        //{
-                        //    var sconto = UtilityValidation.GetEuro(_sconto);
-                        //    tableIncassi.AddRow("", "", "", "", "SCONTO", sconto);
-                        //}
-
-                        ////nota di credito/resi
-                        //var _totaleResi = BusinessLogic.Fattura.GetTotaleResi(fatturaVendita);
-                        //if (_totaleResi > 0)
-                        //{
-                        //    var totaleResi = UtilityValidation.GetEuro(_totaleResi);
-                        //    tableIncassi.AddRow("", "", "", "", "NOTA DI CREDITO", totaleResi);
-                        //}
                     }
                 }
                 report.Tables.Add(tableCommesse);

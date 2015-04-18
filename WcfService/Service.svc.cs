@@ -2249,8 +2249,8 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var committenti = (from q in ef.Committentes where q.Codice == anagraficaCommittente.Codice select q);
-                var fcommittentiDto = UtilityPOCO.Assemble<Dto.CommittenteDto>(committenti, true); //lettura ricorsiva
-                return fcommittentiDto;
+                var committentiDto = UtilityPOCO.Assemble<Dto.CommittenteDto>(committenti, true); //lettura ricorsiva
+                return committentiDto;
             }
             catch (Exception ex)
             {
