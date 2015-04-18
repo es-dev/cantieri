@@ -117,6 +117,8 @@ namespace Web.GUI.ReportJob
                         space = new ReportJobFornitoreModel();
                     else if (tipo == Tipi.TipoReport.Fornitori.ToString())
                         space = new ReportJobFornitoriModel();
+                    else if (tipo == Tipi.TipoReport.Committente.ToString())
+                        space = new ReportJobCommittenteModel();
                     
                     AddSpace(space);
                 }

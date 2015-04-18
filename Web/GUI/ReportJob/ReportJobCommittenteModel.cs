@@ -46,7 +46,7 @@ namespace Web.GUI.ReportJob
                 UtilityError.Write(ex);
             }
         }
-
+        
         public override void BindView(object model)  
         {
             try
@@ -134,7 +134,7 @@ namespace Web.GUI.ReportJob
                     obj.Tipo = tipoReport.ToString();
                     obj.NomeFile = editNomeFile.Value;
 
-                    var anagraficaCommittente = (AnagraficaFornitoreDto)editCommittente.Model;
+                    var anagraficaCommittente = (AnagraficaCommittenteDto)editCommittente.Model;
                     if (anagraficaCommittente != null)
                         obj.CodiceCommittente = anagraficaCommittente.Codice;
 
@@ -234,7 +234,7 @@ namespace Web.GUI.ReportJob
                     var ragioneSocialeCommittente = (anagraficaCommittente.RagioneSociale != null ? anagraficaCommittente.RagioneSociale.Replace(" ", "") : "N/D");
                     var data = DateTime.Today.ToString("ddMMyyyy");
                     var elaborazione = UtilityValidation.GetData(editElaborazione.Value);
-                    string pathTemplate = UtilityWeb.GetRootPath(Context) + @"Resources\Templates\TemplateSituazioneFornitore.doc";
+                    string pathTemplate = UtilityWeb.GetRootPath(Context) + @"Resources\Templates\TemplateSituazioneCommittente.doc";
                     var fileName = "SituazioneCommittente_" + ragioneSocialeCommittente + "_" + data + ".PDF";
                     var pathReport = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileName;
                     var account = SessionManager.GetAccount(Context);
