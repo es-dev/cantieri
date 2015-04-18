@@ -25,10 +25,11 @@ using Web.GUI.PagamentoUnificato;
 using Web.GUI.PagamentoUnificatoFatturaAcquisto;
 using Web.GUI.NotaCredito;
 using Web.GUI.Reso;
+using Library.Template.Dashboard;
 
 namespace Web.GUI.Dashboard.Pagamento
 {
-    public class DashboardPagamentoViewModel : TemplateViewModel<DashboardPagamento, DashboardPagamentoItem>
+    public class DashboardPagamentoViewModel : TemplateViewModel<DashboardDto, DashboardPagamentoItem>
     {
 
         public DashboardPagamentoViewModel(ISpace space)
@@ -65,7 +66,7 @@ namespace Web.GUI.Dashboard.Pagamento
             return 0;
         }
 
-        private IList<DashboardPagamento> LoadDashboards(int skip, int take)
+        private IList<DashboardDto> LoadDashboards(int skip, int take)
         {
             try
             {
@@ -80,17 +81,17 @@ namespace Web.GUI.Dashboard.Pagamento
             return null;
         }
 
-        private IQueryable<DashboardPagamento> QueryDashboards()
+        private IQueryable<DashboardDto> QueryDashboards()
         {
             try
             {
-                var dashboards = new List<DashboardPagamento>();
+                var dashboards = new List<DashboardDto>();
 
-                var dashboardPagamenti = new DashboardPagamento("Pagamenti", "PAG", "Gestisci i pagamenti per le fattura inserite, controlla le scadenze, le passività e gli importi dati e in dare...", "Images.dashboard.pagamento.png", "", typeof(PagamentoView));
-                var dashboardIncassi = new DashboardPagamento("Incassi", "INC", "Gestisci gli incassi corrispondenti alle fatture di vendita per le commesse inserite nel sistema, visualizza i movimenti in date e in dare...", "Images.dashboard.incasso.png", "", typeof(IncassoView));
-                var dashboardResi = new DashboardPagamento("Resi", "RES", "Gestisci i resi specificando gli importi per i quali è stata eseguita una restituizione della merce. Puoi indicare la nota di credito di riferimento...", "Images.dashboard.reso.png", "", typeof(ResoView));
-                var dashboardPagamentiUnificati = new DashboardPagamento("Pagamenti unificati", "PU", "Gestisci i pagamenti unificati per i fornitori inseriti. Potrai saldare in un unico pagamento una o più fatture insolute...", "Images.dashboard.pagamentounificato.png", "", typeof(PagamentoUnificatoView));
-                var dashboardPagamentiUnificatiFatturaAcquisto = new DashboardPagamento("Dettaglio pagamenti unificati", "PU/FA", "Specifica le fatture di acquisto da associare la pagamento unificato. Il sistema valuterà in automatico il saldo da pagare...", "Images.dashboard.pagamentounificatofatturaacquisto.png", "", typeof(PagamentoUnificatoFatturaAcquistoView));
+                var dashboardPagamenti = new DashboardDto("Pagamenti", "PAG", "Gestisci i pagamenti per le fattura inserite, controlla le scadenze, le passività e gli importi dati e in dare...", "Images.dashboard.pagamento.png", "", typeof(PagamentoView));
+                var dashboardIncassi = new DashboardDto("Incassi", "INC", "Gestisci gli incassi corrispondenti alle fatture di vendita per le commesse inserite nel sistema, visualizza i movimenti in date e in dare...", "Images.dashboard.incasso.png", "", typeof(IncassoView));
+                var dashboardResi = new DashboardDto("Resi", "RES", "Gestisci i resi specificando gli importi per i quali è stata eseguita una restituizione della merce. Puoi indicare la nota di credito di riferimento...", "Images.dashboard.reso.png", "", typeof(ResoView));
+                var dashboardPagamentiUnificati = new DashboardDto("Pagamenti unificati", "PU", "Gestisci i pagamenti unificati per i fornitori inseriti. Potrai saldare in un unico pagamento una o più fatture insolute...", "Images.dashboard.pagamentounificato.png", "", typeof(PagamentoUnificatoView));
+                var dashboardPagamentiUnificatiFatturaAcquisto = new DashboardDto("Dettaglio pagamenti unificati", "PU/FA", "Specifica le fatture di acquisto da associare la pagamento unificato. Il sistema valuterà in automatico il saldo da pagare...", "Images.dashboard.pagamentounificatofatturaacquisto.png", "", typeof(PagamentoUnificatoFatturaAcquistoView));
                
 
                 dashboards.Add(dashboardPagamenti);

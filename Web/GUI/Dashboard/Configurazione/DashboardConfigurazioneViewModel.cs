@@ -21,10 +21,11 @@ using Web.GUI.Incasso;
 using Web.GUI.Pagamento;
 using Web.GUI.SAL;
 using Web.GUI.Account;
+using Library.Template.Dashboard;
 
 namespace Web.GUI.Dashboard.Configurazione
 {
-    public class DashboardConfigurazioneViewModel : TemplateViewModel<DashboardConfigurazione, DashboardConfigurazioneItem>
+    public class DashboardConfigurazioneViewModel : TemplateViewModel<DashboardDto, DashboardConfigurazioneItem>
     {
         
         public DashboardConfigurazioneViewModel(ISpace space) : base(space) 
@@ -60,7 +61,7 @@ namespace Web.GUI.Dashboard.Configurazione
             return 0;
         }
 
-        private IList<DashboardConfigurazione> LoadDashboards(int skip, int take)
+        private IList<DashboardDto> LoadDashboards(int skip, int take)
         {
             try
             {
@@ -75,14 +76,14 @@ namespace Web.GUI.Dashboard.Configurazione
             return null;
         }
 
-        private IQueryable<DashboardConfigurazione> QueryDashboards()
+        private IQueryable<DashboardDto> QueryDashboards()
         {
             try
             {
-                var dashboards = new List<DashboardConfigurazione>();
-                var dashboardAzienda = new DashboardConfigurazione("Aziende", "AZ", "Definisci la tua azienda, inserisci il logo aziendale, l'intestazione e i dati commerciali...", "Images.dashboard.azienda.png", "", typeof(AziendaView));
-                var dashboardCentroCosto = new DashboardConfigurazione("Centri di costo", "CC", "Definisci i centri di costo per organizzare al meglio il tuo lavoro e per raggruppare i flussi economici in voci di costo separate...", "Images.dashboard.centrocosto.png", "", typeof(CentroCostoView));
-                var dashboardAccount = new DashboardConfigurazione("Accounts", "ACC", "Definisci gli accounts specificando la username, la password ed il ruolo ad esso associato...", "Images.dashboard.account.png", "", typeof(AccountView));
+                var dashboards = new List<DashboardDto>();
+                var dashboardAzienda = new DashboardDto("Aziende", "AZ", "Definisci la tua azienda, inserisci il logo aziendale, l'intestazione e i dati commerciali...", "Images.dashboard.azienda.png", "", typeof(AziendaView));
+                var dashboardCentroCosto = new DashboardDto("Centri di costo", "CC", "Definisci i centri di costo per organizzare al meglio il tuo lavoro e per raggruppare i flussi economici in voci di costo separate...", "Images.dashboard.centrocosto.png", "", typeof(CentroCostoView));
+                var dashboardAccount = new DashboardDto("Accounts", "ACC", "Definisci gli accounts specificando la username, la password ed il ruolo ad esso associato...", "Images.dashboard.account.png", "", typeof(AccountView));
             
                 dashboards.Add(dashboardAzienda);
                 dashboards.Add(dashboardCentroCosto);

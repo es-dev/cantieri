@@ -1,5 +1,6 @@
 using Library.Code;
 using Library.Interfaces;
+using Library.Template.Dashboard;
 using Library.Template.MVVM;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace Web.GUI.Dashboard.Anagrafica
             {
                 if (model != null)
                 {
-                    var objDto = (DashboardAnagrafica)model;
+                    var objDto = (DashboardDto)model;
                     infoTitle.Text = objDto.Title;
                     infoCodice.Text = objDto.SubTitle;
                     infoDescription.Text = objDto.Description;
@@ -43,7 +44,7 @@ namespace Web.GUI.Dashboard.Anagrafica
             {
                 if (model != null)
                 {
-                    var objDto = (DashboardAnagrafica)model;
+                    var objDto = (DashboardDto)model;
                     objDto.Title = infoTitle.Text;
                     objDto.SubTitle = infoCodice.Text;
                     objDto.Description = infoDescription.Text;
@@ -63,7 +64,7 @@ namespace Web.GUI.Dashboard.Anagrafica
             {
                 if (item != null)
                 {
-                    var objDto = (DashboardAnagrafica)item.Model;
+                    var objDto = (DashboardDto)item.Model;
                     if (objDto != null)
                     {
                         var type = objDto.TypeSpace;
