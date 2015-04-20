@@ -706,7 +706,6 @@ namespace BusinessLogic
             }
         }
 
-
        private static IList<CommittenteDto> GetCommittentiAvere(IList<CommittenteDto> committenti, DateTime data)
         {
             try
