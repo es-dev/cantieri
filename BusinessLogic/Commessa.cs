@@ -324,7 +324,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        internal static decimal GetTotaleImponibile(List<CommittenteDto> committenti, DateTime data)
+        internal static decimal GetTotaleImponibile(IList<CommittenteDto> committenti, DateTime data)
         {
             try
             {
@@ -347,7 +347,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        internal static decimal GetTotaleIVA(List<CommittenteDto> committenti, DateTime data)
+        internal static decimal GetTotaleIVA(IList<CommittenteDto> committenti, DateTime data)
         {
             try
             {
@@ -369,7 +369,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        internal static decimal GetTotaleFattureVendita(List<CommittenteDto> committenti, DateTime data)
+        internal static decimal GetTotaleFattureVendita(IList<CommittenteDto> committenti, DateTime data)
         {
             try
             {
@@ -391,7 +391,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        internal static decimal GetTotaleIncassi(List<CommittenteDto> committenti, DateTime data)
+        internal static decimal GetTotaleIncassi(IList<CommittenteDto> committenti, DateTime data)
         {
             try
             {
@@ -413,7 +413,7 @@ namespace BusinessLogic
             return 0;
         }
 
-        internal static decimal GetTotaleIncassiAvere(List<CommittenteDto> committenti, DateTime data)
+        internal static decimal GetTotaleIncassiAvere(IList<CommittenteDto> committenti, DateTime data)
         {
             try
             {

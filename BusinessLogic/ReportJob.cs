@@ -220,9 +220,7 @@ namespace BusinessLogic
                 UtilityError.Write(ex);
             }
         }
-
-
-
+        
         public static UtilityReport.Report GetReportFornitori(AziendaDto azienda, IList<AnagraficaFornitoreDto> anagraficheFornitori, IList<FornitoreDto> fornitori, DateTime data)
         {
             try
@@ -626,5 +624,203 @@ namespace BusinessLogic
                 UtilityError.Write(ex);
             }
         }
+
+        public static UtilityReport.Report GetReportCommittenti(AziendaDto azienda, IList<AnagraficaCommittenteDto> anagraficheCommittenti, IList<CommittenteDto> committenti, DateTime data)
+        {
+            try
+            {
+                var report = new UtilityReport.Report();
+
+                var committentiAvere = GetCommittentiAvere(committenti, data);
+                var anagraficheCommittentiAvere = GetAnagraficheCommittentiAvere(anagraficheCommittenti, committentiAvere);
+
+                AddReportAzienda(azienda, report, data);
+                AddReportProspettoCommittenti(anagraficheCommittentiAvere, committentiAvere, report);
+
+                var tableCommittenti= new UtilityReport.Table("RagioneSociale", "TotaleFatture", "TotaleIncassiAvuto", "TotaleIncassiAvere");
+                var tableFatture = new UtilityReport.Table("Numero", "Data", "Scadenza", "Descrizione", "Imponibile", "IVA", "Totale", "TotaleIncassiAvuto", "TotaleIncassiAvere");
+                var tableIncassi= new UtilityReport.Table("Numero", "Data", "TipoPagamento", "Descrizione", "Note", "Importo");
+
+                foreach (var anagraficaCommittente in anagraficheCommittentiAvere)
+                {
+                    var committentiAnagrafica = (from q in committentiAvere where q.Codice == anagraficaCommittente.Codice select q).ToList();
+                    if (committentiAnagrafica != null && committentiAnagrafica.Count >= 1)
+                    {
+                        AddReportCommittente(tableCommittenti, anagraficaCommittente, committentiAnagrafica, data);
+
+                        var codificaCommittente = "COMMITTENTE " + anagraficaCommittente.Codice + " - " + anagraficaCommittente.RagioneSociale;
+                        tableFatture.AddRowMerge(Color.LightGray, codificaCommittente, "", "", "", "", "", "", "", "");
+                        foreach (var committente in committentiAnagrafica)
+                        {
+                            //fatture per committente
+                            var fattureVendita= committente.FatturaVenditas;
+                            var fattureVenditaAvere = GetFattureVenditaAvere(fattureVendita, data);
+                            foreach (var fatturaVendita in fattureVenditaAvere)
+                            {
+                                AddReportFatturaVenditaCommittente(tableFatture, fatturaVendita, data);
+
+                                //pagamenti per fattura
+                                var totaleFattura = UtilityValidation.GetEuro(fatturaVendita.Totale);
+                                var _statoFattura = BusinessLogic.Fattura.GetStato(fatturaVendita);
+                                var statoFattura = UtilityEnum.GetDescription<Tipi.StatoFattura>(_statoFattura);
+                                var codificaFattura = BusinessLogic.Fattura.GetCodifica(fatturaVendita) + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper();
+                                tableIncassi.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "");
+                                var incassi = (from q in fatturaVendita.Incassos orderby q.Data ascending select q).ToList();
+                                foreach (var incasso in incassi)
+                                    AddReportIncassoCommittente(tableIncassi, incasso);
+
+                            }
+                        }
+                    }
+                }
+                report.Tables.Add(tableCommittenti);
+                report.Tables.Add(tableFatture);
+                report.Tables.Add(tableIncassi);
+
+                return report;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private static void AddReportProspettoCommittenti(IList<AnagraficaCommittenteDto> anagraficheCommittenti, IList<CommittenteDto> committenti, UtilityReport.Report report)
+        {
+            try
+            {
+                var fattureVendita = GetFattureVendita(committenti);
+                var commesse = GetCommesse(committenti);
+                var incassi = GetIncassi(fattureVendita);
+
+                report.AddData("NumeroCommittenti", anagraficheCommittenti.Count());
+                report.AddData("NumeroFattureVendita", fattureVendita.Count());
+                report.AddData("NumeroCommesse", commesse.Count());
+                report.AddData("NumeroIncassi", incassi.Count());
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+
+       private static IList<CommittenteDto> GetCommittentiAvere(IList<CommittenteDto> committenti, DateTime data)
+        {
+            try
+            {
+                var committentiAvere = (from q in committenti where BusinessLogic.Committente.GetTotaleIncassiAvere(q, data) > 0 select q).ToList();
+                return committentiAvere;
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+        private static IList<AnagraficaCommittenteDto> GetAnagraficheCommittentiAvere(IList<AnagraficaCommittenteDto> anagraficheCommittenti, IList<CommittenteDto > committentiAvere)
+        {
+            try
+            {
+                var codiciCommittentiAvere = (from q in committentiAvere select q.Codice).Distinct().ToList();
+                var anagraficheCommittentiAvere = (from q in anagraficheCommittenti where codiciCommittentiAvere.Contains(q.Codice) select q).ToList();
+                return anagraficheCommittentiAvere;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+        private static IList<FatturaVenditaDto> GetFattureVendita(IList<CommittenteDto> committenti)
+        {
+            try
+            {
+                var fattureVendita = new List<FatturaVenditaDto>();
+                foreach (var committente in committenti)
+                    fattureVendita.AddRange(committente.FatturaVenditas);
+
+                return fattureVendita;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+        private static IList<IncassoDto> GetIncassi(IList<FatturaVenditaDto> fattureVendita)
+        {
+            try
+            {
+                var incassi = new List<IncassoDto>();
+                foreach (var fatturaVendita in fattureVendita)
+                    incassi.AddRange(fatturaVendita.Incassos);
+
+                return incassi;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private static IList<CommessaDto> GetCommesse(IList<CommittenteDto> committenti)
+        {
+            try
+            {
+                var commesse = new List<CommessaDto>();
+                foreach (var committente in committenti)
+                {
+                    var commessa = committente.Commessa;
+                    var exist = ((from q in commesse where q.Id == commessa.Id select q).Count() >= 1);
+                    if (!exist)
+                        commesse.Add(commessa);
+                }
+                return commesse;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+        private static void AddReportCommittente(UtilityReport.Table tableCommittenti, AnagraficaCommittenteDto anagraficaCommittente, IList<CommittenteDto> committentiAnagrafica, DateTime data)
+        {
+            try
+            {
+                var ragioneSociale = anagraficaCommittente.RagioneSociale;
+                var _totaleFatture = BusinessLogic.Commessa.GetTotaleFattureVendita(committentiAnagrafica, data);
+                var _totaleIncassiAvuto = BusinessLogic.Commessa.GetTotaleIncassi(committentiAnagrafica, data);
+                var _totaleIncassiAvere = BusinessLogic.Commessa.GetTotaleIncassiAvere(committentiAnagrafica, data);
+                var totaleFatture = UtilityValidation.GetEuro(_totaleFatture);
+                var totaleIncassiAvuto = UtilityValidation.GetEuro(_totaleIncassiAvuto);
+                var totaleIncassiAvere = UtilityValidation.GetEuro(_totaleIncassiAvere);
+
+                tableCommittenti.AddRow(ragioneSociale, totaleFatture, totaleIncassiAvuto, totaleIncassiAvere);
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+        private static IList<FatturaVenditaDto> GetFattureVenditaAvere(IList<FatturaVenditaDto> fattureVendita, DateTime data)
+        {
+            try
+            {
+                var fattureVenditaAvere = (from q in fattureVendita where BusinessLogic.Fattura.GetTotaleIncassiAvere(q, data) > 0 select q).ToList();
+                return fattureVenditaAvere;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
     }
 }
