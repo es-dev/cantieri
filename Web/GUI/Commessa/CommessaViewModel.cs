@@ -4,6 +4,7 @@ using Library.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 using WcfService.Dto;
 
@@ -18,7 +19,7 @@ namespace Web.GUI.Commessa
            
         }
 
-        public override void Load(int skip, int take, string search=null)
+        public override void Load(int skip, int take, string search = null)
         {
             try
             {
@@ -32,7 +33,7 @@ namespace Web.GUI.Commessa
             }
         }
 
-        public override int GetCount(string search=null)
+        public override int GetCount(string search = null)
         {
             try
             {
