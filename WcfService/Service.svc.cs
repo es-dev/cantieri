@@ -464,6 +464,14 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var commesse = (from q in ef.Commessas select q);
+
+                //var advancedSearch = new Func<DataLayer.Commessa,bool>((DataLayer.Commessa commessa) => {
+                //    return commessa.Denominazione.StartsWith("C");
+                //});
+                
+                //if (advancedSearch != null)
+                //    commesse = commesse.Where(advancedSearch).AsQueryable();
+           
                 if (search != null && search.Length > 0)
                     commesse = (from q in commesse
                                 where q.Codice.StartsWith(search) || q.Denominazione.Contains(search) || q.Comune.StartsWith(search) ||
@@ -481,6 +489,7 @@ namespace WcfService
             return null;
         }
 
+       
         public IEnumerable<Dto.CommessaDto> ReadCommesse(IEnumerable<Dto.FornitoreDto> fornitori) 
         {
             try

@@ -27,27 +27,22 @@ namespace Web.GUI.Fornitore
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.FornitoreDto)model;
-                    var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
-                    var codice = UtilityValidation.GetStringND(obj.Codice);
-                    var indirizzo = UtilityValidation.GetStringND(obj.Indirizzo);
-                    var cap = UtilityValidation.GetStringND(obj.CAP);
-                    var comune = UtilityValidation.GetStringND(obj.Comune);
-                    var provincia = UtilityValidation.GetStringND(obj.Provincia);
-                    var partitaIva = UtilityValidation.GetStringND(obj.PartitaIva);
-                    var commessa = obj.Commessa;
+                    var obj = (FornitoreDto)model;
+
                     var today = DateTime.Today;
                     var totaleFattureAcquisto = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotaleFattureAcquisto(obj, today));
                     var totalePagamenti = UtilityValidation.GetEuro(BusinessLogic.Fornitore.GetTotalePagamenti(obj, today));
+                    infoPagamentoTotale.Text = "Pagato " + totalePagamenti + " su un totale di " + totaleFattureAcquisto;
                     var stato = GetStato(obj);
-
                     toolTip.SetToolTip(imgStato, stato.Description);
                     imgStato.Image = stato.Image;
+
                     infoImage.Image = "Images.dashboard.fornitore.png";
-                    infoRagioneSociale.Text = ragioneSociale;
-                    infoCodice.Text = "FOR-" + codice;
-                    infoPartitaIVA.Text = "Partita IVA " + partitaIva;
-                    infoPagamentoTotale.Text = "Pagato " + totalePagamenti + " su un totale di " + totaleFattureAcquisto;
+                    infoRagioneSociale.Text = UtilityValidation.GetStringND(obj.RagioneSociale);
+                    infoCodice.Text = "FOR-" + UtilityValidation.GetStringND(obj.Codice);
+                    infoPartitaIVA.Text = "Partita IVA " + UtilityValidation.GetStringND(obj.PartitaIva);
+
+                    var commessa = obj.Commessa;
                     infoCommesssa.Text = "Commessa " + commessa.Codice + " - " + commessa.Denominazione;
                 }
             }

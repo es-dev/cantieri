@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
@@ -89,8 +90,7 @@ namespace WcfService
         int CountCommesse();
         #endregion
 
-        [OperationContract]
-        int CountCommesseNonAssegnate(string search = null);
+       
 
         #region Custom
         [OperationContract]
@@ -105,6 +105,8 @@ namespace WcfService
         [OperationContract]
         IEnumerable<Dto.CommessaDto> ReadCommesse(IEnumerable<Dto.FornitoreDto> fornitori);
 
+        [OperationContract]
+        int CountCommesseNonAssegnate(string search = null);
         #endregion
         #endregion
 

@@ -38,11 +38,20 @@ namespace Web.GUI.Fornitore
             this.infoCommesssa = new Gizmox.WebGUI.Forms.Label();
             this.imgStato = new Gizmox.WebGUI.Forms.PictureBox();
             this.infoPagamentoTotale = new Gizmox.WebGUI.Forms.Label();
+            this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
-            this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgStato)).BeginInit();
             this.SuspendLayout();
+            // 
+            // jqContainer
+            // 
+            this.jqContainer.Controls.Add(this.infoRagioneSociale);
+            this.jqContainer.Controls.Add(this.panelLeft);
+            this.jqContainer.Controls.Add(this.infoPartitaIVA);
+            this.jqContainer.Controls.Add(this.infoPagamentoTotale);
+            this.jqContainer.Controls.Add(this.imgStato);
+            this.jqContainer.Controls.Add(this.infoCommesssa);
             // 
             // infoCodice
             // 
@@ -134,25 +143,19 @@ namespace Web.GUI.Fornitore
             this.infoPagamentoTotale.ForeColor = System.Drawing.Color.DarkRed;
             this.infoPagamentoTotale.Location = new System.Drawing.Point(94, 77);
             this.infoPagamentoTotale.Name = "infoPagamentoTotale";
-            this.infoPagamentoTotale.Size = new System.Drawing.Size(265, 16);
+            this.infoPagamentoTotale.Size = new System.Drawing.Size(264, 16);
             this.infoPagamentoTotale.TabIndex = 1;
             this.infoPagamentoTotale.Text = "Pagato 0,00€ su un totale di 0,00€";
             this.infoPagamentoTotale.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // FornitoreItem
             // 
-            this.jqContainer.Controls.Add(this.infoRagioneSociale);
-            this.jqContainer.Controls.Add(this.panelLeft);
-            this.jqContainer.Controls.Add(this.infoPartitaIVA);
-            this.jqContainer.Controls.Add(this.infoPagamentoTotale);
-            this.jqContainer.Controls.Add(this.imgStato);
-            this.jqContainer.Controls.Add(this.infoCommesssa);
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Size = new System.Drawing.Size(400, 100);
             this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.FornitoreItem_ItemClick);
+            this.jqContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
-            this.jqContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgStato)).EndInit();
             this.ResumeLayout(false);
 
