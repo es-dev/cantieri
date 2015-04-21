@@ -97,7 +97,7 @@ namespace Web.GUI.Committente
             {
                 var viewModel = new Incasso.IncassoViewModel(this);
                 viewModel.Committente = committente;
-                btnIncassi.TextButton = "Incassi (" + viewModel.GetCount() + ")";
+                btnIncassi.TextButton = "Incassi (" + viewModel.Count() + ")";
             }
             catch (Exception ex)
             {

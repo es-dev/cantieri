@@ -7,6 +7,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
+using System.Linq;
 
 namespace Web.GUI.Commessa
 {
@@ -36,7 +38,7 @@ namespace Web.GUI.Commessa
             try
             {
                 var space = new CommessaModel();
-                space.Model = new WcfService.Dto.CommessaDto();
+                space.Model = new CommessaDto();
                 AddSpace(space);
             }
             catch (Exception ex)
@@ -44,6 +46,8 @@ namespace Web.GUI.Commessa
                 UtilityError.Write(ex);
             } 
         }
+
+       
 
 	}
 }

@@ -99,7 +99,7 @@ namespace Web.GUI.Fornitore
             {
                 var viewModel = new Pagamento.PagamentoViewModel(this);
                 viewModel.Fornitore = obj;
-                btnPagamenti.TextButton = "Pagamenti (" + viewModel.GetCount() + ")";
+                btnPagamenti.TextButton = "Pagamenti (" + viewModel.Count() + ")";
             }
             catch (Exception ex)
             {

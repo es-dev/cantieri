@@ -38,7 +38,7 @@ namespace Web.GUI.Account
             }
         }
 
-        public override int GetCount(string search=null)
+        public override int Count(string search = null)
         {
             try
             {

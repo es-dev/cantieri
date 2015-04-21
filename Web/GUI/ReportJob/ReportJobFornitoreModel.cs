@@ -182,7 +182,7 @@ namespace Web.GUI.ReportJob
             try
             {
                 var viewModel = (ReportJobViewModel)ViewModel;
-                var count = viewModel.GetCount();
+                var count = viewModel.Count();
                 editCodice.Value = BusinessLogic.ReportJob.GetCodice(count);
                 editDenominazione.Value = BusinessLogic.ReportJob.GetDenominazione(tipoReport);
                 editElaborazione.Value = DateTime.Today;
