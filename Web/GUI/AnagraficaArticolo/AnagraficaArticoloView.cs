@@ -20,27 +20,12 @@ namespace Web.GUI.AnagraficaArticolo
         {
             try
             {
-                Take = 10;
-                ViewModel = new AnagraficaArticoloViewModel(this);
+                ViewModel = new AnagraficaArticoloViewModel();
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var space = new AnagraficaArticoloModel();
-                space.Model = new WcfService.Dto.AnagraficaArticoloDto();
-                AddSpace(space);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
         }
 
 	}

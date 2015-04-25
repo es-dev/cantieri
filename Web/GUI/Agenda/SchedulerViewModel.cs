@@ -10,10 +10,10 @@ using WcfService.Dto;
 
 namespace Web.GUI.Agenda
 {
-    public class SchedulerViewModel : Library.Template.Scheduler.TemplateViewModel<SchedulerDto, SchedulerItem> 
+    public class SchedulerViewModel : Library.Template.Scheduler.TemplateViewModel<SchedulerView, SchedulerItem> 
     {
-        public SchedulerViewModel(ISpace space)
-            : base(space) 
+        public SchedulerViewModel()
+            : base() 
         {
             try
             {

@@ -108,7 +108,7 @@ namespace Web.GUI.Pagamento
             try
             {
                 editFatturaAcquisto.Model = fatturaAcquisto;
-                var viewModelFatturaAcquisto = new FatturaAcquisto.FatturaAcquistoViewModel(this);
+                var viewModelFatturaAcquisto = new FatturaAcquisto.FatturaAcquistoViewModel();
                 var fatturaAcquistoId = fatturaAcquisto.Id;
                 var _fatturaAcquisto = (FatturaAcquistoDto)viewModelFatturaAcquisto.Read(fatturaAcquistoId);
                 var fornitore = _fatturaAcquisto.Fornitore;
@@ -178,7 +178,7 @@ namespace Web.GUI.Pagamento
                 var fatturaAcquisto = (FatturaAcquistoDto)model;
                 if (fatturaAcquisto != null)
                 {
-                    var viewModelFatturaAcquisto = new FatturaAcquisto.FatturaAcquistoViewModel(this);
+                    var viewModelFatturaAcquisto = new FatturaAcquisto.FatturaAcquistoViewModel();
                     var fatturaAcquistoId = fatturaAcquisto.Id;
                     var _fatturaAcquisto = (FatturaAcquistoDto)viewModelFatturaAcquisto.Read(fatturaAcquistoId);
                     var fornitore = _fatturaAcquisto.Fornitore;

@@ -20,8 +20,7 @@ namespace Web.GUI.AnagraficaFornitore
         {
             try
             {
-                Take = 10;
-                ViewModel = new AnagraficaFornitoreViewModel(this);
+                ViewModel = new AnagraficaFornitoreViewModel();
             }
             catch (Exception ex)
             {
@@ -29,19 +28,6 @@ namespace Web.GUI.AnagraficaFornitore
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var space = new AnagraficaFornitoreModel();
-                space.Model = new WcfService.Dto.AnagraficaFornitoreDto();
-                AddSpace(space);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
-        }
-
+       
 	}
 }

@@ -8,11 +8,11 @@ using WcfService.Dto;
 
 namespace Web.GUI.AnagraficaArticolo
 {
-    public class AnagraficaArticoloViewModel : Library.Template.MVVM.TemplateViewModel<AnagraficaArticoloDto, AnagraficaArticoloItem>
+    public class AnagraficaArticoloViewModel : Library.Template.MVVM.TemplateViewModel<AnagraficaArticoloView, AnagraficaArticoloItem, AnagraficaArticoloModel, AnagraficaArticoloDto>
     {
 
-        public AnagraficaArticoloViewModel(ISpace space)
-            : base(space) 
+        public AnagraficaArticoloViewModel()
+            : base() 
         {
             try
             {

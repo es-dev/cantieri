@@ -20,27 +20,12 @@ namespace Web.GUI.AnagraficaCommittente
         {
             try
             {
-                Take = 10;
-                ViewModel = new AnagraficaCommittenteViewModel(this);
+                ViewModel = new AnagraficaCommittenteViewModel();
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var space = new AnagraficaCommittenteModel();
-                space.Model = new WcfService.Dto.AnagraficaCommittenteDto();
-                AddSpace(space);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
         }
 
 	}

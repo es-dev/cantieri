@@ -35,7 +35,7 @@ namespace Web.GUI.ReportJob
                     infoSubtitle.Text = "RTP N." + codice + " - Tipo " + obj.Tipo;
                     infoSubtitleImage.Image = "Images.dashboard.reportjob.png";
 
-                    var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                    var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
                     var anagraficaFornitore = viewModel.ReadAnagraficaFornitore(codiceFornitore);
                     var ragioneSociale = (anagraficaFornitore != null ? anagraficaFornitore.RagioneSociale : "N/D");
                     infoTitle.Text = (obj.Id!=0? "REPORT " + codice + " - " + ragioneSociale:"NUOVO REPORT");
@@ -181,7 +181,7 @@ namespace Web.GUI.ReportJob
                 bool saved = Save();
                 if (saved)
                 {
-                    var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                    var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
                     var anagraficheFornitori = viewModelAnagraficaFornitore.ReadAnagraficheFornitori();
                     if (anagraficheFornitori != null)
                     {
@@ -191,9 +191,9 @@ namespace Web.GUI.ReportJob
                         var fileName = "ResocontoFornitori_" + data + ".PDF";
                         var pathReport = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileName;
                         var account = SessionManager.GetAccount(Context);
-                        var viewModelAzienda = new Azienda.AziendaViewModel(this);
+                        var viewModelAzienda = new Azienda.AziendaViewModel();
                         var azienda = viewModelAzienda.ReadAzienda(account);
-                        var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
+                        var viewModelFornitore = new Fornitore.FornitoreViewModel();
                         var fornitori = viewModelFornitore.ReadFornitori(anagraficheFornitori);
 
                         var report = BusinessLogic.ReportJob.GetReportFornitori(azienda, anagraficheFornitori.ToList(), fornitori.ToList(), elaborazione);

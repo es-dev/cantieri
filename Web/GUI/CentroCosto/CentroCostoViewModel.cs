@@ -8,11 +8,11 @@ using WcfService.Dto;
 
 namespace Web.GUI.CentroCosto
 {
-    public class CentroCostoViewModel : Library.Template.MVVM.TemplateViewModel<CentroCostoDto, CentroCostoItem>
+    public class CentroCostoViewModel : Library.Template.MVVM.TemplateViewModel<CentroCostoView, CentroCostoItem, CentroCostoModel, CentroCostoDto>
     {
 
-        public CentroCostoViewModel(ISpace space)
-            : base(space) 
+        public CentroCostoViewModel()
+            : base() 
         {
             try
             {

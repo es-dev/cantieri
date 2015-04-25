@@ -49,7 +49,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                 var fatturaAcquisto = obj.FatturaAcquisto;
                 var numeroFatturaAcquisto = (fatturaAcquisto != null ? fatturaAcquisto.Numero : "N/D");
                 var pagamentoUnificato = obj.PagamentoUnificato;
-                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
                 var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(pagamentoUnificato);
                 var ragioneSociale = (anagraficaFornitore != null ? anagraficaFornitore.RagioneSociale : "N/D");
                 infoTitle.Text = (obj.Id!=0? "PAGAMENTO UNIFICATO " + pagamentoUnificato.Codice + " - FATTURA DI ACQUISTO N." +numeroFatturaAcquisto +" - " + ragioneSociale:"NUOVA FATTURA DI ACQUISTO PER PAGAMENTO UNIFICATO");
@@ -164,7 +164,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                 if (pagamentoUnificato != null)
                 {
                     var codiceFornitore = pagamentoUnificato.CodiceFornitore;
-                    var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                    var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
                     var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
                     var view = new FatturaAcquisto.FatturaAcquistoView(anagraficaFornitore, Tipi.StatoFattura.NonPagata | Tipi.StatoFattura.Insoluta);
                     view.Title = "SELEZIONA LA FATTURA DI ACQUISTO";

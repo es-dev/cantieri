@@ -20,27 +20,12 @@ namespace Web.GUI.CentroCosto
         {
             try
             {
-                Take = 10;
-                ViewModel = new CentroCostoViewModel(this);
+                ViewModel = new CentroCostoViewModel();
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var space = new CentroCostoModel();
-                space.Model = new WcfService.Dto.CentroCostoDto();
-                AddSpace(space);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
         }
 
 	}

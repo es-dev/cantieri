@@ -21,8 +21,7 @@ namespace Web.GUI.Dashboard.Lavoro
         {
             try
             {
-                Take = 10;
-                ViewModel = new DashboardLavoroViewModel(this);
+                ViewModel = new DashboardLavoroViewModel();
                 Title = "DASHBOARD";
                 Adding = false;
             }

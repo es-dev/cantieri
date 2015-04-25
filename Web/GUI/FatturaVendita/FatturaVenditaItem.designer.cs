@@ -134,7 +134,6 @@ namespace Web.GUI.FatturaVendita
             this.jqContainer.Controls.Add(this.infoCommittente);
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Size = new System.Drawing.Size(400, 100);
-            this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.FatturaVenditaItem_ItemClick);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.jqContainer.ResumeLayout(false);

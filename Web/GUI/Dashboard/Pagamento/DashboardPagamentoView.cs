@@ -21,8 +21,7 @@ namespace Web.GUI.Dashboard.Pagamento
         {
             try
             {
-                Take = 10;
-                ViewModel = new DashboardPagamentoViewModel(this);
+                ViewModel = new DashboardPagamentoViewModel();
                 Title = "DASHBOARD";
                 Adding = false;
             }

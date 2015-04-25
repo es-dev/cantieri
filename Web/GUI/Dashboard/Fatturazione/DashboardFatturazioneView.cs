@@ -21,8 +21,7 @@ namespace Web.GUI.Dashboard.Fatturazione
         {
             try
             {
-                Take = 10;
-                ViewModel = new DashboardFatturazioneViewModel(this);
+                ViewModel = new DashboardFatturazioneViewModel();
                 Title = "DASHBOARD";
                 Adding = false;
             }

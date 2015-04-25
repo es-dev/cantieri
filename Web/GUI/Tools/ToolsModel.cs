@@ -92,7 +92,7 @@ namespace Web.GUI.Tools
             try
             {
                 AddLog("Avvio controllo anagrafiche committenti");
-                var viewModel = new AnagraficaCommittente.AnagraficaCommittenteViewModel(this);
+                var viewModel = new AnagraficaCommittente.AnagraficaCommittenteViewModel();
                 var anagraficheCommittenti= viewModel.ReadAnagraficheCommittenti();
                 foreach (var anagraficaCommittente in anagraficheCommittenti)
                 {
@@ -126,7 +126,7 @@ namespace Web.GUI.Tools
             try
             {
                 AddLog("Avvio controllo anagrafiche fornitori");
-                var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
                 var anagraficheFornitori = viewModel.ReadAnagraficheFornitori();
                 foreach (var anagraficaFornitore in anagraficheFornitori)
                 {
@@ -159,7 +159,7 @@ namespace Web.GUI.Tools
             try
             {
                 AddLog("Avvio controllo fornitori");
-                var viewModel = new Fornitore.FornitoreViewModel(this);
+                var viewModel = new Fornitore.FornitoreViewModel();
                 var fornitori = viewModel.ReadFornitori();
                 foreach (var fornitore in fornitori)
                 {
@@ -192,7 +192,7 @@ namespace Web.GUI.Tools
             try
             {
                 AddLog("Avvio controllo committenti");
-                var viewModel = new Committente.CommittenteViewModel(this);
+                var viewModel = new Committente.CommittenteViewModel();
                 var committenti = viewModel.ReadCommittenti();
                 foreach (var committente in committenti)
                 {
@@ -225,7 +225,7 @@ namespace Web.GUI.Tools
             try
             {
                 AddLog("Avvio controllo commesse");
-                var viewModel = new Commessa.CommessaViewModel(this);
+                var viewModel = new Commessa.CommessaViewModel();
                 var commesse = viewModel.ReadCommesse();
                 foreach (var commessa in commesse)
                 {
@@ -259,7 +259,7 @@ namespace Web.GUI.Tools
             try
             {
                 AddLog("Avvio controllo aziende");
-                var viewModel = new Azienda.AziendaViewModel(this);
+                var viewModel = new Azienda.AziendaViewModel();
                 var aziende = viewModel.ReadAziende();
                 foreach (var azienda in aziende)
                 {

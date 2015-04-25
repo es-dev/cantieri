@@ -47,20 +47,6 @@ namespace Web.GUI.AnagraficaFornitore
             }
         }
 
-        private void AnagraficaFornitoreItem_ItemClick(IItem item)
-        {
-            try
-            {
-                if (item != null)
-                {
-                    var space = new AnagraficaFornitoreModel();
-                    AddSpace(space);
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
-        }
+     
 	}
 }

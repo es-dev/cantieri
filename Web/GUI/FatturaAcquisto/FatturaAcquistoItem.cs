@@ -90,20 +90,6 @@ namespace Web.GUI.FatturaAcquisto
             return null;
         }
 
-        private void FatturaAcquistoItem_ItemClick(IItem item)
-        {
-            try
-            {
-                if (item != null)
-                {
-                    var space = new FatturaAcquistoModel();
-                    AddSpace(space);
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
-        }
+        
 	}
 }

@@ -85,7 +85,7 @@ namespace Web.GUI.ReportJob
                     if (tipo == Tipi.TipoReport.Fornitore.ToString())
                     {
                         var codiceFornitore = obj.CodiceFornitore;
-                        var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                        var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
                         var anagraficaFornitore=viewModel.ReadAnagraficaFornitore(codiceFornitore);
                         if(anagraficaFornitore!=null)
                         {
@@ -103,7 +103,7 @@ namespace Web.GUI.ReportJob
             return null;
         }
 
-        private void ReportJobItem_ItemClick(IItem item)
+        public override void ItemClick(IItem item)
         {
             try
             {

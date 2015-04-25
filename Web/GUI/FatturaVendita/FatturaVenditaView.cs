@@ -41,8 +41,7 @@ namespace Web.GUI.FatturaVendita
         {
             try
             {
-                Take = 10;
-                ViewModel = new FatturaVenditaViewModel(this);
+                ViewModel = new FatturaVenditaViewModel();
             }
             catch (Exception ex)
             {
@@ -50,7 +49,7 @@ namespace Web.GUI.FatturaVendita
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        public override void AddNewModel()
         {
             try
             {
@@ -61,7 +60,7 @@ namespace Web.GUI.FatturaVendita
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
-            } 
+            }
         }
 
 	}

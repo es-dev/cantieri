@@ -39,20 +39,6 @@ namespace Web.GUI.AnagraficaArticolo
             }
         }
 
-        private void AnagraficaArticoloItem_ItemClick(IItem item)
-        {
-            try
-            {
-                if (item != null)
-                {
-                    var space = new AnagraficaArticoloModel();
-                    AddSpace(space);
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
-        }
+        
 	}
 }

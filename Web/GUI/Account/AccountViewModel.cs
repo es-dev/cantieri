@@ -8,11 +8,11 @@ using WcfService.Dto;
 
 namespace Web.GUI.Account
 {
-    public class AccountViewModel : Library.Template.MVVM.TemplateViewModel<AccountDto, AccountItem>
+    public class AccountViewModel : Library.Template.MVVM.TemplateViewModel<AccountView, AccountItem, AccountModel, AccountDto>
     {
 
-        public AccountViewModel(ISpace space)
-            : base(space) 
+        public AccountViewModel()
+            : base() 
         {
             try
             {

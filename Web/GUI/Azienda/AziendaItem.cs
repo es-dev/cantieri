@@ -44,20 +44,6 @@ namespace Web.GUI.Azienda
             }
         }
 
-        private void AziendaItem_ItemClick(IItem item)
-        {
-            try
-            {
-                if (item != null)
-                {
-                    var space = new AziendaModel();
-                    AddSpace(space);
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
-        }
+       
 	}
 }

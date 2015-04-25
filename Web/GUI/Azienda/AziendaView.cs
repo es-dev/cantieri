@@ -20,27 +20,12 @@ namespace Web.GUI.Azienda
         {
             try
             {
-                Take = 10;
-                ViewModel = new AziendaViewModel(this);
+                ViewModel = new AziendaViewModel();
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var space = new AziendaModel();
-                space.Model = new WcfService.Dto.AziendaDto() ;
-                AddSpace(space);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
         }
 
 	}

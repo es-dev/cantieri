@@ -58,20 +58,6 @@ namespace Web.GUI.NotaCredito
          
         }
 
-        private void NotaCreditoItem_ItemClick(IItem item)
-        {
-            try
-            {
-                if (item != null)
-                {
-                    var space = new NotaCreditoModel();
-                    AddSpace(space);
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
-        }
+      
 	}
 }

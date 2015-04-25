@@ -124,7 +124,6 @@ namespace Web.GUI.Articolo
    
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Size = new System.Drawing.Size(400, 100);
-            this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.ArticoloItem_ItemClick);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.jqContainer.ResumeLayout(false);

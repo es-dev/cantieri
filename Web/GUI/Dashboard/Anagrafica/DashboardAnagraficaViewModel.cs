@@ -16,8 +16,8 @@ namespace Web.GUI.Dashboard.Anagrafica
     public class DashboardAnagraficaViewModel: TemplateViewModel<DashboardDto, DashboardAnagraficaItem>
     {
 
-        public DashboardAnagraficaViewModel(ISpace space)
-            : base(space) 
+        public DashboardAnagraficaViewModel()
+            : base() 
         {
 
         }

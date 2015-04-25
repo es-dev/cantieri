@@ -88,20 +88,6 @@ namespace Web.GUI.FatturaVendita
             return null;
         }
 
-        private void FatturaVenditaItem_ItemClick(IItem item)
-        {
-            try
-            {
-                if (item != null)
-                {
-                    var space = new FatturaVenditaModel();
-                    AddSpace(space);
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
-        }
+       
 	}
 }

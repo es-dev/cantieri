@@ -8,7 +8,7 @@ using WcfService.Dto;
 
 namespace Web.GUI.Incasso
 {
-    public class IncassoViewModel : Library.Template.MVVM.TemplateViewModel<IncassoDto, IncassoItem>
+    public class IncassoViewModel : Library.Template.MVVM.TemplateViewModel<IncassoView, IncassoItem, IncassoModel, IncassoDto>
     {
         private CommittenteDto committente = null;
         public CommittenteDto Committente
@@ -36,8 +36,8 @@ namespace Web.GUI.Incasso
             }
         }
 
-        public IncassoViewModel(ISpace space)
-            : base(space) 
+        public IncassoViewModel()
+            : base() 
         {
             try
             {

@@ -137,7 +137,6 @@ namespace Web.GUI.Reso
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Size = new System.Drawing.Size(400, 100);
-            this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.ResoItem_ItemClick);
             this.jqContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);

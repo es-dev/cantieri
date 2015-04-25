@@ -8,7 +8,7 @@ using WcfService.Dto;
 
 namespace Web.GUI.FatturaVendita
 {
-    public class FatturaVenditaViewModel : Library.Template.MVVM.TemplateViewModel<FatturaVenditaDto, FatturaVenditaItem>
+    public class FatturaVenditaViewModel : Library.Template.MVVM.TemplateViewModel<FatturaVenditaView, FatturaVenditaItem, FatturaVenditaModel, FatturaVenditaDto>
     {
         private CommittenteDto committente = null;
 
@@ -24,8 +24,8 @@ namespace Web.GUI.FatturaVendita
             }
         }
 
-        public FatturaVenditaViewModel(ISpace space)
-            : base(space) 
+        public FatturaVenditaViewModel()
+            : base() 
         {
             try
             {

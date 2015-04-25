@@ -8,7 +8,7 @@ using WcfService.Dto;
 
 namespace Web.GUI.SAL
 {
-    public class SALViewModel : Library.Template.MVVM.TemplateViewModel<SALDto, SALItem>
+    public class SALViewModel : Library.Template.MVVM.TemplateViewModel<SALView, SALItem, SALModel, SALDto>
     {
         private CommessaDto commessa = null;
 
@@ -24,8 +24,8 @@ namespace Web.GUI.SAL
             }
         }
 
-        public SALViewModel(ISpace space)
-            : base(space) 
+        public SALViewModel()
+            : base() 
         {
             try
             {

@@ -20,27 +20,12 @@ namespace Web.GUI.Articolo
         {
             try
             {
-                Take = 10;
-                ViewModel = new ArticoloViewModel(this);
+                ViewModel = new ArticoloViewModel();
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var space = new ArticoloModel();
-                space.Model = new WcfService.Dto.ArticoloDto();
-                AddSpace(space);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
         }
 
 	}

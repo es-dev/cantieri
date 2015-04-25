@@ -8,11 +8,11 @@ using WcfService.Dto;
 
 namespace Web.GUI.PagamentoUnificato
 {
-    public class PagamentoUnificatoViewModel : Library.Template.MVVM.TemplateViewModel<PagamentoUnificatoDto, PagamentoUnificatoItem>
+    public class PagamentoUnificatoViewModel : Library.Template.MVVM.TemplateViewModel<PagamentoUnificatoView, PagamentoUnificatoItem, PagamentoUnificatoModel, PagamentoUnificatoDto>
     {
 
-        public PagamentoUnificatoViewModel(ISpace space)
-            : base(space) 
+        public PagamentoUnificatoViewModel()
+            : base() 
         {
             try
             {

@@ -61,7 +61,7 @@ namespace Web.GUI.SAL
                 if (sal != null)
                 {
                     var commessaId = sal.CommessaId;
-                    var viewModel = new Commessa.CommessaViewModel(this);
+                    var viewModel = new Commessa.CommessaViewModel();
                     var commessa = (CommessaDto)viewModel.Read(commessaId);
                     return commessa;
                 }
@@ -105,20 +105,6 @@ namespace Web.GUI.SAL
             return null;
         }
 
-        private void SALItem_ItemClick(IItem item)
-        {
-            try
-            {
-                if (item != null)
-                {
-                    var space = new SALModel();
-                    AddSpace(space);
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
-        }
+      
 	}
 }

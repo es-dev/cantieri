@@ -8,11 +8,11 @@ using WcfService.Dto;
 
 namespace Web.GUI.Articolo
 {
-    public class ArticoloViewModel : Library.Template.MVVM.TemplateViewModel<ArticoloDto, ArticoloItem>
+    public class ArticoloViewModel : Library.Template.MVVM.TemplateViewModel<ArticoloView, ArticoloItem, ArticoloModel, ArticoloDto>
     {
 
-        public ArticoloViewModel(ISpace space)
-            : base(space) 
+        public ArticoloViewModel()
+            : base() 
         {
             try
             {

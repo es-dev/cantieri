@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 
 namespace Web.GUI.ReportJob
 {
@@ -21,8 +22,7 @@ namespace Web.GUI.ReportJob
         {
             try
             {
-                Take = 10;
-                ViewModel = new ReportJobViewModel(this);
+                ViewModel = new ReportJobViewModel();
             }
             catch (Exception ex)
             {
@@ -30,7 +30,7 @@ namespace Web.GUI.ReportJob
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)    //todo: parametrizzare per tipo report (pannello di selezione con descrizione)
+        public override void AddNewModel()    
         {
             try
             {
@@ -57,7 +57,7 @@ namespace Web.GUI.ReportJob
                 else if (optResocontoCommittenti.Checked)
                     space = new ReportJobCommittentiModel();
 
-                space.Model = new WcfService.Dto.ReportJobDto();
+                space.Model = new ReportJobDto();
                 AddSpace(space);
                 panelTipoReport.Visible = false;
 

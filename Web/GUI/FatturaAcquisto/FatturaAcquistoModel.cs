@@ -218,7 +218,7 @@ namespace Web.GUI.FatturaAcquisto
                 if (fatturaAcquisto != null)
                 {
                     var fornitoreId = fatturaAcquisto.FornitoreId;
-                    var viewModel = new Fornitore.FornitoreViewModel(this);
+                    var viewModel = new Fornitore.FornitoreViewModel();
                     var fornitore = (FornitoreDto)viewModel.Read(fornitoreId);
                     if(fornitore!=null)
                     {

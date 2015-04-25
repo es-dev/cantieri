@@ -100,7 +100,7 @@ namespace Web.GUI.PagamentoUnificato
         {
             try
             {
-                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
                 var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
                 
                 editFornitore.Model = anagraficaFornitore;

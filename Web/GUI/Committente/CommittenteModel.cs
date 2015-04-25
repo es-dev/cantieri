@@ -95,7 +95,7 @@ namespace Web.GUI.Committente
         {
             try
             {
-                var viewModel = new Incasso.IncassoViewModel(this);
+                var viewModel = new Incasso.IncassoViewModel();
                 viewModel.Committente = committente;
                 btnIncassi.TextButton = "Incassi (" + viewModel.Count() + ")";
             }
@@ -364,11 +364,11 @@ namespace Web.GUI.Committente
                 var validated = new UtilityValidation.ValidationState();
 
                 var obj = (CommittenteDto)Model;
-                var viewModelCommittente = new Committente.CommittenteViewModel(this);
+                var viewModelCommittente = new Committente.CommittenteViewModel();
                 var commessa = (CommessaDto)editCommessa.Model;
                 var committenti = viewModelCommittente.ReadCommittenti(commessa);
                 var codiceCommittente = editCodiceCommittente.Value;
-                var viewModelAnagraficaCommittente = new AnagraficaCommittente.AnagraficaCommittenteViewModel(this);
+                var viewModelAnagraficaCommittente = new AnagraficaCommittente.AnagraficaCommittenteViewModel();
                 var anagraficaCommittente = viewModelAnagraficaCommittente.ReadAnagraficaCommittente(codiceCommittente);
                 var validateCommittente = BusinessLogic.Diagnostico.ValidateCommittente(obj, committenti, anagraficaCommittente, commessa);
                 if (validateCommittente != null)

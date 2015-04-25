@@ -35,7 +35,7 @@ namespace Web.GUI.ReportJob
                     infoSubtitle.Text = "RTP N." + codice + " - Tipo " + obj.Tipo;
                     infoSubtitleImage.Image = "Images.dashboard.reportjob.png";
 
-                    var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                    var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
                     var anagraficaFornitore = viewModel.ReadAnagraficaFornitore(codiceFornitore);
                     var ragioneSociale = (anagraficaFornitore != null ? anagraficaFornitore.RagioneSociale : "N/D");
                     infoTitle.Text = (obj.Id!=0? "REPORT " + codice + " - " + ragioneSociale:"NUOVO REPORT");
@@ -107,7 +107,7 @@ namespace Web.GUI.ReportJob
         {
             try
             {
-                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
                 var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
                 editFornitore.Model = anagraficaFornitore;
                 editFornitore.Value = (anagraficaFornitore != null ? anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale : null);
@@ -241,9 +241,9 @@ namespace Web.GUI.ReportJob
                         var fileName = "SituazioneFornitore_" + ragioneSocialeFornitore + "_" + data + ".PDF";
                         var pathReport = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileName;
                         var account = SessionManager.GetAccount(Context);
-                        var viewModelAzienda = new Azienda.AziendaViewModel(this);
+                        var viewModelAzienda = new Azienda.AziendaViewModel();
                         var azienda = viewModelAzienda.ReadAzienda(account);
-                        var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
+                        var viewModelFornitore = new Fornitore.FornitoreViewModel();
                         var fornitori = viewModelFornitore.ReadFornitori(anagraficaFornitore);
 
                         var report = BusinessLogic.ReportJob.GetReportFornitore(azienda, anagraficaFornitore, fornitori.ToList(), elaborazione);

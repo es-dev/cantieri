@@ -46,20 +46,6 @@ namespace Web.GUI.AnagraficaCommittente
             }
         }
 
-        private void AnagraficaCommittenteItem_ItemClick(IItem item)
-        {
-            try
-            {
-                if (item != null)
-                {
-                    var space = new AnagraficaCommittenteModel();
-                    AddSpace(space);
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
-        }
+       
 	}
 }

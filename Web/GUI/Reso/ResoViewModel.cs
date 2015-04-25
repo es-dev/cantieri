@@ -8,7 +8,7 @@ using WcfService.Dto;
 
 namespace Web.GUI.Reso
 {
-    public class ResoViewModel : Library.Template.MVVM.TemplateViewModel<ResoDto, ResoItem>
+    public class ResoViewModel : Library.Template.MVVM.TemplateViewModel<ResoView, ResoItem, ResoModel, ResoDto>
     {
 
         private NotaCreditoDto notaCredito = null;
@@ -38,8 +38,8 @@ namespace Web.GUI.Reso
         }
 
 
-        public ResoViewModel(ISpace space)
-            : base(space)
+        public ResoViewModel()
+            : base()
         {
             try
             {

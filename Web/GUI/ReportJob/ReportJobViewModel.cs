@@ -8,11 +8,11 @@ using WcfService.Dto;
 
 namespace Web.GUI.ReportJob
 {
-    public class ReportJobViewModel : Library.Template.MVVM.TemplateViewModel<ReportJobDto, ReportJobItem>
+    public class ReportJobViewModel : Library.Template.MVVM.TemplateViewTypeModel<ReportJobView, ReportJobItem, ReportJobDto>
     {
 
-        public ReportJobViewModel(ISpace space)
-            : base(space) 
+        public ReportJobViewModel()
+            : base() 
         {
             try
             {

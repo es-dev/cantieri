@@ -8,7 +8,7 @@ using WcfService.Dto;
 
 namespace Web.GUI.Pagamento
 {
-    public class PagamentoViewModel : Library.Template.MVVM.TemplateViewModel<PagamentoDto, PagamentoItem>
+    public class PagamentoViewModel : Library.Template.MVVM.TemplateViewModel<PagamentoView, PagamentoItem, PagamentoModel, PagamentoDto>
     {
         private FatturaAcquistoDto fatturaAcquisto = null;
         public FatturaAcquistoDto FatturaAcquisto
@@ -36,8 +36,8 @@ namespace Web.GUI.Pagamento
             }
         }
 
-        public PagamentoViewModel(ISpace space)
-            : base(space)
+        public PagamentoViewModel()
+            : base()
         {
             try
             {

@@ -46,9 +46,9 @@ namespace Web.GUI.Reso
                 infoSubtitleImage.Image = "Images.dashboard.reso.png";
                 var notaCredito = obj.NotaCredito;
                 var numeroNotaCredito = (notaCredito!=null? notaCredito.Numero: "N/D");
-                var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
+                var viewModelFornitore = new Fornitore.FornitoreViewModel();
                 var fornitore = viewModelFornitore.ReadFornitore(notaCredito);
-                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
                 var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(fornitore);
                 var ragioneSociale = (anagraficaFornitore!=null? anagraficaFornitore.RagioneSociale:"N/D");
                 infoTitle.Text = (obj.Id != 0 ? "RESO " + obj.Codice + " - NOTA DI CREDITO N." + numeroNotaCredito + " - " + ragioneSociale : "NUOVO RESO");
@@ -163,9 +163,9 @@ namespace Web.GUI.Reso
                 var notaCredito = (NotaCreditoDto)editNotaCredito.Model;
                 if (notaCredito != null)
                 {
-                    var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
+                    var viewModelFornitore = new Fornitore.FornitoreViewModel();
                     var fornitore = viewModelFornitore.ReadFornitore(notaCredito);
-                    var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                    var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
                     var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(fornitore);
                     var view = new FatturaAcquisto.FatturaAcquistoView(anagraficaFornitore, Tipi.StatoFattura.NonPagata | Tipi.StatoFattura.Insoluta);
                     view.Title = "SELEZIONA LA FATTURA DI ACQUISTO";

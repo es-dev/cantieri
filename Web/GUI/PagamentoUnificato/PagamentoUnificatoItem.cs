@@ -52,7 +52,7 @@ namespace Web.GUI.PagamentoUnificato
                 if (obj != null)
                 {
                     var codiceFornitore = obj.CodiceFornitore;
-                    var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                    var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
                     var anagraficaFornitore = viewModel.ReadAnagraficaFornitore(codiceFornitore);
                     infoFornitore.Text = (anagraficaFornitore != null ? anagraficaFornitore.RagioneSociale : "N/D");
                 }
@@ -64,20 +64,6 @@ namespace Web.GUI.PagamentoUnificato
 
         }
 
-        private void PagamentoUnificatoItem_ItemClick(IItem item)
-        {
-            try
-            {
-                if (item != null)
-                {
-                    var space = new PagamentoUnificatoModel();
-                    AddSpace(space);
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
-        }
+      
 	}
 }

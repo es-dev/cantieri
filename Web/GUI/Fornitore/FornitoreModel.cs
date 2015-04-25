@@ -97,7 +97,7 @@ namespace Web.GUI.Fornitore
         {
             try
             {
-                var viewModel = new Pagamento.PagamentoViewModel(this);
+                var viewModel = new Pagamento.PagamentoViewModel();
                 viewModel.Fornitore = obj;
                 btnPagamenti.TextButton = "Pagamenti (" + viewModel.Count() + ")";
             }
@@ -407,11 +407,11 @@ namespace Web.GUI.Fornitore
                 var validated = new UtilityValidation.ValidationState();
 
                 var obj = (FornitoreDto)Model;
-                var viewModelFornitore = new Fornitore.FornitoreViewModel(this);
+                var viewModelFornitore = new Fornitore.FornitoreViewModel();
                 var commessa = (CommessaDto)editCommessa.Model;
                 var fornitori = viewModelFornitore.ReadFornitori(commessa);
                 var codiceFornitore = editCodiceFornitore.Value;
-                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel(this);
+                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
                 var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
                 
                 var validateFornitore = BusinessLogic.Diagnostico.ValidateFornitore(obj, fornitori, anagraficaFornitore, commessa);

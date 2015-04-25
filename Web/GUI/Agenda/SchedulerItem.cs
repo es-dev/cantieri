@@ -17,7 +17,6 @@ namespace Web.GUI.Agenda
 		{
             try
             {
-                this.ItemClick += AgendaItem_ItemClick;
             }
             catch (Exception ex)
             {
@@ -44,7 +43,7 @@ namespace Web.GUI.Agenda
             }
         }
 
-        private void AgendaItem_ItemClick(IItem item)
+        public override void ItemClick(IItem item)
         {
             try
             {
@@ -56,14 +55,14 @@ namespace Web.GUI.Agenda
                     {
                         var obj = (FatturaAcquistoDto)model;
                         var space = new FatturaAcquistoModel();
-                        var viewModel = new FatturaAcquistoViewModel(this);
+                        var viewModel = new FatturaAcquistoViewModel();
                         AddSpace(space, obj, viewModel);
                     }
                     else if (model.GetType() == typeof(PagamentoDto))
                     {
                         var obj = (PagamentoDto)model;
                         var space = new PagamentoModel();
-                        var viewModel = new PagamentoViewModel(this);
+                        var viewModel = new PagamentoViewModel();
                         AddSpace(space, obj, viewModel);
                     }
                 }
@@ -71,8 +70,8 @@ namespace Web.GUI.Agenda
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
-            } 
+            }
         }
-
+       
     }
 }

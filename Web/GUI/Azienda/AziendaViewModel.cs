@@ -8,11 +8,11 @@ using WcfService.Dto;
 
 namespace Web.GUI.Azienda
 {
-    public class AziendaViewModel : Library.Template.MVVM.TemplateViewModel<AziendaDto, AziendaItem>
+    public class AziendaViewModel : Library.Template.MVVM.TemplateViewModel<AziendaView, AziendaItem, AziendaModel, AziendaDto>
     {
 
-        public AziendaViewModel(ISpace space)
-            : base(space) 
+        public AziendaViewModel()
+            : base() 
         {
             try
             {

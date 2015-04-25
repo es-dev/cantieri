@@ -8,7 +8,7 @@ using WcfService.Dto;
 
 namespace Web.GUI.Committente
 {
-    public class CommittenteViewModel : Library.Template.MVVM.TemplateViewModel<CommittenteDto, CommittenteItem>
+    public class CommittenteViewModel : Library.Template.MVVM.TemplateViewModel<CommittenteView, CommittenteItem, CommittenteModel, CommittenteDto>
     {
         private CommessaDto commessa = null;
 
@@ -24,8 +24,8 @@ namespace Web.GUI.Committente
             }
         }
 
-        public CommittenteViewModel(ISpace space)
-            : base(space) 
+        public CommittenteViewModel()
+            : base() 
         {
             try
             {

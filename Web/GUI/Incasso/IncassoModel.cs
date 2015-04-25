@@ -107,7 +107,7 @@ namespace Web.GUI.Incasso
             try
             {
                 editFatturaVendita.Model = fatturaVendita;
-                var viewModelFatturaVendita = new FatturaVendita.FatturaVenditaViewModel(this);
+                var viewModelFatturaVendita = new FatturaVendita.FatturaVenditaViewModel();
                 var fatturaVenditaId = fatturaVendita.Id;
                 var _fatturaVendita= (FatturaVenditaDto)viewModelFatturaVendita.Read(fatturaVenditaId);
                 var committente = _fatturaVendita.Committente;
@@ -178,7 +178,7 @@ namespace Web.GUI.Incasso
                 var fatturaVendita = (WcfService.Dto.FatturaVenditaDto)model;
                 if (fatturaVendita != null)
                 {
-                    var viewModelFatturaVendita = new FatturaVendita.FatturaVenditaViewModel(this);
+                    var viewModelFatturaVendita = new FatturaVendita.FatturaVenditaViewModel();
                     var fatturaVenditaId = fatturaVendita.Id;
                     var _fatturaVendita = (FatturaVenditaDto)viewModelFatturaVendita.Read(fatturaVenditaId);
                     var committente = _fatturaVendita.Committente;

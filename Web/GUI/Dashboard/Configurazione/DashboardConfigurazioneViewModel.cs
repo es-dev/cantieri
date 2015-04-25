@@ -27,7 +27,7 @@ namespace Web.GUI.Dashboard.Configurazione
     public class DashboardConfigurazioneViewModel : TemplateViewModel<DashboardDto, DashboardConfigurazioneItem>
     {
         
-        public DashboardConfigurazioneViewModel(ISpace space) : base(space) 
+        public DashboardConfigurazioneViewModel() : base() 
         {
 
         }

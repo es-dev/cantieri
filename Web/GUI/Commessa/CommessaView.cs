@@ -24,8 +24,7 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                Take = 10;
-                ViewModel = new CommessaViewModel(this);
+                ViewModel = new CommessaViewModel();
             }
             catch (Exception ex)
             {
@@ -33,21 +32,6 @@ namespace Web.GUI.Commessa
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var space = new CommessaModel();
-                space.Model = new CommessaDto();
-                AddSpace(space);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
-        }
-
-       
 
 	}
 }

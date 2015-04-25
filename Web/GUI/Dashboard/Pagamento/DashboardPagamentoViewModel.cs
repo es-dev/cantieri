@@ -31,8 +31,8 @@ namespace Web.GUI.Dashboard.Pagamento
     public class DashboardPagamentoViewModel : TemplateViewModel<DashboardDto, DashboardPagamentoItem>
     {
 
-        public DashboardPagamentoViewModel(ISpace space)
-            : base(space) 
+        public DashboardPagamentoViewModel()
+            : base() 
         {
 
         }

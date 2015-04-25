@@ -40,8 +40,7 @@ namespace Web.GUI.SAL
         {
             try
             {
-                Take = 10;
-                ViewModel = new SALViewModel(this);
+                ViewModel = new SALViewModel();
             }
             catch (Exception ex)
             {
@@ -49,7 +48,7 @@ namespace Web.GUI.SAL
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        public override void AddNewModel()
         {
             try
             {
@@ -60,7 +59,7 @@ namespace Web.GUI.SAL
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
-            } 
+            }
         }
 
 	}

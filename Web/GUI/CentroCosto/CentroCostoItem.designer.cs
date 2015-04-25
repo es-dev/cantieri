@@ -106,7 +106,6 @@ namespace Web.GUI.CentroCosto
             this.jqContainer.Controls.Add(this.infoDenominazione);
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Size = new System.Drawing.Size(400, 100);
-            this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.CentroCostoItem_ItemClick);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.jqContainer.ResumeLayout(false);

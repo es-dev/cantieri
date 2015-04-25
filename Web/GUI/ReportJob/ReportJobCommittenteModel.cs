@@ -35,7 +35,7 @@ namespace Web.GUI.ReportJob
                     infoSubtitle.Text = "RTP N." + codice + " - Tipo " + obj.Tipo;
                     infoSubtitleImage.Image = "Images.dashboard.reportjob.png";
 
-                    var viewModel = new AnagraficaCommittente.AnagraficaCommittenteViewModel(this);
+                    var viewModel = new AnagraficaCommittente.AnagraficaCommittenteViewModel();
                     var anagraficaCommittente = viewModel.ReadAnagraficaCommittente(codiceCommittente);
                     var ragioneSociale = (anagraficaCommittente != null ? anagraficaCommittente.RagioneSociale : "N/D");
                     infoTitle.Text = (obj.Id!=0? "REPORT " + codice + " - " + ragioneSociale:"NUOVO REPORT");
@@ -107,7 +107,7 @@ namespace Web.GUI.ReportJob
         {
             try
             {
-                var viewModelAnagraficaCommittente = new AnagraficaCommittente.AnagraficaCommittenteViewModel(this);
+                var viewModelAnagraficaCommittente = new AnagraficaCommittente.AnagraficaCommittenteViewModel();
                 var anagraficaCommittente = viewModelAnagraficaCommittente.ReadAnagraficaCommittente(codiceCommittente);
                 editCommittente.Model = anagraficaCommittente;
                 editCommittente.Value = (anagraficaCommittente != null ? anagraficaCommittente.Codice + " - " + anagraficaCommittente.RagioneSociale : null);
@@ -238,9 +238,9 @@ namespace Web.GUI.ReportJob
                     var fileName = "SituazioneCommittente_" + ragioneSocialeCommittente + "_" + data + ".PDF";
                     var pathReport = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileName;
                     var account = SessionManager.GetAccount(Context);
-                    var viewModelAzienda = new Azienda.AziendaViewModel(this);
+                    var viewModelAzienda = new Azienda.AziendaViewModel();
                     var azienda = viewModelAzienda.ReadAzienda(account);
-                    var viewModelCommittente = new Committente.CommittenteViewModel(this);
+                    var viewModelCommittente = new Committente.CommittenteViewModel();
                     var committenti = viewModelCommittente.ReadCommittenti(anagraficaCommittente);
 
                     var report = BusinessLogic.ReportJob.GetReportCommittente(azienda, anagraficaCommittente, committenti.ToList(), elaborazione);

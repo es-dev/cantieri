@@ -34,7 +34,7 @@ namespace Web.GUI.Dashboard
     public class DashboardViewModel: TemplateViewModel<DashboardDto, DashboardItem>
     {
 
-        public DashboardViewModel(ISpace space) : base(space) 
+        public DashboardViewModel() : base() 
         {
 
         }

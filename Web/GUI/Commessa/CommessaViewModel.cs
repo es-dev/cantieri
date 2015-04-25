@@ -10,11 +10,11 @@ using WcfService.Dto;
 
 namespace Web.GUI.Commessa
 {
-    public class CommessaViewModel : Library.Template.MVVM.TemplateViewModel<CommessaDto, CommessaItem>
+    public class CommessaViewModel : Library.Template.MVVM.TemplateViewModel<CommessaView, CommessaItem, CommessaModel, CommessaDto>
     {
      
-        public CommessaViewModel(ISpace space)
-            : base(space) 
+        public CommessaViewModel()
+            : base() 
         {
            
         }

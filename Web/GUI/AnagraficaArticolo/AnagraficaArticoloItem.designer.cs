@@ -106,7 +106,6 @@ namespace Web.GUI.AnagraficaArticolo
             this.jqContainer.Controls.Add(this.infoCodiceArticolo);
             this.jqContainer.Controls.Add(this.infoDescrizione);
             this.Size = new System.Drawing.Size(400, 100);
-            this.ItemClick += new Library.Template.MVVM.TemplateItem.ItemClickHandler(this.AnagraficaArticoloItem_ItemClick);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.jqContainer.ResumeLayout(false);

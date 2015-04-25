@@ -42,8 +42,7 @@ namespace Web.GUI.NotaCredito
         {
             try
             {
-                Take = 10;
-                ViewModel = new NotaCreditoViewModel(this);
+                ViewModel = new NotaCreditoViewModel();
             }
             catch (Exception ex)
             {
@@ -51,7 +50,7 @@ namespace Web.GUI.NotaCredito
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        public override void AddNewModel()
         {
             try
             {
@@ -62,7 +61,7 @@ namespace Web.GUI.NotaCredito
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
-            } 
+            }
         }
 
 	}

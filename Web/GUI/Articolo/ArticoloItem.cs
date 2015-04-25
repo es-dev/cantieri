@@ -41,20 +41,6 @@ namespace Web.GUI.Articolo
             }
         }
 
-        private void ArticoloItem_ItemClick(IItem item)
-        {
-            try
-            {
-                if (item != null)
-                {
-                    var space = new ArticoloModel();
-                    AddSpace(space);
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
-        }
+       
 	}
 }

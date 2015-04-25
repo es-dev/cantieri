@@ -45,7 +45,6 @@ namespace Web.GUI.ReportJob
             // 
             // btnAdd
             // 
-            this.btnAdd.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnAdd_Click);
             // 
             // panelTipoReport
             // 

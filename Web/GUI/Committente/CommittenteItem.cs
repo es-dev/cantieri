@@ -101,21 +101,5 @@ namespace Web.GUI.Committente
             return null;
         }
              
-
-        private void CommittenteItem_ItemClick(IItem item)
-        {
-            try
-            {
-                if (item != null)
-                {
-                    var space = new CommittenteModel();
-                    AddSpace(space);
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
-        }
 	}
 }

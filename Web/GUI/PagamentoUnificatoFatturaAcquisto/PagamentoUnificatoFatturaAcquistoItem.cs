@@ -42,20 +42,6 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             }
         }
 
-        private void PagamentoUnificatoFatturaAcquistoItem_ItemClick(IItem item)
-        {
-            try
-            {
-                if (item != null)
-                {
-                    var space = new PagamentoUnificatoFatturaAcquistoModel();
-                    AddSpace(space);
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
-        }
+       
 	}
 }

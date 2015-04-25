@@ -46,20 +46,6 @@ namespace Web.GUI.Reso
             }
         }
 
-        private void ResoItem_ItemClick(IItem item)
-        {
-            try
-            {
-                if (item != null)
-                {
-                    var space = new ResoModel();
-                    AddSpace(space);
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
-        }
+      
 	}
 }

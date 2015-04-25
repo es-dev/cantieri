@@ -9,7 +9,7 @@ using WcfService.Dto;
 
 namespace Web.GUI.FatturaAcquisto
 {
-    public class FatturaAcquistoViewModel : Library.Template.MVVM.TemplateViewModel<FatturaAcquistoDto, FatturaAcquistoItem>
+    public class FatturaAcquistoViewModel : Library.Template.MVVM.TemplateViewModel<FatturaAcquistoView, FatturaAcquistoItem, FatturaAcquistoModel, FatturaAcquistoDto>
     {
         private AnagraficaFornitoreDto anagraficaFornitore = null;
         public AnagraficaFornitoreDto AnagraficaFornitore
@@ -49,8 +49,8 @@ namespace Web.GUI.FatturaAcquisto
             }
         }
 
-        public FatturaAcquistoViewModel(ISpace space)
-            : base(space) 
+        public FatturaAcquistoViewModel()
+            : base() 
         {
             try
             {

@@ -21,7 +21,7 @@ namespace Web.GUI.Agenda
         {
             try
             {
-                ViewModel = new SchedulerViewModel(this);
+                ViewModel = new SchedulerViewModel();
             }
             catch (Exception ex)
             {

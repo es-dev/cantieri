@@ -20,8 +20,7 @@ namespace Web.GUI.PagamentoUnificato
         {
             try
             {
-                Take = 10;
-                ViewModel = new PagamentoUnificatoViewModel(this);
+                ViewModel = new PagamentoUnificatoViewModel();
             }
             catch (Exception ex)
             {
@@ -29,19 +28,7 @@ namespace Web.GUI.PagamentoUnificato
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var space = new PagamentoUnificatoModel();
-                space.Model = new WcfService.Dto.PagamentoUnificatoDto();
-                AddSpace(space);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
-        }
+      
 
 	}
 }

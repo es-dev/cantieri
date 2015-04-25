@@ -21,8 +21,7 @@ namespace Web.GUI.Dashboard.Anagrafica
         {
             try
             {
-                Take = 10;
-                ViewModel = new DashboardAnagraficaViewModel(this);
+                ViewModel = new DashboardAnagraficaViewModel();
                 Title = "DASHBOARD";
                 Adding = false;
             }

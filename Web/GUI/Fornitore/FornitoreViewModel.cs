@@ -8,7 +8,7 @@ using WcfService.Dto;
 
 namespace Web.GUI.Fornitore
 {
-    public class FornitoreViewModel : Library.Template.MVVM.TemplateViewModel<FornitoreDto, FornitoreItem>
+    public class FornitoreViewModel : Library.Template.MVVM.TemplateViewModel<FornitoreView, FornitoreItem, FornitoreModel, FornitoreDto>
     {
         private CommessaDto commessa = null;
 
@@ -24,8 +24,8 @@ namespace Web.GUI.Fornitore
             }
         }
 
-        public FornitoreViewModel(ISpace space)
-            : base(space) 
+        public FornitoreViewModel()
+            : base() 
         {
             try
             {

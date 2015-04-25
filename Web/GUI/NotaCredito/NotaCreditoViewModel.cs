@@ -8,7 +8,7 @@ using WcfService.Dto;
 
 namespace Web.GUI.NotaCredito
 {
-    public class NotaCreditoViewModel : Library.Template.MVVM.TemplateViewModel<NotaCreditoDto, NotaCreditoItem>
+    public class NotaCreditoViewModel : Library.Template.MVVM.TemplateViewModel<NotaCreditoView, NotaCreditoItem, NotaCreditoModel, NotaCreditoDto>
     {
 
         private FornitoreDto fornitore = null;
@@ -24,8 +24,8 @@ namespace Web.GUI.NotaCredito
             }
         }
 
-        public NotaCreditoViewModel(ISpace space)
-            : base(space)
+        public NotaCreditoViewModel()
+            : base()
         {
             try
             {

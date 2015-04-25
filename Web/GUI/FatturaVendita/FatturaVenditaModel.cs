@@ -199,7 +199,7 @@ namespace Web.GUI.FatturaVendita
                 if (fatturaVendita != null)
                 {
                     var committenteId = fatturaVendita.CommittenteId;
-                    var viewModel = new Committente.CommittenteViewModel(this);
+                    var viewModel = new Committente.CommittenteViewModel();
                     var committente = (CommittenteDto)viewModel.Read(committenteId);
                     if (committente != null)
                     {

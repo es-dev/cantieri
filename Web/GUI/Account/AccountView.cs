@@ -20,8 +20,7 @@ namespace Web.GUI.Account
         {
             try
             {
-                Take = 10;
-                ViewModel = new AccountViewModel(this);
+                ViewModel = new AccountViewModel();
             }
             catch (Exception ex)
             {
@@ -29,19 +28,19 @@ namespace Web.GUI.Account
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var space = new AccountModel();
-                space.Model = new WcfService.Dto.AccountDto();
-                AddSpace(space);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
-        }
+        //private void btnAdd_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        var space = new AccountModel();
+        //        space.Model = new WcfService.Dto.AccountDto();
+        //        AddSpace(space);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        UtilityError.Write(ex);
+        //    } 
+        //}
 
 	}
 }

@@ -30,8 +30,8 @@ namespace Web.GUI.Dashboard.Lavoro
     public class DashboardLavoroViewModel : TemplateViewModel<DashboardDto, DashboardLavoroItem>
     {
 
-        public DashboardLavoroViewModel(ISpace space)
-            : base(space) 
+        public DashboardLavoroViewModel()
+            : base() 
         {
 
         }

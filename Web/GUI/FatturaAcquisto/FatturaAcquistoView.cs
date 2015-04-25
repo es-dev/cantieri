@@ -11,14 +11,14 @@ using WcfService.Dto;
 
 namespace Web.GUI.FatturaAcquisto
 {
-	public partial class FatturaAcquistoView : TemplateView
-	{
+    public partial class FatturaAcquistoView : TemplateView
+    {
         private FornitoreDto fornitore = null;
 
         public FatturaAcquistoView()
-		{ 
-			InitializeComponent();
-		}
+        {
+            InitializeComponent();
+        }
 
         public FatturaAcquistoView(AnagraficaFornitoreDto anagraficaFornitore, Tipi.StatoFattura statoFattura)
         {
@@ -60,8 +60,7 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                Take = 10;
-                ViewModel = new FatturaAcquistoViewModel(this);
+                ViewModel = new FatturaAcquistoViewModel();
             }
             catch (Exception ex)
             {
@@ -69,7 +68,7 @@ namespace Web.GUI.FatturaAcquisto
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        public override void AddNewModel()
         {
             try
             {
@@ -80,8 +79,8 @@ namespace Web.GUI.FatturaAcquisto
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
-            } 
-        }
+            }
 
-	}
+        }
+    }
 }

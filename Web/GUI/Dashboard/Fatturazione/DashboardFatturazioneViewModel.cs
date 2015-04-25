@@ -30,8 +30,8 @@ namespace Web.GUI.Dashboard.Fatturazione
     public class DashboardFatturazioneViewModel : TemplateViewModel<DashboardDto, DashboardFatturazioneItem>
     {
 
-        public DashboardFatturazioneViewModel(ISpace space)
-            : base(space) 
+        public DashboardFatturazioneViewModel()
+            : base() 
         {
 
         }

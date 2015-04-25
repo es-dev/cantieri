@@ -42,8 +42,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
         {
             try
             {
-                Take = 10;
-                ViewModel = new PagamentoUnificatoFatturaAcquistoViewModel(this);
+                ViewModel = new PagamentoUnificatoFatturaAcquistoViewModel();
             }
             catch (Exception ex)
             {
@@ -51,7 +50,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        public override void AddNewModel()
         {
             try
             {
@@ -62,7 +61,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
-            } 
+            }
         }
 
 	}
