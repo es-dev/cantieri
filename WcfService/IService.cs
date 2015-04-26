@@ -269,10 +269,10 @@ namespace WcfService
         Dto.PagamentoDto ReadPagamento(object id);
 
         [OperationContract]
-        Dto.PagamentoDto ReadPagamentoPagamentoUnificatoFatturaAcquisto(Dto.PagamentoUnificatoFatturaAcquistoDto pagamentoUnificatoFatturaAcquisto);
+        Dto.PagamentoDto ReadPagamento(Dto.PagamentoUnificatoFatturaAcquistoDto pagamentoUnificatoFatturaAcquisto);
 
         [OperationContract]
-        Dto.PagamentoDto ReadPagamentoOldPagamentoUnificatoFatturaAcquisto(Dto.PagamentoUnificatoDto pagamentoUnificato, Dto.FatturaAcquistoDto fatturaAcquisto);
+        Dto.PagamentoDto ReadPagamentoOld(Dto.PagamentoUnificatoDto pagamentoUnificato, Dto.FatturaAcquistoDto fatturaAcquisto);
         #endregion
         #endregion
 

@@ -25,20 +25,20 @@ namespace Web.GUI.Agenda
             }
         }
 
-        public override void Fill(object start, object end, string search)
+        public override void Fill(object start, object end, string search, object advancedSearch=null)
         {
             try
             {
                 var objs = new List<SchedulerDto>();
                 var wcf = new WcfService.Service();
-                var fattureAcquistoScadenza = wcf.ReadFattureAcquistoScadenza((DateTime)start, (DateTime)end, search);
+                var fattureAcquistoScadenza = wcf.ReadFattureAcquisto((DateTime)start, (DateTime)end, search, advancedSearch);
                 if (fattureAcquistoScadenza!=null)
                 {
                     var objsFattureScadenza = GetEventiAgenda(fattureAcquistoScadenza);
                     objs.AddRange(objsFattureScadenza);
                 }
 
-                var pagamenti = wcf.ReadPagamentiData((DateTime)start, (DateTime)end, search);
+                var pagamenti = wcf.ReadPagamenti((DateTime)start, (DateTime)end, search, advancedSearch);
                 if (pagamenti != null)
                 {
                     var objsPagamenti = GetEventiAgenda(pagamenti);

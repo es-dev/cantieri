@@ -119,7 +119,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                         if(pagamento==null)
                             pagamento = BusinessLogic.Pagamento.GetPagamento(obj);
                         
-                        var pagamentoOld = viewModelPagamento.ReadPagamentoOldPagamentoUnificatoFatturaAcquisto(pagamentoUnificatoOld, fatturaAcquistoOld);
+                        var pagamentoOld = viewModelPagamento.ReadPagamentoOld(pagamentoUnificatoOld, fatturaAcquistoOld);
                         if (pagamentoOld!=null)
                             viewModelPagamento.Delete(pagamentoOld);
                         performed = viewModelPagamento.Save(pagamento, creating);

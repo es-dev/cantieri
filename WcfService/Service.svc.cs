@@ -466,7 +466,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Commessa> QueryCommesse(string search = null, object advancedSearch = null)
+        private IQueryable<DataLayer.Commessa> QueryCommesse(string search = null, object advancedSearch = null, object orderBy=null)
         {
             try
             {
@@ -484,6 +484,10 @@ namespace WcfService
                                 select q);
 
                 commesse = (from q in commesse orderby q.Id descending select q);
+
+                if(orderBy!=null)
+                    commesse = commesse.OrderBy((Func<DataLayer.Commessa, bool>)orderBy).AsQueryable();
+
                 return commesse;
             }
             catch (Exception ex)
@@ -1051,11 +1055,11 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquistoScadenza(DateTime start, DateTime end, string search = null)
+        public IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquisto(DateTime start, DateTime end, string search = null, object advancedSearch=null)
         {
             try
             {
-                var fattureAcquisto = QueryFattureAcquisto(search,null,null,null,start,end);
+                var fattureAcquisto = QueryFattureAcquisto(search, advancedSearch, null, null, start, end);
 
                 var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
                 return fattureAcquistoDto;
@@ -1398,7 +1402,7 @@ namespace WcfService
             return null;
         }
 
-        public Dto.PagamentoDto ReadPagamentoPagamentoUnificatoFatturaAcquisto(Dto.PagamentoUnificatoFatturaAcquistoDto pagamentoUnificatoFatturaAcquisto)
+        public Dto.PagamentoDto ReadPagamento(Dto.PagamentoUnificatoFatturaAcquistoDto pagamentoUnificatoFatturaAcquisto)
         {
             try
             {
@@ -1420,7 +1424,7 @@ namespace WcfService
             }
             return null;
         }
-        public Dto.PagamentoDto ReadPagamentoOldPagamentoUnificatoFatturaAcquisto(Dto.PagamentoUnificatoDto pagamentoUnificato, Dto.FatturaAcquistoDto fatturaAcquisto)
+        public Dto.PagamentoDto ReadPagamentoOld(Dto.PagamentoUnificatoDto pagamentoUnificato, Dto.FatturaAcquistoDto fatturaAcquisto)
         {
             try
             {
@@ -1442,11 +1446,11 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.PagamentoDto> ReadPagamentiData(DateTime start, DateTime end, string search)
+        public IEnumerable<Dto.PagamentoDto> ReadPagamenti(DateTime start, DateTime end, string search=null, object advancedSearch = null) 
         {
             try
             {
-                var pagamenti = QueryPagamenti(search, null,null,null, start, end);
+                var pagamenti = QueryPagamenti(search, advancedSearch,null,null, start, end);
                 var pagamentiDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamenti);
                 return pagamentiDto;
             }
