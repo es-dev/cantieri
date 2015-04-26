@@ -24,7 +24,7 @@ namespace Web.GUI.AnagraficaFornitore
             }
         }
 
-        public override void Load(int skip, int take, string search=null)
+        public override void Load(int skip, int take, string search=null, object advancedSearch=null)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace Web.GUI.AnagraficaFornitore
             }
         }
 
-        public override int Count(string search = null)
+        public override int Count(string search = null,  object advancedSearch=null)
         {
             try
             {

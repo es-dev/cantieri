@@ -49,12 +49,12 @@ namespace Web.GUI.Pagamento
             }
         }
 
-        public override void Load(int skip, int take, string search = null)
+        public override void Load(int skip, int take, string search = null, object advancedSearch = null)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadPagamenti(skip, take, search, fornitore, fatturaAcquisto);
+                var objs = wcf.LoadPagamenti(skip, take, search, advancedSearch, fornitore, fatturaAcquisto);
                 Load(objs);
             }
             catch (Exception ex)
@@ -63,12 +63,12 @@ namespace Web.GUI.Pagamento
             }
         }
 
-        public override int Count(string search = null)
+        public override int Count(string search = null,  object advancedSearch=null)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountPagamenti(search, fornitore, fatturaAcquisto);
+                var count = wcf.CountPagamenti(search, advancedSearch, fornitore, fatturaAcquisto);
                 return count;
             }
             catch (Exception ex)

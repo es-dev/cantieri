@@ -62,12 +62,12 @@ namespace Web.GUI.FatturaAcquisto
             }
         }
 
-        public override void Load(int skip, int take, string search=null)
+        public override void Load(int skip, int take, string search=null, object advancedSearch=null)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadFattureAcquisto(skip, take, search, fornitore, anagraficaFornitore);
+                var objs = wcf.LoadFattureAcquisto(skip, take, search, advancedSearch, fornitore, anagraficaFornitore);
                 Load(objs);
             }
             catch (Exception ex)
@@ -76,12 +76,12 @@ namespace Web.GUI.FatturaAcquisto
             }
         }
 
-        public override int Count(string search = null)
+        public override int Count(string search = null,  object advancedSearch=null)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                int count = wcf.CountFattureAcquisto(search, fornitore, anagraficaFornitore);
+                int count = wcf.CountFattureAcquisto(search, advancedSearch, fornitore, anagraficaFornitore);
                 return count;
             }
             catch (Exception ex)

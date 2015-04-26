@@ -133,7 +133,7 @@ namespace Web.GUI.Agenda
             return null;
         }
 
-        public override int Count(string search = null)
+        public override int Count(string search = null,  object advancedSearch=null)
         {
             try
             {

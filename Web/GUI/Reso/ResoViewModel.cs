@@ -51,12 +51,12 @@ namespace Web.GUI.Reso
             }
         }
 
-        public override void Load(int skip, int take, string search = null)
+        public override void Load(int skip, int take, string search = null, object advancedSearch = null)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadResi(skip, take, search, notaCredito, fatturaAcquisto);
+                var objs = wcf.LoadResi(skip, take, search, advancedSearch, notaCredito, fatturaAcquisto);
                 Load(objs);
             }
             catch (Exception ex)
@@ -65,12 +65,12 @@ namespace Web.GUI.Reso
             }
         }
 
-        public override int Count(string search = null)
+        public override int Count(string search = null,  object advancedSearch=null)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountResi(search, notaCredito, fatturaAcquisto);
+                var count = wcf.CountResi(search, advancedSearch, notaCredito, fatturaAcquisto);
                 return count;
             }
             catch (Exception ex)

@@ -49,12 +49,12 @@ namespace Web.GUI.Incasso
             }
         }
 
-        public override void Load(int skip, int take, string search=null)
+        public override void Load(int skip, int take, string search=null, object advancedSearch=null)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadIncassi(skip, take, search, committente, fatturaVendita);
+                var objs = wcf.LoadIncassi(skip, take, search, advancedSearch, committente, fatturaVendita);
                 Load(objs);
             }
             catch (Exception ex)
@@ -63,12 +63,12 @@ namespace Web.GUI.Incasso
             }
         }
 
-        public override int Count(string search = null)
+        public override int Count(string search = null,  object advancedSearch=null)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountIncassi(search, committente, fatturaVendita);
+                var count = wcf.CountIncassi(search, advancedSearch, committente, fatturaVendita);
                 return count;
             }
             catch (Exception ex)

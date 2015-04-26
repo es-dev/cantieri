@@ -93,11 +93,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.AziendaDto> LoadAziende(int skip, int take, string search = null)
+        public IEnumerable<Dto.AziendaDto> LoadAziende(int skip, int take, string search = null, object advancedSearch=null)
         {
             try
             {
-                var aziende = QueryAziende(search);
+                var aziende = QueryAziende(search, advancedSearch);
                 aziende = (from q in aziende select q).Skip(skip).Take(take);
 
                 var aziendeDto = UtilityPOCO.Assemble<Dto.AziendaDto>(aziende);
@@ -110,11 +110,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountAziende(string search = null)
+        public int CountAziende(string search = null, object advancedSearch = null)
         {
             try
             {
-                var aziende = QueryAziende(search);
+                var aziende = QueryAziende(search, advancedSearch);
                 var count = aziende.Count();
                 return count;
             }
@@ -141,12 +141,16 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Azienda> QueryAziende(string search=null)
+        private IQueryable<DataLayer.Azienda> QueryAziende(string search = null, object advancedSearch=null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var aziende = (from q in ef.Aziendas select q);
+
+                if (advancedSearch != null)
+                    aziende = aziende.Where((Func<DataLayer.Azienda, bool>)advancedSearch).AsQueryable();
+
                 if (search != null && search.Length > 0)
                     aziende = (from q in aziende where q.Codice.StartsWith(search) || q.RagioneSociale.Contains(search) || q.Comune.StartsWith(search) || q.Indirizzo.Contains(search) ||
                                    q.Provincia.StartsWith(search) select q);
@@ -242,11 +246,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.AccountDto> LoadAccounts(int skip, int take, string search = null)
+        public IEnumerable<Dto.AccountDto> LoadAccounts(int skip, int take, string search = null, object advancedSearch = null)
         {
             try
             {
-                var accounts = QueryAccounts(search);
+                var accounts = QueryAccounts(search, advancedSearch);
                 accounts = (from q in accounts select q).Skip(skip).Take(take);
                 var accountsDto = UtilityPOCO.Assemble<Dto.AccountDto>(accounts);
                 return accountsDto;
@@ -258,11 +262,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountAccounts(string search = null)
+        public int CountAccounts(string search = null, object advancedSearch = null)
         {
             try
             {
-                var accounts = QueryAccounts(search);
+                var accounts = QueryAccounts(search, advancedSearch);
                 var count = accounts.Count();
                 return count;
             }
@@ -289,12 +293,16 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Account> QueryAccounts(string search=null)
+        private IQueryable<DataLayer.Account> QueryAccounts(string search = null, object advancedSearch=null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var accounts = (from q in ef.Accounts select q);
+
+                if (advancedSearch != null)
+                    accounts = accounts.Where((Func<DataLayer.Account, bool>)advancedSearch).AsQueryable();
+
                 if (search != null && search.Length > 0)
                     accounts = (from q in accounts
                                where q.Nickname.StartsWith(search) || q.Username.Contains(search) select q);
@@ -393,11 +401,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.CommessaDto> LoadCommesse(int skip, int take, string search = null)
+        public IEnumerable<Dto.CommessaDto> LoadCommesse(int skip, int take, string search = null, object advancedSearch=null)
         {
             try
             {
-                var commesse = QueryCommesse(search);
+                var commesse = QueryCommesse(search, advancedSearch);
                 commesse = (from q in commesse select q).Skip(skip).Take(take);
                 
                 var commesseDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commesse); 
@@ -410,11 +418,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountCommesse(string search = null)
+        public int CountCommesse(string search = null, object advancedSearch = null)
         {
             try
             {
-                var commesse = QueryCommesse(search);
+                var commesse = QueryCommesse(search, advancedSearch);
                 var count = commesse.Count();
                 return count;
             }
@@ -425,11 +433,11 @@ namespace WcfService
             return 0;
         }
 
-        public int CountCommesseNonAssegnate(string search = null)
+        public int CountCommesseNonAssegnate(string search = null, object advancedSearch = null)
         {
             try
             {
-                var commesse = QueryCommesse(search);
+                var commesse = QueryCommesse(search, advancedSearch);
                 commesse = (from q in commesse where (q.Committentes==null && q.Committentes.Count==0) select q); //filtro aggiuntivo per commesse non assegnate (committente nullo)
                 var count = commesse.Count();
                 return count;
@@ -458,16 +466,15 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Commessa> QueryCommesse(string search = null)
+        private IQueryable<DataLayer.Commessa> QueryCommesse(string search = null, object advancedSearch = null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var commesse = (from q in ef.Commessas select q);
 
-                var advancedSearch = QueryAdvancedSearch();
                 if (advancedSearch != null)
-                    commesse = commesse.Where(advancedSearch).AsQueryable();
+                    commesse = commesse.Where((Func<DataLayer.Commessa,bool>)advancedSearch).AsQueryable();
            
                 if (search != null && search.Length > 0)
                     commesse = (from q in commesse
@@ -486,9 +493,6 @@ namespace WcfService
             return null;
         }
 
-        public virtual Func<DataLayer.Commessa, bool> QueryAdvancedSearch() { return null; }
-
-       
         public IEnumerable<Dto.CommessaDto> ReadCommesse(IEnumerable<Dto.FornitoreDto> fornitori) 
         {
             try
@@ -589,11 +593,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.FornitoreDto> LoadFornitori(int skip, int take, string search = null, Dto.CommessaDto commessa = null)
+        public IEnumerable<Dto.FornitoreDto> LoadFornitori(int skip, int take, string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null)
         {
             try
             {
-                var fornitori = QueryFornitori(search, commessa);
+                var fornitori = QueryFornitori(search, advancedSearch, commessa);
                 fornitori = (from q in fornitori select q).Skip(skip).Take(take);
                 var fornitoriDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitori, true); //lettura ricorsiva
                 return fornitoriDto;
@@ -605,11 +609,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountFornitori(string search = null, Dto.CommessaDto commessa = null)
+        public int CountFornitori(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null)
         {
             try
             {
-                var fornitori = QueryFornitori(search, commessa);
+                var fornitori = QueryFornitori(search, advancedSearch, commessa);
                 var count = fornitori.Count();
                 return count;
             }
@@ -636,7 +640,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Fornitore> QueryFornitori(string search=null, Dto.CommessaDto commessa =null)
+        private IQueryable<DataLayer.Fornitore> QueryFornitori(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null)
         {
             try
             {
@@ -644,6 +648,10 @@ namespace WcfService
                 var fornitori = (from q in ef.Fornitores select q);
                 if(commessa!=null)
                     fornitori = (from q in fornitori where q.CommessaId == commessa.Id select q);
+
+                if (advancedSearch != null)
+                    fornitori = fornitori.Where((Func<DataLayer.Fornitore, bool>)advancedSearch).AsQueryable();
+
                 if (search != null && search.Length > 0)
                 {
                     var commesseId = (from c in QueryCommesse(search) select c.Id).ToList();
@@ -799,11 +807,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.CentroCostoDto> LoadCentriCosto(int skip, int take, string search = null)
+        public IEnumerable<Dto.CentroCostoDto> LoadCentriCosto(int skip, int take, string search = null, object advancedSearch = null)
         {
             try
             {
-                var centriCosto = QueryCentriCosto(search);
+                var centriCosto = QueryCentriCosto(search, advancedSearch);
                 centriCosto = (from q in centriCosto select q).Skip(skip).Take(take);
 
                 var centriCostoDto = UtilityPOCO.Assemble<Dto.CentroCostoDto>(centriCosto);
@@ -816,11 +824,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountCentriCosto(string search = null)
+        public int CountCentriCosto(string search = null, object advancedSearch = null)
         {
             try
             {
-                var centriCosto = QueryCentriCosto(search);
+                var centriCosto = QueryCentriCosto(search, advancedSearch);
                 var count = centriCosto.Count();
                 return count;
             }
@@ -847,12 +855,16 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.CentroCosto> QueryCentriCosto(string search = null)
+        private IQueryable<DataLayer.CentroCosto> QueryCentriCosto(string search = null, object advancedSearch = null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var centriCosto = (from q in ef.CentroCostos select q);
+
+                if (advancedSearch != null)
+                    centriCosto = centriCosto.Where((Func<DataLayer.CentroCosto, bool>)advancedSearch).AsQueryable();
+
                 if (search != null && search.Length > 0)
                     centriCosto = (from q in centriCosto where q.Codice.StartsWith(search) || q.Denominazione.Contains(search)  
                                    select q);
@@ -953,12 +965,12 @@ namespace WcfService
         #endregion
         #region Custom
 
-        public IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquisto(int skip, int take, string search = null, Dto.FornitoreDto fornitore=null, 
+        public IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquisto(int skip, int take, string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null, 
             Dto.AnagraficaFornitoreDto anagraficaFornitore=null)
         {
             try
             {
-                var fattureAcquisto = QueryFattureAcquisto(search, fornitore, anagraficaFornitore);
+                var fattureAcquisto = QueryFattureAcquisto(search, advancedSearch, fornitore, anagraficaFornitore);
                 fattureAcquisto = (from q in fattureAcquisto select q).Skip(skip).Take(take);
 
                 var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
@@ -971,11 +983,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountFattureAcquisto(string search = null, Dto.FornitoreDto fornitore = null, Dto.AnagraficaFornitoreDto anagraficaFornitore = null)
+        public int CountFattureAcquisto(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null, Dto.AnagraficaFornitoreDto anagraficaFornitore = null)
         {
             try
             {
-                var fattureAcquisto = QueryFattureAcquisto(search, fornitore, anagraficaFornitore);
+                var fattureAcquisto = QueryFattureAcquisto(search, advancedSearch, fornitore, anagraficaFornitore);
                 var count = fattureAcquisto.Count();
                 return count;
             }
@@ -1002,7 +1014,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.FatturaAcquisto> QueryFattureAcquisto(string search=null, Dto.FornitoreDto fornitore=null, Dto.AnagraficaFornitoreDto anagraficaFornitore=null, 
+        private IQueryable<DataLayer.FatturaAcquisto> QueryFattureAcquisto(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null, Dto.AnagraficaFornitoreDto anagraficaFornitore = null, 
             DateTime? start = null, DateTime? end= null)
         {
             try
@@ -1017,6 +1029,9 @@ namespace WcfService
                 
                 if(start!=null && end!=null)
                     fattureAcquisto = (from q in fattureAcquisto where start <= q.Scadenza && q.Scadenza <= end select q);
+
+                if (advancedSearch != null)
+                    fattureAcquisto = fattureAcquisto.Where((Func<DataLayer.FatturaAcquisto, bool>)advancedSearch).AsQueryable();
 
                 if (search != null && search.Length > 0)
                 {
@@ -1036,11 +1051,11 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquistoScadenza(DateTime start, DateTime end, string search= null)
+        public IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquistoScadenza(DateTime start, DateTime end, string search = null)
         {
             try
             {
-                var fattureAcquisto = QueryFattureAcquisto(search,null,null,start,end);
+                var fattureAcquisto = QueryFattureAcquisto(search,null,null,null,start,end);
 
                 var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
                 return fattureAcquistoDto;
@@ -1135,11 +1150,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.ArticoloDto> LoadArticoli(int skip, int take, string search = null)
+        public IEnumerable<Dto.ArticoloDto> LoadArticoli(int skip, int take, string search = null, object advancedSearch = null)
         {
             try
             {
-                var articoli = QueryArticoli(search);
+                var articoli = QueryArticoli(search, advancedSearch);
                 articoli = (from q in articoli select q).Skip(skip).Take(take);
 
                 var articoliDto = UtilityPOCO.Assemble<Dto.ArticoloDto>(articoli);
@@ -1152,11 +1167,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountArticoli(string search = null)
+        public int CountArticoli(string search = null, object advancedSearch = null)
         {
             try
             {
-                var articoli = QueryArticoli(search);
+                var articoli = QueryArticoli(search, advancedSearch);
                 var count = articoli.Count();
                 return count;
             }
@@ -1183,12 +1198,16 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Articolo> QueryArticoli(string search=null)
+        private IQueryable<DataLayer.Articolo> QueryArticoli(string search = null, object advancedSearch = null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var articoli = (from q in ef.Articolos select q);
+
+                if (advancedSearch != null)
+                    articoli = articoli.Where((Func<DataLayer.Articolo, bool>)advancedSearch).AsQueryable();
+
                 if (search != null && search.Length > 0)
                 {
                     var fattureAcquistoId = (from q in QueryFattureAcquisto(search) select q.Id).ToList();
@@ -1291,11 +1310,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.PagamentoDto> LoadPagamenti(int skip, int take, string search = null, Dto.FornitoreDto fornitore=null, Dto.FatturaAcquistoDto fatturaAcquisto=null)
+        public IEnumerable<Dto.PagamentoDto> LoadPagamenti(int skip, int take, string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null, Dto.FatturaAcquistoDto fatturaAcquisto = null)
         {
             try
             {
-                var pagamenti = QueryPagamenti(search, fornitore, fatturaAcquisto);
+                var pagamenti = QueryPagamenti(search, advancedSearch, fornitore, fatturaAcquisto);
                 pagamenti = (from q in pagamenti select q).Skip(skip).Take(take);
 
                 var pagamentiDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamenti);
@@ -1308,11 +1327,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountPagamenti(string search = null, Dto.FornitoreDto fornitore = null, Dto.FatturaAcquistoDto fatturaAcquisto = null)
+        public int CountPagamenti(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null, Dto.FatturaAcquistoDto fatturaAcquisto = null)
         {
             try
             {
-                var pagamenti = QueryPagamenti(search, fornitore, fatturaAcquisto);
+                var pagamenti = QueryPagamenti(search, advancedSearch, fornitore, fatturaAcquisto);
                 var count = pagamenti.Count();
                 return count;
             }
@@ -1339,7 +1358,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Pagamento> QueryPagamenti(string search = null, Dto.FornitoreDto fornitore = null, Dto.FatturaAcquistoDto fatturaAcquisto = null,DateTime? start = null, DateTime? end = null)
+        private IQueryable<DataLayer.Pagamento> QueryPagamenti(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null, Dto.FatturaAcquistoDto fatturaAcquisto = null, DateTime? start = null, DateTime? end = null)
         {
             try
             {
@@ -1357,6 +1376,9 @@ namespace WcfService
 
                 if (start != null && end != null)
                     pagamenti = (from q in pagamenti where start <= q.Data && q.Data <= end select q);
+
+                if (advancedSearch != null)
+                    pagamenti = pagamenti.Where((Func<DataLayer.Pagamento, bool>)advancedSearch).AsQueryable();
 
                 if (search != null && search.Length > 0)
                 {
@@ -1424,7 +1446,7 @@ namespace WcfService
         {
             try
             {
-                var pagamenti = QueryPagamenti(search,null,null, start, end);
+                var pagamenti = QueryPagamenti(search, null,null,null, start, end);
                 var pagamentiDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamenti);
                 return pagamentiDto;
             }
@@ -1520,11 +1542,11 @@ namespace WcfService
         #endregion
         #region Custom
 
-        public IEnumerable<Dto.NotaCreditoDto> LoadNoteCredito(int skip, int take, string search=null, Dto.FornitoreDto fornitore=null)
+        public IEnumerable<Dto.NotaCreditoDto> LoadNoteCredito(int skip, int take, string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null)
         {
             try
             {
-                var noteCredito = QueryNoteCredito(search, fornitore);
+                var noteCredito = QueryNoteCredito(search, advancedSearch, fornitore);
                 noteCredito = (from q in noteCredito select q).Skip(skip).Take(take);
 
                 var noteCreditoDto = UtilityPOCO.Assemble<Dto.NotaCreditoDto>(noteCredito);
@@ -1537,11 +1559,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountNoteCredito(string search = null,Dto.FornitoreDto fornitore=null)
+        public int CountNoteCredito(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null)
         {
             try
             {
-                var noteCredito = QueryNoteCredito(search, fornitore);
+                var noteCredito = QueryNoteCredito(search, advancedSearch, fornitore);
                 var count = noteCredito.Count();
                 return count;
             }
@@ -1568,7 +1590,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.NotaCredito> QueryNoteCredito(string search=null, Dto.FornitoreDto fornitore=null)
+        private IQueryable<DataLayer.NotaCredito> QueryNoteCredito(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null)
         {
             try
             {
@@ -1576,6 +1598,9 @@ namespace WcfService
                 var noteCredito = (from q in ef.NotaCreditos select q);
                 if(fornitore!=null)
                     noteCredito = (from q in noteCredito where q.FornitoreId == fornitore.Id select q);
+
+                if (advancedSearch != null)
+                    noteCredito = noteCredito.Where((Func<DataLayer.NotaCredito, bool>)advancedSearch).AsQueryable();
 
                 if (search != null && search.Length > 0)
                 {
@@ -1678,11 +1703,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.ResoDto> LoadResi(int skip, int take, string search = null, Dto.NotaCreditoDto notaCredito = null, Dto.FatturaAcquistoDto fatturaAcquisto=null)
+        public IEnumerable<Dto.ResoDto> LoadResi(int skip, int take, string search = null, object advancedSearch = null, Dto.NotaCreditoDto notaCredito = null, Dto.FatturaAcquistoDto fatturaAcquisto = null)
         {
             try
             {
-                var reso = QueryResi(search, notaCredito, fatturaAcquisto);
+                var reso = QueryResi(search, advancedSearch, notaCredito, fatturaAcquisto);
                 reso = (from q in reso select q).Skip(skip).Take(take);
 
                 var resiDto = UtilityPOCO.Assemble<Dto.ResoDto>(reso);
@@ -1695,11 +1720,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountResi(string search = null, Dto.NotaCreditoDto notaCredito = null, Dto.FatturaAcquistoDto fatturaAcquisto = null)
+        public int CountResi(string search = null, object advancedSearch = null, Dto.NotaCreditoDto notaCredito = null, Dto.FatturaAcquistoDto fatturaAcquisto = null)
         {
             try
             {
-                var resi = QueryResi(search, notaCredito, fatturaAcquisto);
+                var resi = QueryResi(search, advancedSearch, notaCredito, fatturaAcquisto);
                 var count = resi.Count();
                 return count;
             }
@@ -1727,7 +1752,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Reso> QueryResi(string search=null, Dto.NotaCreditoDto notaCredito=null, Dto.FatturaAcquistoDto fatturaAcquisto=null)
+        private IQueryable<DataLayer.Reso> QueryResi(string search = null, object advancedSearch = null, Dto.NotaCreditoDto notaCredito = null, Dto.FatturaAcquistoDto fatturaAcquisto = null)
         {
             try
             {
@@ -1738,6 +1763,9 @@ namespace WcfService
 
                 if(fatturaAcquisto!=null)
                     resi = (from q in resi where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
+
+                if (advancedSearch != null)
+                    resi = resi.Where((Func<DataLayer.Reso, bool>)advancedSearch).AsQueryable();
 
                 if (search != null && search.Length > 0)
                 {
@@ -1839,11 +1867,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.PagamentoUnificatoDto> LoadPagamentiUnificati(int skip, int take, string search = null)
+        public IEnumerable<Dto.PagamentoUnificatoDto> LoadPagamentiUnificati(int skip, int take, string search = null, object advancedSearch = null)
         {
             try
             {
-                var pagamentiUnificati = QueryPagamentiUnificati(search);
+                var pagamentiUnificati = QueryPagamentiUnificati(search, advancedSearch);
                 pagamentiUnificati = (from q in pagamentiUnificati select q).Skip(skip).Take(take);
 
                 var pagamentiUnificatiDto = UtilityPOCO.Assemble<Dto.PagamentoUnificatoDto>(pagamentiUnificati, true ); //lettura iterativa
@@ -1856,11 +1884,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountPagamentiUnificati(string search = null)
+        public int CountPagamentiUnificati(string search = null, object advancedSearch = null)
         {
             try
             {
-                var pagamentiUnificati = QueryPagamentiUnificati(search);
+                var pagamentiUnificati = QueryPagamentiUnificati(search, advancedSearch);
                 var count = pagamentiUnificati.Count();
                 return count;
             }
@@ -1890,12 +1918,16 @@ namespace WcfService
 
 
 
-        private IQueryable<DataLayer.PagamentoUnificato> QueryPagamentiUnificati(string search = null)
+        private IQueryable<DataLayer.PagamentoUnificato> QueryPagamentiUnificati(string search = null, object advancedSearch = null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var pagamentiUnificati = (from q in ef.PagamentoUnificatos select q);
+
+                if (advancedSearch != null)
+                    pagamentiUnificati = pagamentiUnificati.Where((Func<DataLayer.PagamentoUnificato, bool>)advancedSearch).AsQueryable();
+
                 if (search != null && search.Length > 0)
                 {
                     var codiciFornitori = (from q in QueryFornitori(search) select q.Codice).ToList();
@@ -1998,11 +2030,12 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.PagamentoUnificatoFatturaAcquistoDto> LoadPagamentiUnificatiFatturaAcquisto(int skip, int take, string search = null, Dto.PagamentoUnificatoDto pagamentoUnificato=null)
+        public IEnumerable<Dto.PagamentoUnificatoFatturaAcquistoDto> LoadPagamentiUnificatiFatturaAcquisto(int skip, int take, string search = null, object advancedSearch = null, 
+            Dto.PagamentoUnificatoDto pagamentoUnificato = null)
         {
             try
             {
-                var pagamentiUnificatiFatturaAcquisto = QueryPagamentiUnificatiFatturaAcquisto(search, pagamentoUnificato);
+                var pagamentiUnificatiFatturaAcquisto = QueryPagamentiUnificatiFatturaAcquisto(search, advancedSearch, pagamentoUnificato);
                 pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto select q).Skip(skip).Take(take);
 
                 var pagamentiUnificatiFatturaAcquistoDto = UtilityPOCO.Assemble<Dto.PagamentoUnificatoFatturaAcquistoDto>(pagamentiUnificatiFatturaAcquisto);
@@ -2015,11 +2048,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountPagamentiUnificatiFatturaAcquisto(string search = null, Dto.PagamentoUnificatoDto pagamentoUnificato = null)
+        public int CountPagamentiUnificatiFatturaAcquisto(string search = null, object advancedSearch = null, Dto.PagamentoUnificatoDto pagamentoUnificato = null)
         {
             try
             {
-                var pagamentiUnificatiFatturaAcquisto = QueryPagamentiUnificatiFatturaAcquisto(search);
+                var pagamentiUnificatiFatturaAcquisto = QueryPagamentiUnificatiFatturaAcquisto(search, advancedSearch, pagamentoUnificato);
                 var count = pagamentiUnificatiFatturaAcquisto.Count();
                 return count;
             }
@@ -2047,7 +2080,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.PagamentoUnificatoFatturaAcquisto> QueryPagamentiUnificatiFatturaAcquisto(string search=null, Dto.PagamentoUnificatoDto pagamentoUnificato=null)
+        private IQueryable<DataLayer.PagamentoUnificatoFatturaAcquisto> QueryPagamentiUnificatiFatturaAcquisto(string search = null, object advancedSearch = null, Dto.PagamentoUnificatoDto pagamentoUnificato = null)
         {
             try
             {
@@ -2055,6 +2088,9 @@ namespace WcfService
                 var pagamentiUnificatiFatturaAcquisto = (from q in ef.PagamentoUnificatoFatturaAcquistos select q);
                 if(pagamentoUnificato!=null)
                     pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto where q.PagamentoUnificatoId == pagamentoUnificato.Id select q);
+
+                if (advancedSearch != null)
+                    pagamentiUnificatiFatturaAcquisto = pagamentiUnificatiFatturaAcquisto.Where((Func<DataLayer.PagamentoUnificatoFatturaAcquisto, bool>)advancedSearch).AsQueryable();
 
                 if (search != null && search.Length > 0)
                 {
@@ -2159,11 +2195,11 @@ namespace WcfService
         #endregion
         #region Custom
 
-        public IEnumerable<Dto.CommittenteDto> LoadCommittenti(int skip, int take, string search = null, Dto.CommessaDto commessa=null)
+        public IEnumerable<Dto.CommittenteDto> LoadCommittenti(int skip, int take, string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null)
         {
             try
             {
-                var committenti = QueryCommittenti(search, commessa);
+                var committenti = QueryCommittenti(search, advancedSearch, commessa);
                 committenti = (from q in committenti select q).Skip(skip).Take(take);
 
                 var committentiDto = UtilityPOCO.Assemble<Dto.CommittenteDto>(committenti, true); //lettura ricorsiva
@@ -2176,11 +2212,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountCommittenti(string search = null, Dto.CommessaDto commessa = null)
+        public int CountCommittenti(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null)
         {
             try
             {
-                var committenti = QueryCommittenti(search, commessa);
+                var committenti = QueryCommittenti(search, advancedSearch, commessa);
                 var count = committenti.Count();
                 return count;
             }
@@ -2207,7 +2243,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Committente> QueryCommittenti(string search=null, Dto.CommessaDto commessa=null)
+        private IQueryable<DataLayer.Committente> QueryCommittenti(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null)
         {
             try
             {
@@ -2215,6 +2251,10 @@ namespace WcfService
                 var committenti = (from q in ef.Committentes select q);
                 if(commessa!=null)
                     committenti = (from q in committenti where q.CommessaId == commessa.Id select q);
+
+                if (advancedSearch != null)
+                    committenti = committenti.Where((Func<DataLayer.Committente, bool>)advancedSearch).AsQueryable();
+
                 if (search != null && search.Length > 0)
                 {
                     var commesseId = (from c in QueryCommesse(search) select c.Id).ToList();
@@ -2371,12 +2411,12 @@ namespace WcfService
         }
         #endregion
         #region Custom
-       
-        public IEnumerable<Dto.FatturaVenditaDto> LoadFattureVendita(int skip, int take, string search = null, Dto.CommittenteDto committente=null)
+
+        public IEnumerable<Dto.FatturaVenditaDto> LoadFattureVendita(int skip, int take, string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null)
         {
             try
             {
-                var fattureVendita = QueryFattureVendita(search, committente);
+                var fattureVendita = QueryFattureVendita(search, advancedSearch, committente);
                 fattureVendita = (from q in fattureVendita select q).Skip(skip).Take(take);
 
                 var fattureVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fattureVendita);
@@ -2389,11 +2429,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountFattureVendita(string search = null, Dto.CommittenteDto committente=null)
+        public int CountFattureVendita(string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null)
         {
             try
             {
-                var fattureVendita = QueryFattureVendita(search,committente);
+                var fattureVendita = QueryFattureVendita(search, advancedSearch, committente);
                 var count = fattureVendita.Count();
                 return count;
             }
@@ -2420,7 +2460,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.FatturaVendita> QueryFattureVendita(string search=null, Dto.CommittenteDto committente=null)
+        private IQueryable<DataLayer.FatturaVendita> QueryFattureVendita(string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null)
         {
             try
             {
@@ -2428,6 +2468,9 @@ namespace WcfService
                 var fattureVendita = (from q in ef.FatturaVenditas select q);
                 if(committente!=null)
                     fattureVendita = (from q in fattureVendita where q.CommittenteId == committente.Id select q);
+
+                if (advancedSearch != null)
+                    fattureVendita = fattureVendita.Where((Func<DataLayer.FatturaVendita, bool>)advancedSearch).AsQueryable();
 
                 if (search != null && search.Length > 0)
                 {
@@ -2529,11 +2572,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.IncassoDto> LoadIncassi(int skip, int take, string search = null, Dto.CommittenteDto committente=null, Dto.FatturaVenditaDto fatturaVendita=null)
+        public IEnumerable<Dto.IncassoDto> LoadIncassi(int skip, int take, string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null, Dto.FatturaVenditaDto fatturaVendita = null)
         {
             try
             {
-                var incassi = QueryIncassi(search, committente,fatturaVendita);
+                var incassi = QueryIncassi(search, advancedSearch, committente,fatturaVendita);
                 incassi = (from q in incassi select q).Skip(skip).Take(take);
 
                 var incassiDto = UtilityPOCO.Assemble<Dto.IncassoDto>(incassi);
@@ -2546,11 +2589,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountIncassi(string search = null, Dto.CommittenteDto committente = null, Dto.FatturaVenditaDto fatturaVendita = null)
+        public int CountIncassi(string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null, Dto.FatturaVenditaDto fatturaVendita = null)
         {
             try
             {
-                var incassi = QueryIncassi(search, committente, fatturaVendita);
+                var incassi = QueryIncassi(search, advancedSearch, committente, fatturaVendita);
                 var count = incassi.Count();
                 return count;
             }
@@ -2577,7 +2620,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Incasso> QueryIncassi(string search=null, Dto.CommittenteDto committente=null, Dto.FatturaVenditaDto fatturaVendita=null)
+        private IQueryable<DataLayer.Incasso> QueryIncassi(string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null, Dto.FatturaVenditaDto fatturaVendita = null)
         {
             try
             {
@@ -2595,6 +2638,9 @@ namespace WcfService
                         incassi = (from q in incassi where fattureVenditaIds.Contains(q.FatturaVenditaId) select q);
                     }
                 }
+
+                if (advancedSearch != null)
+                    incassi = incassi.Where((Func<DataLayer.Incasso, bool>)advancedSearch).AsQueryable();
 
                 if (search != null && search.Length > 0)
                 {
@@ -2698,11 +2744,11 @@ namespace WcfService
         #endregion
         #region Custom
 
-        public IEnumerable<Dto.SALDto> LoadSALs(int skip, int take, string search = null, Dto.CommessaDto commessa=null)
+        public IEnumerable<Dto.SALDto> LoadSALs(int skip, int take, string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null)
         {
             try
             {
-                var sals = QuerySALs(search, commessa);
+                var sals = QuerySALs(search, advancedSearch, commessa);
                 sals = (from q in sals select q).Skip(skip).Take(take);
                 
                 var salsDto = UtilityPOCO.Assemble<Dto.SALDto>(sals);
@@ -2715,11 +2761,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountSALs(string search = null, Dto.CommessaDto commessa=null)
+        public int CountSALs(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null)
         {
             try
             {
-                var sals = QuerySALs(search, commessa);
+                var sals = QuerySALs(search, advancedSearch, commessa);
                 var count = sals.Count();
                 return count;
             }
@@ -2730,22 +2776,7 @@ namespace WcfService
             return 0;
         }
 
-        public int CountSALsCommessa(Dto.CommessaDto commessa, string search = null)
-        {
-            try
-            {
-                var sals = QuerySALs(search);
-                sals = (from q in sals where q.CommessaId == commessa.Id select q);
-                var count = sals.Count();
-                return count;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-
+       
         public Dto.SALDto ReadSAL(object id)
         {
             try
@@ -2762,7 +2793,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.SAL> QuerySALs(string search=null, Dto.CommessaDto commessa=null)
+        private IQueryable<DataLayer.SAL> QuerySALs(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null)
         {
             try
             {
@@ -2770,6 +2801,10 @@ namespace WcfService
                 var sals = (from q in ef.SALs select q);
                 if(commessa!=null)
                     sals = (from q in sals where q.CommessaId == commessa.Id select q);
+
+                if (advancedSearch != null)
+                    sals = sals.Where((Func<DataLayer.SAL, bool>)advancedSearch).AsQueryable();
+
                 if (search != null && search.Length > 0)
                 {
                     var commesseId = (from c in QueryCommesse(search) select c.Id).ToList();
@@ -2869,11 +2904,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.AnagraficaFornitoreDto> LoadAnagraficheFornitori(int skip, int take, string search = null)
+        public IEnumerable<Dto.AnagraficaFornitoreDto> LoadAnagraficheFornitori(int skip, int take, string search = null, object advancedSearch = null)
         {
             try
             {
-                var anagraficheFornitori = QueryAnagraficheFornitori(search);
+                var anagraficheFornitori = QueryAnagraficheFornitori(search, advancedSearch);
                 anagraficheFornitori = (from q in anagraficheFornitori select q).Skip(skip).Take(take);
 
                 var anagraficheFornitoriDto = UtilityPOCO.Assemble<Dto.AnagraficaFornitoreDto>(anagraficheFornitori);
@@ -2886,11 +2921,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountAnagraficheFornitori(string search = null)
+        public int CountAnagraficheFornitori(string search = null, object advancedSearch = null)
         {
             try
             {
-                var anagraficheFornitori = QueryAnagraficheFornitori(search);
+                var anagraficheFornitori = QueryAnagraficheFornitori(search, advancedSearch);
                 var count = anagraficheFornitori.Count();
                 return count;
             }
@@ -2933,12 +2968,16 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.AnagraficaFornitore> QueryAnagraficheFornitori(string search = null)
+        private IQueryable<DataLayer.AnagraficaFornitore> QueryAnagraficheFornitori(string search = null, object advancedSearch = null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var anagraficheFornitori = (from q in ef.AnagraficaFornitores select q);
+
+                if (advancedSearch != null)
+                    anagraficheFornitori = anagraficheFornitori.Where((Func<DataLayer.AnagraficaFornitore, bool>)advancedSearch).AsQueryable();
+
                 if (search != null && search.Length > 0)
                     anagraficheFornitori = (from q in anagraficheFornitori
                                             where q.Codice.StartsWith(search) || q.PartitaIva.StartsWith(search) ||
@@ -3039,11 +3078,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.AnagraficaCommittenteDto> LoadAnagraficheCommittenti(int skip, int take, string search = null)
+        public IEnumerable<Dto.AnagraficaCommittenteDto> LoadAnagraficheCommittenti(int skip, int take, string search = null, object advancedSearch = null)
         {
             try
             {
-                var anagraficheCommittenti = QueryAnagraficheCommittenti(search);
+                var anagraficheCommittenti = QueryAnagraficheCommittenti(search, advancedSearch);
                 anagraficheCommittenti = (from q in anagraficheCommittenti select q).Skip(skip).Take(take);
 
                 var anagraficheCommittentiDto = UtilityPOCO.Assemble<Dto.AnagraficaCommittenteDto>(anagraficheCommittenti);
@@ -3056,11 +3095,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountAnagraficheCommittenti(string search = null)
+        public int CountAnagraficheCommittenti(string search = null, object advancedSearch = null)
         {
             try
             {
-                var anagraficheCommittenti = QueryAnagraficheCommittenti(search);
+                var anagraficheCommittenti = QueryAnagraficheCommittenti(search, advancedSearch);
                 var count = anagraficheCommittenti.Count();
                 return count;
             }
@@ -3103,12 +3142,16 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.AnagraficaCommittente> QueryAnagraficheCommittenti(string search = null)
+        private IQueryable<DataLayer.AnagraficaCommittente> QueryAnagraficheCommittenti(string search = null, object advancedSearch = null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var anagraficheCommittenti = (from q in ef.AnagraficaCommittentes select q);
+
+                if (advancedSearch != null)
+                    anagraficheCommittenti = anagraficheCommittenti.Where((Func<DataLayer.AnagraficaCommittente, bool>)advancedSearch).AsQueryable();
+
                 if (search != null && search.Length > 0)
                     anagraficheCommittenti = (from q in anagraficheCommittenti where q.Codice.StartsWith(search) || q.PartitaIva.StartsWith(search) ||
                                               q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
@@ -3207,11 +3250,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.AnagraficaArticoloDto> LoadAnagraficheArticoli(int skip, int take, string search = null)
+        public IEnumerable<Dto.AnagraficaArticoloDto> LoadAnagraficheArticoli(int skip, int take, string search = null, object advancedSearch = null)
         {
             try
             {
-                var anagraficheArticoli = QueryAnagraficheArticoli(search);
+                var anagraficheArticoli = QueryAnagraficheArticoli(search, advancedSearch);
                 anagraficheArticoli = (from q in anagraficheArticoli select q).Skip(skip).Take(take);
 
                 var anagraficheArticoliDto = UtilityPOCO.Assemble<Dto.AnagraficaArticoloDto>(anagraficheArticoli);
@@ -3224,11 +3267,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountAnagraficheArticoli(string search = null)
+        public int CountAnagraficheArticoli(string search = null, object advancedSearch = null)
         {
             try
             {
-                var anagraficheArticoli = QueryAnagraficheArticoli(search);
+                var anagraficheArticoli = QueryAnagraficheArticoli(search, advancedSearch);
                 var count = anagraficheArticoli.Count();
                 return count;
             }
@@ -3255,12 +3298,16 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.AnagraficaArticolo> QueryAnagraficheArticoli(string search = null)
+        private IQueryable<DataLayer.AnagraficaArticolo> QueryAnagraficheArticoli(string search = null, object advancedSearch = null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var anagraficheArticoli = (from q in ef.AnagraficaArticolos select q);
+
+                if (advancedSearch != null)
+                    anagraficheArticoli = anagraficheArticoli.Where((Func<DataLayer.AnagraficaArticolo, bool>)advancedSearch).AsQueryable();
+
                 if (search != null && search.Length > 0)
                     anagraficheArticoli = (from q in anagraficheArticoli where q.Codice.StartsWith(search) || q.Descrizione.Contains(search) select q);
 
@@ -3357,11 +3404,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.ReportJobDto> LoadReportJobs(int skip, int take, string search = null)
+        public IEnumerable<Dto.ReportJobDto> LoadReportJobs(int skip, int take, string search = null, object advancedSearch = null)
         {
             try
             {
-                var reportJobs = QueryReportJobs(search);
+                var reportJobs = QueryReportJobs(search, advancedSearch);
                 reportJobs = (from q in reportJobs select q).Skip(skip).Take(take);
 
                 var reportJobsDto = UtilityPOCO.Assemble<Dto.ReportJobDto>(reportJobs);
@@ -3374,11 +3421,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountReportJobs(string search = null)
+        public int CountReportJobs(string search = null, object advancedSearch = null)
         {
             try
             {
-                var reportJobs = QueryReportJobs(search);
+                var reportJobs = QueryReportJobs(search, advancedSearch);
                 var count = reportJobs.Count();
                 return count;
             }
@@ -3405,12 +3452,16 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.ReportJob> QueryReportJobs(string search = null)
+        private IQueryable<DataLayer.ReportJob> QueryReportJobs(string search = null, object advancedSearch = null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var reportJobs = (from q in ef.ReportJobs select q);
+
+                if (advancedSearch != null)
+                    reportJobs = reportJobs.Where((Func<DataLayer.ReportJob, bool>)advancedSearch).AsQueryable();
+
                 if (search != null && search.Length > 0)
                     reportJobs = (from q in reportJobs where q.Codice.StartsWith(search) || q.CodiceFornitore.Contains(search) select q);
 

@@ -19,12 +19,12 @@ namespace Web.GUI.Commessa
            
         }
 
-        public override void Load(int skip, int take, string search = null)
+        public override void Load(int skip, int take, string search = null, object advancedSearch=null)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadCommesse(skip, take, search);
+                var objs = wcf.LoadCommesse(skip, take, search, advancedSearch);
                 Load(objs);
             }
             catch (Exception ex)
@@ -33,12 +33,12 @@ namespace Web.GUI.Commessa
             }
         }
 
-        public override int Count(string search = null)
+        public override int Count(string search = null, object advancedSearch=null)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountCommesse(search);
+                var count = wcf.CountCommesse(search, advancedSearch);
                 return count;
             }
             catch (Exception ex)

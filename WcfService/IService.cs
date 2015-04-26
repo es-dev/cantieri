@@ -33,10 +33,10 @@ namespace WcfService
         #endregion
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.AziendaDto> LoadAziende(int skip, int take, string search = null);
+        IEnumerable<Dto.AziendaDto> LoadAziende(int skip, int take, string search = null, object advancedSearch = null);
 
         [OperationContract]
-        int CountAziende(string search = null);
+        int CountAziende(string search = null, object advancedSearch = null);
 
         [OperationContract]
         Dto.AziendaDto ReadAzienda(object id);
@@ -62,10 +62,10 @@ namespace WcfService
         #endregion
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.AccountDto> LoadAccounts(int skip, int take, string search = null);
+        IEnumerable<Dto.AccountDto> LoadAccounts(int skip, int take, string search = null, object advancedSearch = null);
 
         [OperationContract]
-        int CountAccounts(string search = null);
+        int CountAccounts(string search = null, object advancedSearch = null);
 
         [OperationContract]
         Dto.AccountDto ReadAccount(object id);
@@ -94,10 +94,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.CommessaDto> LoadCommesse(int skip, int take, string search = null);
+        IEnumerable<Dto.CommessaDto> LoadCommesse(int skip, int take, string search = null, object advancedSearch = null);
 
         [OperationContract]
-        int CountCommesse(string search = null);
+        int CountCommesse(string search = null, object advancedSearch = null);
 
         [OperationContract]
         Dto.CommessaDto ReadCommessa(object id, bool recursive=false);
@@ -106,7 +106,7 @@ namespace WcfService
         IEnumerable<Dto.CommessaDto> ReadCommesse(IEnumerable<Dto.FornitoreDto> fornitori);
 
         [OperationContract]
-        int CountCommesseNonAssegnate(string search = null);
+        int CountCommesseNonAssegnate(string search = null, object advancedSearch = null);
         #endregion
         #endregion
 
@@ -130,10 +130,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.FornitoreDto> LoadFornitori(int skip, int take, string search = null, Dto.CommessaDto commessa=null);
+        IEnumerable<Dto.FornitoreDto> LoadFornitori(int skip, int take, string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null);
 
         [OperationContract]
-        int CountFornitori(string search = null, Dto.CommessaDto commessa = null);
+        int CountFornitori(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null);
 
         [OperationContract]
         Dto.FornitoreDto ReadFornitore(object id);
@@ -169,10 +169,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.CentroCostoDto> LoadCentriCosto(int skip, int take, string search = null);
+        IEnumerable<Dto.CentroCostoDto> LoadCentriCosto(int skip, int take, string search = null, object advancedSearch = null);
 
         [OperationContract]
-        int CountCentriCosto(string search = null);
+        int CountCentriCosto(string search = null, object advancedSearch = null);
 
         [OperationContract]
         Dto.CentroCostoDto ReadCentroCosto(object id);
@@ -199,11 +199,11 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquisto(int skip, int take, string search = null, Dto.FornitoreDto fornitore=null, 
+        IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquisto(int skip, int take, string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null, 
             Dto.AnagraficaFornitoreDto anagraficaFornitore=null);
 
         [OperationContract]
-        int CountFattureAcquisto(string search = null, Dto.FornitoreDto fornitore=null, Dto.AnagraficaFornitoreDto anagraficaFornitore=null);
+        int CountFattureAcquisto(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null, Dto.AnagraficaFornitoreDto anagraficaFornitore = null);
 
         [OperationContract]
         Dto.FatturaAcquistoDto ReadFatturaAcquisto(object id);
@@ -230,10 +230,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.ArticoloDto> LoadArticoli(int skip, int take, string search = null);
+        IEnumerable<Dto.ArticoloDto> LoadArticoli(int skip, int take, string search = null, object advancedSearch = null);
 
         [OperationContract]
-        int CountArticoli(string search = null);
+        int CountArticoli(string search = null, object advancedSearch = null);
 
         [OperationContract]
         Dto.ArticoloDto ReadArticolo(object id);
@@ -260,10 +260,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.PagamentoDto> LoadPagamenti(int skip, int take, string search = null, Dto.FornitoreDto fornitore=null, Dto.FatturaAcquistoDto fatturaAcquisto=null);
+        IEnumerable<Dto.PagamentoDto> LoadPagamenti(int skip, int take, string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null, Dto.FatturaAcquistoDto fatturaAcquisto = null);
 
         [OperationContract]
-        int CountPagamenti(string search = null, Dto.FornitoreDto fornitore = null, Dto.FatturaAcquistoDto fatturaAcquisto = null);
+        int CountPagamenti(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null, Dto.FatturaAcquistoDto fatturaAcquisto = null);
 
         [OperationContract]
         Dto.PagamentoDto ReadPagamento(object id);
@@ -296,10 +296,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.NotaCreditoDto> LoadNoteCredito(int skip, int take, string search = null, Dto.FornitoreDto fornitore=null);
+        IEnumerable<Dto.NotaCreditoDto> LoadNoteCredito(int skip, int take, string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null);
 
         [OperationContract]
-        int CountNoteCredito(string search = null, Dto.FornitoreDto fornitore=null);
+        int CountNoteCredito(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null);
 
         [OperationContract]
         Dto.NotaCreditoDto ReadNotaCredito(object id);
@@ -326,10 +326,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.ResoDto> LoadResi(int skip, int take, string search = null, Dto.NotaCreditoDto notaCredito = null, Dto.FatturaAcquistoDto fatturaAcquisto=null);
+        IEnumerable<Dto.ResoDto> LoadResi(int skip, int take, string search = null, object advancedSearch = null, Dto.NotaCreditoDto notaCredito = null, Dto.FatturaAcquistoDto fatturaAcquisto = null);
 
         [OperationContract]
-        int CountResi(string search = null, Dto.NotaCreditoDto notaCredito = null, Dto.FatturaAcquistoDto fatturaAcquisto = null);
+        int CountResi(string search = null, object advancedSearch = null, Dto.NotaCreditoDto notaCredito = null, Dto.FatturaAcquistoDto fatturaAcquisto = null);
 
         [OperationContract]
         Dto.ResoDto ReadReso(object id);
@@ -356,10 +356,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.PagamentoUnificatoDto> LoadPagamentiUnificati(int skip, int take, string search = null);
+        IEnumerable<Dto.PagamentoUnificatoDto> LoadPagamentiUnificati(int skip, int take, string search = null, object advancedSearch = null);
 
         [OperationContract]
-        int CountPagamentiUnificati(string search = null);
+        int CountPagamentiUnificati(string search = null, object advancedSearch = null);
 
         [OperationContract]
         Dto.PagamentoUnificatoDto ReadPagamentoUnificato(object id);
@@ -386,10 +386,11 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.PagamentoUnificatoFatturaAcquistoDto> LoadPagamentiUnificatiFatturaAcquisto(int skip, int take, string search = null, Dto.PagamentoUnificatoDto pagamentoUnificato = null);
+        IEnumerable<Dto.PagamentoUnificatoFatturaAcquistoDto> LoadPagamentiUnificatiFatturaAcquisto(int skip, int take, string search = null, object advancedSearch = null, 
+            Dto.PagamentoUnificatoDto pagamentoUnificato = null);
 
         [OperationContract]
-        int CountPagamentiUnificatiFatturaAcquisto(string search = null, Dto.PagamentoUnificatoDto pagamentoUnificato = null);
+        int CountPagamentiUnificatiFatturaAcquisto(string search = null, object advancedSearch = null, Dto.PagamentoUnificatoDto pagamentoUnificato = null);
 
         [OperationContract]
         Dto.PagamentoUnificatoFatturaAcquistoDto ReadPagamentoUnificatoFatturaAcquisto(object id);
@@ -416,10 +417,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.CommittenteDto> LoadCommittenti(int skip, int take, string search = null, Dto.CommessaDto commessa=null);
+        IEnumerable<Dto.CommittenteDto> LoadCommittenti(int skip, int take, string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null);
 
         [OperationContract]
-        int CountCommittenti(string search = null, Dto.CommessaDto commessa=null);
+        int CountCommittenti(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null);
 
         [OperationContract]
         Dto.CommittenteDto ReadCommittente(object id);
@@ -450,10 +451,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.FatturaVenditaDto> LoadFattureVendita(int skip, int take, string search = null, Dto.CommittenteDto committente=null);
+        IEnumerable<Dto.FatturaVenditaDto> LoadFattureVendita(int skip, int take, string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null);
 
         [OperationContract]
-        int CountFattureVendita(string search = null, Dto.CommittenteDto committente = null);
+        int CountFattureVendita(string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null);
 
         [OperationContract]
         Dto.FatturaVenditaDto ReadFatturaVendita(object id);
@@ -480,10 +481,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.IncassoDto> LoadIncassi(int skip, int take, string search = null, Dto.CommittenteDto committente = null, Dto.FatturaVenditaDto fatturaVendita=null);
+        IEnumerable<Dto.IncassoDto> LoadIncassi(int skip, int take, string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null, Dto.FatturaVenditaDto fatturaVendita = null);
 
         [OperationContract]
-        int CountIncassi(string search = null, Dto.CommittenteDto committente = null, Dto.FatturaVenditaDto fatturaVendita = null);
+        int CountIncassi(string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null, Dto.FatturaVenditaDto fatturaVendita = null);
 
         [OperationContract]
         Dto.IncassoDto ReadIncasso(object id);
@@ -510,10 +511,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.SALDto> LoadSALs(int skip, int take, string search = null, Dto.CommessaDto commessa=null);
+        IEnumerable<Dto.SALDto> LoadSALs(int skip, int take, string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null);
 
         [OperationContract]
-        int CountSALs(string search = null, Dto.CommessaDto commessa=null);
+        int CountSALs(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null);
 
         [OperationContract]
         Dto.SALDto ReadSAL(object id);
@@ -540,10 +541,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.AnagraficaFornitoreDto> LoadAnagraficheFornitori(int skip, int take, string search = null);
+        IEnumerable<Dto.AnagraficaFornitoreDto> LoadAnagraficheFornitori(int skip, int take, string search = null, object advancedSearch = null);
 
         [OperationContract]
-        int CountAnagraficheFornitori(string search = null);
+        int CountAnagraficheFornitori(string search = null, object advancedSearch = null);
 
         [OperationContract]
         Dto.AnagraficaFornitoreDto ReadAnagraficaFornitore(object id);
@@ -574,10 +575,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.AnagraficaCommittenteDto> LoadAnagraficheCommittenti(int skip, int take, string search = null);
+        IEnumerable<Dto.AnagraficaCommittenteDto> LoadAnagraficheCommittenti(int skip, int take, string search = null, object advancedSearch = null);
 
         [OperationContract]
-        int CountAnagraficheCommittenti(string search = null);
+        int CountAnagraficheCommittenti(string search = null, object advancedSearch = null);
 
         [OperationContract]
         Dto.AnagraficaCommittenteDto ReadAnagraficaCommittente(object id);
@@ -608,10 +609,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.AnagraficaArticoloDto> LoadAnagraficheArticoli(int skip, int take, string search = null);
+        IEnumerable<Dto.AnagraficaArticoloDto> LoadAnagraficheArticoli(int skip, int take, string search = null, object advancedSearch = null);
 
         [OperationContract]
-        int CountAnagraficheArticoli(string search = null);
+        int CountAnagraficheArticoli(string search = null, object advancedSearch = null);
         
         [OperationContract]
         Dto.AnagraficaArticoloDto ReadAnagraficaArticolo(object id);
@@ -638,10 +639,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.ReportJobDto> LoadReportJobs(int skip, int take, string search = null);
+        IEnumerable<Dto.ReportJobDto> LoadReportJobs(int skip, int take, string search = null, object advancedSearch = null);
 
         [OperationContract]
-        int CountReportJobs(string search = null);
+        int CountReportJobs(string search = null, object advancedSearch = null);
 
         [OperationContract]
         Dto.ReportJobDto ReadReportJob(object id);

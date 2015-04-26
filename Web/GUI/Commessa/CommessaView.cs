@@ -32,6 +32,20 @@ namespace Web.GUI.Commessa
             }
         }
 
+        public override object QueryAdvancedSearch()
+        {
+            try
+            {
+                var advancedSearch = (Func<DataLayer.Commessa, bool>)(q => q.Denominazione.StartsWith("C"));
+                return advancedSearch;
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
 
 	}
 }
