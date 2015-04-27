@@ -36,9 +36,9 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                var advancedSearch = (Func<DataLayer.Commessa, bool>)(q => q.Denominazione.StartsWith("C"));
+                var advancedSearch = (Func<DataLayer.Commessa, bool>)(q => WhereStato(q) && WhereData(q));
                 return advancedSearch;
-
+                
             }
             catch (Exception ex)
             {
@@ -47,6 +47,44 @@ namespace Web.GUI.Commessa
             return null;
         }
 
+        private bool WhereStato(DataLayer.Commessa q)
+        {
+            try
+            {
+                var stato = comboBox1.Text;
+                if(stato!=null && stato.Length>0)
+                {
+                    var condition = q.Stato.StartsWith(stato);
+                    return condition;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return true;
+        }
+
+        private bool WhereData(DataLayer.Commessa q)
+        {
+            try
+            {
+                DateTime? dal = DateTime.Today;
+                DateTime? al = dal.Value.AddDays(7);
+                if (dal!=null && al !=null)
+                {
+                    var condition = (dal<=q.Scadenza && q.Scadenza<=al);
+                    return condition;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return true;
+        }
+       
+       
         public override object QueryOrderBy()
         {
             try

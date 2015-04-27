@@ -322,8 +322,6 @@ namespace WcfService
             }
             return null;
         }
-
-
         #endregion
         #endregion
 
@@ -720,8 +718,6 @@ namespace WcfService
             }
             return null;
         }
-
-
         #endregion
         #endregion
 
@@ -878,8 +874,6 @@ namespace WcfService
             }
             return null;
         }
-
-        
         #endregion
         #endregion
 
@@ -1231,8 +1225,6 @@ namespace WcfService
             }
             return null;
         }
-
-       
         #endregion
         #endregion
 
@@ -1431,6 +1423,7 @@ namespace WcfService
             }
             return null;
         }
+
         public Dto.PagamentoDto ReadPagamentoOld(Dto.PagamentoUnificatoDto pagamentoUnificato, Dto.FatturaAcquistoDto fatturaAcquisto)
         {
             try
@@ -1936,8 +1929,6 @@ namespace WcfService
             return null;
         }
 
-
-
         private IQueryable<DataLayer.PagamentoUnificato> QueryPagamentiUnificati(string search = null, object advancedSearch = null, object orderBy = null)
         {
             try
@@ -1968,8 +1959,6 @@ namespace WcfService
             }
             return null;
         }
-
-
         #endregion
         #endregion
 
@@ -2086,7 +2075,6 @@ namespace WcfService
             return 0;
         }
 
-
         public Dto.PagamentoUnificatoFatturaAcquistoDto ReadPagamentoUnificatoFatturaAcquisto(object id)
         {
             try
@@ -2136,7 +2124,6 @@ namespace WcfService
             }
             return null;
         }
-
 
         #endregion
         #endregion
@@ -2337,7 +2324,6 @@ namespace WcfService
             }
             return null;
         }
-
 
         public IEnumerable<Dto.CommittenteDto> ReadCommittenti(IEnumerable<Dto.AnagraficaCommittenteDto> anagraficheCommittenti)
         {
@@ -2816,7 +2802,6 @@ namespace WcfService
             return 0;
         }
 
-       
         public Dto.SALDto ReadSAL(object id)
         {
             try
@@ -3533,7 +3518,6 @@ namespace WcfService
 
         #endregion
         #endregion
-
 
     }
 }
