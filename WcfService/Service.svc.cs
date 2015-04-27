@@ -93,11 +93,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.AziendaDto> LoadAziende(int skip, int take, string search = null, object advancedSearch=null)
+        public IEnumerable<Dto.AziendaDto> LoadAziende(int skip, int take, string search = null, object advancedSearch = null, object orderBy = null)
         {
             try
             {
-                var aziende = QueryAziende(search, advancedSearch);
+                var aziende = QueryAziende(search, advancedSearch, orderBy);
                 aziende = (from q in aziende select q).Skip(skip).Take(take);
 
                 var aziendeDto = UtilityPOCO.Assemble<Dto.AziendaDto>(aziende);
@@ -141,7 +141,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Azienda> QueryAziende(string search = null, object advancedSearch=null)
+        private IQueryable<DataLayer.Azienda> QueryAziende(string search = null, object advancedSearch=null, object orderBy=null)
         {
             try
             {
@@ -156,6 +156,9 @@ namespace WcfService
                                    q.Provincia.StartsWith(search) select q);
 
                 aziende = (from q in aziende orderby q.RagioneSociale select q);
+                if (orderBy != null)
+                    aziende = aziende.OrderBy((Func<DataLayer.Azienda, object>)orderBy).AsQueryable();
+                
                 return aziende;
             }
             catch (Exception ex)
@@ -246,11 +249,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.AccountDto> LoadAccounts(int skip, int take, string search = null, object advancedSearch = null)
+        public IEnumerable<Dto.AccountDto> LoadAccounts(int skip, int take, string search = null, object advancedSearch = null, object orderBy = null)
         {
             try
             {
-                var accounts = QueryAccounts(search, advancedSearch);
+                var accounts = QueryAccounts(search, advancedSearch, orderBy);
                 accounts = (from q in accounts select q).Skip(skip).Take(take);
                 var accountsDto = UtilityPOCO.Assemble<Dto.AccountDto>(accounts);
                 return accountsDto;
@@ -293,7 +296,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Account> QueryAccounts(string search = null, object advancedSearch=null)
+        private IQueryable<DataLayer.Account> QueryAccounts(string search = null, object advancedSearch = null, object orderBy = null)
         {
             try
             {
@@ -308,6 +311,9 @@ namespace WcfService
                                where q.Nickname.StartsWith(search) || q.Username.Contains(search) select q);
 
                 accounts = (from q in accounts orderby q.Username select q);
+                if (orderBy != null)
+                    accounts = accounts.OrderBy((Func<DataLayer.Account, object>)orderBy).AsQueryable();
+                
                 return accounts;
             }
             catch (Exception ex)
@@ -401,11 +407,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.CommessaDto> LoadCommesse(int skip, int take, string search = null, object advancedSearch=null)
+        public IEnumerable<Dto.CommessaDto> LoadCommesse(int skip, int take, string search = null, object advancedSearch=null, object orderBy=null)
         {
             try
             {
-                var commesse = QueryCommesse(search, advancedSearch);
+                var commesse = QueryCommesse(search, advancedSearch, orderBy);
                 commesse = (from q in commesse select q).Skip(skip).Take(take);
                 
                 var commesseDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commesse); 
@@ -423,22 +429,6 @@ namespace WcfService
             try
             {
                 var commesse = QueryCommesse(search, advancedSearch);
-                var count = commesse.Count();
-                return count;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return 0;
-        }
-
-        public int CountCommesseNonAssegnate(string search = null, object advancedSearch = null)
-        {
-            try
-            {
-                var commesse = QueryCommesse(search, advancedSearch);
-                commesse = (from q in commesse where (q.Committentes==null && q.Committentes.Count==0) select q); //filtro aggiuntivo per commesse non assegnate (committente nullo)
                 var count = commesse.Count();
                 return count;
             }
@@ -484,9 +474,8 @@ namespace WcfService
                                 select q);
 
                 commesse = (from q in commesse orderby q.Id descending select q);
-
                 if(orderBy!=null)
-                    commesse = commesse.OrderBy((Func<DataLayer.Commessa, bool>)orderBy).AsQueryable();
+                    commesse = commesse.OrderBy((Func<DataLayer.Commessa, object>)orderBy).AsQueryable();
 
                 return commesse;
             }
@@ -597,11 +586,12 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.FornitoreDto> LoadFornitori(int skip, int take, string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null)
+        public IEnumerable<Dto.FornitoreDto> LoadFornitori(int skip, int take, string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, 
+            object orderBy = null)
         {
             try
             {
-                var fornitori = QueryFornitori(search, advancedSearch, commessa);
+                var fornitori = QueryFornitori(search, advancedSearch, commessa, orderBy);
                 fornitori = (from q in fornitori select q).Skip(skip).Take(take);
                 var fornitoriDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitori, true); //lettura ricorsiva
                 return fornitoriDto;
@@ -644,7 +634,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Fornitore> QueryFornitori(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null)
+        private IQueryable<DataLayer.Fornitore> QueryFornitori(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, object orderBy = null)
         {
             try
             {
@@ -667,6 +657,9 @@ namespace WcfService
                                  select q);
                 }
                 fornitori = (from q in fornitori orderby q.RagioneSociale select q);
+                if (orderBy != null)
+                    fornitori = fornitori.OrderBy((Func<DataLayer.Fornitore, object>)orderBy).AsQueryable();
+                
                 return fornitori;
             }
             catch (Exception ex)
@@ -811,11 +804,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.CentroCostoDto> LoadCentriCosto(int skip, int take, string search = null, object advancedSearch = null)
+        public IEnumerable<Dto.CentroCostoDto> LoadCentriCosto(int skip, int take, string search = null, object advancedSearch = null, object orderBy = null)
         {
             try
             {
-                var centriCosto = QueryCentriCosto(search, advancedSearch);
+                var centriCosto = QueryCentriCosto(search, advancedSearch, orderBy);
                 centriCosto = (from q in centriCosto select q).Skip(skip).Take(take);
 
                 var centriCostoDto = UtilityPOCO.Assemble<Dto.CentroCostoDto>(centriCosto);
@@ -859,7 +852,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.CentroCosto> QueryCentriCosto(string search = null, object advancedSearch = null)
+        private IQueryable<DataLayer.CentroCosto> QueryCentriCosto(string search = null, object advancedSearch = null, object orderBy = null)
         {
             try
             {
@@ -874,6 +867,9 @@ namespace WcfService
                                    select q);
 
                 centriCosto = (from q in centriCosto orderby q.Denominazione select q);
+                if (orderBy != null)
+                    centriCosto = centriCosto.OrderBy((Func<DataLayer.CentroCosto, object>)orderBy).AsQueryable();
+                
                 return centriCosto;
             }
             catch (Exception ex)
@@ -969,12 +965,12 @@ namespace WcfService
         #endregion
         #region Custom
 
-        public IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquisto(int skip, int take, string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null, 
-            Dto.AnagraficaFornitoreDto anagraficaFornitore=null)
+        public IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquisto(int skip, int take, string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null,
+            Dto.AnagraficaFornitoreDto anagraficaFornitore = null, object orderBy = null)
         {
             try
             {
-                var fattureAcquisto = QueryFattureAcquisto(search, advancedSearch, fornitore, anagraficaFornitore);
+                var fattureAcquisto = QueryFattureAcquisto(search, advancedSearch, fornitore, anagraficaFornitore, null, null, orderBy);
                 fattureAcquisto = (from q in fattureAcquisto select q).Skip(skip).Take(take);
 
                 var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
@@ -1018,8 +1014,8 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.FatturaAcquisto> QueryFattureAcquisto(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null, Dto.AnagraficaFornitoreDto anagraficaFornitore = null, 
-            DateTime? start = null, DateTime? end= null)
+        private IQueryable<DataLayer.FatturaAcquisto> QueryFattureAcquisto(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null,
+            Dto.AnagraficaFornitoreDto anagraficaFornitore = null, DateTime? start = null, DateTime? end = null, object orderBy = null)
         {
             try
             {
@@ -1046,6 +1042,9 @@ namespace WcfService
                                        select q);
                 }
                 fattureAcquisto = (from q in fattureAcquisto orderby q.Id descending select q);
+                if (orderBy != null)
+                    fattureAcquisto = fattureAcquisto.OrderBy((Func<DataLayer.FatturaAcquisto, object>)orderBy).AsQueryable();
+                
                 return fattureAcquisto;
             }
             catch (Exception ex)
@@ -1154,11 +1153,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.ArticoloDto> LoadArticoli(int skip, int take, string search = null, object advancedSearch = null)
+        public IEnumerable<Dto.ArticoloDto> LoadArticoli(int skip, int take, string search = null, object advancedSearch = null, object orderBy = null)
         {
             try
             {
-                var articoli = QueryArticoli(search, advancedSearch);
+                var articoli = QueryArticoli(search, advancedSearch, orderBy);
                 articoli = (from q in articoli select q).Skip(skip).Take(take);
 
                 var articoliDto = UtilityPOCO.Assemble<Dto.ArticoloDto>(articoli);
@@ -1202,7 +1201,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Articolo> QueryArticoli(string search = null, object advancedSearch = null)
+        private IQueryable<DataLayer.Articolo> QueryArticoli(string search = null, object advancedSearch = null, object orderBy = null)
         {
             try
             {
@@ -1221,6 +1220,9 @@ namespace WcfService
                                 select q);
                 }
                 articoli = (from q in articoli orderby q.Id descending select q);
+                if (orderBy != null)
+                    articoli = articoli.OrderBy((Func<DataLayer.Articolo, object>)orderBy).AsQueryable();
+             
                 return articoli;
             }
             catch (Exception ex)
@@ -1314,11 +1316,12 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.PagamentoDto> LoadPagamenti(int skip, int take, string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null, Dto.FatturaAcquistoDto fatturaAcquisto = null)
+        public IEnumerable<Dto.PagamentoDto> LoadPagamenti(int skip, int take, string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null,
+            Dto.FatturaAcquistoDto fatturaAcquisto = null, object orderBy = null)
         {
             try
             {
-                var pagamenti = QueryPagamenti(search, advancedSearch, fornitore, fatturaAcquisto);
+                var pagamenti = QueryPagamenti(search, advancedSearch, fornitore, fatturaAcquisto, null, null, orderBy);
                 pagamenti = (from q in pagamenti select q).Skip(skip).Take(take);
 
                 var pagamentiDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamenti);
@@ -1362,7 +1365,8 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Pagamento> QueryPagamenti(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null, Dto.FatturaAcquistoDto fatturaAcquisto = null, DateTime? start = null, DateTime? end = null)
+        private IQueryable<DataLayer.Pagamento> QueryPagamenti(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null,
+            Dto.FatturaAcquistoDto fatturaAcquisto = null, DateTime? start = null, DateTime? end = null, object orderBy = null)
         {
             try
             {
@@ -1393,6 +1397,9 @@ namespace WcfService
                                  select q);
                 }
                 pagamenti = (from q in pagamenti orderby q.Id descending select q);
+                if (orderBy != null)
+                    pagamenti = pagamenti.OrderBy((Func<DataLayer.Pagamento, object>)orderBy).AsQueryable();
+                
                 return pagamenti;
             }
             catch (Exception ex)
@@ -1546,11 +1553,12 @@ namespace WcfService
         #endregion
         #region Custom
 
-        public IEnumerable<Dto.NotaCreditoDto> LoadNoteCredito(int skip, int take, string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null)
+        public IEnumerable<Dto.NotaCreditoDto> LoadNoteCredito(int skip, int take, string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null, 
+            object orderBy = null)
         {
             try
             {
-                var noteCredito = QueryNoteCredito(search, advancedSearch, fornitore);
+                var noteCredito = QueryNoteCredito(search, advancedSearch, fornitore, orderBy);
                 noteCredito = (from q in noteCredito select q).Skip(skip).Take(take);
 
                 var noteCreditoDto = UtilityPOCO.Assemble<Dto.NotaCreditoDto>(noteCredito);
@@ -1594,7 +1602,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.NotaCredito> QueryNoteCredito(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null)
+        private IQueryable<DataLayer.NotaCredito> QueryNoteCredito(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null, object orderBy = null)
         {
             try
             {
@@ -1615,6 +1623,9 @@ namespace WcfService
                                  select q);
                 }
                 noteCredito = (from q in noteCredito orderby q.Id descending select q);
+                if (orderBy != null)
+                    noteCredito = noteCredito.OrderBy((Func<DataLayer.NotaCredito, object>)orderBy).AsQueryable();
+                
                 return noteCredito;
             }
             catch (Exception ex)
@@ -1707,11 +1718,12 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.ResoDto> LoadResi(int skip, int take, string search = null, object advancedSearch = null, Dto.NotaCreditoDto notaCredito = null, Dto.FatturaAcquistoDto fatturaAcquisto = null)
+        public IEnumerable<Dto.ResoDto> LoadResi(int skip, int take, string search = null, object advancedSearch = null, Dto.NotaCreditoDto notaCredito = null,
+            Dto.FatturaAcquistoDto fatturaAcquisto = null, object orderBy = null)
         {
             try
             {
-                var reso = QueryResi(search, advancedSearch, notaCredito, fatturaAcquisto);
+                var reso = QueryResi(search, advancedSearch, notaCredito, fatturaAcquisto, orderBy);
                 reso = (from q in reso select q).Skip(skip).Take(take);
 
                 var resiDto = UtilityPOCO.Assemble<Dto.ResoDto>(reso);
@@ -1756,7 +1768,8 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Reso> QueryResi(string search = null, object advancedSearch = null, Dto.NotaCreditoDto notaCredito = null, Dto.FatturaAcquistoDto fatturaAcquisto = null)
+        private IQueryable<DataLayer.Reso> QueryResi(string search = null, object advancedSearch = null, Dto.NotaCreditoDto notaCredito = null,
+            Dto.FatturaAcquistoDto fatturaAcquisto = null, object orderBy = null)
         {
             try
             {
@@ -1780,6 +1793,9 @@ namespace WcfService
                                  select q);
                 }
                 resi = (from q in resi orderby q.Id descending select q);
+                if (orderBy != null)
+                    resi = resi.OrderBy((Func<DataLayer.Reso, object>)orderBy).AsQueryable();
+                
                 return resi;
             }
             catch (Exception ex)
@@ -1871,11 +1887,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.PagamentoUnificatoDto> LoadPagamentiUnificati(int skip, int take, string search = null, object advancedSearch = null)
+        public IEnumerable<Dto.PagamentoUnificatoDto> LoadPagamentiUnificati(int skip, int take, string search = null, object advancedSearch = null, object orderBy = null)
         {
             try
             {
-                var pagamentiUnificati = QueryPagamentiUnificati(search, advancedSearch);
+                var pagamentiUnificati = QueryPagamentiUnificati(search, advancedSearch, orderBy);
                 pagamentiUnificati = (from q in pagamentiUnificati select q).Skip(skip).Take(take);
 
                 var pagamentiUnificatiDto = UtilityPOCO.Assemble<Dto.PagamentoUnificatoDto>(pagamentiUnificati, true ); //lettura iterativa
@@ -1922,7 +1938,7 @@ namespace WcfService
 
 
 
-        private IQueryable<DataLayer.PagamentoUnificato> QueryPagamentiUnificati(string search = null, object advancedSearch = null)
+        private IQueryable<DataLayer.PagamentoUnificato> QueryPagamentiUnificati(string search = null, object advancedSearch = null, object orderBy = null)
         {
             try
             {
@@ -1941,6 +1957,9 @@ namespace WcfService
                                  select q);
                 }
                 pagamentiUnificati = (from q in pagamentiUnificati orderby q.Id descending select q);
+                if (orderBy != null)
+                    pagamentiUnificati = pagamentiUnificati.OrderBy((Func<DataLayer.PagamentoUnificato, object>)orderBy).AsQueryable();
+               
                 return pagamentiUnificati;
             }
             catch (Exception ex)
@@ -2034,12 +2053,12 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.PagamentoUnificatoFatturaAcquistoDto> LoadPagamentiUnificatiFatturaAcquisto(int skip, int take, string search = null, object advancedSearch = null, 
-            Dto.PagamentoUnificatoDto pagamentoUnificato = null)
+        public IEnumerable<Dto.PagamentoUnificatoFatturaAcquistoDto> LoadPagamentiUnificatiFatturaAcquisto(int skip, int take, string search = null, object advancedSearch = null,
+            Dto.PagamentoUnificatoDto pagamentoUnificato = null, object orderBy = null)
         {
             try
             {
-                var pagamentiUnificatiFatturaAcquisto = QueryPagamentiUnificatiFatturaAcquisto(search, advancedSearch, pagamentoUnificato);
+                var pagamentiUnificatiFatturaAcquisto = QueryPagamentiUnificatiFatturaAcquisto(search, advancedSearch, pagamentoUnificato, orderBy);
                 pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto select q).Skip(skip).Take(take);
 
                 var pagamentiUnificatiFatturaAcquistoDto = UtilityPOCO.Assemble<Dto.PagamentoUnificatoFatturaAcquistoDto>(pagamentiUnificatiFatturaAcquisto);
@@ -2084,7 +2103,8 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.PagamentoUnificatoFatturaAcquisto> QueryPagamentiUnificatiFatturaAcquisto(string search = null, object advancedSearch = null, Dto.PagamentoUnificatoDto pagamentoUnificato = null)
+        private IQueryable<DataLayer.PagamentoUnificatoFatturaAcquisto> QueryPagamentiUnificatiFatturaAcquisto(string search = null, object advancedSearch = null,
+            Dto.PagamentoUnificatoDto pagamentoUnificato = null, object orderBy = null)
         {
             try
             {
@@ -2105,6 +2125,9 @@ namespace WcfService
                                           select q);
                 }
                 pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto orderby q.Id descending select q);
+                if (orderBy != null)
+                    pagamentiUnificatiFatturaAcquisto = pagamentiUnificatiFatturaAcquisto.OrderBy((Func<DataLayer.PagamentoUnificatoFatturaAcquisto, object>)orderBy).AsQueryable();
+            
                 return pagamentiUnificatiFatturaAcquisto;
             }
             catch (Exception ex)
@@ -2199,11 +2222,12 @@ namespace WcfService
         #endregion
         #region Custom
 
-        public IEnumerable<Dto.CommittenteDto> LoadCommittenti(int skip, int take, string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null)
+        public IEnumerable<Dto.CommittenteDto> LoadCommittenti(int skip, int take, string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, 
+            object orderBy = null)
         {
             try
             {
-                var committenti = QueryCommittenti(search, advancedSearch, commessa);
+                var committenti = QueryCommittenti(search, advancedSearch, commessa, orderBy);
                 committenti = (from q in committenti select q).Skip(skip).Take(take);
 
                 var committentiDto = UtilityPOCO.Assemble<Dto.CommittenteDto>(committenti, true); //lettura ricorsiva
@@ -2247,7 +2271,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Committente> QueryCommittenti(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null)
+        private IQueryable<DataLayer.Committente> QueryCommittenti(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, object orderBy = null)
         {
             try
             {
@@ -2270,6 +2294,9 @@ namespace WcfService
                                select q);
                 }
                 committenti = (from q in committenti orderby q.RagioneSociale select q);
+                if (orderBy != null)
+                    committenti = committenti.OrderBy((Func<DataLayer.Committente, object>)orderBy).AsQueryable();
+               
                 return committenti;
             }
             catch (Exception ex)
@@ -2416,11 +2443,12 @@ namespace WcfService
         #endregion
         #region Custom
 
-        public IEnumerable<Dto.FatturaVenditaDto> LoadFattureVendita(int skip, int take, string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null)
+        public IEnumerable<Dto.FatturaVenditaDto> LoadFattureVendita(int skip, int take, string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null, 
+            object orderBy = null)
         {
             try
             {
-                var fattureVendita = QueryFattureVendita(search, advancedSearch, committente);
+                var fattureVendita = QueryFattureVendita(search, advancedSearch, committente, orderBy);
                 fattureVendita = (from q in fattureVendita select q).Skip(skip).Take(take);
 
                 var fattureVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fattureVendita);
@@ -2464,7 +2492,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.FatturaVendita> QueryFattureVendita(string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null)
+        private IQueryable<DataLayer.FatturaVendita> QueryFattureVendita(string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null, object orderBy = null)
         {
             try
             {
@@ -2485,6 +2513,9 @@ namespace WcfService
                                       select q);
                 }
                 fattureVendita = (from q in fattureVendita orderby q.Id descending select q);
+                if (orderBy != null)
+                    fattureVendita = fattureVendita.OrderBy((Func<DataLayer.FatturaVendita, object>)orderBy).AsQueryable();
+             
                 return fattureVendita;
             }
             catch (Exception ex)
@@ -2576,11 +2607,12 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.IncassoDto> LoadIncassi(int skip, int take, string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null, Dto.FatturaVenditaDto fatturaVendita = null)
+        public IEnumerable<Dto.IncassoDto> LoadIncassi(int skip, int take, string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null,
+            Dto.FatturaVenditaDto fatturaVendita = null, object orderBy = null)
         {
             try
             {
-                var incassi = QueryIncassi(search, advancedSearch, committente,fatturaVendita);
+                var incassi = QueryIncassi(search, advancedSearch, committente, fatturaVendita, orderBy);
                 incassi = (from q in incassi select q).Skip(skip).Take(take);
 
                 var incassiDto = UtilityPOCO.Assemble<Dto.IncassoDto>(incassi);
@@ -2624,7 +2656,8 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Incasso> QueryIncassi(string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null, Dto.FatturaVenditaDto fatturaVendita = null)
+        private IQueryable<DataLayer.Incasso> QueryIncassi(string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null, 
+            Dto.FatturaVenditaDto fatturaVendita = null, object orderBy = null)
         {
             try
             {
@@ -2655,6 +2688,9 @@ namespace WcfService
                                     select q);
                 }
                 incassi = (from q in incassi orderby q.Id descending select q);
+                if (orderBy != null)
+                    incassi = incassi.OrderBy((Func<DataLayer.Incasso, object>)orderBy).AsQueryable();
+            
                 return incassi;
             }
             catch (Exception ex)
@@ -2748,11 +2784,11 @@ namespace WcfService
         #endregion
         #region Custom
 
-        public IEnumerable<Dto.SALDto> LoadSALs(int skip, int take, string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null)
+        public IEnumerable<Dto.SALDto> LoadSALs(int skip, int take, string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, object orderBy = null)
         {
             try
             {
-                var sals = QuerySALs(search, advancedSearch, commessa);
+                var sals = QuerySALs(search, advancedSearch, commessa, orderBy);
                 sals = (from q in sals select q).Skip(skip).Take(take);
                 
                 var salsDto = UtilityPOCO.Assemble<Dto.SALDto>(sals);
@@ -2797,7 +2833,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.SAL> QuerySALs(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null)
+        private IQueryable<DataLayer.SAL> QuerySALs(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, object orderBy = null)
         {
             try
             {
@@ -2818,6 +2854,9 @@ namespace WcfService
                             select q);
                 }
                 sals = (from q in sals orderby q.Id descending select q);
+                if (orderBy != null)
+                    sals = sals.OrderBy((Func<DataLayer.SAL, object>)orderBy).AsQueryable();
+                
                 return sals;
             }
             catch (Exception ex)
@@ -2908,11 +2947,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.AnagraficaFornitoreDto> LoadAnagraficheFornitori(int skip, int take, string search = null, object advancedSearch = null)
+        public IEnumerable<Dto.AnagraficaFornitoreDto> LoadAnagraficheFornitori(int skip, int take, string search = null, object advancedSearch = null, object orderBy = null)
         {
             try
             {
-                var anagraficheFornitori = QueryAnagraficheFornitori(search, advancedSearch);
+                var anagraficheFornitori = QueryAnagraficheFornitori(search, advancedSearch, orderBy);
                 anagraficheFornitori = (from q in anagraficheFornitori select q).Skip(skip).Take(take);
 
                 var anagraficheFornitoriDto = UtilityPOCO.Assemble<Dto.AnagraficaFornitoreDto>(anagraficheFornitori);
@@ -2972,7 +3011,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.AnagraficaFornitore> QueryAnagraficheFornitori(string search = null, object advancedSearch = null)
+        private IQueryable<DataLayer.AnagraficaFornitore> QueryAnagraficheFornitori(string search = null, object advancedSearch = null, object orderBy = null)
         {
             try
             {
@@ -2990,6 +3029,9 @@ namespace WcfService
                                             select q);
 
                 anagraficheFornitori = (from q in anagraficheFornitori orderby q.RagioneSociale select q);
+                if (orderBy != null)
+                    anagraficheFornitori = anagraficheFornitori.OrderBy((Func<DataLayer.AnagraficaFornitore, object>)orderBy).AsQueryable();
+                
                 return anagraficheFornitori;
             }
             catch (Exception ex)
@@ -3082,11 +3124,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.AnagraficaCommittenteDto> LoadAnagraficheCommittenti(int skip, int take, string search = null, object advancedSearch = null)
+        public IEnumerable<Dto.AnagraficaCommittenteDto> LoadAnagraficheCommittenti(int skip, int take, string search = null, object advancedSearch = null, object orderBy = null)
         {
             try
             {
-                var anagraficheCommittenti = QueryAnagraficheCommittenti(search, advancedSearch);
+                var anagraficheCommittenti = QueryAnagraficheCommittenti(search, advancedSearch, orderBy);
                 anagraficheCommittenti = (from q in anagraficheCommittenti select q).Skip(skip).Take(take);
 
                 var anagraficheCommittentiDto = UtilityPOCO.Assemble<Dto.AnagraficaCommittenteDto>(anagraficheCommittenti);
@@ -3146,7 +3188,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.AnagraficaCommittente> QueryAnagraficheCommittenti(string search = null, object advancedSearch = null)
+        private IQueryable<DataLayer.AnagraficaCommittente> QueryAnagraficheCommittenti(string search = null, object advancedSearch = null, object orderBy = null)
         {
             try
             {
@@ -3162,6 +3204,9 @@ namespace WcfService
                                               q.Comune.StartsWith(search) || q.Provincia.StartsWith(search) select q);
 
                 anagraficheCommittenti = (from q in anagraficheCommittenti orderby q.RagioneSociale select q);
+                if (orderBy != null)
+                    anagraficheCommittenti = anagraficheCommittenti.OrderBy((Func<DataLayer.AnagraficaCommittente, object>)orderBy).AsQueryable();
+               
                 return anagraficheCommittenti;
             }
             catch (Exception ex)
@@ -3254,11 +3299,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.AnagraficaArticoloDto> LoadAnagraficheArticoli(int skip, int take, string search = null, object advancedSearch = null)
+        public IEnumerable<Dto.AnagraficaArticoloDto> LoadAnagraficheArticoli(int skip, int take, string search = null, object advancedSearch = null, object orderBy = null)
         {
             try
             {
-                var anagraficheArticoli = QueryAnagraficheArticoli(search, advancedSearch);
+                var anagraficheArticoli = QueryAnagraficheArticoli(search, advancedSearch, orderBy);
                 anagraficheArticoli = (from q in anagraficheArticoli select q).Skip(skip).Take(take);
 
                 var anagraficheArticoliDto = UtilityPOCO.Assemble<Dto.AnagraficaArticoloDto>(anagraficheArticoli);
@@ -3302,7 +3347,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.AnagraficaArticolo> QueryAnagraficheArticoli(string search = null, object advancedSearch = null)
+        private IQueryable<DataLayer.AnagraficaArticolo> QueryAnagraficheArticoli(string search = null, object advancedSearch = null, object orderBy = null)
         {
             try
             {
@@ -3316,6 +3361,9 @@ namespace WcfService
                     anagraficheArticoli = (from q in anagraficheArticoli where q.Codice.StartsWith(search) || q.Descrizione.Contains(search) select q);
 
                 anagraficheArticoli = (from q in anagraficheArticoli orderby q.Codice select q);
+                if (orderBy != null)
+                    anagraficheArticoli = anagraficheArticoli.OrderBy((Func<DataLayer.AnagraficaArticolo, object>)orderBy).AsQueryable();
+               
                 return anagraficheArticoli;
             }
             catch (Exception ex)
@@ -3408,11 +3456,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.ReportJobDto> LoadReportJobs(int skip, int take, string search = null, object advancedSearch = null)
+        public IEnumerable<Dto.ReportJobDto> LoadReportJobs(int skip, int take, string search = null, object advancedSearch = null, object orderBy = null)
         {
             try
             {
-                var reportJobs = QueryReportJobs(search, advancedSearch);
+                var reportJobs = QueryReportJobs(search, advancedSearch, orderBy);
                 reportJobs = (from q in reportJobs select q).Skip(skip).Take(take);
 
                 var reportJobsDto = UtilityPOCO.Assemble<Dto.ReportJobDto>(reportJobs);
@@ -3456,7 +3504,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.ReportJob> QueryReportJobs(string search = null, object advancedSearch = null)
+        private IQueryable<DataLayer.ReportJob> QueryReportJobs(string search = null, object advancedSearch = null, object orderBy = null)
         {
             try
             {
@@ -3470,6 +3518,9 @@ namespace WcfService
                     reportJobs = (from q in reportJobs where q.Codice.StartsWith(search) || q.CodiceFornitore.Contains(search) select q);
 
                 reportJobs = (from q in reportJobs orderby q.Id descending select q);
+                if (orderBy != null)
+                    reportJobs = reportJobs.OrderBy((Func<DataLayer.ReportJob, object>)orderBy).AsQueryable();
+                
                 return reportJobs;
             }
             catch (Exception ex)

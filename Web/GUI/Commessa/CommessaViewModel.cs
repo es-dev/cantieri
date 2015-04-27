@@ -19,12 +19,12 @@ namespace Web.GUI.Commessa
            
         }
 
-        public override void Load(int skip, int take, string search = null, object advancedSearch=null)
+        public override void Load(int skip, int take, string search = null, object advancedSearch=null, object orderBy=null)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadCommesse(skip, take, search, advancedSearch);
+                var objs = wcf.LoadCommesse(skip, take, search, advancedSearch, orderBy);
                 Load(objs);
             }
             catch (Exception ex)

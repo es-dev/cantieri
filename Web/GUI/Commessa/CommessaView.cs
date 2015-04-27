@@ -47,5 +47,19 @@ namespace Web.GUI.Commessa
             return null;
         }
 
+        public override object QueryOrderBy()
+        {
+            try
+            {
+                var orderBy = (Func<DataLayer.Commessa, object>)(q => q.Denominazione);
+                return orderBy;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
 	}
 }
