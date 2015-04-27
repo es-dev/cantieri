@@ -89,9 +89,6 @@ namespace WcfService
         [OperationContract]
         int CountCommesse();
         #endregion
-
-       
-
         #region Custom
         [OperationContract]
         IEnumerable<Dto.CommessaDto> LoadCommesse(int skip, int take, string search = null, object advancedSearch = null, object orderBy=null);
@@ -125,7 +122,6 @@ namespace WcfService
         [OperationContract]
         int CountFornitori();
         #endregion
-
         #region Custom
         [OperationContract]
         IEnumerable<Dto.FornitoreDto> LoadFornitori(int skip, int take, string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, object orderBy = null);
@@ -205,6 +201,9 @@ namespace WcfService
 
         [OperationContract]
         Dto.FatturaAcquistoDto ReadFatturaAcquisto(object id);
+
+        [OperationContract]
+        IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquisto(DateTime start, DateTime end, string search = null, object advancedSearch = null);
         #endregion
         #endregion
 
@@ -272,6 +271,9 @@ namespace WcfService
 
         [OperationContract]
         Dto.PagamentoDto ReadPagamentoOld(Dto.PagamentoUnificatoDto pagamentoUnificato, Dto.FatturaAcquistoDto fatturaAcquisto);
+        
+        [OperationContract]
+        IEnumerable<Dto.PagamentoDto> ReadPagamenti(DateTime start, DateTime end, string search = null, object advancedSearch = null);
         #endregion
         #endregion
 
@@ -430,6 +432,11 @@ namespace WcfService
         [OperationContract]
         IEnumerable<Dto.CommittenteDto> ReadCommittenti(Dto.CommessaDto commessa);
 
+        [OperationContract]
+        IEnumerable<Dto.CommittenteDto> ReadCommittenti(Dto.AnagraficaCommittenteDto anagraficaCommittente);
+
+        [OperationContract]
+        IEnumerable<Dto.CommittenteDto> ReadCommittenti(IEnumerable<Dto.AnagraficaCommittenteDto> anagraficheCommittenti);
         #endregion
         #endregion
 
