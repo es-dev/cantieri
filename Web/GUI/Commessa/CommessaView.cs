@@ -32,50 +32,28 @@ namespace Web.GUI.Commessa
             }
         }
 
-        public override object QueryAdvancedSearch()
+        public override bool QueryAdvancedSearch(object model)
         {
             try
             {
-                var advancedSearch = (Func<DataLayer.Commessa, bool>)(q => WhereStato(q) && WhereData(q));
-                return advancedSearch;
-                
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
+                var obj = (DataLayer.Commessa)model;
 
-        private bool WhereStato(DataLayer.Commessa q)
-        {
-            try
-            {
-                var stato = comboBox1.Text;
+                //1° filtro
+                var filterStato = true;
+                var stato = "InLavorazione";
                 if(stato!=null && stato.Length>0)
-                {
-                    var condition = q.Stato.StartsWith(stato);
-                    return condition;
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return true;
-        }
-
-        private bool WhereData(DataLayer.Commessa q)
-        {
-            try
-            {
+                    filterStato = obj.Stato.StartsWith(stato);
+                
+                //2° filtro
+                var filterData = true;
                 DateTime? dal = DateTime.Today;
                 DateTime? al = dal.Value.AddDays(7);
-                if (dal!=null && al !=null)
-                {
-                    var condition = (dal<=q.Scadenza && q.Scadenza<=al);
-                    return condition;
-                }
+                if (dal != null && al != null)
+                    filterData = (dal <= obj.Scadenza && obj.Scadenza <= al);
+
+                //filtro globale
+                var filter = filterStato && filterData;
+                return filter;
             }
             catch (Exception ex)
             {
@@ -83,14 +61,14 @@ namespace Web.GUI.Commessa
             }
             return true;
         }
-       
-       
-        public override object QueryOrderBy()
+
+
+        public override object QueryOrderBy(object model)
         {
             try
             {
-                var orderBy = (Func<DataLayer.Commessa, object>)(q => q.Denominazione);
-                return orderBy;
+                var obj = (DataLayer.Commessa)model;
+                return obj.Denominazione;
             }
             catch (Exception ex)
             {
@@ -98,6 +76,8 @@ namespace Web.GUI.Commessa
             }
             return null;
         }
+
+      
 
 	}
 }
