@@ -29,7 +29,7 @@ namespace Web.GUI.AnagraficaArticolo
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadAnagraficheArticoli(skip, take, search);
+                var objs = wcf.LoadAnagraficheArticoli(skip, take, search, advancedSearch, orderBy);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@ namespace Web.GUI.AnagraficaArticolo
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountAnagraficheArticoli(search);
+                var count = wcf.CountAnagraficheArticoli(search, advancedSearch);
                 return count;
             }
             catch (Exception ex)

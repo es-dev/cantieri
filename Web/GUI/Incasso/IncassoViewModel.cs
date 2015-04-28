@@ -54,7 +54,7 @@ namespace Web.GUI.Incasso
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadIncassi(skip, take, search, advancedSearch, committente, fatturaVendita);
+                var objs = wcf.LoadIncassi(skip, take, search, advancedSearch, committente, fatturaVendita, orderBy);
                 Load(objs);
             }
             catch (Exception ex)

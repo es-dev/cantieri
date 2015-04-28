@@ -29,7 +29,7 @@ namespace Web.GUI.AnagraficaFornitore
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadAnagraficheFornitori(skip, take, search);
+                var objs = wcf.LoadAnagraficheFornitori(skip, take, search, advancedSearch, orderBy);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@ namespace Web.GUI.AnagraficaFornitore
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountAnagraficheFornitori(search);
+                var count = wcf.CountAnagraficheFornitori(search, advancedSearch);
                 return count;
             }
             catch (Exception ex)

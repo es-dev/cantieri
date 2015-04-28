@@ -29,7 +29,7 @@ namespace Web.GUI.Account
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadAccounts(skip, take, search);
+                var objs = wcf.LoadAccounts(skip, take, search, advancedSearch, orderBy);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@ namespace Web.GUI.Account
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountAccounts(search);
+                var count = wcf.CountAccounts(search, advancedSearch);
                 return count;
             }
             catch (Exception ex)
