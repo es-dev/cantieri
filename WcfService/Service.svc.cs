@@ -1147,11 +1147,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.ArticoloDto> LoadArticoli(int skip, int take, string search = null, object advancedSearch = null, object orderBy = null)
+        public IEnumerable<Dto.ArticoloDto> LoadArticoli(int skip, int take, string search = null, object advancedSearch = null, Dto.FatturaAcquistoDto fatturaAcquisto = null, object orderBy = null)
         {
             try
             {
-                var articoli = QueryArticoli(search, advancedSearch, orderBy);
+                var articoli = QueryArticoli(search, advancedSearch, fatturaAcquisto, orderBy);
                 articoli = (from q in articoli select q).Skip(skip).Take(take);
 
                 var articoliDto = UtilityPOCO.Assemble<Dto.ArticoloDto>(articoli);
@@ -1164,11 +1164,11 @@ namespace WcfService
             return null;
         }
 
-        public int CountArticoli(string search = null, object advancedSearch = null)
+        public int CountArticoli(string search = null, object advancedSearch = null, Dto.FatturaAcquistoDto fatturaAcquisto = null)
         {
             try
             {
-                var articoli = QueryArticoli(search, advancedSearch);
+                var articoli = QueryArticoli(search, advancedSearch, fatturaAcquisto);
                 var count = articoli.Count();
                 return count;
             }
@@ -1195,12 +1195,16 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Articolo> QueryArticoli(string search = null, object advancedSearch = null, object orderBy = null)
+        private IQueryable<DataLayer.Articolo> QueryArticoli(string search = null, object advancedSearch = null, 
+            Dto.FatturaAcquistoDto fatturaAcquisto = null, object orderBy = null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var articoli = (from q in ef.Articolos select q);
+
+                if (fatturaAcquisto != null)
+                    articoli = (from q in articoli where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
 
                 if (advancedSearch != null)
                     articoli = articoli.Where((Func<DataLayer.Articolo, bool>)advancedSearch).AsQueryable();

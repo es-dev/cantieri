@@ -333,8 +333,10 @@ namespace Web.GUI.Articolo
             this.editNote.TabIndex = 10;
             this.editNote.Text = "EditControl";
             this.editNote.Value = null;
-            this.Controls.SetChildIndex(this.panelCommands, 0);
-            this.Controls.SetChildIndex(this.container, 0);
+            // 
+            // ArticoloModel
+            // 
+            this.Load += new System.EventHandler(this.ArticoloModel_Load);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
             this.panelCommands.ResumeLayout(false);

@@ -227,10 +227,10 @@ namespace WcfService
 
         #region Custom
         [OperationContract]
-        IEnumerable<Dto.ArticoloDto> LoadArticoli(int skip, int take, string search = null, object advancedSearch = null, object orderBy = null);
+        IEnumerable<Dto.ArticoloDto> LoadArticoli(int skip, int take, string search = null, object advancedSearch = null, Dto.FatturaAcquistoDto fatturaAcquisto = null, object orderBy = null);
 
         [OperationContract]
-        int CountArticoli(string search = null, object advancedSearch = null);
+        int CountArticoli(string search = null, object advancedSearch = null, Dto.FatturaAcquistoDto fatturaAcquisto = null);
 
         [OperationContract]
         Dto.ArticoloDto ReadArticolo(object id);

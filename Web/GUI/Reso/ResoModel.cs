@@ -95,7 +95,6 @@ namespace Web.GUI.Reso
             {
                 UtilityError.Write(ex);
             }
-            
         }
 
         private void BindViewFatturaAcquisto(FatturaAcquistoDto fatturaAcquisto)
@@ -109,7 +108,6 @@ namespace Web.GUI.Reso
             {
                 UtilityError.Write(ex);
             }
-            
         }
 
         private void BindViewTotali()
@@ -177,9 +175,7 @@ namespace Web.GUI.Reso
                 UtilityError.Write(ex);
             }
         }
-
         
-
         private void editFatturaAcquisto_ComboConfirm(object model)
         {
             try
@@ -207,7 +203,6 @@ namespace Web.GUI.Reso
             {
                 UtilityError.Write(ex);
             }
-
         }
 
         private void editNotaCredito_ComboClick()

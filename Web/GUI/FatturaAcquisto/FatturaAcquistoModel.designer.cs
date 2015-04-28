@@ -49,6 +49,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editSconto = new Library.Template.Controls.TemplateEditDecimal();
             this.editTotaleResi = new Library.Template.Controls.TemplateEditDecimal();
             this.btnResi = new Library.Controls.ButtonSeparatorV();
+            this.btnArticoli = new Library.Controls.ButtonSeparatorV();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -103,6 +104,7 @@ namespace Web.GUI.FatturaAcquisto
             // 
             // panelCommands
             // 
+            this.panelCommands.Controls.Add(this.btnArticoli);
             this.panelCommands.Controls.Add(this.btnResi);
             this.panelCommands.Controls.Add(this.btnPagamenti);
             this.panelCommands.Controls.Add(this.btnCalcoloTotali);
@@ -115,6 +117,7 @@ namespace Web.GUI.FatturaAcquisto
             this.panelCommands.Controls.SetChildIndex(this.btnCalcoloTotali, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnPagamenti, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnResi, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnArticoli, 0);
             // 
             // btnDelete
             // 
@@ -417,7 +420,7 @@ namespace Web.GUI.FatturaAcquisto
             this.btnCalcoloTotali.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.btnCalcoloTotali.ImageButton = "";
             this.btnCalcoloTotali.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnCalcoloTotali.Location = new System.Drawing.Point(0, 432);
+            this.btnCalcoloTotali.Location = new System.Drawing.Point(1, 504);
             this.btnCalcoloTotali.Name = "btnCalcoloTotali";
             this.btnCalcoloTotali.Size = new System.Drawing.Size(100, 72);
             this.btnCalcoloTotali.TabIndex = 1002;
@@ -518,6 +521,20 @@ namespace Web.GUI.FatturaAcquisto
             this.btnResi.TextButton = "Resi";
             this.btnResi.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnResi_Click);
             // 
+            // btnArticoli
+            // 
+            this.btnArticoli.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.btnArticoli.BackColor = System.Drawing.Color.Transparent;
+            this.btnArticoli.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.btnArticoli.ImageButton = "";
+            this.btnArticoli.ImageSeparator = "Images.separator_ht_small.png";
+            this.btnArticoli.Location = new System.Drawing.Point(0, 432);
+            this.btnArticoli.Name = "btnArticoli";
+            this.btnArticoli.Size = new System.Drawing.Size(100, 72);
+            this.btnArticoli.TabIndex = 1002;
+            this.btnArticoli.TextButton = "Articoli";
+            this.btnArticoli.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnArticoli_Click);
+            // 
             // FatturaAcquistoModel
             // 
             this.Size = new System.Drawing.Size(1024, 733);
@@ -550,6 +567,7 @@ namespace Web.GUI.FatturaAcquisto
         private Library.Template.Controls.TemplateEditDecimal editSconto;
         private Library.Template.Controls.TemplateEditDecimal editTotaleResi;
         private Library.Controls.ButtonSeparatorV btnResi;
+        private Library.Controls.ButtonSeparatorV btnArticoli;
 
 
     }
