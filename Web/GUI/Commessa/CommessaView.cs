@@ -41,9 +41,9 @@ namespace Web.GUI.Commessa
                 //1° filtro
                 var filterStato = true;
                 var stato = "InLavorazione";
-                if(stato!=null && stato.Length>0)
+                if (stato != null && stato.Length > 0)
                     filterStato = obj.Stato.StartsWith(stato);
-                
+
                 //2° filtro
                 var filterData = true;
                 DateTime? dal = DateTime.Today;
@@ -62,13 +62,12 @@ namespace Web.GUI.Commessa
             return true;
         }
 
-
         public override object QueryOrderBy(object model)
         {
             try
             {
                 var obj = (DataLayer.Commessa)model;
-                return obj.Denominazione;
+                return obj.Codice;
             }
             catch (Exception ex)
             {

@@ -463,7 +463,7 @@ namespace WcfService
 
                 if (advancedSearch != null)
                     commesse = commesse.Where((Func<DataLayer.Commessa,bool>)advancedSearch).AsQueryable();
-           
+
                 if (search != null && search.Length > 0)
                     commesse = (from q in commesse
                                 where q.Codice.StartsWith(search) || q.Denominazione.Contains(search) || q.Comune.StartsWith(search) ||
