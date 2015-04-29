@@ -1,4 +1,4 @@
-using Library.Code.Enum;
+using Library.Code;
 using System.Drawing;
 
 namespace Web.GUI.Incasso
@@ -148,7 +148,7 @@ namespace Web.GUI.Incasso
             // 
             this.textBox1.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
             this.textBox1.BackColor = System.Drawing.Color.Transparent;
-            this.textBox1.Behavior = Library.Code.Enum.TypeBehavior.Text;
+            this.textBox1.Behavior = TypeBehavior.Text;
             this.textBox1.Location = new System.Drawing.Point(0, 0);
             this.textBox1.Mask = "---";
             this.textBox1.Name = "textBox1";

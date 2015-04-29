@@ -1,6 +1,5 @@
 using BusinessLogic;
 using Library.Code;
-using Library.Code.Enum;
 using Library.Controls;
 using Library.Template.MVVM;
 using System;
@@ -33,7 +32,7 @@ namespace Web.GUI.Commessa
         {
             try
             {
-                editStato.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.StatoCommessa>();
+                editStato.DisplayValues = Library.Code.UtilityEnum.GetDisplayValues<Tipi.StatoCommessa>();
             }
             catch (Exception ex)
             {

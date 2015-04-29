@@ -18,6 +18,14 @@ namespace Web.GUI.Commessa
         public CommessaView()
         {
             InitializeComponent();
+            try
+            {
+                InitCombo();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
         }
 
         public override void Init()
@@ -40,19 +48,19 @@ namespace Web.GUI.Commessa
 
                 //1° filtro
                 var filterStato = true;
-                var stato = "InLavorazione";
+                var stato = editStato.Value;
                 if (stato != null && stato.Length > 0)
-                    filterStato = obj.Stato.StartsWith(stato);
+                    filterStato = (obj.Stato!=null && obj.Stato.StartsWith(stato));
 
                 //2° filtro
                 var filterData = true;
-                DateTime? dal = DateTime.Today;
-                DateTime? al = dal.Value.AddDays(7);
-                if (dal != null && al != null)
-                    filterData = (dal <= obj.Scadenza && obj.Scadenza <= al);
+                var inizio = editScadenzaInizio.Value;
+                var fine = editScadenzaFine.Value;
+                if (inizio != null && fine != null)
+                    filterData = (inizio <= obj.Scadenza && obj.Scadenza <= fine);
 
                 //filtro globale
-                var filter = filterStato && filterData;
+                var filter = (filterStato && filterData);
                 return filter;
             }
             catch (Exception ex)
@@ -67,13 +75,34 @@ namespace Web.GUI.Commessa
             try
             {
                 var obj = (DataLayer.Commessa)model;
-                return obj.Codice;
+
+                object orderBy = null;
+                if (optDenominazione.Value)
+                    orderBy = obj.Denominazione;
+                else if (optScadenza.Value)
+                    orderBy = obj.Scadenza;
+                else if (optStato.Value)
+                    orderBy = obj.Stato;
+
+                return orderBy;
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
             return null;
+        }
+
+        private void InitCombo()
+        {
+            try
+            {
+                editStato.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.StatoCommessa>();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
         }
 
       

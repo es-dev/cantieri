@@ -1,6 +1,5 @@
 using BusinessLogic;
 using Library.Code;
-using Library.Code.Enum;
 using Library.Template.Controls;
 using Library.Template.MVVM;
 using System;
