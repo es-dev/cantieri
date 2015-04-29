@@ -10,6 +10,19 @@ namespace Web.GUI.Articolo
 {
     public class ArticoloViewModel : Library.Template.MVVM.TemplateViewModel<ArticoloView, ArticoloItem, ArticoloModel, ArticoloDto>
     {
+        private FatturaAcquistoDto fatturaAcquisto = null;
+        public FatturaAcquistoDto FatturaAcquisto
+        {
+            get
+            {
+                return fatturaAcquisto;
+            }
+            set
+            {
+                fatturaAcquisto = value;
+            }
+        }
+
 
         public ArticoloViewModel()
             : base() 
@@ -29,7 +42,7 @@ namespace Web.GUI.Articolo
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadArticoli(skip, take, search);
+                var objs = wcf.LoadArticoli(skip, take, search, advancedSearch, fatturaAcquisto, orderBy);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +56,7 @@ namespace Web.GUI.Articolo
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountArticoli(search);
+                var count = wcf.CountArticoli(search, advancedSearch, fatturaAcquisto);
                 return count;
             }
             catch (Exception ex)

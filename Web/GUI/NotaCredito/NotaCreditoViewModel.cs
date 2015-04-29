@@ -42,7 +42,7 @@ namespace Web.GUI.NotaCredito
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadNoteCredito(skip, take, search, fornitore);
+                var objs = wcf.LoadNoteCredito(skip, take, search, advancedSearch, fornitore, orderBy);
                 Load(objs);
             }
             catch (Exception ex)
@@ -56,7 +56,7 @@ namespace Web.GUI.NotaCredito
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountNoteCredito(search, fornitore);
+                var count = wcf.CountNoteCredito(search,advancedSearch, fornitore);
                 return count;
             }
             catch (Exception ex)

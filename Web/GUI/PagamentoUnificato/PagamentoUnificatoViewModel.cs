@@ -29,7 +29,7 @@ namespace Web.GUI.PagamentoUnificato
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadPagamentiUnificati(skip, take, search);
+                var objs = wcf.LoadPagamentiUnificati(skip, take, search, advancedSearch, orderBy);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@ namespace Web.GUI.PagamentoUnificato
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountPagamentiUnificati(search);
+                var count = wcf.CountPagamentiUnificati(search, advancedSearch);
                 return count;
             }
             catch (Exception ex)

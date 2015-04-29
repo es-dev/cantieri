@@ -9,12 +9,32 @@ using System.Text;
 
 namespace Web.GUI.Articolo
 {
-	public partial class ArticoloView : TemplateView
-	{
+    public partial class ArticoloView : TemplateView
+    {
         public ArticoloView()
-		{ 
-			InitializeComponent();
-		}
+        {
+            InitializeComponent();
+        }
+
+        private WcfService.Dto.FatturaAcquistoDto fatturaAcquisto;
+        public ArticoloView(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto)
+        {
+            InitializeComponent();
+            try
+            {
+                this.fatturaAcquisto = fatturaAcquisto;
+                var viewModel = (Articolo.ArticoloViewModel)ViewModel;
+                if (viewModel != null)
+                {
+                    viewModel.FatturaAcquisto = fatturaAcquisto;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
 
         public override void Init()
         {
@@ -27,6 +47,19 @@ namespace Web.GUI.Articolo
                 UtilityError.Write(ex);
             }
         }
+        public override void AddNewModel()
+        {
+            try
+            {
+                var space = new ArticoloModel(fatturaAcquisto);
+                space.Model = new WcfService.Dto.ArticoloDto();
+                AddSpace(space);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 
-	}
+    }
 }

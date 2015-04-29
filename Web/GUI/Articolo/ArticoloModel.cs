@@ -13,11 +13,25 @@ namespace Web.GUI.Articolo
 {
 	public partial class ArticoloModel : TemplateModel
 	{
+        private FatturaAcquistoDto  fatturaAcquisto = null;
+
         public ArticoloModel()
 		{
 			InitializeComponent();
 		}
 
+        public ArticoloModel(FatturaAcquistoDto fatturaAcquisto)
+        {
+            InitializeComponent();
+            try
+            {
+                this.fatturaAcquisto = fatturaAcquisto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
         public override void BindViewTitle(object model)
         {
             try
@@ -204,6 +218,35 @@ namespace Web.GUI.Articolo
                 var iva = UtilityValidation.GetDecimal(editIVA.Value);
                 var totale = BusinessLogic.Articolo.GetTotale(costo, iva);
                 editTotale.Value = totale;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void ArticoloModel_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (ArticoloDto)Model;
+                if (obj != null && obj.Id == 0)
+                    SetNewValue();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+        private void SetNewValue()
+        {
+            try
+            {
+                if (fatturaAcquisto != null)
+                {
+                    editFatturaAcquisto.Model = fatturaAcquisto;
+                    editFatturaAcquisto.Value = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false);
+                }
             }
             catch (Exception ex)
             {

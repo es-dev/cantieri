@@ -101,7 +101,7 @@ namespace Web.GUI.FatturaAcquisto
                     BindViewCentroCosto(obj.CentroCosto);
                     BindViewFornitore(obj.Fornitore);
                     BindViewPagamenti(obj.Pagamentos);
-
+                    BindViewArticoli(obj.Articolos);
                 }
             }
             catch (Exception ex)
@@ -121,7 +121,17 @@ namespace Web.GUI.FatturaAcquisto
                 UtilityError.Write(ex);
             }
         }
-
+        private void BindViewArticoli(IList<ArticoloDto> articoli)
+        {
+            try
+            {
+                btnArticoli.TextButton = "Articoli (" + (articoli != null ? articoli.Count + ")" : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
         private void BindViewFornitore(FornitoreDto fornitore)
         {
             try
@@ -233,9 +243,6 @@ namespace Web.GUI.FatturaAcquisto
             return null;
         }
 
-
-       
-
         private void editFornitore_ComboClick()
         {
             try
@@ -329,6 +336,7 @@ namespace Web.GUI.FatturaAcquisto
                 btnCalcoloTotali.Enabled = editing;
                 btnPagamenti.Enabled = editing;
                 btnResi.Enabled = editing;
+                btnArticoli.Enabled = editing;
             }
             catch (Exception ex)
             {
@@ -395,6 +403,25 @@ namespace Web.GUI.FatturaAcquisto
                     var obj = (FatturaAcquistoDto)Model;
                     var space = new Reso.ResoView(obj);
                     space.Title = "RESI " + BusinessLogic.Fattura.GetCodifica(obj);
+                    Workspace.AddSpace(space);
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void btnArticoli_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool saved = Save();
+                if (saved)
+                {
+                    var obj = (FatturaAcquistoDto)Model;
+                    var space = new Articolo.ArticoloView(obj);
+                    space.Title = "ARTICOLO " + BusinessLogic.Fattura.GetCodifica(obj);
                     Workspace.AddSpace(space);
                 }
             }

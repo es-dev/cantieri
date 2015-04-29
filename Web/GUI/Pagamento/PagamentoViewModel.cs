@@ -54,7 +54,7 @@ namespace Web.GUI.Pagamento
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadPagamenti(skip, take, search, advancedSearch, fornitore, fatturaAcquisto);
+                var objs = wcf.LoadPagamenti(skip, take, search, advancedSearch, fornitore, fatturaAcquisto, orderBy);
                 Load(objs);
             }
             catch (Exception ex)

@@ -42,7 +42,7 @@ namespace Web.GUI.SAL
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadSALs(skip, take, search, commessa);
+                var objs = wcf.LoadSALs(skip, take, search, advancedSearch, commessa, orderBy);
                 Load(objs);
             }
             catch (Exception ex)
@@ -56,7 +56,7 @@ namespace Web.GUI.SAL
             try
             {
                 var wcf = new WcfService.Service();
-                int count = wcf.CountSALs(search, commessa);
+                int count = wcf.CountSALs(search, advancedSearch, commessa);
                 return count;
             }
             catch (Exception ex)

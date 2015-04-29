@@ -56,7 +56,7 @@ namespace Web.GUI.Reso
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadResi(skip, take, search, advancedSearch, notaCredito, fatturaAcquisto);
+                var objs = wcf.LoadResi(skip, take, search, advancedSearch, notaCredito, fatturaAcquisto, orderBy);
                 Load(objs);
             }
             catch (Exception ex)

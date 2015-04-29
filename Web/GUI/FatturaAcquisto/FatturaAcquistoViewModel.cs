@@ -67,7 +67,7 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadFattureAcquisto(skip, take, search, advancedSearch, fornitore, anagraficaFornitore);
+                var objs = wcf.LoadFattureAcquisto(skip, take, search, advancedSearch, fornitore, anagraficaFornitore, orderBy);
                 Load(objs);
             }
             catch (Exception ex)

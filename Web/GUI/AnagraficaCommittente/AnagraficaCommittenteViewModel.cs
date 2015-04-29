@@ -29,7 +29,7 @@ namespace Web.GUI.AnagraficaCommittente
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.LoadAnagraficheCommittenti(skip, take, search);
+                var objs = wcf.LoadAnagraficheCommittenti(skip, take, search, advancedSearch, orderBy);
                 Load(objs);
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@ namespace Web.GUI.AnagraficaCommittente
             try
             {
                 var wcf = new WcfService.Service();
-                var count = wcf.CountAnagraficheCommittenti(search);
+                var count = wcf.CountAnagraficheCommittenti(search, advancedSearch);
                 return count;
             }
             catch (Exception ex)
