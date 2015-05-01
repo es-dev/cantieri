@@ -59,8 +59,10 @@ namespace Web.GUI.Commessa
             this.panelOrderBy.Controls.Add(this.optStato);
             this.panelOrderBy.Controls.Add(this.optScadenza);
             this.panelOrderBy.Controls.Add(this.optDenominazione);
-            this.panelOrderBy.Location = new System.Drawing.Point(293, 69);
-            this.panelOrderBy.Size = new System.Drawing.Size(417, 248);
+            this.panelOrderBy.Location = new System.Drawing.Point(237, 69);
+            this.panelOrderBy.Size = new System.Drawing.Size(473, 248);
+            this.panelOrderBy.Controls.SetChildIndex(this.optAscending, 0);
+            this.panelOrderBy.Controls.SetChildIndex(this.optDescending, 0);
             this.panelOrderBy.Controls.SetChildIndex(this.lblTitleOrderBy, 0);
             this.panelOrderBy.Controls.SetChildIndex(this.btnConfirmOrderBy, 0);
             this.panelOrderBy.Controls.SetChildIndex(this.btnCloseOrderBy, 0);
@@ -77,17 +79,25 @@ namespace Web.GUI.Commessa
             // 
             this.btnCancelAdvancedSearch.Location = new System.Drawing.Point(130, 209);
             // 
-            // btnCancelOrderBy
-            // 
-            this.btnCancelOrderBy.Location = new System.Drawing.Point(88, 207);
-            // 
             // btnCloseOrderBy
             // 
-            this.btnCloseOrderBy.Location = new System.Drawing.Point(386, 2);
+            this.btnCloseOrderBy.Location = new System.Drawing.Point(440, 2);
             // 
             // btnConfirmOrderBy
             // 
-            this.btnConfirmOrderBy.Location = new System.Drawing.Point(287, 207);
+            this.btnConfirmOrderBy.Location = new System.Drawing.Point(339, 208);
+            // 
+            // lblTitleOrderBy
+            // 
+            this.lblTitleOrderBy.Size = new System.Drawing.Size(328, 44);
+            // 
+            // optDescending
+            // 
+            this.optDescending.Location = new System.Drawing.Point(379, 2);
+            // 
+            // optAscending
+            // 
+            this.optAscending.Location = new System.Drawing.Point(335, 2);
             // 
             // editScadenzaInizio
             // 
@@ -155,7 +165,7 @@ namespace Web.GUI.Commessa
             this.optDenominazione.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
             this.optDenominazione.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
             this.optDenominazione.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.optDenominazione.Changed = false;
+            this.optDenominazione.Changed = true;
             this.optDenominazione.Editing = true;
             this.optDenominazione.Group = "Option1";
             this.optDenominazione.Label = "";
@@ -214,8 +224,8 @@ namespace Web.GUI.Commessa
             this.Controls.SetChildIndex(this.txtSearch, 0);
             this.Controls.SetChildIndex(this.btnOrderBy, 0);
             this.Controls.SetChildIndex(this.btnAdvancedSearch, 0);
-            this.Controls.SetChildIndex(this.panelOrderBy, 0);
             this.Controls.SetChildIndex(this.panelAdvancedSearch, 0);
+            this.Controls.SetChildIndex(this.panelOrderBy, 0);
             this.panelCommands.ResumeLayout(false);
             this.panelAdvancedSearch.ResumeLayout(false);
             this.panelOrderBy.ResumeLayout(false);

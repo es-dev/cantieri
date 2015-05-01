@@ -25,7 +25,7 @@ namespace Web.GUI.Agenda
             }
         }
 
-        public override void Fill(object start, object end, string search, object advancedSearch = null, object orderBy = null)
+        public override void Fill(object start, object end, string search, object advancedSearch = null, OrderBy orderBy = null)
         {
             try
             {

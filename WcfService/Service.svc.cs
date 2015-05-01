@@ -7,6 +7,7 @@ using System.ServiceModel;
 using System.Text;
 using Library.Code;
 using System.Linq.Expressions;
+using Library.Template.MVVM;
 
 namespace WcfService
 {
@@ -93,7 +94,7 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.AziendaDto> LoadAziende(int skip, int take, string search = null, object advancedSearch = null, object orderBy = null)
+        public IEnumerable<Dto.AziendaDto> LoadAziende(int skip, int take, string search = null, object advancedSearch = null, OrderBy orderBy = null)
         {
             try
             {
@@ -141,7 +142,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Azienda> QueryAziende(string search = null, object advancedSearch=null, object orderBy=null)
+        private IQueryable<DataLayer.Azienda> QueryAziende(string search = null, object advancedSearch=null, OrderBy orderBy=null)
         {
             try
             {
@@ -157,8 +158,12 @@ namespace WcfService
 
                 aziende = (from q in aziende orderby q.RagioneSociale select q);
                 if (orderBy != null)
-                    aziende = aziende.OrderBy((Func<DataLayer.Azienda, object>)orderBy).AsQueryable();
-                
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        aziende = aziende.OrderBy((Func<DataLayer.Azienda, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        aziende = aziende.OrderByDescending((Func<DataLayer.Azienda, object>)orderBy.Value).AsQueryable();
+                }                
                 return aziende;
             }
             catch (Exception ex)
@@ -249,7 +254,7 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.AccountDto> LoadAccounts(int skip, int take, string search = null, object advancedSearch = null, object orderBy = null)
+        public IEnumerable<Dto.AccountDto> LoadAccounts(int skip, int take, string search = null, object advancedSearch = null, OrderBy orderBy = null)
         {
             try
             {
@@ -296,7 +301,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Account> QueryAccounts(string search = null, object advancedSearch = null, object orderBy = null)
+        private IQueryable<DataLayer.Account> QueryAccounts(string search = null, object advancedSearch = null, OrderBy orderBy = null)
         {
             try
             {
@@ -312,8 +317,12 @@ namespace WcfService
 
                 accounts = (from q in accounts orderby q.Username select q);
                 if (orderBy != null)
-                    accounts = accounts.OrderBy((Func<DataLayer.Account, object>)orderBy).AsQueryable();
-                
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        accounts = accounts.OrderBy((Func<DataLayer.Account, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        accounts = accounts.OrderByDescending((Func<DataLayer.Account, object>)orderBy.Value).AsQueryable();
+                }                   
                 return accounts;
             }
             catch (Exception ex)
@@ -405,7 +414,7 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.CommessaDto> LoadCommesse(int skip, int take, string search = null, object advancedSearch=null, object orderBy=null)
+        public IEnumerable<Dto.CommessaDto> LoadCommesse(int skip, int take, string search = null, object advancedSearch=null, OrderBy orderBy=null)
         {
             try
             {
@@ -454,7 +463,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Commessa> QueryCommesse(string search = null, object advancedSearch = null, object orderBy=null)
+        private IQueryable<DataLayer.Commessa> QueryCommesse(string search = null, object advancedSearch = null, OrderBy orderBy = null)
         {
             try
             {
@@ -472,8 +481,13 @@ namespace WcfService
                                 select q);
 
                 commesse = (from q in commesse orderby q.Id descending select q);
-                if(orderBy!=null)
-                    commesse = commesse.OrderBy((Func<DataLayer.Commessa, object>)orderBy).AsQueryable();
+                if (orderBy != null)
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        commesse = commesse.OrderBy((Func<DataLayer.Commessa, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        commesse = commesse.OrderByDescending((Func<DataLayer.Commessa, object>)orderBy.Value).AsQueryable();
+                }
 
                 return commesse;
             }
@@ -584,8 +598,8 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.FornitoreDto> LoadFornitori(int skip, int take, string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, 
-            object orderBy = null)
+        public IEnumerable<Dto.FornitoreDto> LoadFornitori(int skip, int take, string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null,
+            OrderBy orderBy = null)
         {
             try
             {
@@ -632,7 +646,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Fornitore> QueryFornitori(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, object orderBy = null)
+        private IQueryable<DataLayer.Fornitore> QueryFornitori(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, OrderBy orderBy = null)
         {
             try
             {
@@ -656,7 +670,12 @@ namespace WcfService
                 }
                 fornitori = (from q in fornitori orderby q.RagioneSociale select q);
                 if (orderBy != null)
-                    fornitori = fornitori.OrderBy((Func<DataLayer.Fornitore, object>)orderBy).AsQueryable();
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        fornitori = fornitori.OrderBy((Func<DataLayer.Fornitore, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        fornitori = fornitori.OrderByDescending((Func<DataLayer.Fornitore, object>)orderBy.Value).AsQueryable();
+                }                   
                 
                 return fornitori;
             }
@@ -800,7 +819,7 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.CentroCostoDto> LoadCentriCosto(int skip, int take, string search = null, object advancedSearch = null, object orderBy = null)
+        public IEnumerable<Dto.CentroCostoDto> LoadCentriCosto(int skip, int take, string search = null, object advancedSearch = null, OrderBy orderBy = null)
         {
             try
             {
@@ -848,7 +867,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.CentroCosto> QueryCentriCosto(string search = null, object advancedSearch = null, object orderBy = null)
+        private IQueryable<DataLayer.CentroCosto> QueryCentriCosto(string search = null, object advancedSearch = null, OrderBy orderBy = null)
         {
             try
             {
@@ -864,7 +883,12 @@ namespace WcfService
 
                 centriCosto = (from q in centriCosto orderby q.Denominazione select q);
                 if (orderBy != null)
-                    centriCosto = centriCosto.OrderBy((Func<DataLayer.CentroCosto, object>)orderBy).AsQueryable();
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        centriCosto = centriCosto.OrderBy((Func<DataLayer.CentroCosto, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        centriCosto = centriCosto.OrderByDescending((Func<DataLayer.CentroCosto, object>)orderBy.Value).AsQueryable();
+                }                   
                 
                 return centriCosto;
             }
@@ -960,7 +984,7 @@ namespace WcfService
         #region Custom
 
         public IEnumerable<Dto.FatturaAcquistoDto> LoadFattureAcquisto(int skip, int take, string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null,
-            Dto.AnagraficaFornitoreDto anagraficaFornitore = null, object orderBy = null)
+            Dto.AnagraficaFornitoreDto anagraficaFornitore = null, OrderBy orderBy = null)
         {
             try
             {
@@ -1009,7 +1033,7 @@ namespace WcfService
         }
 
         private IQueryable<DataLayer.FatturaAcquisto> QueryFattureAcquisto(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null,
-            Dto.AnagraficaFornitoreDto anagraficaFornitore = null, DateTime? start = null, DateTime? end = null, object orderBy = null)
+            Dto.AnagraficaFornitoreDto anagraficaFornitore = null, DateTime? start = null, DateTime? end = null, OrderBy orderBy = null)
         {
             try
             {
@@ -1037,7 +1061,12 @@ namespace WcfService
                 }
                 fattureAcquisto = (from q in fattureAcquisto orderby q.Id descending select q);
                 if (orderBy != null)
-                    fattureAcquisto = fattureAcquisto.OrderBy((Func<DataLayer.FatturaAcquisto, object>)orderBy).AsQueryable();
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        fattureAcquisto = fattureAcquisto.OrderBy((Func<DataLayer.FatturaAcquisto, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        fattureAcquisto = fattureAcquisto.OrderByDescending((Func<DataLayer.FatturaAcquisto, object>)orderBy.Value).AsQueryable();
+                }                   
                 
                 return fattureAcquisto;
             }
@@ -1147,7 +1176,7 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.ArticoloDto> LoadArticoli(int skip, int take, string search = null, object advancedSearch = null, Dto.FatturaAcquistoDto fatturaAcquisto = null, object orderBy = null)
+        public IEnumerable<Dto.ArticoloDto> LoadArticoli(int skip, int take, string search = null, object advancedSearch = null, Dto.FatturaAcquistoDto fatturaAcquisto = null, OrderBy orderBy = null)
         {
             try
             {
@@ -1196,7 +1225,7 @@ namespace WcfService
         }
 
         private IQueryable<DataLayer.Articolo> QueryArticoli(string search = null, object advancedSearch = null, 
-            Dto.FatturaAcquistoDto fatturaAcquisto = null, object orderBy = null)
+            Dto.FatturaAcquistoDto fatturaAcquisto = null, OrderBy orderBy = null)
         {
             try
             {
@@ -1219,7 +1248,12 @@ namespace WcfService
                 }
                 articoli = (from q in articoli orderby q.Id descending select q);
                 if (orderBy != null)
-                    articoli = articoli.OrderBy((Func<DataLayer.Articolo, object>)orderBy).AsQueryable();
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        articoli = articoli.OrderBy((Func<DataLayer.Articolo, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        articoli = articoli.OrderByDescending((Func<DataLayer.Articolo, object>)orderBy.Value).AsQueryable();
+                }                   
              
                 return articoli;
             }
@@ -1313,7 +1347,7 @@ namespace WcfService
         #endregion
         #region Custom
         public IEnumerable<Dto.PagamentoDto> LoadPagamenti(int skip, int take, string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null,
-            Dto.FatturaAcquistoDto fatturaAcquisto = null, object orderBy = null)
+            Dto.FatturaAcquistoDto fatturaAcquisto = null, OrderBy orderBy = null)
         {
             try
             {
@@ -1362,7 +1396,7 @@ namespace WcfService
         }
 
         private IQueryable<DataLayer.Pagamento> QueryPagamenti(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null,
-            Dto.FatturaAcquistoDto fatturaAcquisto = null, DateTime? start = null, DateTime? end = null, object orderBy = null)
+            Dto.FatturaAcquistoDto fatturaAcquisto = null, DateTime? start = null, DateTime? end = null, OrderBy orderBy = null)
         {
             try
             {
@@ -1394,7 +1428,12 @@ namespace WcfService
                 }
                 pagamenti = (from q in pagamenti orderby q.Id descending select q);
                 if (orderBy != null)
-                    pagamenti = pagamenti.OrderBy((Func<DataLayer.Pagamento, object>)orderBy).AsQueryable();
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        pagamenti = pagamenti.OrderBy((Func<DataLayer.Pagamento, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        pagamenti = pagamenti.OrderByDescending((Func<DataLayer.Pagamento, object>)orderBy.Value).AsQueryable();
+                }                   
                 
                 return pagamenti;
             }
@@ -1550,8 +1589,8 @@ namespace WcfService
         #endregion
         #region Custom
 
-        public IEnumerable<Dto.NotaCreditoDto> LoadNoteCredito(int skip, int take, string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null, 
-            object orderBy = null)
+        public IEnumerable<Dto.NotaCreditoDto> LoadNoteCredito(int skip, int take, string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null,
+            OrderBy orderBy = null)
         {
             try
             {
@@ -1599,7 +1638,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.NotaCredito> QueryNoteCredito(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null, object orderBy = null)
+        private IQueryable<DataLayer.NotaCredito> QueryNoteCredito(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null, OrderBy orderBy = null)
         {
             try
             {
@@ -1621,7 +1660,12 @@ namespace WcfService
                 }
                 noteCredito = (from q in noteCredito orderby q.Id descending select q);
                 if (orderBy != null)
-                    noteCredito = noteCredito.OrderBy((Func<DataLayer.NotaCredito, object>)orderBy).AsQueryable();
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        noteCredito = noteCredito.OrderBy((Func<DataLayer.NotaCredito, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        noteCredito = noteCredito.OrderByDescending((Func<DataLayer.NotaCredito, object>)orderBy.Value).AsQueryable();
+                }                   
                 
                 return noteCredito;
             }
@@ -1716,7 +1760,7 @@ namespace WcfService
         #endregion
         #region Custom
         public IEnumerable<Dto.ResoDto> LoadResi(int skip, int take, string search = null, object advancedSearch = null, Dto.NotaCreditoDto notaCredito = null,
-            Dto.FatturaAcquistoDto fatturaAcquisto = null, object orderBy = null)
+            Dto.FatturaAcquistoDto fatturaAcquisto = null, OrderBy orderBy = null)
         {
             try
             {
@@ -1766,7 +1810,7 @@ namespace WcfService
         }
 
         private IQueryable<DataLayer.Reso> QueryResi(string search = null, object advancedSearch = null, Dto.NotaCreditoDto notaCredito = null,
-            Dto.FatturaAcquistoDto fatturaAcquisto = null, object orderBy = null)
+            Dto.FatturaAcquistoDto fatturaAcquisto = null, OrderBy orderBy = null)
         {
             try
             {
@@ -1791,7 +1835,12 @@ namespace WcfService
                 }
                 resi = (from q in resi orderby q.Id descending select q);
                 if (orderBy != null)
-                    resi = resi.OrderBy((Func<DataLayer.Reso, object>)orderBy).AsQueryable();
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        resi = resi.OrderBy((Func<DataLayer.Reso, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        resi = resi.OrderByDescending((Func<DataLayer.Reso, object>)orderBy.Value).AsQueryable();
+                }                   
                 
                 return resi;
             }
@@ -1884,7 +1933,7 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.PagamentoUnificatoDto> LoadPagamentiUnificati(int skip, int take, string search = null, object advancedSearch = null, object orderBy = null)
+        public IEnumerable<Dto.PagamentoUnificatoDto> LoadPagamentiUnificati(int skip, int take, string search = null, object advancedSearch = null, OrderBy orderBy = null)
         {
             try
             {
@@ -1933,7 +1982,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.PagamentoUnificato> QueryPagamentiUnificati(string search = null, object advancedSearch = null, object orderBy = null)
+        private IQueryable<DataLayer.PagamentoUnificato> QueryPagamentiUnificati(string search = null, object advancedSearch = null, OrderBy orderBy = null)
         {
             try
             {
@@ -1953,7 +2002,12 @@ namespace WcfService
                 }
                 pagamentiUnificati = (from q in pagamentiUnificati orderby q.Id descending select q);
                 if (orderBy != null)
-                    pagamentiUnificati = pagamentiUnificati.OrderBy((Func<DataLayer.PagamentoUnificato, object>)orderBy).AsQueryable();
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        pagamentiUnificati = pagamentiUnificati.OrderBy((Func<DataLayer.PagamentoUnificato, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        pagamentiUnificati = pagamentiUnificati.OrderByDescending((Func<DataLayer.PagamentoUnificato, object>)orderBy.Value).AsQueryable();
+                }                   
                
                 return pagamentiUnificati;
             }
@@ -2047,7 +2101,7 @@ namespace WcfService
         #endregion
         #region Custom
         public IEnumerable<Dto.PagamentoUnificatoFatturaAcquistoDto> LoadPagamentiUnificatiFatturaAcquisto(int skip, int take, string search = null, object advancedSearch = null,
-            Dto.PagamentoUnificatoDto pagamentoUnificato = null, object orderBy = null)
+            Dto.PagamentoUnificatoDto pagamentoUnificato = null, OrderBy orderBy = null)
         {
             try
             {
@@ -2096,7 +2150,7 @@ namespace WcfService
         }
 
         private IQueryable<DataLayer.PagamentoUnificatoFatturaAcquisto> QueryPagamentiUnificatiFatturaAcquisto(string search = null, object advancedSearch = null,
-            Dto.PagamentoUnificatoDto pagamentoUnificato = null, object orderBy = null)
+            Dto.PagamentoUnificatoDto pagamentoUnificato = null, OrderBy orderBy = null)
         {
             try
             {
@@ -2118,7 +2172,12 @@ namespace WcfService
                 }
                 pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto orderby q.Id descending select q);
                 if (orderBy != null)
-                    pagamentiUnificatiFatturaAcquisto = pagamentiUnificatiFatturaAcquisto.OrderBy((Func<DataLayer.PagamentoUnificatoFatturaAcquisto, object>)orderBy).AsQueryable();
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        pagamentiUnificatiFatturaAcquisto = pagamentiUnificatiFatturaAcquisto.OrderBy((Func<DataLayer.PagamentoUnificatoFatturaAcquisto, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        pagamentiUnificatiFatturaAcquisto = pagamentiUnificatiFatturaAcquisto.OrderByDescending((Func<DataLayer.PagamentoUnificatoFatturaAcquisto, object>)orderBy.Value).AsQueryable();
+                }                   
             
                 return pagamentiUnificatiFatturaAcquisto;
             }
@@ -2213,8 +2272,8 @@ namespace WcfService
         #endregion
         #region Custom
 
-        public IEnumerable<Dto.CommittenteDto> LoadCommittenti(int skip, int take, string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, 
-            object orderBy = null)
+        public IEnumerable<Dto.CommittenteDto> LoadCommittenti(int skip, int take, string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null,
+            OrderBy orderBy = null)
         {
             try
             {
@@ -2262,7 +2321,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Committente> QueryCommittenti(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, object orderBy = null)
+        private IQueryable<DataLayer.Committente> QueryCommittenti(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, OrderBy orderBy = null)
         {
             try
             {
@@ -2286,7 +2345,12 @@ namespace WcfService
                 }
                 committenti = (from q in committenti orderby q.RagioneSociale select q);
                 if (orderBy != null)
-                    committenti = committenti.OrderBy((Func<DataLayer.Committente, object>)orderBy).AsQueryable();
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        committenti = committenti.OrderBy((Func<DataLayer.Committente, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        committenti = committenti.OrderByDescending((Func<DataLayer.Committente, object>)orderBy.Value).AsQueryable();
+                }                   
                
                 return committenti;
             }
@@ -2433,8 +2497,8 @@ namespace WcfService
         #endregion
         #region Custom
 
-        public IEnumerable<Dto.FatturaVenditaDto> LoadFattureVendita(int skip, int take, string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null, 
-            object orderBy = null)
+        public IEnumerable<Dto.FatturaVenditaDto> LoadFattureVendita(int skip, int take, string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null,
+            OrderBy orderBy = null)
         {
             try
             {
@@ -2482,7 +2546,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.FatturaVendita> QueryFattureVendita(string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null, object orderBy = null)
+        private IQueryable<DataLayer.FatturaVendita> QueryFattureVendita(string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null, OrderBy orderBy = null)
         {
             try
             {
@@ -2504,7 +2568,12 @@ namespace WcfService
                 }
                 fattureVendita = (from q in fattureVendita orderby q.Id descending select q);
                 if (orderBy != null)
-                    fattureVendita = fattureVendita.OrderBy((Func<DataLayer.FatturaVendita, object>)orderBy).AsQueryable();
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        fattureVendita = fattureVendita.OrderBy((Func<DataLayer.FatturaVendita, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        fattureVendita = fattureVendita.OrderByDescending((Func<DataLayer.FatturaVendita, object>)orderBy.Value).AsQueryable();
+                }                   
              
                 return fattureVendita;
             }
@@ -2598,7 +2667,7 @@ namespace WcfService
         #endregion
         #region Custom
         public IEnumerable<Dto.IncassoDto> LoadIncassi(int skip, int take, string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null,
-            Dto.FatturaVenditaDto fatturaVendita = null, object orderBy = null)
+            Dto.FatturaVenditaDto fatturaVendita = null, OrderBy orderBy = null)
         {
             try
             {
@@ -2647,7 +2716,7 @@ namespace WcfService
         }
 
         private IQueryable<DataLayer.Incasso> QueryIncassi(string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null, 
-            Dto.FatturaVenditaDto fatturaVendita = null, object orderBy = null)
+            Dto.FatturaVenditaDto fatturaVendita = null, OrderBy orderBy = null)
         {
             try
             {
@@ -2679,7 +2748,12 @@ namespace WcfService
                 }
                 incassi = (from q in incassi orderby q.Id descending select q);
                 if (orderBy != null)
-                    incassi = incassi.OrderBy((Func<DataLayer.Incasso, object>)orderBy).AsQueryable();
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        incassi = incassi.OrderBy((Func<DataLayer.Incasso, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        incassi = incassi.OrderByDescending((Func<DataLayer.Incasso, object>)orderBy.Value).AsQueryable();
+                }                   
             
                 return incassi;
             }
@@ -2774,7 +2848,7 @@ namespace WcfService
         #endregion
         #region Custom
 
-        public IEnumerable<Dto.SALDto> LoadSALs(int skip, int take, string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, object orderBy = null)
+        public IEnumerable<Dto.SALDto> LoadSALs(int skip, int take, string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, OrderBy orderBy = null)
         {
             try
             {
@@ -2822,7 +2896,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.SAL> QuerySALs(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, object orderBy = null)
+        private IQueryable<DataLayer.SAL> QuerySALs(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, OrderBy orderBy = null)
         {
             try
             {
@@ -2844,7 +2918,12 @@ namespace WcfService
                 }
                 sals = (from q in sals orderby q.Id descending select q);
                 if (orderBy != null)
-                    sals = sals.OrderBy((Func<DataLayer.SAL, object>)orderBy).AsQueryable();
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        sals = sals.OrderBy((Func<DataLayer.SAL, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        sals = sals.OrderByDescending((Func<DataLayer.SAL, object>)orderBy.Value).AsQueryable();
+                }                   
                 
                 return sals;
             }
@@ -2936,7 +3015,7 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.AnagraficaFornitoreDto> LoadAnagraficheFornitori(int skip, int take, string search = null, object advancedSearch = null, object orderBy = null)
+        public IEnumerable<Dto.AnagraficaFornitoreDto> LoadAnagraficheFornitori(int skip, int take, string search = null, object advancedSearch = null, OrderBy orderBy = null)
         {
             try
             {
@@ -3000,7 +3079,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.AnagraficaFornitore> QueryAnagraficheFornitori(string search = null, object advancedSearch = null, object orderBy = null)
+        private IQueryable<DataLayer.AnagraficaFornitore> QueryAnagraficheFornitori(string search = null, object advancedSearch = null, OrderBy orderBy = null)
         {
             try
             {
@@ -3019,7 +3098,12 @@ namespace WcfService
 
                 anagraficheFornitori = (from q in anagraficheFornitori orderby q.RagioneSociale select q);
                 if (orderBy != null)
-                    anagraficheFornitori = anagraficheFornitori.OrderBy((Func<DataLayer.AnagraficaFornitore, object>)orderBy).AsQueryable();
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        anagraficheFornitori = anagraficheFornitori.OrderBy((Func<DataLayer.AnagraficaFornitore, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        anagraficheFornitori = anagraficheFornitori.OrderByDescending((Func<DataLayer.AnagraficaFornitore, object>)orderBy.Value).AsQueryable();
+                }                   
                 
                 return anagraficheFornitori;
             }
@@ -3113,7 +3197,7 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.AnagraficaCommittenteDto> LoadAnagraficheCommittenti(int skip, int take, string search = null, object advancedSearch = null, object orderBy = null)
+        public IEnumerable<Dto.AnagraficaCommittenteDto> LoadAnagraficheCommittenti(int skip, int take, string search = null, object advancedSearch = null, OrderBy orderBy = null)
         {
             try
             {
@@ -3177,7 +3261,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.AnagraficaCommittente> QueryAnagraficheCommittenti(string search = null, object advancedSearch = null, object orderBy = null)
+        private IQueryable<DataLayer.AnagraficaCommittente> QueryAnagraficheCommittenti(string search = null, object advancedSearch = null, OrderBy orderBy = null)
         {
             try
             {
@@ -3194,7 +3278,12 @@ namespace WcfService
 
                 anagraficheCommittenti = (from q in anagraficheCommittenti orderby q.RagioneSociale select q);
                 if (orderBy != null)
-                    anagraficheCommittenti = anagraficheCommittenti.OrderBy((Func<DataLayer.AnagraficaCommittente, object>)orderBy).AsQueryable();
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        anagraficheCommittenti = anagraficheCommittenti.OrderBy((Func<DataLayer.AnagraficaCommittente, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        anagraficheCommittenti = anagraficheCommittenti.OrderByDescending((Func<DataLayer.AnagraficaCommittente, object>)orderBy.Value).AsQueryable();
+                }                   
                
                 return anagraficheCommittenti;
             }
@@ -3288,7 +3377,7 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.AnagraficaArticoloDto> LoadAnagraficheArticoli(int skip, int take, string search = null, object advancedSearch = null, object orderBy = null)
+        public IEnumerable<Dto.AnagraficaArticoloDto> LoadAnagraficheArticoli(int skip, int take, string search = null, object advancedSearch = null, OrderBy orderBy = null)
         {
             try
             {
@@ -3336,7 +3425,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.AnagraficaArticolo> QueryAnagraficheArticoli(string search = null, object advancedSearch = null, object orderBy = null)
+        private IQueryable<DataLayer.AnagraficaArticolo> QueryAnagraficheArticoli(string search = null, object advancedSearch = null, OrderBy orderBy = null)
         {
             try
             {
@@ -3351,7 +3440,12 @@ namespace WcfService
 
                 anagraficheArticoli = (from q in anagraficheArticoli orderby q.Codice select q);
                 if (orderBy != null)
-                    anagraficheArticoli = anagraficheArticoli.OrderBy((Func<DataLayer.AnagraficaArticolo, object>)orderBy).AsQueryable();
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        anagraficheArticoli = anagraficheArticoli.OrderBy((Func<DataLayer.AnagraficaArticolo, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        anagraficheArticoli = anagraficheArticoli.OrderByDescending((Func<DataLayer.AnagraficaArticolo, object>)orderBy.Value).AsQueryable();
+                }                   
                
                 return anagraficheArticoli;
             }
@@ -3445,7 +3539,7 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.ReportJobDto> LoadReportJobs(int skip, int take, string search = null, object advancedSearch = null, object orderBy = null)
+        public IEnumerable<Dto.ReportJobDto> LoadReportJobs(int skip, int take, string search = null, object advancedSearch = null, OrderBy orderBy = null)
         {
             try
             {
@@ -3493,7 +3587,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.ReportJob> QueryReportJobs(string search = null, object advancedSearch = null, object orderBy = null)
+        private IQueryable<DataLayer.ReportJob> QueryReportJobs(string search = null, object advancedSearch = null, OrderBy orderBy = null)
         {
             try
             {
@@ -3508,7 +3602,12 @@ namespace WcfService
 
                 reportJobs = (from q in reportJobs orderby q.Id descending select q);
                 if (orderBy != null)
-                    reportJobs = reportJobs.OrderBy((Func<DataLayer.ReportJob, object>)orderBy).AsQueryable();
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        reportJobs = reportJobs.OrderBy((Func<DataLayer.ReportJob, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        reportJobs = reportJobs.OrderByDescending((Func<DataLayer.ReportJob, object>)orderBy.Value).AsQueryable();
+                }                   
                 
                 return reportJobs;
             }

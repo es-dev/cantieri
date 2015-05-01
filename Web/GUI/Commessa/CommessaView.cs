@@ -28,6 +28,18 @@ namespace Web.GUI.Commessa
             }
         }
 
+        private void InitCombo()
+        {
+            try
+            {
+                editStato.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.StatoCommessa>();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         public override void Init()
         {
             try
@@ -92,20 +104,6 @@ namespace Web.GUI.Commessa
             }
             return null;
         }
-
-        private void InitCombo()
-        {
-            try
-            {
-                editStato.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.StatoCommessa>();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-      
 
 	}
 }

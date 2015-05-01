@@ -24,7 +24,7 @@ namespace Web.GUI.CentroCosto
             }
         }
 
-        public override void Load(int skip, int take, string search=null, object advancedSearch=null, object orderBy=null)
+        public override void Load(int skip, int take, string search=null, object advancedSearch=null, OrderBy orderBy=null)
         {
             try
             {
