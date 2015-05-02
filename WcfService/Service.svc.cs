@@ -149,12 +149,12 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var aziende = (from q in ef.Aziendas select q);
 
-                if (advancedSearch != null)
-                    aziende = aziende.Where((Func<DataLayer.Azienda, bool>)advancedSearch).AsQueryable();
-
                 if (search != null && search.Length > 0)
                     aziende = (from q in aziende where q.Codice.StartsWith(search) || q.RagioneSociale.Contains(search) || q.Comune.StartsWith(search) || q.Indirizzo.Contains(search) ||
                                    q.Provincia.StartsWith(search) select q);
+
+                if (advancedSearch != null)
+                    aziende = aziende.Where((Func<DataLayer.Azienda, bool>)advancedSearch).AsQueryable();
 
                 aziende = (from q in aziende orderby q.RagioneSociale select q);
                 if (orderBy != null)
@@ -308,12 +308,12 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var accounts = (from q in ef.Accounts select q);
 
-                if (advancedSearch != null)
-                    accounts = accounts.Where((Func<DataLayer.Account, bool>)advancedSearch).AsQueryable();
-
                 if (search != null && search.Length > 0)
                     accounts = (from q in accounts
                                where q.Nickname.StartsWith(search) || q.Username.Contains(search) select q);
+
+                if (advancedSearch != null)
+                    accounts = accounts.Where((Func<DataLayer.Account, bool>)advancedSearch).AsQueryable();
 
                 accounts = (from q in accounts orderby q.Username select q);
                 if (orderBy != null)
@@ -470,8 +470,6 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var commesse = (from q in ef.Commessas select q);
 
-                if (advancedSearch != null)
-                    commesse = commesse.Where((Func<DataLayer.Commessa,bool>)advancedSearch).AsQueryable();
 
                 if (search != null && search.Length > 0)
                     commesse = (from q in commesse
@@ -479,6 +477,9 @@ namespace WcfService
                                     q.Descrizione.Contains(search) || q.Indirizzo.Contains(search) || q.Numero.StartsWith(search) || q.Provincia.StartsWith(search) ||
                                     q.Riferimento.Contains(search) || q.Stato.StartsWith(search)
                                 select q);
+
+                if (advancedSearch != null)
+                    commesse = commesse.Where((Func<DataLayer.Commessa,bool>)advancedSearch).AsQueryable();
 
                 commesse = (from q in commesse orderby q.Id descending select q);
                 if (orderBy != null)
@@ -655,9 +656,6 @@ namespace WcfService
                 if(commessa!=null)
                     fornitori = (from q in fornitori where q.CommessaId == commessa.Id select q);
 
-                if (advancedSearch != null)
-                    fornitori = fornitori.Where((Func<DataLayer.Fornitore, bool>)advancedSearch).AsQueryable();
-
                 if (search != null && search.Length > 0)
                 {
                     var commesseId = (from c in QueryCommesse(search) select c.Id).ToList();
@@ -668,6 +666,10 @@ namespace WcfService
                                      commesseId.Contains(q.CommessaId)
                                  select q);
                 }
+                
+                if (advancedSearch != null)
+                    fornitori = fornitori.Where((Func<DataLayer.Fornitore, bool>)advancedSearch).AsQueryable();
+
                 fornitori = (from q in fornitori orderby q.RagioneSociale select q);
                 if (orderBy != null)
                 {
@@ -874,12 +876,12 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var centriCosto = (from q in ef.CentroCostos select q);
 
-                if (advancedSearch != null)
-                    centriCosto = centriCosto.Where((Func<DataLayer.CentroCosto, bool>)advancedSearch).AsQueryable();
-
                 if (search != null && search.Length > 0)
                     centriCosto = (from q in centriCosto where q.Codice.StartsWith(search) || q.Denominazione.Contains(search)  
                                    select q);
+
+                if (advancedSearch != null)
+                    centriCosto = centriCosto.Where((Func<DataLayer.CentroCosto, bool>)advancedSearch).AsQueryable();
 
                 centriCosto = (from q in centriCosto orderby q.Denominazione select q);
                 if (orderBy != null)
@@ -1048,9 +1050,6 @@ namespace WcfService
                 if(start!=null && end!=null)
                     fattureAcquisto = (from q in fattureAcquisto where start <= q.Scadenza && q.Scadenza <= end select q);
 
-                if (advancedSearch != null)
-                    fattureAcquisto = fattureAcquisto.Where((Func<DataLayer.FatturaAcquisto, bool>)advancedSearch).AsQueryable();
-
                 if (search != null && search.Length > 0)
                 {
                     var fornitoriId = (from q in QueryFornitori(search) select q.Id).ToList();
@@ -1060,6 +1059,10 @@ namespace WcfService
                                        q.Scadenza.Value.ToString("dd/MM/yyyy").Contains(search)
                                        select q);
                 }
+
+                if (advancedSearch != null)
+                    fattureAcquisto = fattureAcquisto.Where((Func<DataLayer.FatturaAcquisto, bool>)advancedSearch).AsQueryable();
+                
                 fattureAcquisto = (from q in fattureAcquisto orderby q.Id descending select q);
                 if (orderBy != null)
                 {
@@ -1236,9 +1239,6 @@ namespace WcfService
                 if (fatturaAcquisto != null)
                     articoli = (from q in articoli where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
 
-                if (advancedSearch != null)
-                    articoli = articoli.Where((Func<DataLayer.Articolo, bool>)advancedSearch).AsQueryable();
-
                 if (search != null && search.Length > 0)
                 {
                     var fattureAcquistoId = (from q in QueryFattureAcquisto(search) select q.Id).ToList();
@@ -1247,6 +1247,10 @@ namespace WcfService
                                     fattureAcquistoId.Contains(q.FatturaAcquistoId)
                                 select q);
                 }
+                
+                if (advancedSearch != null)
+                    articoli = articoli.Where((Func<DataLayer.Articolo, bool>)advancedSearch).AsQueryable();
+
                 articoli = (from q in articoli orderby q.Id descending select q);
                 if (orderBy != null)
                 {
@@ -1416,14 +1420,10 @@ namespace WcfService
                 if (start != null && end != null)
                     pagamenti = (from q in pagamenti where start <= q.Data && q.Data <= end select q);
 
-                if (advancedSearch != null)
-                    pagamenti = pagamenti.Where((Func<DataLayer.Pagamento, bool>)advancedSearch).AsQueryable();
-
                 if (search != null && search.Length > 0)
                 {
                     var fattureAcquistoId = (from q in QueryFattureAcquisto(search) select q.Id).ToList();
                     var pagamentiUnificatiId = (from q in QueryPagamentiUnificati(search) select q.Id).ToList();
-
                     pagamenti = (from q in pagamenti
                                  where q.Note.Contains(search) || q.Data.Value.ToString("dd/MM/yyyy").Contains(search) || 
                                  q.Codice.StartsWith(search) || q.Descrizione.Contains(search)|| q.TipoPagamento.Contains(search)||
@@ -1431,6 +1431,10 @@ namespace WcfService
                                  fattureAcquistoId.Contains(q.FatturaAcquistoId)
                                  select q);
                 }
+
+                if (advancedSearch != null)
+                    pagamenti = pagamenti.Where((Func<DataLayer.Pagamento, bool>)advancedSearch).AsQueryable();
+
                 pagamenti = (from q in pagamenti orderby q.Id descending select q);
                 if (orderBy != null)
                 {
@@ -1652,9 +1656,6 @@ namespace WcfService
                 if(fornitore!=null)
                     noteCredito = (from q in noteCredito where q.FornitoreId == fornitore.Id select q);
 
-                if (advancedSearch != null)
-                    noteCredito = noteCredito.Where((Func<DataLayer.NotaCredito, bool>)advancedSearch).AsQueryable();
-
                 if (search != null && search.Length > 0)
                 {
                     var fornitoreId = (from q in QueryFornitori(search) select q.Id).ToList();
@@ -1664,6 +1665,10 @@ namespace WcfService
                                  || fornitoreId.Contains(q.FornitoreId)
                                  select q);
                 }
+
+                if (advancedSearch != null)
+                    noteCredito = noteCredito.Where((Func<DataLayer.NotaCredito, bool>)advancedSearch).AsQueryable();
+
                 noteCredito = (from q in noteCredito orderby q.Id descending select q);
                 if (orderBy != null)
                 {
@@ -1828,20 +1833,20 @@ namespace WcfService
                 if(fatturaAcquisto!=null)
                     resi = (from q in resi where q.FatturaAcquistoId == fatturaAcquisto.Id select q);
 
-                if (advancedSearch != null)
-                    resi = resi.Where((Func<DataLayer.Reso, bool>)advancedSearch).AsQueryable();
-
                 if (search != null && search.Length > 0)
                 {
                     var notaCreditoId = (from q in QueryNoteCredito(search) select q.Id).ToList();
                     var fattureAcquistoId = (from q in QueryFattureAcquisto(search) select q.Id).ToList();
-
                     resi = (from q in resi
                                  where q.Note.Contains(search) || q.Data.Value.ToString("dd/MM/yyyy").Contains(search) || 
                                  q.Codice.StartsWith(search) ||q.Descrizione.Contains(search)|| fattureAcquistoId.Contains(q.FatturaAcquistoId)
                                  || notaCreditoId.Contains(q.NotaCreditoId)
                                  select q);
                 }
+
+                if (advancedSearch != null)
+                    resi = resi.Where((Func<DataLayer.Reso, bool>)advancedSearch).AsQueryable();
+
                 resi = (from q in resi orderby q.Id descending select q);
                 if (orderBy != null)
                 {
@@ -1998,19 +2003,19 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var pagamentiUnificati = (from q in ef.PagamentoUnificatos select q);
 
-                if (advancedSearch != null)
-                    pagamentiUnificati = pagamentiUnificati.Where((Func<DataLayer.PagamentoUnificato, bool>)advancedSearch).AsQueryable();
-
                 if (search != null && search.Length > 0)
                 {
                     var codiciFornitori = (from q in QueryFornitori(search) select q.Codice).ToList();
-
                     pagamentiUnificati = (from q in pagamentiUnificati
                                  where q.Note.Contains(search) || q.Data.Value.ToString("dd/MM/yyyy").Contains(search) || 
                                  q.Codice.StartsWith(search) ||q.Descrizione.Contains(search) || q.TipoPagamento.Contains(search)||
                                   codiciFornitori.Contains(q.CodiceFornitore)
                                  select q);
                 }
+
+                if (advancedSearch != null)
+                    pagamentiUnificati = pagamentiUnificati.Where((Func<DataLayer.PagamentoUnificato, bool>)advancedSearch).AsQueryable();
+
                 pagamentiUnificati = (from q in pagamentiUnificati orderby q.Id descending select q);
                 if (orderBy != null)
                 {
@@ -2170,19 +2175,19 @@ namespace WcfService
                 if(pagamentoUnificato!=null)
                     pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto where q.PagamentoUnificatoId == pagamentoUnificato.Id select q);
 
-                if (advancedSearch != null)
-                    pagamentiUnificatiFatturaAcquisto = pagamentiUnificatiFatturaAcquisto.Where((Func<DataLayer.PagamentoUnificatoFatturaAcquisto, bool>)advancedSearch).AsQueryable();
-
                 if (search != null && search.Length > 0)
                 {
                     var fatturaAcquistoId = (from q in QueryFattureAcquisto(search) select q.Id).ToList();
                     var pagamentiUnificatiId = (from q in QueryPagamentiUnificati(search) select q.Id).ToList();
-
                     pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto
                                           where q.Note.Contains(search) || pagamentiUnificatiId.Contains(q.PagamentoUnificatoId) || 
                                               fatturaAcquistoId.Contains(q.FatturaAcquistoId)
                                           select q);
                 }
+
+                if (advancedSearch != null)
+                    pagamentiUnificatiFatturaAcquisto = pagamentiUnificatiFatturaAcquisto.Where((Func<DataLayer.PagamentoUnificatoFatturaAcquisto, bool>)advancedSearch).AsQueryable();
+
                 pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto orderby q.Id descending select q);
                 if (orderBy != null)
                 {
@@ -2343,9 +2348,6 @@ namespace WcfService
                 if(commessa!=null)
                     committenti = (from q in committenti where q.CommessaId == commessa.Id select q);
 
-                if (advancedSearch != null)
-                    committenti = committenti.Where((Func<DataLayer.Committente, bool>)advancedSearch).AsQueryable();
-
                 if (search != null && search.Length > 0)
                 {
                     var commesseId = (from c in QueryCommesse(search) select c.Id).ToList();
@@ -2356,6 +2358,10 @@ namespace WcfService
                                  commesseId.Contains(q.Commessa.Id)
                                select q);
                 }
+
+                if (advancedSearch != null)
+                    committenti = committenti.Where((Func<DataLayer.Committente, bool>)advancedSearch).AsQueryable();
+
                 committenti = (from q in committenti orderby q.RagioneSociale select q);
                 if (orderBy != null)
                 {
@@ -2568,9 +2574,6 @@ namespace WcfService
                 if(committente!=null)
                     fattureVendita = (from q in fattureVendita where q.CommittenteId == committente.Id select q);
 
-                if (advancedSearch != null)
-                    fattureVendita = fattureVendita.Where((Func<DataLayer.FatturaVendita, bool>)advancedSearch).AsQueryable();
-
                 if (search != null && search.Length > 0)
                 {
                     var committentiId = (from c in QueryCommittenti(search) select c.Id).ToList();
@@ -2581,6 +2584,10 @@ namespace WcfService
                                        q.TipoPagamento.Contains(search) 
                                       select q);
                 }
+
+                if (advancedSearch != null)
+                    fattureVendita = fattureVendita.Where((Func<DataLayer.FatturaVendita, bool>)advancedSearch).AsQueryable();
+
                 fattureVendita = (from q in fattureVendita orderby q.Id descending select q);
                 if (orderBy != null)
                 {
@@ -2750,9 +2757,6 @@ namespace WcfService
                     }
                 }
 
-                if (advancedSearch != null)
-                    incassi = incassi.Where((Func<DataLayer.Incasso, bool>)advancedSearch).AsQueryable();
-
                 if (search != null && search.Length > 0)
                 {
                     var fattureVenditaId = (from q in QueryFattureVendita(search) select q.Id).ToList();
@@ -2762,6 +2766,10 @@ namespace WcfService
                                     || q.TransazionePagamento.Contains(search) || fattureVenditaId.Contains(q.FatturaVenditaId)
                                     select q);
                 }
+
+                if (advancedSearch != null)
+                    incassi = incassi.Where((Func<DataLayer.Incasso, bool>)advancedSearch).AsQueryable();
+
                 incassi = (from q in incassi orderby q.Id descending select q);
                 if (orderBy != null)
                 {
@@ -2921,9 +2929,6 @@ namespace WcfService
                 if(commessa!=null)
                     sals = (from q in sals where q.CommessaId == commessa.Id select q);
 
-                if (advancedSearch != null)
-                    sals = sals.Where((Func<DataLayer.SAL, bool>)advancedSearch).AsQueryable();
-
                 if (search != null && search.Length > 0)
                 {
                     var commesseId = (from c in QueryCommesse(search) select c.Id).ToList();
@@ -2932,6 +2937,10 @@ namespace WcfService
                             q.Data.Value.ToString("dd/MM/yyyy").Contains(search)|| commesseId.Contains(q.CommessaId)
                             select q);
                 }
+
+                if (advancedSearch != null)
+                    sals = sals.Where((Func<DataLayer.SAL, bool>)advancedSearch).AsQueryable();
+
                 sals = (from q in sals orderby q.Id descending select q);
                 if (orderBy != null)
                 {
@@ -3102,16 +3111,17 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var anagraficheFornitori = (from q in ef.AnagraficaFornitores select q);
 
-                if (advancedSearch != null)
-                    anagraficheFornitori = anagraficheFornitori.Where((Func<DataLayer.AnagraficaFornitore, bool>)advancedSearch).AsQueryable();
-
                 if (search != null && search.Length > 0)
                     anagraficheFornitori = (from q in anagraficheFornitori
                                             where q.Codice.StartsWith(search) || q.PartitaIva.StartsWith(search) ||
                                                 q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
                                                 q.Comune.StartsWith(search) || q.Provincia.StartsWith(search)
                                             select q);
+                
+                if (advancedSearch != null)
+                    anagraficheFornitori = anagraficheFornitori.Where((Func<DataLayer.AnagraficaFornitore, bool>)advancedSearch).AsQueryable();
 
+                
                 anagraficheFornitori = (from q in anagraficheFornitori orderby q.RagioneSociale select q);
                 if (orderBy != null)
                 {
@@ -3284,14 +3294,16 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var anagraficheCommittenti = (from q in ef.AnagraficaCommittentes select q);
 
+                if (search != null && search.Length > 0)
+                    anagraficheCommittenti = (from q in anagraficheCommittenti
+                                              where q.Codice.StartsWith(search) || q.PartitaIva.StartsWith(search) ||
+                                                  q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
+                                                  q.Comune.StartsWith(search) || q.Provincia.StartsWith(search)
+                                              select q);
+
                 if (advancedSearch != null)
                     anagraficheCommittenti = anagraficheCommittenti.Where((Func<DataLayer.AnagraficaCommittente, bool>)advancedSearch).AsQueryable();
-
-                if (search != null && search.Length > 0)
-                    anagraficheCommittenti = (from q in anagraficheCommittenti where q.Codice.StartsWith(search) || q.PartitaIva.StartsWith(search) ||
-                                              q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
-                                              q.Comune.StartsWith(search) || q.Provincia.StartsWith(search) select q);
-
+                
                 anagraficheCommittenti = (from q in anagraficheCommittenti orderby q.RagioneSociale select q);
                 if (orderBy != null)
                 {
@@ -3448,11 +3460,11 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var anagraficheArticoli = (from q in ef.AnagraficaArticolos select q);
 
-                if (advancedSearch != null)
-                    anagraficheArticoli = anagraficheArticoli.Where((Func<DataLayer.AnagraficaArticolo, bool>)advancedSearch).AsQueryable();
-
                 if (search != null && search.Length > 0)
                     anagraficheArticoli = (from q in anagraficheArticoli where q.Codice.StartsWith(search) || q.Descrizione.Contains(search) select q);
+
+                if (advancedSearch != null)
+                    anagraficheArticoli = anagraficheArticoli.Where((Func<DataLayer.AnagraficaArticolo, bool>)advancedSearch).AsQueryable();
 
                 anagraficheArticoli = (from q in anagraficheArticoli orderby q.Codice select q);
                 if (orderBy != null)
@@ -3610,14 +3622,15 @@ namespace WcfService
                 var ef = new DataLayer.EntitiesModel();
                 var reportJobs = (from q in ef.ReportJobs select q);
 
+                if (search != null && search.Length > 0)
+                    reportJobs = (from q in reportJobs
+                                  where q.Codice.StartsWith(search) ||
+                                      q.CodiceFornitore.Contains(search) || q.CodiceCommittente.Contains(search) || q.NomeFile.Contains(search)
+                                      || q.Tipo.Contains(search) || q.Codice.StartsWith(search)
+                                  select q);
+
                 if (advancedSearch != null)
                     reportJobs = reportJobs.Where((Func<DataLayer.ReportJob, bool>)advancedSearch).AsQueryable();
-
-                if (search != null && search.Length > 0)
-                    reportJobs = (from q in reportJobs where q.Codice.StartsWith(search) || 
-                                      q.CodiceFornitore.Contains(search) || q.CodiceCommittente.Contains(search) || q.NomeFile.Contains(search)
-                                      ||q.Tipo.Contains(search) || q.Codice.StartsWith(search) 
-                                  select q) ;
 
                 reportJobs = (from q in reportJobs orderby q.Id descending select q);
                 if (orderBy != null)
