@@ -127,5 +127,20 @@ namespace Web.GUI.FatturaVendita
             }
             return null;
         }
+
+        internal IEnumerable<CommittenteDto> ReadCommittentiAnagraficaCommittente(AnagraficaCommittenteDto anagraficaCommittente)
+        {
+            try
+            {
+                var wcf = new WcfService.Service();
+                var obj = wcf.ReadCommittenti(anagraficaCommittente);
+                return obj;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }
