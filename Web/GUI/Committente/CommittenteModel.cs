@@ -74,14 +74,13 @@ namespace Web.GUI.Committente
                     editLocalita.Value = obj.Localita;
                     editPartitaIVA.Value = obj.PartitaIva;
                     editNote.Value = obj.Note;
-                    editTotaleFattureVendita.Value = BusinessLogic.Committente.GetTotaleFattureVendita(obj);
-                    editStato.Value = BusinessLogic.Committente.GetStatoDescrizione(obj);
-                    editTotaleIncassi.Value = BusinessLogic.Committente.GetTotaleIncassi(obj);
                     editCodiceCommittente.Value = obj.Codice;
 
+                   
                     BindViewCommessa(obj.Commessa);
                     BindViewFattureVendita(obj.FatturaVenditas);
                     BindViewIncassi(obj);
+                    BindViewTotali(obj);
                 }
             }
             catch (Exception ex)
@@ -165,15 +164,14 @@ namespace Web.GUI.Committente
             }
         }
 
-        private void BindViewTotali()
+        private void BindViewTotali(CommittenteDto obj)
         {
             try
             {
-                var obj = (WcfService.Dto.CommittenteDto)Model;
                 var fatture = obj.FatturaVenditas;
                 var today = DateTime.Today;
                 if (fatture != null)
-            {
+                {
                     var totaleFatture = BusinessLogic.Committente.GetTotaleFattureVendita(obj, today);
                     var totaleIncassi = BusinessLogic.Committente.GetTotaleIncassi(obj, today);
                     var statoDescrizione = BusinessLogic.Committente.GetStatoDescrizione(obj);
@@ -293,7 +291,6 @@ namespace Web.GUI.Committente
             {
                 var commessa = (WcfService.Dto.CommessaDto)model;
                 BindViewCommessa(commessa);
-                BindViewTotali();
             }
             catch (Exception ex)
             {
@@ -347,7 +344,8 @@ namespace Web.GUI.Committente
                 bool saved = Save();
                 if (saved)
                 {
-                    BindViewTotali();
+                    var obj = (CommittenteDto)Model;
+                    BindViewTotali(obj);
                 }
             }
             catch (Exception ex)

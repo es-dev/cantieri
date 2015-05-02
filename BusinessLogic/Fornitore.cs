@@ -454,7 +454,7 @@ namespace BusinessLogic
                     descrizione = "Il fornitore risulta pagato. Tutte le fatture sono state saldate";  
                     stato = TypeState.Normal;
                 }
-                var statoDescrizione = new StateDescriptionImage(stato, descrizione);
+                var statoDescrizione = new StateDescriptionImage(statoFornitore.ToString(), stato, descrizione);
                 return statoDescrizione;
             }
             catch (Exception ex)

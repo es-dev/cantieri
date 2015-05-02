@@ -87,21 +87,18 @@ namespace Web.GUI.FatturaAcquisto
                     editDescrizione.Value = obj.Descrizione;
                     editImponibile.Value = obj.Imponibile; 
                     editIVA.Value = obj.IVA;               
+                    editTotale.Value = obj.Totale;
+                    editSconto.Value = obj.Sconto;
                     editNumero.Value = obj.Numero;
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editScadenzaPagamento.Value = obj.ScadenzaPagamento;
                     editNote.Value = obj.Note;
-                    editTotale.Value = obj.Totale;
-
-                    var commessa = GetCommessa(obj);
-                    editTotalePagamenti.Value = BusinessLogic.Fattura.GetTotalePagamenti(obj, commessa);
-                    editStato.Value = BusinessLogic.Fattura.GetStatoDescrizione(obj, commessa);
-                    editSconto.Value = obj.Sconto;
                     
                     BindViewCentroCosto(obj.CentroCosto);
                     BindViewFornitore(obj.Fornitore);
                     BindViewPagamenti(obj.Pagamentos);
                     BindViewArticoli(obj.Articolos);
+                    BindViewTotali(obj);
                 }
             }
             catch (Exception ex)
@@ -121,6 +118,7 @@ namespace Web.GUI.FatturaAcquisto
                 UtilityError.Write(ex);
             }
         }
+
         private void BindViewArticoli(IList<ArticoloDto> articoli)
         {
             try
@@ -132,6 +130,7 @@ namespace Web.GUI.FatturaAcquisto
                 UtilityError.Write(ex);
             }
         }
+
         private void BindViewFornitore(FornitoreDto fornitore)
         {
             try
@@ -159,15 +158,11 @@ namespace Web.GUI.FatturaAcquisto
             }
         }
 
-        private void BindViewTotali()
+        private void BindViewTotali(FatturaAcquistoDto obj)
         {
             try
             {
-                var obj = (WcfService.Dto.FatturaAcquistoDto)Model;
                 var today = DateTime.Today;
-                var imponibile = UtilityValidation.GetDecimal(editImponibile.Value);
-                var iva = UtilityValidation.GetDecimal(editIVA.Value);
-                var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
                 var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, today);
                 var totaleResi = BusinessLogic.Fattura.GetTotaleResi(obj, today);
 
@@ -175,7 +170,6 @@ namespace Web.GUI.FatturaAcquisto
                 var statoDescrizione = BusinessLogic.Fattura.GetStatoDescrizione(obj, commessa); 
 
                 editStato.Value = statoDescrizione;
-                editTotale.Value = totaleFattura;
                 editTotalePagamenti.Value = totalePagamenti;
                 editTotaleResi.Value = totaleResi;
             }
@@ -183,6 +177,22 @@ namespace Web.GUI.FatturaAcquisto
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewTotaleFattura()
+        {
+            try
+            {
+                var imponibile = UtilityValidation.GetDecimal(editImponibile.Value);
+                var iva = UtilityValidation.GetDecimal(editIVA.Value);
+                var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
+                editTotale.Value = totaleFattura;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
         }
 
         public override void BindModel(object model)
@@ -218,7 +228,6 @@ namespace Web.GUI.FatturaAcquisto
                 UtilityError.Write(ex);
             }
         }
-
 
         private CommessaDto GetCommessa(FatturaAcquistoDto fatturaAcquisto)
         {
@@ -304,7 +313,7 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 if (Editing)
-                    BindViewTotali();
+                    BindViewTotaleFattura();
             }
             catch (Exception ex)
             {
@@ -319,7 +328,8 @@ namespace Web.GUI.FatturaAcquisto
                 bool saved = Save();
                 if (saved)
                 {
-                    BindViewTotali();
+                    var obj = (FatturaAcquistoDto)Model;
+                    BindViewTotali(obj);
                 }
             }
             catch (Exception ex)

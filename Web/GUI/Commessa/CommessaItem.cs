@@ -53,7 +53,7 @@ namespace Web.GUI.Commessa
             }
         }
 
-        private static DescriptionImage GetStato(string stato)
+        private DescriptionImage GetStato(string stato)
         {
             try
             {

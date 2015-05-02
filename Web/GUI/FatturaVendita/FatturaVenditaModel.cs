@@ -88,19 +88,16 @@ namespace Web.GUI.FatturaVendita
                     editData.Value = obj.Data;
                     editDescrizione.Value = obj.Descrizione;
                     editImponibile.Value = obj.Imponibile;
-                    editIVA.Value = obj.IVA;              
+                    editIVA.Value = obj.IVA;
+                    editTotale.Value = obj.Totale;
                     editNumero.Value = obj.Numero;
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editScadenzaPagamento.Value = obj.ScadenzaPagamento;
                     editNote.Value = obj.Note;
-                    editTotale.Value = obj.Totale;
-
-                    var commessa = GetCommessa(obj);
-                    editTotaleIncassi.Value = BusinessLogic.Fattura.GetTotaleIncassi(obj, commessa);
-                    editStato.Value = BusinessLogic.Fattura.GetStatoDescrizione(obj,commessa); 
 
                     BindViewCommittente(obj.Committente);
                     BindViewIncassi(obj.Incassos);
+                    BindViewTotali(obj);
                 }
             }
             catch (Exception ex)
@@ -135,30 +132,39 @@ namespace Web.GUI.FatturaVendita
             
         }
 
-        private void BindViewTotali()
+        private void BindViewTotali(FatturaVenditaDto obj)
         {
             try
             {
-                var obj = (WcfService.Dto.FatturaVenditaDto)Model;
-                var imponibile = UtilityValidation.GetDecimal(editImponibile.Value);
-                var iva = UtilityValidation.GetDecimal(editIVA.Value);
-                var data = editData.Value;
                 var today = DateTime.Today;
-
-                var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
                 var totaleIncassi = BusinessLogic.Fattura.GetTotaleIncassi(obj, today);
 
                 var commessa = GetCommessa(obj);
                 var statoDescrizione = BusinessLogic.Fattura.GetStatoDescrizione(obj, commessa);
 
                 editStato.Value = statoDescrizione;
-                editTotale.Value = totaleFattura;
                 editTotaleIncassi.Value = totaleIncassi;
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewTotaleFattura()
+        {
+            try
+            {
+                var imponibile = UtilityValidation.GetDecimal(editImponibile.Value);
+                var iva = UtilityValidation.GetDecimal(editIVA.Value);
+                var totaleFattura = BusinessLogic.Fattura.GetTotale(imponibile, iva);
+                editTotale.Value = totaleFattura;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+           
         }
 
         public override void BindModel(object model)
@@ -249,7 +255,8 @@ namespace Web.GUI.FatturaVendita
                 bool saved = Save();
                 if (saved)
                 {
-                    BindViewTotali();
+                    var obj = (FatturaVenditaDto)Model;
+                    BindViewTotali(obj);
                 }
             }
             catch (Exception ex)
@@ -263,7 +270,7 @@ namespace Web.GUI.FatturaVendita
             try
             {
                 if (Editing)
-                    BindViewTotali();
+                    BindViewTotaleFattura();
             }
             catch (Exception ex)
             {

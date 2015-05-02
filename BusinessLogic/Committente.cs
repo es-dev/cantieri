@@ -276,7 +276,7 @@ namespace BusinessLogic
                     descrizione = "Il committente risulta incassato. Tutte le fatture sono state liquidate";  //non so se ha senso indicargli anche insolute o no!!!!! per ora NO
                     stato = TypeState.Normal;
                 }
-                var statoDescrizione = new StateDescriptionImage(stato, descrizione);
+                var statoDescrizione = new StateDescriptionImage(statoCommittente.ToString(), stato, descrizione);
                 return statoDescrizione;
             }
             catch (Exception ex)

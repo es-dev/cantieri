@@ -74,16 +74,13 @@ namespace Web.GUI.Fornitore
                     editPartitaIVA.Value = obj.PartitaIva;
                     editLocalita.Value = obj.Localita;
                     editNote.Value = obj.Note;
-                    editStato.Value = BusinessLogic.Fornitore.GetStatoDescrizione(obj);
-                    editTotaleFattureAcquisto.Value = BusinessLogic.Fornitore.GetTotaleFatturaAcquisto(obj);
-                    editTotalePagamenti.Value = BusinessLogic.Fornitore.GetTotalePagamenti(obj);
-                    editTotaleNoteCredito.Value = BusinessLogic.Fornitore.GetTotaleNoteCredito(obj);
                     editCodiceFornitore.Value = obj.Codice;
 
                     BindViewCommessa(obj.Commessa);
                     BindViewFattureAcquisto(obj.FatturaAcquistos);
                     BindViewNoteCredito(obj.NotaCreditos);
                     BindViewPagamenti(obj);
+                    BindViewTotali(obj);
                 }
             }
             catch (Exception ex)
@@ -144,11 +141,10 @@ namespace Web.GUI.Fornitore
            
         }
 
-        private void BindViewTotali()
+        private void BindViewTotali(FornitoreDto obj)
         {
             try
             {
-                var obj = (WcfService.Dto.FornitoreDto)Model;
                 var fatture = obj.FatturaAcquistos;
                 var today = DateTime.Today;
                 if (fatture != null)
@@ -228,10 +224,7 @@ namespace Web.GUI.Fornitore
             {
                 var commessa = (WcfService.Dto.CommessaDto)model;
                 if (commessa != null)
-                {
                     editCommessa.Value =  commessa.Codice + " - " + commessa.Denominazione;
-                    BindViewTotali();
-                }
             }
             catch (Exception ex)
             {
@@ -270,6 +263,7 @@ namespace Web.GUI.Fornitore
                     editPartitaIVA.Value = anagraficaFornitore.PartitaIva;
                     editRagioneSociale.Value = anagraficaFornitore.RagioneSociale;
                     editTelefono.Value = anagraficaFornitore.Telefono;
+
                 }
             }
             catch (Exception ex)
@@ -285,7 +279,8 @@ namespace Web.GUI.Fornitore
                 bool saved = Save();
                 if (saved)
                 {
-                    BindViewTotali();
+                    var obj = (FornitoreDto)Model;
+                    BindViewTotali(obj);
                 }
             }
             catch (Exception ex)

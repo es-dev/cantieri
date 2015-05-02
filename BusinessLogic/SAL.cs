@@ -256,7 +256,7 @@ namespace BusinessLogic
                     descrizione = "Andamento del lavoro positivo. Il margine aziendale previsto è di " + _margine + " e il margine operativo si attesta a valori superiori pari a " + _margineOperativo + " per un importo lavori di " + _importoLavori;
                     stato = TypeState.Normal;
                 }
-                var statoDescrizione = new StateDescriptionImage(stato, descrizione);
+                var statoDescrizione = new StateDescriptionImage(statoSAL.ToString(), stato, descrizione);
                 return statoDescrizione;
             }
             catch (Exception ex)

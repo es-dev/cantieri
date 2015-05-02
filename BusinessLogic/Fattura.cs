@@ -657,7 +657,7 @@ namespace BusinessLogic
                         descrizione = "La fattura è stata pagata";
                         stato = TypeState.Normal;
                     }
-                    var statoDescrizione = new StateDescriptionImage(stato, descrizione);
+                    var statoDescrizione = new StateDescriptionImage(statoFattura.ToString(), stato, descrizione);
                     return statoDescrizione;
                 }
             }
@@ -761,7 +761,7 @@ namespace BusinessLogic
                     descrizione = "La fattura è stata incassata";
                     stato = TypeState.Normal;
                 }
-                var _stato = new StateDescriptionImage(stato, descrizione);
+                var _stato = new StateDescriptionImage(statoFattura.ToString(), stato, descrizione);
                 return _stato;
             }
             catch (Exception ex)
