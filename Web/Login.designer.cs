@@ -201,6 +201,8 @@ namespace Web
             // btnSendForgotPassword
             // 
             this.btnSendForgotPassword.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.btnSendForgotPassword.CustomStyle = "F";
+            this.btnSendForgotPassword.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Flat;
             this.btnSendForgotPassword.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSendForgotPassword.ForeColor = System.Drawing.Color.DarkRed;
             this.btnSendForgotPassword.Image = new Gizmox.WebGUI.Common.Resources.ImageResourceHandle(resources.GetString("btnSendForgotPassword.Image"));
@@ -365,6 +367,8 @@ namespace Web
             // btnSendRegistrazione
             // 
             this.btnSendRegistrazione.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.btnSendRegistrazione.CustomStyle = "F";
+            this.btnSendRegistrazione.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Flat;
             this.btnSendRegistrazione.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSendRegistrazione.ForeColor = System.Drawing.Color.DarkRed;
             this.btnSendRegistrazione.Image = new Gizmox.WebGUI.Common.Resources.ImageResourceHandle(resources.GetString("btnSendRegistrazione.Image"));
@@ -471,6 +475,8 @@ namespace Web
             // 
             // btnLogin
             // 
+            this.btnLogin.CustomStyle = "F";
+            this.btnLogin.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.SteelBlue;
             this.btnLogin.Image = new Gizmox.WebGUI.Common.Resources.ImageResourceHandle(resources.GetString("btnLogin.Image"));

@@ -136,6 +136,7 @@ namespace Web.GUI.Commessa
             // 
             // infoProgressBar
             // 
+            this.infoProgressBar.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left)));
             this.infoProgressBar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.infoProgressBar.Location = new System.Drawing.Point(90, 75);
             this.infoProgressBar.Name = "infoProgressBar";
@@ -144,15 +145,15 @@ namespace Web.GUI.Commessa
             // 
             // infoProgress
             // 
-            this.infoProgress.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.infoProgress.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left)));
             this.infoProgress.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoProgress.ForeColor = System.Drawing.Color.Blue;
-            this.infoProgress.Location = new System.Drawing.Point(195, 75);
+            this.infoProgress.Location = new System.Drawing.Point(195, 72);
             this.infoProgress.Name = "infoProgress";
-            this.infoProgress.Size = new System.Drawing.Size(28, 16);
+            this.infoProgress.Size = new System.Drawing.Size(29, 18);
             this.infoProgress.TabIndex = 1;
             this.infoProgress.Text = "0%";
+            this.infoProgress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // CommessaItem
             // 

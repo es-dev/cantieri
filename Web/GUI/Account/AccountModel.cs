@@ -46,7 +46,7 @@ namespace Web.GUI.Account
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.AccountDto)model;
+                    var obj = (AccountDto)model;
                     infoSubtitle.Text = obj.Nickname + " - " + obj.Ruolo;
                     infoSubtitleImage.Image = "Images.dashboard.account.png";
                     infoTitle.Text = (obj.Id!=0? "ACCOUNT " + obj.Nickname: "NUOVO ACCOUNT");
