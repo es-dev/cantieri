@@ -29,15 +29,9 @@ namespace Web.GUI.ReportJob
                 if (model != null)
                 {
                     var obj = (ReportJobDto)model;
-                    var codice = UtilityValidation.GetStringND(obj.Codice);
-                    var codiceFornitore = UtilityValidation.GetStringND(obj.CodiceFornitore);
-                    infoSubtitle.Text = "RTP N." + codice + " - Tipo " + obj.Tipo;
+                    infoSubtitle.Text = "RTP N." + obj.Codice + " - Tipo " + obj.Tipo;
                     infoSubtitleImage.Image = "Images.dashboard.reportjob.png";
-
-                    var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
-                    var anagraficaFornitore = viewModel.ReadAnagraficaFornitore(codiceFornitore);
-                    var ragioneSociale = (anagraficaFornitore != null ? anagraficaFornitore.RagioneSociale : "N/D");
-                    infoTitle.Text = (obj.Id!=0? "REPORT " + codice + " - " + ragioneSociale:"NUOVO REPORT");
+                    infoTitle.Text = (obj.Id != 0 ? "REPORT FORNITORI " + obj.Codice + " - " + obj.Denominazione : "NUOVO REPORT");
                 }
             }
             catch (Exception ex)

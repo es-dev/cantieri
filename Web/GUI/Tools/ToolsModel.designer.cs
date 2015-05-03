@@ -162,7 +162,7 @@ namespace Web.GUI.Tools
             this.listLogger.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listLogger.Location = new System.Drawing.Point(47, 322);
             this.listLogger.Name = "listLogger";
-            this.listLogger.Size = new System.Drawing.Size(807, 196);
+            this.listLogger.Size = new System.Drawing.Size(805, 180);
             this.listLogger.TabIndex = 1004;
             // 
             // btnClearLog
@@ -191,8 +191,6 @@ namespace Web.GUI.Tools
             this.lblWarning.Text = "Sono stati riscontrati errori nelle procedure di controllo, verificare i log rice" +
     "rcando la parola chiave ERROR per avere maggiori dettagli...";
             this.lblWarning.Visible = false;
-            this.Controls.SetChildIndex(this.panelCommands, 0);
-            this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
             this.panelCommands.ResumeLayout(false);

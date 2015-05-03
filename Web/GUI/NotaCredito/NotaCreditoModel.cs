@@ -46,8 +46,7 @@ namespace Web.GUI.NotaCredito
             try
             {
                 var obj = (NotaCreditoDto)model;
-                var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
-                infoSubtitle.Text = BusinessLogic.Fattura.GetCodifica(obj) + " - " + descrizione;
+                infoSubtitle.Text = BusinessLogic.Fattura.GetCodifica(obj);
                 infoSubtitleImage.Image = "Images.dashboard.notacredito.png";
                 var fornitore = obj.Fornitore;
                 infoTitle.Text = (obj.Id!=0? "NOTA DI CREDITO " + obj.Numero + " - " + fornitore.RagioneSociale:"NUOVA NOTA DI CREDITO");

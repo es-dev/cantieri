@@ -26,6 +26,7 @@ namespace Web.GUI.Tools
             {
                 infoSubtitleImage.Image = "Images.dashboard.tools.png";
                 infoSubtitle.Text = "TOOLS - STRUMENTI AMMINISTRATIVI";
+                infoTitle.Text = "STRUMENTI AMMINISTRATIVI";
             }
             catch (Exception ex)
             {

@@ -39,9 +39,7 @@ namespace Web.GUI.Articolo
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.ArticoloDto)model;
-                    var codice = UtilityValidation.GetStringND(obj.Codice);
-                    var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
-                    infoSubtitle.Text = codice + " - " + descrizione;
+                    infoSubtitle.Text = obj.Codice + " - " + obj.Descrizione;
                     infoSubtitleImage.Image = "Images.dashboard.articolo.png";
                     infoTitle.Text = (obj.Id!=0? "ARTICOLO " + obj.Codice:"NUOVO ARTICOLO");
                 }

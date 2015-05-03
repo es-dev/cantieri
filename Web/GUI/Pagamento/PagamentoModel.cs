@@ -61,9 +61,7 @@ namespace Web.GUI.Pagamento
             try
             {
                 var obj = (PagamentoDto)model;
-                var codice = UtilityValidation.GetStringND(obj.Codice);
-                var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
-                infoSubtitle.Text = "N."+ codice + " - " + descrizione;
+                infoSubtitle.Text = obj.Codice + " - " + obj.Descrizione;
                 infoSubtitleImage.Image = "Images.dashboard.pagamento.png";
                 var fatturaAcquisto = obj.FatturaAcquisto;
                 string title = "PAGAMENTO " + obj.Codice + " - " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);

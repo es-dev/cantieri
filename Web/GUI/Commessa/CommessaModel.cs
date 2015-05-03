@@ -47,9 +47,7 @@ namespace Web.GUI.Commessa
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.CommessaDto)model;
-                    var codice = UtilityValidation.GetStringND(obj.Codice);
-                    var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
-                    infoSubtitle.Text = codice + " - " + denominazione;
+                    infoSubtitle.Text = obj.Codice + " - " + obj.Denominazione;
                     infoSubtitleImage.Image = "Images.dashboard.commessa.png";
                     infoTitle.Text = (obj.Id!=0? "COMMESSA " + obj.Codice + " - " + obj.Denominazione:"NUOVA COMMESSA");
                 }

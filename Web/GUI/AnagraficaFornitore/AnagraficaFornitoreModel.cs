@@ -26,9 +26,7 @@ namespace Web.GUI.AnagraficaFornitore
                 if (model != null)
                 {
                     var obj = (AnagraficaFornitoreDto)model;
-                    var codice = UtilityValidation.GetStringND(obj.Codice);
-                    var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
-                    infoSubtitle.Text = codice + " - " + ragioneSociale;
+                    infoSubtitle.Text = obj.Codice + " - " + obj.RagioneSociale;
                     infoSubtitleImage.Image = "Images.dashboard.anagraficafornitore.png";
                     infoTitle.Text = (obj.Id!=0? "ANAGRAFICA FORNITORE " + obj.RagioneSociale:"NUOVA ANAGRAFICA FORNITORE");
                 }

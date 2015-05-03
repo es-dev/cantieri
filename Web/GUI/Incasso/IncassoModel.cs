@@ -63,9 +63,7 @@ namespace Web.GUI.Incasso
                 if (model != null)
                 {
                     var obj = (IncassoDto)model;
-                    var codice = UtilityValidation.GetStringND(obj.Codice);
-                    var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
-                    infoSubtitle.Text = codice + " - " + descrizione;
+                    infoSubtitle.Text = obj.Codice + " - " + obj.Descrizione;
                     infoSubtitleImage.Image = "Images.dashboard.incasso.png";
                     var fatturaVendita = obj.FatturaVendita;
                     string title = "INCASSO " + obj.Codice + " - " + BusinessLogic.Fattura.GetCodifica(fatturaVendita);
