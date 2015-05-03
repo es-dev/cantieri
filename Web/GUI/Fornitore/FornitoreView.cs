@@ -28,7 +28,7 @@ namespace Web.GUI.Fornitore
             }
 		}
 
-        public FornitoreView(WcfService.Dto.CommessaDto commessa)
+        public FornitoreView(CommessaDto commessa)
         {
             InitializeComponent();
             try
@@ -73,12 +73,12 @@ namespace Web.GUI.Fornitore
 
                 //2° filtro
                 var filterCommessa = true;
-                var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
+                var commessa = (CommessaDto)editCommessa.Model;
                 if (commessa!=null)
                     filterCommessa = (obj.CommessaId == commessa.Id);
 
                 //filtro globale
-                var filter = (filterCommessa);  //filterStato &&
+                var filter = (filterStato && filterCommessa);
                 return filter;
             }
             catch (Exception ex)
@@ -99,11 +99,9 @@ namespace Web.GUI.Fornitore
                     orderBy = obj.RagioneSociale;
                 else if (optCommessa.Value)
                     orderBy = obj.Commessa.Denominazione;
-                //else if (optStato.Value)
-                //{
-                //    var stato = BusinessLogic.Fornitore.GetStato(obj);    //vuole dto
-                //    orderBy = stato;
-                //}
+                else if (optStato.Value)
+                    orderBy = obj.Stato;
+                
                 return orderBy;
             }
             catch (Exception ex)
@@ -119,7 +117,7 @@ namespace Web.GUI.Fornitore
             try
             {
                 var space = new FornitoreModel(commessa);
-                space.Model = new WcfService.Dto.FornitoreDto();
+                space.Model = new FornitoreDto();
                 AddSpace(space);
             }
             catch (Exception ex)
@@ -146,7 +144,7 @@ namespace Web.GUI.Fornitore
         {
             try
             {
-                var commessa = (WcfService.Dto.CommessaDto)model;
+                var commessa = (CommessaDto)model;
                 if (commessa != null)
                 {
                     editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;

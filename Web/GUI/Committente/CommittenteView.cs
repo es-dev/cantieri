@@ -28,7 +28,7 @@ namespace Web.GUI.Committente
             }
 		}
 
-        public CommittenteView(WcfService.Dto.CommessaDto commessa)
+        public CommittenteView(CommessaDto commessa)
         {
             InitializeComponent();
             try
@@ -72,12 +72,12 @@ namespace Web.GUI.Committente
 
                 //2° filtro
                 var filterCommessa = true;
-                var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
+                var commessa = (CommessaDto)editCommessa.Model;
                 if (commessa != null)
                     filterCommessa = (obj.CommessaId == commessa.Id);
 
                 //filtro globale
-                var filter = (filterCommessa);  //filterStato &&
+                var filter = (filterStato && filterCommessa);
                 return filter;
             }
             catch (Exception ex)
@@ -98,11 +98,9 @@ namespace Web.GUI.Committente
                     orderBy = obj.RagioneSociale;
                 else if (optCommessa.Value)
                     orderBy = obj.Commessa.Denominazione;
-                //else if (optStato.Value)
-                //{
-                //    var stato = BusinessLogic.Fornitore.GetStato(obj);    //vuole dto
-                //    orderBy = stato;
-                //}
+                else if (optStato.Value)
+                    orderBy = obj.Stato;
+
                 return orderBy;
             }
             catch (Exception ex)
@@ -116,7 +114,7 @@ namespace Web.GUI.Committente
             try
             {
                 var space = new CommittenteModel(commessa);
-                space.Model = new WcfService.Dto.CommittenteDto();
+                space.Model = new CommittenteDto();
                 AddSpace(space);
             }
             catch (Exception ex)
@@ -143,7 +141,7 @@ namespace Web.GUI.Committente
         {
             try
             {
-                var commessa = (WcfService.Dto.CommessaDto)model;
+                var commessa = (CommessaDto)model;
                 if (commessa != null)
                 {
                     editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;

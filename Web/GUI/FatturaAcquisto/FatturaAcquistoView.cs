@@ -83,7 +83,7 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 var space = new FatturaAcquistoModel(fornitore);
-                space.Model = new WcfService.Dto.FatturaAcquistoDto();
+                space.Model = new FatturaAcquistoDto();
                 AddSpace(space);
             }
             catch (Exception ex)
@@ -93,7 +93,6 @@ namespace Web.GUI.FatturaAcquisto
 
         }
 
-        private IList<int> fornitoriIds = null;
         public override bool QueryAdvancedSearch(object model)
         {
             try
@@ -119,7 +118,7 @@ namespace Web.GUI.FatturaAcquisto
                     filterFornitore = fornitoriIds.Contains(obj.FornitoreId);
 
                 //filtro globale
-                var filter = (filterData && filterFornitore); //filterStato &&
+                var filter = (filterStato && filterData && filterFornitore); 
                 return filter;
             }
             catch (Exception ex)
@@ -127,6 +126,19 @@ namespace Web.GUI.FatturaAcquisto
                 UtilityError.Write(ex);
             }
             return true;
+        }
+
+        public override void ClearAdvancedSearch()
+        {
+            try
+            {
+                fornitoriIds = null;
+                base.ClearAdvancedSearch();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
         }
 
         public override object QueryOrderBy(object model)
@@ -140,11 +152,8 @@ namespace Web.GUI.FatturaAcquisto
                     orderBy = obj.Numero;
                 else if (optScadenza.Value)
                     orderBy = obj.Scadenza;
-                //else if (optStato.Value)
-                //{
-                //    var stato = BusinessLogic.Fattura.GetStato(obj);    //vuole dto
-                //    orderBy = stato;
-                //}
+                else if (optStato.Value)
+                    orderBy = obj.Stato;
 
                 return orderBy;
             }
@@ -180,6 +189,8 @@ namespace Web.GUI.FatturaAcquisto
                 UtilityError.Write(ex);
             }
         }
+
+        private IList<int> fornitoriIds = null;
 
         private void editFornitore_ComboConfirm(object model)
         {

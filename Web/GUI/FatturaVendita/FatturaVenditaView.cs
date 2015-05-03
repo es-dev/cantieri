@@ -64,7 +64,7 @@ namespace Web.GUI.FatturaVendita
             try
             {
                 var space = new FatturaVenditaModel(committente);
-                space.Model = new WcfService.Dto.FatturaVenditaDto();
+                space.Model = new FatturaVenditaDto();
                 AddSpace(space);
             }
             catch (Exception ex)
@@ -73,7 +73,6 @@ namespace Web.GUI.FatturaVendita
             }
         }
 
-        private IList<int> committentiIds = null;
         public override bool QueryAdvancedSearch(object model)
         {
             try
@@ -95,13 +94,11 @@ namespace Web.GUI.FatturaVendita
 
                 //3° filtro
                 var filterCommittente = true;
-                var anagraficaCommittente = (WcfService.Dto.AnagraficaCommittenteDto)editCommittente.Model;
                 if (committentiIds != null)
-                {
                     filterCommittente = committentiIds.Contains(obj.CommittenteId); 
-                }
+                
                 //filtro globale
-                var filter = (filterData && filterCommittente); //filterStato &&
+                var filter = (filterStato && filterData && filterCommittente); 
                 return filter;
             }
             catch (Exception ex)
@@ -109,6 +106,19 @@ namespace Web.GUI.FatturaVendita
                 UtilityError.Write(ex);
             }
             return true;
+        }
+
+        public override void ClearAdvancedSearch()
+        {
+            try
+            {
+                committentiIds = null;
+                base.ClearAdvancedSearch();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
         }
 
         public override object QueryOrderBy(object model)
@@ -122,11 +132,8 @@ namespace Web.GUI.FatturaVendita
                     orderBy = obj.Numero;
                 else if (optScadenza.Value)
                     orderBy = obj.Scadenza;
-                //else if (optStato.Value)
-                //{
-                //    var stato = BusinessLogic.Fattura.GetStato(obj);    //vuole dto
-                //    orderBy = stato;
-                //}
+                else if (optStato.Value)
+                    orderBy = obj.Stato;
 
                 return orderBy;
             }
@@ -151,11 +158,13 @@ namespace Web.GUI.FatturaVendita
             }
         }
 
+        private IList<int> committentiIds = null;
+        
         private void editCommittente_ComboConfirm(object model)
         {
             try
             {
-                var anagraficaCommittente = (WcfService.Dto.AnagraficaCommittenteDto)model;
+                var anagraficaCommittente = (AnagraficaCommittenteDto)model;
                 if (anagraficaCommittente != null)
                 {
                     editCommittente.Value = anagraficaCommittente.Codice + " - " + anagraficaCommittente.RagioneSociale;
