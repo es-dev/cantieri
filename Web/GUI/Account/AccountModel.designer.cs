@@ -34,10 +34,10 @@ namespace Web.GUI.Account
             this.editNote = new Library.Template.Controls.TemplateEditText();
             this.editAzienda = new Library.Template.Controls.TemplateEditCombo();
             this.editCreazione = new Library.Template.Controls.TemplateEditDate();
-            this.editAbilitato = new Library.Template.Controls.TemplateEditCheckBox();
             this.editRuolo = new Library.Template.Controls.TemplateEditDropDown();
             this.editNickname = new Library.Template.Controls.TemplateEditText();
             this.editPassword = new Library.Template.Controls.TemplateEditPassword();
+            this.editAbilitato = new Library.Template.Controls.TemplateEditSwitch();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -45,10 +45,10 @@ namespace Web.GUI.Account
             // 
             // container
             // 
+            this.container.Controls.Add(this.editAbilitato);
             this.container.Controls.Add(this.editPassword);
             this.container.Controls.Add(this.editNickname);
             this.container.Controls.Add(this.editRuolo);
-            this.container.Controls.Add(this.editAbilitato);
             this.container.Controls.Add(this.editCreazione);
             this.container.Controls.Add(this.editAzienda);
             this.container.Controls.Add(this.editNote);
@@ -59,10 +59,10 @@ namespace Web.GUI.Account
             this.container.Controls.SetChildIndex(this.editNote, 0);
             this.container.Controls.SetChildIndex(this.editAzienda, 0);
             this.container.Controls.SetChildIndex(this.editCreazione, 0);
-            this.container.Controls.SetChildIndex(this.editAbilitato, 0);
             this.container.Controls.SetChildIndex(this.editRuolo, 0);
             this.container.Controls.SetChildIndex(this.editNickname, 0);
             this.container.Controls.SetChildIndex(this.editPassword, 0);
+            this.container.Controls.SetChildIndex(this.editAbilitato, 0);
             // 
             // infoSubtitle
             // 
@@ -162,30 +162,6 @@ namespace Web.GUI.Account
             this.editCreazione.TabIndex = 6;
             this.editCreazione.Value = null;
             // 
-            // editAbilitato
-            // 
-            this.editAbilitato.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editAbilitato.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editAbilitato.BackColor = System.Drawing.Color.Transparent;
-            this.editAbilitato.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editAbilitato.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editAbilitato.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editAbilitato.Changed = true;
-            this.editAbilitato.Editing = false;
-            this.editAbilitato.Label = "Abilitato";
-            this.editAbilitato.LabelWidth = 175;
-            this.editAbilitato.Location = new System.Drawing.Point(25, 404);
-            this.editAbilitato.Name = "editAbilitato";
-            this.editAbilitato.ReadOnly = false;
-            this.editAbilitato.Required = false;
-            this.editAbilitato.Size = new System.Drawing.Size(792, 30);
-            this.editAbilitato.TabIndex = 7;
-            this.editAbilitato.TextFalse = "No";
-            this.editAbilitato.TextTrue = "Si";
-            this.editAbilitato.TrueWidth = 104;
-            this.editAbilitato.Value = null;
-            // 
             // editRuolo
             // 
             this.editRuolo.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
@@ -252,11 +228,31 @@ namespace Web.GUI.Account
             this.editPassword.TabIndex = 2;
             this.editPassword.Value = "---";
             // 
+            // editAbilitato
+            // 
+            this.editAbilitato.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editAbilitato.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editAbilitato.BackColor = System.Drawing.Color.Transparent;
+            this.editAbilitato.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editAbilitato.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editAbilitato.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editAbilitato.Changed = false;
+            this.editAbilitato.Editing = false;
+            this.editAbilitato.Group = "SwitchGroup1";
+            this.editAbilitato.Label = "Abilitato";
+            this.editAbilitato.LabelWidth = 175;
+            this.editAbilitato.Location = new System.Drawing.Point(25, 404);
+            this.editAbilitato.Name = "editAbilitato";
+            this.editAbilitato.ReadOnly = false;
+            this.editAbilitato.Required = false;
+            this.editAbilitato.Size = new System.Drawing.Size(792, 30);
+            this.editAbilitato.TabIndex = 7;
+            this.editAbilitato.Value = false;
+            // 
             // AccountModel
             // 
             this.Load += new System.EventHandler(this.AccountModel_Load);
-            this.Controls.SetChildIndex(this.panelCommands, 0);
-            this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
             this.panelCommands.ResumeLayout(false);
@@ -269,11 +265,11 @@ namespace Web.GUI.Account
         private Library.Template.Controls.TemplateEditText editUsername;
         private Library.Template.Controls.TemplateEditText editNote;
         private Library.Template.Controls.TemplateEditCombo editAzienda;
-        private Library.Template.Controls.TemplateEditCheckBox editAbilitato;
         private Library.Template.Controls.TemplateEditDate editCreazione;
         private Library.Template.Controls.TemplateEditDropDown editRuolo;
         private Library.Template.Controls.TemplateEditText editNickname;
         private Library.Template.Controls.TemplateEditPassword editPassword;
+        private Library.Template.Controls.TemplateEditSwitch editAbilitato;
 
 
     }
