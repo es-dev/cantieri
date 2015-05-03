@@ -42,9 +42,7 @@ namespace Web.GUI.Committente
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.CommittenteDto)model;
-                    var codice = UtilityValidation.GetStringND(obj.Codice);
-                    var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
-                    infoSubtitle.Text = codice + " - " + ragioneSociale;
+                    infoSubtitle.Text = obj.Codice + " - " + obj.RagioneSociale;
                     infoSubtitleImage.Image = "Images.dashboard.committente.png";
                     var commessa = obj.Commessa;
                     infoTitle.Text = (obj.Id!=0? "COMMITTENTE " + obj.RagioneSociale + " - COMMESSA " + commessa.Codice: "NUOVO COMMITTENTE");

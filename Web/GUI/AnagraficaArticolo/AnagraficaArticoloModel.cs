@@ -25,9 +25,7 @@ namespace Web.GUI.AnagraficaArticolo
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AnagraficaArticoloDto)model;
-                    var codice = UtilityValidation.GetStringND(obj.Codice);
-                    var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
-                    infoSubtitle.Text = codice + " - " + descrizione;
+                    infoSubtitle.Text = obj.Codice + " - " + obj.Descrizione;
                     infoSubtitleImage.Image = "Images.dashboard.anagraficaarticolo.png";
                     infoTitle.Text = (obj.Id!=0? "ANAGRAFICA ARTICOLO " + obj.Codice: "NUOVA ANAGRAFICA ARTICOLO");
                 }

@@ -26,9 +26,7 @@ namespace Web.GUI.AnagraficaCommittente
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.AnagraficaCommittenteDto)model;
-                    var codice = UtilityValidation.GetStringND(obj.Codice);
-                    var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
-                    infoSubtitle.Text = codice + " - " + ragioneSociale;
+                    infoSubtitle.Text = obj.Codice + " - " + obj.RagioneSociale;
                     infoSubtitleImage.Image = "Images.dashboard.anagraficacommittente.png";
                     infoTitle.Text = (obj.Id!=0? "ANAGRAFICA COMMITTENTE " + obj.RagioneSociale:"NUOVA ANAGRAFICA COMMITTENTE");
                 }

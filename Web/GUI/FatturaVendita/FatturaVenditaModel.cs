@@ -63,10 +63,7 @@ namespace Web.GUI.FatturaVendita
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.FatturaVenditaDto)model;
-                    var numero = UtilityValidation.GetStringND(obj.Numero);
-                    var data = UtilityValidation.GetDataND(obj.Data);
-                    var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
-                    infoSubtitle.Text = BusinessLogic.Fattura.GetCodifica(obj) + " - " + descrizione;
+                    infoSubtitle.Text = BusinessLogic.Fattura.GetCodifica(obj);
                     infoSubtitleImage.Image = "Images.dashboard.fatturavendita.png";
                     var committente = obj.Committente;
                     infoTitle.Text = (obj.Id!=0? "FATTURA DI VENDITA " + obj.Numero + " - " + committente.RagioneSociale:"NUOVA FATTURA DI VENDITA");

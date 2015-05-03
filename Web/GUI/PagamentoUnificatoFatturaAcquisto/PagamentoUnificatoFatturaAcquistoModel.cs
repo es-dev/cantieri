@@ -41,10 +41,9 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             try
             {
                 var obj = (PagamentoUnificatoFatturaAcquistoDto)model;
-                var codice = "PU/FA";
-                var note = obj.Note;
-                infoSubtitle.Text = codice+" - "+note;
+                infoSubtitle.Text = "PU/FA - "+ obj.Note;
                 infoSubtitleImage.Image = "Images.dashboard.pagamentounificatofatturaacquisto.png";
+              
                 var fatturaAcquisto = obj.FatturaAcquisto;
                 var numeroFatturaAcquisto = (fatturaAcquisto != null ? fatturaAcquisto.Numero : "N/D");
                 var pagamentoUnificato = obj.PagamentoUnificato;
