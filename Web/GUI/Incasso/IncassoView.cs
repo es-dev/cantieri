@@ -1,3 +1,4 @@
+using BusinessLogic;
 using Library.Code;
 using Library.Template.MVVM;
 using System;
@@ -6,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 
 namespace Web.GUI.Incasso
 {
@@ -17,6 +19,14 @@ namespace Web.GUI.Incasso
         public IncassoView()
 		{ 
 			InitializeComponent();
+            try
+            {
+                InitCombo();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
 		}
 
         public IncassoView(WcfService.Dto.CommittenteDto committente)
@@ -80,6 +90,112 @@ namespace Web.GUI.Incasso
             {
                 UtilityError.Write(ex);
             }
+        }
+        public override bool QueryAdvancedSearch(object model)
+        {
+            try
+            {
+                var obj = (DataLayer.Incasso)model;
+
+                //1° filtro
+                var filterStato = true;
+                var tipoTransazione = editTipoTransazione.Value;
+                if (tipoTransazione != null && tipoTransazione.Length > 0)
+                    filterStato = (obj.TransazionePagamento != null && obj.TransazionePagamento.StartsWith(tipoTransazione));
+
+                //2° filtro
+                var filterData = true;
+                var inizio = editDataInizio.Value;
+                var fine = editDataFine.Value;
+                if (inizio != null && fine != null)
+                    filterData = (inizio <= obj.Data && obj.Data <= fine);
+
+                //3° filtro
+                var filterFatturaVendita= true;
+                var fatturaVendita = (FatturaVenditaDto)editFatturaVendita.Model;
+                if (fatturaVendita != null)
+                    filterFatturaVendita = (obj.FatturaVenditaId == fatturaVendita.Id);
+
+                //filtro globale
+                var filter = (filterStato && filterData && filterFatturaVendita);
+                return filter;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return true;
+        }
+
+        public override object QueryOrderBy(object model)
+        {
+            try
+            {
+                var obj = (DataLayer.Incasso)model;
+
+                object orderBy = null;
+                if (optCodice.Value)
+                    orderBy = obj.Codice;
+                else if (optData.Value)
+                    orderBy = obj.Data;
+                else if (optTipoTransazione.Value)
+                    orderBy = obj.TransazionePagamento;
+
+                return orderBy;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private void InitCombo()
+        {
+            try
+            {
+                editTipoTransazione.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.TransazionePagamento>();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editFatturaVendita_ComboClick()
+        {
+            try
+            {
+                var view = new FatturaVendita.FatturaVenditaView();
+                view.Title = "SELEZIONA LA FATTURA DI VENDITA";
+                editFatturaVendita.Show(view);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
+        }
+
+        private void editFatturaVendita_ComboConfirm(object model)
+        {
+            try
+            {
+                var fatturaVendita = (FatturaVenditaDto)model;
+                if (fatturaVendita != null)
+                {
+                    var viewModelFatturaVendita = new FatturaVendita.FatturaVenditaViewModel();
+                    var fatturaVenditaId = fatturaVendita.Id;
+                    var _fatturaVendita = (FatturaVenditaDto)viewModelFatturaVendita.Read(fatturaVenditaId);
+                    var committente = _fatturaVendita.Committente;
+                    editFatturaVendita.Value = (fatturaVendita != null ? BusinessLogic.Fattura.GetCodifica(fatturaVendita, false) : null) + " - " + committente.RagioneSociale;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
         }
 
 	}

@@ -1,3 +1,4 @@
+using BusinessLogic;
 using Library.Code;
 using Library.Template.MVVM;
 using System;
@@ -6,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 
 namespace Web.GUI.Pagamento
 {
@@ -16,6 +18,14 @@ namespace Web.GUI.Pagamento
         public PagamentoView()
 		{ 
 			InitializeComponent();
+            try
+            {
+                InitCombo();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
 		}
 
         public PagamentoView(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto)
@@ -84,7 +94,111 @@ namespace Web.GUI.Pagamento
             }
         }
 
-     
-       
+        public override bool QueryAdvancedSearch(object model)
+        {
+            try
+            {
+                var obj = (DataLayer.Pagamento)model;
+
+                //1° filtro
+                var filterStato = true;
+                var tipoTransazione = editTipoTransazione.Value;
+                if (tipoTransazione != null && tipoTransazione.Length > 0)
+                    filterStato = (obj.TransazionePagamento != null && obj.TransazionePagamento.StartsWith(tipoTransazione));
+
+                //2° filtro
+                var filterData = true;
+                var inizio = editDataInizio.Value;
+                var fine = editDataFine.Value;
+                if (inizio != null && fine != null)
+                    filterData = (inizio <= obj.Data && obj.Data <= fine);
+
+                //3° filtro
+                var filterFatturaAcquisto = true;
+                var fatturaAcquisto = (FatturaAcquistoDto)editFatturaAcquisto.Model;
+                if (fatturaAcquisto != null)
+                    filterFatturaAcquisto = (obj.FatturaAcquistoId == fatturaAcquisto.Id);
+
+                //filtro globale
+                var filter = (filterStato && filterData && filterFatturaAcquisto);
+                return filter;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return true;
+        }
+
+        public override object QueryOrderBy(object model)
+        {
+            try
+            {
+                var obj = (DataLayer.Pagamento)model;
+
+                object orderBy = null;
+                if (optCodice.Value)
+                    orderBy = obj.Codice;
+                else if (optData.Value)
+                    orderBy = obj.Data;
+                else if (optTipoTransazione.Value)
+                    orderBy = obj.TransazionePagamento;
+
+                return orderBy;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private void InitCombo()
+        {
+            try
+            {
+                editTipoTransazione.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.TransazionePagamento>();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+
+        private void editFatturaAcquisto_ComboClick()
+        {
+            try
+            {
+                var view = new FatturaAcquisto.FatturaAcquistoView();
+                view.Title = "SELEZIONA LA FATTURA DI ACQUISTO";
+                editFatturaAcquisto.Show(view);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editFatturaAcquisto_ComboConfirm(object model)
+        {
+            try
+            {
+                var fatturaAcquisto = (FatturaAcquistoDto)model;
+                if (fatturaAcquisto != null)
+                {
+                    var viewModelFatturaAcquisto = new FatturaAcquisto.FatturaAcquistoViewModel();
+                    var fatturaAcquistoId = fatturaAcquisto.Id;
+                    var _fatturaAcquisto = (FatturaAcquistoDto)viewModelFatturaAcquisto.Read(fatturaAcquistoId);
+                    var fornitore = _fatturaAcquisto.Fornitore;
+                    editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false) : null) + " - " + fornitore.RagioneSociale;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+          
 	}
 }

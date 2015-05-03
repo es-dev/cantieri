@@ -128,5 +128,20 @@ namespace Web.GUI.NotaCredito
             return null;
         }
 
+        internal IEnumerable<FornitoreDto> ReadFornitoriAnagraficaFornitore(AnagraficaFornitoreDto anagraficaFornitore)
+        {
+            try
+            {
+                var wcf = new WcfService.Service();
+                var fornitori = wcf.ReadFornitori(anagraficaFornitore);
+                return fornitori;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
     }
 }
