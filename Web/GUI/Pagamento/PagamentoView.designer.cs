@@ -223,7 +223,7 @@ namespace Web.GUI.Pagamento
             this.editFatturaAcquisto.Editing = true;
             this.editFatturaAcquisto.Label = "Fattura di acquisto";
             this.editFatturaAcquisto.LabelWidth = 135;
-            this.editFatturaAcquisto.Location = new System.Drawing.Point(19, 60);
+            this.editFatturaAcquisto.Location = new System.Drawing.Point(16, 60);
             this.editFatturaAcquisto.Model = null;
             this.editFatturaAcquisto.Name = "editFatturaAcquisto";
             this.editFatturaAcquisto.ReadOnly = false;
