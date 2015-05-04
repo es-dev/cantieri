@@ -200,8 +200,8 @@ namespace Web.GUI.FatturaAcquisto
                 if (anagraficaFornitore != null)
                 {
                     editFornitore.Value = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
-                    var viewModel = (FatturaAcquistoViewModel)ViewModel;
-                    var fornitori = viewModel.ReadFornitoriAnagraficaFornitore(anagraficaFornitore);
+                    var viewModelFornitore = new Fornitore.FornitoreViewModel();
+                    var fornitori = (IEnumerable<FornitoreDto>)viewModelFornitore.ReadFornitori(anagraficaFornitore);
                     fornitoriIds = (from q in fornitori select q.Id).ToList();
                 }
             }

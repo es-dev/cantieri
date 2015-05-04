@@ -168,8 +168,8 @@ namespace Web.GUI.FatturaVendita
                 if (anagraficaCommittente != null)
                 {
                     editCommittente.Value = anagraficaCommittente.Codice + " - " + anagraficaCommittente.RagioneSociale;
-                    var viewModel = (FatturaVenditaViewModel)ViewModel;
-                    var committenti = viewModel.ReadCommittentiAnagraficaCommittente(anagraficaCommittente);
+                    var viewModelCommittente = new Committente.CommittenteViewModel();
+                    var committenti = (IEnumerable<CommittenteDto>)viewModelCommittente.ReadCommittenti(anagraficaCommittente);
                     committentiIds = (from q in committenti select q.Id).ToList();
                 }
             }

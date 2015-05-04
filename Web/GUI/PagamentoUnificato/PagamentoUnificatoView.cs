@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Linq;
+using WcfService.Dto;
 
 namespace Web.GUI.PagamentoUnificato
 {
@@ -103,8 +104,8 @@ namespace Web.GUI.PagamentoUnificato
                 if (anagraficaFornitore != null)
                 {
                     editFornitore.Value = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
-                    var viewModel = (PagamentoUnificatoViewModel)ViewModel;
-                    var fornitori = viewModel.ReadFornitoriAnagraficaFornitore(anagraficaFornitore);
+                    var viewModelFornitore = new Fornitore.FornitoreViewModel();
+                    var fornitori = (IEnumerable<FornitoreDto>)viewModelFornitore.ReadFornitori(anagraficaFornitore);
                     fornitoriCodici = (from q in fornitori select q.Codice).ToList();
                 }
             }
