@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Linq;
+using WcfService.Dto;
 
 namespace Web.GUI.NotaCredito
 {
@@ -179,8 +180,8 @@ namespace Web.GUI.NotaCredito
                 if (anagraficaFornitore != null)
                 {
                     editFornitore.Value = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
-                    var viewModel = (NotaCreditoViewModel)ViewModel;
-                    var fornitori = viewModel.ReadFornitoriAnagraficaFornitore(anagraficaFornitore);
+                    var viewModelFornitore = new Fornitore.FornitoreViewModel();
+                    var fornitori = (IEnumerable<FornitoreDto>)viewModelFornitore.ReadFornitori(anagraficaFornitore);
                     fornitoriIds = (from q in fornitori select q.Id).ToList();
                 }
             }
