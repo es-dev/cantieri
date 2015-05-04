@@ -31,7 +31,7 @@ namespace Web.GUI.AnagraficaFornitore
         {
             try
             {
-                var obj = (DataLayer.Fornitore)model;
+                var obj = (DataLayer.AnagraficaFornitore)model;
 
                 object orderBy = null;
                 if (optRagioneSociale.Value)
