@@ -159,8 +159,8 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 var wcf = new WcfService.Service();
-                var fattureAcquisto = wcf.ReadFattureAcquisto();
-                return fattureAcquisto;
+                var objs = wcf.ReadFattureAcquisto();
+                return objs;
             }
             catch (Exception ex)
             {

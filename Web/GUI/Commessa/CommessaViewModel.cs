@@ -178,5 +178,29 @@ namespace Web.GUI.Commessa
             return null;
         }
 
+        public CommessaDto ReadCommessa(FatturaVenditaDto fatturaVendita)
+        {
+            try
+            {
+                if (fatturaVendita != null)
+                {
+                    var committenteId = fatturaVendita.CommittenteId;
+                    var viewModel = new Committente.CommittenteViewModel();
+                    var committente = (CommittenteDto)viewModel.Read(committenteId);
+                    if (committente != null)
+                    {
+                        var commessa = committente.Commessa;
+                        return commessa;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+
     }
 }

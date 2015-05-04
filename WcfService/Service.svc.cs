@@ -2457,9 +2457,9 @@ namespace WcfService
         {
             try
             {
-                var wcf = new EntitiesModelService();
-                var fattureVendita = wcf.ReadFatturaVenditas();
-                return fattureVendita;
+                var fattureVendita = QueryFattureVendita(null, null, null, null);
+                var fattureVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fattureVendita, true);
+                return fattureVenditaDto;
             }
             catch (Exception ex)
             {

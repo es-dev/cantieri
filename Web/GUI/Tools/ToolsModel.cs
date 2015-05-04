@@ -350,6 +350,7 @@ namespace Web.GUI.Tools
             {
                 warning = false;
                 CheckStatiFattureAcquisto();
+                CheckStatiFattureVendita();
 
                 lblWarning.Text = (warning ? "Sono stati riscontrati incoerenze nella verifica degli stati, tuttavia tutti gli errori sono stati corretti. Verificare i log per avere maggiori dettagli..." : "Tutti i controlli sono stati effettuati con successo...");
                 lblWarning.ForeColor = (warning ? Color.Red : Color.Blue);
@@ -376,10 +377,11 @@ namespace Web.GUI.Tools
                     var commessa = viewModelCommessa.ReadCommessa(fatturaAcquisto);
                     fatturaAcquisto.Stato = BusinessLogic.Fattura.GetStatoDescrizione(fatturaAcquisto, commessa);
                     bool saved = viewModel.Save(fatturaAcquisto, false);
+                    var codifica = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false);
                     if (saved)
-                        AddLog("Fattura di acquisto n." + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) + " aggiornata con successo ... OK");
+                        AddLog("Fattura di acquisto n." + codifica + " aggiornata con successo ... OK");
                     else
-                        AddLog("Fattura di acquisto n." + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) + " non aggiornata ... ERROR");
+                        AddLog("Fattura di acquisto n." + codifica + " non aggiornata ... ERROR");
                 }
                 AddLog("Fine controllo stati fatture di acquisto");
             }
@@ -388,7 +390,33 @@ namespace Web.GUI.Tools
                 UtilityError.Write(ex);
             }
         }
-          
+
+        private void CheckStatiFattureVendita()
+        {
+            try
+            {
+                AddLog("Avvio controllo stati fatture di vendita");
+                var viewModel = new FatturaVendita.FatturaVenditaViewModel();
+                var fattureVendita = viewModel.ReadFatture();
+                var viewModelCommessa = new Commessa.CommessaViewModel();
+                foreach (var fatturaVendita in fattureVendita)
+                {
+                    var commessa = viewModelCommessa.ReadCommessa(fatturaVendita);
+                    fatturaVendita.Stato = BusinessLogic.Fattura.GetStatoDescrizione(fatturaVendita, commessa);
+                    bool saved = viewModel.Save(fatturaVendita, false);
+                    var codifica = BusinessLogic.Fattura.GetCodifica(fatturaVendita, false);
+                    if (saved)
+                        AddLog("Fattura di vendita n." + codifica + " aggiornata con successo ... OK");
+                    else
+                        AddLog("Fattura di vendita n." + codifica + " non aggiornata ... ERROR");
+                }
+                AddLog("Fine controllo stati fatture di vendita");
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
       
 
 	}

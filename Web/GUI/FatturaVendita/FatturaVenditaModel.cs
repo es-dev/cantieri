@@ -136,7 +136,8 @@ namespace Web.GUI.FatturaVendita
                 var today = DateTime.Today;
                 var totaleIncassi = BusinessLogic.Fattura.GetTotaleIncassi(obj, today);
 
-                var commessa = GetCommessa(obj);
+                var viewModelCommessa = new Commessa.CommessaViewModel();
+                var commessa = viewModelCommessa.ReadCommessa(obj);
                 var statoDescrizione = BusinessLogic.Fattura.GetStatoDescrizione(obj, commessa);
 
                 editStato.Value = statoDescrizione;
@@ -194,29 +195,7 @@ namespace Web.GUI.FatturaVendita
             }
         }
 
-        private CommessaDto GetCommessa(FatturaVenditaDto fatturaVendita)
-        {
-            try
-            {
-                if (fatturaVendita != null)
-                {
-                    var committenteId = fatturaVendita.CommittenteId;
-                    var viewModel = new Committente.CommittenteViewModel();
-                    var committente = (CommittenteDto)viewModel.Read(committenteId);
-                    if (committente != null)
-                    {
-                        var commessa = committente.Commessa;
-                        return commessa;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
+        
         private void editCommittente_ComboClick()
         {
             try
