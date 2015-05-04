@@ -14,7 +14,7 @@ namespace Web.Code
             try
             {
                 view.Title = "ES | GESTIONE CANTIERI";
-                view.Version = "rev. 1.0e";
+                view.Version = "rev. 1.1";
                 view.LogoSoftware = "Images.logoSoftware.png";
                 view.LogoESD = "Images.logoESD.png";
                 view.BackgroundImage = "Images.background.png";
