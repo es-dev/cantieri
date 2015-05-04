@@ -36,6 +36,7 @@ namespace Web.GUI.FatturaAcquisto
                 statoFattura = value;
             }
         }
+
         private FornitoreDto fornitore = null;
         public FornitoreDto Fornitore 
         { 
@@ -160,6 +161,21 @@ namespace Web.GUI.FatturaAcquisto
                 var wcf = new WcfService.Service();
                 var fornitori = wcf.ReadFornitori(anagraficaFornitore);
                 return fornitori;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<FatturaAcquistoDto> ReadFatture()
+        {
+            try
+            {
+                var wcf = new WcfService.Service();
+                var fattureAcquisto = wcf.ReadFattureAcquisto();
+                return fattureAcquisto;
             }
             catch (Exception ex)
             {

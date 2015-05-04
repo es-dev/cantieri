@@ -32,13 +32,14 @@ namespace Web.GUI.Tools
 		{
             this.lblComuni = new Gizmox.WebGUI.Forms.Label();
             this.lblPagamentiFatture = new Gizmox.WebGUI.Forms.Label();
-            this.lblCheck = new Gizmox.WebGUI.Forms.Label();
             this.label1 = new Gizmox.WebGUI.Forms.Label();
             this.btnCheckComuni = new Gizmox.WebGUI.Forms.Button();
             this.lblLogAttivita = new Gizmox.WebGUI.Forms.Label();
             this.listLogger = new Gizmox.WebGUI.Forms.ListBox();
             this.btnClearLog = new Gizmox.WebGUI.Forms.Button();
             this.lblWarning = new Gizmox.WebGUI.Forms.Label();
+            this.btnCheckStati = new Gizmox.WebGUI.Forms.Button();
+            this.label2 = new Gizmox.WebGUI.Forms.Label();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -46,26 +47,29 @@ namespace Web.GUI.Tools
             // 
             // container
             // 
+            this.container.Controls.Add(this.label2);
+            this.container.Controls.Add(this.btnCheckStati);
             this.container.Controls.Add(this.lblWarning);
             this.container.Controls.Add(this.btnClearLog);
             this.container.Controls.Add(this.listLogger);
             this.container.Controls.Add(this.lblLogAttivita);
             this.container.Controls.Add(this.btnCheckComuni);
             this.container.Controls.Add(this.label1);
-            this.container.Controls.Add(this.lblCheck);
             this.container.Controls.Add(this.lblPagamentiFatture);
             this.container.Controls.Add(this.lblComuni);
+            this.container.Size = new System.Drawing.Size(923, 625);
             this.container.Controls.SetChildIndex(this.infoSubtitleImage, 0);
             this.container.Controls.SetChildIndex(this.infoSubtitle, 0);
             this.container.Controls.SetChildIndex(this.lblComuni, 0);
             this.container.Controls.SetChildIndex(this.lblPagamentiFatture, 0);
-            this.container.Controls.SetChildIndex(this.lblCheck, 0);
             this.container.Controls.SetChildIndex(this.label1, 0);
             this.container.Controls.SetChildIndex(this.btnCheckComuni, 0);
             this.container.Controls.SetChildIndex(this.lblLogAttivita, 0);
             this.container.Controls.SetChildIndex(this.listLogger, 0);
             this.container.Controls.SetChildIndex(this.btnClearLog, 0);
             this.container.Controls.SetChildIndex(this.lblWarning, 0);
+            this.container.Controls.SetChildIndex(this.btnCheckStati, 0);
+            this.container.Controls.SetChildIndex(this.label2, 0);
             // 
             // infoSubtitle
             // 
@@ -74,6 +78,14 @@ namespace Web.GUI.Tools
             // infoSubtitleImage
             // 
             this.infoSubtitleImage.Location = new System.Drawing.Point(608, 3);
+            // 
+            // panelCommands
+            // 
+            this.panelCommands.Size = new System.Drawing.Size(101, 672);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(0, 600);
             // 
             // lblComuni
             // 
@@ -100,22 +112,8 @@ namespace Web.GUI.Tools
             this.lblPagamentiFatture.Name = "lblPagamentiFatture";
             this.lblPagamentiFatture.Size = new System.Drawing.Size(883, 30);
             this.lblPagamentiFatture.TabIndex = 1001;
-            this.lblPagamentiFatture.Text = "VERIFICA COERENZA PAGAMENTI E FATTURE";
+            this.lblPagamentiFatture.Text = "VERIFICA COERENZA STATI";
             this.lblPagamentiFatture.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblCheck
-            // 
-            this.lblCheck.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.lblCheck.BackColor = System.Drawing.Color.Gainsboro;
-            this.lblCheck.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCheck.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblCheck.Location = new System.Drawing.Point(13, 238);
-            this.lblCheck.Name = "lblCheck";
-            this.lblCheck.Size = new System.Drawing.Size(883, 30);
-            this.lblCheck.TabIndex = 1001;
-            this.lblCheck.Text = "CHECK CONFIGURAZIONE DEL SISTEMA";
-            this.lblCheck.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1
             // 
@@ -132,6 +130,8 @@ namespace Web.GUI.Tools
             // btnCheckComuni
             // 
             this.btnCheckComuni.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.btnCheckComuni.CustomStyle = "F";
+            this.btnCheckComuni.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Flat;
             this.btnCheckComuni.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCheckComuni.Location = new System.Drawing.Point(741, 123);
             this.btnCheckComuni.Name = "btnCheckComuni";
@@ -147,7 +147,7 @@ namespace Web.GUI.Tools
             this.lblLogAttivita.BackColor = System.Drawing.Color.Gainsboro;
             this.lblLogAttivita.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogAttivita.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblLogAttivita.Location = new System.Drawing.Point(13, 280);
+            this.lblLogAttivita.Location = new System.Drawing.Point(13, 328);
             this.lblLogAttivita.Name = "lblLogAttivita";
             this.lblLogAttivita.Size = new System.Drawing.Size(883, 30);
             this.lblLogAttivita.TabIndex = 1001;
@@ -160,9 +160,9 @@ namespace Web.GUI.Tools
             | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.listLogger.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listLogger.Location = new System.Drawing.Point(47, 322);
+            this.listLogger.Location = new System.Drawing.Point(47, 370);
             this.listLogger.Name = "listLogger";
-            this.listLogger.Size = new System.Drawing.Size(805, 180);
+            this.listLogger.Size = new System.Drawing.Size(803, 164);
             this.listLogger.TabIndex = 1004;
             // 
             // btnClearLog
@@ -171,7 +171,7 @@ namespace Web.GUI.Tools
             this.btnClearLog.CustomStyle = "F";
             this.btnClearLog.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Flat;
             this.btnClearLog.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearLog.Location = new System.Drawing.Point(47, 553);
+            this.btnClearLog.Location = new System.Drawing.Point(47, 564);
             this.btnClearLog.Name = "btnClearLog";
             this.btnClearLog.Size = new System.Drawing.Size(75, 29);
             this.btnClearLog.TabIndex = 1003;
@@ -184,13 +184,39 @@ namespace Web.GUI.Tools
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.lblWarning.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWarning.ForeColor = System.Drawing.Color.Red;
-            this.lblWarning.Location = new System.Drawing.Point(124, 558);
+            this.lblWarning.Location = new System.Drawing.Point(124, 569);
             this.lblWarning.Name = "lblWarning";
             this.lblWarning.Size = new System.Drawing.Size(772, 47);
             this.lblWarning.TabIndex = 1002;
             this.lblWarning.Text = "Sono stati riscontrati errori nelle procedure di controllo, verificare i log rice" +
     "rcando la parola chiave ERROR per avere maggiori dettagli...";
             this.lblWarning.Visible = false;
+            // 
+            // btnCheckStati
+            // 
+            this.btnCheckStati.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.btnCheckStati.CustomStyle = "F";
+            this.btnCheckStati.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Flat;
+            this.btnCheckStati.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCheckStati.Location = new System.Drawing.Point(741, 258);
+            this.btnCheckStati.Name = "btnCheckStati";
+            this.btnCheckStati.Size = new System.Drawing.Size(119, 32);
+            this.btnCheckStati.TabIndex = 1003;
+            this.btnCheckStati.Text = "Avvia";
+            this.btnCheckStati.Click += new System.EventHandler(this.btnCheckStati_Click);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(43, 258);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(645, 58);
+            this.label2.TabIndex = 1002;
+            this.label2.Text = "Questa procedura consente di verificare e correggere eventuali incoerenze rilevat" +
+    "e negli stati dei fornitori, dei committenti, delle fatture, dei SAL e delle com" +
+    "messe di lavorazione...";
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
             this.panelCommands.ResumeLayout(false);
@@ -202,13 +228,14 @@ namespace Web.GUI.Tools
 
         private Gizmox.WebGUI.Forms.Label lblPagamentiFatture;
         private Gizmox.WebGUI.Forms.Label lblComuni;
-        private Gizmox.WebGUI.Forms.Label lblCheck;
         private Gizmox.WebGUI.Forms.ListBox listLogger;
         private Gizmox.WebGUI.Forms.Label lblLogAttivita;
         private Gizmox.WebGUI.Forms.Button btnCheckComuni;
         private Gizmox.WebGUI.Forms.Label label1;
         private Gizmox.WebGUI.Forms.Label lblWarning;
         private Gizmox.WebGUI.Forms.Button btnClearLog;
+        private Gizmox.WebGUI.Forms.Label label2;
+        private Gizmox.WebGUI.Forms.Button btnCheckStati;
 
 
     }

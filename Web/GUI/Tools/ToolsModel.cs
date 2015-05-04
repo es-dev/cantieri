@@ -329,6 +329,54 @@ namespace Web.GUI.Tools
                 UtilityError.Write(ex);
             }
         }
+
+        private void btnCheckStati_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                UtilityAsync.Execute(CheckStati);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void CheckStati()
+        {
+            try
+            {
+                warning = false;
+                CheckStatiFattureAcquisto();
+
+                lblWarning.Text = (warning ? "Sono stati riscontrati incoerenze nella verifica degli stati, tuttavia tutti gli errori sono stati corretti. Verificare i log per avere maggiori dettagli..." : "Tutti i controlli sono stati effettuati con successo...");
+                lblWarning.ForeColor = (warning ? Color.Red : Color.Blue);
+                lblWarning.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void CheckStatiFattureAcquisto()
+        {
+            try
+            {
+                AddLog("Avvio controllo stati fatture di acquisto");
+                var viewModel = new FatturaAcquisto.FatturaAcquistoViewModel();
+                var fattureAcquisto = viewModel.ReadFatture();
+                foreach (var fatturaAcquisto in fattureAcquisto)
+                {
+                    //fatturaAcquisto.Stato = BusinessLogic.Fattura.GetSta
+                }
+                AddLog("Fine controllo stati fatture di acquisto");
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
           
       
 
