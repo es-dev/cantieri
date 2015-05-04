@@ -334,7 +334,9 @@ namespace Web.GUI.Tools
         {
             try
             {
-                UtilityAsync.Execute(CheckStati);
+                btnCheckStati.Enabled = false;
+                btnCheckStati.Text = "Attendenre...";
+                UtilityAsync.Execute(CheckStati,null, 250, "Images.progress.gif", btnCheckStati);
             }
             catch (Exception ex)
             {
@@ -352,6 +354,8 @@ namespace Web.GUI.Tools
                 lblWarning.Text = (warning ? "Sono stati riscontrati incoerenze nella verifica degli stati, tuttavia tutti gli errori sono stati corretti. Verificare i log per avere maggiori dettagli..." : "Tutti i controlli sono stati effettuati con successo...");
                 lblWarning.ForeColor = (warning ? Color.Red : Color.Blue);
                 lblWarning.Visible = true;
+                btnCheckStati.Enabled = true;
+                btnCheckStati.Text = "Avvia";
             }
             catch (Exception ex)
             {
@@ -366,9 +370,16 @@ namespace Web.GUI.Tools
                 AddLog("Avvio controllo stati fatture di acquisto");
                 var viewModel = new FatturaAcquisto.FatturaAcquistoViewModel();
                 var fattureAcquisto = viewModel.ReadFatture();
+                var viewModelCommessa = new Commessa.CommessaViewModel();
                 foreach (var fatturaAcquisto in fattureAcquisto)
                 {
-                    //fatturaAcquisto.Stato = BusinessLogic.Fattura.GetSta
+                    var commessa = viewModelCommessa.ReadCommessa(fatturaAcquisto);
+                    fatturaAcquisto.Stato = BusinessLogic.Fattura.GetStatoDescrizione(fatturaAcquisto, commessa);
+                    bool saved = viewModel.Save(fatturaAcquisto, false);
+                    if (saved)
+                        AddLog("Fattura di acquisto n." + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) + " aggiornata con successo ... OK");
+                    else
+                        AddLog("Fattura di acquisto n." + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) + " non aggiornata ... ERROR");
                 }
                 AddLog("Fine controllo stati fatture di acquisto");
             }

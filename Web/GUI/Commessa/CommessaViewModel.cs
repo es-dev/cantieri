@@ -140,8 +140,6 @@ namespace Web.GUI.Commessa
             return null;
         }
 
-
-
         internal IEnumerable<CommessaDto> ReadCommesse(IEnumerable<FornitoreDto> fornitori)
         {
             try
@@ -149,6 +147,29 @@ namespace Web.GUI.Commessa
                 var wcf = new WcfService.Service();
                 var objs = wcf.ReadCommesse(fornitori);
                 return objs;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public CommessaDto ReadCommessa(FatturaAcquistoDto fatturaAcquisto)
+        {
+            try
+            {
+                if (fatturaAcquisto != null)
+                {
+                    var fornitoreId = fatturaAcquisto.FornitoreId;
+                    var viewModel = new Fornitore.FornitoreViewModel();
+                    var fornitore = (FornitoreDto)viewModel.Read(fornitoreId);
+                    if (fornitore != null)
+                    {
+                        var commessa = fornitore.Commessa;
+                        return commessa;
+                    }
+                }
             }
             catch (Exception ex)
             {

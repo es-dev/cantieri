@@ -166,7 +166,8 @@ namespace Web.GUI.FatturaAcquisto
                 var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, today);
                 var totaleResi = BusinessLogic.Fattura.GetTotaleResi(obj, today);
 
-                var commessa = GetCommessa(obj);
+                var viewModelCommessa = new Commessa.CommessaViewModel();
+                var commessa = viewModelCommessa.ReadCommessa(obj);
                 var statoDescrizione = BusinessLogic.Fattura.GetStatoDescrizione(obj, commessa); 
 
                 editStato.Value = statoDescrizione;
@@ -229,28 +230,7 @@ namespace Web.GUI.FatturaAcquisto
             }
         }
 
-        private CommessaDto GetCommessa(FatturaAcquistoDto fatturaAcquisto)
-        {
-            try
-            {
-                if (fatturaAcquisto != null)
-                {
-                    var fornitoreId = fatturaAcquisto.FornitoreId;
-                    var viewModel = new Fornitore.FornitoreViewModel();
-                    var fornitore = (FornitoreDto)viewModel.Read(fornitoreId);
-                    if(fornitore!=null)
-                    {
-                        var commessa = fornitore.Commessa;
-                        return commessa;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
+       
 
         private void editFornitore_ComboClick()
         {
