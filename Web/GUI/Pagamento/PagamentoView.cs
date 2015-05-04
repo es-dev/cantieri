@@ -91,6 +91,7 @@ namespace Web.GUI.Pagamento
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
+
             }
         }
 
