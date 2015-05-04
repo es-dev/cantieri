@@ -27,6 +27,24 @@ namespace Web.GUI.AnagraficaCommittente
                 UtilityError.Write(ex);
             }
         }
+        public override object QueryOrderBy(object model)
+        {
+            try
+            {
+                var obj = (DataLayer.Committente)model;
+
+                object orderBy = null;
+                if (optRagioneSociale.Value)
+                    orderBy = obj.RagioneSociale;
+
+                return orderBy;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
 
 	}
 }

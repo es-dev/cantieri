@@ -67,7 +67,6 @@ namespace Web.GUI.Pagamento
             }
         }
 
-
         public override void Init()
         {
             try
