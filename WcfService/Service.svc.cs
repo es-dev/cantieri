@@ -542,9 +542,9 @@ namespace WcfService
         {
             try
             {
-                var wcf = new EntitiesModelService();
-                var fornitori = wcf.ReadFornitores();
-                return fornitori;
+                var fornitori = QueryFornitori();
+                var fornitoriDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitori, true);
+                return fornitoriDto;
             }
             catch (Exception ex)
             {
@@ -926,7 +926,7 @@ namespace WcfService
         {
             try
             {
-                var fattureAcquisto = QueryFattureAcquisto(null, null, null, null, null, null, null);
+                var fattureAcquisto = QueryFattureAcquisto();
                 var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto, true);
                 return fattureAcquistoDto;
             }
@@ -2231,9 +2231,9 @@ namespace WcfService
         {
             try
             {
-                var wcf = new EntitiesModelService();
-                var committenti = wcf.ReadCommittentes();
-                return committenti;
+                var committenti = QueryCommittenti();
+                var committentiDto = UtilityPOCO.Assemble<Dto.CommittenteDto>(committenti, true);
+                return committentiDto;
             }
             catch (Exception ex)
             {
@@ -2457,7 +2457,7 @@ namespace WcfService
         {
             try
             {
-                var fattureVendita = QueryFattureVendita(null, null, null, null);
+                var fattureVendita = QueryFattureVendita();
                 var fattureVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fattureVendita, true);
                 return fattureVenditaDto;
             }

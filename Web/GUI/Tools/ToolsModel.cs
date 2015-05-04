@@ -351,6 +351,9 @@ namespace Web.GUI.Tools
                 warning = false;
                 CheckStatiFattureAcquisto();
                 CheckStatiFattureVendita();
+                CheckStatiFornitori();
+                CheckStatiCommittenti();
+
 
                 lblWarning.Text = (warning ? "Sono stati riscontrati incoerenze nella verifica degli stati, tuttavia tutti gli errori sono stati corretti. Verificare i log per avere maggiori dettagli..." : "Tutti i controlli sono stati effettuati con successo...");
                 lblWarning.ForeColor = (warning ? Color.Red : Color.Blue);
@@ -417,7 +420,59 @@ namespace Web.GUI.Tools
                 UtilityError.Write(ex);
             }
         }
-      
+
+
+        private void CheckStatiFornitori()
+        {
+            try
+            {
+                AddLog("Avvio controllo stati fornitori");
+                var viewModel = new Fornitore.FornitoreViewModel();
+                var fornitori = viewModel.ReadFornitori();
+                foreach (var fornitore in fornitori)
+                {
+                    var commessa = fornitore.Commessa;
+                    fornitore.Stato = BusinessLogic.Fornitore.GetStatoDescrizione(fornitore);
+                    bool saved = viewModel.Save(fornitore, false);
+                    var codifica = fornitore.RagioneSociale;
+                    if (saved)
+                        AddLog("Fornitore " + codifica + " aggiornato con successo ... OK");
+                    else
+                        AddLog("Fornitore " + codifica + " non aggiornato ... ERROR");
+                }
+                AddLog("Fine controllo stati fornitori");
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void CheckStatiCommittenti()
+        {
+            try
+            {
+                AddLog("Avvio controllo stati committenti");
+                var viewModel = new Committente.CommittenteViewModel();
+                var committenti = viewModel.ReadCommittenti();
+                foreach (var committente in committenti)
+                {
+                    var commessa = committente.Commessa;
+                    committente.Stato = BusinessLogic.Committente.GetStatoDescrizione(committente);
+                    bool saved = viewModel.Save(committente, false);
+                    var codifica = committente.RagioneSociale;
+                    if (saved)
+                        AddLog("Committente " + codifica + " aggiornato con successo ... OK");
+                    else
+                        AddLog("Committente " + codifica + " non aggiornato ... ERROR");
+                }
+                AddLog("Fine controllo stati committenti");
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 
 	}
 }
