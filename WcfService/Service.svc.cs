@@ -1054,8 +1054,7 @@ namespace WcfService
                     var fornitoriId = (from q in QueryFornitori(search) select q.Id).ToList();
                     fattureAcquisto = (from q in fattureAcquisto
                                        where q.Numero.StartsWith(search) || q.Descrizione.Contains(search) || q.TipoPagamento.StartsWith(search) ||
-                                       fornitoriId.Contains(q.FornitoreId) || q.Data.Value.ToString("dd/MM/yyyy").Contains(search) || 
-                                       q.Scadenza.Value.ToString("dd/MM/yyyy").Contains(search)
+                                       fornitoriId.Contains(q.FornitoreId)  
                                        select q);
                 }
 
@@ -1423,8 +1422,7 @@ namespace WcfService
                 {
                     var fattureAcquistoId = (from q in QueryFattureAcquisto(search) select q.Id).ToList();
                     var pagamentiUnificatiId = (from q in QueryPagamentiUnificati(search) select q.Id).ToList();
-                    pagamenti = (from q in pagamenti
-                                 where q.Note.Contains(search) || q.Data.Value.ToString("dd/MM/yyyy").Contains(search) || 
+                    pagamenti = (from q in pagamenti where q.Note.Contains(search) || 
                                  q.Codice.StartsWith(search) || q.Descrizione.Contains(search)|| q.TipoPagamento.Contains(search)||
                                  q.TransazionePagamento.Contains(search) || pagamentiUnificatiId.Contains(q.PagamentoUnificatoId.Value)||
                                  fattureAcquistoId.Contains(q.FatturaAcquistoId)
@@ -1658,8 +1656,7 @@ namespace WcfService
                 if (search != null && search.Length > 0)
                 {
                     var fornitoreId = (from q in QueryFornitori(search) select q.Id).ToList();
-                    noteCredito = (from q in noteCredito
-                                 where q.Note.Contains(search) ||q.Data.Value.ToString("dd/MM/yyyy").Contains(search) ||
+                    noteCredito = (from q in noteCredito where q.Note.Contains(search) ||
                                  q.Descrizione.Contains(search) || q.Numero.StartsWith(search)
                                  || fornitoreId.Contains(q.FornitoreId)
                                  select q);
@@ -1836,8 +1833,7 @@ namespace WcfService
                 {
                     var notaCreditoId = (from q in QueryNoteCredito(search) select q.Id).ToList();
                     var fattureAcquistoId = (from q in QueryFattureAcquisto(search) select q.Id).ToList();
-                    resi = (from q in resi
-                                 where q.Note.Contains(search) || q.Data.Value.ToString("dd/MM/yyyy").Contains(search) || 
+                    resi = (from q in resi where q.Note.Contains(search) || 
                                  q.Codice.StartsWith(search) ||q.Descrizione.Contains(search)|| fattureAcquistoId.Contains(q.FatturaAcquistoId)
                                  || notaCreditoId.Contains(q.NotaCreditoId)
                                  select q);
@@ -2005,8 +2001,7 @@ namespace WcfService
                 if (search != null && search.Length > 0)
                 {
                     var codiciFornitori = (from q in QueryFornitori(search) select q.Codice).ToList();
-                    pagamentiUnificati = (from q in pagamentiUnificati
-                                 where q.Note.Contains(search) || q.Data.Value.ToString("dd/MM/yyyy").Contains(search) || 
+                    pagamentiUnificati = (from q in pagamentiUnificati where q.Note.Contains(search) || 
                                  q.Codice.StartsWith(search) ||q.Descrizione.Contains(search) || q.TipoPagamento.Contains(search)||
                                   codiciFornitori.Contains(q.CodiceFornitore)
                                  select q);
@@ -2578,8 +2573,7 @@ namespace WcfService
                     var committentiId = (from c in QueryCommittenti(search) select c.Id).ToList();
                     fattureVendita = (from q in fattureVendita
                                       where q.Numero.StartsWith(search) || q.Descrizione.Contains(search) || q.TipoPagamento.StartsWith(search) ||
-                                          committentiId.Contains(q.CommittenteId) || q.Data.Value.ToString("dd/MM/yyyy").Contains(search) ||
-                                       q.Scadenza.Value.ToString("dd/MM/yyyy").Contains(search) ||q.Descrizione.Contains(search) ||
+                                          committentiId.Contains(q.CommittenteId) || q.Descrizione.Contains(search) ||
                                        q.TipoPagamento.Contains(search) 
                                       select q);
                 }
@@ -2759,8 +2753,7 @@ namespace WcfService
                 if (search != null && search.Length > 0)
                 {
                     var fattureVenditaId = (from q in QueryFattureVendita(search) select q.Id).ToList();
-                    incassi = (from q in incassi
-                                    where q.Note.Contains(search) || q.Data.Value.ToString("dd/MM/yyyy").Contains(search) || 
+                    incassi = (from q in incassi where q.Note.Contains(search) || 
                                     q.Codice.StartsWith(search) || q.Descrizione.Contains(search) || q.TipoPagamento.Contains(search)
                                     || q.TransazionePagamento.Contains(search) || fattureVenditaId.Contains(q.FatturaVenditaId)
                                     select q);
@@ -2933,7 +2926,7 @@ namespace WcfService
                     var commesseId = (from c in QueryCommesse(search) select c.Id).ToList();
                     sals = (from q in sals
                             where q.Codice.StartsWith(search) || q.Denominazione.StartsWith(search) ||
-                            q.Data.Value.ToString("dd/MM/yyyy").Contains(search)|| commesseId.Contains(q.CommessaId)
+                            commesseId.Contains(q.CommessaId)
                             select q);
                 }
 
