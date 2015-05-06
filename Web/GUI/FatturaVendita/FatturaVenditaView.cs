@@ -94,11 +94,16 @@ namespace Web.GUI.FatturaVendita
 
                 //3° filtro
                 var filterCommittente = true;
-                if (committentiIds != null)
-                    filterCommittente = committentiIds.Contains(obj.CommittenteId); 
-                
+                if (committentiAnagraficaIds != null)
+                    filterCommittente = committentiAnagraficaIds.Contains(obj.CommittenteId);
+
+                //4° filtro
+                var filterCommessa = true;
+                if (committentiCommessaIds != null)
+                    filterCommessa = committentiCommessaIds.Contains(obj.CommittenteId);
+
                 //filtro globale
-                var filter = (filterStato && filterData && filterCommittente); 
+                var filter = (filterStato && filterData && filterCommittente && filterCommessa); 
                 return filter;
             }
             catch (Exception ex)
@@ -112,7 +117,8 @@ namespace Web.GUI.FatturaVendita
         {
             try
             {
-                committentiIds = null;
+                committentiAnagraficaIds = null;
+                committentiCommessaIds = null;
                 base.ClearAdvancedSearch();
             }
             catch (Exception ex)
@@ -158,8 +164,9 @@ namespace Web.GUI.FatturaVendita
             }
         }
 
-        private IList<int> committentiIds = null;
-        
+        private IList<int> committentiAnagraficaIds = null;
+        private IList<int> committentiCommessaIds = null;
+
         private void editCommittente_ComboConfirm(object model)
         {
             try
@@ -169,8 +176,8 @@ namespace Web.GUI.FatturaVendita
                 {
                     editCommittente.Value = anagraficaCommittente.Codice + " - " + anagraficaCommittente.RagioneSociale;
                     var viewModelCommittente = new Committente.CommittenteViewModel();
-                    var committenti = (IEnumerable<CommittenteDto>)viewModelCommittente.ReadCommittenti(anagraficaCommittente);
-                    committentiIds = (from q in committenti select q.Id).ToList();
+                    var committenti = viewModelCommittente.ReadCommittenti(anagraficaCommittente);
+                    committentiAnagraficaIds = (from q in committenti select q.Id).ToList();
                 }
             }
             catch (Exception ex)
@@ -183,6 +190,39 @@ namespace Web.GUI.FatturaVendita
             try
             {
                 editStato.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.StatoFattura>();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editCommessa_ComboClick()
+        {
+            try
+            {
+                var view = new Commessa.CommessaView();
+                view.Title = "SELEZIONA UNA COMMESSA";
+                editCommessa.Show(view);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void editCommessa_ComboConfirm(object model)
+        {
+            try
+            {
+                var commessa = (CommessaDto)model;
+                if (commessa != null)
+                {
+                    editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;
+                    var viewModelCommittente = new Committente.CommittenteViewModel();
+                    var committenti = viewModelCommittente.ReadCommittenti(commessa);
+                    committentiCommessaIds = (from q in committenti select q.Id).ToList();
+                }
             }
             catch (Exception ex)
             {

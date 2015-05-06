@@ -37,6 +37,7 @@ namespace Web.GUI.FatturaVendita
             this.optNumero = new Library.Template.Controls.TemplateEditOption();
             this.optScadenza = new Library.Template.Controls.TemplateEditOption();
             this.optStato = new Library.Template.Controls.TemplateEditOption();
+            this.editCommessa = new Library.Template.Controls.TemplateEditCombo();
             this.panelCommands.SuspendLayout();
             this.panelAdvancedSearch.SuspendLayout();
             this.panelOrderBy.SuspendLayout();
@@ -44,12 +45,13 @@ namespace Web.GUI.FatturaVendita
             // 
             // panelAdvancedSearch
             // 
+            this.panelAdvancedSearch.Controls.Add(this.editCommessa);
             this.panelAdvancedSearch.Controls.Add(this.editScadenzaFine);
             this.panelAdvancedSearch.Controls.Add(this.editStato);
             this.panelAdvancedSearch.Controls.Add(this.editScadenzaInizio);
             this.panelAdvancedSearch.Controls.Add(this.editCommittente);
             this.panelAdvancedSearch.Location = new System.Drawing.Point(243, 68);
-            this.panelAdvancedSearch.Size = new System.Drawing.Size(623, 295);
+            this.panelAdvancedSearch.Size = new System.Drawing.Size(623, 356);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.btnConfirmAdvancedSearch, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.btnCloseAdvancedSearch, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.btnCancelAdvancedSearch, 0);
@@ -58,6 +60,7 @@ namespace Web.GUI.FatturaVendita
             this.panelAdvancedSearch.Controls.SetChildIndex(this.editScadenzaInizio, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.editStato, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.editScadenzaFine, 0);
+            this.panelAdvancedSearch.Controls.SetChildIndex(this.editCommessa, 0);
             // 
             // panelOrderBy
             // 
@@ -80,11 +83,11 @@ namespace Web.GUI.FatturaVendita
             // 
             // btnConfirmAdvancedSearch
             // 
-            this.btnConfirmAdvancedSearch.Location = new System.Drawing.Point(488, 254);
+            this.btnConfirmAdvancedSearch.Location = new System.Drawing.Point(486, 313);
             // 
             // btnCancelAdvancedSearch
             // 
-            this.btnCancelAdvancedSearch.Location = new System.Drawing.Point(322, 254);
+            this.btnCancelAdvancedSearch.Location = new System.Drawing.Point(320, 313);
             // 
             // lblTitleAdvancedSearch
             // 
@@ -100,14 +103,14 @@ namespace Web.GUI.FatturaVendita
             this.editCommittente.Changed = false;
             this.editCommittente.Editing = true;
             this.editCommittente.Label = "Committente";
-            this.editCommittente.LabelWidth = 100;
-            this.editCommittente.Location = new System.Drawing.Point(19, 60);
+            this.editCommittente.LabelWidth = 110;
+            this.editCommittente.Location = new System.Drawing.Point(19, 105);
             this.editCommittente.Model = null;
             this.editCommittente.Name = "editCommittente";
             this.editCommittente.ReadOnly = false;
             this.editCommittente.Required = false;
             this.editCommittente.Size = new System.Drawing.Size(572, 30);
-            this.editCommittente.TabIndex = 7;
+            this.editCommittente.TabIndex = 1;
             this.editCommittente.Value = null;
             this.editCommittente.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editCommittente_ComboConfirm);
             this.editCommittente.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editCommittente_ComboClick);
@@ -122,13 +125,13 @@ namespace Web.GUI.FatturaVendita
             this.editScadenzaInizio.Changed = false;
             this.editScadenzaInizio.Editing = true;
             this.editScadenzaInizio.Label = "Scadenza dal";
-            this.editScadenzaInizio.LabelWidth = 100;
-            this.editScadenzaInizio.Location = new System.Drawing.Point(19, 158);
+            this.editScadenzaInizio.LabelWidth = 110;
+            this.editScadenzaInizio.Location = new System.Drawing.Point(19, 199);
             this.editScadenzaInizio.Name = "editScadenzaInizio";
             this.editScadenzaInizio.ReadOnly = false;
             this.editScadenzaInizio.Required = false;
             this.editScadenzaInizio.Size = new System.Drawing.Size(572, 30);
-            this.editScadenzaInizio.TabIndex = 5;
+            this.editScadenzaInizio.TabIndex = 3;
             this.editScadenzaInizio.Value = null;
             // 
             // editStato
@@ -143,13 +146,13 @@ namespace Web.GUI.FatturaVendita
             this.editStato.Editing = true;
             this.editStato.Items = null;
             this.editStato.Label = "Stato";
-            this.editStato.LabelWidth = 100;
-            this.editStato.Location = new System.Drawing.Point(19, 109);
+            this.editStato.LabelWidth = 110;
+            this.editStato.Location = new System.Drawing.Point(19, 152);
             this.editStato.Name = "editStato";
             this.editStato.ReadOnly = false;
             this.editStato.Required = false;
             this.editStato.Size = new System.Drawing.Size(572, 30);
-            this.editStato.TabIndex = 6;
+            this.editStato.TabIndex = 2;
             this.editStato.Value = null;
             // 
             // editScadenzaFine
@@ -162,13 +165,13 @@ namespace Web.GUI.FatturaVendita
             this.editScadenzaFine.Changed = false;
             this.editScadenzaFine.Editing = true;
             this.editScadenzaFine.Label = "Scadenza al";
-            this.editScadenzaFine.LabelWidth = 100;
-            this.editScadenzaFine.Location = new System.Drawing.Point(19, 207);
+            this.editScadenzaFine.LabelWidth = 110;
+            this.editScadenzaFine.Location = new System.Drawing.Point(19, 246);
             this.editScadenzaFine.Name = "editScadenzaFine";
             this.editScadenzaFine.ReadOnly = false;
             this.editScadenzaFine.Required = false;
             this.editScadenzaFine.Size = new System.Drawing.Size(572, 30);
-            this.editScadenzaFine.TabIndex = 7;
+            this.editScadenzaFine.TabIndex = 4;
             this.editScadenzaFine.Value = null;
             // 
             // optNumero
@@ -187,7 +190,7 @@ namespace Web.GUI.FatturaVendita
             this.optNumero.Name = "optNumero";
             this.optNumero.ReadOnly = false;
             this.optNumero.Required = false;
-            this.optNumero.Size = new System.Drawing.Size(380, 30);
+            this.optNumero.Size = new System.Drawing.Size(426, 30);
             this.optNumero.TabIndex = 2;
             this.optNumero.Text = "Numero";
             this.optNumero.Value = false;
@@ -208,7 +211,7 @@ namespace Web.GUI.FatturaVendita
             this.optScadenza.Name = "optScadenza";
             this.optScadenza.ReadOnly = false;
             this.optScadenza.Required = false;
-            this.optScadenza.Size = new System.Drawing.Size(380, 30);
+            this.optScadenza.Size = new System.Drawing.Size(426, 30);
             this.optScadenza.TabIndex = 2;
             this.optScadenza.Text = "Scadenza";
             this.optScadenza.Value = false;
@@ -229,16 +232,38 @@ namespace Web.GUI.FatturaVendita
             this.optStato.Name = "optStato";
             this.optStato.ReadOnly = false;
             this.optStato.Required = false;
-            this.optStato.Size = new System.Drawing.Size(380, 30);
+            this.optStato.Size = new System.Drawing.Size(426, 30);
             this.optStato.TabIndex = 2;
             this.optStato.Text = "Stato";
             this.optStato.Value = false;
-            this.Controls.SetChildIndex(this.panelAdvancedSearch, 0);
+            // 
+            // editCommessa
+            // 
+            this.editCommessa.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editCommessa.BackColor = System.Drawing.Color.Transparent;
+            this.editCommessa.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editCommessa.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editCommessa.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editCommessa.Changed = false;
+            this.editCommessa.Editing = true;
+            this.editCommessa.Label = "Commessa";
+            this.editCommessa.LabelWidth = 110;
+            this.editCommessa.Location = new System.Drawing.Point(19, 58);
+            this.editCommessa.Model = null;
+            this.editCommessa.Name = "editCommessa";
+            this.editCommessa.ReadOnly = false;
+            this.editCommessa.Required = false;
+            this.editCommessa.Size = new System.Drawing.Size(572, 30);
+            this.editCommessa.TabIndex = 0;
+            this.editCommessa.Value = null;
+            this.editCommessa.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editCommessa_ComboConfirm);
+            this.editCommessa.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editCommessa_ComboClick);
             this.Controls.SetChildIndex(this.panelOrderBy, 0);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.txtSearch, 0);
             this.Controls.SetChildIndex(this.btnOrderBy, 0);
             this.Controls.SetChildIndex(this.btnAdvancedSearch, 0);
+            this.Controls.SetChildIndex(this.panelAdvancedSearch, 0);
             this.panelCommands.ResumeLayout(false);
             this.panelAdvancedSearch.ResumeLayout(false);
             this.panelOrderBy.ResumeLayout(false);
@@ -255,5 +280,6 @@ namespace Web.GUI.FatturaVendita
         private Library.Template.Controls.TemplateEditOption optStato;
         private Library.Template.Controls.TemplateEditOption optScadenza;
         private Library.Template.Controls.TemplateEditOption optNumero;
+        private Library.Template.Controls.TemplateEditCombo editCommessa;
 	}
 }

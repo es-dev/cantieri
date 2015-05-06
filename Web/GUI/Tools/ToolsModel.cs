@@ -53,7 +53,9 @@ namespace Web.GUI.Tools
         {
             try
             {
-                UtilityAsync.Execute(CheckArchivi);
+                btnCheckComuni.Enabled = false;
+                btnCheckComuni.Text = "Attendere...";
+                UtilityAsync.Execute(CheckArchivi, null, 250, "Images.progress.gif", btnCheckComuni);
 
             }
             catch (Exception ex)
@@ -80,6 +82,8 @@ namespace Web.GUI.Tools
                 lblWarning.Text = (warning ? "Sono stati riscontrati errori nelle procedure di controllo, verificare i log ricercando la parola chiave ERROR per avere maggiori dettagli..." : "Tutti i controlli sono stati effettuati con successo...");
                 lblWarning.ForeColor = (warning ? Color.Red : Color.Blue);
                 lblWarning.Visible = true;
+                btnCheckComuni.Enabled = true;
+                btnCheckComuni.Text = "Avvia";
             }
             catch (Exception ex)
             {
@@ -335,7 +339,7 @@ namespace Web.GUI.Tools
             try
             {
                 btnCheckStati.Enabled = false;
-                btnCheckStati.Text = "Attendenre...";
+                btnCheckStati.Text = "Attendere...";
                 UtilityAsync.Execute(CheckStati,null, 250, "Images.progress.gif", btnCheckStati);
             }
             catch (Exception ex)

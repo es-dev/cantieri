@@ -37,6 +37,7 @@ namespace Web.GUI.NotaCredito
             this.editDataInizio = new Library.Template.Controls.TemplateEditDate();
             this.editStato = new Library.Template.Controls.TemplateEditDropDown();
             this.editDataFine = new Library.Template.Controls.TemplateEditDate();
+            this.editCommessa = new Library.Template.Controls.TemplateEditCombo();
             this.panelCommands.SuspendLayout();
             this.panelAdvancedSearch.SuspendLayout();
             this.panelOrderBy.SuspendLayout();
@@ -44,12 +45,13 @@ namespace Web.GUI.NotaCredito
             // 
             // panelAdvancedSearch
             // 
+            this.panelAdvancedSearch.Controls.Add(this.editCommessa);
             this.panelAdvancedSearch.Controls.Add(this.editDataFine);
             this.panelAdvancedSearch.Controls.Add(this.editStato);
             this.panelAdvancedSearch.Controls.Add(this.editDataInizio);
             this.panelAdvancedSearch.Controls.Add(this.editFornitore);
             this.panelAdvancedSearch.Location = new System.Drawing.Point(244, 68);
-            this.panelAdvancedSearch.Size = new System.Drawing.Size(622, 299);
+            this.panelAdvancedSearch.Size = new System.Drawing.Size(622, 363);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.btnConfirmAdvancedSearch, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.btnCloseAdvancedSearch, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.btnCancelAdvancedSearch, 0);
@@ -58,6 +60,7 @@ namespace Web.GUI.NotaCredito
             this.panelAdvancedSearch.Controls.SetChildIndex(this.editDataInizio, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.editStato, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.editDataFine, 0);
+            this.panelAdvancedSearch.Controls.SetChildIndex(this.editCommessa, 0);
             // 
             // panelOrderBy
             // 
@@ -80,11 +83,11 @@ namespace Web.GUI.NotaCredito
             // 
             // btnConfirmAdvancedSearch
             // 
-            this.btnConfirmAdvancedSearch.Location = new System.Drawing.Point(487, 258);
+            this.btnConfirmAdvancedSearch.Location = new System.Drawing.Point(485, 320);
             // 
             // btnCancelAdvancedSearch
             // 
-            this.btnCancelAdvancedSearch.Location = new System.Drawing.Point(321, 258);
+            this.btnCancelAdvancedSearch.Location = new System.Drawing.Point(319, 320);
             // 
             // lblTitleAdvancedSearch
             // 
@@ -106,7 +109,7 @@ namespace Web.GUI.NotaCredito
             this.optNumero.Name = "optNumero";
             this.optNumero.ReadOnly = false;
             this.optNumero.Required = false;
-            this.optNumero.Size = new System.Drawing.Size(380, 30);
+            this.optNumero.Size = new System.Drawing.Size(427, 30);
             this.optNumero.TabIndex = 2;
             this.optNumero.Text = "Numero";
             this.optNumero.Value = false;
@@ -127,7 +130,7 @@ namespace Web.GUI.NotaCredito
             this.optData.Name = "optData";
             this.optData.ReadOnly = false;
             this.optData.Required = false;
-            this.optData.Size = new System.Drawing.Size(380, 30);
+            this.optData.Size = new System.Drawing.Size(427, 30);
             this.optData.TabIndex = 2;
             this.optData.Text = "Data";
             this.optData.Value = false;
@@ -148,7 +151,7 @@ namespace Web.GUI.NotaCredito
             this.optStato.Name = "optStato";
             this.optStato.ReadOnly = false;
             this.optStato.Required = false;
-            this.optStato.Size = new System.Drawing.Size(380, 30);
+            this.optStato.Size = new System.Drawing.Size(427, 30);
             this.optStato.TabIndex = 2;
             this.optStato.Text = "Stato";
             this.optStato.Value = false;
@@ -164,7 +167,7 @@ namespace Web.GUI.NotaCredito
             this.editFornitore.Editing = true;
             this.editFornitore.Label = "Fornitore";
             this.editFornitore.LabelWidth = 100;
-            this.editFornitore.Location = new System.Drawing.Point(19, 60);
+            this.editFornitore.Location = new System.Drawing.Point(22, 108);
             this.editFornitore.Model = null;
             this.editFornitore.Name = "editFornitore";
             this.editFornitore.ReadOnly = false;
@@ -186,7 +189,7 @@ namespace Web.GUI.NotaCredito
             this.editDataInizio.Editing = true;
             this.editDataInizio.Label = "Data dal";
             this.editDataInizio.LabelWidth = 100;
-            this.editDataInizio.Location = new System.Drawing.Point(19, 109);
+            this.editDataInizio.Location = new System.Drawing.Point(22, 156);
             this.editDataInizio.Name = "editDataInizio";
             this.editDataInizio.ReadOnly = false;
             this.editDataInizio.Required = false;
@@ -207,7 +210,7 @@ namespace Web.GUI.NotaCredito
             this.editStato.Items = null;
             this.editStato.Label = "Stato";
             this.editStato.LabelWidth = 100;
-            this.editStato.Location = new System.Drawing.Point(19, 207);
+            this.editStato.Location = new System.Drawing.Point(22, 252);
             this.editStato.Name = "editStato";
             this.editStato.ReadOnly = false;
             this.editStato.Required = false;
@@ -226,19 +229,41 @@ namespace Web.GUI.NotaCredito
             this.editDataFine.Editing = true;
             this.editDataFine.Label = "Data al";
             this.editDataFine.LabelWidth = 100;
-            this.editDataFine.Location = new System.Drawing.Point(19, 158);
+            this.editDataFine.Location = new System.Drawing.Point(22, 204);
             this.editDataFine.Name = "editDataFine";
             this.editDataFine.ReadOnly = false;
             this.editDataFine.Required = false;
             this.editDataFine.Size = new System.Drawing.Size(572, 30);
             this.editDataFine.TabIndex = 7;
             this.editDataFine.Value = null;
-            this.Controls.SetChildIndex(this.panelAdvancedSearch, 0);
+            // 
+            // editCommessa
+            // 
+            this.editCommessa.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editCommessa.BackColor = System.Drawing.Color.Transparent;
+            this.editCommessa.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editCommessa.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editCommessa.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editCommessa.Changed = false;
+            this.editCommessa.Editing = true;
+            this.editCommessa.Label = "Commessa";
+            this.editCommessa.LabelWidth = 100;
+            this.editCommessa.Location = new System.Drawing.Point(22, 60);
+            this.editCommessa.Model = null;
+            this.editCommessa.Name = "editCommessa";
+            this.editCommessa.ReadOnly = false;
+            this.editCommessa.Required = false;
+            this.editCommessa.Size = new System.Drawing.Size(572, 30);
+            this.editCommessa.TabIndex = 0;
+            this.editCommessa.Value = null;
+            this.editCommessa.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editCommessa_ComboConfirm);
+            this.editCommessa.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editCommessa_ComboClick);
             this.Controls.SetChildIndex(this.panelOrderBy, 0);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.txtSearch, 0);
             this.Controls.SetChildIndex(this.btnOrderBy, 0);
             this.Controls.SetChildIndex(this.btnAdvancedSearch, 0);
+            this.Controls.SetChildIndex(this.panelAdvancedSearch, 0);
             this.panelCommands.ResumeLayout(false);
             this.panelAdvancedSearch.ResumeLayout(false);
             this.panelOrderBy.ResumeLayout(false);
@@ -255,5 +280,6 @@ namespace Web.GUI.NotaCredito
         private Library.Template.Controls.TemplateEditDropDown editStato;
         private Library.Template.Controls.TemplateEditDate editDataInizio;
         private Library.Template.Controls.TemplateEditCombo editFornitore;
+        private Library.Template.Controls.TemplateEditCombo editCommessa;
 	}
 }

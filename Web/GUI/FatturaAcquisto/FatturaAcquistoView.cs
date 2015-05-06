@@ -208,7 +208,7 @@ namespace Web.GUI.FatturaAcquisto
                 {
                     editFornitore.Value = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
                     var viewModelFornitore = new Fornitore.FornitoreViewModel();
-                    var fornitori = (IEnumerable<FornitoreDto>)viewModelFornitore.ReadFornitori(anagraficaFornitore);
+                    var fornitori = viewModelFornitore.ReadFornitori(anagraficaFornitore);
                     fornitoriAnagraficaIds = (from q in fornitori select q.Id).ToList();
                 }
             }
@@ -241,7 +241,7 @@ namespace Web.GUI.FatturaAcquisto
                 {
                     editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;
                     var viewModelFornitore = new Fornitore.FornitoreViewModel();
-                    var fornitori = (IEnumerable<FornitoreDto>)viewModelFornitore.ReadFornitori(commessa);
+                    var fornitori = viewModelFornitore.ReadFornitori(commessa);
                     fornitoriCommessaIds = (from q in fornitori select q.Id).ToList();
                 }
             }
