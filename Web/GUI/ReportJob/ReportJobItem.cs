@@ -112,16 +112,17 @@ namespace Web.GUI.ReportJob
                     var model = item.Model;
                     var obj = (WcfService.Dto.ReportJobDto)model;
                     var tipo = UtilityValidation.GetStringND(obj.Tipo);
+                    var viewModel = (ReportJob.ReportJobViewModel)ViewModel;
                     ISpace space = null;
                     if (tipo == Tipi.TipoReport.Fornitore.ToString())
-                        space = new ReportJobFornitoreModel();
+                        space = viewModel.GetModel<ReportJobFornitoreModel>(model);
                     else if (tipo == Tipi.TipoReport.Fornitori.ToString())
-                        space = new ReportJobFornitoriModel();
+                        space = viewModel.GetModel<ReportJobFornitoriModel>(model);
                     else if (tipo == Tipi.TipoReport.Committente.ToString())
-                        space = new ReportJobCommittenteModel();
+                        space = viewModel.GetModel<ReportJobCommittenteModel>(model);
                     else if (tipo == Tipi.TipoReport.Committenti.ToString())
-                        space = new ReportJobCommittentiModel();
-                    
+                        space = viewModel.GetModel<ReportJobCommittentiModel>(model);
+
                     AddSpace(space);
                 }
             }

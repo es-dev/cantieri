@@ -162,7 +162,7 @@ namespace Web.GUI.Tools
             this.listLogger.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listLogger.Location = new System.Drawing.Point(47, 370);
             this.listLogger.Name = "listLogger";
-            this.listLogger.Size = new System.Drawing.Size(801, 148);
+            this.listLogger.Size = new System.Drawing.Size(799, 132);
             this.listLogger.TabIndex = 1004;
             // 
             // btnClearLog
