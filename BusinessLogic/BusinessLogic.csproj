@@ -84,6 +84,7 @@
     <Compile Include="Reso.cs" />
     <Compile Include="SAL.cs" />
     <Compile Include="Tipi.cs" />
+    <Compile Include="WorkFlow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
