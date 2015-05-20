@@ -48,7 +48,7 @@ namespace BusinessLogic
             }
         }
 
-        public void Tick()
+        public void Start()
         {
             try
             {
