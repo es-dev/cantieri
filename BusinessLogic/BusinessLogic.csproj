@@ -40,6 +40,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Gizmox.WebGUI.Common, Version=4.5.15701.0, Culture=neutral, PublicKeyToken=263fa4ef694acff6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files (x86)\Gizmox\Visual WebGUI\Sources 4.5.1\Gizmox.WebGUI.Assemblies\bin\4.5.1\Gizmox.WebGUI.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <Private>True</Private>
     </Reference>
@@ -52,6 +56,7 @@
     <Reference Include="System.Drawing">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <Private>True</Private>
     </Reference>
@@ -84,7 +89,7 @@
     <Compile Include="Reso.cs" />
     <Compile Include="SAL.cs" />
     <Compile Include="Tipi.cs" />
-    <Compile Include="WorkFlow.cs" />
+    <Compile Include="WorkAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

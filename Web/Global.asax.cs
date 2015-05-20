@@ -13,14 +13,7 @@ namespace Web
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            try
-            {
-                UtilityWorkFlow.Start(new TimeSpan(0, 0, 10));
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
+            
         }
 
         protected void Session_Start(object sender, EventArgs e)
@@ -30,7 +23,14 @@ namespace Web
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-
+            try
+            {
+                UtilityWorkFlow.Start(this.Context, new TimeSpan(0, 0, 10));
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
@@ -50,7 +50,15 @@ namespace Web
 
         protected void Application_End(object sender, EventArgs e)
         {
-
+            try
+            {
+                UtilityWorkFlow.Stop();
+                UtilityWorkFlow.Start(this.Context, new TimeSpan(0, 0, 10));
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
         }
     }
 }
