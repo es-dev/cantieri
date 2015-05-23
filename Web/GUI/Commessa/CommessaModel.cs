@@ -304,7 +304,7 @@ namespace Web.GUI.Commessa
                     if (sals != null && sals.Count > 0)
                         BindViewAvanzamentoLavori();
                     else
-                        UtilityMessage.Show(this, "Calcolo avanzamento lavori", "Non è possibile effettuare il calcolo dello stato di avanzamento lavori se non è stato creato almeno un SAL", TypeMessage.Alert);
+                        UtilityMessage.Show(this, "ATTENZIONE", "Non è possibile effettuare il calcolo dello stato di avanzamento lavori se non è stato creato almeno un SAL", TypeMessage.Alert);
                 }
             }
             catch (Exception ex)

@@ -17,7 +17,7 @@ namespace BusinessLogic
 
         }
 
-        private string name = "ES.Cantieri";
+        private string name = "Workflow per la gestione degli stati, invio delle notifiche, ...";
         public string Name
         {
             get

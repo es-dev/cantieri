@@ -32,7 +32,7 @@ namespace BusinessLogic
             return null;
         }
 
-        public static PagamentoDto GetPagamento(PagamentoUnificatoFatturaAcquistoDto pagamenoUnificatoFatturaAcquisto)
+        public static PagamentoDto CreatePagamento(PagamentoUnificatoFatturaAcquistoDto pagamenoUnificatoFatturaAcquisto)
         {
             try
             {
