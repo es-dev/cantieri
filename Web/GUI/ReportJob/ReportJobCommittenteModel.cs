@@ -22,6 +22,26 @@ namespace Web.GUI.ReportJob
             InitializeComponent();
         }
 
+        public override void SetNewValue(object model)
+        {
+            try
+            {
+                var azienda = SessionManager.GetAzienda(Context);
+                BindViewAzienda(azienda);
+
+                var viewModel = (ReportJobViewModel)ViewModel;
+                var count = viewModel.Count();
+                editCodice.Value = BusinessLogic.ReportJob.GetCodice(count);
+                editDenominazione.Value = BusinessLogic.ReportJob.GetDenominazione(tipoReport);
+                editElaborazione.Value = DateTime.Today;
+                editCreazione.Value = DateTime.Today;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         public override void BindViewTitle(object model)
         {
             try
@@ -32,9 +52,7 @@ namespace Web.GUI.ReportJob
                     infoSubtitle.Text = "RTP N." + obj.Codice + " - Tipo " + obj.Tipo;
                     infoSubtitleImage.Image = "Images.dashboard.reportjob.png";
 
-                    var viewModel = new AnagraficaCommittente.AnagraficaCommittenteViewModel();
-                    var codiceCommittente = obj.CodiceCommittente;
-                    var anagraficaCommittente = viewModel.ReadAnagraficaCommittente(codiceCommittente);
+                    var anagraficaCommittente = obj.AnagraficaCommittente;
                     var ragioneSociale = (anagraficaCommittente != null ? anagraficaCommittente.RagioneSociale : "N/D");
                     infoTitle.Text = (obj.Id!=0? "REPORT " + obj.Codice + " - " + ragioneSociale:"NUOVO REPORT");
                 }
@@ -60,7 +78,7 @@ namespace Web.GUI.ReportJob
 
                     var fileName = obj.NomeFile;
                     BindViewReport(fileName);
-                    BindViewAnagraficaCommittente(obj.CodiceCommittente);
+                    BindViewAnagraficaCommittente(obj.AnagraficaCommittente);
                     BindViewAzienda(obj.Azienda);
                 }
             }
@@ -101,12 +119,10 @@ namespace Web.GUI.ReportJob
             
         }
 
-        private void BindViewAnagraficaCommittente(string codiceCommittente)
+        private void BindViewAnagraficaCommittente(AnagraficaCommittenteDto anagraficaCommittente)
         {
             try
             {
-                var viewModelAnagraficaCommittente = new AnagraficaCommittente.AnagraficaCommittenteViewModel();
-                var anagraficaCommittente = viewModelAnagraficaCommittente.ReadAnagraficaCommittente(codiceCommittente);
                 editCommittente.Model = anagraficaCommittente;
                 editCommittente.Value = (anagraficaCommittente != null ? anagraficaCommittente.Codice + " - " + anagraficaCommittente.RagioneSociale : null);
             }
@@ -134,7 +150,7 @@ namespace Web.GUI.ReportJob
 
                     var anagraficaCommittente = (AnagraficaCommittenteDto)editCommittente.Model;
                     if (anagraficaCommittente != null)
-                        obj.CodiceCommittente = anagraficaCommittente.Codice;
+                        obj.AnagraficaCommittenteId = anagraficaCommittente.Id;
 
                     var azienda = (WcfService.Dto.AziendaDto)editAzienda.Model;
                     if (azienda != null)
@@ -147,44 +163,13 @@ namespace Web.GUI.ReportJob
                 UtilityError.Write(ex);
             }
         }
-
-        private void ReportJobCommittenteModel_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                var obj = (ReportJobDto)Model;
-                if (obj != null && obj.Id == 0)
-                    SetNewValue();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
+      
         public override void SetEditing(bool editing, bool deleting)
         {
             try
             {
                 base.SetEditing(editing, deleting);
                 btnStampaReport.Enabled = editing;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void SetNewValue()
-        {
-            try
-            {
-                var viewModel = (ReportJobViewModel)ViewModel;
-                var count = viewModel.Count();
-                editCodice.Value = BusinessLogic.ReportJob.GetCodice(count);
-                editDenominazione.Value = BusinessLogic.ReportJob.GetDenominazione(tipoReport);
-                editElaborazione.Value = DateTime.Today;
-                editCreazione.Value = DateTime.Today;
             }
             catch (Exception ex)
             {
@@ -211,10 +196,7 @@ namespace Web.GUI.ReportJob
             try
             {
                 var anagraficaCommittente = (AnagraficaCommittenteDto)model;
-                if (anagraficaCommittente != null)
-                {
-                    editCommittente.Value = anagraficaCommittente.Codice + " - " + anagraficaCommittente.RagioneSociale;
-                }
+                BindViewAnagraficaCommittente(anagraficaCommittente);
             }
             catch (Exception ex)
             {
@@ -279,8 +261,7 @@ namespace Web.GUI.ReportJob
             try
             {
                 var azienda = (WcfService.Dto.AziendaDto)model;
-                if (azienda != null)
-                    editAzienda.Value = azienda.RagioneSociale;
+                BindViewAzienda(azienda);
             }
             catch (Exception ex)
             {

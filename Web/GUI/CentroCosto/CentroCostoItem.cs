@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.CentroCosto
@@ -24,7 +25,7 @@ namespace Web.GUI.CentroCosto
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.CentroCostoDto)model;
+                    var obj = (CentroCostoDto)model;
                     var codice = UtilityValidation.GetStringND(obj.Codice);
                     var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
                 

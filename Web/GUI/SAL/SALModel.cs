@@ -61,16 +61,10 @@ namespace Web.GUI.SAL
                     editData.Value = obj.Data;
                     editCodice.Value = obj.Codice;
                     editNote.Value = obj.Note;
-
-                    var commessa = GetCommessa(obj);
-                    editTotaleFattureAcquisto.Value = BusinessLogic.SAL.GetTotaleFattureAcquisto(obj, commessa);
-                    editTotaleFattureVendita.Value = BusinessLogic.SAL.GetTotaleFattureVendita(obj, commessa);
-                    editTotaleIncassi.Value = BusinessLogic.SAL.GetTotaleIncassi(obj, commessa);
                     editDenominazione.Value = obj.Denominazione;
-                    editTotalePagamenti.Value = BusinessLogic.SAL.GatTotalePagamenti(obj, commessa);
-                    editStato.Value = BusinessLogic.SAL.GetStatoDescrizione(obj, commessa); 
-                    
+
                     BindViewCommessa(obj.Commessa);
+                    BindViewTotali(obj);
                 }
             }
             catch (Exception ex)
@@ -93,12 +87,12 @@ namespace Web.GUI.SAL
            
         }
 
-        private void BindViewTotali()
+        private void BindViewTotali(SALDto obj)
         {
             try
             {
-                var obj = (WcfService.Dto.SALDto)Model;
-                var commessa = GetCommessa(obj);
+                var viewModel = new Commessa.CommessaViewModel();
+                var commessa = viewModel.ReadCommessa(obj.CommessaId);
                 var data = editData.Value;
                 if (commessa != null && data != null)
                 {
@@ -170,11 +164,8 @@ namespace Web.GUI.SAL
             try
             {
                 var commessa = (CommessaDto)model;
-                if (commessa != null)
-                {
-                    editCommessa.Value = commessa.Denominazione;
-                    BindViewTotali();
-                }
+                BindViewCommessa(commessa);
+
             }
             catch (Exception ex)
             {
@@ -186,7 +177,8 @@ namespace Web.GUI.SAL
         {
             try
             {
-                BindViewTotali();
+                var obj = (WcfService.Dto.SALDto)Model;
+                BindViewTotali(obj);
             }
             catch (Exception ex)
             {
@@ -194,19 +186,7 @@ namespace Web.GUI.SAL
             }
         }
 
-        private void editData_Confirm(DateTime? value)
-        {
-            try
-            {
-                if (Editing)
-                    BindViewTotali();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
+       
         public override void SetEditing(bool editing, bool deleting)
         {
             try
@@ -220,13 +200,11 @@ namespace Web.GUI.SAL
             }
         }
 
-        private void SALModel_Load(object sender, EventArgs e)
+        public override void SetNewValue(object model)
         {
             try
             {
-                var obj = (SALDto)Model;
-                if (obj != null && obj.Id == 0)
-                    SetNewValue();
+                BindViewCommessa(commessa);
             }
             catch (Exception ex)
             {
@@ -234,40 +212,7 @@ namespace Web.GUI.SAL
             }
         }
 
-        private void SetNewValue()
-        {
-            try
-            {
-                if (commessa != null)
-                {
-                    editCommessa.Model = commessa;
-                    editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private CommessaDto GetCommessa(SALDto sal)
-        {
-            try
-            {
-                if (sal != null)
-                {
-                    var commessaId = sal.CommessaId;
-                    var viewModel = new Commessa.CommessaViewModel();
-                    var commessa = viewModel.ReadCommessa(commessaId);
-                    return commessa;
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
+        
 
 	}
 }

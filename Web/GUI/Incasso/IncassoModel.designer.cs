@@ -274,7 +274,6 @@ namespace Web.GUI.Incasso
             // 
             // IncassoModel
             // 
-            this.Load += new System.EventHandler(this.IncassoModel_Load);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);

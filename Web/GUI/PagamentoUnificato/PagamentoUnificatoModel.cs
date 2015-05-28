@@ -39,6 +39,19 @@ namespace Web.GUI.PagamentoUnificato
             }
         }
 
+        public override void SetNewValue(object model)
+        {
+            try
+            {
+                var azienda = SessionManager.GetAzienda(Context);
+                BindViewAzienda(azienda);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         public override void BindViewTitle(object model)
         {
             try
@@ -68,8 +81,7 @@ namespace Web.GUI.PagamentoUnificato
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editDescrizione.Value = obj.Descrizione;
                     
-                    var codiceFornitore = obj.CodiceFornitore;
-                    BindViewAnagraficaFornitore(codiceFornitore);
+                    BindViewAnagraficaFornitore(obj.AnagraficaFornitore);
                     BindViewAzienda(obj.Azienda);
                 }
             }
@@ -93,15 +105,12 @@ namespace Web.GUI.PagamentoUnificato
         }
 
 
-        private void BindViewAnagraficaFornitore(string codiceFornitore)
+        private void BindViewAnagraficaFornitore(AnagraficaFornitoreDto anagraficaFornitore)
         {
             try
             {
-                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
-                var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
-                
-                editFornitore.Model = anagraficaFornitore;
-                editFornitore.Value = (anagraficaFornitore != null ? anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale : null);
+                editAnagraficaFornitore.Model = anagraficaFornitore;
+                editAnagraficaFornitore.Value = (anagraficaFornitore != null ? anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale : null);
             }
             catch (Exception ex)
             {
@@ -137,9 +146,10 @@ namespace Web.GUI.PagamentoUnificato
                     obj.Note = editNote.Value;
                     obj.Descrizione = editDescrizione.Value;
                     obj.TipoPagamento = editTipoPagamento.Value;
-                    var anagraficaFornitore = (AnagraficaFornitoreDto)editFornitore.Model;
+
+                    var anagraficaFornitore = (AnagraficaFornitoreDto)editAnagraficaFornitore.Model;
                     if (anagraficaFornitore != null)
-                        obj.CodiceFornitore = anagraficaFornitore.Codice;
+                        obj.AnagraficaFornitoreId = anagraficaFornitore.Id;
 
                     var azienda = (AziendaDto)editAzienda.Model;
                     if (azienda != null)
@@ -152,13 +162,13 @@ namespace Web.GUI.PagamentoUnificato
             }
         }
 
-        private void editFornitore_ComboClick()
+        private void editAnagraficaFornitore_ComboClick()
         {
             try
             {
                 var view = new AnagraficaFornitore.AnagraficaFornitoreView();
                 view.Title = "SELEZIONA UN FORNITORE";
-                editFornitore.Show(view);
+                editAnagraficaFornitore.Show(view);
             }
             catch (Exception ex)
             {
@@ -166,15 +176,12 @@ namespace Web.GUI.PagamentoUnificato
             }
         }
 
-        private void editFornitore_ComboConfirm(object model)
+        private void editanagraficaFornitore_ComboConfirm(object model)
         {
             try
             {
-                var anagraficaFornitore = (WcfService.Dto.AnagraficaFornitoreDto)model;
-                if (anagraficaFornitore != null)
-                {
-                    editFornitore.Value = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
-                }
+                var anagraficaFornitore = (AnagraficaFornitoreDto)model;
+                BindViewAnagraficaFornitore(anagraficaFornitore);
             }
             catch (Exception ex)
             {
@@ -251,8 +258,7 @@ namespace Web.GUI.PagamentoUnificato
             try
             {
                 var azienda = (AziendaDto)model;
-                if (azienda != null)
-                    editAzienda.Value = azienda.RagioneSociale;
+                BindViewAzienda(azienda);
             }
             catch (Exception ex)
             {

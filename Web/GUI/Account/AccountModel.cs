@@ -82,7 +82,7 @@ namespace Web.GUI.Account
             }
         }
 
-        private void BindViewAzienda(WcfService.Dto.AziendaDto azienda)
+        private void BindViewAzienda(AziendaDto azienda)
         {
             try
             {
@@ -142,8 +142,7 @@ namespace Web.GUI.Account
             try
             {
                 var azienda = (WcfService.Dto.AziendaDto)model;
-                if (azienda != null)
-                    editAzienda.Value = azienda.RagioneSociale;
+                BindViewAzienda(azienda);
             }
             catch (Exception ex)
             {
@@ -151,22 +150,7 @@ namespace Web.GUI.Account
             }
         }
 
-        private void AccountModel_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                var obj = (AccountDto)Model;
-                if (obj != null && obj.Id == 0)
-                    SetNewValue();
-
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void SetNewValue()
+        public override void SetNewValue(object model)
         {
             try
             {

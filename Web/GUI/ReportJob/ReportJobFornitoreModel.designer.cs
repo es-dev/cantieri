@@ -276,7 +276,6 @@ namespace Web.GUI.ReportJob
             // 
             // ReportJobFornitoreModel
             // 
-            this.Load += new System.EventHandler(this.ReportJobFornitoreModel_Load);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
             this.panelCommands.ResumeLayout(false);

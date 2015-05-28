@@ -301,6 +301,26 @@ namespace WcfService
             return null;
         }
 
+        public Dto.AccountDto AuthenticateAccount(Dto.AccountDto account)
+        {
+            try
+            {
+                if (account != null && account.Username != null)
+                {
+                    var ef = new DataLayer.EntitiesModel();
+                    var accountAuthenticated = (from q in ef.Accounts where q.Username!=null && q.Username.ToUpper() == account.Username.ToUpper() && 
+                                                    q.Password == account.Password select q).FirstOrDefault();
+                    var accountAuthenticatedDto = UtilityPOCO.Assemble<Dto.AccountDto>(accountAuthenticated);
+                    return accountAuthenticatedDto;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         private IQueryable<DataLayer.Account> QueryAccounts(string search = null, object advancedSearch = null, OrderBy orderBy = null)
         {
             try
@@ -504,8 +524,8 @@ namespace WcfService
             try
             {
                 var ef = new DataLayer.EntitiesModel();
-                var fornitoriId = (from q in fornitori select q.Id);
-                var commesse =(from q in ef.Fornitores where fornitoriId.Contains(q.Id) select q.Commessa);
+                var fornitoriId = (from q in fornitori select q.Id).ToList();
+                var commesse = (from q in ef.Fornitores where fornitoriId.Contains(q.Id) select q.Commessa);
                 var commesseDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commesse);
                 return commesseDto;
             }
@@ -658,11 +678,10 @@ namespace WcfService
 
                 if (search != null && search.Length > 0)
                 {
-                    var commesseId = (from c in QueryCommesse(search) select c.Id).ToList();
+                    var commesseId = (from q in QueryCommesse(search) select q.Id).ToList();
+                    var anagraficheFornitoriId = (from q in QueryAnagraficheFornitori(search) select q.Id).ToList();
                     fornitori = (from q in fornitori
-                                 where q.Codice.StartsWith(search) || q.PartitaIva.StartsWith(search) ||
-                                     q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
-                                     q.Comune.StartsWith(search) || q.Provincia.StartsWith(search) ||
+                                 where anagraficheFornitoriId.Contains(q.AnagraficaFornitoreId) ||
                                      commesseId.Contains(q.CommessaId)
                                  select q);
                 }
@@ -670,7 +689,7 @@ namespace WcfService
                 if (advancedSearch != null)
                     fornitori = fornitori.Where((Func<DataLayer.Fornitore, bool>)advancedSearch).AsQueryable();
 
-                fornitori = (from q in fornitori orderby q.RagioneSociale select q);
+                fornitori = (from q in fornitori orderby q.AnagraficaFornitore.RagioneSociale select q);
                 if (orderBy != null)
                 {
                     if (orderBy.Direction == TypeOrder.Ascending)
@@ -693,7 +712,7 @@ namespace WcfService
             try
             {
                 var ef = new DataLayer.EntitiesModel();
-                var fornitori = (from q in ef.Fornitores where q.Codice == anagraficaFornitore.Codice select q);
+                var fornitori = (from q in ef.Fornitores where q.AnagraficaFornitoreId == anagraficaFornitore.Id select q);
                 var fornitoriDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitori, true); //lettura ricorsiva
                 return fornitoriDto;
             }
@@ -727,8 +746,8 @@ namespace WcfService
                 if (anagraficheFornitori != null)
                 {
                     var ef = new DataLayer.EntitiesModel();
-                    var codiciFornitori = (from q in anagraficheFornitori select q.Codice).ToList();
-                    var fornitori = (from q in ef.Fornitores where codiciFornitori.Contains(q.Codice) select q);
+                    var anagraficheFornitoriId = (from q in anagraficheFornitori select q.Id).ToList();
+                    var fornitori = (from q in ef.Fornitores where anagraficheFornitoriId.Contains(q.AnagraficaFornitoreId) select q);
                     var fornitoriDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitori, true); //lettura ricorsiva
                     return fornitoriDto;
                 }
@@ -992,7 +1011,7 @@ namespace WcfService
                 var fattureAcquisto = QueryFattureAcquisto(search, advancedSearch, fornitore, anagraficaFornitore, null, null, orderBy);
                 fattureAcquisto = (from q in fattureAcquisto select q).Skip(skip).Take(take);
 
-                var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
+                var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto, true);
                 return fattureAcquistoDto;
             }
             catch (Exception ex)
@@ -1043,8 +1062,8 @@ namespace WcfService
                 if(fornitore!=null)
                     fattureAcquisto = (from q in fattureAcquisto where q.FornitoreId == fornitore.Id select q);
 
-                if(anagraficaFornitore!=null) //ricerca fatture insolute/non pagate per un fornitore anagrafico
-                    fattureAcquisto = (from q in fattureAcquisto where q.Fornitore.Codice == anagraficaFornitore.Codice select q); 
+                if(anagraficaFornitore!=null) 
+                    fattureAcquisto = (from q in fattureAcquisto where q.Fornitore!=null && q.Fornitore.AnagraficaFornitoreId  == anagraficaFornitore.Id select q); 
                 
                 if(start!=null && end!=null)
                     fattureAcquisto = (from q in fattureAcquisto where start <= q.Scadenza && q.Scadenza <= end select q);
@@ -1094,7 +1113,6 @@ namespace WcfService
             }
             return null;
         }
-
        
         #endregion
         #endregion
@@ -1240,8 +1258,9 @@ namespace WcfService
                 if (search != null && search.Length > 0)
                 {
                     var fattureAcquistoId = (from q in QueryFattureAcquisto(search) select q.Id).ToList();
+                    var anagraficheArticoloId = (from q in QueryAnagraficheArticoli(search) select q.Id).ToList();
                     articoli = (from q in articoli
-                                where q.Codice.StartsWith(search) || q.Descrizione.Contains(search) ||
+                                where anagraficheArticoloId.Contains(q.AnagraficaArticoloId) ||
                                     fattureAcquistoId.Contains(q.FatturaAcquistoId)
                                 select q);
                 }
@@ -1357,7 +1376,7 @@ namespace WcfService
                 var pagamenti = QueryPagamenti(search, advancedSearch, fornitore, fatturaAcquisto, null, null, orderBy);
                 pagamenti = (from q in pagamenti select q).Skip(skip).Take(take);
 
-                var pagamentiDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamenti);
+                var pagamentiDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamenti, true);
                 return pagamentiDto;
             }
             catch (Exception ex)
@@ -1411,8 +1430,8 @@ namespace WcfService
                 if(fornitore!=null)
                 {
                     var fattureAcquisto = fornitore.FatturaAcquistos;
-                    var fattureAcquistoIds = (from q in fattureAcquisto select q.Id);
-                    pagamenti = (from q in pagamenti where fattureAcquistoIds.Contains(q.FatturaAcquistoId) select q);
+                    var fattureAcquistoId = (from q in fattureAcquisto select q.Id).ToList();
+                    pagamenti = (from q in pagamenti where fattureAcquistoId.Contains(q.FatturaAcquistoId) select q);
                 }
 
                 if (start != null && end != null)
@@ -1603,7 +1622,7 @@ namespace WcfService
                 var noteCredito = QueryNoteCredito(search, advancedSearch, fornitore, orderBy);
                 noteCredito = (from q in noteCredito select q).Skip(skip).Take(take);
 
-                var noteCreditoDto = UtilityPOCO.Assemble<Dto.NotaCreditoDto>(noteCredito);
+                var noteCreditoDto = UtilityPOCO.Assemble<Dto.NotaCreditoDto>(noteCredito, true);
                 return noteCreditoDto;
             }
             catch (Exception ex)
@@ -1774,7 +1793,7 @@ namespace WcfService
                 var reso = QueryResi(search, advancedSearch, notaCredito, fatturaAcquisto, orderBy);
                 reso = (from q in reso select q).Skip(skip).Take(take);
 
-                var resiDto = UtilityPOCO.Assemble<Dto.ResoDto>(reso);
+                var resiDto = UtilityPOCO.Assemble<Dto.ResoDto>(reso, true);
                 return resiDto;
             }
             catch (Exception ex)
@@ -2000,10 +2019,10 @@ namespace WcfService
 
                 if (search != null && search.Length > 0)
                 {
-                    var codiciFornitori = (from q in QueryFornitori(search) select q.Codice).ToList();
+                    var anagraficheFornitoriId = (from q in QueryAnagraficheFornitori(search) select q.Id).ToList();
                     pagamentiUnificati = (from q in pagamentiUnificati where q.Note.Contains(search) || 
                                  q.Codice.StartsWith(search) ||q.Descrizione.Contains(search) || q.TipoPagamento.Contains(search)||
-                                  codiciFornitori.Contains(q.CodiceFornitore)
+                                  anagraficheFornitoriId.Contains(q.AnagraficaFornitoreId)
                                  select q);
                 }
 
@@ -2118,7 +2137,7 @@ namespace WcfService
                 var pagamentiUnificatiFatturaAcquisto = QueryPagamentiUnificatiFatturaAcquisto(search, advancedSearch, pagamentoUnificato, orderBy);
                 pagamentiUnificatiFatturaAcquisto = (from q in pagamentiUnificatiFatturaAcquisto select q).Skip(skip).Take(take);
 
-                var pagamentiUnificatiFatturaAcquistoDto = UtilityPOCO.Assemble<Dto.PagamentoUnificatoFatturaAcquistoDto>(pagamentiUnificatiFatturaAcquisto);
+                var pagamentiUnificatiFatturaAcquistoDto = UtilityPOCO.Assemble<Dto.PagamentoUnificatoFatturaAcquistoDto>(pagamentiUnificatiFatturaAcquisto, true);
                 return pagamentiUnificatiFatturaAcquistoDto;
             }
             catch (Exception ex)
@@ -2344,11 +2363,10 @@ namespace WcfService
 
                 if (search != null && search.Length > 0)
                 {
-                    var commesseId = (from c in QueryCommesse(search) select c.Id).ToList();
+                    var commesseId = (from q in QueryCommesse(search) select q.Id).ToList();
+                    var anagraficheCommittentiId = (from q in QueryAnagraficheCommittenti(search) select q.Id).ToList();
                     committenti = (from q in committenti
-                               where q.Codice.StartsWith(search) || q.PartitaIva.StartsWith(search) || q.Localita.Contains(search)||
-                               q.Note.Contains(search)|| q.RagioneSociale.StartsWith(search) || q.Indirizzo.Contains(search) ||
-                                 q.Comune.StartsWith(search) || q.Provincia.StartsWith(search) ||
+                               where anagraficheCommittentiId.Contains(q.AnagraficaCommittenteId) ||
                                  commesseId.Contains(q.Commessa.Id)
                                select q);
                 }
@@ -2356,7 +2374,7 @@ namespace WcfService
                 if (advancedSearch != null)
                     committenti = committenti.Where((Func<DataLayer.Committente, bool>)advancedSearch).AsQueryable();
 
-                committenti = (from q in committenti orderby q.RagioneSociale select q);
+                committenti = (from q in committenti orderby q.AnagraficaCommittente.RagioneSociale select q);
                 if (orderBy != null)
                 {
                     if (orderBy.Direction == TypeOrder.Ascending)
@@ -2395,7 +2413,7 @@ namespace WcfService
             try
             {
                 var ef = new DataLayer.EntitiesModel();
-                var committenti = (from q in ef.Committentes where q.Codice == anagraficaCommittente.Codice select q);
+                var committenti = (from q in ef.Committentes where q.AnagraficaCommittenteId  == anagraficaCommittente.Id select q);
                 var committentiDto = UtilityPOCO.Assemble<Dto.CommittenteDto>(committenti, true); //lettura ricorsiva
                 return committentiDto;
             }
@@ -2413,8 +2431,8 @@ namespace WcfService
                 if (anagraficheCommittenti != null)
                 {
                     var ef = new DataLayer.EntitiesModel();
-                    var codiciCommittenti = (from q in anagraficheCommittenti select q.Codice).ToList();
-                    var committenti = (from q in ef.Committentes where codiciCommittenti.Contains(q.Codice) select q);
+                    var anagraficheCommittentiId = (from q in anagraficheCommittenti select q.Id).ToList();
+                    var committenti = (from q in ef.Committentes where anagraficheCommittentiId.Contains(q.AnagraficaCommittenteId) select q);
                     var committentiDto = UtilityPOCO.Assemble<Dto.CommittenteDto>(committenti, true); //lettura ricorsiva
                     return committentiDto;
                 }
@@ -2518,7 +2536,7 @@ namespace WcfService
                 var fattureVendita = QueryFattureVendita(search, advancedSearch, committente, orderBy);
                 fattureVendita = (from q in fattureVendita select q).Skip(skip).Take(take);
 
-                var fattureVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fattureVendita);
+                var fattureVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fattureVendita, true);
                 return fattureVenditaDto;
             }
             catch (Exception ex)
@@ -2689,7 +2707,7 @@ namespace WcfService
                 var incassi = QueryIncassi(search, advancedSearch, committente, fatturaVendita, orderBy);
                 incassi = (from q in incassi select q).Skip(skip).Take(take);
 
-                var incassiDto = UtilityPOCO.Assemble<Dto.IncassoDto>(incassi);
+                var incassiDto = UtilityPOCO.Assemble<Dto.IncassoDto>(incassi, true);
                 return incassiDto;
             }
             catch (Exception ex)
@@ -2745,8 +2763,8 @@ namespace WcfService
                     var fattureVendita = committente.FatturaVenditas;
                     if (fattureVendita != null)
                     {
-                        var fattureVenditaIds = (from q in fattureVendita select q.Id);
-                        incassi = (from q in incassi where fattureVenditaIds.Contains(q.FatturaVenditaId) select q);
+                        var fattureVenditaId = (from q in fattureVendita select q.Id).ToList();
+                        incassi = (from q in incassi where fattureVenditaId.Contains(q.FatturaVenditaId) select q);
                     }
                 }
 
@@ -3080,12 +3098,12 @@ namespace WcfService
             return null;
         }
 
-        public Dto.AnagraficaFornitoreDto ReadAnagraficaFornitore(string codice)
+        public Dto.AnagraficaFornitoreDto ReadAnagraficaFornitore(Dto.FornitoreDto fornitore)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
-                var anagraficaFornitore = (from q in ef.AnagraficaFornitores where q.Codice == codice select q).FirstOrDefault();
+                var anagraficaFornitore = (from q in ef.AnagraficaFornitores where q.Id==fornitore.AnagraficaFornitoreId select q).FirstOrDefault();
                 var anagraficaFornitoreDto = UtilityPOCO.Assemble<Dto.AnagraficaFornitoreDto>(anagraficaFornitore);
                 return anagraficaFornitoreDto;
             }
@@ -3095,6 +3113,23 @@ namespace WcfService
             }
             return null;
         }
+
+        public Dto.AnagraficaFornitoreDto ReadAnagraficaFornitore(Dto.PagamentoUnificatoDto pagamentoUnificato)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var anagraficaFornitore = (from q in ef.AnagraficaFornitores where q.Id == pagamentoUnificato.AnagraficaFornitoreId select q).FirstOrDefault();
+                var anagraficaFornitoreDto = UtilityPOCO.Assemble<Dto.AnagraficaFornitoreDto>(anagraficaFornitore);
+                return anagraficaFornitoreDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
 
         private IQueryable<DataLayer.AnagraficaFornitore> QueryAnagraficheFornitori(string search = null, object advancedSearch = null, OrderBy orderBy = null)
         {
@@ -3263,12 +3298,12 @@ namespace WcfService
             return null;
         }
 
-        public Dto.AnagraficaCommittenteDto ReadAnagraficaCommittente(string codice)
+        public Dto.AnagraficaCommittenteDto ReadAnagraficaCommittente(Dto.CommittenteDto committente)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
-                var anagraficaCommittente = (from q in ef.AnagraficaCommittentes where q.Codice == codice select q).FirstOrDefault();
+                var anagraficaCommittente = (from q in ef.AnagraficaFornitores where q.Id==committente.AnagraficaCommittenteId select q).FirstOrDefault();
                 var anagraficaCommittenteDto = UtilityPOCO.Assemble<Dto.AnagraficaCommittenteDto>(anagraficaCommittente);
                 return anagraficaCommittenteDto;
             }
@@ -3615,12 +3650,15 @@ namespace WcfService
                 var reportJobs = (from q in ef.ReportJobs select q);
 
                 if (search != null && search.Length > 0)
+                {
+                    var anagraficheFornitoriId = (from q in QueryAnagraficheFornitori(search) select q.Id).ToList();
+                    var anagraficheCommittentiId = (from q in QueryAnagraficheCommittenti(search) select q.Id).ToList();
                     reportJobs = (from q in reportJobs
-                                  where q.Codice.StartsWith(search) ||
-                                      q.CodiceFornitore.Contains(search) || q.CodiceCommittente.Contains(search) || q.NomeFile.Contains(search)
-                                      || q.Tipo.Contains(search) || q.Codice.StartsWith(search)
+                                  where q.Codice.StartsWith(search) || q.NomeFile.Contains(search) || q.Tipo.Contains(search) || q.Codice.StartsWith(search) ||
+                                  (q.AnagraficaFornitoreId!=null && anagraficheFornitoriId.Contains((int)q.AnagraficaFornitoreId)) || 
+                                  (q.AnagraficaCommittenteId!=null && anagraficheCommittentiId.Contains((int)q.AnagraficaCommittenteId))
                                   select q);
-
+                }
                 if (advancedSearch != null)
                     reportJobs = reportJobs.Where((Func<DataLayer.ReportJob, bool>)advancedSearch).AsQueryable();
 

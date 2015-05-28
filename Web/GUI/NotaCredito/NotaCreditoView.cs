@@ -94,13 +94,13 @@ namespace Web.GUI.NotaCredito
 
                 //3° filtro
                 var filterFornitore = true;
-                if (fornitoriAnagraficaIds != null)
-                    filterFornitore = fornitoriAnagraficaIds.Contains(obj.FornitoreId);
+                if (fornitoriAnagraficaId != null)
+                    filterFornitore = fornitoriAnagraficaId.Contains(obj.FornitoreId);
 
                 //4° filtro
                 var filterCommessa = true;
-                if (fornitoriCommessaIds != null)
-                    filterCommessa = fornitoriCommessaIds.Contains(obj.FornitoreId);
+                if (fornitoriCommessaId != null)
+                    filterCommessa = fornitoriCommessaId.Contains(obj.FornitoreId);
 
                 //filtro globale
                 var filter = (filterStato && filterData && filterFornitore && filterCommessa);
@@ -117,8 +117,8 @@ namespace Web.GUI.NotaCredito
         {
             try
             {
-                fornitoriAnagraficaIds = null;
-                fornitoriCommessaIds = null;
+                fornitoriAnagraficaId = null;
+                fornitoriCommessaId = null;
                 base.ClearAdvancedSearch();
             }
             catch (Exception ex)
@@ -176,26 +176,40 @@ namespace Web.GUI.NotaCredito
             }
         }
 
-        private IList<int> fornitoriAnagraficaIds = null;
-        private IList<int> fornitoriCommessaIds = null;
+        private IList<int> fornitoriAnagraficaId = null;
+        private IList<int> fornitoriCommessaId = null;
 
         private void editFornitore_ComboConfirm(object model)
         {
             try
             {
                 var anagraficaFornitore = (WcfService.Dto.AnagraficaFornitoreDto)model;
+                BindViewAnagraficaFornitore(anagraficaFornitore);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewAnagraficaFornitore(AnagraficaFornitoreDto anagraficaFornitore)
+        {
+            try
+            {
+                editFornitore.Model = anagraficaFornitore;
                 if (anagraficaFornitore != null)
                 {
                     editFornitore.Value = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
                     var viewModelFornitore = new Fornitore.FornitoreViewModel();
-                    var fornitori = (IEnumerable<FornitoreDto>)viewModelFornitore.ReadFornitori(anagraficaFornitore);
-                    fornitoriAnagraficaIds = (from q in fornitori select q.Id).ToList();
+                    var fornitori = viewModelFornitore.ReadFornitori(anagraficaFornitore);
+                    fornitoriAnagraficaId = (from q in fornitori select q.Id).ToList();
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+            
         }
 
         private void editCommessa_ComboClick()
@@ -217,18 +231,32 @@ namespace Web.GUI.NotaCredito
             try
             {
                 var commessa = (CommessaDto)model;
+                BindViewCommessa(commessa);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewCommessa(CommessaDto commessa)
+        {
+            try
+            {
+                editCommessa.Model = commessa;
                 if (commessa != null)
                 {
                     editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;
                     var viewModelFornitore = new Fornitore.FornitoreViewModel();
                     var fornitori = viewModelFornitore.ReadFornitori(commessa);
-                    fornitoriCommessaIds = (from q in fornitori select q.Id).ToList();
+                    fornitoriCommessaId = (from q in fornitori select q.Id).ToList();
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+            
         }
 	}
 }

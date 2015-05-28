@@ -18,13 +18,26 @@ namespace Web.GUI.AnagraficaArticolo
 			InitializeComponent();
 		}
 
+        public override void SetNewValue(object model)
+        {
+            try
+            {
+                var azienda = SessionManager.GetAzienda(Context);
+                BindViewAzienda(azienda);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         public override void BindViewTitle(object model)
         {
             try
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.AnagraficaArticoloDto)model;
+                    var obj = (AnagraficaArticoloDto)model;
                     infoSubtitle.Text = obj.Codice + " - " + obj.Descrizione;
                     infoSubtitleImage.Image = "Images.dashboard.anagraficaarticolo.png";
                     infoTitle.Text = (obj.Id!=0? "ANAGRAFICA ARTICOLO " + obj.Codice: "NUOVA ANAGRAFICA ARTICOLO");
@@ -42,7 +55,7 @@ namespace Web.GUI.AnagraficaArticolo
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.AnagraficaArticoloDto)model;
+                    var obj = (AnagraficaArticoloDto)model;
                     editCodice.Value = obj.Codice;
                     editDescrizione.Value = obj.Descrizione;
                     editNote.Value = obj.Note;
@@ -109,9 +122,8 @@ namespace Web.GUI.AnagraficaArticolo
         {
             try
             {
-                var azienda = (AziendaDto)model;
-                if (azienda != null)
-                    editAzienda.Value = azienda.RagioneSociale;
+                var azienda = (WcfService.Dto.AziendaDto)model;
+                BindViewAzienda(azienda);
             }
             catch (Exception ex)
             {

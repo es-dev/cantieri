@@ -783,10 +783,6 @@ namespace Web
             // 
             this.Text = "Login | Enterprise Manager";
             this.Controls.SetChildIndex(this.container, 0);
-            this.Controls.SetChildIndex(this.bntPortaleWebAziendale, 0);
-            this.Controls.SetChildIndex(this.btnSupportoTecnico, 0);
-            this.Controls.SetChildIndex(this.btnInformazioni, 0);
-            this.Controls.SetChildIndex(this.infoTitle, 0);
             this.Controls.SetChildIndex(this.toolStrip, 0);
             this.Controls.SetChildIndex(this.panelInfo, 0);
             this.container.ResumeLayout(false);

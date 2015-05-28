@@ -159,15 +159,27 @@ namespace Web.GUI.Reso
             try
             {
                 var fatturaAcquisto = (FatturaAcquistoDto)model;
-                if (fatturaAcquisto != null)
-                    editFatturaAcquisto.Value = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false);
-
+                BindViewFatturaAcquisto(fatturaAcquisto);
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
         }
+
+        private void BindViewFatturaAcquisto(FatturaAcquistoDto fatturaAcquisto)
+        {
+            try
+            {
+                editFatturaAcquisto.Model = fatturaAcquisto;
+                editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false) : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         private void editNotaCredito_ComboClick()
         {
             try
@@ -187,10 +199,20 @@ namespace Web.GUI.Reso
             try
             {
                 var notaCredito = (NotaCreditoDto)model;
-                if (notaCredito != null)
-                {
-                    editNotaCredito.Value = BusinessLogic.Fattura.GetCodifica(notaCredito, false);
-                }
+                BindViewNotaCredito(notaCredito);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewNotaCredito(NotaCreditoDto notaCredito)
+        {
+            try
+            {
+                editNotaCredito.Model = notaCredito;
+                editNotaCredito.Value = (notaCredito != null ? BusinessLogic.Fattura.GetCodifica(notaCredito, false) : null);
             }
             catch (Exception ex)
             {

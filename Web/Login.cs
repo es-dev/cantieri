@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Text;
 using WcfService.Dto;
 using Web.Code;
+using Web.GUI.Account;
 
 namespace Web
 {
@@ -44,13 +45,15 @@ namespace Web
             {
                 var username = editUsername.Text;
                 var password = editPassword.Text;
-                var account = new AccountDto(); //da sostituire con chiamata al servizio Authentication(username, password)
+                
+                var account = new AccountDto(); 
                 account.Username = username;
                 account.Password = password;
-                account.AziendaId = 1;
-                if (true)//username == "admin" && password == "3g") //todo: da implementare profilazione utente
+                var viewModel = new AccountViewModel();
+                var accountAuthenticated = viewModel.Authenticate(account);
+                if (accountAuthenticated!=null)
                 {
-                    SessionManager.Login(Context, account);
+                    SessionManager.Login(Context, accountAuthenticated);
                     Context.Redirect("cantieri-homepage.aspx");
                 }
                 else

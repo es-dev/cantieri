@@ -102,6 +102,15 @@ namespace DataLayer
 			}
 		}
 		
+		private IList<Articolo> _articolos = new List<Articolo>();
+		public virtual IList<Articolo> Articolos
+		{
+			get
+			{
+				return this._articolos;
+			}
+		}
+		
 	}
 }
 #pragma warning restore 1591

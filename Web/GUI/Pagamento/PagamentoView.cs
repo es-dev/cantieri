@@ -185,14 +185,23 @@ namespace Web.GUI.Pagamento
             try
             {
                 var fatturaAcquisto = (FatturaAcquistoDto)model;
-                if (fatturaAcquisto != null)
-                {
-                    var viewModelFatturaAcquisto = new FatturaAcquisto.FatturaAcquistoViewModel();
-                    var fatturaAcquistoId = fatturaAcquisto.Id;
-                    var _fatturaAcquisto = (FatturaAcquistoDto)viewModelFatturaAcquisto.Read(fatturaAcquistoId);
-                    var fornitore = _fatturaAcquisto.Fornitore;
-                    editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false) : null) + " - " + fornitore.RagioneSociale;
-                }
+                BindViewFatturaAcquisto(fatturaAcquisto);
+                
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewFatturaAcquisto(FatturaAcquistoDto fatturaAcquisto)
+        {
+            try
+            {
+                var fornitore = fatturaAcquisto.Fornitore;
+                editFatturaAcquisto.Model = fatturaAcquisto;
+                editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false) : null) + " - " +
+                    (fornitore != null ? fornitore.AnagraficaFornitore.RagioneSociale : null);
             }
             catch (Exception ex)
             {

@@ -99,7 +99,7 @@ namespace Web.GUI.Articolo
             this.editFatturaAcquisto.Name = "editFatturaAcquisto";
             this.editFatturaAcquisto.ReadOnly = false;
             this.editFatturaAcquisto.Required = true;
-            this.editFatturaAcquisto.Size = new System.Drawing.Size(798, 30);
+            this.editFatturaAcquisto.Size = new System.Drawing.Size(794, 30);
             this.editFatturaAcquisto.TabIndex = 0;
             this.editFatturaAcquisto.Text = "EditControl";
             this.editFatturaAcquisto.Value = null;
@@ -121,9 +121,9 @@ namespace Web.GUI.Articolo
             this.editDescrizione.LabelWidth = 175;
             this.editDescrizione.Location = new System.Drawing.Point(25, 159);
             this.editDescrizione.Name = "editDescrizione";
-            this.editDescrizione.ReadOnly = false;
+            this.editDescrizione.ReadOnly = true;
             this.editDescrizione.Required = true;
-            this.editDescrizione.Size = new System.Drawing.Size(796, 30);
+            this.editDescrizione.Size = new System.Drawing.Size(794, 30);
             this.editDescrizione.TabIndex = 2;
             this.editDescrizione.Text = "EditControl";
             this.editDescrizione.Value = null;
@@ -145,7 +145,7 @@ namespace Web.GUI.Articolo
             this.editSconto.Name = "editSconto";
             this.editSconto.ReadOnly = false;
             this.editSconto.Required = false;
-            this.editSconto.Size = new System.Drawing.Size(796, 30);
+            this.editSconto.Size = new System.Drawing.Size(794, 30);
             this.editSconto.TabIndex = 6;
             this.editSconto.Text = "TemplateEditNumeric";
             this.editSconto.Value = null;
@@ -168,7 +168,7 @@ namespace Web.GUI.Articolo
             this.editCosto.Name = "editCosto";
             this.editCosto.ReadOnly = false;
             this.editCosto.Required = false;
-            this.editCosto.Size = new System.Drawing.Size(796, 30);
+            this.editCosto.Size = new System.Drawing.Size(794, 30);
             this.editCosto.TabIndex = 7;
             this.editCosto.Text = "TemplateEditNumeric";
             this.editCosto.Value = null;
@@ -191,7 +191,7 @@ namespace Web.GUI.Articolo
             this.editImporto.Name = "editImporto";
             this.editImporto.ReadOnly = false;
             this.editImporto.Required = false;
-            this.editImporto.Size = new System.Drawing.Size(796, 30);
+            this.editImporto.Size = new System.Drawing.Size(794, 30);
             this.editImporto.TabIndex = 5;
             this.editImporto.Text = "TemplateEditNumeric";
             this.editImporto.Value = null;
@@ -214,7 +214,7 @@ namespace Web.GUI.Articolo
             this.editIVA.Name = "editIVA";
             this.editIVA.ReadOnly = false;
             this.editIVA.Required = false;
-            this.editIVA.Size = new System.Drawing.Size(796, 30);
+            this.editIVA.Size = new System.Drawing.Size(794, 30);
             this.editIVA.TabIndex = 8;
             this.editIVA.Text = "TemplateEditNumeric";
             this.editIVA.Value = null;
@@ -237,7 +237,7 @@ namespace Web.GUI.Articolo
             this.editTotale.Name = "editTotale";
             this.editTotale.ReadOnly = false;
             this.editTotale.Required = false;
-            this.editTotale.Size = new System.Drawing.Size(796, 30);
+            this.editTotale.Size = new System.Drawing.Size(794, 30);
             this.editTotale.TabIndex = 9;
             this.editTotale.Text = "TemplateEditNumeric";
             this.editTotale.Value = null;
@@ -253,14 +253,14 @@ namespace Web.GUI.Articolo
             this.editCodice.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editCodice.Changed = true;
             this.editCodice.Editing = false;
-            this.editCodice.Label = "Codice articolo";
+            this.editCodice.Label = "Codice";
             this.editCodice.LabelWidth = 175;
             this.editCodice.Location = new System.Drawing.Point(25, 117);
             this.editCodice.Model = null;
             this.editCodice.Name = "editCodice";
             this.editCodice.ReadOnly = false;
             this.editCodice.Required = true;
-            this.editCodice.Size = new System.Drawing.Size(796, 30);
+            this.editCodice.Size = new System.Drawing.Size(794, 30);
             this.editCodice.TabIndex = 1;
             this.editCodice.Text = "EditControl";
             this.editCodice.Value = null;
@@ -284,7 +284,7 @@ namespace Web.GUI.Articolo
             this.editPrezzounitario.Name = "editPrezzounitario";
             this.editPrezzounitario.ReadOnly = false;
             this.editPrezzounitario.Required = true;
-            this.editPrezzounitario.Size = new System.Drawing.Size(796, 30);
+            this.editPrezzounitario.Size = new System.Drawing.Size(794, 30);
             this.editPrezzounitario.TabIndex = 4;
             this.editPrezzounitario.Text = "EditControl";
             this.editPrezzounitario.Value = null;
@@ -307,7 +307,7 @@ namespace Web.GUI.Articolo
             this.editQuantita.Name = "editQuantita";
             this.editQuantita.ReadOnly = false;
             this.editQuantita.Required = true;
-            this.editQuantita.Size = new System.Drawing.Size(796, 30);
+            this.editQuantita.Size = new System.Drawing.Size(794, 30);
             this.editQuantita.TabIndex = 3;
             this.editQuantita.Text = "EditControl";
             this.editQuantita.Value = null;
@@ -333,10 +333,6 @@ namespace Web.GUI.Articolo
             this.editNote.TabIndex = 10;
             this.editNote.Text = "EditControl";
             this.editNote.Value = null;
-            // 
-            // ArticoloModel
-            // 
-            this.Load += new System.EventHandler(this.ArticoloModel_Load);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
             this.panelCommands.ResumeLayout(false);

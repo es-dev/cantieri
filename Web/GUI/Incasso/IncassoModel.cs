@@ -56,6 +56,21 @@ namespace Web.GUI.Incasso
             }
         }
 
+        public override void SetNewValue(object model)
+        {
+            try
+            {
+                BindViewFatturaVendita(fatturaVendita);
+
+                var codice = BusinessLogic.Incasso.GetCodice(fatturaVendita);
+                editCodice.Value = codice;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         public override void BindViewTitle(object model)
         {
             try
@@ -66,8 +81,7 @@ namespace Web.GUI.Incasso
                     infoSubtitle.Text = obj.Codice + " - " + obj.Descrizione;
                     infoSubtitleImage.Image = "Images.dashboard.incasso.png";
                     var fatturaVendita = obj.FatturaVendita;
-                    string title = "INCASSO " + obj.Codice + " - " + BusinessLogic.Fattura.GetCodifica(fatturaVendita);
-                    infoTitle.Text = (obj.Id!=0? title:"NUOVO INCASSO");
+                    infoTitle.Text = (obj.Id!=0? "INCASSO " + obj.Codice + " - " + BusinessLogic.Fattura.GetCodifica(fatturaVendita):"NUOVO INCASSO");
                 }
             }
             catch (Exception ex)
@@ -90,6 +104,7 @@ namespace Web.GUI.Incasso
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editDescrizione.Value = obj.Descrizione;
                     editTransazionePagamento.Value = obj.TransazionePagamento;
+
                     BindViewFatturaVendita(obj.FatturaVendita);
                 }
             }
@@ -103,21 +118,18 @@ namespace Web.GUI.Incasso
         {
             try
             {
+                var committente = fatturaVendita.Committente;
                 editFatturaVendita.Model = fatturaVendita;
-                var viewModelFatturaVendita = new FatturaVendita.FatturaVenditaViewModel();
-                var fatturaVenditaId = fatturaVendita.Id;
-                var _fatturaVendita= (FatturaVenditaDto)viewModelFatturaVendita.Read(fatturaVenditaId);
-                var committente = _fatturaVendita.Committente;
-                editFatturaVendita.Value = (fatturaVendita != null ? BusinessLogic.Fattura.GetCodifica(fatturaVendita, false) : null) + " - " + committente.RagioneSociale;
+                editFatturaVendita.Value = (fatturaVendita != null ? BusinessLogic.Fattura.GetCodifica(fatturaVendita, false) : null) + " - " +
+                    (committente != null ? committente.AnagraficaCommittente.RagioneSociale : null);
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
-           
         }
 
-        public override void BindModel(object model)
+       public override void BindModel(object model)
         {
             try
             {
@@ -160,7 +172,8 @@ namespace Web.GUI.Incasso
         {
             try
             {
-                SetFatturaVendita(model);
+                var obj = (FatturaVenditaDto)model;
+                BindViewFatturaVendita(obj);
             }
             catch (Exception ex)
             {
@@ -168,58 +181,7 @@ namespace Web.GUI.Incasso
             }
         }
 
-        private void SetFatturaVendita(object model)
-        {
-            try
-            {
-                var fatturaVendita = (WcfService.Dto.FatturaVenditaDto)model;
-                if (fatturaVendita != null)
-                {
-                    var viewModelFatturaVendita = new FatturaVendita.FatturaVenditaViewModel();
-                    var fatturaVenditaId = fatturaVendita.Id;
-                    var _fatturaVendita = (FatturaVenditaDto)viewModelFatturaVendita.Read(fatturaVenditaId);
-                    var committente = _fatturaVendita.Committente;
-                    editFatturaVendita.Value = (fatturaVendita != null ? BusinessLogic.Fattura.GetCodifica(fatturaVendita, false) : null) + " - " + committente.RagioneSociale;
-                    var obj = (WcfService.Dto.IncassoDto)Model;
-                    if (obj != null && obj.Id == 0)
-                    {
-                        var codice = BusinessLogic.Incasso.GetCodice(fatturaVendita);
-                        editCodice.Value = codice;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void IncassoModel_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                var obj = (IncassoDto)Model;
-                if (obj != null && obj.Id == 0)
-                    SetNewValue(obj);
-
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void SetNewValue(object model)
-        {
-            try
-            {
-                SetFatturaVendita(model);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
+       
 
 	}
 }

@@ -178,9 +178,7 @@ namespace Web.GUI.Reso
             try
             {
                 var fatturaAcquisto = (FatturaAcquistoDto)model;
-                if (fatturaAcquisto != null)
-                    editFatturaAcquisto.Value = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false);
-            
+                BindViewFatturaAcquisto(fatturaAcquisto);
             }
             catch (Exception ex)
             {
@@ -188,19 +186,7 @@ namespace Web.GUI.Reso
             }
         }
 
-        private void ResoModel_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                var obj = (ResoDto)Model;
-                if (obj != null && obj.Id == 0)
-                    SetNewValue();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
+       
 
         private void editNotaCredito_ComboClick()
         {
@@ -221,16 +207,7 @@ namespace Web.GUI.Reso
             try
             {
                 var notaCredito = (NotaCreditoDto)model;
-                if (notaCredito != null)
-                {
-                    editNotaCredito.Value = BusinessLogic.Fattura.GetCodifica(notaCredito, false);
-                    var obj = (ResoDto)Model;
-                    if (obj != null && obj.Id == 0)
-                    {
-                        var codice = BusinessLogic.Reso.GetCodice(notaCredito);
-                        editCodice.Value = codice;
-                    }
-                }
+                BindViewNotaCredito(notaCredito);
             }
             catch (Exception ex)
             {
@@ -252,15 +229,11 @@ namespace Web.GUI.Reso
             }
         }
 
-        private void SetNewValue()
+        public override void SetNewValue(object model)
         {
             try
             {
-                if (notaCredito != null)
-                {
-                    editNotaCredito.Model = notaCredito;
-                    editNotaCredito.Value = BusinessLogic.Fattura.GetCodifica(notaCredito, false);
-                }
+                BindViewNotaCredito(notaCredito);
             }
             catch (Exception ex)
             {

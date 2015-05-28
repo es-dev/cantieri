@@ -34,6 +34,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             this.editSaldo = new Library.Template.Controls.TemplateEditDecimal();
             this.editNote = new Library.Template.Controls.TemplateEditText();
             this.editPagamentoUnificato = new Library.Template.Controls.TemplateEditCombo();
+            this.editTransazionePagamento = new Library.Template.Controls.TemplateEditDropDown();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
             this.panelCommands.SuspendLayout();
@@ -41,6 +42,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             // 
             // container
             // 
+            this.container.Controls.Add(this.editTransazionePagamento);
             this.container.Controls.Add(this.editPagamentoUnificato);
             this.container.Controls.Add(this.editNote);
             this.container.Controls.Add(this.editSaldo);
@@ -51,6 +53,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             this.container.Controls.SetChildIndex(this.editSaldo, 0);
             this.container.Controls.SetChildIndex(this.editNote, 0);
             this.container.Controls.SetChildIndex(this.editPagamentoUnificato, 0);
+            this.container.Controls.SetChildIndex(this.editTransazionePagamento, 0);
             // 
             // infoSubtitle
             // 
@@ -98,12 +101,12 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             this.editSaldo.Editing = false;
             this.editSaldo.Label = "Importo";
             this.editSaldo.LabelWidth = 175;
-            this.editSaldo.Location = new System.Drawing.Point(25, 163);
+            this.editSaldo.Location = new System.Drawing.Point(25, 207);
             this.editSaldo.Name = "editSaldo";
             this.editSaldo.ReadOnly = false;
             this.editSaldo.Required = true;
             this.editSaldo.Size = new System.Drawing.Size(798, 30);
-            this.editSaldo.TabIndex = 2;
+            this.editSaldo.TabIndex = 3;
             this.editSaldo.Text = "TemplateEditNumeric";
             this.editSaldo.Value = null;
             // 
@@ -120,12 +123,12 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             this.editNote.Editing = false;
             this.editNote.Label = "Note";
             this.editNote.LabelWidth = 175;
-            this.editNote.Location = new System.Drawing.Point(25, 207);
+            this.editNote.Location = new System.Drawing.Point(25, 251);
             this.editNote.Name = "editNote";
             this.editNote.ReadOnly = false;
             this.editNote.Required = false;
             this.editNote.Size = new System.Drawing.Size(798, 30);
-            this.editNote.TabIndex = 3;
+            this.editNote.TabIndex = 4;
             this.editNote.Text = "EditControl";
             this.editNote.Value = null;
             // 
@@ -147,18 +150,39 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             this.editPagamentoUnificato.Name = "editPagamentoUnificato";
             this.editPagamentoUnificato.ReadOnly = false;
             this.editPagamentoUnificato.Required = true;
-            this.editPagamentoUnificato.Size = new System.Drawing.Size(800, 30);
+            this.editPagamentoUnificato.Size = new System.Drawing.Size(798, 30);
             this.editPagamentoUnificato.TabIndex = 0;
             this.editPagamentoUnificato.Text = "EditControl";
             this.editPagamentoUnificato.Value = null;
             this.editPagamentoUnificato.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editPagamentoUnificato_ComboConfirm);
             this.editPagamentoUnificato.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editPagamentoUnificato_ComboClick);
             // 
+            // editTransazionePagamento
+            // 
+            this.editTransazionePagamento.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.editTransazionePagamento.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editTransazionePagamento.BackColor = System.Drawing.Color.Transparent;
+            this.editTransazionePagamento.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editTransazionePagamento.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editTransazionePagamento.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editTransazionePagamento.Changed = true;
+            this.editTransazionePagamento.DisplayValues = null;
+            this.editTransazionePagamento.Editing = false;
+            this.editTransazionePagamento.Items = null;
+            this.editTransazionePagamento.Label = "Tipo transazione";
+            this.editTransazionePagamento.LabelWidth = 175;
+            this.editTransazionePagamento.Location = new System.Drawing.Point(25, 163);
+            this.editTransazionePagamento.Name = "editTransazionePagamento";
+            this.editTransazionePagamento.ReadOnly = false;
+            this.editTransazionePagamento.Required = true;
+            this.editTransazionePagamento.Size = new System.Drawing.Size(798, 30);
+            this.editTransazionePagamento.TabIndex = 2;
+            this.editTransazionePagamento.Text = "EditControl";
+            this.editTransazionePagamento.Value = null;
+            // 
             // PagamentoUnificatoFatturaAcquistoModel
             // 
-            this.Load += new System.EventHandler(this.PagamentoUnificatoFatturaAcquistoModel_Load);
-            this.Controls.SetChildIndex(this.panelCommands, 0);
-            this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
             this.panelCommands.ResumeLayout(false);
@@ -172,6 +196,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
         private Library.Template.Controls.TemplateEditDecimal editSaldo;
         private Library.Template.Controls.TemplateEditText editNote;
         private Library.Template.Controls.TemplateEditCombo editPagamentoUnificato;
+        private Library.Template.Controls.TemplateEditDropDown editTransazionePagamento;
 
 
     }

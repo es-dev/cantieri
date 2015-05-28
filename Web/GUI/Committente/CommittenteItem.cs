@@ -26,29 +26,35 @@ namespace Web.GUI.Committente
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.CommittenteDto)model;
-                    var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
-                    var codice = UtilityValidation.GetStringND(obj.Codice);
-                    var indirizzo = UtilityValidation.GetStringND(obj.Indirizzo);
-                    var cap = UtilityValidation.GetStringND(obj.CAP);
-                    var comune = UtilityValidation.GetStringND(obj.Comune);
-                    var provincia = UtilityValidation.GetStringND(obj.Provincia);
-                    var commessa = obj.Commessa;
+                    var obj = (CommittenteDto)model;
+                    
                     var today = DateTime.Today;
                     var totaleFatture = BusinessLogic.Committente.GetTotaleFattureVendita(obj, today);
                     var totaleIncassi = BusinessLogic.Committente.GetTotaleIncassi(obj, today);
                     var stato = GetStato(obj);
                     var _totaleIncassi = UtilityValidation.GetEuro(totaleIncassi);
                     var _totaleFatture = UtilityValidation.GetEuro(totaleFatture);
+                    infoIncassoTotale.Text = "Incassato " + _totaleIncassi + " su un totale di " + _totaleFatture;
+                   
+                    var commessa = obj.Commessa;
+                    if(commessa!=null)
+                        infoCommesssa.Text = "Commessa " + commessa.Codice + " - " + commessa.Denominazione;
 
                     toolTip.SetToolTip(imgStato, stato.Description);
                     imgStato.Image = stato.Image;
                     infoImage.Image = "Images.dashboard.committente.png";
-                    infoRagioneSociale.Text = ragioneSociale;
-                    infoCodice.Text = "CT-" + codice;
-                    infoIndirizzo.Text = indirizzo + " - " + cap + " - " + comune + " (" + provincia + ")";
-                    infoIncassoTotale.Text = "Incassato " + _totaleIncassi +" su un totale di " + _totaleFatture;
-                    infoCommesssa.Text = "Commessa " + commessa.Codice + " - " + commessa.Denominazione;
+
+                    var anagraficaCommittente = obj.AnagraficaCommittente;
+                    if (anagraficaCommittente != null)
+                    {
+                        var indirizzo = UtilityValidation.GetStringND(anagraficaCommittente.Indirizzo);
+                        var cap = UtilityValidation.GetStringND(anagraficaCommittente.CAP);
+                        var comune = UtilityValidation.GetStringND(anagraficaCommittente.Comune);
+                        var provincia = UtilityValidation.GetStringND(anagraficaCommittente.Provincia);
+                        infoRagioneSociale.Text = UtilityValidation.GetStringND(anagraficaCommittente.RagioneSociale);
+                        infoCodice.Text = "CT-" + UtilityValidation.GetStringND(anagraficaCommittente.Codice);
+                        infoIndirizzo.Text = indirizzo + " - " + cap + " - " + comune + " (" + provincia + ")";
+                    }
                 }
             }
             catch (Exception ex)

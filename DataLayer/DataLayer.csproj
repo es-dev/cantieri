@@ -167,6 +167,14 @@
       <Name>ES.Library</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="ESCantieriConnection%282015-05-24 11-20-56%29.rlinq.sql" />
+    <Content Include="ESCantieriConnection%282015-05-24 18-53-39%29.rlinq.sql" />
+    <Content Include="ESCantieriConnection%282015-05-28 23-12-48%29.rlinq.sql" />
+    <Content Include="ESCantieriConnection%282015-05-26 23-12-48%29.rlinq.sql" />
+    <Content Include="Code\MoveSchemaToDBO.sql" />
+    <Content Include="ESCantieriConnection%282015-05-28 23-12-53%29.rlinq.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -114,13 +114,13 @@ namespace Web.GUI.FatturaAcquisto
 
                 //3° filtro
                 var filterFornitore = true;
-                if (fornitoriAnagraficaIds!=null)
-                    filterFornitore = fornitoriAnagraficaIds.Contains(obj.FornitoreId);
+                if (fornitoriAnagraficaId!=null)
+                    filterFornitore = fornitoriAnagraficaId.Contains(obj.FornitoreId);
 
                 //4° filtro
                 var filterCommessa = true;
-                if (fornitoriCommessaIds != null)
-                    filterCommessa = fornitoriCommessaIds.Contains(obj.FornitoreId);
+                if (fornitoriCommessaId != null)
+                    filterCommessa = fornitoriCommessaId.Contains(obj.FornitoreId);
 
                 //filtro globale
                 var filter = (filterStato && filterData && filterFornitore && filterCommessa); 
@@ -137,8 +137,8 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                fornitoriAnagraficaIds = null;
-                fornitoriCommessaIds = null;
+                fornitoriAnagraficaId = null;
+                fornitoriCommessaId = null;
                 base.ClearAdvancedSearch();
             }
             catch (Exception ex)
@@ -196,26 +196,40 @@ namespace Web.GUI.FatturaAcquisto
             }
         }
 
-        private IList<int> fornitoriAnagraficaIds = null;
-        private IList<int> fornitoriCommessaIds = null;
+        private IList<int> fornitoriAnagraficaId = null;
+        private IList<int> fornitoriCommessaId = null;
 
         private void editFornitore_ComboConfirm(object model)
         {
             try
             {
                 var anagraficaFornitore = (AnagraficaFornitoreDto)model;
+                BindViewAnagraficaFornitore(anagraficaFornitore);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewAnagraficaFornitore(AnagraficaFornitoreDto anagraficaFornitore)
+        {
+            try
+            {
+                editFornitore.Model = anagraficaFornitore;
                 if (anagraficaFornitore != null)
                 {
                     editFornitore.Value = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
-                    var viewModelFornitore = new Fornitore.FornitoreViewModel();
-                    var fornitori = viewModelFornitore.ReadFornitori(anagraficaFornitore);
-                    fornitoriAnagraficaIds = (from q in fornitori select q.Id).ToList();
+                    var viewModel = new Fornitore.FornitoreViewModel();
+                    var fornitori = viewModel.ReadFornitori(anagraficaFornitore);
+                    fornitoriAnagraficaId = (from q in fornitori select q.Id).ToList();
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+            
         }
 
         private void editCommessa_ComboClick()
@@ -237,18 +251,45 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 var commessa = (CommessaDto)model;
-                if (commessa != null)
-                {
-                    editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;
-                    var viewModelFornitore = new Fornitore.FornitoreViewModel();
-                    var fornitori = viewModelFornitore.ReadFornitori(commessa);
-                    fornitoriCommessaIds = (from q in fornitori select q.Id).ToList();
-                }
+                BindViewCommessa(commessa);
+                BindViewFornitori(commessa);
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
         }
+
+        private void BindViewFornitori(CommessaDto commessa)
+        {
+            try
+            {
+                if (commessa != null)
+                {
+                    var viewModelFornitore = new Fornitore.FornitoreViewModel();
+                    var fornitori = viewModelFornitore.ReadFornitori(commessa);
+                    fornitoriCommessaId = (from q in fornitori select q.Id).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            
+        }
+
+        private void BindViewCommessa(CommessaDto commessa)
+        {
+            try
+            {
+                editCommessa.Model = commessa;
+                editCommessa.Value = (commessa != null ? commessa.Codice + " - " + commessa.Denominazione : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
     }
 }

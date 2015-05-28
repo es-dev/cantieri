@@ -89,19 +89,6 @@ namespace DataLayer
 			}
 		}
 		
-		private string _codiceFornitore;
-		public virtual string CodiceFornitore
-		{
-			get
-			{
-				return this._codiceFornitore;
-			}
-			set
-			{
-				this._codiceFornitore = value;
-			}
-		}
-		
 		private DateTime? _elaborazione;
 		public virtual DateTime? Elaborazione
 		{
@@ -154,16 +141,29 @@ namespace DataLayer
 			}
 		}
 		
-		private string _codiceCommittente;
-		public virtual string CodiceCommittente
+		private int? _anagraficaCommittenteId;
+		public virtual int? AnagraficaCommittenteId
 		{
 			get
 			{
-				return this._codiceCommittente;
+				return this._anagraficaCommittenteId;
 			}
 			set
 			{
-				this._codiceCommittente = value;
+				this._anagraficaCommittenteId = value;
+			}
+		}
+		
+		private int? _anagraficaFornitoreId;
+		public virtual int? AnagraficaFornitoreId
+		{
+			get
+			{
+				return this._anagraficaFornitoreId;
+			}
+			set
+			{
+				this._anagraficaFornitoreId = value;
 			}
 		}
 		
@@ -177,6 +177,32 @@ namespace DataLayer
 			set
 			{
 				this._azienda = value;
+			}
+		}
+		
+		private AnagraficaCommittente _anagraficaCommittente;
+		public virtual AnagraficaCommittente AnagraficaCommittente
+		{
+			get
+			{
+				return this._anagraficaCommittente;
+			}
+			set
+			{
+				this._anagraficaCommittente = value;
+			}
+		}
+		
+		private AnagraficaFornitore _anagraficaFornitore;
+		public virtual AnagraficaFornitore AnagraficaFornitore
+		{
+			get
+			{
+				return this._anagraficaFornitore;
+			}
+			set
+			{
+				this._anagraficaFornitore = value;
 			}
 		}
 		

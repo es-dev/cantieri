@@ -32,7 +32,7 @@ namespace Web.GUI.PagamentoUnificato
 		{
             this.optCodice = new Library.Template.Controls.TemplateEditOption();
             this.optData = new Library.Template.Controls.TemplateEditOption();
-            this.editFornitore = new Library.Template.Controls.TemplateEditCombo();
+            this.editAnagraficaFornitore = new Library.Template.Controls.TemplateEditCombo();
             this.editDataInizio = new Library.Template.Controls.TemplateEditDate();
             this.editDataFine = new Library.Template.Controls.TemplateEditDate();
             this.panelCommands.SuspendLayout();
@@ -44,14 +44,14 @@ namespace Web.GUI.PagamentoUnificato
             // 
             this.panelAdvancedSearch.Controls.Add(this.editDataFine);
             this.panelAdvancedSearch.Controls.Add(this.editDataInizio);
-            this.panelAdvancedSearch.Controls.Add(this.editFornitore);
+            this.panelAdvancedSearch.Controls.Add(this.editAnagraficaFornitore);
             this.panelAdvancedSearch.Location = new System.Drawing.Point(244, 68);
             this.panelAdvancedSearch.Size = new System.Drawing.Size(622, 249);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.btnConfirmAdvancedSearch, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.btnCloseAdvancedSearch, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.btnCancelAdvancedSearch, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.lblTitleAdvancedSearch, 0);
-            this.panelAdvancedSearch.Controls.SetChildIndex(this.editFornitore, 0);
+            this.panelAdvancedSearch.Controls.SetChildIndex(this.editAnagraficaFornitore, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.editDataInizio, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.editDataFine, 0);
             // 
@@ -126,27 +126,27 @@ namespace Web.GUI.PagamentoUnificato
             this.optData.Text = "Data";
             this.optData.Value = false;
             // 
-            // editFornitore
+            // editAnagraficaFornitore
             // 
-            this.editFornitore.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editFornitore.BackColor = System.Drawing.Color.Transparent;
-            this.editFornitore.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editFornitore.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editFornitore.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editFornitore.Changed = false;
-            this.editFornitore.Editing = true;
-            this.editFornitore.Label = "Fornitore";
-            this.editFornitore.LabelWidth = 135;
-            this.editFornitore.Location = new System.Drawing.Point(19, 60);
-            this.editFornitore.Model = null;
-            this.editFornitore.Name = "editFornitore";
-            this.editFornitore.ReadOnly = false;
-            this.editFornitore.Required = false;
-            this.editFornitore.Size = new System.Drawing.Size(572, 30);
-            this.editFornitore.TabIndex = 7;
-            this.editFornitore.Value = null;
-            this.editFornitore.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editFornitore_ComboConfirm);
-            this.editFornitore.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editFornitore_ComboClick);
+            this.editAnagraficaFornitore.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.editAnagraficaFornitore.BackColor = System.Drawing.Color.Transparent;
+            this.editAnagraficaFornitore.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
+            this.editAnagraficaFornitore.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
+            this.editAnagraficaFornitore.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
+            this.editAnagraficaFornitore.Changed = false;
+            this.editAnagraficaFornitore.Editing = true;
+            this.editAnagraficaFornitore.Label = "Fornitore";
+            this.editAnagraficaFornitore.LabelWidth = 135;
+            this.editAnagraficaFornitore.Location = new System.Drawing.Point(19, 60);
+            this.editAnagraficaFornitore.Model = null;
+            this.editAnagraficaFornitore.Name = "editAnagraficaFornitore";
+            this.editAnagraficaFornitore.ReadOnly = false;
+            this.editAnagraficaFornitore.Required = false;
+            this.editAnagraficaFornitore.Size = new System.Drawing.Size(572, 30);
+            this.editAnagraficaFornitore.TabIndex = 7;
+            this.editAnagraficaFornitore.Value = null;
+            this.editAnagraficaFornitore.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editAnagraficaFornitore_ComboConfirm);
+            this.editAnagraficaFornitore.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editAnagraficaFornitore_ComboClick);
             // 
             // editDataInizio
             // 
@@ -185,12 +185,12 @@ namespace Web.GUI.PagamentoUnificato
             this.editDataFine.Size = new System.Drawing.Size(572, 30);
             this.editDataFine.TabIndex = 7;
             this.editDataFine.Value = null;
-            this.Controls.SetChildIndex(this.panelAdvancedSearch, 0);
             this.Controls.SetChildIndex(this.panelOrderBy, 0);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.txtSearch, 0);
             this.Controls.SetChildIndex(this.btnOrderBy, 0);
             this.Controls.SetChildIndex(this.btnAdvancedSearch, 0);
+            this.Controls.SetChildIndex(this.panelAdvancedSearch, 0);
             this.panelCommands.ResumeLayout(false);
             this.panelAdvancedSearch.ResumeLayout(false);
             this.panelOrderBy.ResumeLayout(false);
@@ -204,6 +204,6 @@ namespace Web.GUI.PagamentoUnificato
         private Library.Template.Controls.TemplateEditOption optCodice;
         private Library.Template.Controls.TemplateEditDate editDataFine;
         private Library.Template.Controls.TemplateEditDate editDataInizio;
-        private Library.Template.Controls.TemplateEditCombo editFornitore;
+        private Library.Template.Controls.TemplateEditCombo editAnagraficaFornitore;
 	}
 }

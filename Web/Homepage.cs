@@ -36,14 +36,41 @@ namespace Web
             try 
             {
                 bool logged = SessionManager.IsLogged(Context);
-                if(!logged)
+                if (!logged)
                     Logout();
+                else
+                    BindView();
+
                 AddDefaultSpace();
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             } 
+        }
+
+        private void BindView()
+        {
+            try
+            {
+                var account = SessionManager.GetAccount(Context);
+                if(account!=null)
+                {
+                    Livello = account.Ruolo;
+                    StatoConnessione = "Connesso";
+                    Nickname= account.Nickname;
+
+                    RagioneSociale = "Tutte le aziende";
+                    var azienda = account.Azienda;
+                    if (azienda != null)
+                        RagioneSociale = azienda.RagioneSociale;
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
         }
 
         private void AddDefaultSpace()
@@ -59,44 +86,7 @@ namespace Web
             }
         }	
 
-        private void btnAccount_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                panelAccount.Visible = !panelAccount.Visible;
-                panelAccount.BringToFront();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void btnCloseAccount_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                panelAccount.Visible = false;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Logout();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            } 
-        }
-
-        private void Logout()
+        public override void Logout()
         {
             try
             {

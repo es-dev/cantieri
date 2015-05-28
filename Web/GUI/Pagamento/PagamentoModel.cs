@@ -56,6 +56,21 @@ namespace Web.GUI.Pagamento
             }
         }
 
+        public override void SetNewValue(object model)
+        {
+            try
+            {
+                BindViewFatturaAcquisto(fatturaAcquisto);
+
+                var codice = BusinessLogic.Pagamento.GetCodice(fatturaAcquisto);
+                editCodice.Value = codice;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         public override void BindViewTitle(object model)
         {
             try
@@ -104,12 +119,10 @@ namespace Web.GUI.Pagamento
         {
             try
             {
+                var fornitore = fatturaAcquisto.Fornitore;
                 editFatturaAcquisto.Model = fatturaAcquisto;
-                var viewModelFatturaAcquisto = new FatturaAcquisto.FatturaAcquistoViewModel();
-                var fatturaAcquistoId = fatturaAcquisto.Id;
-                var _fatturaAcquisto = (FatturaAcquistoDto)viewModelFatturaAcquisto.Read(fatturaAcquistoId);
-                var fornitore = _fatturaAcquisto.Fornitore;
-                editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false) : null) + " - " + fornitore.RagioneSociale;
+                editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false) : null) + " - " + 
+                    (fornitore!=null? fornitore.AnagraficaFornitore.RagioneSociale:null);
             }
             catch (Exception ex)
             {
@@ -160,7 +173,8 @@ namespace Web.GUI.Pagamento
         {
             try
             {
-                SetFatturaAcquisto(model);
+                var obj = (FatturaAcquistoDto)model;
+                BindViewFatturaAcquisto(obj);
             }
             catch (Exception ex)
             {
@@ -168,58 +182,7 @@ namespace Web.GUI.Pagamento
             }
         }
 
-        private void SetFatturaAcquisto(object model)
-        {
-            try
-            {
-                var fatturaAcquisto = (FatturaAcquistoDto)model;
-                if (fatturaAcquisto != null)
-                {
-                    var viewModelFatturaAcquisto = new FatturaAcquisto.FatturaAcquistoViewModel();
-                    var fatturaAcquistoId = fatturaAcquisto.Id;
-                    var _fatturaAcquisto = (FatturaAcquistoDto)viewModelFatturaAcquisto.Read(fatturaAcquistoId);
-                    var fornitore = _fatturaAcquisto.Fornitore;
-                    editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false) : null) + " - " + fornitore.RagioneSociale;
-                    var obj = (PagamentoDto)Model;
-                    if (obj != null && obj.Id == 0)
-                    {
-                        var codice = BusinessLogic.Pagamento.GetCodice(fatturaAcquisto);
-                        editCodice.Value = codice;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void PagamentoModel_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                var obj = (PagamentoDto)Model;
-                if (obj != null && obj.Id == 0)
-                    SetNewValue(obj);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-
-        }
-
-        private void SetNewValue(object model)
-        {
-            try
-            {
-                SetFatturaAcquisto(model);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
+       
 
 	}
 }

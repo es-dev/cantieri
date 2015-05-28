@@ -245,6 +245,24 @@ namespace DataLayer
 			}
 		}
 		
+		private IList<Committente> _committentes = new List<Committente>();
+		public virtual IList<Committente> Committentes
+		{
+			get
+			{
+				return this._committentes;
+			}
+		}
+		
+		private IList<ReportJob> _reportJobs = new List<ReportJob>();
+		public virtual IList<ReportJob> ReportJobs
+		{
+			get
+			{
+				return this._reportJobs;
+			}
+		}
+		
 	}
 }
 #pragma warning restore 1591

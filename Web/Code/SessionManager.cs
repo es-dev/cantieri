@@ -64,5 +64,23 @@ namespace Web.Code
             }
             return null;
         }
+
+        internal static AziendaDto GetAzienda(IContext context)
+        {
+            try
+            {
+                var account = GetAccount(context);
+                if (account != null)
+                {
+                    var azienda = account.Azienda;
+                    return azienda;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }

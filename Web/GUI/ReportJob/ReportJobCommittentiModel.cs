@@ -22,6 +22,26 @@ namespace Web.GUI.ReportJob
             InitializeComponent();
         }
 
+        public override void SetNewValue(object model)
+        {
+            try
+            {
+                var azienda = SessionManager.GetAzienda(Context);
+                BindViewAzienda(azienda);
+
+                var viewModel = (ReportJobViewModel)ViewModel;
+                var count = viewModel.Count();
+                editCodice.Value = BusinessLogic.ReportJob.GetCodice(count);
+                editDenominazione.Value = BusinessLogic.ReportJob.GetDenominazione(tipoReport);
+                editElaborazione.Value = DateTime.Today;
+                editCreazione.Value = DateTime.Today;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         public override void BindViewTitle(object model)
         {
             try
@@ -30,14 +50,9 @@ namespace Web.GUI.ReportJob
                 {
                     var obj = (ReportJobDto)model;
                     var codice = UtilityValidation.GetStringND(obj.Codice);
-                    var codiceCommittente = UtilityValidation.GetStringND(obj.CodiceCommittente);
                     infoSubtitle.Text = "RTP N." + codice + " - Tipo " + obj.Tipo;
                     infoSubtitleImage.Image = "Images.dashboard.reportjob.png";
-
-                    var viewModel = new AnagraficaCommittente.AnagraficaCommittenteViewModel();
-                    var anagraficaCommittente = viewModel.ReadAnagraficaCommittente(codiceCommittente);
-                    var ragioneSociale = (anagraficaCommittente != null ? anagraficaCommittente.RagioneSociale : "N/D");
-                    infoTitle.Text = (obj.Id!=0? "REPORT " + codice + " - " + ragioneSociale:"NUOVO REPORT");
+                    infoTitle.Text = (obj.Id != 0 ? "REPORT COMMITTENTI " + obj.Codice + " - " + obj.Denominazione : "NUOVO REPORT");
                 }
             }
             catch (Exception ex)
@@ -128,19 +143,7 @@ namespace Web.GUI.ReportJob
             }
         }
 
-        private void ReportJobCommittenteModel_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                var obj = (ReportJobDto)Model;
-                if (obj != null && obj.Id == 0)
-                    SetNewValue();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
+       
 
         public override void SetEditing(bool editing, bool deleting)
         {
@@ -154,23 +157,7 @@ namespace Web.GUI.ReportJob
                 UtilityError.Write(ex);
             }
         }
-
-        private void SetNewValue()
-        {
-            try
-            {
-                var viewModel = (ReportJobViewModel)ViewModel;
-                var count = viewModel.Count();
-                editCodice.Value = BusinessLogic.ReportJob.GetCodice(count);
-                editDenominazione.Value = BusinessLogic.ReportJob.GetDenominazione(tipoReport);
-                editElaborazione.Value = DateTime.Today;
-                editCreazione.Value = DateTime.Today;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
+       
 
         private void btnStampaReport_Click(object sender, EventArgs e)
         {
@@ -233,8 +220,7 @@ namespace Web.GUI.ReportJob
             try
             {
                 var azienda = (WcfService.Dto.AziendaDto)model;
-                if (azienda != null)
-                    editAzienda.Value = azienda.RagioneSociale;
+                BindViewAzienda(azienda);
             }
             catch (Exception ex)
             {

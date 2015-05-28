@@ -45,8 +45,9 @@ namespace Web.GUI.PagamentoUnificato
 
                 //3° filtro
                 var filterFornitore = true;
-                if (fornitoriCodici != null)
-                    filterFornitore = fornitoriCodici.Contains(obj.CodiceFornitore);
+                var anagraficaFornitore = (AnagraficaFornitoreDto)editAnagraficaFornitore.Model;
+                if (anagraficaFornitore != null)
+                    filterFornitore = (obj.AnagraficaFornitoreId==anagraficaFornitore.Id);
 
                 //filtro globale
                 var filter = (filterData && filterFornitore);
@@ -80,13 +81,13 @@ namespace Web.GUI.PagamentoUnificato
             return null;
         }
 
-        private void editFornitore_ComboClick()
+        private void editAnagraficaFornitore_ComboClick()
         {
             try
             {
                 var view = new AnagraficaFornitore.AnagraficaFornitoreView();
                 view.Title = "SELEZIONA UN FORNITORE";
-                editFornitore.Show(view);
+                editAnagraficaFornitore.Show(view);
             }
             catch (Exception ex)
             {
@@ -94,25 +95,32 @@ namespace Web.GUI.PagamentoUnificato
             }
         }
 
-        private IList<string> fornitoriCodici= null;
 
-        private void editFornitore_ComboConfirm(object model)
+        private void editAnagraficaFornitore_ComboConfirm(object model)
         {
             try
             {
                 var anagraficaFornitore = (WcfService.Dto.AnagraficaFornitoreDto)model;
-                if (anagraficaFornitore != null)
-                {
-                    editFornitore.Value = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
-                    var viewModelFornitore = new Fornitore.FornitoreViewModel();
-                    var fornitori = (IEnumerable<FornitoreDto>)viewModelFornitore.ReadFornitori(anagraficaFornitore);
-                    fornitoriCodici = (from q in fornitori select q.Codice).ToList();
-                }
+                BindViewAnagraficaFornitore(anagraficaFornitore);
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewAnagraficaFornitore(AnagraficaFornitoreDto anagraficaFornitore)
+        {
+            try
+            {
+                editAnagraficaFornitore.Model = anagraficaFornitore;
+                editAnagraficaFornitore.Value = (anagraficaFornitore != null ? anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            
         }
 	}
 }

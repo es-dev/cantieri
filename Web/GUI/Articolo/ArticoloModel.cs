@@ -38,10 +38,11 @@ namespace Web.GUI.Articolo
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.ArticoloDto)model;
-                    infoSubtitle.Text = obj.Codice + " - " + obj.Descrizione;
+                    var obj = (ArticoloDto)model;
+                    var anagraficaArticolo = obj.AnagraficaArticolo;
+                    infoSubtitle.Text = (anagraficaArticolo!=null? anagraficaArticolo.Codice + " - " + anagraficaArticolo.Descrizione:null);
                     infoSubtitleImage.Image = "Images.dashboard.articolo.png";
-                    infoTitle.Text = (obj.Id!=0? "ARTICOLO " + obj.Codice:"NUOVO ARTICOLO");
+                    infoTitle.Text = (obj.Id != 0 ? "ARTICOLO " + (anagraficaArticolo!=null? anagraficaArticolo.Codice:null) : "NUOVO ARTICOLO");
                 }
             }
             catch (Exception ex)
@@ -56,10 +57,8 @@ namespace Web.GUI.Articolo
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.ArticoloDto)model;
+                    var obj = (ArticoloDto)model;
                     editCosto.Value = obj.Costo;
-                    editCodice.Value = obj.Codice;
-                    editDescrizione.Value = obj.Descrizione;
                     editPrezzounitario.Value = obj.PrezzoUnitario;
                     editImporto.Value = obj.Importo;
                     editIVA.Value = obj.IVA;
@@ -68,6 +67,7 @@ namespace Web.GUI.Articolo
                     editTotale.Value = obj.Totale;
                     editNote.Value = obj.Note;
 
+                    BindViewAnagraficaArticolo(obj.AnagraficaArticolo);
                     BindViewFatturaAcquisto(obj.FatturaAcquisto);
                 }
             }
@@ -91,6 +91,24 @@ namespace Web.GUI.Articolo
             
         }
 
+        private void BindViewAnagraficaArticolo(AnagraficaArticoloDto anagraficaArticolo)
+        {
+            try
+            {
+                editCodice.Model = anagraficaArticolo;
+                if (anagraficaArticolo != null)
+                {
+                    editCodice.Value = anagraficaArticolo.Codice;
+                    editDescrizione.Value = anagraficaArticolo.Descrizione;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
+        }
+
         public override void BindModel(object model)
         {
             try
@@ -99,9 +117,7 @@ namespace Web.GUI.Articolo
                 {
                     var obj = (WcfService.Dto.ArticoloDto)model;
                     obj.Costo = editCosto.Value;
-                    obj.Codice = editCodice.Value;
                     obj.PrezzoUnitario = editPrezzounitario.Value;
-                    obj.Descrizione = editDescrizione.Value;
                     obj.Importo = editImporto.Value;
                     obj.IVA = editIVA.Value;
                     obj.Quantita = editQuantita.Value;
@@ -165,17 +181,15 @@ namespace Web.GUI.Articolo
             try
             {
                 var anagraficaArticolo = (WcfService.Dto.AnagraficaArticoloDto)model;
-                if (anagraficaArticolo != null)
-                {
-                    editCodice.Value = anagraficaArticolo.Codice;
-                    editDescrizione.Value = anagraficaArticolo.Descrizione;
-                }
+                BindViewAnagraficaArticolo(anagraficaArticolo);
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
         }
+
+       
 
         private void editQuantitaPrezzoUnitario_Leave(object sender, EventArgs e)
         {
@@ -223,28 +237,12 @@ namespace Web.GUI.Articolo
             }
         }
 
-        private void ArticoloModel_Load(object sender, EventArgs e)
+        
+        public override void SetNewValue(object model)
         {
             try
             {
-                var obj = (ArticoloDto)Model;
-                if (obj != null && obj.Id == 0)
-                    SetNewValue();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-        private void SetNewValue()
-        {
-            try
-            {
-                if (fatturaAcquisto != null)
-                {
-                    editFatturaAcquisto.Model = fatturaAcquisto;
-                    editFatturaAcquisto.Value = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false);
-                }
+                BindViewFatturaAcquisto(fatturaAcquisto);
             }
             catch (Exception ex)
             {

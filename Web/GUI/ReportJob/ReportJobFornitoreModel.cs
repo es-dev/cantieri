@@ -22,6 +22,26 @@ namespace Web.GUI.ReportJob
             InitializeComponent();
         }
 
+        public override void SetNewValue(object model)
+        {
+            try
+            {
+                var azienda = SessionManager.GetAzienda(Context);
+                BindViewAzienda(azienda);
+
+                var viewModel = (ReportJobViewModel)ViewModel;
+                var count = viewModel.Count();
+                editCodice.Value = BusinessLogic.ReportJob.GetCodice(count);
+                editDenominazione.Value = BusinessLogic.ReportJob.GetDenominazione(tipoReport);
+                editElaborazione.Value = DateTime.Today;
+                editCreazione.Value = DateTime.Today;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         public override void BindViewTitle(object model)
         {
             try
@@ -32,9 +52,7 @@ namespace Web.GUI.ReportJob
                     infoSubtitle.Text = "RTP N." + obj.Codice + " - Tipo " + obj.Tipo;
                     infoSubtitleImage.Image = "Images.dashboard.reportjob.png";
 
-                    var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
-                    var codiceFornitore = obj.CodiceFornitore;
-                    var anagraficaFornitore = viewModel.ReadAnagraficaFornitore(codiceFornitore);
+                    var anagraficaFornitore = obj.AnagraficaCommittente;
                     var ragioneSociale = (anagraficaFornitore != null ? anagraficaFornitore.RagioneSociale : "N/D");
                     infoTitle.Text = (obj.Id!=0? "REPORT " + obj.Codice + " - " + ragioneSociale:"NUOVO REPORT");
                 }
@@ -60,7 +78,7 @@ namespace Web.GUI.ReportJob
 
                     var fileName = obj.NomeFile;
                     BindViewReport(fileName);
-                    BindViewAnagraficaFornitore(obj.CodiceFornitore);
+                    BindViewAnagraficaFornitore(obj.AnagraficaFornitore);
                     BindViewAzienda(obj.Azienda);
                 }
             }
@@ -101,12 +119,10 @@ namespace Web.GUI.ReportJob
             
         }
 
-        private void BindViewAnagraficaFornitore(string codiceFornitore)
+        private void BindViewAnagraficaFornitore(AnagraficaFornitoreDto anagraficaFornitore)
         {
             try
             {
-                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
-                var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
                 editFornitore.Model = anagraficaFornitore;
                 editFornitore.Value = (anagraficaFornitore != null ? anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale : null);
             }
@@ -134,7 +150,7 @@ namespace Web.GUI.ReportJob
 
                     var anagraficaFornitore = (AnagraficaFornitoreDto)editFornitore.Model;
                     if (anagraficaFornitore != null)
-                        obj.CodiceFornitore = anagraficaFornitore.Codice;
+                        obj.AnagraficaFornitoreId = anagraficaFornitore.Id;
 
                     var azienda = (WcfService.Dto.AziendaDto)editAzienda.Model;
                     if (azienda != null)
@@ -148,19 +164,7 @@ namespace Web.GUI.ReportJob
             }
         }
 
-        private void ReportJobFornitoreModel_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                var obj = (ReportJobDto)Model;
-                if (obj != null && obj.Id == 0)
-                    SetNewValue();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
+       
 
         public override void SetEditing(bool editing, bool deleting)
         {
@@ -175,22 +179,7 @@ namespace Web.GUI.ReportJob
             }
         }
 
-        private void SetNewValue()
-        {
-            try
-            {
-                var viewModel = (ReportJobViewModel)ViewModel;
-                var count = viewModel.Count();
-                editCodice.Value = BusinessLogic.ReportJob.GetCodice(count);
-                editDenominazione.Value = BusinessLogic.ReportJob.GetDenominazione(tipoReport);
-                editElaborazione.Value = DateTime.Today;
-                editCreazione.Value = DateTime.Today;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
+
 
         private void editFornitore_ComboClick()
         {
@@ -211,10 +200,7 @@ namespace Web.GUI.ReportJob
             try
             {
                 var anagraficaFornitore = (AnagraficaFornitoreDto)model;
-                if (anagraficaFornitore != null)
-                {
-                    editFornitore.Value = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
-                }
+                BindViewAnagraficaFornitore(anagraficaFornitore);
             }
             catch (Exception ex)
             {
@@ -283,8 +269,7 @@ namespace Web.GUI.ReportJob
             try
             {
                 var azienda = (WcfService.Dto.AziendaDto)model;
-                if (azienda != null)
-                    editAzienda.Value = azienda.RagioneSociale;
+                BindViewAzienda(azienda);
             }
             catch (Exception ex)
             {

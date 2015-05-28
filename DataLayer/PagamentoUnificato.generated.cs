@@ -115,19 +115,6 @@ namespace DataLayer
 			}
 		}
 		
-		private string _codiceFornitore;
-		public virtual string CodiceFornitore
-		{
-			get
-			{
-				return this._codiceFornitore;
-			}
-			set
-			{
-				this._codiceFornitore = value;
-			}
-		}
-		
 		private int _aziendaId;
 		public virtual int AziendaId
 		{
@@ -141,6 +128,19 @@ namespace DataLayer
 			}
 		}
 		
+		private int _anagraficaFornitoreId;
+		public virtual int AnagraficaFornitoreId
+		{
+			get
+			{
+				return this._anagraficaFornitoreId;
+			}
+			set
+			{
+				this._anagraficaFornitoreId = value;
+			}
+		}
+		
 		private Azienda _azienda;
 		public virtual Azienda Azienda
 		{
@@ -151,6 +151,19 @@ namespace DataLayer
 			set
 			{
 				this._azienda = value;
+			}
+		}
+		
+		private AnagraficaFornitore _anagraficaFornitore;
+		public virtual AnagraficaFornitore AnagraficaFornitore
+		{
+			get
+			{
+				return this._anagraficaFornitore;
+			}
+			set
+			{
+				this._anagraficaFornitore = value;
 			}
 		}
 		

@@ -189,5 +189,27 @@ namespace Web.GUI.Committente
             }
             return null;
         }
+
+        internal CommittenteDto ReadCommittente(FatturaVenditaDto fatturaVendita)
+        {
+            try
+            {
+                if(fatturaVendita!=null)
+                {
+                    var viewModel = new FatturaVendita.FatturaVenditaViewModel();
+                    var _fatturaVendita = (FatturaVenditaDto)viewModel.Read(fatturaVendita.Id);
+                    if(_fatturaVendita!=null)
+                    {
+                        var committente = _fatturaVendita.Committente;
+                        return committente;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }

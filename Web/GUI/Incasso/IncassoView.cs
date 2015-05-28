@@ -182,20 +182,29 @@ namespace Web.GUI.Incasso
             try
             {
                 var fatturaVendita = (FatturaVenditaDto)model;
-                if (fatturaVendita != null)
-                {
-                    var viewModelFatturaVendita = new FatturaVendita.FatturaVenditaViewModel();
-                    var fatturaVenditaId = fatturaVendita.Id;
-                    var _fatturaVendita = (FatturaVenditaDto)viewModelFatturaVendita.Read(fatturaVenditaId);
-                    var committente = _fatturaVendita.Committente;
-                    editFatturaVendita.Value = (fatturaVendita != null ? BusinessLogic.Fattura.GetCodifica(fatturaVendita, false) : null) + " - " + committente.RagioneSociale;
-                }
+                BindViewFatturaVendita(fatturaVendita);
+                
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
 
+        }
+
+        private void BindViewFatturaVendita(FatturaVenditaDto fatturaVendita)
+        {
+            try
+            {
+                var committente = fatturaVendita.Committente;
+                editFatturaVendita.Model = fatturaVendita;
+                editFatturaVendita.Value = (fatturaVendita != null ? BusinessLogic.Fattura.GetCodifica(fatturaVendita, false) : null) + " - " +
+                    (committente != null ? committente.AnagraficaCommittente.RagioneSociale : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
         }
 
 	}

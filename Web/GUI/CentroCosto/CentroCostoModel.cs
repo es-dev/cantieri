@@ -18,11 +18,24 @@ namespace Web.GUI.CentroCosto
 			InitializeComponent();
 		}
 
+        public override void SetNewValue(object model)
+        {
+            try
+            {
+                var azienda = SessionManager.GetAzienda(Context);
+                BindViewAzienda(azienda);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         public override void BindViewTitle(object model)
         {
             try
             {
-                var obj = (WcfService.Dto.CentroCostoDto)model;
+                var obj = (CentroCostoDto)model;
                 infoSubtitle.Text = obj.Codice + " - " + obj.Denominazione; 
                 infoSubtitleImage.Image = "Images.dashboard.centrocosto.png";
                 infoTitle.Text = (obj.Id!=0? "CENTRO DI COSTO " + obj.Codice:"NUOVO CENTRO DI COSTO");
@@ -39,7 +52,7 @@ namespace Web.GUI.CentroCosto
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.CentroCostoDto)model;
+                    var obj = (CentroCostoDto)model;
                     editCodice.Value = obj.Codice;
                     editDenominazione.Value = obj.Denominazione;
                     editNote.Value = obj.Note;
@@ -107,8 +120,7 @@ namespace Web.GUI.CentroCosto
             try
             {
                 var azienda = (AziendaDto)model;
-                if (azienda != null)
-                    editAzienda.Value = azienda.RagioneSociale;
+                BindViewAzienda(azienda);
             }
             catch (Exception ex)
             {

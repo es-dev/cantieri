@@ -150,7 +150,6 @@ namespace Web.GUI.SAL
             this.editData.TabIndex = 2;
             this.editData.Text = "EditControl";
             this.editData.Value = null;
-            this.editData.Confirm += new Library.Template.Controls.TemplateEditDate.ConfirmHanlder(this.editData_Confirm);
             // 
             // editDenominazione
             // 
@@ -387,7 +386,6 @@ namespace Web.GUI.SAL
             // SALModel
             // 
             this.Size = new System.Drawing.Size(1024, 727);
-            this.Load += new System.EventHandler(this.SALModel_Load);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);

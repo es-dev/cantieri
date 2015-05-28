@@ -75,7 +75,7 @@ namespace Web.GUI.Tools
                 CheckAziende(comuni);
                 CheckCommesse(comuni);
                 CheckCommittenti(comuni);
-                CheckFornitori(comuni);
+                CheckAnagraficaFornitori(comuni);
                 CheckAnagraficheFornitori(comuni);
                 CheckAnagraficheCommittenti(comuni);
 
@@ -158,27 +158,27 @@ namespace Web.GUI.Tools
 
         }
 
-        private void CheckFornitori(IList<Countries.City> comuni)
+        private void CheckAnagraficaFornitori(IList<Countries.City> comuni)
         {
             try
             {
                 AddLog("Avvio controllo fornitori");
-                var viewModel = new Fornitore.FornitoreViewModel();
-                var fornitori = viewModel.ReadFornitori();
-                foreach (var fornitore in fornitori)
+                var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
+                var anagraficaFornitori = viewModel.ReadAnagraficheFornitori();
+                foreach (var anagraficaFornitore in anagraficaFornitori)
                 {
-                    var comune = (from q in comuni where q.Description == fornitore.Comune && q.County == fornitore.Provincia select q).FirstOrDefault();
+                    var comune = (from q in comuni where q.Description == anagraficaFornitore.Comune && q.County == anagraficaFornitore.Provincia select q).FirstOrDefault();
                     if (comune != null)
                     {
-                        fornitore.Comune = comune.Description;
-                        fornitore.CodiceCatastale = comune.Code;
-                        fornitore.Provincia = comune.County;
-                        viewModel.Save(fornitore, false);
-                        AddLog("Fornitore " + fornitore.RagioneSociale + " aggiornato con successo ... OK");
+                        anagraficaFornitore.Comune = comune.Description;
+                        anagraficaFornitore.CodiceCatastale = comune.Code;
+                        anagraficaFornitore.Provincia = comune.County;
+                        viewModel.Save(anagraficaFornitore, false);
+                        AddLog("Fornitore " + anagraficaFornitore.RagioneSociale + " aggiornato con successo ... OK");
                     }
                     else
                     {
-                        AddLog("Fornitore " + fornitore.RagioneSociale + " non aggiornato, comune " + fornitore.Comune + " non trovato... ERROR");
+                        AddLog("Fornitore " + anagraficaFornitore.RagioneSociale + " non aggiornato, comune " + anagraficaFornitore.Comune + " non trovato... ERROR");
                         warning = true;
                     }
                 }
@@ -196,22 +196,22 @@ namespace Web.GUI.Tools
             try
             {
                 AddLog("Avvio controllo committenti");
-                var viewModel = new Committente.CommittenteViewModel();
-                var committenti = viewModel.ReadCommittenti();
-                foreach (var committente in committenti)
+                var viewModel = new AnagraficaCommittente.AnagraficaCommittenteViewModel();
+                var anagraficaCommittenti = viewModel.ReadAnagraficheCommittenti();
+                foreach (var anagraficaCommittente in anagraficaCommittenti)
                 {
-                    var comune = (from q in comuni where q.Description == committente.Comune && q.County == committente.Provincia select q).FirstOrDefault();
+                    var comune = (from q in comuni where q.Description == anagraficaCommittente.Comune && q.County == anagraficaCommittente.Provincia select q).FirstOrDefault();
                     if (comune != null)
                     {
-                        committente.Comune = comune.Description;
-                        committente.CodiceCatastale = comune.Code;
-                        committente.Provincia = comune.County;
-                        viewModel.Save(committente, false);
-                        AddLog("Committente " + committente.RagioneSociale + " aggiornato con successo ... OK");
+                        anagraficaCommittente.Comune = comune.Description;
+                        anagraficaCommittente.CodiceCatastale = comune.Code;
+                        anagraficaCommittente.Provincia = comune.County;
+                        viewModel.Save(anagraficaCommittente, false);
+                        AddLog("Committente " + anagraficaCommittente.RagioneSociale + " aggiornato con successo ... OK");
                     }
                     else
                     {
-                        AddLog("Committente " + committente.RagioneSociale + " non aggiornato, comune " + committente.Comune + " non trovato... ERROR");
+                        AddLog("Committente " + anagraficaCommittente.RagioneSociale + " non aggiornato, comune " + anagraficaCommittente.Comune + " non trovato... ERROR");
                         warning = true;
                     }
                 }
@@ -438,7 +438,7 @@ namespace Web.GUI.Tools
                     var commessa = fornitore.Commessa;
                     fornitore.Stato = BusinessLogic.Fornitore.GetStatoDescrizione(fornitore);
                     bool saved = viewModel.Save(fornitore, false);
-                    var codifica = fornitore.RagioneSociale;
+                    var codifica = fornitore.AnagraficaFornitore.RagioneSociale;
                     if (saved)
                         AddLog("Fornitore " + codifica + " aggiornato con successo ... OK");
                     else
@@ -464,7 +464,7 @@ namespace Web.GUI.Tools
                     var commessa = committente.Commessa;
                     committente.Stato = BusinessLogic.Committente.GetStatoDescrizione(committente);
                     bool saved = viewModel.Save(committente, false);
-                    var codifica = committente.RagioneSociale;
+                    var codifica = committente.AnagraficaCommittente.RagioneSociale;
                     if (saved)
                         AddLog("Committente " + codifica + " aggiornato con successo ... OK");
                     else

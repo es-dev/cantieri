@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.Azienda
@@ -24,7 +25,7 @@ namespace Web.GUI.Azienda
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.AziendaDto)model;
+                    var obj = (AziendaDto)model;
                     var indirizzo = UtilityValidation.GetStringND(obj.Indirizzo);
                     var cap = UtilityValidation.GetStringND(obj.CAP);
                     var comune = UtilityValidation.GetStringND(obj.Comune);

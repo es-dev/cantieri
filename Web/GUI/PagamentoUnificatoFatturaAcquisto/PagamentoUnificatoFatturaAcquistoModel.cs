@@ -18,9 +18,18 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
         private PagamentoUnificatoDto pagamentoUnificato = null;
         private PagamentoUnificatoDto pagamentoUnificatoOld = null;
         private FatturaAcquistoDto fatturaAcquistoOld = null;
+      
         public PagamentoUnificatoFatturaAcquistoModel()
 		{
 			InitializeComponent();
+            try
+            {
+                InitCombo();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
 		}
 
         public PagamentoUnificatoFatturaAcquistoModel(PagamentoUnificatoDto pagamentoUnificato)
@@ -29,6 +38,19 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             try
             {
                 this.pagamentoUnificato = pagamentoUnificato;
+                InitCombo();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void InitCombo()
+        {
+            try
+            {
+                editTransazionePagamento.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.TransazionePagamento>();
             }
             catch (Exception ex)
             {
@@ -67,6 +89,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                     var obj = (PagamentoUnificatoFatturaAcquistoDto)model;
                     editNote.Value = obj.Note;
                     editSaldo.Value = obj.Saldo;
+                    editTransazionePagamento.Value = obj.TransazionePagamento;
                     
                     BindViewFatturaAcquisto(obj.FatturaAcquisto);
                     BindViewPagamentoUnificato(obj.PagamentoUnificato);
@@ -108,11 +131,10 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             
         }
 
-        private void BindViewSaldo()
+        private void BindViewSaldo(FatturaAcquistoDto fatturaAcquisto)
         {
             try
             {
-                var fatturaAcquisto = (FatturaAcquistoDto)editFatturaAcquisto.Model;
                 if (fatturaAcquisto != null)
                 {
                     var today = DateTime.Today;
@@ -136,6 +158,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                     var obj = (PagamentoUnificatoFatturaAcquistoDto)model;
                     obj.Note = editNote.Value;
                     obj.Saldo = editSaldo.Value;
+                    obj.TransazionePagamento = editTransazionePagamento.Value;
                     var fatturaAcquisto = (FatturaAcquistoDto)editFatturaAcquisto.Model;
                     if(fatturaAcquisto!=null)
                         obj.FatturaAcquistoId = fatturaAcquisto.Id;
@@ -161,9 +184,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                 var pagamentoUnificato = (PagamentoUnificatoDto)editPagamentoUnificato.Model;
                 if (pagamentoUnificato != null)
                 {
-                    var codiceFornitore = pagamentoUnificato.CodiceFornitore;
-                    var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
-                    var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(codiceFornitore);
+                    var anagraficaFornitore = pagamentoUnificato.AnagraficaFornitore;
                     var view = new FatturaAcquisto.FatturaAcquistoView(anagraficaFornitore, Tipi.StatoFattura.NonPagata | Tipi.StatoFattura.Insoluta);
                     view.Title = "SELEZIONA LA FATTURA DI ACQUISTO";
                     editFatturaAcquisto.Show(view);
@@ -180,11 +201,8 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             try
             {
                 var fatturaAcquisto = (FatturaAcquistoDto)model;
-                if (fatturaAcquisto != null)
-                {
-                    editFatturaAcquisto.Value = fatturaAcquisto.Numero + "/" + fatturaAcquisto.Data.Value.Year.ToString();
-                    BindViewSaldo();
-                }
+                BindViewFatturaAcquisto(fatturaAcquisto);
+                BindViewSaldo(fatturaAcquisto);
             }
             catch (Exception ex)
             {
@@ -211,10 +229,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             try
             {
                 var pagamentoUnificato = (PagamentoUnificatoDto)model;
-                if (pagamentoUnificato != null)
-                {
-                    editPagamentoUnificato.Value = pagamentoUnificato.Codice + "/" + pagamentoUnificato.Data.Value.Year.ToString();
-                }
+                BindViewPagamentoUnificato(pagamentoUnificato);
             }
             catch (Exception ex)
             {
@@ -222,29 +237,11 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             }
         }
 
-        private void PagamentoUnificatoFatturaAcquistoModel_Load(object sender, EventArgs e)
+        public override void SetNewValue(object model)
         {
             try
             {
-                var obj = (PagamentoUnificatoFatturaAcquistoDto)Model;
-                if (obj != null && obj.Id == 0)
-                    SetNewValue();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void SetNewValue()
-        {
-            try
-            {
-                if (pagamentoUnificato != null)
-                {
-                    editPagamentoUnificato.Model = pagamentoUnificato;
-                    editPagamentoUnificato.Value = pagamentoUnificato.Codice + "/" + pagamentoUnificato.Data.Value.Year.ToString();
-                }
+                BindViewPagamentoUnificato(pagamentoUnificato);
             }
             catch (Exception ex)
             {

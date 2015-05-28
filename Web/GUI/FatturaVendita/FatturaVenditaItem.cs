@@ -26,21 +26,25 @@ namespace Web.GUI.FatturaVendita
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.FatturaVenditaDto)model;
+                    var obj = (FatturaVenditaDto)model;
                     var numero = UtilityValidation.GetStringND(obj.Numero);
                     var today = DateTime.Today;
                     var totaleFattura = UtilityValidation.GetEuro(obj.Totale);
-                    var totaleIncassi =UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotaleIncassi(obj, today));
+                    var totaleIncassi = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotaleIncassi(obj, today));
                     var stato = GetStato(obj);
-                    var committente = obj.Committente;
-
-                    infoImage.Image = "Images.dashboard.fatturavendita.png";
-                    infoCodice.Text = "FV-"+numero;
-                    infoNumeroData.Text = BusinessLogic.Fattura.GetCodifica(obj);
-                    infoIncassoTotale.Text = "Incassato " + totaleIncassi +" su un totale di " + totaleFattura;
-                    infoCommittente.Text = committente.RagioneSociale;
                     imgStato.Image = stato.Image;
                     toolTip.SetToolTip(imgStato, stato.Description);
+                    infoImage.Image = "Images.dashboard.fatturavendita.png";
+                    infoCodice.Text = "FV-" + numero;
+                    infoNumeroData.Text = BusinessLogic.Fattura.GetCodifica(obj);
+                    infoIncassoTotale.Text = "Incassato " + totaleIncassi + " su un totale di " + totaleFattura;
+
+                    var committente = obj.Committente;
+                    if (committente != null)
+                    {
+                        var anagraficaCommittente = committente.AnagraficaCommittente;
+                        infoCommittente.Text = (anagraficaCommittente!=null? anagraficaCommittente.RagioneSociale:null);
+                    }
                 }
             }
             catch (Exception ex)

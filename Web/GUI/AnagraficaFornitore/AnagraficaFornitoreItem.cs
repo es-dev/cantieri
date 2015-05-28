@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.AnagraficaFornitore
@@ -24,7 +25,7 @@ namespace Web.GUI.AnagraficaFornitore
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.AnagraficaFornitoreDto)model;
+                    var obj = (AnagraficaFornitoreDto)model;
                     var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
                     var codice = UtilityValidation.GetStringND(obj.Codice);
                     var partitaIVA = UtilityValidation.GetStringND(obj.PartitaIva);

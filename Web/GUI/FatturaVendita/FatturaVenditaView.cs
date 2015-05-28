@@ -94,13 +94,13 @@ namespace Web.GUI.FatturaVendita
 
                 //3° filtro
                 var filterCommittente = true;
-                if (committentiAnagraficaIds != null)
-                    filterCommittente = committentiAnagraficaIds.Contains(obj.CommittenteId);
+                if (committentiAnagraficaId != null)
+                    filterCommittente = committentiAnagraficaId.Contains(obj.CommittenteId);
 
                 //4° filtro
                 var filterCommessa = true;
-                if (committentiCommessaIds != null)
-                    filterCommessa = committentiCommessaIds.Contains(obj.CommittenteId);
+                if (committentiCommessaId != null)
+                    filterCommessa = committentiCommessaId.Contains(obj.CommittenteId);
 
                 //filtro globale
                 var filter = (filterStato && filterData && filterCommittente && filterCommessa); 
@@ -117,8 +117,8 @@ namespace Web.GUI.FatturaVendita
         {
             try
             {
-                committentiAnagraficaIds = null;
-                committentiCommessaIds = null;
+                committentiAnagraficaId = null;
+                committentiCommessaId = null;
                 base.ClearAdvancedSearch();
             }
             catch (Exception ex)
@@ -164,27 +164,43 @@ namespace Web.GUI.FatturaVendita
             }
         }
 
-        private IList<int> committentiAnagraficaIds = null;
-        private IList<int> committentiCommessaIds = null;
+        private IList<int> committentiAnagraficaId = null;
+        private IList<int> committentiCommessaId = null;
 
         private void editCommittente_ComboConfirm(object model)
         {
             try
             {
                 var anagraficaCommittente = (AnagraficaCommittenteDto)model;
-                if (anagraficaCommittente != null)
-                {
-                    editCommittente.Value = anagraficaCommittente.Codice + " - " + anagraficaCommittente.RagioneSociale;
-                    var viewModelCommittente = new Committente.CommittenteViewModel();
-                    var committenti = viewModelCommittente.ReadCommittenti(anagraficaCommittente);
-                    committentiAnagraficaIds = (from q in committenti select q.Id).ToList();
-                }
+                BindViewAnagraficaCommittente(anagraficaCommittente);
+                
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
         }
+
+        private void BindViewAnagraficaCommittente(AnagraficaCommittenteDto anagraficaCommittente)
+        {
+            try
+            {
+                editCommittente.Model = anagraficaCommittente;
+                if (anagraficaCommittente != null)
+                {
+                    editCommittente.Value = anagraficaCommittente.Codice + " - " + anagraficaCommittente.RagioneSociale;
+                    var viewModel = new Committente.CommittenteViewModel();
+                    var committenti = viewModel.ReadCommittenti(anagraficaCommittente);
+                    committentiAnagraficaId = (from q in committenti select q.Id).ToList();
+                } 
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         private void InitCombo()
         {
             try
@@ -216,18 +232,45 @@ namespace Web.GUI.FatturaVendita
             try
             {
                 var commessa = (CommessaDto)model;
+                BindViewCommessa(commessa);
+                BindViewCommittenti(commessa);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewCommessa(CommessaDto commessa)
+        {
+            try
+            {
+                editCommessa.Model = commessa;
+                editCommessa.Value = (commessa != null ? commessa.Codice + " - " + commessa.Denominazione : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewCommittenti(CommessaDto commessa)
+        {
+            try
+            {
                 if (commessa != null)
                 {
                     editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;
-                    var viewModelCommittente = new Committente.CommittenteViewModel();
-                    var committenti = viewModelCommittente.ReadCommittenti(commessa);
-                    committentiCommessaIds = (from q in committenti select q.Id).ToList();
+                    var viewModel = new Committente.CommittenteViewModel();
+                    var committenti = viewModel.ReadCommittenti(commessa);
+                    committentiCommessaId = (from q in committenti select q.Id).ToList();
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+            
         }
 
 	}

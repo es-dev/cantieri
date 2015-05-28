@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.AnagraficaArticolo
@@ -24,7 +25,7 @@ namespace Web.GUI.AnagraficaArticolo
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.AnagraficaArticoloDto)model;
+                    var obj = (AnagraficaArticoloDto)model;
                     var codice = UtilityValidation.GetStringND(obj.Codice);
 
                     infoImage.Image = "Images.dashboard.anagraficaarticolo.png";

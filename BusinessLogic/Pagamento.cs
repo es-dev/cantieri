@@ -46,6 +46,7 @@ namespace BusinessLogic
                     pagamento.Descrizione = pagamentoUnificato.Descrizione;
                     pagamento.FatturaAcquistoId = pagamenoUnificatoFatturaAcquisto.FatturaAcquistoId;
                     pagamento.Importo = pagamenoUnificatoFatturaAcquisto.Saldo;
+                    pagamento.TransazionePagamento = pagamenoUnificatoFatturaAcquisto.TransazionePagamento;
                     pagamento.Note = "Pagamento unificato " + pagamentoUnificato.Codice;
                     pagamento.PagamentoUnificatoId = pagamenoUnificatoFatturaAcquisto.PagamentoUnificatoId;
                     pagamento.TipoPagamento = pagamentoUnificato.TipoPagamento;

@@ -26,23 +26,27 @@ namespace Web.GUI.FatturaAcquisto
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.FatturaAcquistoDto)model;
+                    var obj = (FatturaAcquistoDto)model;
                     var numero = UtilityValidation.GetStringND(obj.Numero);
                     var today = DateTime.Today;
                     var totaleFattura = UtilityValidation.GetEuro(obj.Totale);
                     var totalePagamenti = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotalePagamenti(obj, today));
                     var stato = GetStato(obj);
                     var centroCosto = obj.CentroCosto;
-                    var fornitore = obj.Fornitore;
-
+                    imgStato.Image = stato.Image;
+                    toolTip.SetToolTip(imgStato, stato.Description);
                     infoImage.Image = "Images.dashboard.fatturaacquisto.png";
-                    infoCodice.Text = "FA-"+numero;
+                    infoCodice.Text = "FA-" + numero;
                     infoNumeroData.Text = BusinessLogic.Fattura.GetCodifica(obj);
                     infoPagamentoTotale.Text = "Pagato " + totalePagamenti + " su un totale di " + totaleFattura;
                     infoCentroCosto.Text = UtilityValidation.GetStringND(centroCosto.Denominazione);
-                    infoFornitore.Text = UtilityValidation.GetStringND(fornitore.RagioneSociale);
-                    imgStato.Image = stato.Image;
-                    toolTip.SetToolTip(imgStato, stato.Description);
+
+                    var fornitore = obj.Fornitore;
+                    if (fornitore != null)
+                    {
+                        var anagraficaFornitore = fornitore.AnagraficaFornitore;
+                        infoFornitore.Text = (anagraficaFornitore!=null? anagraficaFornitore.RagioneSociale:null);
+                    }
                 }
             }
             catch (Exception ex)

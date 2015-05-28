@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.Account
@@ -24,7 +25,7 @@ namespace Web.GUI.Account
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.AccountDto)model;
+                    var obj = (AccountDto)model;
                     var creazione = UtilityValidation.GetDataND(obj.Creazione);
                     var nickname = UtilityValidation.GetStringND(obj.Nickname);
                     var ruolo = UtilityValidation.GetStringND(obj.Ruolo);

@@ -130,12 +130,12 @@ namespace Web.GUI.AnagraficaCommittente
             return null;
         }
 
-        internal AnagraficaCommittenteDto ReadAnagraficaCommittente(string codice)
+        internal AnagraficaCommittenteDto ReadAnagraficaCommittente(CommittenteDto committente)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var obj = wcf.ReadAnagraficaCommittente(codice);
+                var obj = wcf.ReadAnagraficaCommittente(committente);
                 return obj;
             }
             catch (Exception ex)

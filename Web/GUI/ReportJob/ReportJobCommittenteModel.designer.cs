@@ -276,7 +276,6 @@ namespace Web.GUI.ReportJob
             // 
             // ReportJobCommittenteModel
             // 
-            this.Load += new System.EventHandler(this.ReportJobCommittenteModel_Load);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
             this.panelCommands.ResumeLayout(false);

@@ -206,5 +206,27 @@ namespace Web.GUI.Fornitore
             }
             return null;
         }
+
+        internal FornitoreDto ReadFornitore(FatturaAcquistoDto fatturaAcquisto)
+        {
+            try
+            {
+                if (fatturaAcquisto != null)
+                {
+                    var viewModel = new FatturaAcquisto.FatturaAcquistoViewModel();
+                    var _fatturaAcquisto = (FatturaAcquistoDto)viewModel.Read(fatturaAcquisto.Id);
+                    if (_fatturaAcquisto != null)
+                    {
+                        var fornitore = _fatturaAcquisto.Fornitore;
+                        return fornitore;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }

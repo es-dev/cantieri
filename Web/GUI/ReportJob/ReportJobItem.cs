@@ -27,7 +27,6 @@ namespace Web.GUI.ReportJob
                 {
                     var obj = (WcfService.Dto.ReportJobDto)model;
                     var codice = UtilityValidation.GetStringND(obj.Codice);
-                    var codiceFornitore = UtilityValidation.GetStringND(obj.CodiceFornitore);
                     var tipo = UtilityValidation.GetStringND(obj.Tipo);
                     var elaborazione = UtilityValidation.GetDataND(obj.Elaborazione);
                     var fileName = obj.NomeFile;
@@ -84,13 +83,9 @@ namespace Web.GUI.ReportJob
                     string descrizione = null;
                     if (tipo == Tipi.TipoReport.Fornitore.ToString())
                     {
-                        var codiceFornitore = obj.CodiceFornitore;
-                        var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
-                        var anagraficaFornitore=viewModel.ReadAnagraficaFornitore(codiceFornitore);
+                        var anagraficaFornitore = obj.AnagraficaFornitore;
                         if(anagraficaFornitore!=null)
-                        {
                             descrizione = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
-                        }
                     }
 
                     return descrizione;

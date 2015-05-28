@@ -544,7 +544,6 @@ namespace Web.GUI.Committente
             // CommittenteModel
             // 
             this.Size = new System.Drawing.Size(1024, 815);
-            this.Load += new System.EventHandler(this.CommittenteModel_Load);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);

@@ -96,7 +96,7 @@ namespace Web.GUI.Fornitore
 
                 object orderBy = null;
                 if (optRagioneSociale.Value)
-                    orderBy = obj.RagioneSociale;
+                    orderBy = obj.AnagraficaFornitore.RagioneSociale;
                 else if (optCommessa.Value)
                     orderBy = obj.Commessa.Denominazione;
                 else if (optStato.Value)
@@ -145,10 +145,20 @@ namespace Web.GUI.Fornitore
             try
             {
                 var commessa = (CommessaDto)model;
-                if (commessa != null)
-                {
-                    editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;
-                }
+                BindViewCommessa(commessa);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewCommessa(CommessaDto commessa)
+        {
+            try
+            {
+                editCommessa.Model = commessa;
+                editCommessa.Value = (commessa != null ? commessa.Codice + " - " + commessa.Denominazione : null);
             }
             catch (Exception ex)
             {

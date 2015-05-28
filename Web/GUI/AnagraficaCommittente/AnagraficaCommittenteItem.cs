@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.AnagraficaCommittente
@@ -24,7 +25,7 @@ namespace Web.GUI.AnagraficaCommittente
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.AnagraficaCommittenteDto)model;
+                    var obj = (AnagraficaCommittenteDto)model;
                     var ragioneSociale = UtilityValidation.GetStringND(obj.RagioneSociale);
                     var codice = UtilityValidation.GetStringND(obj.Codice);
                     var partitaIVA = UtilityValidation.GetStringND(obj.PartitaIva);
@@ -32,6 +33,7 @@ namespace Web.GUI.AnagraficaCommittente
                     var cap = UtilityValidation.GetStringND(obj.CAP);
                     var comune = UtilityValidation.GetStringND(obj.Comune);
                     var provincia = UtilityValidation.GetStringND(obj.Provincia);
+                  
                     infoImage.Image = "Images.dashboard.anagraficacommittente.png";
                     infoRagioneSociale.Text = ragioneSociale;
                     infoCodice.Text = codice;

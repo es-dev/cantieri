@@ -19,6 +19,19 @@ namespace Web.GUI.AnagraficaFornitore
 			InitializeComponent();
 		}
 
+        public override void SetNewValue(object model)
+        {
+            try
+            {
+                var azienda = SessionManager.GetAzienda(Context);
+                BindViewAzienda(azienda);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         public override void BindViewTitle(object model)
         {
             try
@@ -130,9 +143,8 @@ namespace Web.GUI.AnagraficaFornitore
         {
             try
             {
-                var azienda = (AziendaDto)model;
-                if (azienda != null)
-                    editAzienda.Value = azienda.RagioneSociale;
+                var azienda = (WcfService.Dto.AziendaDto)model;
+                BindViewAzienda(azienda);
             }
             catch (Exception ex)
             {

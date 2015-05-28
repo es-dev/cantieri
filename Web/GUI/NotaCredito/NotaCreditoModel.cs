@@ -49,7 +49,11 @@ namespace Web.GUI.NotaCredito
                 infoSubtitle.Text = BusinessLogic.Fattura.GetCodifica(obj);
                 infoSubtitleImage.Image = "Images.dashboard.notacredito.png";
                 var fornitore = obj.Fornitore;
-                infoTitle.Text = (obj.Id!=0? "NOTA DI CREDITO " + obj.Numero + " - " + fornitore.RagioneSociale:"NUOVA NOTA DI CREDITO");
+                if (fornitore != null)
+                {
+                    var anagraficaFornitore = fornitore.AnagraficaFornitore;
+                    infoTitle.Text = (obj.Id != 0 ? "NOTA DI CREDITO " + obj.Numero + " - " + anagraficaFornitore.RagioneSociale : "NUOVA NOTA DI CREDITO");
+                }
             }
             catch (Exception ex)
             {
@@ -87,7 +91,8 @@ namespace Web.GUI.NotaCredito
             try
             {
                 editFornitore.Model = fornitore;
-                editFornitore.Value = (fornitore!=null? fornitore.Codice + " - " + fornitore.RagioneSociale:null);
+                var anagraficaFornitore = fornitore.AnagraficaFornitore;
+                editFornitore.Value = (fornitore!=null? anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale:null);
             }
             catch (Exception ex)
             {
@@ -164,32 +169,14 @@ namespace Web.GUI.NotaCredito
             try
             {
                 var fornitore = (FornitoreDto)model;
-                if (fornitore != null)
-                {
-                    editFornitore.Value = fornitore.Codice + " - " + fornitore.RagioneSociale;
-                }
+                BindViewFornitore(fornitore);
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
         }
-
-        private void NotaCreditoModel_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                var obj = (NotaCreditoDto)Model;
-                if (obj != null && obj.Id == 0)
-                    SetNewValue();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-
-        }
-
+      
         private void btnCalcoloTotali_Click(object sender, EventArgs e)
         {
             try
@@ -225,15 +212,11 @@ namespace Web.GUI.NotaCredito
             }
         }
 
-        private void SetNewValue()
+        public override void SetNewValue(object model)
         {
             try
             {
-                if (fornitore != null)
-                {
-                    editFornitore.Model = fornitore;
-                    editFornitore.Value = fornitore.Codice + " - " + fornitore.RagioneSociale;
-                }
+                BindViewFornitore(fornitore);
             }
             catch (Exception ex)
             {

@@ -19,6 +19,7 @@ namespace Web.Code
                 view.LogoESD = "Images.logoESD.png";
                 view.BackgroundImage = "Images.background.png";
                 view.UrlHomePortal = "http://www.3gcostruzioni.it";
+                view.SoftwareHouse = "ESD - Engineering System Development";
             }
             catch (Exception ex)
             {

@@ -238,7 +238,7 @@ namespace BusinessLogic
 
                 foreach (var anagraficaFornitore in anagraficheFornitoriDare)
                 {
-                    var fornitoriAnagrafica = (from q in fornitoriDare where q.Codice == anagraficaFornitore.Codice select q).ToList();
+                    var fornitoriAnagrafica = (from q in fornitoriDare where q.AnagraficaFornitoreId == anagraficaFornitore.Id select q).ToList();
                     if (fornitoriAnagrafica != null && fornitoriAnagrafica.Count >= 1)
                     {
                         AddReportFornitore(tableFornitori, anagraficaFornitore, fornitoriAnagrafica, data);
@@ -329,8 +329,8 @@ namespace BusinessLogic
         {
             try
             {
-                var codiciFornitoriDare = (from q in fornitoriDare select q.Codice).Distinct().ToList();
-                var anagraficheFornitoriDare = (from q in anagraficheFornitori where codiciFornitoriDare.Contains(q.Codice) select q).ToList();
+                var anagraficheFornitoriDareId = (from q in fornitoriDare select q.AnagraficaFornitoreId).Distinct().ToList();
+                var anagraficheFornitoriDare = (from q in anagraficheFornitori where anagraficheFornitoriDareId.Contains(q.Id) select q).ToList();
                 return anagraficheFornitoriDare;
             }
             catch (Exception ex)
@@ -642,7 +642,7 @@ namespace BusinessLogic
 
                 foreach (var anagraficaCommittente in anagraficheCommittentiAvere)
                 {
-                    var committentiAnagrafica = (from q in committentiAvere where q.Codice == anagraficaCommittente.Codice select q).ToList();
+                    var committentiAnagrafica = (from q in committentiAvere where q.AnagraficaCommittenteId == anagraficaCommittente.Id select q).ToList();
                     if (committentiAnagrafica != null && committentiAnagrafica.Count >= 1)
                     {
                         AddReportCommittente(tableCommittenti, anagraficaCommittente, committentiAnagrafica, data);
@@ -723,8 +723,8 @@ namespace BusinessLogic
         {
             try
             {
-                var codiciCommittentiAvere = (from q in committentiAvere select q.Codice).Distinct().ToList();
-                var anagraficheCommittentiAvere = (from q in anagraficheCommittenti where codiciCommittentiAvere.Contains(q.Codice) select q).ToList();
+                var anagraficheCommittentiAvereId = (from q in committentiAvere select q.AnagraficaCommittenteId).Distinct().ToList();
+                var anagraficheCommittentiAvere = (from q in anagraficheCommittenti where anagraficheCommittentiAvereId.Contains(q.Id) select q).ToList();
                 return anagraficheCommittentiAvere;
             }
             catch (Exception ex)

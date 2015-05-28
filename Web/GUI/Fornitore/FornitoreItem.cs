@@ -35,14 +35,19 @@ namespace Web.GUI.Fornitore
                     var stato = GetStato(obj);
                     toolTip.SetToolTip(imgStato, stato.Description);
                     imgStato.Image = stato.Image;
-
                     infoImage.Image = "Images.dashboard.fornitore.png";
-                    infoRagioneSociale.Text = UtilityValidation.GetStringND(obj.RagioneSociale);
-                    infoCodice.Text = "FOR-" + UtilityValidation.GetStringND(obj.Codice);
-                    infoPartitaIVA.Text = "Partita IVA " + UtilityValidation.GetStringND(obj.PartitaIva);
+                    
+                    var anagraficaFornitore = obj.AnagraficaFornitore;
+                    if (anagraficaFornitore != null)
+                    {
+                        infoRagioneSociale.Text = UtilityValidation.GetStringND(anagraficaFornitore.RagioneSociale);
+                        infoCodice.Text = "FOR-" + UtilityValidation.GetStringND(anagraficaFornitore.Codice);
+                        infoPartitaIVA.Text = "Partita IVA " + UtilityValidation.GetStringND(anagraficaFornitore.PartitaIva);
+                    }
 
                     var commessa = obj.Commessa;
-                    infoCommesssa.Text = "Commessa " + commessa.Codice + " - " + commessa.Denominazione;
+                    if(commessa!=null)
+                        infoCommesssa.Text = "Commessa " + commessa.Codice + " - " + commessa.Denominazione;
                 }
             }
             catch (Exception ex)

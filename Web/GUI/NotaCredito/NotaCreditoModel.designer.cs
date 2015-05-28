@@ -320,7 +320,6 @@ namespace Web.GUI.NotaCredito
             // 
             // NotaCreditoModel
             // 
-            this.Load += new System.EventHandler(this.NotaCreditoModel_Load);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);

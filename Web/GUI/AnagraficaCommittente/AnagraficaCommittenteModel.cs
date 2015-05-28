@@ -19,13 +19,26 @@ namespace Web.GUI.AnagraficaCommittente
 			InitializeComponent();
 		}
 
+        public override void SetNewValue(object model)
+        {
+            try
+            {
+                var azienda = SessionManager.GetAzienda(Context);
+                BindViewAzienda(azienda);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         public override void BindViewTitle(object model)
         {
             try
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.AnagraficaCommittenteDto)model;
+                    var obj = (AnagraficaCommittenteDto)model;
                     infoSubtitle.Text = obj.Codice + " - " + obj.RagioneSociale;
                     infoSubtitleImage.Image = "Images.dashboard.anagraficacommittente.png";
                     infoTitle.Text = (obj.Id!=0? "ANAGRAFICA COMMITTENTE " + obj.RagioneSociale:"NUOVA ANAGRAFICA COMMITTENTE");
@@ -43,7 +56,7 @@ namespace Web.GUI.AnagraficaCommittente
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.AnagraficaCommittenteDto)model;
+                    var obj = (AnagraficaCommittenteDto)model;
                     editRagioneSociale.Value = obj.RagioneSociale;
                     editIndirizzo.Value = obj.Indirizzo;
                     editCAP.Value = obj.CAP;
@@ -130,9 +143,8 @@ namespace Web.GUI.AnagraficaCommittente
         {
             try
             {
-                var azienda = (AziendaDto)model;
-                if (azienda != null)
-                    editAzienda.Value = azienda.RagioneSociale;
+                var azienda = (WcfService.Dto.AziendaDto)model;
+                BindViewAzienda(azienda);
             }
             catch (Exception ex)
             {

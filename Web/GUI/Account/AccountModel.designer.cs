@@ -252,7 +252,6 @@ namespace Web.GUI.Account
             // 
             // AccountModel
             // 
-            this.Load += new System.EventHandler(this.AccountModel_Load);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
             this.panelCommands.ResumeLayout(false);

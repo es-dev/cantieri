@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.Azienda
@@ -24,7 +25,7 @@ namespace Web.GUI.Azienda
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.AziendaDto)model;
+                    var obj = (AziendaDto)model;
                     infoSubtitle.Text = obj.Codice + " - " + obj.RagioneSociale;
                     infoSubtitleImage.Image = "Images.dashboard.azienda.png";
                     infoTitle.Text = (obj.Id != 0 ? "AZIENDA " + obj.RagioneSociale : "NUOVA AZIENDA");
@@ -42,7 +43,7 @@ namespace Web.GUI.Azienda
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.AziendaDto)model;
+                    var obj = (AziendaDto)model;
                     editCodice.Value = obj.Codice;
                     editRagioneSociale.Value = obj.RagioneSociale;
                     editCAP.Value = obj.CAP;

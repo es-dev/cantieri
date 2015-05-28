@@ -39,6 +39,19 @@ namespace Web.GUI.Commessa
                 UtilityError.Write(ex);
             }
         }
+
+        public override void SetNewValue(object model)
+        {
+            try
+            {
+                var azienda = SessionManager.GetAzienda(Context);
+                BindViewAzienda(azienda);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
         
         public override void BindViewTitle(object model)
         {
@@ -46,7 +59,7 @@ namespace Web.GUI.Commessa
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.CommessaDto)model;
+                    var obj = (CommessaDto)model;
                     infoSubtitle.Text = obj.Codice + " - " + obj.Denominazione;
                     infoSubtitleImage.Image = "Images.dashboard.commessa.png";
                     infoTitle.Text = (obj.Id!=0? "COMMESSA " + obj.Codice + " - " + obj.Denominazione:"NUOVA COMMESSA");
@@ -64,7 +77,7 @@ namespace Web.GUI.Commessa
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.CommessaDto)model;
+                    var obj = (CommessaDto)model;
                     editDenominazione.Value = obj.Denominazione;
                     editCodice.Value = obj.Codice;
                     editCAP.Value = obj.CAP;
@@ -283,8 +296,7 @@ namespace Web.GUI.Commessa
             try
             {
                 var azienda = (AziendaDto)model;
-                if (azienda != null)
-                    editAzienda.Value = azienda.RagioneSociale;
+                BindViewAzienda(azienda);
             }
             catch (Exception ex)
             {

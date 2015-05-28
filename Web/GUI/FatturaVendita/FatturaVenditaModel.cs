@@ -66,7 +66,8 @@ namespace Web.GUI.FatturaVendita
                     infoSubtitle.Text = BusinessLogic.Fattura.GetCodifica(obj);
                     infoSubtitleImage.Image = "Images.dashboard.fatturavendita.png";
                     var committente = obj.Committente;
-                    infoTitle.Text = (obj.Id!=0? "FATTURA DI VENDITA " + obj.Numero + " - " + committente.RagioneSociale:"NUOVA FATTURA DI VENDITA");
+                    var anagraficaCommittente = committente.AnagraficaCommittente;
+                    infoTitle.Text = (obj.Id != 0 ? "FATTURA DI VENDITA " + obj.Numero + " - " + anagraficaCommittente.RagioneSociale : "NUOVA FATTURA DI VENDITA");
                 }
             }
             catch (Exception ex)
@@ -120,7 +121,7 @@ namespace Web.GUI.FatturaVendita
             try
             {
                 editCommittente.Model = committente;
-                editCommittente.Value = (committente != null ? committente.Codice + " - " + committente.RagioneSociale : null);
+                editCommittente.Value = (committente != null ? committente.AnagraficaCommittente.Codice + " - " + committente.AnagraficaCommittente.RagioneSociale : null);
             }
             catch (Exception ex)
             {
@@ -215,8 +216,7 @@ namespace Web.GUI.FatturaVendita
             try
             {
                 var committente = (WcfService.Dto.CommittenteDto)model;
-                if (committente != null)
-                    editCommittente.Value = committente.Codice + " - " + committente.RagioneSociale;
+                BindViewCommittente(committente);
             }
             catch (Exception ex)
             {
@@ -287,32 +287,13 @@ namespace Web.GUI.FatturaVendita
                 UtilityError.Write(ex);
             }
 
-        }
+        }       
 
-        private void FatturaVenditaModel_Load(object sender, EventArgs e)
+        public override void SetNewValue(object model)
         {
             try
             {
-                var obj = (FatturaVenditaDto)Model;
-                if (obj != null && obj.Id == 0)
-                    SetNewValue();
-
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void SetNewValue()
-        {
-            try
-            {
-                if (committente != null)
-                {
-                    editCommittente.Model = committente;
-                    editCommittente.Value = committente.Codice + " - " + committente.RagioneSociale;
-                }
+                BindViewCommittente(committente);
             }
             catch (Exception ex)
             {

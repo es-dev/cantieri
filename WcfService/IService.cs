@@ -70,6 +70,10 @@ namespace WcfService
 
         [OperationContract]
         Dto.AccountDto ReadAccount(object id);
+
+        [OperationContract]
+        Dto.AccountDto AuthenticateAccount(Dto.AccountDto account);
+
         #endregion
         #endregion
 
@@ -562,7 +566,10 @@ namespace WcfService
         Dto.AnagraficaFornitoreDto ReadAnagraficaFornitore(object id);
 
         [OperationContract]
-        Dto.AnagraficaFornitoreDto ReadAnagraficaFornitore(string codice);
+        Dto.AnagraficaFornitoreDto ReadAnagraficaFornitore(Dto.FornitoreDto fornitore);
+        
+        [OperationContract]
+        Dto.AnagraficaFornitoreDto ReadAnagraficaFornitore(Dto.PagamentoUnificatoDto pagamentoUnificato);
 
         #endregion
         #endregion
@@ -596,8 +603,7 @@ namespace WcfService
         Dto.AnagraficaCommittenteDto ReadAnagraficaCommittente(object id);
 
         [OperationContract]
-        Dto.AnagraficaCommittenteDto ReadAnagraficaCommittente(string codice);
-
+        Dto.AnagraficaCommittenteDto ReadAnagraficaCommittente(Dto.CommittenteDto committente);
         #endregion
         #endregion
 

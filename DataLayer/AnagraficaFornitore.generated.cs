@@ -245,6 +245,33 @@ namespace DataLayer
 			}
 		}
 		
+		private IList<Fornitore> _fornitores = new List<Fornitore>();
+		public virtual IList<Fornitore> Fornitores
+		{
+			get
+			{
+				return this._fornitores;
+			}
+		}
+		
+		private IList<ReportJob> _reportJobs = new List<ReportJob>();
+		public virtual IList<ReportJob> ReportJobs
+		{
+			get
+			{
+				return this._reportJobs;
+			}
+		}
+		
+		private IList<PagamentoUnificato> _pagamentoUnificatos = new List<PagamentoUnificato>();
+		public virtual IList<PagamentoUnificato> PagamentoUnificatos
+		{
+			get
+			{
+				return this._pagamentoUnificatos;
+			}
+		}
+		
 	}
 }
 #pragma warning restore 1591

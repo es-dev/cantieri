@@ -20,7 +20,7 @@ namespace BusinessLogic
                 if (fornitori != null && anagraficaFornitore != null)
                 {
                     var validated = new UtilityValidation.ValidationState();
-                    var exist = ((from q in fornitori where q.Id != fornitore.Id && q.Codice == anagraficaFornitore.Codice select q).Count() >= 1);
+                    var exist = ((from q in fornitori where q.Id != fornitore.Id && q.AnagraficaFornitoreId == anagraficaFornitore.Id select q).Count() >= 1);
                     validated.State = !exist;
                     if(exist)
                         validated.Message = "Il fornitore selezionato " + anagraficaFornitore.RagioneSociale + " è già presente nella commessa " + commessa.Codice + " - " + commessa.Denominazione;
@@ -42,7 +42,7 @@ namespace BusinessLogic
                 if (committenti != null && anagraficaCommittente != null)
                 {
                     var validated = new UtilityValidation.ValidationState();
-                    var exist = ((from q in committenti where q.Id != committente.Id && q.Codice == anagraficaCommittente.Codice select q).Count() >= 1);
+                    var exist = ((from q in committenti where q.Id != committente.Id && q.AnagraficaCommittenteId == anagraficaCommittente.Id select q).Count() >= 1);
                     validated.State = !exist;
                     if (exist)
                         validated.Message = "Il committente selezionato " + anagraficaCommittente.RagioneSociale + " è già presente nella commessa " + commessa.Codice + " - " + commessa.Denominazione;

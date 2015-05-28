@@ -49,7 +49,8 @@ namespace Web.GUI.NotaCredito
         {
             try
             {
-                infoFornitore.Text = (fornitore!=null? fornitore.RagioneSociale:"N/D");
+                var anagraficaFornitore = fornitore.AnagraficaFornitore;
+                infoFornitore.Text = (fornitore!=null? anagraficaFornitore.RagioneSociale:"N/D");
             }
             catch (Exception ex)
             {

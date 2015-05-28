@@ -130,32 +130,13 @@ namespace Web.GUI.AnagraficaFornitore
             return null;
         }
 
-        internal AnagraficaFornitoreDto ReadAnagraficaFornitore(string codice)
-        {
-            try
-            {
-                var wcf = new WcfService.Service();
-                var obj = wcf.ReadAnagraficaFornitore(codice);
-                return obj;
-
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
         public AnagraficaFornitoreDto ReadAnagraficaFornitore(FornitoreDto fornitore)
         {
             try
             {
-                if (fornitore != null)
-                {
-                    var codiceFornitore = fornitore.Codice;
-                    var anagraficaFornitore = ReadAnagraficaFornitore(codiceFornitore);
-                    return anagraficaFornitore;
-                }
+                var wcf = new WcfService.Service();
+                var anagraficaFornitore = wcf.ReadAnagraficaFornitore(fornitore);
+                return anagraficaFornitore;
             }
             catch (Exception ex)
             {
@@ -168,12 +149,9 @@ namespace Web.GUI.AnagraficaFornitore
         {
             try
             {
-                if(pagamentoUnificato!=null)
-                {
-                    var codiceFornitore = pagamentoUnificato.CodiceFornitore;
-                    var anagraficaFornitore = ReadAnagraficaFornitore(codiceFornitore);
-                    return anagraficaFornitore;
-                }
+                var wcf = new WcfService.Service();
+                var anagraficaFornitore = wcf.ReadAnagraficaFornitore(pagamentoUnificato);
+                return anagraficaFornitore;
             }
             catch (Exception ex)
             {

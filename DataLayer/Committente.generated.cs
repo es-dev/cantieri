@@ -37,162 +37,6 @@ namespace DataLayer
 			}
 		}
 		
-		private string _ragioneSociale;
-		public virtual string RagioneSociale
-		{
-			get
-			{
-				return this._ragioneSociale;
-			}
-			set
-			{
-				this._ragioneSociale = value;
-			}
-		}
-		
-		private string _indirizzo;
-		public virtual string Indirizzo
-		{
-			get
-			{
-				return this._indirizzo;
-			}
-			set
-			{
-				this._indirizzo = value;
-			}
-		}
-		
-		private string _cAP;
-		public virtual string CAP
-		{
-			get
-			{
-				return this._cAP;
-			}
-			set
-			{
-				this._cAP = value;
-			}
-		}
-		
-		private string _comune;
-		public virtual string Comune
-		{
-			get
-			{
-				return this._comune;
-			}
-			set
-			{
-				this._comune = value;
-			}
-		}
-		
-		private string _provincia;
-		public virtual string Provincia
-		{
-			get
-			{
-				return this._provincia;
-			}
-			set
-			{
-				this._provincia = value;
-			}
-		}
-		
-		private string _telefono;
-		public virtual string Telefono
-		{
-			get
-			{
-				return this._telefono;
-			}
-			set
-			{
-				this._telefono = value;
-			}
-		}
-		
-		private string _mobile;
-		public virtual string Mobile
-		{
-			get
-			{
-				return this._mobile;
-			}
-			set
-			{
-				this._mobile = value;
-			}
-		}
-		
-		private string _fax;
-		public virtual string Fax
-		{
-			get
-			{
-				return this._fax;
-			}
-			set
-			{
-				this._fax = value;
-			}
-		}
-		
-		private string _email;
-		public virtual string Email
-		{
-			get
-			{
-				return this._email;
-			}
-			set
-			{
-				this._email = value;
-			}
-		}
-		
-		private string _partitaIva;
-		public virtual string PartitaIva
-		{
-			get
-			{
-				return this._partitaIva;
-			}
-			set
-			{
-				this._partitaIva = value;
-			}
-		}
-		
-		private string _codice;
-		public virtual string Codice
-		{
-			get
-			{
-				return this._codice;
-			}
-			set
-			{
-				this._codice = value;
-			}
-		}
-		
-		private string _codiceCatastale;
-		public virtual string CodiceCatastale
-		{
-			get
-			{
-				return this._codiceCatastale;
-			}
-			set
-			{
-				this._codiceCatastale = value;
-			}
-		}
-		
 		private decimal? _totaleFattureVendita;
 		public virtual decimal? TotaleFattureVendita
 		{
@@ -232,19 +76,6 @@ namespace DataLayer
 			}
 		}
 		
-		private string _localita;
-		public virtual string Localita
-		{
-			get
-			{
-				return this._localita;
-			}
-			set
-			{
-				this._localita = value;
-			}
-		}
-		
 		private string _note;
 		public virtual string Note
 		{
@@ -271,6 +102,19 @@ namespace DataLayer
 			}
 		}
 		
+		private int _anagraficaCommittenteId;
+		public virtual int AnagraficaCommittenteId
+		{
+			get
+			{
+				return this._anagraficaCommittenteId;
+			}
+			set
+			{
+				this._anagraficaCommittenteId = value;
+			}
+		}
+		
 		private Commessa _commessa;
 		public virtual Commessa Commessa
 		{
@@ -281,6 +125,19 @@ namespace DataLayer
 			set
 			{
 				this._commessa = value;
+			}
+		}
+		
+		private AnagraficaCommittente _anagraficaCommittente;
+		public virtual AnagraficaCommittente AnagraficaCommittente
+		{
+			get
+			{
+				return this._anagraficaCommittente;
+			}
+			set
+			{
+				this._anagraficaCommittente = value;
 			}
 		}
 		

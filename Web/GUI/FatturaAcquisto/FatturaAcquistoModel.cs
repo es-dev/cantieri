@@ -67,7 +67,7 @@ namespace Web.GUI.FatturaAcquisto
                     infoSubtitle.Text = BusinessLogic.Fattura.GetCodifica(obj);
                     infoSubtitleImage.Image = "Images.dashboard.fatturaacquisto.png";
                     var fornitore = obj.Fornitore;
-                    infoTitle.Text = (obj.Id!=0?"FATTURA DI ACQUISTO N." + obj.Numero + " - " + fornitore.RagioneSociale: "NUOVA FATTURA DI ACQUISTO");
+                    infoTitle.Text = (obj.Id!=0?"FATTURA DI ACQUISTO N." + obj.Numero + " - " + fornitore.AnagraficaFornitore.RagioneSociale: "NUOVA FATTURA DI ACQUISTO");
                 }
             }
             catch (Exception ex)
@@ -136,7 +136,7 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 editFornitore.Model = fornitore;
-                editFornitore.Value = (fornitore!=null?fornitore.Codice + " - " + fornitore.RagioneSociale:null);
+                editFornitore.Value = (fornitore != null ? fornitore.AnagraficaFornitore.Codice + " - " + fornitore.AnagraficaFornitore.RagioneSociale : null);
             }
             catch (Exception ex)
             {
@@ -251,8 +251,7 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 var fornitore = (WcfService.Dto.FornitoreDto)model;
-                if (fornitore != null)
-                    editFornitore.Value =  fornitore.Codice+ " - " +fornitore.RagioneSociale;
+                BindViewFornitore(fornitore);
             }
             catch (Exception ex)
             {
@@ -279,8 +278,7 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 var centroCosto = (WcfService.Dto.CentroCostoDto)model;
-                if (centroCosto != null)
-                    editCentroCosto.Value = centroCosto.Codice + " - " + centroCosto.Denominazione;
+                BindViewCentroCosto(centroCosto);
             }
             catch (Exception ex)
             {
@@ -353,29 +351,11 @@ namespace Web.GUI.FatturaAcquisto
             }
         }
 
-        private void FatturaAcquistoModel_Load(object sender, EventArgs e)
+        public override void SetNewValue(object model)
         {
             try
             {
-                var obj = (FatturaAcquistoDto)Model;
-                if (obj != null && obj.Id == 0)
-                    SetNewValue();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void SetNewValue()
-        {
-            try
-            {
-                if (fornitore != null)
-                {
-                    editFornitore.Model = fornitore;
-                    editFornitore.Value = fornitore.Codice + " - " + fornitore.RagioneSociale;
-                }
+                BindViewFornitore(fornitore);
             }
             catch (Exception ex)
             {

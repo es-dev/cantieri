@@ -68,7 +68,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
         {
             try
             {
-                var obj = (DataLayer.Pagamento)model;
+                var obj = (DataLayer.PagamentoUnificatoFatturaAcquisto)model;
 
                 //2° filtro
                 var filterPagamentoUnificato = true;
@@ -112,14 +112,8 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             try
             {
                 var fatturaAcquisto = (FatturaAcquistoDto)model;
-                if (fatturaAcquisto != null)
-                {
-                    var viewModelFatturaAcquisto = new FatturaAcquisto.FatturaAcquistoViewModel();
-                    var fatturaAcquistoId = fatturaAcquisto.Id;
-                    var _fatturaAcquisto = (FatturaAcquistoDto)viewModelFatturaAcquisto.Read(fatturaAcquistoId);
-                    var fornitore = _fatturaAcquisto.Fornitore;
-                    editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false) : null) + " - " + fornitore.RagioneSociale;
-                }
+                BindViewFatturaAcquisto(fatturaAcquisto);
+                
             }
             catch (Exception ex)
             {
@@ -127,6 +121,23 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             }
 
         }
+
+        private void BindViewFatturaAcquisto(FatturaAcquistoDto fatturaAcquisto)
+        {
+            try
+            {
+                var viewModel = new Fornitore.FornitoreViewModel();
+                var fornitore = viewModel.ReadFornitore(fatturaAcquisto);
+                editFatturaAcquisto.Model = fatturaAcquisto;
+                editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false) : null) + " - " +
+                    (fornitore != null ? fornitore.AnagraficaFornitore.RagioneSociale : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+          
 
         private void editPagamentoUnificato_ComboClick()
         {
@@ -147,15 +158,26 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             try
             {
                 var pagamentoUnificato = (PagamentoUnificatoDto)model;
-                if (pagamentoUnificato != null)
-                {
-                    editPagamentoUnificato.Value = pagamentoUnificato.Codice + "/" + pagamentoUnificato.Data.Value.Year.ToString();
-                }
+                BindViewPagamentoUnificato(pagamentoUnificato);
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void BindViewPagamentoUnificato(PagamentoUnificatoDto pagamentoUnificato)
+        {
+            try
+            {
+                editPagamentoUnificato.Model = pagamentoUnificato;
+                editPagamentoUnificato.Value = (pagamentoUnificato != null ? pagamentoUnificato.Codice + "/" + pagamentoUnificato.Data.Value.Year.ToString() : null);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
         }
     }
 }

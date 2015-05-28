@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Text;
 using WcfService.Dto;
 using Web.Code;
+using System.Linq;
 
 namespace Web.GUI.Committente
 {
@@ -42,10 +43,14 @@ namespace Web.GUI.Committente
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.CommittenteDto)model;
-                    infoSubtitle.Text = obj.Codice + " - " + obj.RagioneSociale;
                     infoSubtitleImage.Image = "Images.dashboard.committente.png";
                     var commessa = obj.Commessa;
-                    infoTitle.Text = (obj.Id!=0? "COMMITTENTE " + obj.RagioneSociale + " - COMMESSA " + commessa.Codice: "NUOVO COMMITTENTE");
+                    var anagraficaCommittente = obj.AnagraficaCommittente;
+                    if (anagraficaCommittente != null)
+                    {
+                        infoSubtitle.Text = anagraficaCommittente.Codice + " - " + anagraficaCommittente.RagioneSociale;
+                        infoTitle.Text = (obj.Id != 0 ? "COMMITTENTE " + anagraficaCommittente.RagioneSociale + " - COMMESSA " + commessa.Codice : "NUOVO COMMITTENTE");
+                    }
                 }
             }
             catch (Exception ex)
@@ -61,23 +66,12 @@ namespace Web.GUI.Committente
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.CommittenteDto)model;
-                    editRagioneSociale.Value = obj.RagioneSociale;
-                    editIndirizzo.Value = obj.Indirizzo;
-                    editCAP.Value = obj.CAP;
-                    editComune.Value = new Countries.City(obj.Comune, obj.CodiceCatastale, obj.Provincia);
-                    editTelefono.Value = obj.Telefono;
-                    editFAX.Value = obj.Fax;
-                    editMobile.Value = obj.Mobile;
-                    editEmail.Value = obj.Email;
-                    editLocalita.Value = obj.Localita;
-                    editPartitaIVA.Value = obj.PartitaIva;
-                    editNote.Value = obj.Note;
-                    editCodiceCommittente.Value = obj.Codice;
+                    editNote.Value = obj.Note;                                      
 
-                   
+                    BindViewAnagraficaCommittente(obj.AnagraficaCommittente);
                     BindViewCommessa(obj.Commessa);
                     BindViewFattureVendita(obj.FatturaVenditas);
-                    BindViewIncassi(obj);
+                    BindViewIncassi(obj.FatturaVenditas);
                     BindViewTotali(obj);
                 }
             }
@@ -87,13 +81,12 @@ namespace Web.GUI.Committente
             }
         }
 
-        private void BindViewIncassi(CommittenteDto committente)
+        private void BindViewIncassi(IList<FatturaVenditaDto> fattureVendita)
         {
             try
             {
-                var viewModel = new Incasso.IncassoViewModel();
-                viewModel.Committente = committente;
-                btnIncassi.TextButton = "Incassi (" + viewModel.Count() + ")";
+                var count = (from q in fattureVendita select q.Incassos.Count).Sum();
+                btnIncassi.TextButton = "Incassi (" + count + ")";
             }
             catch (Exception ex)
             {
@@ -126,6 +119,35 @@ namespace Web.GUI.Committente
             }
         }
 
+        private void BindViewAnagraficaCommittente(AnagraficaCommittenteDto anagraficaCommittente)
+        {
+            try
+            {
+                editCodiceCommittente.Model = anagraficaCommittente;
+                if (anagraficaCommittente != null)
+                {
+                    editCodiceCommittente.Value = anagraficaCommittente.Codice;
+                    editCAP.Value = anagraficaCommittente.CAP;
+                    editComune.Value = new Library.Controls.Countries.City(anagraficaCommittente.Comune, anagraficaCommittente.CodiceCatastale, anagraficaCommittente.Provincia);
+                    editEmail.Value = anagraficaCommittente.Email;
+                    editFAX.Value = anagraficaCommittente.Fax;
+                    editIndirizzo.Value = anagraficaCommittente.Indirizzo;
+                    editMobile.Value = anagraficaCommittente.Mobile;
+                    editPartitaIVA.Value = anagraficaCommittente.PartitaIva;
+                    editRagioneSociale.Value = anagraficaCommittente.RagioneSociale;
+                    editTelefono.Value = anagraficaCommittente.Telefono;
+                    editLocalita.Value = anagraficaCommittente.Localita;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
+        }
+
+
         public override void BindModel(object model)
         {
             try
@@ -133,20 +155,7 @@ namespace Web.GUI.Committente
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.CommittenteDto)model;
-                    obj.RagioneSociale = editRagioneSociale.Value;
-                    obj.Indirizzo = editIndirizzo.Value;
-                    obj.CAP = editCAP.Value;
-                    obj.Comune = editComune.Value.Description;
-                    obj.CodiceCatastale = editComune.Value.Code;
-                    obj.Provincia = editComune.Value.County;
-                    obj.Localita = editLocalita.Value;
-                    obj.Telefono = editTelefono.Value;
-                    obj.Fax = editFAX.Value;
-                    obj.Mobile = editMobile.Value;
-                    obj.Email = editEmail.Value;
-                    obj.PartitaIva = editPartitaIVA.Value;
                     obj.Note = editNote.Value;
-                    obj.Codice = editCodiceCommittente.Value;
                     obj.TotaleFattureVendita = editTotaleFattureVendita.Value;
                     obj.Stato = editStato.Value;
                     obj.TotaleIncassi = editTotaleIncassi.Value;
@@ -200,15 +209,11 @@ namespace Web.GUI.Committente
             }
         }
 
-        private void SetNewValue()
+        public override void SetNewValue(object model)
         {
             try
             {
-                if (commessa != null)
-                {
-                    editCommessa.Model = commessa;
-                    editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;
-                }
+                BindViewCommessa(commessa);
             }
             catch (Exception ex)
             {
@@ -224,9 +229,13 @@ namespace Web.GUI.Committente
                 if (saved)
                 {
                     var obj = (CommittenteDto)Model;
-                    var space = new FatturaVendita.FatturaVenditaView(obj);
-                    space.Title = "FATTURE DI VENDITA - " + obj.RagioneSociale;
-                    Workspace.AddSpace(space);
+                    var anagraficaCommittente = obj.AnagraficaCommittente;
+                    if (anagraficaCommittente != null)
+                    {
+                        var space = new FatturaVendita.FatturaVenditaView(obj);
+                        space.Title = "FATTURE DI VENDITA - " + anagraficaCommittente.RagioneSociale;
+                        Workspace.AddSpace(space);
+                    }
                 }
             }
             catch (Exception ex)
@@ -243,9 +252,13 @@ namespace Web.GUI.Committente
                 if (saved)
                 {
                     var obj = (CommittenteDto)Model;
-                    var space = new Incasso.IncassoView(obj);
-                    space.Title = "INCASSI - " + obj.RagioneSociale;
-                    Workspace.AddSpace(space);
+                    var anagraficaCommittente = obj.AnagraficaCommittente;
+                    if (anagraficaCommittente != null)
+                    {
+                        var space = new Incasso.IncassoView(obj);
+                        space.Title = "INCASSI - " + anagraficaCommittente.RagioneSociale;
+                        Workspace.AddSpace(space);
+                    }
                 }
             }
             catch (Exception ex)
@@ -254,20 +267,7 @@ namespace Web.GUI.Committente
             }
         }
 
-        private void CommittenteModel_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                var obj = (CommittenteDto)Model;
-                if (obj != null && obj.Id == 0)
-                    SetNewValue();
-
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
+       
 
         private void editCommessa_ComboClick()
         {
@@ -315,19 +315,7 @@ namespace Web.GUI.Committente
             try
             {
                 var anagraficaCommittente = (WcfService.Dto.AnagraficaCommittenteDto)model;
-                if (anagraficaCommittente != null)
-                {
-                    editCodiceCommittente.Value = anagraficaCommittente.Codice;
-                    editCAP.Value = anagraficaCommittente.CAP;
-                    editComune.Value = new Library.Controls.Countries.City(anagraficaCommittente.Comune, anagraficaCommittente.CodiceCatastale, anagraficaCommittente.Provincia);
-                    editEmail.Value = anagraficaCommittente.Email;
-                    editFAX.Value = anagraficaCommittente.Fax;
-                    editIndirizzo.Value = anagraficaCommittente.Indirizzo;
-                    editMobile.Value = anagraficaCommittente.Mobile;
-                    editPartitaIVA.Value = anagraficaCommittente.PartitaIva;
-                    editRagioneSociale.Value = anagraficaCommittente.RagioneSociale;
-                    editTelefono.Value = anagraficaCommittente.Telefono;
-                }
+                BindViewAnagraficaCommittente(anagraficaCommittente);
             }
             catch (Exception ex)
             {
@@ -335,6 +323,7 @@ namespace Web.GUI.Committente
             }
         }
 
+       
         private void btnCalcoloTotali_Click(object sender, EventArgs e)
         {
             try
@@ -362,9 +351,7 @@ namespace Web.GUI.Committente
                 var viewModelCommittente = new Committente.CommittenteViewModel();
                 var commessa = (CommessaDto)editCommessa.Model;
                 var committenti = viewModelCommittente.ReadCommittenti(commessa);
-                var codiceCommittente = editCodiceCommittente.Value;
-                var viewModelAnagraficaCommittente = new AnagraficaCommittente.AnagraficaCommittenteViewModel();
-                var anagraficaCommittente = viewModelAnagraficaCommittente.ReadAnagraficaCommittente(codiceCommittente);
+                var anagraficaCommittente = obj.AnagraficaCommittente; 
                 var validateCommittente = BusinessLogic.Diagnostico.ValidateCommittente(obj, committenti, anagraficaCommittente, commessa);
                 if (validateCommittente != null)
                 {

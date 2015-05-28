@@ -50,32 +50,6 @@ namespace DataLayer
 			}
 		}
 		
-		private string _codice;
-		public virtual string Codice
-		{
-			get
-			{
-				return this._codice;
-			}
-			set
-			{
-				this._codice = value;
-			}
-		}
-		
-		private string _descrizione;
-		public virtual string Descrizione
-		{
-			get
-			{
-				return this._descrizione;
-			}
-			set
-			{
-				this._descrizione = value;
-			}
-		}
-		
 		private decimal? _quantita;
 		public virtual decimal? Quantita
 		{
@@ -180,6 +154,19 @@ namespace DataLayer
 			}
 		}
 		
+		private int _anagraficaArticoloId;
+		public virtual int AnagraficaArticoloId
+		{
+			get
+			{
+				return this._anagraficaArticoloId;
+			}
+			set
+			{
+				this._anagraficaArticoloId = value;
+			}
+		}
+		
 		private FatturaAcquisto _fatturaAcquisto;
 		public virtual FatturaAcquisto FatturaAcquisto
 		{
@@ -190,6 +177,19 @@ namespace DataLayer
 			set
 			{
 				this._fatturaAcquisto = value;
+			}
+		}
+		
+		private AnagraficaArticolo _anagraficaArticolo;
+		public virtual AnagraficaArticolo AnagraficaArticolo
+		{
+			get
+			{
+				return this._anagraficaArticolo;
+			}
+			set
+			{
+				this._anagraficaArticolo = value;
 			}
 		}
 		

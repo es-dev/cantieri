@@ -36,7 +36,7 @@ namespace Web.GUI.PagamentoUnificato
                     infoCodice.Text = "PU-"+codice;
                     infoImporto.Text = "Totale di " + importo;
 
-                    BindViewFornitore(obj);
+                    BindViewAnagraficaFornitore(obj.AnagraficaFornitore);
                 }
             }
             catch (Exception ex)
@@ -45,17 +45,11 @@ namespace Web.GUI.PagamentoUnificato
             }
         }
 
-        private void BindViewFornitore(PagamentoUnificatoDto obj)
+        private void BindViewAnagraficaFornitore(AnagraficaFornitoreDto anagraficaFornitore)
         {
             try
             {
-                if (obj != null)
-                {
-                    var codiceFornitore = obj.CodiceFornitore;
-                    var viewModel = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
-                    var anagraficaFornitore = viewModel.ReadAnagraficaFornitore(codiceFornitore);
-                    infoFornitore.Text = (anagraficaFornitore != null ? anagraficaFornitore.RagioneSociale : "N/D");
-                }
+                infoFornitore.Text = (anagraficaFornitore != null ? anagraficaFornitore.RagioneSociale : "N/D");
             }
             catch (Exception ex)
             {

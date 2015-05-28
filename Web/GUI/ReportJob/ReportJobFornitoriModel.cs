@@ -22,6 +22,26 @@ namespace Web.GUI.ReportJob
             InitializeComponent();
         }
 
+        public override void SetNewValue(object model)
+        {
+            try
+            {
+                var azienda = SessionManager.GetAzienda(Context);
+                BindViewAzienda(azienda);
+
+                var viewModel = (ReportJobViewModel)ViewModel;
+                var count = viewModel.Count();
+                editCodice.Value = BusinessLogic.ReportJob.GetCodice(count);
+                editDenominazione.Value = BusinessLogic.ReportJob.GetDenominazione(tipoReport);
+                editElaborazione.Value = DateTime.Today;
+                editCreazione.Value = DateTime.Today;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
         public override void BindViewTitle(object model)
         {
             try
@@ -123,19 +143,7 @@ namespace Web.GUI.ReportJob
             }
         }
 
-        private void ReportJobFornitoreModel_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                var obj = (ReportJobDto)Model;
-                if (obj != null && obj.Id == 0)
-                    SetNewValue();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
+       
 
         public override void SetEditing(bool editing, bool deleting)
         {
@@ -150,22 +158,7 @@ namespace Web.GUI.ReportJob
             }
         }
 
-        private void SetNewValue()
-        {
-            try
-            {
-                var viewModel = (ReportJobViewModel)ViewModel;
-                var count = viewModel.Count();
-                editCodice.Value = BusinessLogic.ReportJob.GetCodice(count);
-                editDenominazione.Value = BusinessLogic.ReportJob.GetDenominazione(tipoReport);
-                editElaborazione.Value = DateTime.Today;
-                editCreazione.Value = DateTime.Today;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
+
 
         private void btnStampaReport_Click(object sender, EventArgs e)
         {
@@ -228,8 +221,7 @@ namespace Web.GUI.ReportJob
             try
             {
                 var azienda = (WcfService.Dto.AziendaDto)model;
-                if (azienda != null)
-                    editAzienda.Value = azienda.RagioneSociale;
+                BindViewAzienda(azienda);
             }
             catch (Exception ex)
             {
