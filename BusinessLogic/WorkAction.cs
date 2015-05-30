@@ -55,9 +55,9 @@ namespace BusinessLogic
                 var url = UtilityWeb.GetRootUrl(context);
                 var webclient = new WebClient();
                 webclient.DownloadString(url);
+               
                 var pathRoot = UtilityWeb.GetRootPath(context);
                 //UtilityEmail.Send("pasqualeiaquinta@hotmail.com", "Test WFS - WorkActivity at " + DateTime.Now.ToString(), "Elaborazione flusso di lavoro avviato il " + DateTime.Now.ToString());
-
                 System.IO.File.AppendAllText(pathRoot+@"Resources\test.txt", DateTime.Now.ToString() + " - " + url + Environment.NewLine);
             }
             catch (Exception ex)

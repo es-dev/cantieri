@@ -28,7 +28,6 @@ namespace Web.GUI.Commessa
                 {
                     var obj = (WcfService.Dto.CommessaDto)model;
                     var codice = UtilityValidation.GetStringND(obj.Codice);
-                    var numero = UtilityValidation.GetStringND(obj.Numero);
                     var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
                     var descrizione = UtilityValidation.GetStringND(obj.Descrizione);
                     var scadenza = UtilityValidation.GetDataND(obj.Scadenza);
@@ -38,7 +37,7 @@ namespace Web.GUI.Commessa
                     infoStatoLavori.Text = "Scadenza il " + scadenza;
                     infoImage.Image = "Images.dashboard.commessa.png";
                     infoCodice.Text = "CM-" + codice;
-                    infoDenominazione.Text = numero + " - " + denominazione;
+                    infoDenominazione.Text =  denominazione;
                     infoDescrizione.Text = descrizione;
                     infoProgressBar.Value = (int)percentuale;
                     infoProgress.Text = (int)percentuale + "%";

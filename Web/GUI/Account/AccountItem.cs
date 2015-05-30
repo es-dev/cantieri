@@ -37,7 +37,7 @@ namespace Web.GUI.Account
                     infoCreazione.Text = "Creato il "+ creazione;
                     infoRuolo.Text = ruolo;
                     infoAbilitato.Text = (abilitato?"Abilitato":"Non abilitato");
-                    infoAbilitato.ForeColor = (abilitato ? Color.Blue : Color.Gray);
+                    infoAbilitato.ForeColor = (abilitato ? Color.DarkRed : Color.Gray);
                 }
             }
             catch (Exception ex)

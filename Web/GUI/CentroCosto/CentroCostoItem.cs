@@ -27,13 +27,12 @@ namespace Web.GUI.CentroCosto
                 {
                     var obj = (CentroCostoDto)model;
                     var codice = UtilityValidation.GetStringND(obj.Codice);
-                    var denominazione = UtilityValidation.GetStringND(obj.Denominazione);
                 
                     infoImage.Image = "Images.dashboard.centrocosto.png";
                     infoCodice.Text = "CC-"+codice;
                     infoCodiceCentroCosto.Text = "CENTRO DI COSTO "+ codice;
-                    infoDenominazione.Text = denominazione; 
-
+                    infoDenominazione.Text = obj.Denominazione;
+                    infoNote.Text = obj.Note;
                 }
             }
             catch (Exception ex)

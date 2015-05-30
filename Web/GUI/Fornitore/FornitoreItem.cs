@@ -46,8 +46,8 @@ namespace Web.GUI.Fornitore
                     }
 
                     var commessa = obj.Commessa;
-                    if(commessa!=null)
-                        infoCommesssa.Text = "Commessa " + commessa.Codice + " - " + commessa.Denominazione;
+                    if (commessa != null)
+                        infoCommesssa.Text = "Commessa " + BusinessLogic.Commessa.GetCodifica(commessa);
                 }
             }
             catch (Exception ex)

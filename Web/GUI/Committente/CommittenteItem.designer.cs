@@ -38,11 +38,20 @@ namespace Web.GUI.Committente
             this.infoIncassoTotale = new Gizmox.WebGUI.Forms.Label();
             this.imgStato = new Gizmox.WebGUI.Forms.PictureBox();
             this.infoCommesssa = new Gizmox.WebGUI.Forms.Label();
+            this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
-            this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgStato)).BeginInit();
             this.SuspendLayout();
+            // 
+            // jqContainer
+            // 
+            this.jqContainer.Controls.Add(this.infoRagioneSociale);
+            this.jqContainer.Controls.Add(this.panelLeft);
+            this.jqContainer.Controls.Add(this.infoCommesssa);
+            this.jqContainer.Controls.Add(this.infoIndirizzo);
+            this.jqContainer.Controls.Add(this.imgStato);
+            this.jqContainer.Controls.Add(this.infoIncassoTotale);
             // 
             // infoCodice
             // 
@@ -84,7 +93,7 @@ namespace Web.GUI.Committente
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoIndirizzo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoIndirizzo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoIndirizzo.Location = new System.Drawing.Point(90, 29);
+            this.infoIndirizzo.Location = new System.Drawing.Point(90, 33);
             this.infoIndirizzo.Name = "infoIndirizzo";
             this.infoIndirizzo.Size = new System.Drawing.Size(302, 20);
             this.infoIndirizzo.TabIndex = 1;
@@ -133,7 +142,7 @@ namespace Web.GUI.Committente
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoCommesssa.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoCommesssa.ForeColor = System.Drawing.Color.Black;
-            this.infoCommesssa.Location = new System.Drawing.Point(90, 49);
+            this.infoCommesssa.Location = new System.Drawing.Point(90, 55);
             this.infoCommesssa.Name = "infoCommesssa";
             this.infoCommesssa.Size = new System.Drawing.Size(295, 20);
             this.infoCommesssa.TabIndex = 1;
@@ -141,18 +150,11 @@ namespace Web.GUI.Committente
             // 
             // CommittenteItem
             // 
-            this.jqContainer.Controls.Add(this.infoRagioneSociale);
-            this.jqContainer.Controls.Add(this.panelLeft);
-            this.jqContainer.Controls.Add(this.infoCommesssa);
-            this.jqContainer.Controls.Add(this.infoIndirizzo);
-            this.jqContainer.Controls.Add(this.imgStato);
-            this.jqContainer.Controls.Add(this.infoIncassoTotale);
-            
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Size = new System.Drawing.Size(400, 100);
+            this.jqContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
-            this.jqContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgStato)).EndInit();
             this.ResumeLayout(false);
 

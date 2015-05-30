@@ -46,6 +46,11 @@ namespace Web.GUI.Commessa
             {
                 var azienda = SessionManager.GetAzienda(Context);
                 BindViewAzienda(azienda);
+
+                var viewModel = (CommessaViewModel)ViewModel;
+                var codice = viewModel.Count()+1;
+                editCodice.Value = codice.ToString("00");
+                editCreazione.Value = DateTime.Now;
             }
             catch (Exception ex)
             {
@@ -60,9 +65,10 @@ namespace Web.GUI.Commessa
                 if (model != null)
                 {
                     var obj = (CommessaDto)model;
-                    infoSubtitle.Text = obj.Codice + " - " + obj.Denominazione;
+                    var codifica = BusinessLogic.Commessa.GetCodifica(obj);
+                    infoSubtitle.Text = codifica;
                     infoSubtitleImage.Image = "Images.dashboard.commessa.png";
-                    infoTitle.Text = (obj.Id!=0? "COMMESSA " + obj.Codice + " - " + obj.Denominazione:"NUOVA COMMESSA");
+                    infoTitle.Text = (obj.Id != 0 ? "COMMESSA " + codifica : "NUOVA COMMESSA");
                 }
             }
             catch (Exception ex)
@@ -86,7 +92,6 @@ namespace Web.GUI.Commessa
                     editIndirizzo.Value = obj.Indirizzo;
                     editCreazione.Value = obj.Creazione;
                     editDescrizione.Value = obj.Descrizione;
-                    editNumero.Value = obj.Numero;
                     editRiferimento.Value = obj.Riferimento;
                     editScadenza.Value = obj.Scadenza;
                     editStato.Value = obj.Stato;
@@ -197,7 +202,6 @@ namespace Web.GUI.Commessa
                     obj.Indirizzo = editIndirizzo.Value;
                     obj.Creazione = editCreazione.Value;
                     obj.Descrizione = editDescrizione.Value;
-                    obj.Numero = editNumero.Value;
                     obj.Riferimento = editRiferimento.Value;
                     obj.Scadenza = editScadenza.Value;
                     obj.Stato = editStato.Value;
@@ -229,9 +233,9 @@ namespace Web.GUI.Commessa
             {
                 base.SetEditing(editing, deleting);
                 btnCalcoloAvanzamentoLavori.Enabled = editing;
-                btnCommittenti.Enabled = editing;
-                btnFornitori.Enabled = editing;
-                btnSAL.Enabled = editing;
+                btnCommittenti.Enabled = !editing;
+                btnFornitori.Enabled = !editing;
+                btnSAL.Enabled = !editing;
             }
             catch (Exception ex)
             {
@@ -248,7 +252,7 @@ namespace Web.GUI.Commessa
                 {
                     var obj = (CommessaDto)Model;
                     var space = new Fornitore.FornitoreView(obj);
-                    space.Title = "FORNITORI - COMMESSA " + obj.Denominazione;
+                    space.Title = "FORNITORI COMMESSA " + BusinessLogic.Commessa.GetCodifica(obj);
                     Workspace.AddSpace(space);
                 }
             }
@@ -267,7 +271,26 @@ namespace Web.GUI.Commessa
                 {
                     var obj = (CommessaDto)Model;
                     var space = new Committente.CommittenteView(obj);
-                    space.Title = "COMMITTENTI - COMMESSA " + obj.Denominazione;
+                    space.Title = "COMMITTENTI COMMESSA " + BusinessLogic.Commessa.GetCodifica(obj);
+                    Workspace.AddSpace(space);
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void btnSAL_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool saved = Save();
+                if (saved)
+                {
+                    var obj = (CommessaDto)Model;
+                    var space = new SAL.SALView(obj);
+                    space.Title = "SAL COMMESSSA " + BusinessLogic.Commessa.GetCodifica(obj);
                     Workspace.AddSpace(space);
                 }
             }
@@ -325,24 +348,7 @@ namespace Web.GUI.Commessa
             }
         }
 
-        private void btnSAL_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                bool saved = Save();
-                if (saved)
-                {
-                    var obj = (CommessaDto)Model;
-                    var space = new SAL.SALView(obj);
-                    space.Title = "SAL - COMMESSSA " + obj.Denominazione;
-                    Workspace.AddSpace(space);
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
+       
 
 	}
 }

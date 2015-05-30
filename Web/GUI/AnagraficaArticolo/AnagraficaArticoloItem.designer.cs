@@ -35,10 +35,18 @@ namespace Web.GUI.AnagraficaArticolo
             this.infoImage = new Gizmox.WebGUI.Forms.PictureBox();
             this.infoCodiceArticolo = new Gizmox.WebGUI.Forms.Label();
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
+            this.infoNote = new Gizmox.WebGUI.Forms.Label();
+            this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
-            this.jqContainer.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // jqContainer
+            // 
+            this.jqContainer.Controls.Add(this.infoNote);
+            this.jqContainer.Controls.Add(this.panelLeft);
+            this.jqContainer.Controls.Add(this.infoCodiceArticolo);
+            this.jqContainer.Controls.Add(this.infoDescrizione);
             // 
             // infoDescrizione
             // 
@@ -49,7 +57,7 @@ namespace Web.GUI.AnagraficaArticolo
             this.infoDescrizione.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.infoDescrizione.Location = new System.Drawing.Point(91, 32);
             this.infoDescrizione.Name = "infoDescrizione";
-            this.infoDescrizione.Size = new System.Drawing.Size(305, 55);
+            this.infoDescrizione.Size = new System.Drawing.Size(302, 39);
             this.infoDescrizione.TabIndex = 1;
             this.infoDescrizione.Text = "Descrizione";
             // 
@@ -99,16 +107,27 @@ namespace Web.GUI.AnagraficaArticolo
             this.panelLeft.Size = new System.Drawing.Size(83, 96);
             this.panelLeft.TabIndex = 0;
             // 
+            // infoNote
+            // 
+            this.infoNote.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.infoNote.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoNote.ForeColor = System.Drawing.Color.DarkRed;
+            this.infoNote.Location = new System.Drawing.Point(91, 73);
+            this.infoNote.Name = "infoNote";
+            this.infoNote.Size = new System.Drawing.Size(302, 23);
+            this.infoNote.TabIndex = 1;
+            this.infoNote.Text = "Note";
+            this.infoNote.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // AnagraficaArticoloItem
             // 
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.jqContainer.Controls.Add(this.panelLeft);
-            this.jqContainer.Controls.Add(this.infoCodiceArticolo);
-            this.jqContainer.Controls.Add(this.infoDescrizione);
             this.Size = new System.Drawing.Size(400, 100);
+            this.jqContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
-            this.jqContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
@@ -120,5 +139,6 @@ namespace Web.GUI.AnagraficaArticolo
         private Gizmox.WebGUI.Forms.PictureBox infoImage;
         private Gizmox.WebGUI.Forms.Label infoCodiceArticolo;
         private Gizmox.WebGUI.Forms.Panel panelLeft;
+        private Gizmox.WebGUI.Forms.Label infoNote;
 	}
 }

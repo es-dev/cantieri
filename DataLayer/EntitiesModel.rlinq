@@ -94,9 +94,6 @@
         <orm:field name="_aziendaId" property="AziendaId" uniqueId="fa32b9a6-80e6-4b35-93ee-1bb32367dad1" type="System.Int32">
           <orm:column name="AziendaId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         </orm:field>
-        <orm:field name="_numero" property="Numero" uniqueId="d723c940-39c4-4ab4-ab53-ebb6b782ee55" type="System.String">
-          <orm:column name="Numero" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
-        </orm:field>
         <orm:field name="_creazione" property="Creazione" uniqueId="c65d72af-9d98-4e86-810f-8f1bfbc44008" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="Creazione" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
@@ -1175,7 +1172,6 @@
       </orm:table>
       <orm:table name="Commessa">
         <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
-        <orm:column name="Numero" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
         <orm:column name="Creazione" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         <orm:column name="Scadenza" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
@@ -1576,7 +1572,6 @@
     <DomainClass Id="e3447bbe-e1c7-4842-b2ae-fbc6a53dfdb1" name="Commessa" namespace="DataLayer" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
       <Property Id="5203d0ab-3678-4d1b-bb50-613c9b9c078b" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
       <Property Id="fa32b9a6-80e6-4b35-93ee-1bb32367dad1" name="AziendaId" type="Int32" label="AziendaId : Int32" fieldName="_aziendaId" />
-      <Property Id="d723c940-39c4-4ab4-ab53-ebb6b782ee55" name="Numero" label="Numero : String" fieldName="_numero" />
       <Property Id="c65d72af-9d98-4e86-810f-8f1bfbc44008" name="Creazione" type="DateTime" label="Creazione : DateTime" nullable="true" fieldName="_creazione" />
       <Property Id="4fd69a21-6ecb-4160-ac77-27c2157eafe6" name="Scadenza" type="DateTime" label="Scadenza : DateTime" nullable="true" fieldName="_scadenza" />
       <Property Id="10cf8ede-a672-4cea-b729-db3a000c7732" name="Descrizione" label="Descrizione : String" fieldName="_descrizione" />

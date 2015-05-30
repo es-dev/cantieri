@@ -26,14 +26,17 @@ namespace Web.GUI.Articolo
                 if (model != null)
                 {
                     var obj = (ArticoloDto)model;
+                    var anagraficaArticolo = obj.AnagraficaArticolo;
                     var fatturaAcquisto = obj.FatturaAcquisto;
                     infoImage.Image = "Images.dashboard.articolo.png";
-                    infoCodice.Text = "ART";
                     infoFattura.Text = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
-                  
-                    var anagraficaArticolo = obj.AnagraficaArticolo;
-                    infoDescrizione.Text = (anagraficaArticolo != null ? anagraficaArticolo.Descrizione : null);
-                    infoCodiceArticolo.Text = (anagraficaArticolo!=null? anagraficaArticolo.Codice:null);
+
+                    if (anagraficaArticolo != null)
+                    {
+                        infoDescrizione.Text = (anagraficaArticolo != null ? anagraficaArticolo.Descrizione : null);
+                        infoCodiceArticolo.Text = (anagraficaArticolo != null ? anagraficaArticolo.Codice : null);
+                        infoCodice.Text = "ART-" + anagraficaArticolo.Codice;
+                    }
                 }
             }
             catch (Exception ex)

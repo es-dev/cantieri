@@ -50,19 +50,6 @@ namespace DataLayer
 			}
 		}
 		
-		private string _numero;
-		public virtual string Numero
-		{
-			get
-			{
-				return this._numero;
-			}
-			set
-			{
-				this._numero = value;
-			}
-		}
-		
 		private DateTime? _creazione;
 		public virtual DateTime? Creazione
 		{

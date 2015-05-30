@@ -262,7 +262,6 @@ namespace WcfService.Assemblers
 			
 			entity.Id = dto.Id;
 			entity.AziendaId = dto.AziendaId;
-			entity.Numero = dto.Numero;
 			entity.Creazione = dto.Creazione;
 			entity.Scadenza = dto.Scadenza;
 			entity.Descrizione = dto.Descrizione;
@@ -298,7 +297,6 @@ namespace WcfService.Assemblers
 			dto.DtoKey = KeyUtility.Instance.Convert(key);
 			dto.Id = entity.Id;
 			dto.AziendaId = entity.AziendaId;
-			dto.Numero = entity.Numero;
 			dto.Creazione = entity.Creazione;
 			dto.Scadenza = entity.Scadenza;
 			dto.Descrizione = entity.Descrizione;

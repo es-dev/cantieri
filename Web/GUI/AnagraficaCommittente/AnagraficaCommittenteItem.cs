@@ -36,7 +36,7 @@ namespace Web.GUI.AnagraficaCommittente
                   
                     infoImage.Image = "Images.dashboard.anagraficacommittente.png";
                     infoRagioneSociale.Text = ragioneSociale;
-                    infoCodice.Text = codice;
+                    infoCodice.Text = "CT-"+codice;
                     infoPartitaIVA.Text = "P.IVA " + partitaIVA;
                     infoIndirizzo.Text = indirizzo + " - " + cap + " - " + comune + " (" + provincia + ")";
                     infoTelefono.Text = "Telefono: "+UtilityValidation.GetStringND(obj.Telefono);

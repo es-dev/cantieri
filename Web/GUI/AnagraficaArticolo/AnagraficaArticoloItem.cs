@@ -29,9 +29,10 @@ namespace Web.GUI.AnagraficaArticolo
                     var codice = UtilityValidation.GetStringND(obj.Codice);
 
                     infoImage.Image = "Images.dashboard.anagraficaarticolo.png";
-                    infoCodice.Text = "CA";
+                    infoCodice.Text = "ART-"+codice;
                     infoCodiceArticolo.Text = "CODICE ARTICOLO: " + codice;
                     infoDescrizione.Text = obj.Descrizione;
+                    infoNote.Text = obj.Note;
                 }
             }
             catch (Exception ex)

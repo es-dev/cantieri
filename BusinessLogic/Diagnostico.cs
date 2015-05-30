@@ -12,20 +12,23 @@ namespace BusinessLogic
     public class Diagnostico
     {
 
-        public static UtilityValidation.ValidationState ValidateFornitore(FornitoreDto fornitore, IEnumerable<FornitoreDto> fornitori, AnagraficaFornitoreDto anagraficaFornitore, 
-            CommessaDto commessa)
+        public static UtilityValidation.ValidationState ValidateFornitore(FornitoreDto fornitore, AnagraficaFornitoreDto anagraficaFornitore, CommessaDto commessa)
         {
             try
             {
-                if (fornitori != null && anagraficaFornitore != null)
+                var validation = new UtilityValidation.ValidationState();              
+                if (fornitore!=null && commessa != null && anagraficaFornitore != null)
                 {
-                    var validated = new UtilityValidation.ValidationState();
-                    var exist = ((from q in fornitori where q.Id != fornitore.Id && q.AnagraficaFornitoreId == anagraficaFornitore.Id select q).Count() >= 1);
-                    validated.State = !exist;
-                    if(exist)
-                        validated.Message = "Il fornitore selezionato " + anagraficaFornitore.RagioneSociale + " è già presente nella commessa " + commessa.Codice + " - " + commessa.Denominazione;
-                    return validated;
+                    var fornitori = commessa.Fornitores;
+                    if (fornitori != null)
+                    {
+                        var exist = ((from q in fornitori where q.Id != fornitore.Id && q.AnagraficaFornitoreId == anagraficaFornitore.Id select q).Count() >= 1);
+                        validation.State = !exist;
+                        if (exist)
+                            validation.Message = "Il fornitore selezionato " + anagraficaFornitore.RagioneSociale + " è già presente nella commessa " + BusinessLogic.Commessa.GetCodifica(commessa);
+                    }
                 }
+                return validation;
             }
             catch (Exception ex)
             {
@@ -34,20 +37,23 @@ namespace BusinessLogic
             return null;
         }
 
-        public static UtilityValidation.ValidationState ValidateCommittente(CommittenteDto committente, IEnumerable<CommittenteDto> committenti, AnagraficaCommittenteDto anagraficaCommittente,
-            CommessaDto commessa)
+        public static UtilityValidation.ValidationState ValidateCommittente(CommittenteDto committente, AnagraficaCommittenteDto anagraficaCommittente, CommessaDto commessa)
         {
             try
             {
-                if (committenti != null && anagraficaCommittente != null)
+                var validation = new UtilityValidation.ValidationState();
+                if (committente != null && commessa != null && anagraficaCommittente != null)
                 {
-                    var validated = new UtilityValidation.ValidationState();
-                    var exist = ((from q in committenti where q.Id != committente.Id && q.AnagraficaCommittenteId == anagraficaCommittente.Id select q).Count() >= 1);
-                    validated.State = !exist;
-                    if (exist)
-                        validated.Message = "Il committente selezionato " + anagraficaCommittente.RagioneSociale + " è già presente nella commessa " + commessa.Codice + " - " + commessa.Denominazione;
-                    return validated;
+                    var committenti = commessa.Committentes;
+                    if (committenti != null)
+                    {
+                        var exist = ((from q in committenti where q.Id != committente.Id && q.AnagraficaCommittenteId == anagraficaCommittente.Id select q).Count() >= 1);
+                        validation.State = !exist;
+                        if (exist)
+                            validation.Message = "Il committente selezionato " + anagraficaCommittente.RagioneSociale + " è già presente nella commessa " + BusinessLogic.Commessa.GetCodifica(commessa);
+                    }
                 }
+                return validation;
             }
             catch (Exception ex)
             {

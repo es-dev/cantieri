@@ -494,7 +494,7 @@ namespace WcfService
                 if (search != null && search.Length > 0)
                     commesse = (from q in commesse
                                 where q.Codice.StartsWith(search) || q.Denominazione.Contains(search) || q.Comune.StartsWith(search) ||
-                                    q.Descrizione.Contains(search) || q.Indirizzo.Contains(search) || q.Numero.StartsWith(search) || q.Provincia.StartsWith(search) ||
+                                    q.Descrizione.Contains(search) || q.Indirizzo.Contains(search) ||q.Provincia.StartsWith(search) ||
                                     q.Riferimento.Contains(search) || q.Stato.StartsWith(search)
                                 select q);
 
@@ -3469,7 +3469,7 @@ namespace WcfService
             try
             {
                 var ef = new DataLayer.EntitiesModel();
-                var anagraficaArticolo = (from q in ef.AnagraficaFornitores where q.Id == (int)id select q).FirstOrDefault();
+                var anagraficaArticolo = (from q in ef.AnagraficaArticolos where q.Id == (int)id select q).FirstOrDefault();
                 var anagraficaArticoloDto = UtilityPOCO.Assemble<Dto.AnagraficaArticoloDto>(anagraficaArticolo);
                 return anagraficaArticoloDto;
             }

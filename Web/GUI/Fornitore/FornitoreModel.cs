@@ -51,7 +51,7 @@ namespace Web.GUI.Fornitore
                     if (anagraficaFornitore != null)
                     {
                         infoSubtitle.Text = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
-                        infoTitle.Text = (obj.Id != 0 ? "FORNITORE " + anagraficaFornitore.RagioneSociale + " - COMMESSA " + commessa.Codice : "NUOVO FORNITORE");
+                        infoTitle.Text = (obj.Id != 0 ? "FORNITORE " + anagraficaFornitore.RagioneSociale : "NUOVO FORNITORE") + " / COMMESSA " + BusinessLogic.Commessa.GetCodifica(commessa);
                     }
                 }
             }
@@ -67,7 +67,7 @@ namespace Web.GUI.Fornitore
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.FornitoreDto)model;
+                    var obj = (FornitoreDto)model;
                     editNote.Value = obj.Note;
 
                     BindViewAnagraficaFornitore(obj.AnagraficaFornitore);
@@ -88,10 +88,10 @@ namespace Web.GUI.Fornitore
         {
             try
             {
-                editCodiceFornitore.Model = anagraficaFornitore;
+                editCodice.Model = anagraficaFornitore;
                 if (anagraficaFornitore != null)
                 {
-                    editCodiceFornitore.Value = anagraficaFornitore.Codice;
+                    editCodice.Value = anagraficaFornitore.Codice;
                     editCAP.Value = anagraficaFornitore.CAP;
                     editComune.Value = new Countries.City(anagraficaFornitore.Comune, anagraficaFornitore.CodiceCatastale, anagraficaFornitore.Provincia);
                     editEmail.Value = anagraficaFornitore.Email;
@@ -116,7 +116,10 @@ namespace Web.GUI.Fornitore
         {
             try
             {
-                var count = (from q in fattureAcquisto select q.Pagamentos.Count).Sum();
+                var count=0;
+                if(fattureAcquisto!=null)
+                    count = (from q in fattureAcquisto where q.Pagamentos!=null select q.Pagamentos.Count).Sum();
+                
                 btnPagamenti.TextButton = "Pagamenti (" + count + ")";
             }
             catch (Exception ex)
@@ -154,7 +157,7 @@ namespace Web.GUI.Fornitore
             try
             {
                 editCommessa.Model = commessa;
-                editCommessa.Value = (commessa != null ? commessa.Codice + " - " + commessa.Denominazione : null);
+                editCommessa.Value = (commessa != null ? BusinessLogic.Commessa.GetCodifica(commessa) : null);
             }
             catch (Exception ex)
             {
@@ -195,16 +198,20 @@ namespace Web.GUI.Fornitore
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.FornitoreDto)model;
+                    var obj = (FornitoreDto)model;
                     obj.Note = editNote.Value;
                     obj.TotaleFattureAcquisto = editTotaleFattureAcquisto.Value;
                     obj.Stato = editStato.Value;
                     obj.TotalePagamenti = editTotalePagamenti.Value;
                     obj.TotaleNoteCredito = editTotaleNoteCredito.Value;
 
-                    var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
+                    var commessa = (CommessaDto)editCommessa.Model;
                     if (commessa != null)
                         obj.CommessaId = commessa.Id;
+
+                    var anagraficaFornitore = (AnagraficaFornitoreDto)editCodice.Model;
+                    if (anagraficaFornitore != null)
+                        obj.AnagraficaFornitoreId = anagraficaFornitore.Id;
                 }
             }
             catch (Exception ex)
@@ -240,13 +247,13 @@ namespace Web.GUI.Fornitore
             }
         }
 
-        private void editCodiceFornitore_ComboClick()
+        private void editCodice_ComboClick()
         {
             try
             {
                 var view = new AnagraficaFornitore.AnagraficaFornitoreView();
                 view.Title = "SELEZIONA UN FORNITORE";
-                editCodiceFornitore.Show(view);
+                editCodice.Show(view);
             }
             catch (Exception ex)
             {
@@ -254,7 +261,7 @@ namespace Web.GUI.Fornitore
             }
         }
 
-        private void editCodiceFornitore_ComboConfirm(object model)
+        private void editCodice_ComboConfirm(object model)
         {
             try
             {
@@ -297,7 +304,7 @@ namespace Web.GUI.Fornitore
                 {
                     var obj = (FornitoreDto)Model;
                     var space = new NotaCredito.NotaCreditoView(obj);
-                    space.Title = "NOTE DI CREDITO DEL FORNITORE " + obj.AnagraficaFornitore.RagioneSociale;
+                    space.Title = "NOTE CREDITO / FORNITORE " + obj.AnagraficaFornitore.RagioneSociale;
                     Workspace.AddSpace(space);
                 }
             }
@@ -316,7 +323,7 @@ namespace Web.GUI.Fornitore
                 {
                     var obj = (FornitoreDto)Model;
                     var space = new FatturaAcquisto.FatturaAcquistoView(obj);
-                    space.Title = "FATTURE ACQUISTO DEL FORNITORE " + obj.AnagraficaFornitore.RagioneSociale;
+                    space.Title = "FATTURE ACQUISTO / FORNITORE " + obj.AnagraficaFornitore.RagioneSociale;
                     Workspace.AddSpace(space);
                 }
             }
@@ -335,7 +342,7 @@ namespace Web.GUI.Fornitore
                 {
                     var obj = (FornitoreDto)Model;
                     var space = new Pagamento.PagamentoView(obj);
-                    space.Title = "PAGAMENTI FORNITORE " + obj.AnagraficaFornitore.RagioneSociale;
+                    space.Title = "PAGAMENTI / FORNITORE " + obj.AnagraficaFornitore.RagioneSociale;
                     Workspace.AddSpace(space);
 
                 }
@@ -364,9 +371,9 @@ namespace Web.GUI.Fornitore
             {
                 base.SetEditing(editing, deleting);
                 btnCalcoloTotali.Enabled = editing;
-                btnFattureAcquisto.Enabled = editing;
-                btnNoteCredito.Enabled = editing;
-                btnPagamenti.Enabled = editing;
+                btnFattureAcquisto.Enabled = !editing;
+                btnNoteCredito.Enabled = !editing;
+                btnPagamenti.Enabled = !editing;
             }
             catch (Exception ex)
             {
@@ -378,20 +385,17 @@ namespace Web.GUI.Fornitore
         {
             try
             {
-                var validated = new UtilityValidation.ValidationState();
+                var validation = new UtilityValidation.ValidationState();
 
                 var obj = (FornitoreDto)Model;
-                var viewModelFornitore = new Fornitore.FornitoreViewModel();
+                var anagraficaFornitore = (AnagraficaFornitoreDto)editCodice.Model;
                 var commessa = (CommessaDto)editCommessa.Model;
-                var fornitori = viewModelFornitore.ReadFornitori(commessa);
-                var anagraficaFornitore = obj.AnagraficaFornitore;
-                var validateFornitore = BusinessLogic.Diagnostico.ValidateFornitore(obj, fornitori, anagraficaFornitore, commessa);
-                if (validateFornitore != null)
-                {
-                    validated.State = validateFornitore.State;
-                    validated.Message = validateFornitore.Message;
-                }
-                return validated;
+                
+                var validationFornitore = BusinessLogic.Diagnostico.ValidateFornitore(obj, anagraficaFornitore, commessa);
+                validation.State = validationFornitore.State;
+                validation.Message = validationFornitore.Message;
+                
+                return validation;
             }
             catch (Exception ex)
             {

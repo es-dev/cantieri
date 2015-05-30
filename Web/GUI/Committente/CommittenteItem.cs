@@ -35,11 +35,6 @@ namespace Web.GUI.Committente
                     var _totaleIncassi = UtilityValidation.GetEuro(totaleIncassi);
                     var _totaleFatture = UtilityValidation.GetEuro(totaleFatture);
                     infoIncassoTotale.Text = "Incassato " + _totaleIncassi + " su un totale di " + _totaleFatture;
-                   
-                    var commessa = obj.Commessa;
-                    if(commessa!=null)
-                        infoCommesssa.Text = "Commessa " + commessa.Codice + " - " + commessa.Denominazione;
-
                     toolTip.SetToolTip(imgStato, stato.Description);
                     imgStato.Image = stato.Image;
                     infoImage.Image = "Images.dashboard.committente.png";
@@ -55,6 +50,11 @@ namespace Web.GUI.Committente
                         infoCodice.Text = "CT-" + UtilityValidation.GetStringND(anagraficaCommittente.Codice);
                         infoIndirizzo.Text = indirizzo + " - " + cap + " - " + comune + " (" + provincia + ")";
                     }
+
+                    var commessa = obj.Commessa;
+                    if (commessa != null)
+                        infoCommesssa.Text = "Commessa " + BusinessLogic.Commessa.GetCodifica(commessa);
+
                 }
             }
             catch (Exception ex)

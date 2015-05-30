@@ -149,11 +149,10 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public CommessaDto(int _id, int _aziendaId, string _numero, DateTime? _creazione, DateTime? _scadenza, string _descrizione, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _riferimento, decimal? _importo, decimal? _margine, string _stato, string _oggetto, string _codiceCatastale, string _codice, decimal? _importoAvanzamento, decimal? _percentuale, string _estremiContratto, decimal? _importoPerizie, DateTime? _inizioLavori, DateTime? _fineLavori, string _localita, string _note, AziendaDto _azienda, IList<FornitoreDto> _fornitores, IList<SALDto> _sALs, IList<CommittenteDto> _committentes)
+		public CommessaDto(int _id, int _aziendaId, DateTime? _creazione, DateTime? _scadenza, string _descrizione, string _denominazione, string _indirizzo, string _cAP, string _comune, string _provincia, string _riferimento, decimal? _importo, decimal? _margine, string _stato, string _oggetto, string _codiceCatastale, string _codice, decimal? _importoAvanzamento, decimal? _percentuale, string _estremiContratto, decimal? _importoPerizie, DateTime? _inizioLavori, DateTime? _fineLavori, string _localita, string _note, AziendaDto _azienda, IList<FornitoreDto> _fornitores, IList<SALDto> _sALs, IList<CommittenteDto> _committentes)
 		{
 			this.Id = _id;
 			this.AziendaId = _aziendaId;
-			this.Numero = _numero;
 			this.Creazione = _creazione;
 			this.Scadenza = _scadenza;
 			this.Descrizione = _descrizione;
@@ -191,9 +190,6 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual int AziendaId { get;set; }
-
-		[DataMember]
-		public virtual string Numero { get;set; }
 
 		[DataMember]
 		public virtual DateTime? Creazione { get;set; }

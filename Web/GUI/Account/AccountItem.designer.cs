@@ -114,26 +114,26 @@ namespace Web.GUI.Account
             this.infoCreazione.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoCreazione.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoCreazione.ForeColor = System.Drawing.Color.DarkRed;
-            this.infoCreazione.Location = new System.Drawing.Point(242, 77);
+            this.infoCreazione.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.infoCreazione.Location = new System.Drawing.Point(91, 76);
             this.infoCreazione.Name = "infoCreazione";
             this.infoCreazione.Size = new System.Drawing.Size(153, 16);
             this.infoCreazione.TabIndex = 1;
             this.infoCreazione.Text = "Creazione: dd/MM/yyyy";
-            this.infoCreazione.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // infoAbilitato
             // 
             this.infoAbilitato.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoAbilitato.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoAbilitato.ForeColor = System.Drawing.Color.Blue;
+            this.infoAbilitato.ForeColor = System.Drawing.Color.DarkRed;
             this.infoAbilitato.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.infoAbilitato.Location = new System.Drawing.Point(93, 77);
+            this.infoAbilitato.Location = new System.Drawing.Point(243, 77);
             this.infoAbilitato.Name = "infoAbilitato";
             this.infoAbilitato.Size = new System.Drawing.Size(153, 16);
             this.infoAbilitato.TabIndex = 1;
             this.infoAbilitato.Text = "Abilitato";
+            this.infoAbilitato.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // AccountItem
             // 

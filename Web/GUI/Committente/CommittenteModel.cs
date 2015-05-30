@@ -49,7 +49,7 @@ namespace Web.GUI.Committente
                     if (anagraficaCommittente != null)
                     {
                         infoSubtitle.Text = anagraficaCommittente.Codice + " - " + anagraficaCommittente.RagioneSociale;
-                        infoTitle.Text = (obj.Id != 0 ? "COMMITTENTE " + anagraficaCommittente.RagioneSociale + " - COMMESSA " + commessa.Codice : "NUOVO COMMITTENTE");
+                        infoTitle.Text = (obj.Id != 0 ? "COMMITTENTE " + anagraficaCommittente.RagioneSociale : "NUOVO COMMITTENTE") + " / COMMESSA " + BusinessLogic.Commessa.GetCodifica(commessa);
                     }
                 }
             }
@@ -85,7 +85,10 @@ namespace Web.GUI.Committente
         {
             try
             {
-                var count = (from q in fattureVendita select q.Incassos.Count).Sum();
+                var count = 0;
+                if(fattureVendita!=null)
+                    count = (from q in fattureVendita where q.Incassos!=null select q.Incassos.Count).Sum();
+                
                 btnIncassi.TextButton = "Incassi (" + count + ")";
             }
             catch (Exception ex)
@@ -98,7 +101,7 @@ namespace Web.GUI.Committente
         {
             try
             {
-                btnFattureVendita.TextButton = "Fatture di vendita (" + (fattureVendita!=null?fattureVendita.Count:0) + ")";
+                btnFattureVendita.TextButton = "Fatture vendita (" + (fattureVendita!=null?fattureVendita.Count:0) + ")";
             }
             catch (Exception ex)
             {
@@ -123,10 +126,10 @@ namespace Web.GUI.Committente
         {
             try
             {
-                editCodiceCommittente.Model = anagraficaCommittente;
+                editCodice.Model = anagraficaCommittente;
                 if (anagraficaCommittente != null)
                 {
-                    editCodiceCommittente.Value = anagraficaCommittente.Codice;
+                    editCodice.Value = anagraficaCommittente.Codice;
                     editCAP.Value = anagraficaCommittente.CAP;
                     editComune.Value = new Library.Controls.Countries.City(anagraficaCommittente.Comune, anagraficaCommittente.CodiceCatastale, anagraficaCommittente.Provincia);
                     editEmail.Value = anagraficaCommittente.Email;
@@ -159,10 +162,14 @@ namespace Web.GUI.Committente
                     obj.TotaleFattureVendita = editTotaleFattureVendita.Value;
                     obj.Stato = editStato.Value;
                     obj.TotaleIncassi = editTotaleIncassi.Value;
+                   
                     var commessa = (WcfService.Dto.CommessaDto)editCommessa.Model;
                     if (commessa != null)
                         obj.CommessaId = commessa.Id;
-                    
+
+                    var anagraficaCommittente = (AnagraficaCommittenteDto)editCodice.Model;
+                    if (anagraficaCommittente != null)
+                        obj.AnagraficaCommittenteId = anagraficaCommittente.Id;
                 }
             }
             catch (Exception ex)
@@ -233,7 +240,7 @@ namespace Web.GUI.Committente
                     if (anagraficaCommittente != null)
                     {
                         var space = new FatturaVendita.FatturaVenditaView(obj);
-                        space.Title = "FATTURE DI VENDITA - " + anagraficaCommittente.RagioneSociale;
+                        space.Title = "FATTURE VENDITA / COMMITTENTE " + anagraficaCommittente.RagioneSociale;
                         Workspace.AddSpace(space);
                     }
                 }
@@ -256,7 +263,7 @@ namespace Web.GUI.Committente
                     if (anagraficaCommittente != null)
                     {
                         var space = new Incasso.IncassoView(obj);
-                        space.Title = "INCASSI - " + anagraficaCommittente.RagioneSociale;
+                        space.Title = "INCASSI / COMMITTENTE " + anagraficaCommittente.RagioneSociale;
                         Workspace.AddSpace(space);
                     }
                 }
@@ -296,13 +303,13 @@ namespace Web.GUI.Committente
             }
         }
 
-        private void editCodiceCommittente_ComboClick()
+        private void editCodice_ComboClick()
         {
             try
             {
                 var view = new AnagraficaCommittente.AnagraficaCommittenteView();
                 view.Title = "SELEZIONA UN COMMITTENTE";
-                editCodiceCommittente.Show(view);
+                editCodice.Show(view);
             }
             catch (Exception ex)
             {
@@ -310,7 +317,7 @@ namespace Web.GUI.Committente
             }
         }
 
-        private void editCodiceCommittente_ComboConfirm(object model)
+        private void editCodice_ComboConfirm(object model)
         {
             try
             {
@@ -345,20 +352,16 @@ namespace Web.GUI.Committente
         {
             try
             {
-                var validated = new UtilityValidation.ValidationState();
+                var validation = new UtilityValidation.ValidationState();
 
                 var obj = (CommittenteDto)Model;
-                var viewModelCommittente = new Committente.CommittenteViewModel();
                 var commessa = (CommessaDto)editCommessa.Model;
-                var committenti = viewModelCommittente.ReadCommittenti(commessa);
                 var anagraficaCommittente = obj.AnagraficaCommittente; 
-                var validateCommittente = BusinessLogic.Diagnostico.ValidateCommittente(obj, committenti, anagraficaCommittente, commessa);
-                if (validateCommittente != null)
-                {
-                    validated.State = validateCommittente.State;
-                    validated.Message = validateCommittente.Message;
-                }
-                return validated;
+                var validationCommittente = BusinessLogic.Diagnostico.ValidateCommittente(obj, anagraficaCommittente, commessa);
+                    validation.State = validationCommittente.State;
+                    validation.Message = validationCommittente.Message;
+                
+                return validation;
             }
             catch (Exception ex)
             {

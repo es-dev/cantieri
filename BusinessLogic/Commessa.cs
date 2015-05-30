@@ -430,5 +430,22 @@ namespace BusinessLogic
             }
             return 0;
         }
+
+        public static string GetCodifica(CommessaDto commessa)
+        {
+            try
+            {
+                if(commessa!=null)
+                {
+                    var codifica = commessa.Codice + " - " + commessa.Denominazione;
+                    return codifica;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }

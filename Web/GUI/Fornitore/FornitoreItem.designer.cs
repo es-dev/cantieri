@@ -105,7 +105,7 @@ namespace Web.GUI.Fornitore
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoPartitaIVA.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoPartitaIVA.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoPartitaIVA.Location = new System.Drawing.Point(91, 28);
+            this.infoPartitaIVA.Location = new System.Drawing.Point(91, 31);
             this.infoPartitaIVA.Name = "infoPartitaIVA";
             this.infoPartitaIVA.Size = new System.Drawing.Size(294, 17);
             this.infoPartitaIVA.TabIndex = 1;
@@ -118,7 +118,7 @@ namespace Web.GUI.Fornitore
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoCommesssa.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoCommesssa.ForeColor = System.Drawing.Color.Black;
-            this.infoCommesssa.Location = new System.Drawing.Point(91, 46);
+            this.infoCommesssa.Location = new System.Drawing.Point(91, 52);
             this.infoCommesssa.Name = "infoCommesssa";
             this.infoCommesssa.Size = new System.Drawing.Size(295, 20);
             this.infoCommesssa.TabIndex = 1;

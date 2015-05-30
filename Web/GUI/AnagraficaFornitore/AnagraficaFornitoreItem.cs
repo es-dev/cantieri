@@ -36,7 +36,7 @@ namespace Web.GUI.AnagraficaFornitore
 
                     infoImage.Image = "Images.dashboard.anagraficafornitore.png";
                     infoRagioneSociale.Text = ragioneSociale;
-                    infoCodice.Text = codice;
+                    infoCodice.Text = "FOR-"+ codice;
                     infoPartitaIVA.Text = "P.IVA " + partitaIVA;
                     infoIndirizzo.Text = indirizzo + " - " + cap + " - " + comune + " (" + provincia + ")";
                     infoTelefono.Text = "Telefono: " + UtilityValidation.GetStringND(obj.Telefono);
