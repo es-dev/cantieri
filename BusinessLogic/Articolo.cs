@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WcfService.Dto;
 
 namespace BusinessLogic
 {
@@ -50,6 +51,27 @@ namespace BusinessLogic
                 UtilityError.Write(ex);
             }
             return 0;
+        }
+
+        public static string GetCodifica(ArticoloDto articolo)
+        {
+            try
+            {
+                if(articolo!=null)
+                {
+                    var anagraficaArticolo = articolo.AnagraficaArticolo;
+                    if(anagraficaArticolo!=null)
+                    {
+                        var codifica = anagraficaArticolo.Codice + " - " + anagraficaArticolo.Descrizione;
+                        return codifica;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
     }
 }

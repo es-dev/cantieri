@@ -382,9 +382,9 @@ namespace Web.GUI.Tools
                 foreach (var fatturaAcquisto in fattureAcquisto)
                 {
                     var commessa = viewModelCommessa.ReadCommessa(fatturaAcquisto);
-                    fatturaAcquisto.Stato = BusinessLogic.Fattura.GetStatoDescrizione(fatturaAcquisto, commessa);
+                    fatturaAcquisto.Stato = BusinessLogic.Fattura.GetStatoDescrizione(fatturaAcquisto);
                     bool saved = viewModel.Save(fatturaAcquisto, false);
-                    var codifica = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false);
+                    var codifica = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
                     if (saved)
                         AddLog("Fattura di acquisto n." + codifica + " aggiornata con successo ... OK");
                     else
@@ -408,10 +408,9 @@ namespace Web.GUI.Tools
                 var viewModelCommessa = new Commessa.CommessaViewModel();
                 foreach (var fatturaVendita in fattureVendita)
                 {
-                    var commessa = viewModelCommessa.ReadCommessa(fatturaVendita);
-                    fatturaVendita.Stato = BusinessLogic.Fattura.GetStatoDescrizione(fatturaVendita, commessa);
+                    fatturaVendita.Stato = BusinessLogic.Fattura.GetStatoDescrizione(fatturaVendita);
                     bool saved = viewModel.Save(fatturaVendita, false);
-                    var codifica = BusinessLogic.Fattura.GetCodifica(fatturaVendita, false);
+                    var codifica = BusinessLogic.Fattura.GetCodifica(fatturaVendita);
                     if (saved)
                         AddLog("Fattura di vendita n." + codifica + " aggiornata con successo ... OK");
                     else

@@ -1042,7 +1042,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var fatturaAcquisto = (from q in ef.FatturaAcquistos where q.Id == (int)id select q).FirstOrDefault();
-                var fatturaAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fatturaAcquisto);
+                var fatturaAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fatturaAcquisto, true);
                 return fatturaAcquistoDto;
             }
             catch (Exception ex)
@@ -1653,7 +1653,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var notaCredito = (from q in ef.NotaCreditos where q.Id == (int)id select q).FirstOrDefault();
-                var notaCreditoDto = UtilityPOCO.Assemble<Dto.NotaCreditoDto>(notaCredito);
+                var notaCreditoDto = UtilityPOCO.Assemble<Dto.NotaCreditoDto>(notaCredito, true);
                 return notaCreditoDto;
             }
             catch (Exception ex)
@@ -2567,7 +2567,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var fatturaVendita = (from q in ef.FatturaVenditas where q.Id == (int)id select q).FirstOrDefault();
-                var fatturaVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fatturaVendita);
+                var fatturaVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fatturaVendita, true);
                 return fatturaVenditaDto;
             }
             catch (Exception ex)

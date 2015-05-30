@@ -46,14 +46,10 @@ namespace Web.GUI.NotaCredito
             try
             {
                 var obj = (NotaCreditoDto)model;
-                infoSubtitle.Text = BusinessLogic.Fattura.GetCodifica(obj);
+                infoSubtitle.Text = "NOTA CREDITO "+ BusinessLogic.Fattura.GetCodifica(obj);
                 infoSubtitleImage.Image = "Images.dashboard.notacredito.png";
                 var fornitore = obj.Fornitore;
-                if (fornitore != null)
-                {
-                    var anagraficaFornitore = fornitore.AnagraficaFornitore;
-                    infoTitle.Text = (obj.Id != 0 ? "NOTA DI CREDITO " + obj.Numero + " - " + anagraficaFornitore.RagioneSociale : "NUOVA NOTA DI CREDITO");
-                }
+                infoTitle.Text = (obj.Id != 0 ? "NOTA CREDITO " + BusinessLogic.Fattura.GetCodifica(obj) : "NUOVA NOTA CREDITO") + " / FORNITORE " + BusinessLogic.Fornitore.GetCodifica(fornitore);
             }
             catch (Exception ex)
             {
@@ -74,11 +70,23 @@ namespace Web.GUI.NotaCredito
                     editTotale.Value = obj.Totale;
                     editImponibile.Value = obj.Imponibile;
                     editIVA.Value = obj.IVA;
-                    editStato.Value = obj.Stato;
                     editDescrizione.Value = obj.Descrizione;
 
                     BindViewFornitore(obj.Fornitore);
+                    BindViewResi(obj.Resos);
                 }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewResi(IList<ResoDto> resi)
+        {
+            try
+            {
+                btnResi.TextButton = "Resi (" + (resi != null ? resi.Count : 0) + ")";
             }
             catch (Exception ex)
             {
@@ -91,8 +99,7 @@ namespace Web.GUI.NotaCredito
             try
             {
                 editFornitore.Model = fornitore;
-                var anagraficaFornitore = fornitore.AnagraficaFornitore;
-                editFornitore.Value = (fornitore!=null? anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale:null);
+                editFornitore.Value = BusinessLogic.Fornitore.GetCodifica(fornitore);
             }
             catch (Exception ex)
             {
@@ -109,13 +116,9 @@ namespace Web.GUI.NotaCredito
                 if (data != null)
                 {
                     var obj = (WcfService.Dto.NotaCreditoDto)Model;
-
-                    var imponibile = BusinessLogic.Fattura.GetImponibileNotaCredito(obj, data.Value);
-                    var iva = BusinessLogic.Fattura.GetIVANotaCredito(obj, data.Value);
-                    var totale = BusinessLogic.Fattura.GetTotaleNotaCredito(obj, data.Value);
-                    editImponibile.Value = imponibile;
-                    editIVA.Value = iva;
-                    editTotale.Value = totale;
+                    editImponibile.Value = BusinessLogic.Fattura.GetImponibileNotaCredito(obj, data.Value);
+                    editIVA.Value = BusinessLogic.Fattura.GetIVANotaCredito(obj, data.Value);
+                    editTotale.Value = BusinessLogic.Fattura.GetTotaleNotaCredito(obj, data.Value);
                 }
             }
             catch (Exception ex)
@@ -136,9 +139,9 @@ namespace Web.GUI.NotaCredito
                     obj.Totale = editTotale.Value;
                     obj.IVA = editIVA.Value;
                     obj.Imponibile = editImponibile.Value;
-                    obj.Stato = editStato.Value;
                     obj.Note = editNote.Value;
                     obj.Descrizione = editDescrizione.Value;
+
                     var fornitore = (FornitoreDto)editFornitore.Model;
                     if(fornitore!=null)
                         obj.FornitoreId = fornitore.Id;
@@ -155,7 +158,7 @@ namespace Web.GUI.NotaCredito
             try
             {
                 var view = new Fornitore.FornitoreView();
-                view.Title = "SELEZIONA IL FORNITORE";
+                view.Title = "SELEZIONA UN FORNITORE";
                 editFornitore.Show(view);
             }
             catch (Exception ex)
@@ -202,9 +205,24 @@ namespace Web.GUI.NotaCredito
                 {
                     var obj = (NotaCreditoDto)Model;
                     var space = new Reso.ResoView(obj);
-                    space.Title = "RESI NOTA DI CREDITO N. " + obj.Numero;
+                    space.Title = "RESI / NOTA CREDITO " + BusinessLogic.Fattura.GetCodifica(obj);
                     Workspace.AddSpace(space);
                 }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        
+        public override void SetEditing(bool editing, bool deleting)
+        {
+            try
+            {
+                base.SetEditing(editing, deleting);
+                btnCalcoloTotali.Enabled = editing;
+                btnResi.Enabled = !editing;
             }
             catch (Exception ex)
             {
@@ -224,19 +242,6 @@ namespace Web.GUI.NotaCredito
             }
         }
 
-        public override void SetEditing(bool editing, bool deleting)
-        {
-            try
-            {
-                base.SetEditing(editing, deleting);
-                btnCalcoloTotali.Enabled = editing;
-                btnResi.Enabled = editing;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
 
 	}
 }

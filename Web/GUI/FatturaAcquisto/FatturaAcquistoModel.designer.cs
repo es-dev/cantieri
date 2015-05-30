@@ -368,14 +368,14 @@ namespace Web.GUI.FatturaAcquisto
             this.editStato.Editing = false;
             this.editStato.Label = "Stato";
             this.editStato.LabelWidth = 175;
-            this.editStato.Location = new System.Drawing.Point(25, 623);
+            this.editStato.Location = new System.Drawing.Point(25, 628);
             this.editStato.Name = "editStato";
             this.editStato.ReadOnly = false;
             this.editStato.Required = false;
             this.editStato.Size = new System.Drawing.Size(796, 50);
             this.editStato.TabIndex = 14;
             this.editStato.Text = "TemplateEditNumeric";
-            this.editStato.Value = "None{;}";
+            this.editStato.Value = null;
             // 
             // lblAndamento
             // 
@@ -384,7 +384,7 @@ namespace Web.GUI.FatturaAcquisto
             this.lblAndamento.BackColor = System.Drawing.Color.Gainsboro;
             this.lblAndamento.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAndamento.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblAndamento.Location = new System.Drawing.Point(25, 507);
+            this.lblAndamento.Location = new System.Drawing.Point(25, 512);
             this.lblAndamento.Name = "lblAndamento";
             this.lblAndamento.Size = new System.Drawing.Size(887, 30);
             this.lblAndamento.TabIndex = 1001;
@@ -404,7 +404,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editTotalePagamenti.Editing = false;
             this.editTotalePagamenti.Label = "Totale pagamenti";
             this.editTotalePagamenti.LabelWidth = 175;
-            this.editTotalePagamenti.Location = new System.Drawing.Point(25, 545);
+            this.editTotalePagamenti.Location = new System.Drawing.Point(25, 550);
             this.editTotalePagamenti.Name = "templateEditDecimal1";
             this.editTotalePagamenti.ReadOnly = false;
             this.editTotalePagamenti.Required = false;
@@ -498,7 +498,7 @@ namespace Web.GUI.FatturaAcquisto
             this.editTotaleResi.Editing = false;
             this.editTotaleResi.Label = "Totale resi";
             this.editTotaleResi.LabelWidth = 175;
-            this.editTotaleResi.Location = new System.Drawing.Point(25, 582);
+            this.editTotaleResi.Location = new System.Drawing.Point(25, 587);
             this.editTotaleResi.Name = "editTotaleResi";
             this.editTotaleResi.ReadOnly = false;
             this.editTotaleResi.Required = false;

@@ -149,7 +149,7 @@ namespace Web.GUI.Articolo
             this.editSconto.TabIndex = 6;
             this.editSconto.Text = "TemplateEditNumeric";
             this.editSconto.Value = null;
-            this.editSconto.Leave += new System.EventHandler(this.editImportoSconto_Leave);
+            this.editSconto.Leave += new System.EventHandler(this.editTotali_Leave);
             // 
             // editCosto
             // 
@@ -166,13 +166,12 @@ namespace Web.GUI.Articolo
             this.editCosto.LabelWidth = 175;
             this.editCosto.Location = new System.Drawing.Point(25, 369);
             this.editCosto.Name = "editCosto";
-            this.editCosto.ReadOnly = false;
+            this.editCosto.ReadOnly = true;
             this.editCosto.Required = false;
             this.editCosto.Size = new System.Drawing.Size(794, 30);
             this.editCosto.TabIndex = 7;
             this.editCosto.Text = "TemplateEditNumeric";
             this.editCosto.Value = null;
-            this.editCosto.Leave += new System.EventHandler(this.editCostoIVA_Leave);
             // 
             // editImporto
             // 
@@ -189,13 +188,12 @@ namespace Web.GUI.Articolo
             this.editImporto.LabelWidth = 175;
             this.editImporto.Location = new System.Drawing.Point(25, 285);
             this.editImporto.Name = "editImporto";
-            this.editImporto.ReadOnly = false;
+            this.editImporto.ReadOnly = true;
             this.editImporto.Required = false;
             this.editImporto.Size = new System.Drawing.Size(794, 30);
             this.editImporto.TabIndex = 5;
             this.editImporto.Text = "TemplateEditNumeric";
             this.editImporto.Value = null;
-            this.editImporto.Leave += new System.EventHandler(this.editImportoSconto_Leave);
             // 
             // editIVA
             // 
@@ -218,7 +216,7 @@ namespace Web.GUI.Articolo
             this.editIVA.TabIndex = 8;
             this.editIVA.Text = "TemplateEditNumeric";
             this.editIVA.Value = null;
-            this.editIVA.Leave += new System.EventHandler(this.editCostoIVA_Leave);
+            this.editIVA.Leave += new System.EventHandler(this.editTotali_Leave);
             // 
             // editTotale
             // 
@@ -235,7 +233,7 @@ namespace Web.GUI.Articolo
             this.editTotale.LabelWidth = 175;
             this.editTotale.Location = new System.Drawing.Point(25, 453);
             this.editTotale.Name = "editTotale";
-            this.editTotale.ReadOnly = false;
+            this.editTotale.ReadOnly = true;
             this.editTotale.Required = false;
             this.editTotale.Size = new System.Drawing.Size(794, 30);
             this.editTotale.TabIndex = 9;
@@ -288,7 +286,7 @@ namespace Web.GUI.Articolo
             this.editPrezzounitario.TabIndex = 4;
             this.editPrezzounitario.Text = "EditControl";
             this.editPrezzounitario.Value = null;
-            this.editPrezzounitario.Leave += new System.EventHandler(this.editQuantitaPrezzoUnitario_Leave);
+            this.editPrezzounitario.Leave += new System.EventHandler(this.editTotali_Leave);
             // 
             // editQuantita
             // 
@@ -311,6 +309,7 @@ namespace Web.GUI.Articolo
             this.editQuantita.TabIndex = 3;
             this.editQuantita.Text = "EditControl";
             this.editQuantita.Value = null;
+            this.editQuantita.Leave += new System.EventHandler(this.editTotali_Leave);
             // 
             // editNote
             // 

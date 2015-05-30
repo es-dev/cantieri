@@ -170,6 +170,7 @@
   <ItemGroup>
     <Content Include="Code\MoveSchemaToDbo.sql" />
     <Content Include="ESCantieriConnection%282015-05-30 09-57-53%29.rlinq.sql" />
+    <Content Include="ESCantieriConnection%282015-05-30 22-37-57%29.rlinq.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

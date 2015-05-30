@@ -18,14 +18,7 @@ namespace Web.GUI.NotaCredito
         public NotaCreditoView()
 		{ 
 			InitializeComponent();
-            try
-            {
-                InitCombo();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
+            
 		}
 
         private WcfService.Dto.FornitoreDto fornitore;
@@ -80,30 +73,23 @@ namespace Web.GUI.NotaCredito
                 var obj = (DataLayer.NotaCredito)model;
 
                 //1° filtro
-                var filterStato = true;
-                var stato = editStato.Value;
-                if (stato != null && stato.Length > 0)
-                    filterStato = (obj.Stato != null && obj.Stato.StartsWith(stato));
-
-                //2° filtro
                 var filterData = true;
                 var inizio = editDataInizio.Value;
                 var fine = editDataFine.Value;
                 if (inizio != null && fine != null)
                     filterData = (inizio <= obj.Data && obj.Data <= fine);
 
-                //3° filtro
+                //2° filtro
                 var filterFornitore = true;
                 if (fornitoriAnagraficaId != null)
                     filterFornitore = fornitoriAnagraficaId.Contains(obj.FornitoreId);
 
-                //4° filtro
+                //3° filtro
                 var filterCommessa = true;
                 if (fornitoriCommessaId != null)
                     filterCommessa = fornitoriCommessaId.Contains(obj.FornitoreId);
 
-                //filtro globale
-                var filter = (filterStato && filterData && filterFornitore && filterCommessa);
+                var filter = (filterData && filterFornitore && filterCommessa);
                 return filter;
             }
             catch (Exception ex)
@@ -138,8 +124,6 @@ namespace Web.GUI.NotaCredito
                     orderBy = obj.Numero;
                 else if (optData.Value)
                     orderBy = obj.Data;
-                else if (optStato.Value)
-                    orderBy = obj.Stato;
 
                 return orderBy;
             }
@@ -148,18 +132,6 @@ namespace Web.GUI.NotaCredito
                 UtilityError.Write(ex);
             }
             return null;
-        }
-
-        private void InitCombo()
-        {
-            try
-            {
-                editStato.DisplayValues = UtilityEnum.GetDisplayValues<Tipi.StatoFattura>();
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
         }
 
         private void editFornitore_ComboClick()

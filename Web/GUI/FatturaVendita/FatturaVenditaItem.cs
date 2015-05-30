@@ -36,7 +36,7 @@ namespace Web.GUI.FatturaVendita
                     toolTip.SetToolTip(imgStato, stato.Description);
                     infoImage.Image = "Images.dashboard.fatturavendita.png";
                     infoCodice.Text = "FV-" + numero;
-                    infoNumeroData.Text = BusinessLogic.Fattura.GetCodifica(obj);
+                    infoNumeroData.Text ="FATTURA "+ BusinessLogic.Fattura.GetCodifica(obj);
                     infoIncassoTotale.Text = "Incassato " + totaleIncassi + " su un totale di " + totaleFattura;
 
                     var committente = obj.Committente;

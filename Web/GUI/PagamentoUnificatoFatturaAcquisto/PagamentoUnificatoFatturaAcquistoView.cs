@@ -129,7 +129,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                 var viewModel = new Fornitore.FornitoreViewModel();
                 var fornitore = viewModel.ReadFornitore(fatturaAcquisto);
                 editFatturaAcquisto.Model = fatturaAcquisto;
-                editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false) : null) + " - " +
+                editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) : null) + " - " +
                     (fornitore != null ? fornitore.AnagraficaFornitore.RagioneSociale : null);
             }
             catch (Exception ex)

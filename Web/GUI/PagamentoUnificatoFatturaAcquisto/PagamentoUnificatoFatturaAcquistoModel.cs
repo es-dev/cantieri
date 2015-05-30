@@ -121,7 +121,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             try
             {
                 editFatturaAcquisto.Model = fatturaAcquisto;
-                editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto, false) : null);
+                editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) : null);
                 fatturaAcquistoOld = fatturaAcquisto;
             }
             catch (Exception ex)

@@ -64,10 +64,10 @@ namespace Web.GUI.FatturaAcquisto
                 if (model != null)
                 {
                     var obj = (FatturaAcquistoDto)model;
-                    infoSubtitle.Text = BusinessLogic.Fattura.GetCodifica(obj);
+                    infoSubtitle.Text = "FATTURA "+ BusinessLogic.Fattura.GetCodifica(obj);
                     infoSubtitleImage.Image = "Images.dashboard.fatturaacquisto.png";
                     var fornitore = obj.Fornitore;
-                    infoTitle.Text = (obj.Id!=0?"FATTURA DI ACQUISTO N." + obj.Numero + " - " + fornitore.AnagraficaFornitore.RagioneSociale: "NUOVA FATTURA DI ACQUISTO");
+                    infoTitle.Text = (obj.Id!=0?"FATTURA ACQUISTO " + BusinessLogic.Fattura.GetCodifica(obj) : "NUOVA FATTURA ACQUISTO")+ " / FORNITORE " + BusinessLogic.Fornitore.GetCodifica(fornitore);
                 }
             }
             catch (Exception ex)
@@ -97,6 +97,7 @@ namespace Web.GUI.FatturaAcquisto
                     BindViewCentroCosto(obj.CentroCosto);
                     BindViewFornitore(obj.Fornitore);
                     BindViewPagamenti(obj.Pagamentos);
+                    BindViewResi(obj.Resos);
                     BindViewArticoli(obj.Articolos);
                     BindViewTotali(obj);
                 }
@@ -111,7 +112,19 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                btnPagamenti.TextButton = "Pagamenti (" + (pagamenti != null ? pagamenti.Count + ")" : null);
+                btnPagamenti.TextButton = "Pagamenti (" + (pagamenti != null ? pagamenti.Count : 0)+ ")" ;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewResi(IList<ResoDto> resi)
+        {
+            try
+            {
+                btnResi.TextButton = "Resi (" + (resi != null ? resi.Count : 0) + ")";
             }
             catch (Exception ex)
             {
@@ -123,7 +136,7 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                btnArticoli.TextButton = "Articoli (" + (articoli != null ? articoli.Count + ")" : null);
+                btnArticoli.TextButton = "Dettaglio acquisti (" + (articoli != null ? articoli.Count  : 0)+ ")";
             }
             catch (Exception ex)
             {
@@ -136,7 +149,7 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 editFornitore.Model = fornitore;
-                editFornitore.Value = (fornitore != null ? fornitore.AnagraficaFornitore.Codice + " - " + fornitore.AnagraficaFornitore.RagioneSociale : null);
+                editFornitore.Value = BusinessLogic.Fornitore.GetCodifica(fornitore);
             }
             catch (Exception ex)
             {
@@ -150,7 +163,7 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 editCentroCosto.Model = centroCosto;
-                editCentroCosto.Value = (centroCosto!=null?centroCosto.Codice + " - " + centroCosto.Denominazione:null);
+                editCentroCosto.Value = BusinessLogic.CentroCosto.GetCodifica(centroCosto);
             }
             catch (Exception ex)
             {
@@ -165,10 +178,7 @@ namespace Web.GUI.FatturaAcquisto
                 var today = DateTime.Today;
                 var totalePagamenti = BusinessLogic.Fattura.GetTotalePagamenti(obj, today);
                 var totaleResi = BusinessLogic.Fattura.GetTotaleResi(obj, today);
-
-                var viewModelCommessa = new Commessa.CommessaViewModel();
-                var commessa = viewModelCommessa.ReadCommessa(obj);
-                var statoDescrizione = BusinessLogic.Fattura.GetStatoDescrizione(obj, commessa); 
+                var statoDescrizione = BusinessLogic.Fattura.GetStatoDescrizione(obj); 
 
                 editStato.Value = statoDescrizione;
                 editTotalePagamenti.Value = totalePagamenti;
@@ -215,11 +225,13 @@ namespace Web.GUI.FatturaAcquisto
                     obj.TotalePagamenti = editTotalePagamenti.Value;
                     obj.Stato = editStato.Value;
                     obj.Sconto = editSconto.Value;
-                    obj.Scadenza = BusinessLogic.Fattura.GetScadenza(obj);                    
-                    var centroCosto = (WcfService.Dto.CentroCostoDto)editCentroCosto.Model;
+                    obj.Scadenza = BusinessLogic.Fattura.GetScadenza(obj);    
+                
+                    var centroCosto = (CentroCostoDto)editCentroCosto.Model;
                     if (centroCosto != null)
                         obj.CentroCostoId = centroCosto.Id;
-                    var fornitore = (WcfService.Dto.FornitoreDto)editFornitore.Model;
+
+                    var fornitore = (FornitoreDto)editFornitore.Model;
                     if (fornitore != null)
                         obj.FornitoreId = fornitore.Id;
                 }
@@ -250,7 +262,7 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                var fornitore = (WcfService.Dto.FornitoreDto)model;
+                var fornitore = (FornitoreDto)model;
                 BindViewFornitore(fornitore);
             }
             catch (Exception ex)
@@ -290,8 +302,7 @@ namespace Web.GUI.FatturaAcquisto
         {
             try
             {
-                if (Editing)
-                    BindViewTotaleFattura();
+                BindViewTotaleFattura();
             }
             catch (Exception ex)
             {
@@ -322,9 +333,9 @@ namespace Web.GUI.FatturaAcquisto
             {
                 base.SetEditing(editing, deleting);
                 btnCalcoloTotali.Enabled = editing;
-                btnPagamenti.Enabled = editing;
-                btnResi.Enabled = editing;
-                btnArticoli.Enabled = editing;
+                btnPagamenti.Enabled = !editing;
+                btnResi.Enabled = !editing;
+                btnArticoli.Enabled = !editing;
             }
             catch (Exception ex)
             {
@@ -341,7 +352,7 @@ namespace Web.GUI.FatturaAcquisto
                 {
                     var obj = (FatturaAcquistoDto)Model;
                     var space = new Pagamento.PagamentoView(obj);
-                    space.Title = "PAGAMENTI " + BusinessLogic.Fattura.GetCodifica(obj);
+                    space.Title = "PAGAMENTI / FATTURA " + BusinessLogic.Fattura.GetCodifica(obj);
                     Workspace.AddSpace(space);
                 }
             }
@@ -351,17 +362,7 @@ namespace Web.GUI.FatturaAcquisto
             }
         }
 
-        public override void SetNewValue(object model)
-        {
-            try
-            {
-                BindViewFornitore(fornitore);
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
+        
 
         private void btnResi_Click(object sender, EventArgs e)
         {
@@ -372,7 +373,7 @@ namespace Web.GUI.FatturaAcquisto
                 {
                     var obj = (FatturaAcquistoDto)Model;
                     var space = new Reso.ResoView(obj);
-                    space.Title = "RESI " + BusinessLogic.Fattura.GetCodifica(obj);
+                    space.Title = "RESI / FATTURA" + BusinessLogic.Fattura.GetCodifica(obj);
                     Workspace.AddSpace(space);
                 }
             }
@@ -391,9 +392,21 @@ namespace Web.GUI.FatturaAcquisto
                 {
                     var obj = (FatturaAcquistoDto)Model;
                     var space = new Articolo.ArticoloView(obj);
-                    space.Title = "ARTICOLO " + BusinessLogic.Fattura.GetCodifica(obj);
+                    space.Title = "DETTAGLIO ACQUISTI / FATTURA " + BusinessLogic.Fattura.GetCodifica(obj);
                     Workspace.AddSpace(space);
                 }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        public override void SetNewValue(object model)
+        {
+            try
+            {
+                BindViewFornitore(fornitore);
             }
             catch (Exception ex)
             {

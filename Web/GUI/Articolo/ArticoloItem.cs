@@ -29,12 +29,12 @@ namespace Web.GUI.Articolo
                     var anagraficaArticolo = obj.AnagraficaArticolo;
                     var fatturaAcquisto = obj.FatturaAcquisto;
                     infoImage.Image = "Images.dashboard.articolo.png";
-                    infoFattura.Text = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
+                    infoFattura.Text = "FATTURA "+ BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
 
                     if (anagraficaArticolo != null)
                     {
                         infoDescrizione.Text = (anagraficaArticolo != null ? anagraficaArticolo.Descrizione : null);
-                        infoCodiceArticolo.Text = (anagraficaArticolo != null ? anagraficaArticolo.Codice : null);
+                        infoCodiceArticolo.Text = "ARTICOLO "+ (anagraficaArticolo != null ? anagraficaArticolo.Codice : null);
                         infoCodice.Text = "ART-" + anagraficaArticolo.Codice;
                     }
                 }

@@ -1080,9 +1080,6 @@
         <orm:field name="_totale" property="Totale" uniqueId="36ed1a4c-729c-4cb3-bf16-c4c8f4d5136f" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="Totale" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         </orm:field>
-        <orm:field name="_stato" property="Stato" uniqueId="f9bf7f1f-a624-4214-a988-50ec5b717436" type="System.String">
-          <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
-        </orm:field>
         <orm:field name="_fornitore" property="Fornitore" behavior="readwrite" uniqueId="0574b1bd-5076-4e0c-9d08-a2c9ea16ca7e" type="DataLayer.Fornitore">
           <orm:reference uniqueId="07de2fe6-6a06-493f-afe7-53d44d91cad2" association-name="NotaCreditoHasFornitore">
             <orm:sharedfield name="_fornitoreId" target-class="DataLayer.Fornitore" target-field="_id" />
@@ -1458,7 +1455,6 @@
         <orm:column name="Numero" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:column name="Totale" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
         <orm:column name="IVA" sql-type="numeric" nullable="true" length="20" scale="10" ado-type="" />
-        <orm:column name="Stato" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
         <orm:index name="idx_NotaCredito_FatturaAcquistoId">
           <orm:columnMapping>
             <orm:column name="FornitoreId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -2346,7 +2342,6 @@
       <Property Id="3e04bcee-6cce-4dcf-b102-85b3916f3b45" name="IVA" type="Decimal" label="IVA : Decimal" nullable="true" fieldName="_iVA" />
       <Property Id="36ed1a4c-729c-4cb3-bf16-c4c8f4d5136f" name="Totale" type="Decimal" label="Totale : Decimal" nullable="true" fieldName="_totale" />
       <Property Id="7db6de87-7e97-41ab-b064-aa517a72df17" name="Note" label="Note : String" fieldName="_note" />
-      <Property Id="f9bf7f1f-a624-4214-a988-50ec5b717436" name="Stato" label="Stato : String" fieldName="_stato" />
       <AssociationTargets>
         <Association Id="07de2fe6-6a06-493f-afe7-53d44d91cad2" SourceMultiplicity="ZeroOne" name="NotaCreditoHasFornitore">
           <DomainClassMoniker name="/EntitiesModel/Fornitore" />

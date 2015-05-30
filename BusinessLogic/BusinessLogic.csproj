@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Articolo.cs" />
+    <Compile Include="CentroCosto.cs" />
     <Compile Include="Committente.cs" />
     <Compile Include="Commessa.cs" />
     <Compile Include="Diagnostico.cs" />

@@ -32,10 +32,8 @@ namespace Web.GUI.NotaCredito
 		{
             this.optNumero = new Library.Template.Controls.TemplateEditOption();
             this.optData = new Library.Template.Controls.TemplateEditOption();
-            this.optStato = new Library.Template.Controls.TemplateEditOption();
             this.editFornitore = new Library.Template.Controls.TemplateEditCombo();
             this.editDataInizio = new Library.Template.Controls.TemplateEditDate();
-            this.editStato = new Library.Template.Controls.TemplateEditDropDown();
             this.editDataFine = new Library.Template.Controls.TemplateEditDate();
             this.editCommessa = new Library.Template.Controls.TemplateEditCombo();
             this.panelCommands.SuspendLayout();
@@ -47,26 +45,24 @@ namespace Web.GUI.NotaCredito
             // 
             this.panelAdvancedSearch.Controls.Add(this.editCommessa);
             this.panelAdvancedSearch.Controls.Add(this.editDataFine);
-            this.panelAdvancedSearch.Controls.Add(this.editStato);
             this.panelAdvancedSearch.Controls.Add(this.editDataInizio);
             this.panelAdvancedSearch.Controls.Add(this.editFornitore);
             this.panelAdvancedSearch.Location = new System.Drawing.Point(244, 68);
-            this.panelAdvancedSearch.Size = new System.Drawing.Size(622, 363);
+            this.panelAdvancedSearch.Size = new System.Drawing.Size(622, 309);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.btnConfirmAdvancedSearch, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.btnCloseAdvancedSearch, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.btnCancelAdvancedSearch, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.lblTitleAdvancedSearch, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.editFornitore, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.editDataInizio, 0);
-            this.panelAdvancedSearch.Controls.SetChildIndex(this.editStato, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.editDataFine, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.editCommessa, 0);
             // 
             // panelOrderBy
             // 
-            this.panelOrderBy.Controls.Add(this.optStato);
             this.panelOrderBy.Controls.Add(this.optData);
             this.panelOrderBy.Controls.Add(this.optNumero);
+            this.panelOrderBy.Size = new System.Drawing.Size(473, 212);
             this.panelOrderBy.Controls.SetChildIndex(this.btnConfirmOrderBy, 0);
             this.panelOrderBy.Controls.SetChildIndex(this.btnCloseOrderBy, 0);
             this.panelOrderBy.Controls.SetChildIndex(this.btnCancelOrderBy, 0);
@@ -75,7 +71,6 @@ namespace Web.GUI.NotaCredito
             this.panelOrderBy.Controls.SetChildIndex(this.optDescending, 0);
             this.panelOrderBy.Controls.SetChildIndex(this.optNumero, 0);
             this.panelOrderBy.Controls.SetChildIndex(this.optData, 0);
-            this.panelOrderBy.Controls.SetChildIndex(this.optStato, 0);
             // 
             // btnCloseAdvancedSearch
             // 
@@ -83,11 +78,19 @@ namespace Web.GUI.NotaCredito
             // 
             // btnConfirmAdvancedSearch
             // 
-            this.btnConfirmAdvancedSearch.Location = new System.Drawing.Point(485, 320);
+            this.btnConfirmAdvancedSearch.Location = new System.Drawing.Point(483, 264);
             // 
             // btnCancelAdvancedSearch
             // 
-            this.btnCancelAdvancedSearch.Location = new System.Drawing.Point(319, 320);
+            this.btnCancelAdvancedSearch.Location = new System.Drawing.Point(317, 264);
+            // 
+            // btnCancelOrderBy
+            // 
+            this.btnCancelOrderBy.Location = new System.Drawing.Point(146, 171);
+            // 
+            // btnConfirmOrderBy
+            // 
+            this.btnConfirmOrderBy.Location = new System.Drawing.Point(341, 171);
             // 
             // lblTitleAdvancedSearch
             // 
@@ -135,27 +138,6 @@ namespace Web.GUI.NotaCredito
             this.optData.Text = "Data";
             this.optData.Value = false;
             // 
-            // optStato
-            // 
-            this.optStato.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.optStato.BackColor = System.Drawing.Color.Transparent;
-            this.optStato.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.optStato.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.optStato.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.optStato.Changed = true;
-            this.optStato.Editing = true;
-            this.optStato.Group = "Option1";
-            this.optStato.Label = "";
-            this.optStato.LabelWidth = 0;
-            this.optStato.Location = new System.Drawing.Point(19, 153);
-            this.optStato.Name = "optStato";
-            this.optStato.ReadOnly = false;
-            this.optStato.Required = false;
-            this.optStato.Size = new System.Drawing.Size(427, 30);
-            this.optStato.TabIndex = 2;
-            this.optStato.Text = "Stato";
-            this.optStato.Value = false;
-            // 
             // editFornitore
             // 
             this.editFornitore.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
@@ -197,27 +179,6 @@ namespace Web.GUI.NotaCredito
             this.editDataInizio.TabIndex = 5;
             this.editDataInizio.Value = null;
             // 
-            // editStato
-            // 
-            this.editStato.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editStato.BackColor = System.Drawing.Color.Transparent;
-            this.editStato.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editStato.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editStato.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editStato.Changed = false;
-            this.editStato.DisplayValues = null;
-            this.editStato.Editing = true;
-            this.editStato.Items = null;
-            this.editStato.Label = "Stato";
-            this.editStato.LabelWidth = 100;
-            this.editStato.Location = new System.Drawing.Point(22, 252);
-            this.editStato.Name = "editStato";
-            this.editStato.ReadOnly = false;
-            this.editStato.Required = false;
-            this.editStato.Size = new System.Drawing.Size(572, 30);
-            this.editStato.TabIndex = 6;
-            this.editStato.Value = null;
-            // 
             // editDataFine
             // 
             this.editDataFine.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
@@ -258,12 +219,12 @@ namespace Web.GUI.NotaCredito
             this.editCommessa.Value = null;
             this.editCommessa.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editCommessa_ComboConfirm);
             this.editCommessa.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editCommessa_ComboClick);
-            this.Controls.SetChildIndex(this.panelOrderBy, 0);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.txtSearch, 0);
             this.Controls.SetChildIndex(this.btnOrderBy, 0);
             this.Controls.SetChildIndex(this.btnAdvancedSearch, 0);
             this.Controls.SetChildIndex(this.panelAdvancedSearch, 0);
+            this.Controls.SetChildIndex(this.panelOrderBy, 0);
             this.panelCommands.ResumeLayout(false);
             this.panelAdvancedSearch.ResumeLayout(false);
             this.panelOrderBy.ResumeLayout(false);
@@ -273,11 +234,9 @@ namespace Web.GUI.NotaCredito
 
 		#endregion
 
-        private Library.Template.Controls.TemplateEditOption optStato;
         private Library.Template.Controls.TemplateEditOption optData;
         private Library.Template.Controls.TemplateEditOption optNumero;
         private Library.Template.Controls.TemplateEditDate editDataFine;
-        private Library.Template.Controls.TemplateEditDropDown editStato;
         private Library.Template.Controls.TemplateEditDate editDataInizio;
         private Library.Template.Controls.TemplateEditCombo editFornitore;
         private Library.Template.Controls.TemplateEditCombo editCommessa;

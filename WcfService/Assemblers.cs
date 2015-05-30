@@ -1877,7 +1877,6 @@ namespace WcfService.Assemblers
 			entity.Numero = dto.Numero;
 			entity.IVA = dto.IVA;
 			entity.Totale = dto.Totale;
-			entity.Stato = dto.Stato;
 	        this.OnEntityAssembled(entity);
 	        return entity;
 	    }
@@ -1897,7 +1896,6 @@ namespace WcfService.Assemblers
 			dto.Numero = entity.Numero;
 			dto.IVA = entity.IVA;
 			dto.Totale = entity.Totale;
-			dto.Stato = entity.Stato;
 			this.OnDTOAssembled(dto); 
 	        return dto;
 	    }

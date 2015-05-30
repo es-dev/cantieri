@@ -361,6 +361,27 @@ namespace BusinessLogic
             }
             return 0;
         }
+
+        public static string GetCodifica(CommittenteDto committente)
+        {
+            try
+            {
+                if(committente!=null)
+                {
+                    var anagraficaCommittente = committente.AnagraficaCommittente;
+                    if(anagraficaCommittente!=null)
+                    {
+                        var codifica = anagraficaCommittente.Codice + " - " + anagraficaCommittente.RagioneSociale;
+                        return codifica;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 
 }

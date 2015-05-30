@@ -36,10 +36,17 @@ namespace Web.GUI.Articolo
             this.infoCodiceArticolo = new Gizmox.WebGUI.Forms.Label();
             this.infoDescrizione = new Gizmox.WebGUI.Forms.Label();
             this.infoFattura = new Gizmox.WebGUI.Forms.Label();
+            this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
-            this.jqContainer.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // jqContainer
+            // 
+            this.jqContainer.Controls.Add(this.infoFattura);
+            this.jqContainer.Controls.Add(this.infoDescrizione);
+            this.jqContainer.Controls.Add(this.infoCodiceArticolo);
+            this.jqContainer.Controls.Add(this.panelLeft);
             // 
             // infoCodice
             // 
@@ -81,7 +88,7 @@ namespace Web.GUI.Articolo
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoCodiceArticolo.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoCodiceArticolo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
-            this.infoCodiceArticolo.Location = new System.Drawing.Point(91, 3);
+            this.infoCodiceArticolo.Location = new System.Drawing.Point(89, 3);
             this.infoCodiceArticolo.Name = "infoCodiceArticolo";
             this.infoCodiceArticolo.Size = new System.Drawing.Size(263, 30);
             this.infoCodiceArticolo.TabIndex = 1;
@@ -94,7 +101,7 @@ namespace Web.GUI.Articolo
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoDescrizione.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoDescrizione.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoDescrizione.Location = new System.Drawing.Point(91, 33);
+            this.infoDescrizione.Location = new System.Drawing.Point(92, 33);
             this.infoDescrizione.Name = "infoDescrizione";
             this.infoDescrizione.Size = new System.Drawing.Size(305, 38);
             this.infoDescrizione.TabIndex = 1;
@@ -117,16 +124,11 @@ namespace Web.GUI.Articolo
             // 
             // ArticoloItem
             // 
-            this.jqContainer.Controls.Add(this.infoFattura);
-            this.jqContainer.Controls.Add(this.infoDescrizione);
-            this.jqContainer.Controls.Add(this.infoCodiceArticolo);
-            this.jqContainer.Controls.Add(this.panelLeft);
-   
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Size = new System.Drawing.Size(400, 100);
+            this.jqContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).EndInit();
             this.panelLeft.ResumeLayout(false);
-            this.jqContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}

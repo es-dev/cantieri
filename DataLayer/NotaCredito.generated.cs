@@ -141,19 +141,6 @@ namespace DataLayer
 			}
 		}
 		
-		private string _stato;
-		public virtual string Stato
-		{
-			get
-			{
-				return this._stato;
-			}
-			set
-			{
-				this._stato = value;
-			}
-		}
-		
 		private Fornitore _fornitore;
 		public virtual Fornitore Fornitore
 		{

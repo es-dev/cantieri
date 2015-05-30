@@ -1405,7 +1405,7 @@ namespace WcfService.Dto
 		{
 		}
 		
-		public NotaCreditoDto(int _id, int _fornitoreId, DateTime? _data, decimal? _imponibile, string _note, string _descrizione, string _numero, decimal? _iVA, decimal? _totale, string _stato, FornitoreDto _fornitore, IList<ResoDto> _resos)
+		public NotaCreditoDto(int _id, int _fornitoreId, DateTime? _data, decimal? _imponibile, string _note, string _descrizione, string _numero, decimal? _iVA, decimal? _totale, FornitoreDto _fornitore, IList<ResoDto> _resos)
 		{
 			this.Id = _id;
 			this.FornitoreId = _fornitoreId;
@@ -1416,7 +1416,6 @@ namespace WcfService.Dto
 			this.Numero = _numero;
 			this.IVA = _iVA;
 			this.Totale = _totale;
-			this.Stato = _stato;
 			this.Fornitore = _fornitore;
 			this.Resos = _resos;
 		}
@@ -1450,9 +1449,6 @@ namespace WcfService.Dto
 
 		[DataMember]
 		public virtual decimal? Totale { get;set; }
-
-		[DataMember]
-		public virtual string Stato { get;set; }
 
 		[DataMember]
 		public virtual FornitoreDto Fornitore { get;set; }

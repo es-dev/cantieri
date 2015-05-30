@@ -491,5 +491,26 @@ namespace BusinessLogic
             }
             return null;
         }
+
+        public static string GetCodifica(FornitoreDto fornitore)
+        {
+            try
+            {
+                if(fornitore!=null)
+                {
+                    var anagraficaFornitore = fornitore.AnagraficaFornitore;
+                    if(anagraficaFornitore!=null)
+                    {
+                        var codifica = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
+                        return codifica;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }

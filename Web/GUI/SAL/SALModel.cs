@@ -83,7 +83,7 @@ namespace Web.GUI.SAL
                 var data = DateTime.Now;
                 editCodice.Value = codice.ToString("00");
                 editData.Value = data;
-                editDenominazione.Value = "SAL N." + codice.ToString("00") + "/" + commessa.Codice + " del " + data.ToString("dd/MM/yyyy");
+                editDenominazione.Value = "SAL " + codice.ToString("00") + "/" + commessa.Codice + " del " + data.ToString("dd/MM/yyyy");
             }
             catch (Exception ex)
             {

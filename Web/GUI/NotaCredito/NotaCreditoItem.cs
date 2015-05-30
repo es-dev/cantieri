@@ -30,11 +30,11 @@ namespace Web.GUI.NotaCredito
                     var numero = UtilityValidation.GetStringND(obj.Numero);
                     var data = UtilityValidation.GetDataND(obj.Data);
 
-                    infoNotaCredito.Text = "Nota di credito N." + numero;
+                    infoNotaCredito.Text = "Nota credito " + BusinessLogic.Fattura.GetCodifica(obj);
                     infoData.Text = "Resa il " + data;
                     infoImage.Image = "Images.dashboard.notacredito.png";
                     infoCodice.Text = "NC-"+numero;
-                    infoImporto.Text = "Totale di " + totale;
+                    infoImporto.Text = "Totale di " + (totale!=null?totale:"N/D");
                  
                     BindViewFornitore(obj.Fornitore);
                 }

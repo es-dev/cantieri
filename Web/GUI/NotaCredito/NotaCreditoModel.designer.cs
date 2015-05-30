@@ -38,7 +38,6 @@ namespace Web.GUI.NotaCredito
             this.editTotale = new Library.Template.Controls.TemplateEditDecimal();
             this.editIVA = new Library.Template.Controls.TemplateEditDecimal();
             this.editImponibile = new Library.Template.Controls.TemplateEditDecimal();
-            this.editStato = new Library.Template.Controls.TemplateEditText();
             this.btnCalcoloTotali = new Library.Controls.ButtonSeparatorV();
             this.btnResi = new Library.Controls.ButtonSeparatorV();
             this.container.SuspendLayout();
@@ -48,7 +47,6 @@ namespace Web.GUI.NotaCredito
             // 
             // container
             // 
-            this.container.Controls.Add(this.editStato);
             this.container.Controls.Add(this.editImponibile);
             this.container.Controls.Add(this.editIVA);
             this.container.Controls.Add(this.editTotale);
@@ -67,7 +65,6 @@ namespace Web.GUI.NotaCredito
             this.container.Controls.SetChildIndex(this.editTotale, 0);
             this.container.Controls.SetChildIndex(this.editIVA, 0);
             this.container.Controls.SetChildIndex(this.editImponibile, 0);
-            this.container.Controls.SetChildIndex(this.editStato, 0);
             // 
             // infoSubtitle
             // 
@@ -268,28 +265,6 @@ namespace Web.GUI.NotaCredito
             this.editImponibile.Text = "TemplateEditNumeric";
             this.editImponibile.Value = null;
             // 
-            // editStato
-            // 
-            this.editStato.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.editStato.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.editStato.BackColor = System.Drawing.Color.Transparent;
-            this.editStato.BorderColor = new Gizmox.WebGUI.Forms.BorderColor(System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224))))));
-            this.editStato.BorderStyle = Gizmox.WebGUI.Forms.BorderStyle.FixedSingle;
-            this.editStato.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
-            this.editStato.Changed = true;
-            this.editStato.Editing = false;
-            this.editStato.Label = "Stato";
-            this.editStato.LabelWidth = 175;
-            this.editStato.Location = new System.Drawing.Point(25, 403);
-            this.editStato.Name = "editStato";
-            this.editStato.ReadOnly = false;
-            this.editStato.Required = false;
-            this.editStato.Size = new System.Drawing.Size(798, 30);
-            this.editStato.TabIndex = 9;
-            this.editStato.Text = "EditControl";
-            this.editStato.Value = null;
-            // 
             // btnCalcoloTotali
             // 
             this.btnCalcoloTotali.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
@@ -317,11 +292,6 @@ namespace Web.GUI.NotaCredito
             this.btnResi.TabIndex = 1002;
             this.btnResi.TextButton = "Resi";
             this.btnResi.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnResi_Click);
-            // 
-            // NotaCreditoModel
-            // 
-            this.Controls.SetChildIndex(this.panelCommands, 0);
-            this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
             this.panelCommands.ResumeLayout(false);
@@ -339,7 +309,6 @@ namespace Web.GUI.NotaCredito
         private Library.Template.Controls.TemplateEditDecimal editImponibile;
         private Library.Template.Controls.TemplateEditDecimal editIVA;
         private Library.Template.Controls.TemplateEditDecimal editTotale;
-        private Library.Template.Controls.TemplateEditText editStato;
         private Library.Controls.ButtonSeparatorV btnCalcoloTotali;
         private Library.Controls.ButtonSeparatorV btnResi;
 

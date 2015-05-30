@@ -198,7 +198,7 @@ namespace Web.GUI.Incasso
             {
                 var committente = fatturaVendita.Committente;
                 editFatturaVendita.Model = fatturaVendita;
-                editFatturaVendita.Value = (fatturaVendita != null ? BusinessLogic.Fattura.GetCodifica(fatturaVendita, false) : null) + " - " +
+                editFatturaVendita.Value = (fatturaVendita != null ? BusinessLogic.Fattura.GetCodifica(fatturaVendita) : null) + " - " +
                     (committente != null ? committente.AnagraficaCommittente.RagioneSociale : null);
             }
             catch (Exception ex)

@@ -115,7 +115,7 @@ namespace Web.GUI.NotaCredito
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoFornitore.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoFornitore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoFornitore.Location = new System.Drawing.Point(96, 32);
+            this.infoFornitore.Location = new System.Drawing.Point(94, 32);
             this.infoFornitore.Name = "infoFornitore";
             this.infoFornitore.Size = new System.Drawing.Size(297, 34);
             this.infoFornitore.TabIndex = 1;
@@ -126,7 +126,7 @@ namespace Web.GUI.NotaCredito
             this.infoData.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoData.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoData.ForeColor = System.Drawing.Color.DarkRed;
+            this.infoData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.infoData.Location = new System.Drawing.Point(96, 74);
             this.infoData.Name = "infoData";
             this.infoData.Size = new System.Drawing.Size(154, 16);

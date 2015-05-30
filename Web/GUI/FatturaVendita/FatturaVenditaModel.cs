@@ -63,11 +63,10 @@ namespace Web.GUI.FatturaVendita
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.FatturaVenditaDto)model;
-                    infoSubtitle.Text = BusinessLogic.Fattura.GetCodifica(obj);
+                    infoSubtitle.Text = "FATTURA "+ BusinessLogic.Fattura.GetCodifica(obj);
                     infoSubtitleImage.Image = "Images.dashboard.fatturavendita.png";
                     var committente = obj.Committente;
-                    var anagraficaCommittente = committente.AnagraficaCommittente;
-                    infoTitle.Text = (obj.Id != 0 ? "FATTURA DI VENDITA " + obj.Numero + " - " + anagraficaCommittente.RagioneSociale : "NUOVA FATTURA DI VENDITA");
+                    infoTitle.Text = (obj.Id != 0 ? "FATTURA VENDITA " + BusinessLogic.Fattura.GetCodifica(obj) : "NUOVA FATTURA DI VENDITA") + " / COMMITTENTE " + BusinessLogic.Committente.GetCodifica(committente);
                 }
             }
             catch (Exception ex)
@@ -121,7 +120,7 @@ namespace Web.GUI.FatturaVendita
             try
             {
                 editCommittente.Model = committente;
-                editCommittente.Value = (committente != null ? committente.AnagraficaCommittente.Codice + " - " + committente.AnagraficaCommittente.RagioneSociale : null);
+                editCommittente.Value = BusinessLogic.Committente.GetCodifica(committente);
             }
             catch (Exception ex)
             {
@@ -136,10 +135,7 @@ namespace Web.GUI.FatturaVendita
             {
                 var today = DateTime.Today;
                 var totaleIncassi = BusinessLogic.Fattura.GetTotaleIncassi(obj, today);
-
-                var viewModelCommessa = new Commessa.CommessaViewModel();
-                var commessa = viewModelCommessa.ReadCommessa(obj);
-                var statoDescrizione = BusinessLogic.Fattura.GetStatoDescrizione(obj, commessa);
+                var statoDescrizione = BusinessLogic.Fattura.GetStatoDescrizione(obj);
 
                 editStato.Value = statoDescrizione;
                 editTotaleIncassi.Value = totaleIncassi;
@@ -172,7 +168,7 @@ namespace Web.GUI.FatturaVendita
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.FatturaVenditaDto)model;
+                    var obj = (FatturaVenditaDto)model;
                     obj.Data = editData.Value;
                     obj.Descrizione = editDescrizione.Value;
                     obj.Imponibile = editImponibile.Value;
@@ -184,10 +180,12 @@ namespace Web.GUI.FatturaVendita
                     obj.Totale = editTotale.Value;
                     obj.TotaleIncassi = editTotaleIncassi.Value;
                     obj.Stato = editStato.Value;
-                    obj.Scadenza = BusinessLogic.Fattura.GetScadenza(obj);                    
-                    var committente = (WcfService.Dto.CommittenteDto)editCommittente.Model;
+                    obj.Scadenza = BusinessLogic.Fattura.GetScadenza(obj);  
+                  
+                    var committente = (CommittenteDto)editCommittente.Model;
                     if (committente != null)
                         obj.CommittenteId = committente.Id;
+                    
                 }
             }
             catch (Exception ex)
@@ -245,8 +243,7 @@ namespace Web.GUI.FatturaVendita
         {
             try
             {
-                if (Editing)
-                    BindViewTotaleFattura();
+                BindViewTotaleFattura();
             }
             catch (Exception ex)
             {
@@ -260,7 +257,7 @@ namespace Web.GUI.FatturaVendita
             {
                 base.SetEditing(editing, deleting);
                 btnCalcoloTotali.Enabled = editing;
-                btnIncassi.Enabled = editing;
+                btnIncassi.Enabled = !editing;
             }
             catch (Exception ex)
             {
@@ -277,7 +274,7 @@ namespace Web.GUI.FatturaVendita
                 {
                     var obj = (FatturaVenditaDto)Model;
                     var space = new Incasso.IncassoView(obj);
-                    space.Title = "INCASSI " + BusinessLogic.Fattura.GetCodifica(obj);
+                    space.Title = "INCASSI / FATTURA " + BusinessLogic.Fattura.GetCodifica(obj);
                     Workspace.AddSpace(space);
 
                 }
