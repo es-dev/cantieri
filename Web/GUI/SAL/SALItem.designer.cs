@@ -83,7 +83,7 @@ namespace Web.GUI.SAL
             this.infoSAL.Name = "infoSAL";
             this.infoSAL.Size = new System.Drawing.Size(267, 30);
             this.infoSAL.TabIndex = 1;
-            this.infoSAL.Text = "DENOMINAZIONE";
+            this.infoSAL.Text = "SAL";
             // 
             // panelLeft
             // 

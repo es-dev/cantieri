@@ -451,8 +451,13 @@ namespace BusinessLogic
                 }
                 else if (statoFornitore == Tipi.StatoFornitore.Pagato)
                 {
-                    descrizione = "Il fornitore risulta pagato. Tutte le fatture sono state saldate";  
-                    stato = TypeState.Normal;
+                    if (totaleSaldoFattureAcquisto > 0 && totalePagamenti > 0)
+                    {
+                        descrizione = "Il fornitore risulta pagato. Tutte le fatture sono state saldate";
+                        stato = TypeState.Normal;
+                    }
+                    else
+                        stato = TypeState.None;
                 }
                 var statoDescrizione = new StateDescriptionImage(statoFornitore.ToString(), stato, descrizione);
                 return statoDescrizione;

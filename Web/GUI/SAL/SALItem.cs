@@ -29,7 +29,8 @@ namespace Web.GUI.SAL
                     var obj = (SALDto)model;
                     var data = UtilityValidation.GetData(obj.Data);
 
-                    var commessa = GetCommessa(obj);
+                    var viewModel = new Commessa.CommessaViewModel();
+                    var commessa = (CommessaDto)viewModel.ReadCommessa(obj);
                     var importoLavori = UtilityValidation.GetEuro(commessa.Importo);
                     var margineOperativo = BusinessLogic.SAL.GetMargineOperativo(obj, commessa);
 
@@ -39,7 +40,7 @@ namespace Web.GUI.SAL
 
                     infoCodice.Text="SAL-" + codice;
                     infoImage.Image = "Images.dashboard.SAL.png";
-                    infoCommesssa.Text = "Commessa " + commessa.Codice + " - " + commessa.Denominazione;
+                    infoCommesssa.Text = "Commessa " + BusinessLogic.Commessa.GetCodifica(commessa);
                     infoSAL.Text = BusinessLogic.SAL.GetCodifica(obj);
                     infoAndamentoLavoro.Text = "Margine " + _margineOperativo + " su importo lavori di " + importoLavori;
                     imgStato.Image = stato.Image;
@@ -51,25 +52,6 @@ namespace Web.GUI.SAL
             {
                 UtilityError.Write(ex);
             }
-        }
-
-        private CommessaDto GetCommessa(SALDto sal)
-        {
-            try
-            {
-                if (sal != null)
-                {
-                    var commessaId = sal.CommessaId;
-                    var viewModel = new Commessa.CommessaViewModel();
-                    var commessa = (CommessaDto)viewModel.Read(commessaId);
-                    return commessa;
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
         }
 
         private static DescriptionImage GetStato(CommessaDto commessa, DateTime data)
@@ -92,7 +74,7 @@ namespace Web.GUI.SAL
                 else if (stato == Tipi.StatoSAL.Perdita)
                 {
                     image = "Images.messageAlert.png";
-                    descrizione = "SAL in perdita, il margine operatvo risulta negativo. Commessa con profitto negativo";
+                    descrizione = "SAL in perdita, il margine operativo risulta negativo. Commessa con profitto negativo";
                 }
                 var _stato = new DescriptionImage(descrizione, image);
                 return _stato;

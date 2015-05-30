@@ -43,7 +43,7 @@ namespace Web.GUI.SAL
                 infoSubtitle.Text = obj.Codice + " - " + obj.Denominazione;
                 infoSubtitleImage.Image = "Images.dashboard.SAL.png";
                 var commessa = obj.Commessa;
-                infoTitle.Text =(obj.Id!=0? "SAL " + obj.Codice + " - COMMESSA " + commessa.Codice:"NUOVO SAL");
+                infoTitle.Text = (obj.Id != 0 ? "SAL " + obj.Codice : "NUOVO SAL") + " / COMMESSA " + BusinessLogic.Commessa.GetCodifica(commessa);
             }
             catch (Exception ex)
             {
@@ -57,7 +57,7 @@ namespace Web.GUI.SAL
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.SALDto)model;
+                    var obj = (SALDto)model;
                     editData.Value = obj.Data;
                     editCodice.Value = obj.Codice;
                     editNote.Value = obj.Note;
@@ -73,12 +73,31 @@ namespace Web.GUI.SAL
             }
         }
 
+        private void BindViewCodiceSAL(CommessaDto commessa)
+        {
+            try
+            {
+                var viewModel = (SALViewModel)ViewModel;
+                viewModel.Commessa = commessa;
+                var codice = viewModel.Count() + 1;
+                var data = DateTime.Now;
+                editCodice.Value = codice.ToString("00");
+                editData.Value = data;
+                editDenominazione.Value = "SAL N." + codice.ToString("00") + "/" + commessa.Codice + " del " + data.ToString("dd/MM/yyyy");
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+
+        }
+
         private void BindViewCommessa(CommessaDto commessa)
         {
             try
             {
                 editCommessa.Model = commessa;
-                editCommessa.Value = (commessa != null ? commessa.Codice + " - " + commessa.Denominazione : null);
+                editCommessa.Value = (commessa != null ? BusinessLogic.Commessa.GetCodifica(commessa) : null);
             }
             catch (Exception ex)
             {
@@ -92,7 +111,7 @@ namespace Web.GUI.SAL
             try
             {
                 var viewModel = new Commessa.CommessaViewModel();
-                var commessa = viewModel.ReadCommessa(obj.CommessaId);
+                var commessa = viewModel.ReadCommessa(obj);
                 var data = editData.Value;
                 if (commessa != null && data != null)
                 {
@@ -134,6 +153,7 @@ namespace Web.GUI.SAL
                     obj.TotalePagamenti = editTotalePagamenti.Value;
                     obj.Denominazione = editDenominazione.Value;
                     obj.Stato = editStato.Value;
+                    
                     var commessa = (CommessaDto)editCommessa.Model;
                     if (commessa != null)
                         obj.CommessaId = commessa.Id;
@@ -165,6 +185,7 @@ namespace Web.GUI.SAL
             {
                 var commessa = (CommessaDto)model;
                 BindViewCommessa(commessa);
+                BindViewCodiceSAL(commessa);
 
             }
             catch (Exception ex)
@@ -205,12 +226,15 @@ namespace Web.GUI.SAL
             try
             {
                 BindViewCommessa(commessa);
+                BindViewCodiceSAL(commessa);
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
         }
+
+        
 
         
 

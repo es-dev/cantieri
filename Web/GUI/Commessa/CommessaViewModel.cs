@@ -110,12 +110,13 @@ namespace Web.GUI.Commessa
             return null;
         }
 
-        public CommessaDto ReadCommessa(object id)
+        public CommessaDto ReadCommessa(SALDto sal)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var obj = wcf.ReadCommessa(id, true);
+                var commessaId = sal.CommessaId;
+                var obj = wcf.ReadCommessa(commessaId, true);
                 return obj;
             }
             catch (Exception ex)

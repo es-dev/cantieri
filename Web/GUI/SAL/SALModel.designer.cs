@@ -167,7 +167,7 @@ namespace Web.GUI.SAL
             this.editDenominazione.Location = new System.Drawing.Point(25, 159);
             this.editDenominazione.Name = "editDenominazione";
             this.editDenominazione.ReadOnly = false;
-            this.editDenominazione.Required = true;
+            this.editDenominazione.Required = false;
             this.editDenominazione.Size = new System.Drawing.Size(798, 30);
             this.editDenominazione.TabIndex = 6;
             this.editDenominazione.Text = "EditControl";
@@ -206,7 +206,7 @@ namespace Web.GUI.SAL
             this.editTotaleFattureVendita.BorderWidth = new Gizmox.WebGUI.Forms.BorderWidth(0, 0, 0, 1);
             this.editTotaleFattureVendita.Changed = true;
             this.editTotaleFattureVendita.Editing = false;
-            this.editTotaleFattureVendita.Label = "Fatture committente";
+            this.editTotaleFattureVendita.Label = "Fatture committenti";
             this.editTotaleFattureVendita.LabelWidth = 175;
             this.editTotaleFattureVendita.Location = new System.Drawing.Point(25, 369);
             this.editTotaleFattureVendita.Name = "editTotaleFattureVendite";
@@ -359,7 +359,7 @@ namespace Web.GUI.SAL
             this.editStato.Size = new System.Drawing.Size(798, 49);
             this.editStato.TabIndex = 1002;
             this.editStato.Text = "TemplateEditNumeric";
-            this.editStato.Value = "None{;}";
+            this.editStato.Value = null;
             // 
             // editNote
             // 
@@ -386,8 +386,6 @@ namespace Web.GUI.SAL
             // SALModel
             // 
             this.Size = new System.Drawing.Size(1024, 727);
-            this.Controls.SetChildIndex(this.panelCommands, 0);
-            this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
             this.panelCommands.ResumeLayout(false);

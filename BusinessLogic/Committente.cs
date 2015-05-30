@@ -273,8 +273,13 @@ namespace BusinessLogic
                 }
                 else if (statoCommittente == Tipi.StatoCommittente.Incassato)
                 {
-                    descrizione = "Il committente risulta incassato. Tutte le fatture sono state liquidate";  //non so se ha senso indicargli anche insolute o no!!!!! per ora NO
-                    stato = TypeState.Normal;
+                    if (totaleFattureVendita > 0 && totaleIncassi > 0)
+                    {
+                        descrizione = "Il committente risulta incassato. Tutte le fatture sono state liquidate";
+                        stato = TypeState.Normal;
+                    }
+                    else
+                        stato = TypeState.None;
                 }
                 var statoDescrizione = new StateDescriptionImage(statoCommittente.ToString(), stato, descrizione);
                 return statoDescrizione;

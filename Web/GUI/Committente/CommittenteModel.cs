@@ -46,11 +46,8 @@ namespace Web.GUI.Committente
                     infoSubtitleImage.Image = "Images.dashboard.committente.png";
                     var commessa = obj.Commessa;
                     var anagraficaCommittente = obj.AnagraficaCommittente;
-                    if (anagraficaCommittente != null)
-                    {
-                        infoSubtitle.Text = anagraficaCommittente.Codice + " - " + anagraficaCommittente.RagioneSociale;
-                        infoTitle.Text = (obj.Id != 0 ? "COMMITTENTE " + anagraficaCommittente.RagioneSociale : "NUOVO COMMITTENTE") + " / COMMESSA " + BusinessLogic.Commessa.GetCodifica(commessa);
-                    }
+                    infoSubtitle.Text =(anagraficaCommittente!=null? anagraficaCommittente.Codice + " - " + anagraficaCommittente.RagioneSociale:null);
+                    infoTitle.Text = (obj.Id != 0 ? "COMMITTENTE " + anagraficaCommittente.RagioneSociale : "NUOVO COMMITTENTE") + " / COMMESSA " + BusinessLogic.Commessa.GetCodifica(commessa);
                 }
             }
             catch (Exception ex)
@@ -207,8 +204,8 @@ namespace Web.GUI.Committente
             {
                 base.SetEditing(editing, deleting);
                 btnCalcoloTotali.Enabled = editing;
-                btnFattureVendita.Enabled = editing;
-                btnIncassi.Enabled = editing;
+                btnFattureVendita.Enabled = !editing;
+                btnIncassi.Enabled = !editing;
             }
             catch (Exception ex)
             {
@@ -356,11 +353,11 @@ namespace Web.GUI.Committente
 
                 var obj = (CommittenteDto)Model;
                 var commessa = (CommessaDto)editCommessa.Model;
-                var anagraficaCommittente = obj.AnagraficaCommittente; 
+                var anagraficaCommittente = (AnagraficaCommittenteDto)editCodice.Model;
                 var validationCommittente = BusinessLogic.Diagnostico.ValidateCommittente(obj, anagraficaCommittente, commessa);
-                    validation.State = validationCommittente.State;
-                    validation.Message = validationCommittente.Message;
-                
+                validation.State = validationCommittente.State;
+                validation.Message = validationCommittente.Message;
+
                 return validation;
             }
             catch (Exception ex)

@@ -46,13 +46,9 @@ namespace Web.GUI.Fornitore
                     var obj = (WcfService.Dto.FornitoreDto)model;
                     infoSubtitleImage.Image = "Images.dashboard.fornitore.png";
                     var commessa = obj.Commessa;
-
                     var anagraficaFornitore = obj.AnagraficaFornitore;
-                    if (anagraficaFornitore != null)
-                    {
-                        infoSubtitle.Text = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
-                        infoTitle.Text = (obj.Id != 0 ? "FORNITORE " + anagraficaFornitore.RagioneSociale : "NUOVO FORNITORE") + " / COMMESSA " + BusinessLogic.Commessa.GetCodifica(commessa);
-                    }
+                    infoSubtitle.Text = (anagraficaFornitore != null ? anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale : null);
+                    infoTitle.Text = (obj.Id != 0 ? "FORNITORE " + anagraficaFornitore.RagioneSociale : "NUOVO FORNITORE") + " / COMMESSA " + BusinessLogic.Commessa.GetCodifica(commessa);
                 }
             }
             catch (Exception ex)

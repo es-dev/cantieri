@@ -18,7 +18,6 @@ namespace BusinessLogic
                 {
                     var fornitori = commessa.Fornitores;
                     var totaleFattureAcquisto = GetTotaleFattureAcquisto(fornitori, data);
-                    var margine = UtilityValidation.GetDecimal(commessa.Margine);
                     var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
                     var margineOperativo = importoLavori - totaleFattureAcquisto;
                     return margineOperativo;
@@ -377,10 +376,13 @@ namespace BusinessLogic
                 decimal margineOperativo = 0;
                 if (commessa != null)
                 {
-                    var fornitori = commessa.Fornitores;
                     var statoCommessa = commessa.Stato;
                     if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                        margineOperativo = 0;
+                    {
+                        var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
+                        var totaleFattureAcquisto = UtilityValidation.GetDecimal(sal.TotaleFattureAcquisto);
+                        margineOperativo = importoLavori - totaleFattureAcquisto;
+                    }
                     else
                     {
                         var data = UtilityValidation.GetData(sal.Data);
@@ -404,7 +406,7 @@ namespace BusinessLogic
                 {
                     var codice = UtilityValidation.GetStringND(sal.Codice);
                     var data = UtilityValidation.GetDataND(sal.Data);
-                    string codfica = "SAL n." + codice + " del " + data;
+                    string codfica = "SAL " + codice + " del " + data;
                     return codfica;
                 }
             }
