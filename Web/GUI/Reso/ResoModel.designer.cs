@@ -143,7 +143,7 @@ namespace Web.GUI.Reso
             this.editImporto.TabIndex = 4;
             this.editImporto.Text = "TemplateEditNumeric";
             this.editImporto.Value = null;
-            this.editImporto.Leave += new System.EventHandler(this.editImportoIVA_Leave);
+            this.editImporto.Leave += new System.EventHandler(this.editTotale_Leave);
             // 
             // editNote
             // 
@@ -257,7 +257,7 @@ namespace Web.GUI.Reso
             this.editIVA.TabIndex = 5;
             this.editIVA.Text = "TemplateEditNumeric";
             this.editIVA.Value = null;
-            this.editIVA.Leave += new System.EventHandler(this.editImportoIVA_Leave);
+            this.editIVA.Leave += new System.EventHandler(this.editTotale_Leave);
             // 
             // editTotale
             // 
@@ -274,17 +274,12 @@ namespace Web.GUI.Reso
             this.editTotale.LabelWidth = 175;
             this.editTotale.Location = new System.Drawing.Point(25, 327);
             this.editTotale.Name = "editTotale";
-            this.editTotale.ReadOnly = false;
+            this.editTotale.ReadOnly = true;
             this.editTotale.Required = false;
             this.editTotale.Size = new System.Drawing.Size(798, 30);
             this.editTotale.TabIndex = 6;
             this.editTotale.Text = "TemplateEditNumeric";
             this.editTotale.Value = null;
-            // 
-            // ResoModel
-            // 
-            this.Controls.SetChildIndex(this.panelCommands, 0);
-            this.Controls.SetChildIndex(this.container, 0);
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
             this.panelCommands.ResumeLayout(false);

@@ -33,10 +33,18 @@ namespace Web.GUI.Incasso
                     infoData.Text = "Incassato il " + data;
                     infoImage.Image = "Images.dashboard.incasso.png";
                     infoCodice.Text = "INC-"+codice;
-                    infoTransazionePagamento.Text = "Tipo transazione: " + obj.TransazionePagamento;
-                    infoNote.Text = obj.Note;
+                    infoTransazionePagamento.Text = obj.TransazionePagamento;
                     infoImporto.Text = "Importo: " + importo;
                     infoIncasso.Text = "Incasso N." + codice;
+                    var fatturaVendita = obj.FatturaVendita;
+                    infoFatturaVendita.Text = "Fattura " + BusinessLogic.Fattura.GetCodifica(fatturaVendita);
+                    if(fatturaVendita!=null)
+                    {
+                        var committente = fatturaVendita.Committente;
+                        var anagraficaCommittente = committente.AnagraficaCommittente;
+                        infoCommittente.Text = anagraficaCommittente.RagioneSociale;
+                    }
+
                 }
             }
             catch (Exception ex)

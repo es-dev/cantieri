@@ -29,15 +29,25 @@ namespace Web.GUI.Reso
                     var totale = UtilityValidation.GetEuro(obj.Totale);
                     var codice = UtilityValidation.GetStringND(obj.Codice);
                     var data = UtilityValidation.GetDataND(obj.Data);
-                    var fatturaAcquisto = obj.FatturaAcquisto;
-                    var notaCredito = obj.NotaCredito;
                     
                     infoData.Text = "Reso il " + data;
                     infoImage.Image = "Images.dashboard.reso.png";
                     infoCodice.Text = "RES";
-                    infoDescrizione.Text = "Rif. " + BusinessLogic.Fattura.GetCodifica(notaCredito) + " - " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
                     infoImporto.Text = "Totale: " + totale;
-                    infoReso.Text = "Reso N." + codice;
+                    infoReso.Text = "Reso " + codice;
+
+                    var fatturaAcquisto = obj.FatturaAcquisto;
+                    var notaCredito = obj.NotaCredito;
+
+                    infoNotaCredito.Text = "Nota credito " + BusinessLogic.Fattura.GetCodifica(notaCredito);
+                    var fatturaAcquistoFornitore = "Fattura acquisto " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
+                    if(fatturaAcquisto!=null)
+                    {
+                        var fornitore = fatturaAcquisto.Fornitore;
+                        var anagraficaFornitore = fornitore.AnagraficaFornitore;
+                        fatturaAcquistoFornitore += " / " + anagraficaFornitore.RagioneSociale;
+                    }
+                    infoFatturaAcquistoFornitore.Text = fatturaAcquistoFornitore;
                 }
             }
             catch (Exception ex)

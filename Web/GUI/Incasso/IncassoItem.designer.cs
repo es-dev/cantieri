@@ -37,7 +37,8 @@ namespace Web.GUI.Incasso
             this.infoData = new Gizmox.WebGUI.Forms.Label();
             this.infoImporto = new Gizmox.WebGUI.Forms.Label();
             this.infoTransazionePagamento = new Gizmox.WebGUI.Forms.Label();
-            this.infoNote = new Gizmox.WebGUI.Forms.Label();
+            this.infoFatturaVendita = new Gizmox.WebGUI.Forms.Label();
+            this.infoCommittente = new Gizmox.WebGUI.Forms.Label();
             this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
@@ -45,12 +46,13 @@ namespace Web.GUI.Incasso
             // 
             // jqContainer
             // 
-            this.jqContainer.Controls.Add(this.infoNote);
+            this.jqContainer.Controls.Add(this.infoFatturaVendita);
             this.jqContainer.Controls.Add(this.infoTransazionePagamento);
             this.jqContainer.Controls.Add(this.panelLeft);
             this.jqContainer.Controls.Add(this.infoImporto);
             this.jqContainer.Controls.Add(this.infoData);
             this.jqContainer.Controls.Add(this.infoIncasso);
+            this.jqContainer.Controls.Add(this.infoCommittente);
             // 
             // infoCodice
             // 
@@ -100,19 +102,19 @@ namespace Web.GUI.Incasso
             // 
             // infoData
             // 
-            this.infoData.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.infoData.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoData.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoData.ForeColor = System.Drawing.Color.DarkRed;
-            this.infoData.Location = new System.Drawing.Point(96, 78);
+            this.infoData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.infoData.Location = new System.Drawing.Point(94, 76);
             this.infoData.Name = "infoData";
-            this.infoData.Size = new System.Drawing.Size(154, 16);
+            this.infoData.Size = new System.Drawing.Size(151, 18);
             this.infoData.TabIndex = 1;
             this.infoData.Text = "Incassato il dd/MM/yyyy";
             // 
             // infoImporto
             // 
-            this.infoImporto.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.infoImporto.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoImporto.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoImporto.ForeColor = System.Drawing.Color.DarkRed;
             this.infoImporto.Location = new System.Drawing.Point(253, 80);
@@ -124,29 +126,39 @@ namespace Web.GUI.Incasso
             // 
             // infoTransazionePagamento
             // 
-            this.infoTransazionePagamento.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.infoTransazionePagamento.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoTransazionePagamento.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoTransazionePagamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoTransazionePagamento.Location = new System.Drawing.Point(96, 34);
+            this.infoTransazionePagamento.Location = new System.Drawing.Point(304, 54);
             this.infoTransazionePagamento.Name = "infoTransazionePagamento";
-            this.infoTransazionePagamento.Size = new System.Drawing.Size(296, 18);
+            this.infoTransazionePagamento.Size = new System.Drawing.Size(88, 18);
             this.infoTransazionePagamento.TabIndex = 1;
-            this.infoTransazionePagamento.Text = "Transazione pagamento";
+            this.infoTransazionePagamento.Text = "Transazione";
+            this.infoTransazionePagamento.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // infoNote
+            // infoFatturaVendita
             // 
-            this.infoNote.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.infoFatturaVendita.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.infoNote.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoNote.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoNote.Location = new System.Drawing.Point(96, 54);
-            this.infoNote.Name = "infoNote";
-            this.infoNote.Size = new System.Drawing.Size(296, 18);
-            this.infoNote.TabIndex = 1;
-            this.infoNote.Text = "Note";
+            this.infoFatturaVendita.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoFatturaVendita.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.infoFatturaVendita.Location = new System.Drawing.Point(94, 54);
+            this.infoFatturaVendita.Name = "infoFatturaVendita";
+            this.infoFatturaVendita.Size = new System.Drawing.Size(226, 18);
+            this.infoFatturaVendita.TabIndex = 1;
+            this.infoFatturaVendita.Text = "Fattura vendita";
+            // 
+            // infoCommittente
+            // 
+            this.infoCommittente.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.infoCommittente.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoCommittente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.infoCommittente.Location = new System.Drawing.Point(94, 32);
+            this.infoCommittente.Name = "infoCommittente";
+            this.infoCommittente.Size = new System.Drawing.Size(296, 18);
+            this.infoCommittente.TabIndex = 1;
+            this.infoCommittente.Text = "Committente";
             // 
             // IncassoItem
             // 
@@ -167,7 +179,8 @@ namespace Web.GUI.Incasso
         private Gizmox.WebGUI.Forms.Label infoIncasso;
         private Gizmox.WebGUI.Forms.Label infoImporto;
         private Gizmox.WebGUI.Forms.Label infoData;
-        private Gizmox.WebGUI.Forms.Label infoNote;
+        private Gizmox.WebGUI.Forms.Label infoFatturaVendita;
         private Gizmox.WebGUI.Forms.Label infoTransazionePagamento;
+        private Gizmox.WebGUI.Forms.Label infoCommittente;
 	}
 }

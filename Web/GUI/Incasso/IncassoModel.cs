@@ -61,9 +61,24 @@ namespace Web.GUI.Incasso
             try
             {
                 BindViewFatturaVendita(fatturaVendita);
+                BindViewCodiceIncasso(fatturaVendita);
 
+                editData.Value = DateTime.Now;
+                editTransazionePagamento.Value = Tipi.TransazionePagamento.Acconto.ToString();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewCodiceIncasso(FatturaVenditaDto fatturaVendita)
+        {
+            try
+            {
                 var codice = BusinessLogic.Incasso.GetCodice(fatturaVendita);
                 editCodice.Value = codice;
+
             }
             catch (Exception ex)
             {
@@ -118,10 +133,15 @@ namespace Web.GUI.Incasso
         {
             try
             {
-                var committente = fatturaVendita.Committente;
                 editFatturaVendita.Model = fatturaVendita;
-                editFatturaVendita.Value = (fatturaVendita != null ? BusinessLogic.Fattura.GetCodifica(fatturaVendita) : null) + " - " +
-                    (committente != null ? committente.AnagraficaCommittente.RagioneSociale : null);
+                var fatturaVenditaCommittente = BusinessLogic.Fattura.GetCodifica(fatturaVendita);
+                if (fatturaVendita != null)
+                {
+                    var committente = fatturaVendita.Committente;
+                    var anagraficaCommittente = committente.AnagraficaCommittente;
+                    fatturaVenditaCommittente += anagraficaCommittente.RagioneSociale;
+                }
+                editFatturaVendita.Value = fatturaVenditaCommittente;
             }
             catch (Exception ex)
             {
@@ -172,8 +192,9 @@ namespace Web.GUI.Incasso
         {
             try
             {
-                var obj = (FatturaVenditaDto)model;
-                BindViewFatturaVendita(obj);
+                var fatturaVendita = (FatturaVenditaDto)model;
+                BindViewFatturaVendita(fatturaVendita);
+                BindViewCodiceIncasso(fatturaVendita);
             }
             catch (Exception ex)
             {

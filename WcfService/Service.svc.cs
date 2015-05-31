@@ -1407,7 +1407,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var pagamento = (from q in ef.Pagamentos where q.Id == (int)id select q).FirstOrDefault();
-                var pagamentoDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamento);
+                var pagamentoDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamento,true);
                 return pagamentoDto;
             }
             catch (Exception ex)
@@ -1824,7 +1824,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var reso = (from q in ef.Resos where q.Id == (int)id select q).FirstOrDefault();
-                var resoDto = UtilityPOCO.Assemble<Dto.ResoDto>(reso);
+                var resoDto = UtilityPOCO.Assemble<Dto.ResoDto>(reso, true);
                 return resoDto;
 
             }
@@ -2738,7 +2738,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var incasso = (from q in ef.Incassos where q.Id == (int)id select q).FirstOrDefault();
-                var incassoDto = UtilityPOCO.Assemble<Dto.IncassoDto>(incasso);
+                var incassoDto = UtilityPOCO.Assemble<Dto.IncassoDto>(incasso,true);
                 return incassoDto;
             }
             catch (Exception ex)

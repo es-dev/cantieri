@@ -61,9 +61,24 @@ namespace Web.GUI.Pagamento
             try
             {
                 BindViewFatturaAcquisto(fatturaAcquisto);
+                BindViewCodicePagamento(fatturaAcquisto);
+               
+                editData.Value = DateTime.Now;
+                editTransazionePagamento.Value = Tipi.TransazionePagamento.Acconto.ToString();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
 
+        private void BindViewCodicePagamento(FatturaAcquistoDto fatturaAcquisto)
+        {
+            try
+            {
                 var codice = BusinessLogic.Pagamento.GetCodice(fatturaAcquisto);
                 editCodice.Value = codice;
+
             }
             catch (Exception ex)
             {
@@ -76,14 +91,14 @@ namespace Web.GUI.Pagamento
             try
             {
                 var obj = (PagamentoDto)model;
-                infoSubtitle.Text = obj.Codice + " - " + obj.Descrizione;
+                infoSubtitle.Text = "PAGAMENTO " +obj.Codice;
                 infoSubtitleImage.Image = "Images.dashboard.pagamento.png";
                 var fatturaAcquisto = obj.FatturaAcquisto;
-                string title = "PAGAMENTO " + obj.Codice + " - " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
+                string title =  " / FATTURA " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
                 var pagamentoUnificato = obj.PagamentoUnificato;
                 if (pagamentoUnificato != null)
-                    title += " - PAGAMENTO UNIFICATO " + pagamentoUnificato.Codice;
-                infoTitle.Text = (obj.Id!=0? title: "NUOVO PAGAMENTO");
+                    title += " / PAGAMENTO UNIFICATO " + pagamentoUnificato.Codice;
+                infoTitle.Text = (obj.Id!=0? "PAGAMENTO " + obj.Codice: "NUOVO PAGAMENTO")+ title;
             }
             catch (Exception ex)
             {
@@ -119,10 +134,15 @@ namespace Web.GUI.Pagamento
         {
             try
             {
-                var fornitore = fatturaAcquisto.Fornitore;
                 editFatturaAcquisto.Model = fatturaAcquisto;
-                editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) : null) + " - " + 
-                    (fornitore!=null? fornitore.AnagraficaFornitore.RagioneSociale:null);
+                var fatturaAcquistoFornitore = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
+                if (fatturaAcquisto != null)
+                {
+                    var fornitore = fatturaAcquisto.Fornitore;
+                    var anagraficaFornitore = fornitore.AnagraficaFornitore;
+                    fatturaAcquistoFornitore += " / " + anagraficaFornitore.RagioneSociale;
+                }
+                editFatturaAcquisto.Value = fatturaAcquistoFornitore;
             }
             catch (Exception ex)
             {
@@ -144,6 +164,7 @@ namespace Web.GUI.Pagamento
                     obj.Descrizione = editDescrizione.Value;
                     obj.TipoPagamento = editTipoPagamento.Value;
                     obj.TransazionePagamento = editTransazionePagamento.Value;
+                 
                     var fatturaAcquisto = (FatturaAcquistoDto)editFatturaAcquisto.Model;
                     if(fatturaAcquisto!=null)
                         obj.FatturaAcquistoId = fatturaAcquisto.Id;
@@ -160,7 +181,7 @@ namespace Web.GUI.Pagamento
             try
             {
                 var view = new FatturaAcquisto.FatturaAcquistoView();
-                view.Title = "SELEZIONA LA FATTURA DI ACQUISTO";
+                view.Title = "SELEZIONA UNA FATTURA DI ACQUISTO";
                 editFatturaAcquisto.Show(view);
             }
             catch (Exception ex)
@@ -173,8 +194,9 @@ namespace Web.GUI.Pagamento
         {
             try
             {
-                var obj = (FatturaAcquistoDto)model;
-                BindViewFatturaAcquisto(obj);
+                var fatturaAcquisto = (FatturaAcquistoDto)model;
+                BindViewFatturaAcquisto(fatturaAcquisto);
+                BindViewCodicePagamento(fatturaAcquisto);
             }
             catch (Exception ex)
             {

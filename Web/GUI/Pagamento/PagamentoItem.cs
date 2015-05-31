@@ -29,14 +29,21 @@ namespace Web.GUI.Pagamento
                     var importo = UtilityValidation.GetEuro(obj.Importo);
                     var codice = UtilityValidation.GetStringND(obj.Codice);
                     var data = UtilityValidation.GetDataND(obj.Data);
-                 
+
                     infoData.Text = "Pagato il " + data;
                     infoImage.Image = "Images.dashboard.pagamento.png";
-                    infoCodice.Text = "PAG-"+codice;
-                    infoTransazionePagamento.Text = "Tipo transazione: " + obj.TransazionePagamento;
-                    infoFatturaAcquisto.Text = obj.Note;
+                    infoCodice.Text = "PAG-" + codice;
+                    infoTransazionePagamento.Text = obj.TransazionePagamento;
                     infoImporto.Text = "Importo: " + importo;
-                    infoPagamento.Text = "Pagamento N." + codice;
+                    infoPagamento.Text = "Pagamento " + codice;
+                    var fatturaAcquisto = obj.FatturaAcquisto;
+                    infoFatturaAcquisto.Text = "Fattura " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
+                    if (fatturaAcquisto != null)
+                    {
+                        var fornitore = fatturaAcquisto.Fornitore;
+                        var anagraficaFornitore=fornitore.AnagraficaFornitore;
+                        infoFornitore.Text = anagraficaFornitore.RagioneSociale;
+                    }
                 }
             }
             catch (Exception ex)

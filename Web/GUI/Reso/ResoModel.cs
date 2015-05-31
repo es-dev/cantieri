@@ -39,16 +39,9 @@ namespace Web.GUI.Reso
             try
             {
                 var obj = (ResoDto)model;
-                infoSubtitle.Text = obj.Codice + " - " + obj.Descrizione;
+                infoSubtitle.Text = "RESO "+obj.Codice;
                 infoSubtitleImage.Image = "Images.dashboard.reso.png";
-                var notaCredito = obj.NotaCredito;
-                var numeroNotaCredito = (notaCredito!=null? notaCredito.Numero: "N/D");
-                var viewModelFornitore = new Fornitore.FornitoreViewModel();
-                var fornitore = viewModelFornitore.ReadFornitore(notaCredito);
-                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
-                var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(fornitore);
-                var ragioneSociale = (anagraficaFornitore!=null? anagraficaFornitore.RagioneSociale:"N/D");
-                infoTitle.Text = (obj.Id != 0 ? "RESO " + obj.Codice + " - NOTA DI CREDITO N." + numeroNotaCredito + " - " + ragioneSociale : "NUOVO RESO");
+                infoTitle.Text = (obj.Id != 0 ? "RESO " + obj.Codice : "NUOVO RESO") + " / NOTA CREDITO " + BusinessLogic.Fattura.GetCodifica(obj.NotaCredito);
             }
             catch (Exception ex)
             {
@@ -86,7 +79,21 @@ namespace Web.GUI.Reso
             try
             {
                 editNotaCredito.Model = notaCredito;
-                editNotaCredito.Value = (notaCredito != null ? BusinessLogic.Fattura.GetCodifica(notaCredito) : null);
+                editNotaCredito.Value = BusinessLogic.Fattura.GetCodifica(notaCredito);
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewCodiceNotaCredito(NotaCreditoDto notaCredito)
+        {
+            try
+            {
+                var codice = BusinessLogic.Reso.GetCodice(notaCredito);
+                editCodice.Value = codice;
+
             }
             catch (Exception ex)
             {
@@ -99,7 +106,14 @@ namespace Web.GUI.Reso
             try
             {
                 editFatturaAcquisto.Model = fatturaAcquisto;
-                editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) : null);
+                var fatturaAcquistoFornitore = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
+                if (fatturaAcquisto != null)
+                {
+                    var fornitore = fatturaAcquisto.Fornitore;
+                    var anagraficaFornitore = fornitore.AnagraficaFornitore;
+                    fatturaAcquistoFornitore += " / " + anagraficaFornitore.RagioneSociale;
+                }
+                editFatturaAcquisto.Value = fatturaAcquistoFornitore;
             }
             catch (Exception ex)
             {
@@ -113,7 +127,6 @@ namespace Web.GUI.Reso
             {
                 var importo = UtilityValidation.GetDecimal(editImporto.Value);
                 var iva = UtilityValidation.GetDecimal(editIVA.Value);
-
                 var totale = BusinessLogic.Fattura.GetTotale(importo, iva);
                 editTotale.Value = totale;
             }
@@ -137,9 +150,11 @@ namespace Web.GUI.Reso
                     obj.Totale = editTotale.Value;
                     obj.Note = editNote.Value;
                     obj.Descrizione = editDescrizione.Value;
+
                     var fatturaAcquisto = (FatturaAcquistoDto)editFatturaAcquisto.Model;
                     if(fatturaAcquisto!=null)
                         obj.FatturaAcquistoId = fatturaAcquisto.Id;
+
                     var notaCredito = (NotaCreditoDto)editNotaCredito.Model;
                     if (notaCredito != null)
                         obj.NotaCreditoId = notaCredito.Id;
@@ -158,12 +173,10 @@ namespace Web.GUI.Reso
                 var notaCredito = (NotaCreditoDto)editNotaCredito.Model;
                 if (notaCredito != null)
                 {
-                    var viewModelFornitore = new Fornitore.FornitoreViewModel();
-                    var fornitore = viewModelFornitore.ReadFornitore(notaCredito);
-                    var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
-                    var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(fornitore);
+                    var fornitore = notaCredito.Fornitore;
+                    var anagraficaFornitore = fornitore.AnagraficaFornitore;
                     var view = new FatturaAcquisto.FatturaAcquistoView(anagraficaFornitore, Tipi.StatoFattura.NonPagata | Tipi.StatoFattura.Insoluta);
-                    view.Title = "SELEZIONA LA FATTURA DI ACQUISTO";
+                    view.Title = "SELEZIONA UNA FATTURA DI ACQUISTO";
                     editFatturaAcquisto.Show(view);
                 }
             }
@@ -193,7 +206,7 @@ namespace Web.GUI.Reso
             try
             {
                 var view = new NotaCredito.NotaCreditoView();
-                view.Title = "SELEZIONA LA NOTA DI CREDITO";
+                view.Title = "SELEZIONA UNA NOTA DI CREDITO";
                 editNotaCredito.Show(view);
             }
             catch (Exception ex)
@@ -208,6 +221,7 @@ namespace Web.GUI.Reso
             {
                 var notaCredito = (NotaCreditoDto)model;
                 BindViewNotaCredito(notaCredito);
+                BindViewCodiceNotaCredito(notaCredito);
             }
             catch (Exception ex)
             {
@@ -215,13 +229,11 @@ namespace Web.GUI.Reso
             }
         }
 
-        private void editImportoIVA_Leave(object sender, EventArgs e)
+        private void editTotale_Leave(object sender, EventArgs e)
         {
             try
             {
-                if (Editing)
-                    BindViewTotali();
-
+                BindViewTotali();
             }
             catch (Exception ex)
             {
@@ -234,6 +246,10 @@ namespace Web.GUI.Reso
             try
             {
                 BindViewNotaCredito(notaCredito);
+                BindViewCodiceNotaCredito(notaCredito);
+
+                editData.Value = DateTime.Now;
+
             }
             catch (Exception ex)
             {
