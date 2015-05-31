@@ -1476,8 +1476,7 @@ namespace WcfService
                 if (pagamentoUnificatoFatturaAcquisto != null)
                 {
                     var ef = new DataLayer.EntitiesModel();
-                    var pagamento = (from q in ef.Pagamentos
-                                     where q.FatturaAcquistoId == pagamentoUnificatoFatturaAcquisto.FatturaAcquistoId &&
+                    var pagamento = (from q in ef.Pagamentos where q.FatturaAcquistoId == pagamentoUnificatoFatturaAcquisto.FatturaAcquistoId &&
                                          q.PagamentoUnificatoId == pagamentoUnificatoFatturaAcquisto.PagamentoUnificatoId
                                      select q).FirstOrDefault();
 
@@ -1492,15 +1491,14 @@ namespace WcfService
             return null;
         }
 
-        public Dto.PagamentoDto ReadPagamentoOld(Dto.PagamentoUnificatoDto pagamentoUnificato, Dto.FatturaAcquistoDto fatturaAcquisto)
+        public Dto.PagamentoDto ReadPagamento(Dto.PagamentoUnificatoDto pagamentoUnificato, Dto.FatturaAcquistoDto fatturaAcquisto)
         {
             try
             {
                 if (pagamentoUnificato != null && fatturaAcquisto != null)
                 {
                     var ef = new DataLayer.EntitiesModel();
-                    var pagamento = (from q in ef.Pagamentos
-                                     where q.FatturaAcquistoId == fatturaAcquisto.Id && q.PagamentoUnificatoId == pagamentoUnificato.Id
+                    var pagamento = (from q in ef.Pagamentos where q.FatturaAcquistoId == fatturaAcquisto.Id && q.PagamentoUnificatoId == pagamentoUnificato.Id
                                      select q).FirstOrDefault();
 
                     var pagamentoDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamento);

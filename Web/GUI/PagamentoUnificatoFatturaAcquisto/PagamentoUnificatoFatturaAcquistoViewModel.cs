@@ -114,12 +114,12 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                     if(performed)
                     {
                         var viewModelPagamento = new Pagamento.PagamentoViewModel();
-                        var pagamento = viewModelPagamento.ReadPagamentoPagamentoUnificatoFatturaAcquisto(obj);
+                        var pagamento = viewModelPagamento.ReadPagamento(obj);
                         creating = (pagamento == null);
                         if(creating)
                             pagamento = BusinessLogic.Pagamento.CreatePagamento(obj);
                         
-                        var pagamentoOld = viewModelPagamento.ReadPagamentoOld(pagamentoUnificatoOld, fatturaAcquistoOld);
+                        var pagamentoOld = viewModelPagamento.ReadPagamento(pagamentoUnificatoOld, fatturaAcquistoOld);
                         if (pagamentoOld!=null && pagamento!=null && pagamentoOld.Id!=pagamento.Id)
                             viewModelPagamento.Delete(pagamentoOld);
                         performed = viewModelPagamento.Save(pagamento, creating);
@@ -148,7 +148,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                     if (performed) //sync  pagamento
                     {
                         var viewModelPagamento = new Pagamento.PagamentoViewModel();
-                        var pagamento = viewModelPagamento.ReadPagamentoPagamentoUnificatoFatturaAcquisto(obj);
+                        var pagamento = viewModelPagamento.ReadPagamento(obj);
                         viewModelPagamento.Delete(pagamento);
                     }
 

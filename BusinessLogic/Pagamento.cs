@@ -17,8 +17,8 @@ namespace BusinessLogic
                 if (fatturaAcquisto != null)
                 {
                     var numeroFattura = fatturaAcquisto.Numero;
-                    var progressivo = 1;
                     var pagamenti = fatturaAcquisto.Pagamentos;
+                    var progressivo = 1;
                     if (pagamenti != null)
                         progressivo = pagamenti.Count + 1;
                     var codice = numeroFattura + "/" + DateTime.Today.Year.ToString() + "/" + progressivo.ToString("000");  //numerofattura/anno/progressivo
@@ -47,7 +47,7 @@ namespace BusinessLogic
                     pagamento.FatturaAcquistoId = pagamenoUnificatoFatturaAcquisto.FatturaAcquistoId;
                     pagamento.Importo = pagamenoUnificatoFatturaAcquisto.Saldo;
                     pagamento.TransazionePagamento = pagamenoUnificatoFatturaAcquisto.TransazionePagamento;
-                    pagamento.Note = "Pagamento unificato " + pagamentoUnificato.Codice;
+                    pagamento.Note = "Pagamento unificato " + BusinessLogic.PagamentoUnificato.GetCodifica(pagamentoUnificato);
                     pagamento.PagamentoUnificatoId = pagamenoUnificatoFatturaAcquisto.PagamentoUnificatoId;
                     pagamento.TipoPagamento = pagamentoUnificato.TipoPagamento;
                     return pagamento;

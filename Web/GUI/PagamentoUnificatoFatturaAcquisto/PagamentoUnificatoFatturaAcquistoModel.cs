@@ -66,7 +66,6 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                 var fatturaAcquisto = obj.FatturaAcquisto;
                 infoSubtitle.Text = "PU/FA - " + BusinessLogic.PagamentoUnificato.GetCodifica(obj);
                 infoSubtitleImage.Image = "Images.dashboard.pagamentounificatofatturaacquisto.png";
-
                 infoTitle.Text = (obj.Id != 0 ? "PAGAMENTO FATTURA ACQUISTO " + BusinessLogic.PagamentoUnificato.GetCodifica(obj) : "NUOVO PAGAMENTO FATTURA ACQUISTO") + " / FORNITORE " + BusinessLogic.Fornitore.GetCodifica(fatturaAcquisto);
             }
             catch (Exception ex)

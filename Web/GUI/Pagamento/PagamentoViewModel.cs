@@ -140,7 +140,7 @@ namespace Web.GUI.Pagamento
             return null;
         }
 
-        internal PagamentoDto ReadPagamentoPagamentoUnificatoFatturaAcquisto(PagamentoUnificatoFatturaAcquistoDto pagamentoUnificatoFatturaAcquisto)
+        internal PagamentoDto ReadPagamento(PagamentoUnificatoFatturaAcquistoDto pagamentoUnificatoFatturaAcquisto)
         {
             try
             {
@@ -155,12 +155,12 @@ namespace Web.GUI.Pagamento
             return null;
         }
 
-        internal PagamentoDto ReadPagamentoOld(PagamentoUnificatoDto pagamentoUnificato, FatturaAcquistoDto fatturaAcquisto)
+        internal PagamentoDto ReadPagamento(PagamentoUnificatoDto pagamentoUnificato, FatturaAcquistoDto fatturaAcquisto)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var obj = wcf.ReadPagamentoOld(pagamentoUnificato, fatturaAcquisto);
+                var obj = wcf.ReadPagamento(pagamentoUnificato, fatturaAcquisto);
                 return obj;
             }
             catch (Exception ex)

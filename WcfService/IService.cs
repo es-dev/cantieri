@@ -275,7 +275,7 @@ namespace WcfService
         Dto.PagamentoDto ReadPagamento(Dto.PagamentoUnificatoFatturaAcquistoDto pagamentoUnificatoFatturaAcquisto);
 
         [OperationContract]
-        Dto.PagamentoDto ReadPagamentoOld(Dto.PagamentoUnificatoDto pagamentoUnificato, Dto.FatturaAcquistoDto fatturaAcquisto);
+        Dto.PagamentoDto ReadPagamento(Dto.PagamentoUnificatoDto pagamentoUnificato, Dto.FatturaAcquistoDto fatturaAcquisto);
         
         [OperationContract]
         IEnumerable<Dto.PagamentoDto> ReadPagamenti(DateTime start, DateTime end, string search = null, object advancedSearch = null);
