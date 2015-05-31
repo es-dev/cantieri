@@ -96,7 +96,7 @@ namespace Web.GUI.ReportJob
             this.editDenominazione.Location = new System.Drawing.Point(26, 163);
             this.editDenominazione.Name = "editDenominazione";
             this.editDenominazione.ReadOnly = false;
-            this.editDenominazione.Required = true;
+            this.editDenominazione.Required = false;
             this.editDenominazione.Size = new System.Drawing.Size(794, 30);
             this.editDenominazione.TabIndex = 3;
             this.editDenominazione.Text = "EditControl";
@@ -246,9 +246,6 @@ namespace Web.GUI.ReportJob
             this.editAzienda.Value = null;
             this.editAzienda.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editAzienda_ComboConfirm);
             this.editAzienda.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editAzienda_ComboClick);
-            // 
-            // ReportJobFornitoriModel
-            // 
             this.container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).EndInit();
             this.panelCommands.ResumeLayout(false);

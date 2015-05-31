@@ -30,8 +30,9 @@ namespace Web.GUI.ReportJob
                 BindViewAzienda(azienda);
 
                 var viewModel = (ReportJobViewModel)ViewModel;
-                var count = viewModel.Count();
-                editCodice.Value = BusinessLogic.ReportJob.GetCodice(count);
+                var count = viewModel.Count() + 1;
+                var codice = count.ToString("000") + "/" + DateTime.Today.Year.ToString();
+                editCodice.Value = codice;
                 editDenominazione.Value = BusinessLogic.ReportJob.GetDenominazione(tipoReport);
                 editElaborazione.Value = DateTime.Today;
                 editCreazione.Value = DateTime.Today;
@@ -49,12 +50,11 @@ namespace Web.GUI.ReportJob
                 if (model != null)
                 {
                     var obj = (ReportJobDto)model;
-                    infoSubtitle.Text = "RTP N." + obj.Codice + " - Tipo " + obj.Tipo;
+                    infoSubtitle.Text = "REPORT " + obj.Codice + " - Tipo " + obj.Tipo;
                     infoSubtitleImage.Image = "Images.dashboard.reportjob.png";
 
                     var anagraficaCommittente = obj.AnagraficaCommittente;
-                    var ragioneSociale = (anagraficaCommittente != null ? anagraficaCommittente.RagioneSociale : "N/D");
-                    infoTitle.Text = (obj.Id!=0? "REPORT " + obj.Codice + " - " + ragioneSociale:"NUOVO REPORT");
+                    infoTitle.Text = (obj.Id != 0 ? "REPORT " + obj.Codice : "NUOVO REPORT") + " / COMMITTENTE " + BusinessLogic.Committente.GetCodifica(anagraficaCommittente);
                 }
             }
             catch (Exception ex)
@@ -124,7 +124,7 @@ namespace Web.GUI.ReportJob
             try
             {
                 editCommittente.Model = anagraficaCommittente;
-                editCommittente.Value = (anagraficaCommittente != null ? anagraficaCommittente.Codice + " - " + anagraficaCommittente.RagioneSociale : null);
+                editCommittente.Value = BusinessLogic.Committente.GetCodifica(anagraficaCommittente);
             }
             catch (Exception ex)
             {
@@ -211,19 +211,17 @@ namespace Web.GUI.ReportJob
                 var anagraficaCommittente = (AnagraficaCommittenteDto)editCommittente.Model;
                 if (anagraficaCommittente != null)
                 {
-                    var ragioneSocialeCommittente = (anagraficaCommittente.RagioneSociale != null ? anagraficaCommittente.RagioneSociale.Replace(" ", "") : "N/D");
+                    var ragioneSociale = (anagraficaCommittente.RagioneSociale != null ? anagraficaCommittente.RagioneSociale.Replace(" ", "") : null);
                     var data = DateTime.Today.ToString("ddMMyyyy");
                     var elaborazione = UtilityValidation.GetData(editElaborazione.Value);
                     string pathTemplate = UtilityWeb.GetRootPath(Context) + @"Resources\Templates\TemplateSituazioneCommittente.doc";
-                    var fileName = "SituazioneCommittente_" + ragioneSocialeCommittente + "_" + data + ".PDF";
+                    var fileName = "SituazioneCommittente_" + ragioneSociale + "_" + data + ".PDF";
                     var pathReport = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileName;
-                    var account = SessionManager.GetAccount(Context);
-                    var viewModelAzienda = new Azienda.AziendaViewModel();
-                    var azienda = viewModelAzienda.ReadAzienda(account);
-                    var viewModelCommittente = new Committente.CommittenteViewModel();
-                    var committenti = viewModelCommittente.ReadCommittenti(anagraficaCommittente);
+                    var azienda = (AziendaDto)editAzienda.Model;
+                    var viewModel = new Committente.CommittenteViewModel();
+                    var committenti = viewModel.ReadCommittenti(anagraficaCommittente).ToList();
 
-                    var report = BusinessLogic.ReportJob.GetReportCommittente(azienda, anagraficaCommittente, committenti.ToList(), elaborazione);
+                    var report = BusinessLogic.ReportJob.GetReportCommittente(azienda, anagraficaCommittente, committenti, elaborazione);
                     if (report != null)
                     {
                         bool performed = report.Create(pathTemplate, pathReport);

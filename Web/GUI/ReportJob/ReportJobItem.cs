@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using WcfService.Dto;
 using Web.Code;
 
 namespace Web.GUI.ReportJob
@@ -25,78 +26,38 @@ namespace Web.GUI.ReportJob
             {
                 if (model != null)
                 {
-                    var obj = (WcfService.Dto.ReportJobDto)model;
+                    var obj = (ReportJobDto)model;
                     var codice = UtilityValidation.GetStringND(obj.Codice);
                     var tipo = UtilityValidation.GetStringND(obj.Tipo);
                     var elaborazione = UtilityValidation.GetDataND(obj.Elaborazione);
-                    var fileName = obj.NomeFile;
                     infoElaborazione.Text = "Elaborato il " + elaborazione;
                     infoImage.Image = "Images.dashboard.reportjob.png";
                     infoCodice.Text = "RPT-"+codice;
-                    infoCodiceReport.Text = "REPORT N. " + codice;
+                    infoCodiceReport.Text = "REPORT " + codice;
                     infoTipo.Text = "Tipo report: " + tipo;
-                    var descrizione = GetDescrizione(obj);
+                    var descrizione = BusinessLogic.ReportJob.GetDescrizione(obj);
                     infoFornitore.Text = descrizione;
 
-                    BindViewReport(fileName);
-
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-        }
-
-        private void BindViewReport(string fileName)
-        {
-            try
-            {
-                if (fileName != null && fileName.Length > 0)
-                {
-                    var url = UtilityWeb.GetRootUrl(Context) + "/Resources/Reports/" + fileName;
-                    lnkReport.Visible = true;
-                    lnkReport.RegisterClientAction("open", url);
-                }
-                else
-                {
-                    lnkReport.UnregisterClientAction();
-                    lnkReport.Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            
-        }
-
-        //todo: portare in BL
-
-        private string GetDescrizione(WcfService.Dto.ReportJobDto obj)
-        {
-            try
-            {
-                if (obj != null)
-                {
-                    var tipo = obj.Tipo;
-                    string descrizione = null;
-                    if (tipo == Tipi.TipoReport.Fornitore.ToString())
+                    var fileName = obj.NomeFile;
+                    if (fileName != null && fileName.Length > 0)
                     {
-                        var anagraficaFornitore = obj.AnagraficaFornitore;
-                        if(anagraficaFornitore!=null)
-                            descrizione = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
+                        var url = UtilityWeb.GetRootUrl(Context) + "/Resources/Reports/" + fileName;
+                        lnkReport.Visible = true;
+                        lnkReport.RegisterClientAction("open", url);
                     }
-
-                    return descrizione;
+                    else
+                    {
+                        lnkReport.Visible = false;
+                        lnkReport.UnregisterClientAction();
+                    }
                 }
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
-            return null;
         }
+        
 
         public override void ItemClick(IItem item)
         {

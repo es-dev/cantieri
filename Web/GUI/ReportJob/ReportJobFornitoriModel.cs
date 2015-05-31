@@ -30,8 +30,9 @@ namespace Web.GUI.ReportJob
                 BindViewAzienda(azienda);
 
                 var viewModel = (ReportJobViewModel)ViewModel;
-                var count = viewModel.Count();
-                editCodice.Value = BusinessLogic.ReportJob.GetCodice(count);
+                var count = viewModel.Count() + 1;
+                var codice = count.ToString("000") + "/" + DateTime.Today.Year.ToString();
+                editCodice.Value = codice;
                 editDenominazione.Value = BusinessLogic.ReportJob.GetDenominazione(tipoReport);
                 editElaborazione.Value = DateTime.Today;
                 editCreazione.Value = DateTime.Today;
@@ -49,9 +50,9 @@ namespace Web.GUI.ReportJob
                 if (model != null)
                 {
                     var obj = (ReportJobDto)model;
-                    infoSubtitle.Text = "RTP N." + obj.Codice + " - Tipo " + obj.Tipo;
+                    infoSubtitle.Text = "REPORT " + obj.Codice + " - Tipo " + obj.Tipo;
                     infoSubtitleImage.Image = "Images.dashboard.reportjob.png";
-                    infoTitle.Text = (obj.Id != 0 ? "REPORT FORNITORI " + obj.Codice + " - " + obj.Denominazione : "NUOVO REPORT");
+                    infoTitle.Text = (obj.Id != 0 ? "REPORT FORNITORI " + obj.Codice : "NUOVO REPORT FORNITORI");
                 }
             }
             catch (Exception ex)
@@ -168,7 +169,7 @@ namespace Web.GUI.ReportJob
                 if (saved)
                 {
                     var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
-                    var anagraficheFornitori = viewModelAnagraficaFornitore.ReadAnagraficheFornitori();
+                    var anagraficheFornitori = viewModelAnagraficaFornitore.ReadAnagraficheFornitori().ToList();
                     if (anagraficheFornitori != null)
                     {
                         var data = DateTime.Today.ToString("ddMMyyyy");
@@ -176,13 +177,11 @@ namespace Web.GUI.ReportJob
                         string pathTemplate = UtilityWeb.GetRootPath(Context) + @"Resources\Templates\TemplateResocontoFornitori.doc";
                         var fileName = "ResocontoFornitori_" + data + ".PDF";
                         var pathReport = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileName;
-                        var account = SessionManager.GetAccount(Context);
-                        var viewModelAzienda = new Azienda.AziendaViewModel();
-                        var azienda = viewModelAzienda.ReadAzienda(account);
-                        var viewModelFornitore = new Fornitore.FornitoreViewModel();
-                        var fornitori = viewModelFornitore.ReadFornitori(anagraficheFornitori);
+                        var azienda = (AziendaDto)editAzienda.Model;
+                        var viewModel = new Fornitore.FornitoreViewModel();
+                        var fornitori = viewModel.ReadFornitori(anagraficheFornitori).ToList();
 
-                        var report = BusinessLogic.ReportJob.GetReportFornitori(azienda, anagraficheFornitori.ToList(), fornitori.ToList(), elaborazione);
+                        var report = BusinessLogic.ReportJob.GetReportFornitori(azienda, anagraficheFornitori, fornitori, elaborazione);
                         if (report != null)
                         {
                             bool performed = report.Create(pathTemplate, pathReport);

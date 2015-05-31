@@ -100,12 +100,11 @@ namespace Web.GUI.ReportJob
             // 
             // infoTipo
             // 
-            this.infoTipo.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.infoTipo.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoTipo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoTipo.Location = new System.Drawing.Point(91, 33);
+            this.infoTipo.Location = new System.Drawing.Point(93, 31);
             this.infoTipo.Name = "infoTipo";
             this.infoTipo.Size = new System.Drawing.Size(304, 21);
             this.infoTipo.TabIndex = 1;
@@ -113,27 +112,24 @@ namespace Web.GUI.ReportJob
             // 
             // infoFornitore
             // 
-            this.infoFornitore.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.infoFornitore.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoFornitore.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoFornitore.ForeColor = System.Drawing.Color.DarkRed;
+            this.infoFornitore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.infoFornitore.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.infoFornitore.Location = new System.Drawing.Point(91, 74);
+            this.infoFornitore.Location = new System.Drawing.Point(93, 53);
             this.infoFornitore.Name = "infoFornitore";
             this.infoFornitore.Size = new System.Drawing.Size(305, 20);
             this.infoFornitore.TabIndex = 1;
             this.infoFornitore.Text = "Fornitore";
-            this.infoFornitore.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // infoElaborazione
             // 
-            this.infoElaborazione.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.infoElaborazione.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoElaborazione.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoElaborazione.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoElaborazione.Location = new System.Drawing.Point(91, 53);
+            this.infoElaborazione.Location = new System.Drawing.Point(93, 76);
             this.infoElaborazione.Name = "infoElaborazione";
             this.infoElaborazione.Size = new System.Drawing.Size(156, 21);
             this.infoElaborazione.TabIndex = 1;
@@ -141,10 +137,11 @@ namespace Web.GUI.ReportJob
             // 
             // lnkReport
             // 
+            this.lnkReport.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.lnkReport.Cursor = Gizmox.WebGUI.Forms.Cursors.Hand;
             this.lnkReport.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lnkReport.LinkColor = System.Drawing.Color.Blue;
-            this.lnkReport.Location = new System.Drawing.Point(319, 54);
+            this.lnkReport.Location = new System.Drawing.Point(319, 77);
             this.lnkReport.Name = "lnkReport";
             this.lnkReport.Size = new System.Drawing.Size(76, 15);
             this.lnkReport.TabIndex = 2;

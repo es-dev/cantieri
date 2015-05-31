@@ -11,13 +11,29 @@ namespace BusinessLogic
 {
     public class ReportJob
     {
-        public static string GetDenominazione(Tipi.TipoReport tipoReport)
+        public static string GetDescrizione(ReportJobDto reportJob)
         {
             try
             {
-                var description = UtilityEnum.GetDescription<Tipi.TipoReport>(tipoReport);
-                var denominazione = "Report generato per l'analisi di: " + description;
-                return denominazione;
+                if (reportJob != null)
+                {
+                    var tipo = reportJob.Tipo;
+                    string descrizione = null;
+                    if (tipo == Tipi.TipoReport.Fornitore.ToString())
+                    {
+                        var anagraficaFornitore = reportJob.AnagraficaFornitore;
+                        if (anagraficaFornitore != null)
+                            descrizione = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
+                    }
+                    else if(tipo == Tipi.TipoReport.Committente.ToString())
+                    {
+                        var anagraficaCommittente = reportJob.AnagraficaCommittente;
+                        if (anagraficaCommittente != null)
+                            descrizione = anagraficaCommittente.Codice + " - " + anagraficaCommittente.RagioneSociale;
+                    }
+
+                    return descrizione;
+                }
             }
             catch (Exception ex)
             {
@@ -26,13 +42,13 @@ namespace BusinessLogic
             return null;
         }
 
-        public static string GetCodice(int count)
+        public static string GetDenominazione(Tipi.TipoReport tipoReport)
         {
             try
             {
-                var progressivo = count+1;
-                var codice = progressivo.ToString("000") + "/" + DateTime.Today.Year.ToString();
-                return codice;
+                var description = UtilityEnum.GetDescription<Tipi.TipoReport>(tipoReport);
+                var denominazione = "Report generato per l'analisi di: " + description;
+                return denominazione;
             }
             catch (Exception ex)
             {
@@ -53,7 +69,7 @@ namespace BusinessLogic
 
                 var tableCommesse = new UtilityReport.Table("Commessa", "TotaleImponibile", "TotaleIVA", "TotaleFatture", "TotalePagamentiDato", "TotalePagamentiDare");
                 var tableFatture = new UtilityReport.Table("Numero", "Data", "Scadenza", "Descrizione", "Imponibile", "IVA", "Totale", "TotalePagamentiDato", "TotalePagamentiDare");
-                var tablePagamenti = new UtilityReport.Table("Numero", "Data", "TipoPagamento", "Descrizione", "Note", "Importo");
+                var tablePagamenti = new UtilityReport.Table("Numero", "Data", "TipoPagamento", "Descrizione", "Note", "TransazionePagamento", "Importo");
                 foreach (var fornitore in fornitori)
                 {
                     //totali per commessa
@@ -72,8 +88,8 @@ namespace BusinessLogic
                         var totaleFattura = UtilityValidation.GetEuro(fatturaAcquisto.Totale);
                         var _statoFattura = BusinessLogic.Fattura.GetStato(fatturaAcquisto);
                         var statoFattura = UtilityEnum.GetDescription<Tipi.StatoFattura>(_statoFattura);
-                        var codificaFattura = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper();
-                        tablePagamenti.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "");
+                        var codificaFattura = "FATTURA "+ BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper();
+                        tablePagamenti.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "","");
                         var pagamenti = (from q in fatturaAcquisto.Pagamentos orderby q.Data ascending select q).ToList();
                         foreach (var pagamento in pagamenti)
                             AddReportPagamentoFornitore(tablePagamenti, pagamento);
@@ -83,7 +99,7 @@ namespace BusinessLogic
                         if (_sconto > 0)
                         {
                             var sconto = UtilityValidation.GetEuro(_sconto);
-                            tablePagamenti.AddRow("", "", "", "", "SCONTO", sconto);
+                            tablePagamenti.AddRow("", "", "","", "", "SCONTO", sconto);
                         }
 
                         //nota di credito/resi
@@ -91,7 +107,7 @@ namespace BusinessLogic
                         if (_totaleResi > 0)
                         {
                             var totaleResi = UtilityValidation.GetEuro(_totaleResi);
-                            tablePagamenti.AddRow("", "", "", "", "NOTA DI CREDITO", totaleResi);
+                            tablePagamenti.AddRow("", "","", "", "", "NOTA DI CREDITO", totaleResi);
                         }
                     }
                 }
@@ -117,9 +133,10 @@ namespace BusinessLogic
                 var tipoPagamento = pagamento.TipoPagamento;
                 var descrizione = pagamento.Descrizione;
                 var note = pagamento.Note;
+                var transazionePagamento = (pagamento.TransazionePagamento != null ? pagamento.TransazionePagamento.ToUpper() : "");
                 var importo = UtilityValidation.GetEuro(pagamento.Importo);
 
-                tablePagamenti.AddRow(numero, data, tipoPagamento, descrizione, note, importo);
+                tablePagamenti.AddRow(numero, data, tipoPagamento, descrizione, note, transazionePagamento, importo);
             }
             catch (Exception ex)
             {
@@ -234,7 +251,7 @@ namespace BusinessLogic
 
                 var tableFornitori = new UtilityReport.Table("RagioneSociale", "TotaleFatture", "TotalePagamentiDato", "TotalePagamentiDare");
                 var tableFatture = new UtilityReport.Table("Numero", "Data", "Scadenza", "Descrizione", "Imponibile", "IVA", "Totale", "TotalePagamentiDato", "TotalePagamentiDare");
-                var tablePagamenti = new UtilityReport.Table("Numero", "Data", "TipoPagamento", "Descrizione", "Note", "Importo");
+                var tablePagamenti = new UtilityReport.Table("Numero", "Data", "TipoPagamento", "Descrizione", "Note", "TransazionePagamento", "Importo");
 
                 foreach (var anagraficaFornitore in anagraficheFornitoriDare)
                 {
@@ -258,8 +275,8 @@ namespace BusinessLogic
                                 var totaleFattura = UtilityValidation.GetEuro(fatturaAcquisto.Totale);
                                 var _statoFattura = BusinessLogic.Fattura.GetStato(fatturaAcquisto);
                                 var statoFattura = UtilityEnum.GetDescription<Tipi.StatoFattura>(_statoFattura);
-                                var codificaFattura = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto)  + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper();
-                                tablePagamenti.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "");
+                                var codificaFattura = "FATTURA " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper() + " | " + codificaFornitore;
+                                tablePagamenti.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "", "");
                                 var pagamenti = (from q in fatturaAcquisto.Pagamentos orderby q.Data ascending select q).ToList();
                                 foreach (var pagamento in pagamenti)
                                     AddReportPagamentoFornitore(tablePagamenti, pagamento);
@@ -269,7 +286,7 @@ namespace BusinessLogic
                                 if (_sconto > 0)
                                 {
                                     var sconto = UtilityValidation.GetEuro(_sconto);
-                                    tablePagamenti.AddRow("", "", "", "", "SCONTO", sconto);
+                                    tablePagamenti.AddRow("", "", "", "", "", "SCONTO", sconto);
                                 }
 
                                 //nota di credito/resi
@@ -277,7 +294,7 @@ namespace BusinessLogic
                                 if (_totaleResi > 0)
                                 {
                                     var totaleResi = UtilityValidation.GetEuro(_totaleResi);
-                                    tablePagamenti.AddRow("", "", "", "", "NOTA DI CREDITO", totaleResi);
+                                    tablePagamenti.AddRow("", "", "", "", "", "NOTA DI CREDITO", totaleResi);
                                 }
                             }
                         }
@@ -486,7 +503,7 @@ namespace BusinessLogic
 
                 var tableCommesse = new UtilityReport.Table("Commessa", "TotaleImponibile", "TotaleIVA", "TotaleFatture", "TotaleIncassiAvuto", "TotaleIncassiAvere");
                 var tableFatture = new UtilityReport.Table("Numero", "Data", "Scadenza", "Descrizione", "Imponibile", "IVA", "Totale", "TotaleIncassiAvuto", "TotaleIncassiAvere");
-                var tableIncassi = new UtilityReport.Table("Numero", "Data", "TipoPagamento", "Descrizione", "Note", "Importo");
+                var tableIncassi = new UtilityReport.Table("Numero", "Data", "TipoPagamento", "Descrizione", "Note", "TransazionePagamento", "Importo");
                 foreach (var committente in committenti)
                 {
                     //totali per commessa
@@ -505,8 +522,8 @@ namespace BusinessLogic
                         var totaleFattura = UtilityValidation.GetEuro(fatturaVendita.Totale);
                         var _statoFattura = BusinessLogic.Fattura.GetStato(fatturaVendita);
                         var statoFattura = UtilityEnum.GetDescription<Tipi.StatoFattura>(_statoFattura);
-                        var codificaFattura = BusinessLogic.Fattura.GetCodifica(fatturaVendita) + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper();
-                        tableIncassi.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "");
+                        var codificaFattura = "FATTURA "+ BusinessLogic.Fattura.GetCodifica(fatturaVendita) + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper();
+                        tableIncassi.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "", "");
                         var incassi = (from q in fatturaVendita.Incassos orderby q.Data ascending select q).ToList();
                         foreach (var incasso in incassi)
                             AddReportIncassoCommittente(tableIncassi, incasso);
@@ -535,15 +552,15 @@ namespace BusinessLogic
                 var descrizione = incasso.Descrizione;
                 var note = incasso.Note;
                 var importo = UtilityValidation.GetEuro(incasso.Importo);
+                var transazionePagamento = (incasso.TransazionePagamento != null ? incasso.TransazionePagamento.ToUpper() : "");
 
-                tableIncassi.AddRow(numero, data, tipoPagamento, descrizione, note, importo);
+                tableIncassi.AddRow(numero, data, tipoPagamento, descrizione, note, transazionePagamento, importo);
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
         }
-
 
         private static void AddReportFatturaVenditaCommittente(UtilityReport.Table tableFatture, FatturaVenditaDto fatturaVendita, DateTime data)
         {
@@ -568,7 +585,6 @@ namespace BusinessLogic
             }
         }
 
-
         private static void AddReportCommessaCommittente(UtilityReport.Table tableCommesse, CommittenteDto committente, CommessaDto commessa, DateTime data)
         {
             try
@@ -587,8 +603,6 @@ namespace BusinessLogic
                 UtilityError.Write(ex);
             }
         }
-
-
 
         private static void AddReportTotaliCommittente(List<CommittenteDto> committenti, UtilityReport.Report report, DateTime data)
         {
@@ -638,7 +652,7 @@ namespace BusinessLogic
 
                 var tableCommittenti= new UtilityReport.Table("RagioneSociale", "TotaleFatture", "TotaleIncassiAvuto", "TotaleIncassiAvere");
                 var tableFatture = new UtilityReport.Table("Numero", "Data", "Scadenza", "Descrizione", "Imponibile", "IVA", "Totale", "TotaleIncassiAvuto", "TotaleIncassiAvere");
-                var tableIncassi= new UtilityReport.Table("Numero", "Data", "TipoPagamento", "Descrizione", "Note", "Importo");
+                var tableIncassi= new UtilityReport.Table("Numero", "Data", "TipoPagamento", "Descrizione", "Note", "TransazionePagamento", "Importo");
 
                 foreach (var anagraficaCommittente in anagraficheCommittentiAvere)
                 {
@@ -662,8 +676,8 @@ namespace BusinessLogic
                                 var totaleFattura = UtilityValidation.GetEuro(fatturaVendita.Totale);
                                 var _statoFattura = BusinessLogic.Fattura.GetStato(fatturaVendita);
                                 var statoFattura = UtilityEnum.GetDescription<Tipi.StatoFattura>(_statoFattura);
-                                var codificaFattura = BusinessLogic.Fattura.GetCodifica(fatturaVendita) + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper();
-                                tableIncassi.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "");
+                                var codificaFattura = "FATTURA "+ BusinessLogic.Fattura.GetCodifica(fatturaVendita) + " - TOTALE IVATO " + totaleFattura + " - " + statoFattura.ToUpper()+ " | "+codificaCommittente;
+                                tableIncassi.AddRowMerge(Color.LightGray, codificaFattura, "", "", "", "", "", "");
                                 var incassi = (from q in fatturaVendita.Incassos orderby q.Data ascending select q).ToList();
                                 foreach (var incasso in incassi)
                                     AddReportIncassoCommittente(tableIncassi, incasso);
@@ -704,8 +718,8 @@ namespace BusinessLogic
                 UtilityError.Write(ex);
             }
         }
-
-       private static IList<CommittenteDto> GetCommittentiAvere(IList<CommittenteDto> committenti, DateTime data)
+     
+        private static IList<CommittenteDto> GetCommittentiAvere(IList<CommittenteDto> committenti, DateTime data)
         {
             try
             {
@@ -719,6 +733,7 @@ namespace BusinessLogic
             }
             return null;
         }
+     
         private static IList<AnagraficaCommittenteDto> GetAnagraficheCommittentiAvere(IList<AnagraficaCommittenteDto> anagraficheCommittenti, IList<CommittenteDto > committentiAvere)
         {
             try
@@ -733,6 +748,7 @@ namespace BusinessLogic
             }
             return null;
         }
+     
         private static IList<FatturaVenditaDto> GetFattureVendita(IList<CommittenteDto> committenti)
         {
             try
@@ -749,6 +765,7 @@ namespace BusinessLogic
             }
             return null;
         }
+    
         private static IList<IncassoDto> GetIncassi(IList<FatturaVenditaDto> fattureVendita)
         {
             try
@@ -786,6 +803,7 @@ namespace BusinessLogic
             }
             return null;
         }
+      
         private static void AddReportCommittente(UtilityReport.Table tableCommittenti, AnagraficaCommittenteDto anagraficaCommittente, IList<CommittenteDto> committentiAnagrafica, DateTime data)
         {
             try
@@ -806,6 +824,7 @@ namespace BusinessLogic
                 UtilityError.Write(ex);
             }
         }
+     
         private static IList<FatturaVenditaDto> GetFattureVenditaAvere(IList<FatturaVenditaDto> fattureVendita, DateTime data)
         {
             try

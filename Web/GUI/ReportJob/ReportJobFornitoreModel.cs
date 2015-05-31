@@ -30,8 +30,9 @@ namespace Web.GUI.ReportJob
                 BindViewAzienda(azienda);
 
                 var viewModel = (ReportJobViewModel)ViewModel;
-                var count = viewModel.Count();
-                editCodice.Value = BusinessLogic.ReportJob.GetCodice(count);
+                var count = viewModel.Count()+1;
+                var codice = count.ToString("000") + "/" + DateTime.Today.Year.ToString();
+                editCodice.Value = codice;
                 editDenominazione.Value = BusinessLogic.ReportJob.GetDenominazione(tipoReport);
                 editElaborazione.Value = DateTime.Today;
                 editCreazione.Value = DateTime.Today;
@@ -49,12 +50,11 @@ namespace Web.GUI.ReportJob
                 if (model != null)
                 {
                     var obj = (ReportJobDto)model;
-                    infoSubtitle.Text = "RTP N." + obj.Codice + " - Tipo " + obj.Tipo;
+                    infoSubtitle.Text = "REPORT " + obj.Codice + " - Tipo " + obj.Tipo;
                     infoSubtitleImage.Image = "Images.dashboard.reportjob.png";
 
-                    var anagraficaFornitore = obj.AnagraficaCommittente;
-                    var ragioneSociale = (anagraficaFornitore != null ? anagraficaFornitore.RagioneSociale : "N/D");
-                    infoTitle.Text = (obj.Id!=0? "REPORT " + obj.Codice + " - " + ragioneSociale:"NUOVO REPORT");
+                    var anagraficaFornitore = obj.AnagraficaFornitore;
+                    infoTitle.Text = (obj.Id != 0 ? "REPORT " + obj.Codice : "NUOVO REPORT") + " / FORNITORE " +BusinessLogic.Fornitore.GetCodifica(anagraficaFornitore); 
                 }
             }
             catch (Exception ex)
@@ -124,7 +124,7 @@ namespace Web.GUI.ReportJob
             try
             {
                 editFornitore.Model = anagraficaFornitore;
-                editFornitore.Value = (anagraficaFornitore != null ? anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale : null);
+                editFornitore.Value = BusinessLogic.Fornitore.GetCodifica(anagraficaFornitore);
             }
             catch (Exception ex)
             {
@@ -218,19 +218,17 @@ namespace Web.GUI.ReportJob
                     var anagraficaFornitore = (AnagraficaFornitoreDto)editFornitore.Model;
                     if (anagraficaFornitore != null)
                     {
-                        var ragioneSocialeFornitore = (anagraficaFornitore.RagioneSociale != null ? anagraficaFornitore.RagioneSociale.Replace(" ", "") : "N/D");
+                        var ragioneSociale = (anagraficaFornitore.RagioneSociale != null ? anagraficaFornitore.RagioneSociale.Replace(" ", "") : null);
                         var data = DateTime.Today.ToString("ddMMyyyy");
                         var elaborazione = UtilityValidation.GetData(editElaborazione.Value);
                         string pathTemplate = UtilityWeb.GetRootPath(Context) + @"Resources\Templates\TemplateSituazioneFornitore.doc";
-                        var fileName = "SituazioneFornitore_" + ragioneSocialeFornitore + "_" + data + ".PDF";
+                        var fileName = "SituazioneFornitore_" + ragioneSociale + "_" + data + ".PDF";
                         var pathReport = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileName;
-                        var account = SessionManager.GetAccount(Context);
-                        var viewModelAzienda = new Azienda.AziendaViewModel();
-                        var azienda = viewModelAzienda.ReadAzienda(account);
-                        var viewModelFornitore = new Fornitore.FornitoreViewModel();
-                        var fornitori = viewModelFornitore.ReadFornitori(anagraficaFornitore);
+                        var azienda = (AziendaDto)editAzienda.Model;
+                        var viewModel = new Fornitore.FornitoreViewModel();
+                        var fornitori = viewModel.ReadFornitori(anagraficaFornitore).ToList();
 
-                        var report = BusinessLogic.ReportJob.GetReportFornitore(azienda, anagraficaFornitore, fornitori.ToList(), elaborazione);
+                        var report = BusinessLogic.ReportJob.GetReportFornitore(azienda, anagraficaFornitore, fornitori, elaborazione);
                         if (report != null)
                         {
                             bool performed = report.Create(pathTemplate, pathReport);

@@ -30,8 +30,9 @@ namespace Web.GUI.ReportJob
                 BindViewAzienda(azienda);
 
                 var viewModel = (ReportJobViewModel)ViewModel;
-                var count = viewModel.Count();
-                editCodice.Value = BusinessLogic.ReportJob.GetCodice(count);
+                var count = viewModel.Count() + 1;
+                var codice = count.ToString("000") + "/" + DateTime.Today.Year.ToString();
+                editCodice.Value = codice;
                 editDenominazione.Value = BusinessLogic.ReportJob.GetDenominazione(tipoReport);
                 editElaborazione.Value = DateTime.Today;
                 editCreazione.Value = DateTime.Today;
@@ -50,9 +51,9 @@ namespace Web.GUI.ReportJob
                 {
                     var obj = (ReportJobDto)model;
                     var codice = UtilityValidation.GetStringND(obj.Codice);
-                    infoSubtitle.Text = "RTP N." + codice + " - Tipo " + obj.Tipo;
+                    infoSubtitle.Text = "REPORT " + codice + " - Tipo " + obj.Tipo;
                     infoSubtitleImage.Image = "Images.dashboard.reportjob.png";
-                    infoTitle.Text = (obj.Id != 0 ? "REPORT COMMITTENTI " + obj.Codice + " - " + obj.Denominazione : "NUOVO REPORT");
+                    infoTitle.Text = (obj.Id != 0 ? "REPORT COMMITTENTI " + obj.Codice : "NUOVO REPORT COMMITTENTI");
                 }
             }
             catch (Exception ex)
@@ -167,7 +168,7 @@ namespace Web.GUI.ReportJob
                 if (saved)
                 {
                     var viewModelAnagraficaCommittente = new AnagraficaCommittente.AnagraficaCommittenteViewModel();
-                    var anagraficheCommittenti = viewModelAnagraficaCommittente.ReadAnagraficheCommittenti();
+                    var anagraficheCommittenti = viewModelAnagraficaCommittente.ReadAnagraficheCommittenti().ToList();
                     if (anagraficheCommittenti != null)
                     {
                         var data = DateTime.Today.ToString("ddMMyyyy");
@@ -175,13 +176,11 @@ namespace Web.GUI.ReportJob
                         string pathTemplate = UtilityWeb.GetRootPath(Context) + @"Resources\Templates\TemplateResocontoCommittenti.doc";
                         var fileName = "ResocontoCommittenti_" + data + ".PDF";
                         var pathReport = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileName;
-                        var account = SessionManager.GetAccount(Context);
-                        var viewModelAzienda = new Azienda.AziendaViewModel();
-                        var azienda = viewModelAzienda.ReadAzienda(account);
-                        var viewModelCommittente = new Committente.CommittenteViewModel();
-                        var committenti = viewModelCommittente.ReadCommittenti(anagraficheCommittenti);
+                        var azienda = (AziendaDto)editAzienda.Model;
+                        var viewModel = new Committente.CommittenteViewModel();
+                        var committenti = viewModel.ReadCommittenti(anagraficheCommittenti).ToList();
 
-                        var report = BusinessLogic.ReportJob.GetReportCommittenti(azienda, anagraficheCommittenti.ToList(), committenti.ToList(), elaborazione);
+                        var report = BusinessLogic.ReportJob.GetReportCommittenti(azienda, anagraficheCommittenti, committenti, elaborazione);
                         if (report != null)
                         {
                             bool performed = report.Create(pathTemplate, pathReport);
