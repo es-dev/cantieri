@@ -27,13 +27,18 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                 {
                     var obj = (PagamentoUnificatoFatturaAcquistoDto)model;
                     var saldo = UtilityValidation.GetEuro(obj.Saldo);
-                    var fatturaAcquisto = obj.FatturaAcquisto;
-                    var pagamentoUnificato = obj.PagamentoUnificato;
                     infoImage.Image = "Images.dashboard.pagamentounificatofatturaacquisto.png";
-                    infoCodice.Text = "PU/FA-"+ fatturaAcquisto.Numero;
-                    infoNote.Text = obj.Note;
+                    infoFornitore.Text = obj.Note;
                     infoImporto.Text = "Importo: " + saldo;
-                    infoPagamento.Text="Pagamento: " + pagamentoUnificato.Codice  + " - Fattura: " + fatturaAcquisto.Numero;
+                    infoPagamento.Text = "Pagamento " + BusinessLogic.PagamentoUnificato.GetCodifica(obj);
+
+                    var fatturaAcquisto = obj.FatturaAcquisto;
+                    if (fatturaAcquisto != null)
+                    {
+                        infoCodice.Text = "PU/FA-" + fatturaAcquisto.Numero;
+                        infoFornitore.Text = BusinessLogic.Fornitore.GetCodifica(fatturaAcquisto.Fornitore);
+                        infoFatturaAcquisto.Text = "Fattura " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
+                    }
                 }
             }
             catch (Exception ex)

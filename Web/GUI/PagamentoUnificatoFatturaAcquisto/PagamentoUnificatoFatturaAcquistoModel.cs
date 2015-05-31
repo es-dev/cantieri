@@ -60,19 +60,14 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
 
         public override void BindViewTitle(object model)
         {
-            try
+            try 
             {
                 var obj = (PagamentoUnificatoFatturaAcquistoDto)model;
-                infoSubtitle.Text = "PU/FA - "+ obj.Note;
-                infoSubtitleImage.Image = "Images.dashboard.pagamentounificatofatturaacquisto.png";
-              
                 var fatturaAcquisto = obj.FatturaAcquisto;
-                var numeroFatturaAcquisto = (fatturaAcquisto != null ? fatturaAcquisto.Numero : "N/D");
-                var pagamentoUnificato = obj.PagamentoUnificato;
-                var viewModelAnagraficaFornitore = new AnagraficaFornitore.AnagraficaFornitoreViewModel();
-                var anagraficaFornitore = viewModelAnagraficaFornitore.ReadAnagraficaFornitore(pagamentoUnificato);
-                var ragioneSociale = (anagraficaFornitore != null ? anagraficaFornitore.RagioneSociale : "N/D");
-                infoTitle.Text = (obj.Id!=0? "PAGAMENTO UNIFICATO " + pagamentoUnificato.Codice + " - FATTURA DI ACQUISTO N." +numeroFatturaAcquisto +" - " + ragioneSociale:"NUOVA FATTURA DI ACQUISTO PER PAGAMENTO UNIFICATO");
+                infoSubtitle.Text = "PU/FA - " + BusinessLogic.PagamentoUnificato.GetCodifica(obj);
+                infoSubtitleImage.Image = "Images.dashboard.pagamentounificatofatturaacquisto.png";
+
+                infoTitle.Text = (obj.Id != 0 ? "PAGAMENTO FATTURA ACQUISTO " + BusinessLogic.PagamentoUnificato.GetCodifica(obj) : "NUOVO PAGAMENTO FATTURA ACQUISTO") + " / FORNITORE " + BusinessLogic.Fornitore.GetCodifica(fatturaAcquisto);
             }
             catch (Exception ex)
             {
@@ -106,7 +101,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             try
             {
                 editPagamentoUnificato.Model = pagamentoUnificato;
-                editPagamentoUnificato.Value = (pagamentoUnificato != null ? pagamentoUnificato.Codice + "/" + pagamentoUnificato.Data.Value.Year.ToString() : null);
+                editPagamentoUnificato.Value = BusinessLogic.PagamentoUnificato.GetCodifica(pagamentoUnificato);
                 pagamentoUnificatoOld = pagamentoUnificato;
             }
             catch (Exception ex)
@@ -121,7 +116,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             try
             {
                 editFatturaAcquisto.Model = fatturaAcquisto;
-                editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) : null);
+                editFatturaAcquisto.Value = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
                 fatturaAcquistoOld = fatturaAcquisto;
             }
             catch (Exception ex)
@@ -159,9 +154,11 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                     obj.Note = editNote.Value;
                     obj.Saldo = editSaldo.Value;
                     obj.TransazionePagamento = editTransazionePagamento.Value;
+
                     var fatturaAcquisto = (FatturaAcquistoDto)editFatturaAcquisto.Model;
                     if(fatturaAcquisto!=null)
                         obj.FatturaAcquistoId = fatturaAcquisto.Id;
+
                     var pagamentoUnificato = (PagamentoUnificatoDto)editPagamentoUnificato.Model;
                     if (pagamentoUnificato != null)
                         obj.PagamentoUnificatoId = pagamentoUnificato.Id;
@@ -186,7 +183,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
                 {
                     var anagraficaFornitore = pagamentoUnificato.AnagraficaFornitore;
                     var view = new FatturaAcquisto.FatturaAcquistoView(anagraficaFornitore, Tipi.StatoFattura.NonPagata | Tipi.StatoFattura.Insoluta);
-                    view.Title = "SELEZIONA LA FATTURA DI ACQUISTO";
+                    view.Title = "SELEZIONA UNA FATTURA DI ACQUISTO";
                     editFatturaAcquisto.Show(view);
                 }
             }
@@ -215,7 +212,7 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             try
             {
                 var view = new PagamentoUnificato.PagamentoUnificatoView();
-                view.Title = "SELEZIONA IL PAGAMENTO UNIFICATO";
+                view.Title = "SELEZIONA UN PAGAMENTO UNIFICATO";
                 editPagamentoUnificato.Show(view);
             }
             catch (Exception ex)
@@ -242,6 +239,8 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             try
             {
                 BindViewPagamentoUnificato(pagamentoUnificato);
+
+                editTransazionePagamento.Value = Tipi.TransazionePagamento.Acconto.ToString();
             }
             catch (Exception ex)
             {

@@ -498,12 +498,42 @@ namespace BusinessLogic
             {
                 if(fornitore!=null)
                 {
-                    var anagraficaFornitore = fornitore.AnagraficaFornitore;
-                    if(anagraficaFornitore!=null)
-                    {
-                        var codifica = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
-                        return codifica;
-                    }
+                    var codifica = GetCodifica(fornitore.AnagraficaFornitore);
+                    return codifica;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public static string GetCodifica(AnagraficaFornitoreDto anagraficaFornitore)
+        {
+            try
+            {
+                if (anagraficaFornitore != null)
+                {
+                    var codifica = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
+                    return codifica;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public static string GetCodifica(FatturaAcquistoDto fatturaAcquisto)
+        {
+            try
+            {
+                if(fatturaAcquisto!=null)
+                {
+                    var codifica = GetCodifica(fatturaAcquisto.Fornitore);
+                    return codifica;
                 }
             }
             catch (Exception ex)

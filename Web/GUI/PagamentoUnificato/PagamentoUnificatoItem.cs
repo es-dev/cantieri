@@ -30,13 +30,15 @@ namespace Web.GUI.PagamentoUnificato
                     var codice = UtilityValidation.GetStringND(obj.Codice);
                     var data = UtilityValidation.GetDataND(obj.Data);
 
-                    infoPagamento.Text = "Pagamento N." + codice;
+                    infoPagamento.Text = "Pagamento " + BusinessLogic.PagamentoUnificato.GetCodifica(obj);
                     infoData.Text = "Pagato il " + data;
                     infoImage.Image = "Images.dashboard.pagamentounificato.png";
                     infoCodice.Text = "PU-"+codice;
-                    infoImporto.Text = "Totale di " + importo;
+                    infoImporto.Text = "Totale di " + (importo!=null? importo:"N/D");
+                    infoTipoPagamento.Text = obj.TipoPagamento;
 
-                    BindViewAnagraficaFornitore(obj.AnagraficaFornitore);
+                    var anagraficaFornitore = obj.AnagraficaFornitore;
+                    infoFornitore.Text = (anagraficaFornitore != null ? anagraficaFornitore.RagioneSociale : "N/D");
                 }
             }
             catch (Exception ex)
@@ -44,19 +46,7 @@ namespace Web.GUI.PagamentoUnificato
                 UtilityError.Write(ex);
             }
         }
-
-        private void BindViewAnagraficaFornitore(AnagraficaFornitoreDto anagraficaFornitore)
-        {
-            try
-            {
-                infoFornitore.Text = (anagraficaFornitore != null ? anagraficaFornitore.RagioneSociale : "N/D");
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-
-        }
+       
 
       
 	}

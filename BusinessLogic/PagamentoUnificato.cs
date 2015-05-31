@@ -34,5 +34,50 @@ namespace BusinessLogic
             }
             return 0;
         }
+
+        public static string GetCodifica(PagamentoUnificatoFatturaAcquistoDto pagamentoUnificatoFatturaAcquisto)
+        {
+            try
+            {
+                if(pagamentoUnificatoFatturaAcquisto!=null)
+                {
+                    var pagamentoUnificato = pagamentoUnificatoFatturaAcquisto.PagamentoUnificato;
+                    var fatturaAcquisto = pagamentoUnificatoFatturaAcquisto.FatturaAcquisto;
+                    if(pagamentoUnificato!=null)
+                    {
+                        var codifica = pagamentoUnificato.Codice;
+                        if (fatturaAcquisto != null)
+                            codifica += "-" + fatturaAcquisto.Numero;
+
+                        return codifica;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public static string GetCodifica(PagamentoUnificatoDto pagamentoUnificato)
+        {
+            try
+            {
+                if(pagamentoUnificato!=null)
+                {
+                    var data = UtilityValidation.GetDataND(pagamentoUnificato.Data);
+                    var codice = pagamentoUnificato.Codice;
+                    var codifica = codice + " del " + data;
+                    return codifica;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }

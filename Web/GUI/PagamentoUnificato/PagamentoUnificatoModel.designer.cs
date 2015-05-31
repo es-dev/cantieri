@@ -38,7 +38,7 @@ namespace Web.GUI.PagamentoUnificato
             this.editTipoPagamento = new Library.Template.Controls.TemplateEditDropDown();
             this.editDescrizione = new Library.Template.Controls.TemplateEditText();
             this.btnCalcoloSaldoImporto = new Library.Controls.ButtonSeparatorV();
-            this.btnFattureAcquisto = new Library.Controls.ButtonSeparatorV();
+            this.btnPagamentoUnificatoFattureAcquisto = new Library.Controls.ButtonSeparatorV();
             this.editAzienda = new Library.Template.Controls.TemplateEditCombo();
             this.container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoSubtitleImage)).BeginInit();
@@ -76,7 +76,7 @@ namespace Web.GUI.PagamentoUnificato
             // 
             // panelCommands
             // 
-            this.panelCommands.Controls.Add(this.btnFattureAcquisto);
+            this.panelCommands.Controls.Add(this.btnPagamentoUnificatoFattureAcquisto);
             this.panelCommands.Controls.Add(this.btnCalcoloSaldoImporto);
             this.panelCommands.Controls.SetChildIndex(this.btnHome, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnClose, 0);
@@ -84,7 +84,7 @@ namespace Web.GUI.PagamentoUnificato
             this.panelCommands.Controls.SetChildIndex(this.btnUpdateCancel, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnDelete, 0);
             this.panelCommands.Controls.SetChildIndex(this.btnCalcoloSaldoImporto, 0);
-            this.panelCommands.Controls.SetChildIndex(this.btnFattureAcquisto, 0);
+            this.panelCommands.Controls.SetChildIndex(this.btnPagamentoUnificatoFattureAcquisto, 0);
             // 
             // editAnagraficaFornitore
             // 
@@ -99,7 +99,7 @@ namespace Web.GUI.PagamentoUnificato
             this.editAnagraficaFornitore.Editing = false;
             this.editAnagraficaFornitore.Label = "Fornitore";
             this.editAnagraficaFornitore.LabelWidth = 175;
-            this.editAnagraficaFornitore.Location = new System.Drawing.Point(33, 116);
+            this.editAnagraficaFornitore.Location = new System.Drawing.Point(33, 119);
             this.editAnagraficaFornitore.Model = null;
             this.editAnagraficaFornitore.Name = "editAnagraficaFornitore";
             this.editAnagraficaFornitore.ReadOnly = false;
@@ -124,7 +124,7 @@ namespace Web.GUI.PagamentoUnificato
             this.editData.Editing = false;
             this.editData.Label = "Data";
             this.editData.LabelWidth = 175;
-            this.editData.Location = new System.Drawing.Point(33, 202);
+            this.editData.Location = new System.Drawing.Point(33, 203);
             this.editData.Name = "editData";
             this.editData.ReadOnly = false;
             this.editData.Required = true;
@@ -146,12 +146,12 @@ namespace Web.GUI.PagamentoUnificato
             this.editImporto.Editing = false;
             this.editImporto.Label = "Importo";
             this.editImporto.LabelWidth = 175;
-            this.editImporto.Location = new System.Drawing.Point(33, 245);
+            this.editImporto.Location = new System.Drawing.Point(33, 287);
             this.editImporto.Name = "editImporto";
-            this.editImporto.ReadOnly = false;
-            this.editImporto.Required = true;
+            this.editImporto.ReadOnly = true;
+            this.editImporto.Required = false;
             this.editImporto.Size = new System.Drawing.Size(824, 30);
-            this.editImporto.TabIndex = 4;
+            this.editImporto.TabIndex = 5;
             this.editImporto.Text = "TemplateEditNumeric";
             this.editImporto.Value = null;
             // 
@@ -168,7 +168,7 @@ namespace Web.GUI.PagamentoUnificato
             this.editNote.Editing = false;
             this.editNote.Label = "Note";
             this.editNote.LabelWidth = 175;
-            this.editNote.Location = new System.Drawing.Point(33, 374);
+            this.editNote.Location = new System.Drawing.Point(33, 371);
             this.editNote.Name = "editNote";
             this.editNote.ReadOnly = false;
             this.editNote.Required = false;
@@ -190,7 +190,7 @@ namespace Web.GUI.PagamentoUnificato
             this.editCodice.Editing = false;
             this.editCodice.Label = "Codice";
             this.editCodice.LabelWidth = 175;
-            this.editCodice.Location = new System.Drawing.Point(33, 159);
+            this.editCodice.Location = new System.Drawing.Point(33, 161);
             this.editCodice.Name = "editCodice";
             this.editCodice.ReadOnly = false;
             this.editCodice.Required = true;
@@ -214,12 +214,12 @@ namespace Web.GUI.PagamentoUnificato
             this.editTipoPagamento.Items = null;
             this.editTipoPagamento.Label = "Tipo pagamento";
             this.editTipoPagamento.LabelWidth = 175;
-            this.editTipoPagamento.Location = new System.Drawing.Point(33, 288);
+            this.editTipoPagamento.Location = new System.Drawing.Point(33, 245);
             this.editTipoPagamento.Name = "editTipoPagamento";
             this.editTipoPagamento.ReadOnly = false;
             this.editTipoPagamento.Required = true;
             this.editTipoPagamento.Size = new System.Drawing.Size(824, 30);
-            this.editTipoPagamento.TabIndex = 5;
+            this.editTipoPagamento.TabIndex = 4;
             this.editTipoPagamento.Text = "EditControl";
             this.editTipoPagamento.Value = null;
             // 
@@ -236,7 +236,7 @@ namespace Web.GUI.PagamentoUnificato
             this.editDescrizione.Editing = false;
             this.editDescrizione.Label = "Descrizione";
             this.editDescrizione.LabelWidth = 175;
-            this.editDescrizione.Location = new System.Drawing.Point(33, 331);
+            this.editDescrizione.Location = new System.Drawing.Point(33, 329);
             this.editDescrizione.Name = "editDescrizione";
             this.editDescrizione.ReadOnly = false;
             this.editDescrizione.Required = false;
@@ -259,19 +259,19 @@ namespace Web.GUI.PagamentoUnificato
             this.btnCalcoloSaldoImporto.TextButton = "Calcolo saldo importo";
             this.btnCalcoloSaldoImporto.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnCalcoloSaldoImporto_Click);
             // 
-            // btnFattureAcquisto
+            // btnPagamentoUnificatoFattureAcquisto
             // 
-            this.btnFattureAcquisto.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
-            this.btnFattureAcquisto.BackColor = System.Drawing.Color.Transparent;
-            this.btnFattureAcquisto.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
-            this.btnFattureAcquisto.ImageButton = "";
-            this.btnFattureAcquisto.ImageSeparator = "Images.separator_ht_small.png";
-            this.btnFattureAcquisto.Location = new System.Drawing.Point(1, 288);
-            this.btnFattureAcquisto.Name = "btnFattureAcquisto";
-            this.btnFattureAcquisto.Size = new System.Drawing.Size(100, 72);
-            this.btnFattureAcquisto.TabIndex = 1002;
-            this.btnFattureAcquisto.TextButton = "Fatture";
-            this.btnFattureAcquisto.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnFattureAcquisto_Click);
+            this.btnPagamentoUnificatoFattureAcquisto.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
+            this.btnPagamentoUnificatoFattureAcquisto.BackColor = System.Drawing.Color.Transparent;
+            this.btnPagamentoUnificatoFattureAcquisto.ForeColorButton = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
+            this.btnPagamentoUnificatoFattureAcquisto.ImageButton = "";
+            this.btnPagamentoUnificatoFattureAcquisto.ImageSeparator = "Images.separator_ht_small.png";
+            this.btnPagamentoUnificatoFattureAcquisto.Location = new System.Drawing.Point(1, 288);
+            this.btnPagamentoUnificatoFattureAcquisto.Name = "btnPagamentoUnificatoFattureAcquisto";
+            this.btnPagamentoUnificatoFattureAcquisto.Size = new System.Drawing.Size(100, 72);
+            this.btnPagamentoUnificatoFattureAcquisto.TabIndex = 1002;
+            this.btnPagamentoUnificatoFattureAcquisto.TextButton = "Fatture acquisto";
+            this.btnPagamentoUnificatoFattureAcquisto.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnPagamentoUnificatoFattureAcquisto_Click);
             // 
             // editAzienda
             // 
@@ -314,7 +314,7 @@ namespace Web.GUI.PagamentoUnificato
         private Library.Template.Controls.TemplateEditText editDescrizione;
         private Library.Template.Controls.TemplateEditDropDown editTipoPagamento;
         private Library.Controls.ButtonSeparatorV btnCalcoloSaldoImporto;
-        private Library.Controls.ButtonSeparatorV btnFattureAcquisto;
+        private Library.Controls.ButtonSeparatorV btnPagamentoUnificatoFattureAcquisto;
         private Library.Template.Controls.TemplateEditCombo editAzienda;
 
 

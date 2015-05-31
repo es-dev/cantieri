@@ -45,6 +45,11 @@ namespace Web.GUI.PagamentoUnificato
             {
                 var azienda = SessionManager.GetAzienda(Context);
                 BindViewAzienda(azienda);
+
+                var viewModel = (PagamentoUnificatoViewModel)ViewModel;
+                var codice = viewModel.Count() + 1;
+                editCodice.Value = codice.ToString("000");
+                editData.Value = DateTime.Now;
             }
             catch (Exception ex)
             {
@@ -57,9 +62,10 @@ namespace Web.GUI.PagamentoUnificato
             try
             {
                 var obj = (PagamentoUnificatoDto)model;
-                infoSubtitle.Text = obj.Codice + " - " + obj.Descrizione;
+                infoSubtitle.Text = "PAGAMENTO "+ obj.Codice;
                 infoSubtitleImage.Image = "Images.dashboard.pagamentounificato.png";
-                infoTitle.Text = (obj.Id!=0? "PAGAMENTO UNIFICATO " + obj.Codice:"NUOVO PAGAMENTO UNIFICATO");
+                var anagraficaFornitore = obj.AnagraficaFornitore;
+                infoTitle.Text = (obj.Id!=0? "PAGAMENTO UNIFICATO " + BusinessLogic.PagamentoUnificato.GetCodifica(obj):"NUOVO PAGAMENTO UNIFICATO") + " / FORNITORE " + BusinessLogic.Fornitore.GetCodifica(anagraficaFornitore);
             }
             catch (Exception ex)
             {
@@ -81,9 +87,22 @@ namespace Web.GUI.PagamentoUnificato
                     editTipoPagamento.Value = obj.TipoPagamento;
                     editDescrizione.Value = obj.Descrizione;
                     
-                    BindViewAnagraficaFornitore(obj.AnagraficaFornitore);
                     BindViewAzienda(obj.Azienda);
+                    BindViewAnagraficaFornitore(obj.AnagraficaFornitore);
+                    BindViewPagamentoUnificatoFattureAcquisto(obj.PagamentoUnificatoFatturaAcquistos);
                 }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void BindViewPagamentoUnificatoFattureAcquisto(IList<PagamentoUnificatoFatturaAcquistoDto> pagamentoUnificatofattureAcquisto)
+        {
+            try
+            {
+                btnPagamentoUnificatoFattureAcquisto.TextButton = "Fatture acquisto (" + (pagamentoUnificatofattureAcquisto != null ? pagamentoUnificatofattureAcquisto.Count : 0) + ")";
             }
             catch (Exception ex)
             {
@@ -110,7 +129,7 @@ namespace Web.GUI.PagamentoUnificato
             try
             {
                 editAnagraficaFornitore.Model = anagraficaFornitore;
-                editAnagraficaFornitore.Value = (anagraficaFornitore != null ? anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale : null);
+                editAnagraficaFornitore.Value = BusinessLogic.Fornitore.GetCodifica(anagraficaFornitore);
             }
             catch (Exception ex)
             {
@@ -119,7 +138,7 @@ namespace Web.GUI.PagamentoUnificato
             
         }
 
-        private void BindViewTotalePagamentoUnificato()
+        private void BindViewTotali()
         {
             try
             {
@@ -196,7 +215,7 @@ namespace Web.GUI.PagamentoUnificato
                 bool saved = Save();
                 if (saved)
                 {
-                    BindViewTotalePagamentoUnificato();
+                    BindViewTotali();
                 }
             }
             catch (Exception ex)
@@ -211,7 +230,7 @@ namespace Web.GUI.PagamentoUnificato
             {
                 base.SetEditing(editing, deleting);
                 btnCalcoloSaldoImporto.Enabled = editing;
-                btnFattureAcquisto.Enabled = editing;
+                btnPagamentoUnificatoFattureAcquisto.Enabled = !editing;
             }
             catch (Exception ex)
             {
@@ -219,7 +238,7 @@ namespace Web.GUI.PagamentoUnificato
             }
         }
 
-        private void btnFattureAcquisto_Click(object sender, EventArgs e)
+        private void btnPagamentoUnificatoFattureAcquisto_Click(object sender, EventArgs e)
         {
             try
             {
@@ -227,8 +246,9 @@ namespace Web.GUI.PagamentoUnificato
                 if (saved)
                 {
                     var obj = (PagamentoUnificatoDto)Model;
+                    var anagraficaFornitore = obj.AnagraficaFornitore;
                     var space = new PagamentoUnificatoFatturaAcquisto.PagamentoUnificatoFatturaAcquistoView(obj);
-                    space.Title = "FATTURE PAGAMENTO UNIFICATO " + obj.Codice;
+                    space.Title = "FATTURE ACQUISTO / PAGAMENTO UNIFICATO " + obj.Codice + " / FORNITORE " + BusinessLogic.Fornitore.GetCodifica(anagraficaFornitore);
                     Workspace.AddSpace(space);
                 }
             }

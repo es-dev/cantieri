@@ -37,6 +37,7 @@ namespace Web.GUI.PagamentoUnificato
             this.panelLeft = new Gizmox.WebGUI.Forms.Panel();
             this.infoFornitore = new Gizmox.WebGUI.Forms.Label();
             this.infoData = new Gizmox.WebGUI.Forms.Label();
+            this.infoTipoPagamento = new Gizmox.WebGUI.Forms.Label();
             this.jqContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoImage)).BeginInit();
             this.panelLeft.SuspendLayout();
@@ -44,6 +45,7 @@ namespace Web.GUI.PagamentoUnificato
             // 
             // jqContainer
             // 
+            this.jqContainer.Controls.Add(this.infoTipoPagamento);
             this.jqContainer.Controls.Add(this.panelLeft);
             this.jqContainer.Controls.Add(this.infoData);
             this.jqContainer.Controls.Add(this.infoFornitore);
@@ -52,10 +54,10 @@ namespace Web.GUI.PagamentoUnificato
             // 
             // infoImporto
             // 
-            this.infoImporto.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.infoImporto.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoImporto.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoImporto.ForeColor = System.Drawing.Color.DarkRed;
-            this.infoImporto.Location = new System.Drawing.Point(253, 76);
+            this.infoImporto.Location = new System.Drawing.Point(250, 78);
             this.infoImporto.Name = "infoImporto";
             this.infoImporto.Size = new System.Drawing.Size(140, 16);
             this.infoImporto.TabIndex = 1;
@@ -110,28 +112,40 @@ namespace Web.GUI.PagamentoUnificato
             // 
             // infoFornitore
             // 
-            this.infoFornitore.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Bottom) 
-            | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.infoFornitore.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoFornitore.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoFornitore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.infoFornitore.Location = new System.Drawing.Point(96, 32);
+            this.infoFornitore.Location = new System.Drawing.Point(93, 32);
             this.infoFornitore.Name = "infoFornitore";
-            this.infoFornitore.Size = new System.Drawing.Size(297, 34);
+            this.infoFornitore.Size = new System.Drawing.Size(294, 22);
             this.infoFornitore.TabIndex = 1;
             this.infoFornitore.Text = "Fornitore";
             // 
             // infoData
             // 
-            this.infoData.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            this.infoData.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoData.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoData.ForeColor = System.Drawing.Color.DarkRed;
-            this.infoData.Location = new System.Drawing.Point(96, 74);
+            this.infoData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.infoData.Location = new System.Drawing.Point(93, 78);
             this.infoData.Name = "infoData";
-            this.infoData.Size = new System.Drawing.Size(154, 16);
+            this.infoData.Size = new System.Drawing.Size(157, 16);
             this.infoData.TabIndex = 1;
             this.infoData.Text = "Pagato il dd/MM/yyyy";
+            // 
+            // infoTipoPagamento
+            // 
+            this.infoTipoPagamento.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Left) 
+            | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.infoTipoPagamento.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoTipoPagamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.infoTipoPagamento.Location = new System.Drawing.Point(93, 54);
+            this.infoTipoPagamento.Name = "infoTipoPagamento";
+            this.infoTipoPagamento.Size = new System.Drawing.Size(294, 22);
+            this.infoTipoPagamento.TabIndex = 1;
+            this.infoTipoPagamento.Text = "Tipo pagamento";
+            this.infoTipoPagamento.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // PagamentoUnificatoItem
             // 
@@ -153,5 +167,6 @@ namespace Web.GUI.PagamentoUnificato
         private Gizmox.WebGUI.Forms.Panel panelLeft;
         private Gizmox.WebGUI.Forms.Label infoFornitore;
         private Gizmox.WebGUI.Forms.Label infoData;
+        private Gizmox.WebGUI.Forms.Label infoTipoPagamento;
 	}
 }
