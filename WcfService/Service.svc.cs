@@ -1104,7 +1104,7 @@ namespace WcfService
             {
                 var fattureAcquisto = QueryFattureAcquisto(search, advancedSearch, null, null, start, end);
 
-                var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto);
+                var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto, true);
                 return fattureAcquistoDto;
             }
             catch (Exception ex)
@@ -1517,7 +1517,7 @@ namespace WcfService
             try
             {
                 var pagamenti = QueryPagamenti(search, advancedSearch,null,null, start, end);
-                var pagamentiDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamenti);
+                var pagamentiDto = UtilityPOCO.Assemble<Dto.PagamentoDto>(pagamenti, true);
                 return pagamentiDto;
             }
             catch (Exception ex)

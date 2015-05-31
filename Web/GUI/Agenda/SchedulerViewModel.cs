@@ -65,12 +65,13 @@ namespace Web.GUI.Agenda
                     evento.Model = pagamentoData;
                     evento.BackgroundColor = Color.LightBlue;
 
-                    var titolo = BusinessLogic.Pagamento.GetCodifica(pagamentoData) + " per un importo di " + UtilityValidation.GetEuro(pagamentoData.Importo);
+                    var titolo = "Pagamento " + BusinessLogic.Pagamento.GetCodifica(pagamentoData) + " per un importo di " + UtilityValidation.GetEuro(pagamentoData.Importo);
                     var fatturaAcquisto = pagamentoData.FatturaAcquisto;
                     if (fatturaAcquisto != null)
                     {
                         var scadenza = (DateTime)fatturaAcquisto.Scadenza;
-                        titolo += " relativo alla " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) + " con scadenza " + scadenza.ToString("dd/MM/yyyy");
+                        titolo += " relativo alla fattura di acquisto " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) + " con scadenza il " + scadenza.ToString("dd/MM/yyyy") + 
+                            " | Fornitore "+BusinessLogic.Fornitore.GetCodifica(fatturaAcquisto.Fornitore);
                     }
                     evento.Subject = titolo;
 
@@ -102,12 +103,14 @@ namespace Web.GUI.Agenda
                     var saldoFatturaAcquisto = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotaleSaldoFatturaAcquisto(fatturaAcquisto, today));
                     var pagamentiDare= BusinessLogic.Fattura.GetTotalePagamentiDare(fatturaAcquisto, today);
                     var pagamentiDato=BusinessLogic.Fattura.GetTotalePagamentiDato(fatturaAcquisto, today);
-                    
-                    var titolo = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) + " con scadenza il " + scadenza.ToString("dd/MM/yyyy") + " per un importo di " + saldoFatturaAcquisto.ToString();
+                    var titolo = "Fattura " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) + " con scadenza il " + scadenza.ToString("dd/MM/yyyy") +
+                        " per un importo di " + saldoFatturaAcquisto.ToString();
                     if(pagamentiDato > 0)
                         titolo+=". Totale pagato = " + (UtilityValidation.GetEuro(pagamentiDato)).ToString();
                     if(pagamentiDare > 0)
                         titolo += ", totale da pagare = " + (UtilityValidation.GetEuro(pagamentiDare)).ToString();
+
+                    titolo += " | Fornitore " + BusinessLogic.Fornitore.GetCodifica(fatturaAcquisto.Fornitore);
                     evento.Subject = titolo;
 
                     var color = Color.Red;
