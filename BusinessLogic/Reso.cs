@@ -32,5 +32,22 @@ namespace BusinessLogic
             return null;
         }
 
+
+        public static string GetCodifica(ResoDto reso)
+        {
+            try
+            {
+                if(reso!=null)
+                {
+                    var codifica = reso.Codice + " DEL " + UtilityValidation.GetDataND(reso.Data);
+                    return codifica;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }

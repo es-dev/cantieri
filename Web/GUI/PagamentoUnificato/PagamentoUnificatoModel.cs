@@ -62,10 +62,10 @@ namespace Web.GUI.PagamentoUnificato
             try
             {
                 var obj = (PagamentoUnificatoDto)model;
-                infoSubtitle.Text = "PAGAMENTO "+ obj.Codice;
+                infoSubtitle.Text = BusinessLogic.PagamentoUnificato.GetCodifica(obj);
                 infoSubtitleImage.Image = "Images.dashboard.pagamentounificato.png";
-                var anagraficaFornitore = obj.AnagraficaFornitore;
-                infoTitle.Text = (obj.Id!=0? "PAGAMENTO UNIFICATO " + BusinessLogic.PagamentoUnificato.GetCodifica(obj):"NUOVO PAGAMENTO UNIFICATO") + " / FORNITORE " + BusinessLogic.Fornitore.GetCodifica(anagraficaFornitore);
+                infoTitle.Text = (obj.Id!=0? "PAGAMENTO UNIFICATO " + BusinessLogic.PagamentoUnificato.GetCodifica(obj):"NUOVO PAGAMENTO UNIFICATO") + " | FORNITORE " + 
+                    BusinessLogic.Fornitore.GetCodifica(obj.AnagraficaFornitore);
             }
             catch (Exception ex)
             {
@@ -246,9 +246,9 @@ namespace Web.GUI.PagamentoUnificato
                 if (saved)
                 {
                     var obj = (PagamentoUnificatoDto)Model;
-                    var anagraficaFornitore = obj.AnagraficaFornitore;
                     var space = new PagamentoUnificatoFatturaAcquisto.PagamentoUnificatoFatturaAcquistoView(obj);
-                    space.Title = "FATTURE ACQUISTO / PAGAMENTO UNIFICATO " + obj.Codice + " / FORNITORE " + BusinessLogic.Fornitore.GetCodifica(anagraficaFornitore);
+                    space.Title = "FATTURE ACQUISTO | PAGAMENTO UNIFICATO " + BusinessLogic.PagamentoUnificato.GetCodifica(obj) + " | FORNITORE " + 
+                        BusinessLogic.Fornitore.GetCodifica(obj.AnagraficaFornitore);
                     Workspace.AddSpace(space);
                 }
             }

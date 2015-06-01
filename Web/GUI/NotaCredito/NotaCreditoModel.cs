@@ -46,10 +46,10 @@ namespace Web.GUI.NotaCredito
             try
             {
                 var obj = (NotaCreditoDto)model;
-                infoSubtitle.Text = "NOTA CREDITO "+ BusinessLogic.Fattura.GetCodifica(obj);
+                infoSubtitle.Text =  BusinessLogic.Fattura.GetCodifica(obj);
                 infoSubtitleImage.Image = "Images.dashboard.notacredito.png";
-                var fornitore = obj.Fornitore;
-                infoTitle.Text = (obj.Id != 0 ? "NOTA CREDITO " + BusinessLogic.Fattura.GetCodifica(obj) : "NUOVA NOTA CREDITO") + " / FORNITORE " + BusinessLogic.Fornitore.GetCodifica(fornitore);
+                infoTitle.Text = (obj.Id != 0 ? "NOTA CREDITO " + BusinessLogic.Fattura.GetCodifica(obj) : "NUOVA NOTA CREDITO") + " | FORNITORE " + 
+                    BusinessLogic.Fornitore.GetCodifica(obj.Fornitore);
             }
             catch (Exception ex)
             {

@@ -39,7 +39,7 @@ namespace Web.GUI.Reso
             try
             {
                 var obj = (ResoDto)model;
-                infoSubtitle.Text = "RESO "+obj.Codice;
+                infoSubtitle.Text = BusinessLogic.Reso.GetCodifica(obj);
                 infoSubtitleImage.Image = "Images.dashboard.reso.png";
                 infoTitle.Text = (obj.Id != 0 ? "RESO " + obj.Codice : "NUOVO RESO") + " / NOTA CREDITO " + BusinessLogic.Fattura.GetCodifica(obj.NotaCredito);
             }
@@ -110,8 +110,7 @@ namespace Web.GUI.Reso
                 if (fatturaAcquisto != null)
                 {
                     var fornitore = fatturaAcquisto.Fornitore;
-                    var anagraficaFornitore = fornitore.AnagraficaFornitore;
-                    fatturaAcquistoFornitore += " / " + anagraficaFornitore.RagioneSociale;
+                    fatturaAcquistoFornitore += " | FORNITORE " + BusinessLogic.Fornitore.GetCodifica(fornitore);
                 }
                 editFatturaAcquisto.Value = fatturaAcquistoFornitore;
             }

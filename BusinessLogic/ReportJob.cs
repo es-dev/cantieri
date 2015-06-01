@@ -839,5 +839,22 @@ namespace BusinessLogic
             return null;
         }
 
+
+        public static string GetCodifica(ReportJobDto reportJob)
+        {
+            try
+            {
+                if (reportJob != null)
+                {
+                    var codifica = reportJob.Codice + " - TIPO " + reportJob.Tipo;
+                    return codifica;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }

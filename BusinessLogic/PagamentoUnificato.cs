@@ -69,7 +69,7 @@ namespace BusinessLogic
                 {
                     var data = UtilityValidation.GetDataND(pagamentoUnificato.Data);
                     var codice = pagamentoUnificato.Codice;
-                    var codifica = codice + " del " + data;
+                    var codifica = codice + " DEL " + data;
                     return codifica;
                 }
             }

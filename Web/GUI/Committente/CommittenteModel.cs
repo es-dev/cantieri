@@ -44,10 +44,9 @@ namespace Web.GUI.Committente
                 {
                     var obj = (WcfService.Dto.CommittenteDto)model;
                     infoSubtitleImage.Image = "Images.dashboard.committente.png";
-                    var commessa = obj.Commessa;
-                    var anagraficaCommittente = obj.AnagraficaCommittente;
-                    infoSubtitle.Text =(anagraficaCommittente!=null? anagraficaCommittente.Codice + " - " + anagraficaCommittente.RagioneSociale:null);
-                    infoTitle.Text = (obj.Id != 0 ? "COMMITTENTE " + anagraficaCommittente.RagioneSociale : "NUOVO COMMITTENTE") + " / COMMESSA " + BusinessLogic.Commessa.GetCodifica(commessa);
+                    infoSubtitle.Text = BusinessLogic.Committente.GetCodifica(obj);
+                    infoTitle.Text = (obj.Id != 0 ? "COMMITTENTE " + BusinessLogic.Committente.GetCodifica(obj) : "NUOVO COMMITTENTE") + " | COMMESSA " + 
+                        BusinessLogic.Commessa.GetCodifica(obj.Commessa);
                 }
             }
             catch (Exception ex)

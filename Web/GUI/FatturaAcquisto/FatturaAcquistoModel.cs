@@ -64,10 +64,10 @@ namespace Web.GUI.FatturaAcquisto
                 if (model != null)
                 {
                     var obj = (FatturaAcquistoDto)model;
-                    infoSubtitle.Text = "FATTURA "+ BusinessLogic.Fattura.GetCodifica(obj);
+                    infoSubtitle.Text = BusinessLogic.Fattura.GetCodifica(obj);
                     infoSubtitleImage.Image = "Images.dashboard.fatturaacquisto.png";
-                    var fornitore = obj.Fornitore;
-                    infoTitle.Text = (obj.Id!=0?"FATTURA ACQUISTO " + BusinessLogic.Fattura.GetCodifica(obj) : "NUOVA FATTURA ACQUISTO")+ " / FORNITORE " + BusinessLogic.Fornitore.GetCodifica(fornitore);
+                    infoTitle.Text = (obj.Id!=0?"FATTURA ACQUISTO " + BusinessLogic.Fattura.GetCodifica(obj) : "NUOVA FATTURA ACQUISTO")+ " | FORNITORE " + 
+                        BusinessLogic.Fornitore.GetCodifica(obj.Fornitore);
                 }
             }
             catch (Exception ex)

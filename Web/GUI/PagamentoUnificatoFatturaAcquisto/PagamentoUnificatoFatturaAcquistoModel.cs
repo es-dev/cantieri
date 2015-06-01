@@ -63,10 +63,10 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             try 
             {
                 var obj = (PagamentoUnificatoFatturaAcquistoDto)model;
-                var fatturaAcquisto = obj.FatturaAcquisto;
-                infoSubtitle.Text = "PU/FA - " + BusinessLogic.PagamentoUnificato.GetCodifica(obj);
+                infoSubtitle.Text = BusinessLogic.PagamentoUnificato.GetCodifica(obj);
                 infoSubtitleImage.Image = "Images.dashboard.pagamentounificatofatturaacquisto.png";
-                infoTitle.Text = (obj.Id != 0 ? "PAGAMENTO FATTURA ACQUISTO " + BusinessLogic.PagamentoUnificato.GetCodifica(obj) : "NUOVO PAGAMENTO FATTURA ACQUISTO") + " / FORNITORE " + BusinessLogic.Fornitore.GetCodifica(fatturaAcquisto);
+                infoTitle.Text = (obj.Id != 0 ? "PAGAMENTO FATTURA ACQUISTO " + BusinessLogic.PagamentoUnificato.GetCodifica(obj) : "NUOVO PAGAMENTO FATTURA ACQUISTO") + " | FORNITORE " + 
+                    BusinessLogic.Fornitore.GetCodifica(obj.FatturaAcquisto);
             }
             catch (Exception ex)
             {

@@ -44,8 +44,7 @@ namespace Web.GUI.Reso
                     if(fatturaAcquisto!=null)
                     {
                         var fornitore = fatturaAcquisto.Fornitore;
-                        var anagraficaFornitore = fornitore.AnagraficaFornitore;
-                        fatturaAcquistoFornitore += " / " + anagraficaFornitore.RagioneSociale;
+                        fatturaAcquistoFornitore += " | FORNITORE " + BusinessLogic.Fornitore.GetCodifica(fornitore);
                     }
                     infoFatturaAcquistoFornitore.Text = fatturaAcquistoFornitore;
                 }

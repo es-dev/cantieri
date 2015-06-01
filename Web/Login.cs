@@ -169,6 +169,19 @@ namespace Web
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                if (editUsername.CanFocus)
+                    editUsername.Focus();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
         }		
 	}
 }

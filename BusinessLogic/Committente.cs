@@ -14,19 +14,19 @@ namespace BusinessLogic
         {
             try
             {
-                decimal totale = 0;
                 if (committente != null)
                 {
                     var fattureVendita = (from q in committente.FatturaVenditas where q.Data <= data select q);
                     if (fattureVendita != null)
                     {
+                        decimal totale = 0;
                         foreach (var fatturaVendita in fattureVendita)
                         {
                             var totaleFatturaVendita = Fattura.GetTotaleFatturaVendita(fatturaVendita);
                             totale += totaleFatturaVendita;
                         }
+                        return totale;
                     }
-                    return totale;
                 }
             }
             catch (Exception ex)
@@ -41,21 +41,22 @@ namespace BusinessLogic
         {
             try
             {
-                decimal totaleFattureVendita = 0;
                 if (committente != null)
                 {
                     var today = DateTime.Today;
                     var commessa = committente.Commessa;
                     if (commessa != null)
                     {
+                        decimal totale = 0;
                         var statoCommessa = commessa.Stato;
                         if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                            totaleFattureVendita = UtilityValidation.GetDecimal(committente.TotaleFattureVendita);
+                            totale = UtilityValidation.GetDecimal(committente.TotaleFattureVendita);
                         else
-                            totaleFattureVendita = GetTotaleFattureVendita(committente, today);
+                            totale = GetTotaleFattureVendita(committente, today);
+                   
+                        return totale;
                     }
                 }
-                return totaleFattureVendita;
             }
             catch (Exception ex)
             {
@@ -68,9 +69,9 @@ namespace BusinessLogic
         {
             try
             {
-                decimal totale = 0;
                 if (committente != null)
                 {
+                    decimal totale = 0;
                     var fattureVendita = committente.FatturaVenditas;
                     foreach (var fatturaVendita in fattureVendita)
                     {
@@ -91,21 +92,21 @@ namespace BusinessLogic
         {
             try
             {
-                decimal totaleIncassi = 0;
                 if (committente != null)
                 {
                     var today = DateTime.Today;
                     var commessa = committente.Commessa;
                     if (commessa != null)
                     {
+                        decimal totale = 0;
                         var statoCommessa = commessa.Stato;
                         if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                            totaleIncassi = UtilityValidation.GetDecimal(committente.TotaleIncassi);
+                            totale = UtilityValidation.GetDecimal(committente.TotaleIncassi);
                         else
-                            totaleIncassi = BusinessLogic.Committente.GetTotaleIncassi(committente, today);
+                            totale = BusinessLogic.Committente.GetTotaleIncassi(committente, today);
+                        return totale;
                     }
                 }
-                return totaleIncassi;
             }
             catch (Exception ex)
             {
@@ -174,8 +175,8 @@ namespace BusinessLogic
                     var today = DateTime.Today;
                     var totaleFattureVendita = GetTotaleFattureVendita(committente, today);
                     var totaleIncassi = GetTotaleIncassi(committente, today);
-                    var fatture = committente.FatturaVenditas;
-                    var fattureInsolute = GetFattureInsolute(fatture);
+                    var fattureVendita = committente.FatturaVenditas;
+                    var fattureInsolute = GetFattureInsolute(fattureVendita);
                     var existFattureInsolute = (fattureInsolute.Count >= 1);
 
                     var stato = Tipi.StatoCommittente.None;
@@ -217,11 +218,11 @@ namespace BusinessLogic
                         else
                         {
                             var today = DateTime.Today;
-                            var fatture = committente.FatturaVenditas;
+                            var fattureVendita = committente.FatturaVenditas;
                             var totaleFattureVendita = GetTotaleFattureVendita(committente, today);
                             var totaleIncassi = GetTotaleIncassi(committente, today);
-                            var fattureInsolute = GetFattureInsolute(fatture);
-                            var fattureNonLiquidate = GetFattureNonLiquidate(fatture);
+                            var fattureInsolute = GetFattureInsolute(fattureVendita);
+                            var fattureNonLiquidate = GetFattureNonLiquidate(fattureVendita);
                             var statoCommittente = GetStato(committente);
                             var _statoDescrizione = GetStatoDescrizione(totaleFattureVendita, totaleIncassi, fattureInsolute, fattureNonLiquidate, statoCommittente);
                             statoDescrizione = _statoDescrizione.ToString();
@@ -247,8 +248,8 @@ namespace BusinessLogic
                 var stato = TypeState.None;
                 var existFattureInsolute = (fattureInsolute.Count >= 1);
                 var existFattureNonLiquidate = (fattureNonLiquidate.Count >= 1);
-                var listaFattureInsolute = BusinessLogic.Fattura.GetLista(fattureInsolute);
-                var listaFattureNonLiquidate = BusinessLogic.Fattura.GetLista(fattureNonLiquidate);
+                var listaFattureInsolute = BusinessLogic.Fattura.GetListaFatture(fattureInsolute);
+                var listaFattureNonLiquidate = BusinessLogic.Fattura.GetListaFatture(fattureNonLiquidate);
                 var _totaleIncassi = UtilityValidation.GetEuro(totaleIncassi);
                 var _totaleFattureVendita = UtilityValidation.GetEuro(totaleFattureVendita);
 
@@ -295,19 +296,19 @@ namespace BusinessLogic
         {
             try
             {
-                decimal totale = 0;
                 if (committente != null)
                 {
                     var fattureVentita = (from q in committente.FatturaVenditas where q.Data <= data select q);
                     if (fattureVentita != null)
                     {
+                        decimal totale = 0;
                         foreach (var fatturaVentita in fattureVentita)
                         {
                             var totaleImponibile = UtilityValidation.GetDecimal(fatturaVentita.Imponibile);
                             totale += totaleImponibile;
                         }
+                        return totale;
                     }
-                    return totale;
                 }
             }
             catch (Exception ex)
@@ -321,19 +322,19 @@ namespace BusinessLogic
         {
             try
             {
-                decimal totale = 0;
                 if (committente != null)
                 {
                     var fattureVentita = (from q in committente.FatturaVenditas where q.Data <= data select q);
                     if (fattureVentita != null)
                     {
+                        decimal totale = 0;
                         foreach (var fatturaVentita in fattureVentita)
                         {
                             var totaleIVA = UtilityValidation.GetDecimal(fatturaVentita.IVA);
                             totale += totaleIVA;
                         }
+                        return totale;
                     }
-                    return totale;
                 }
             }
             catch (Exception ex)

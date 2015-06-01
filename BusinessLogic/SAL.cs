@@ -404,9 +404,7 @@ namespace BusinessLogic
             {
                 if (sal != null)
                 {
-                    var codice = UtilityValidation.GetStringND(sal.Codice);
-                    var data = UtilityValidation.GetDataND(sal.Data);
-                    string codfica = "SAL " + codice + " del " + data;
+                    string codfica = "SAL " + sal.Codice + " DEL " + UtilityValidation.GetDataND(sal.Data);
                     return codfica;
                 }
             }

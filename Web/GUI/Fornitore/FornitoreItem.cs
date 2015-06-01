@@ -63,8 +63,8 @@ namespace Web.GUI.Fornitore
                 var fatture = fornitore.FatturaAcquistos;
                 var fattureNonPagate = BusinessLogic.Fornitore.GetFattureNonPagate(fatture);
                 var fattureInsolute = BusinessLogic.Fornitore.GetFattureInsolute(fatture);
-                var listaFattureNonPagate = BusinessLogic.Fattura.GetLista(fattureNonPagate);
-                var listaFattureInsolute = BusinessLogic.Fattura.GetLista(fattureInsolute);
+                var listaFattureNonPagate = BusinessLogic.Fattura.GetListaFatture(fattureNonPagate);
+                var listaFattureInsolute = BusinessLogic.Fattura.GetListaFatture(fattureInsolute);
 
                 var image = "";
                 var descrizione = "";

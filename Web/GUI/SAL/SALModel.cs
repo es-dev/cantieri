@@ -40,10 +40,9 @@ namespace Web.GUI.SAL
             try
             {
                 var obj = (SALDto)model;
-                infoSubtitle.Text = obj.Codice + " - " + obj.Denominazione;
+                infoSubtitle.Text = BusinessLogic.SAL.GetCodifica(obj);
                 infoSubtitleImage.Image = "Images.dashboard.SAL.png";
-                var commessa = obj.Commessa;
-                infoTitle.Text = (obj.Id != 0 ? "SAL " + obj.Codice : "NUOVO SAL") + " / COMMESSA " + BusinessLogic.Commessa.GetCodifica(commessa);
+                infoTitle.Text = (obj.Id != 0 ? "SAL " + BusinessLogic.SAL.GetCodifica(obj) : "NUOVO SAL") + " | COMMESSA " + BusinessLogic.Commessa.GetCodifica(obj.Commessa);
             }
             catch (Exception ex)
             {
@@ -79,11 +78,13 @@ namespace Web.GUI.SAL
             {
                 var viewModel = (SALViewModel)ViewModel;
                 viewModel.Commessa = commessa;
-                var codice = viewModel.Count() + 1;
-                var data = DateTime.Now;
-                editCodice.Value = codice.ToString("00");
-                editData.Value = data;
-                editDenominazione.Value = "SAL " + codice.ToString("00") + "/" + commessa.Codice + " del " + data.ToString("dd/MM/yyyy");
+                var progressivo = viewModel.Count() + 1;
+                var codice = progressivo.ToString("00");
+                var now = DateTime.Now;
+                var data = DateTime.Now.ToString("dd/MM/yyyy");
+                editCodice.Value = codice;
+                editData.Value = now;
+                editDenominazione.Value = "SAL " + codice + " DEL " + data + " | COMMESSA " + BusinessLogic.Commessa.GetCodifica(commessa);
             }
             catch (Exception ex)
             {

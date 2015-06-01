@@ -25,7 +25,8 @@ namespace BusinessLogic
                         var exist = ((from q in fornitori where q.Id != fornitore.Id && q.AnagraficaFornitoreId == anagraficaFornitore.Id select q).Count() >= 1);
                         validation.State = !exist;
                         if (exist)
-                            validation.Message = "Il fornitore selezionato " + anagraficaFornitore.RagioneSociale + " è già presente nella commessa " + BusinessLogic.Commessa.GetCodifica(commessa);
+                            validation.Message = "Il fornitore selezionato " + BusinessLogic.Fornitore.GetCodifica(anagraficaFornitore) + " è già presente nella commessa " + 
+                                BusinessLogic.Commessa.GetCodifica(commessa);
                     }
                 }
                 return validation;
@@ -50,7 +51,8 @@ namespace BusinessLogic
                         var exist = ((from q in committenti where q.Id != committente.Id && q.AnagraficaCommittenteId == anagraficaCommittente.Id select q).Count() >= 1);
                         validation.State = !exist;
                         if (exist)
-                            validation.Message = "Il committente selezionato " + anagraficaCommittente.RagioneSociale + " è già presente nella commessa " + BusinessLogic.Commessa.GetCodifica(commessa);
+                            validation.Message = "Il committente selezionato " + BusinessLogic.Committente.GetCodifica(anagraficaCommittente) + " è già presente nella commessa " + 
+                                BusinessLogic.Commessa.GetCodifica(commessa);
                     }
                 }
                 return validation;

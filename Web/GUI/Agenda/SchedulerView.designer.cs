@@ -31,6 +31,7 @@ namespace Web.GUI.Agenda
 		private void InitializeComponent()
 		{
             this.panelCommands.SuspendLayout();
+            this.panelAdvancedSearch.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnMonth
@@ -44,6 +45,7 @@ namespace Web.GUI.Agenda
             // btnWeek
             // 
             this.btnWeek.Location = new System.Drawing.Point(0, 216);
+            this.Controls.SetChildIndex(this.panelAdvancedSearch, 0);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.txtSearch, 0);
             this.Controls.SetChildIndex(this.btnOrderBy, 0);
@@ -51,6 +53,7 @@ namespace Web.GUI.Agenda
             this.Controls.SetChildIndex(this.btnPrevious, 0);
             this.Controls.SetChildIndex(this.btnNext, 0);
             this.panelCommands.ResumeLayout(false);
+            this.panelAdvancedSearch.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}

@@ -113,17 +113,17 @@ namespace Web.GUI.Agenda
                     titolo += " | Fornitore " + BusinessLogic.Fornitore.GetCodifica(fatturaAcquisto.Fornitore);
                     evento.Subject = titolo;
 
-                    var color = Color.Red;
+                    var color = Color.SandyBrown;
                     var stato = BusinessLogic.Fattura.GetStato(fatturaAcquisto);
                     if (stato == BusinessLogic.Tipi.StatoFattura.Insoluta)
-                        color = Color.Red;
+                        color = Color.SandyBrown;
                     if (stato == BusinessLogic.Tipi.StatoFattura.Pagata)
                         color = Color.LightGreen;
                     if (stato == BusinessLogic.Tipi.StatoFattura.NonPagata)
                         color = Color.Yellow;
                     if (stato == BusinessLogic.Tipi.StatoFattura.Incoerente)
-                        color = Color.Orange;
-                    evento.BackgroundColor = color;
+                        color = Color.Beige;
+                    evento.BackgroundColor = color;                  
 
                     eventi.Add(evento);
                 }

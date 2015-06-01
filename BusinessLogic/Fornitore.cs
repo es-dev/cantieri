@@ -425,8 +425,8 @@ namespace BusinessLogic
                 var stato = TypeState.None;
                 var existFattureInsolute = (fattureInsolute.Count >= 1);
                 var existFattureNonPagate = (fattureNonPagate.Count >= 1);
-                var listaFattureInsolute = BusinessLogic.Fattura.GetLista(fattureInsolute);
-                var listaFattureNonPagate = BusinessLogic.Fattura.GetLista(fattureNonPagate);
+                var listaFattureInsolute = BusinessLogic.Fattura.GetListaFatture(fattureInsolute);
+                var listaFattureNonPagate = BusinessLogic.Fattura.GetListaFatture(fattureNonPagate);
                 var _totalePagamenti = UtilityValidation.GetEuro(totalePagamenti);
                 var _totaleSaldoFattureAcquisto = UtilityValidation.GetEuro(totaleSaldoFattureAcquisto);
 

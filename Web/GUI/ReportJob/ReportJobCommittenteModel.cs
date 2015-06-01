@@ -50,11 +50,10 @@ namespace Web.GUI.ReportJob
                 if (model != null)
                 {
                     var obj = (ReportJobDto)model;
-                    infoSubtitle.Text = "REPORT " + obj.Codice + " - Tipo " + obj.Tipo;
+                    infoSubtitle.Text = BusinessLogic.ReportJob.GetCodifica(obj);
                     infoSubtitleImage.Image = "Images.dashboard.reportjob.png";
-
-                    var anagraficaCommittente = obj.AnagraficaCommittente;
-                    infoTitle.Text = (obj.Id != 0 ? "REPORT " + obj.Codice : "NUOVO REPORT") + " / COMMITTENTE " + BusinessLogic.Committente.GetCodifica(anagraficaCommittente);
+                    infoTitle.Text = (obj.Id != 0 ? "REPORT " + BusinessLogic.ReportJob.GetCodifica(obj) : "NUOVO REPORT") + " | COMMITTENTE " + 
+                        BusinessLogic.Committente.GetCodifica(obj.AnagraficaCommittente);
                 }
             }
             catch (Exception ex)

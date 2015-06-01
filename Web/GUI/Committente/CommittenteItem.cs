@@ -70,8 +70,8 @@ namespace Web.GUI.Committente
                 var fatture = committente.FatturaVenditas;
                 var fattureNonLiquidate = BusinessLogic.Committente.GetFattureNonLiquidate(fatture);
                 var fattureInsolute = BusinessLogic.Committente.GetFattureInsolute(fatture);
-                var listaFattureNonLiquidate = BusinessLogic.Fattura.GetLista(fattureNonLiquidate);
-                var listaFattureInsolute = BusinessLogic.Fattura.GetLista(fattureInsolute);
+                var listaFattureNonLiquidate = BusinessLogic.Fattura.GetListaFatture(fattureNonLiquidate);
+                var listaFattureInsolute = BusinessLogic.Fattura.GetListaFatture(fattureInsolute);
 
                 var image = "";
                 var descrizione = "";

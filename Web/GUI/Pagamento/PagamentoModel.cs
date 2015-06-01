@@ -91,14 +91,14 @@ namespace Web.GUI.Pagamento
             try
             {
                 var obj = (PagamentoDto)model;
-                infoSubtitle.Text = "PAGAMENTO " +obj.Codice;
+                infoSubtitle.Text = BusinessLogic.Pagamento.GetCodifica(obj);
                 infoSubtitleImage.Image = "Images.dashboard.pagamento.png";
                 var fatturaAcquisto = obj.FatturaAcquisto;
-                string title =  " / FATTURA " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
+                string title =  " | FATTURA " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
                 var pagamentoUnificato = obj.PagamentoUnificato;
                 if (pagamentoUnificato != null)
-                    title += " / PAGAMENTO UNIFICATO " + pagamentoUnificato.Codice;
-                infoTitle.Text = (obj.Id!=0? "PAGAMENTO " + obj.Codice: "NUOVO PAGAMENTO")+ title;
+                    title += " | PAGAMENTO UNIFICATO " + BusinessLogic.PagamentoUnificato.GetCodifica(pagamentoUnificato);
+                infoTitle.Text = (obj.Id != 0 ? "PAGAMENTO " + BusinessLogic.Pagamento.GetCodifica(obj) : "NUOVO PAGAMENTO") + title;
             }
             catch (Exception ex)
             {
@@ -139,8 +139,7 @@ namespace Web.GUI.Pagamento
                 if (fatturaAcquisto != null)
                 {
                     var fornitore = fatturaAcquisto.Fornitore;
-                    var anagraficaFornitore = fornitore.AnagraficaFornitore;
-                    fatturaAcquistoFornitore += " / " + anagraficaFornitore.RagioneSociale;
+                    fatturaAcquistoFornitore += " | FORNITORE " + BusinessLogic.Fornitore.GetCodifica(fornitore);
                 }
                 editFatturaAcquisto.Value = fatturaAcquistoFornitore;
             }

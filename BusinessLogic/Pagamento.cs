@@ -68,7 +68,7 @@ namespace BusinessLogic
                 {
                     var codice = UtilityValidation.GetStringND(pagamento.Codice);
                     var data = UtilityValidation.GetDataND(pagamento.Data);
-                    var codifica =  codice + " del " + data;
+                    var codifica = codice + " DEL " + data;
                     return codifica;
                 }
             }

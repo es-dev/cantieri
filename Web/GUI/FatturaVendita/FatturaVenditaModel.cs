@@ -63,10 +63,10 @@ namespace Web.GUI.FatturaVendita
                 if (model != null)
                 {
                     var obj = (WcfService.Dto.FatturaVenditaDto)model;
-                    infoSubtitle.Text = "FATTURA "+ BusinessLogic.Fattura.GetCodifica(obj);
+                    infoSubtitle.Text = BusinessLogic.Fattura.GetCodifica(obj);
                     infoSubtitleImage.Image = "Images.dashboard.fatturavendita.png";
-                    var committente = obj.Committente;
-                    infoTitle.Text = (obj.Id != 0 ? "FATTURA VENDITA " + BusinessLogic.Fattura.GetCodifica(obj) : "NUOVA FATTURA DI VENDITA") + " / COMMITTENTE " + BusinessLogic.Committente.GetCodifica(committente);
+                    infoTitle.Text = (obj.Id != 0 ? "FATTURA VENDITA " + BusinessLogic.Fattura.GetCodifica(obj) : "NUOVA FATTURA DI VENDITA") + " | COMMITTENTE " + 
+                        BusinessLogic.Committente.GetCodifica(committente);
                 }
             }
             catch (Exception ex)

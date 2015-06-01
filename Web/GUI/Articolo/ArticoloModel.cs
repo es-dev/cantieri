@@ -39,10 +39,10 @@ namespace Web.GUI.Articolo
                 if (model != null)
                 {
                     var obj = (ArticoloDto)model;
-                    var fatturaAcquisto = obj.FatturaAcquisto;
-                    infoSubtitle.Text = "ARTICOLO "+ BusinessLogic.Articolo.GetCodifica(obj);
+                    infoSubtitle.Text = BusinessLogic.Articolo.GetCodifica(obj);
                     infoSubtitleImage.Image = "Images.dashboard.articolo.png";
-                    infoTitle.Text = (obj.Id != 0 ? "ARTICOLO " + BusinessLogic.Articolo.GetCodifica(obj) : "NUOVO ARTICOLO") + " / FATTURA "+BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
+                    infoTitle.Text = (obj.Id != 0 ? "ARTICOLO " + BusinessLogic.Articolo.GetCodifica(obj) : "NUOVO ARTICOLO") + " | FATTURA "+
+                        BusinessLogic.Fattura.GetCodifica(obj.FatturaAcquisto);
                 }
             }
             catch (Exception ex)
