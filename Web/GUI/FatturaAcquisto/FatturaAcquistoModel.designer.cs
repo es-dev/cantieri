@@ -532,7 +532,7 @@ namespace Web.GUI.FatturaAcquisto
             this.btnArticoli.Name = "btnArticoli";
             this.btnArticoli.Size = new System.Drawing.Size(100, 72);
             this.btnArticoli.TabIndex = 1002;
-            this.btnArticoli.TextButton = "Articoli";
+            this.btnArticoli.TextButton = "Dettaglio acquisti";
             this.btnArticoli.Click += new Library.Controls.ButtonSeparatorV.ButtonSeparatorClick(this.btnArticoli_Click);
             // 
             // FatturaAcquistoModel

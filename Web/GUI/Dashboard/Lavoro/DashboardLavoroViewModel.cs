@@ -41,10 +41,10 @@ namespace Web.GUI.Dashboard.Lavoro
             try
             {
                 var dashboards = new List<DashboardDto>();
-                var dashboardCommessa = new DashboardDto("Commesse", "CM", "Visualizza le tue commesse, verifica i bilanci e il margine operativo mediante l'utilizzo di strumenti grafici e di analisi statistiche...", "Images.dashboard.commessa.png", "", typeof(CommessaView));
-                var dashboardFornitore = new DashboardDto("Fornitori", "FOR", "Specifica i fornitori per le commesse inserite nel sistema, inserisci i dati identificativi e i dati di fornitura...", "Images.dashboard.fornitore.png", "", typeof(FornitoreView));
-                var dashboardCommittente = new DashboardDto("Committenti", "CT", "Specifica i committenti per le commesse inserite nel sistema, definisci gli importi attribuiti ai vari SAL...", "Images.dashboard.committente.png", "", typeof(CommittenteView));
-                var dashboardSAL = new DashboardDto("SAL", "SAL", "Crea uno Stato di Avanzamento Lavori (SAL), controlla i bilanci delle tue commesse, evidenzia i movimenti in attivo/passivo...", "Images.dashboard.SAL.png", "", typeof(SALView));
+                var dashboardCommessa = new DashboardDto("Commesse", "CM", "Visualizza le tue commesse, verifica il bilancio aziendale e il margine operativo mediante strumenti grafici e analisi statistiche...", "Images.dashboard.commessa.png", "", typeof(CommessaView));
+                var dashboardFornitore = new DashboardDto("Fornitori", "FOR", "Specifica i fornitori per le tue commesse di lavorazione, inserisci i dati identificativi del fornitore e il dettaglio acquisti...", "Images.dashboard.fornitore.png", "", typeof(FornitoreView));
+                var dashboardCommittente = new DashboardDto("Committenti", "CT", "Specifica i committenti per le commesse inserite nel sistema, definisci gli importi contrattuali e quelli attribuiti ai vari SAL...", "Images.dashboard.committente.png", "", typeof(CommittenteView));
+                var dashboardSAL = new DashboardDto("SAL", "SAL", "Crea uno Stato di Avanzamento Lavori (SAL), controlla il bilancio contabile delle tue commesse, evidenzia i movimenti in attivo/passivo...", "Images.dashboard.SAL.png", "", typeof(SALView));
 
                 dashboards.Add(dashboardCommessa);
                 dashboards.Add(dashboardFornitore);

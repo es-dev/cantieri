@@ -252,7 +252,7 @@ namespace Web.GUI.Commessa
                 {
                     var obj = (CommessaDto)Model;
                     var space = new Fornitore.FornitoreView(obj);
-                    space.Title = "FORNITORI COMMESSA " + BusinessLogic.Commessa.GetCodifica(obj);
+                    space.Title = "FORNITORI | COMMESSA " + BusinessLogic.Commessa.GetCodifica(obj);
                     Workspace.AddSpace(space);
                 }
             }
@@ -271,7 +271,7 @@ namespace Web.GUI.Commessa
                 {
                     var obj = (CommessaDto)Model;
                     var space = new Committente.CommittenteView(obj);
-                    space.Title = "COMMITTENTI COMMESSA " + BusinessLogic.Commessa.GetCodifica(obj);
+                    space.Title = "COMMITTENTI | COMMESSA " + BusinessLogic.Commessa.GetCodifica(obj);
                     Workspace.AddSpace(space);
                 }
             }
@@ -290,7 +290,7 @@ namespace Web.GUI.Commessa
                 {
                     var obj = (CommessaDto)Model;
                     var space = new SAL.SALView(obj);
-                    space.Title = "SAL COMMESSSA " + BusinessLogic.Commessa.GetCodifica(obj);
+                    space.Title = "SAL | COMMESSSA " + BusinessLogic.Commessa.GetCodifica(obj);
                     Workspace.AddSpace(space);
                 }
             }

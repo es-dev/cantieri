@@ -100,7 +100,7 @@ namespace Web.GUI.Fornitore
             this.optStato.Name = "optStato";
             this.optStato.ReadOnly = false;
             this.optStato.Required = false;
-            this.optStato.Size = new System.Drawing.Size(380, 30);
+            this.optStato.Size = new System.Drawing.Size(440, 30);
             this.optStato.TabIndex = 2;
             this.optStato.Text = "Stato";
             this.optStato.Value = false;
@@ -121,7 +121,7 @@ namespace Web.GUI.Fornitore
             this.optCommessa.Name = "optCommessa";
             this.optCommessa.ReadOnly = false;
             this.optCommessa.Required = false;
-            this.optCommessa.Size = new System.Drawing.Size(380, 30);
+            this.optCommessa.Size = new System.Drawing.Size(440, 30);
             this.optCommessa.TabIndex = 2;
             this.optCommessa.Text = "Commessa";
             this.optCommessa.Value = false;
@@ -142,7 +142,7 @@ namespace Web.GUI.Fornitore
             this.optRagioneSociale.Name = "optRagioneSociale";
             this.optRagioneSociale.ReadOnly = false;
             this.optRagioneSociale.Required = false;
-            this.optRagioneSociale.Size = new System.Drawing.Size(380, 30);
+            this.optRagioneSociale.Size = new System.Drawing.Size(440, 30);
             this.optRagioneSociale.TabIndex = 2;
             this.optRagioneSociale.Text = "Ragione sociale";
             this.optRagioneSociale.Value = false;
@@ -189,8 +189,8 @@ namespace Web.GUI.Fornitore
             this.editCommessa.Value = null;
             this.editCommessa.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editCommessa_ComboConfirm);
             this.editCommessa.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editCommessa_ComboClick);
-            this.Controls.SetChildIndex(this.panelOrderBy, 0);
             this.Controls.SetChildIndex(this.panelAdvancedSearch, 0);
+            this.Controls.SetChildIndex(this.panelOrderBy, 0);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.txtSearch, 0);
             this.Controls.SetChildIndex(this.btnOrderBy, 0);

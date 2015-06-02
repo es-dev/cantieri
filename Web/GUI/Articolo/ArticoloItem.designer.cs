@@ -115,7 +115,7 @@ namespace Web.GUI.Articolo
             this.infoFattura.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoFattura.ForeColor = System.Drawing.Color.DarkRed;
             this.infoFattura.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.infoFattura.Location = new System.Drawing.Point(91, 71);
+            this.infoFattura.Location = new System.Drawing.Point(91, 73);
             this.infoFattura.Name = "infoFattura";
             this.infoFattura.Size = new System.Drawing.Size(305, 20);
             this.infoFattura.TabIndex = 1;

@@ -96,6 +96,14 @@ namespace Web.GUI.NotaCredito
             // 
             this.lblTitleAdvancedSearch.Size = new System.Drawing.Size(584, 44);
             // 
+            // optDescending
+            // 
+            this.optDescending.Location = new System.Drawing.Point(56, 178);
+            // 
+            // optAscending
+            // 
+            this.optAscending.Location = new System.Drawing.Point(9, 178);
+            // 
             // optNumero
             // 
             this.optNumero.AutoValidate = Gizmox.WebGUI.Forms.AutoValidate.EnablePreventFocusChange;
@@ -112,7 +120,7 @@ namespace Web.GUI.NotaCredito
             this.optNumero.Name = "optNumero";
             this.optNumero.ReadOnly = false;
             this.optNumero.Required = false;
-            this.optNumero.Size = new System.Drawing.Size(427, 30);
+            this.optNumero.Size = new System.Drawing.Size(438, 30);
             this.optNumero.TabIndex = 2;
             this.optNumero.Text = "Numero";
             this.optNumero.Value = false;
@@ -133,7 +141,7 @@ namespace Web.GUI.NotaCredito
             this.optData.Name = "optData";
             this.optData.ReadOnly = false;
             this.optData.Required = false;
-            this.optData.Size = new System.Drawing.Size(427, 30);
+            this.optData.Size = new System.Drawing.Size(438, 30);
             this.optData.TabIndex = 2;
             this.optData.Text = "Data";
             this.optData.Value = false;

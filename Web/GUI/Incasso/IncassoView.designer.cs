@@ -106,7 +106,7 @@ namespace Web.GUI.Incasso
             this.optCodice.Name = "optCodice";
             this.optCodice.ReadOnly = false;
             this.optCodice.Required = false;
-            this.optCodice.Size = new System.Drawing.Size(380, 30);
+            this.optCodice.Size = new System.Drawing.Size(440, 30);
             this.optCodice.TabIndex = 2;
             this.optCodice.Text = "Codice";
             this.optCodice.Value = false;
@@ -127,7 +127,7 @@ namespace Web.GUI.Incasso
             this.optData.Name = "optData";
             this.optData.ReadOnly = false;
             this.optData.Required = false;
-            this.optData.Size = new System.Drawing.Size(380, 30);
+            this.optData.Size = new System.Drawing.Size(440, 30);
             this.optData.TabIndex = 2;
             this.optData.Text = "Data";
             this.optData.Value = false;
@@ -148,7 +148,7 @@ namespace Web.GUI.Incasso
             this.optTipoTransazione.Name = "optTipoTransazione";
             this.optTipoTransazione.ReadOnly = false;
             this.optTipoTransazione.Required = false;
-            this.optTipoTransazione.Size = new System.Drawing.Size(380, 30);
+            this.optTipoTransazione.Size = new System.Drawing.Size(440, 30);
             this.optTipoTransazione.TabIndex = 2;
             this.optTipoTransazione.Text = "Tipo transazione";
             this.optTipoTransazione.Value = false;

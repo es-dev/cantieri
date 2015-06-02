@@ -63,7 +63,7 @@ namespace Web.GUI.AnagraficaFornitore
             this.optRagioneSociale.Name = "optRagioneSociale";
             this.optRagioneSociale.ReadOnly = false;
             this.optRagioneSociale.Required = false;
-            this.optRagioneSociale.Size = new System.Drawing.Size(380, 30);
+            this.optRagioneSociale.Size = new System.Drawing.Size(440, 30);
             this.optRagioneSociale.TabIndex = 2;
             this.optRagioneSociale.Text = "Ragione sociale";
             this.optRagioneSociale.Value = false;

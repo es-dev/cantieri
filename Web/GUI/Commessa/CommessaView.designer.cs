@@ -93,11 +93,7 @@ namespace Web.GUI.Commessa
             // 
             // optDescending
             // 
-            this.optDescending.Location = new System.Drawing.Point(379, 2);
-            // 
-            // optAscending
-            // 
-            this.optAscending.Location = new System.Drawing.Point(335, 2);
+            this.optDescending.Location = new System.Drawing.Point(53, 217);
             // 
             // editScadenzaInizio
             // 
@@ -174,7 +170,7 @@ namespace Web.GUI.Commessa
             this.optDenominazione.Name = "optDenominazione";
             this.optDenominazione.ReadOnly = false;
             this.optDenominazione.Required = false;
-            this.optDenominazione.Size = new System.Drawing.Size(380, 30);
+            this.optDenominazione.Size = new System.Drawing.Size(436, 30);
             this.optDenominazione.TabIndex = 2;
             this.optDenominazione.Text = "Denominazione";
             this.optDenominazione.Value = false;
@@ -195,7 +191,7 @@ namespace Web.GUI.Commessa
             this.optScadenza.Name = "optScadenza";
             this.optScadenza.ReadOnly = false;
             this.optScadenza.Required = false;
-            this.optScadenza.Size = new System.Drawing.Size(380, 30);
+            this.optScadenza.Size = new System.Drawing.Size(436, 30);
             this.optScadenza.TabIndex = 2;
             this.optScadenza.Text = "Scadenza";
             this.optScadenza.Value = false;
@@ -216,7 +212,7 @@ namespace Web.GUI.Commessa
             this.optStato.Name = "optStato";
             this.optStato.ReadOnly = false;
             this.optStato.Required = false;
-            this.optStato.Size = new System.Drawing.Size(380, 30);
+            this.optStato.Size = new System.Drawing.Size(436, 30);
             this.optStato.TabIndex = 2;
             this.optStato.Text = "Stato";
             this.optStato.Value = false;

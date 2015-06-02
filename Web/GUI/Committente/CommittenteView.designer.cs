@@ -100,7 +100,7 @@ namespace Web.GUI.Committente
             this.optRagioneSociale.Name = "optRagioneSociale";
             this.optRagioneSociale.ReadOnly = false;
             this.optRagioneSociale.Required = false;
-            this.optRagioneSociale.Size = new System.Drawing.Size(380, 30);
+            this.optRagioneSociale.Size = new System.Drawing.Size(440, 30);
             this.optRagioneSociale.TabIndex = 2;
             this.optRagioneSociale.Text = "Ragione sociale";
             this.optRagioneSociale.Value = false;
@@ -121,7 +121,7 @@ namespace Web.GUI.Committente
             this.optCommessa.Name = "optCommessa";
             this.optCommessa.ReadOnly = false;
             this.optCommessa.Required = false;
-            this.optCommessa.Size = new System.Drawing.Size(380, 30);
+            this.optCommessa.Size = new System.Drawing.Size(440, 30);
             this.optCommessa.TabIndex = 2;
             this.optCommessa.Text = "Commessa";
             this.optCommessa.Value = false;
@@ -142,7 +142,7 @@ namespace Web.GUI.Committente
             this.optStato.Name = "optStato";
             this.optStato.ReadOnly = false;
             this.optStato.Required = false;
-            this.optStato.Size = new System.Drawing.Size(380, 30);
+            this.optStato.Size = new System.Drawing.Size(440, 30);
             this.optStato.TabIndex = 2;
             this.optStato.Text = "Stato";
             this.optStato.Value = false;

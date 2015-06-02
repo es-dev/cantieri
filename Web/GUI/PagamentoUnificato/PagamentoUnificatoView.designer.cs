@@ -100,7 +100,7 @@ namespace Web.GUI.PagamentoUnificato
             this.optCodice.Name = "optCodice";
             this.optCodice.ReadOnly = false;
             this.optCodice.Required = false;
-            this.optCodice.Size = new System.Drawing.Size(380, 30);
+            this.optCodice.Size = new System.Drawing.Size(440, 30);
             this.optCodice.TabIndex = 2;
             this.optCodice.Text = "Codice";
             this.optCodice.Value = false;
@@ -121,7 +121,7 @@ namespace Web.GUI.PagamentoUnificato
             this.optData.Name = "optData";
             this.optData.ReadOnly = false;
             this.optData.Required = false;
-            this.optData.Size = new System.Drawing.Size(380, 30);
+            this.optData.Size = new System.Drawing.Size(440, 30);
             this.optData.TabIndex = 2;
             this.optData.Text = "Data";
             this.optData.Value = false;
@@ -185,12 +185,12 @@ namespace Web.GUI.PagamentoUnificato
             this.editDataFine.Size = new System.Drawing.Size(572, 30);
             this.editDataFine.TabIndex = 7;
             this.editDataFine.Value = null;
+            this.Controls.SetChildIndex(this.panelAdvancedSearch, 0);
             this.Controls.SetChildIndex(this.panelOrderBy, 0);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.txtSearch, 0);
             this.Controls.SetChildIndex(this.btnOrderBy, 0);
             this.Controls.SetChildIndex(this.btnAdvancedSearch, 0);
-            this.Controls.SetChildIndex(this.panelAdvancedSearch, 0);
             this.panelCommands.ResumeLayout(false);
             this.panelAdvancedSearch.ResumeLayout(false);
             this.panelOrderBy.ResumeLayout(false);

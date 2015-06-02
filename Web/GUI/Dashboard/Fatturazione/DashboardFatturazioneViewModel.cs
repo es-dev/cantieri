@@ -41,9 +41,9 @@ namespace Web.GUI.Dashboard.Fatturazione
             try
             {
                 var dashboards = new List<DashboardDto>();
-                var dashboardFatturaAcquisto = new DashboardDto("Fatture di acquisto", "FA", "Inserisci le fatture di acquisto per i fornitori, specifica i prodotti acquistati e i costi relativi...", "Images.dashboard.fatturaacquisto.png", "", typeof(FatturaAcquistoView));
-                var dashboardFatturaVendita = new DashboardDto("Fatture di vendita", "FV", "Inserisci le fatture di vendita per i committenti delle commesse, gestisci gli incassi e il conto economico...", "Images.dashboard.fatturavendita.png", "", typeof(FatturaVenditaView));
-                var dashboardNotaCredito = new DashboardDto("Note di credito", "NC", "Gestisci le note di credito per i fornitori, specificando gli importi da stornare e le fatture di acquisto...", "Images.dashboard.notacredito.png", "", typeof(NotaCreditoView));
+                var dashboardFatturaAcquisto = new DashboardDto("Fatture di acquisto", "FA", "Inserisci le fatture di acquisto dei fornitori, specifica i prodotti acquistati e i costi relativi...", "Images.dashboard.fatturaacquisto.png", "", typeof(FatturaAcquistoView));
+                var dashboardFatturaVendita = new DashboardDto("Fatture di vendita", "FV", "Inserisci le fatture di vendita per i committenti delle tue commesse, gestisci gli incassi e il conto economico...", "Images.dashboard.fatturavendita.png", "", typeof(FatturaVenditaView));
+                var dashboardNotaCredito = new DashboardDto("Note di credito", "NC", "Gestisci le note di credito emesse dai fornitori, specifica gli importi da stornare e le fatture di acquisto annullate...", "Images.dashboard.notacredito.png", "", typeof(NotaCreditoView));
                 var dashboardArticolo = new DashboardDto("Dettaglio acquisti", "ART", "Inserisci gli articoli di dettaglio per le fatture di acquisto, specifica le quantità, i costi e gli eventuali sconti relativi...", "Images.dashboard.articolo.png", "", typeof(ArticoloView));
 
                 dashboards.Add(dashboardFatturaAcquisto);

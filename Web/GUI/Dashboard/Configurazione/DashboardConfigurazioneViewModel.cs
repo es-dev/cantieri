@@ -40,8 +40,8 @@ namespace Web.GUI.Dashboard.Configurazione
             {
                 var dashboards = new List<DashboardDto>();
                 var dashboardAzienda = new DashboardDto("Aziende", "AZ", "Definisci la tua azienda, inserisci il logo aziendale, l'intestazione e i dati commerciali...", "Images.dashboard.azienda.png", "", typeof(AziendaView));
-                var dashboardCentroCosto = new DashboardDto("Centri di costo", "CC", "Definisci i centri di costo per organizzare al meglio il tuo lavoro e per raggruppare i flussi economici in voci di costo separate...", "Images.dashboard.centrocosto.png", "", typeof(CentroCostoView));
-                var dashboardAccount = new DashboardDto("Accounts", "ACC", "Definisci gli accounts specificando la username, la password ed il ruolo ad esso associato...", "Images.dashboard.account.png", "", typeof(AccountView));
+                var dashboardCentroCosto = new DashboardDto("Centri di costo", "CC", "Definisci i centri di costo per organizzare al meglio le tue attività e raggruppare i flussi contabili in voci di costo separate...", "Images.dashboard.centrocosto.png", "", typeof(CentroCostoView));
+                var dashboardAccount = new DashboardDto("Accounts", "ACC", "Definisci gli accounts specificando le credenziali di accesso ed il ruolo ad associato ai vari operatori che avranno accesso al sistema...", "Images.dashboard.account.png", "", typeof(AccountView));
             
                 dashboards.Add(dashboardAzienda);
                 dashboards.Add(dashboardCentroCosto);
