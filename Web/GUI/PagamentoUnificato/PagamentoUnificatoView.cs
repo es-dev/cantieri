@@ -114,7 +114,7 @@ namespace Web.GUI.PagamentoUnificato
             try
             {
                 editAnagraficaFornitore.Model = anagraficaFornitore;
-                editAnagraficaFornitore.Value = (anagraficaFornitore != null ? anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale : null);
+                editAnagraficaFornitore.Value = BusinessLogic.Fornitore.GetCodifica(anagraficaFornitore);
             }
             catch (Exception ex)
             {

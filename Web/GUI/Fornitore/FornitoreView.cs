@@ -158,7 +158,7 @@ namespace Web.GUI.Fornitore
             try
             {
                 editCommessa.Model = commessa;
-                editCommessa.Value = (commessa != null ? commessa.Codice + " - " + commessa.Denominazione : null);
+                editCommessa.Value = BusinessLogic.Commessa.GetCodifica(commessa);
             }
             catch (Exception ex)
             {

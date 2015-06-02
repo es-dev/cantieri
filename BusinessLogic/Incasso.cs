@@ -20,8 +20,25 @@ namespace BusinessLogic
                     var progressivo = 1;
                     if (incassi != null)
                         progressivo = incassi.Count + 1;
-                    var codice = fatturaVendita.Numero + "/" + DateTime.Today.Year.ToString() + "/" + progressivo.ToString("000");  //numerofattura/anno/progressivo
+                    var codice = fatturaVendita.Numero + "/" + DateTime.Today.Year.ToString() + "/" + progressivo.ToString("000");  //numero/anno/progressivo
                     return codice;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public static string GetCodifica(IncassoDto incasso)
+        {
+            try
+            {
+                if (incasso != null)
+                {
+                    var codifica = incasso.Codice + " DEL " + UtilityValidation.GetDataND(incasso.Data);
+                    return codifica;
                 }
             }
             catch (Exception ex)

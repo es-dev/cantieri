@@ -110,7 +110,7 @@ namespace Web.GUI.Committente
             try
             {
                 editCommessa.Model = commessa;
-                editCommessa.Value = (commessa!=null?commessa.Codice + " - " + commessa.Denominazione:null);
+                editCommessa.Value = BusinessLogic.Commessa.GetCodifica(commessa);
             }
             catch (Exception ex)
             {
@@ -236,7 +236,7 @@ namespace Web.GUI.Committente
                     if (anagraficaCommittente != null)
                     {
                         var space = new FatturaVendita.FatturaVenditaView(obj);
-                        space.Title = "FATTURE VENDITA / COMMITTENTE " + anagraficaCommittente.RagioneSociale;
+                        space.Title = "FATTURE VENDITA | COMMITTENTE " + BusinessLogic.Committente.GetCodifica(anagraficaCommittente);
                         Workspace.AddSpace(space);
                     }
                 }
@@ -259,7 +259,7 @@ namespace Web.GUI.Committente
                     if (anagraficaCommittente != null)
                     {
                         var space = new Incasso.IncassoView(obj);
-                        space.Title = "INCASSI / COMMITTENTE " + anagraficaCommittente.RagioneSociale;
+                        space.Title = "INCASSI | COMMITTENTE " + BusinessLogic.Committente.GetCodifica(anagraficaCommittente);
                         Workspace.AddSpace(space);
                     }
                 }

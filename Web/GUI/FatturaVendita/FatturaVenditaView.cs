@@ -188,7 +188,7 @@ namespace Web.GUI.FatturaVendita
                 editCommittente.Model = anagraficaCommittente;
                 if (anagraficaCommittente != null)
                 {
-                    editCommittente.Value = anagraficaCommittente.Codice + " - " + anagraficaCommittente.RagioneSociale;
+                    editCommittente.Value = BusinessLogic.Committente.GetCodifica(anagraficaCommittente);
                     var viewModel = new Committente.CommittenteViewModel();
                     var committenti = viewModel.ReadCommittenti(anagraficaCommittente);
                     committentiAnagraficaId = (from q in committenti select q.Id).ToList();
@@ -246,7 +246,7 @@ namespace Web.GUI.FatturaVendita
             try
             {
                 editCommessa.Model = commessa;
-                editCommessa.Value = (commessa != null ? commessa.Codice + " - " + commessa.Denominazione : null);
+                editCommessa.Value = BusinessLogic.Commessa.GetCodifica(commessa);
             }
             catch (Exception ex)
             {
@@ -260,7 +260,7 @@ namespace Web.GUI.FatturaVendita
             {
                 if (commessa != null)
                 {
-                    editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;
+                    editCommessa.Value = BusinessLogic.Commessa.GetCodifica(commessa);
                     var viewModel = new Committente.CommittenteViewModel();
                     var committenti = viewModel.ReadCommittenti(commessa);
                     committentiCommessaId = (from q in committenti select q.Id).ToList();

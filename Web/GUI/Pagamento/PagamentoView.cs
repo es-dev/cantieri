@@ -198,10 +198,9 @@ namespace Web.GUI.Pagamento
         {
             try
             {
-                var fornitore = fatturaAcquisto.Fornitore;
                 editFatturaAcquisto.Model = fatturaAcquisto;
-                editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) : null) + " - " +
-                    (fornitore != null ? fornitore.AnagraficaFornitore.RagioneSociale : null);
+                editFatturaAcquisto.Value = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) +
+                    (fatturaAcquisto != null ? " | FORNITORE " + BusinessLogic.Fornitore.GetCodifica(fatturaAcquisto.Fornitore) : null);
             }
             catch (Exception ex)
             {

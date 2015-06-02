@@ -36,15 +36,9 @@ namespace Web.GUI.FatturaVendita
                     toolTip.SetToolTip(imgStato, stato.Description);
                     infoImage.Image = "Images.dashboard.fatturavendita.png";
                     infoCodice.Text = "FV-" + numero;
-                    infoNumeroData.Text ="FATTURA "+ BusinessLogic.Fattura.GetCodifica(obj);
+                    infoNumeroData.Text = "FATTURA " + BusinessLogic.Fattura.GetCodifica(obj);
                     infoIncassoTotale.Text = "Incassato " + totaleIncassi + " su un totale di " + totaleFattura;
-
-                    var committente = obj.Committente;
-                    if (committente != null)
-                    {
-                        var anagraficaCommittente = committente.AnagraficaCommittente;
-                        infoCommittente.Text = (anagraficaCommittente!=null? anagraficaCommittente.RagioneSociale:null);
-                    }
+                    infoCommittente.Text = BusinessLogic.Committente.GetCodifica(obj.Committente);
                 }
             }
             catch (Exception ex)

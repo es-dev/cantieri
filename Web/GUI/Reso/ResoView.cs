@@ -172,7 +172,7 @@ namespace Web.GUI.Reso
             try
             {
                 editFatturaAcquisto.Model = fatturaAcquisto;
-                editFatturaAcquisto.Value = (fatturaAcquisto != null ? BusinessLogic.Fattura.GetCodifica(fatturaAcquisto) : null);
+                editFatturaAcquisto.Value = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
             }
             catch (Exception ex)
             {
@@ -212,7 +212,7 @@ namespace Web.GUI.Reso
             try
             {
                 editNotaCredito.Model = notaCredito;
-                editNotaCredito.Value = (notaCredito != null ? BusinessLogic.Fattura.GetCodifica(notaCredito) : null);
+                editNotaCredito.Value = BusinessLogic.Fattura.GetCodifica(notaCredito);
             }
             catch (Exception ex)
             {

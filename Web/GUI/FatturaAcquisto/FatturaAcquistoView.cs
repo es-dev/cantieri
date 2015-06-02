@@ -219,7 +219,7 @@ namespace Web.GUI.FatturaAcquisto
                 editFornitore.Model = anagraficaFornitore;
                 if (anagraficaFornitore != null)
                 {
-                    editFornitore.Value = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
+                    editFornitore.Value = BusinessLogic.Fornitore.GetCodifica(anagraficaFornitore);
                     var viewModel = new Fornitore.FornitoreViewModel();
                     var fornitori = viewModel.ReadFornitori(anagraficaFornitore);
                     fornitoriAnagraficaId = (from q in fornitori select q.Id).ToList();
@@ -283,7 +283,7 @@ namespace Web.GUI.FatturaAcquisto
             try
             {
                 editCommessa.Model = commessa;
-                editCommessa.Value = (commessa != null ? commessa.Codice + " - " + commessa.Denominazione : null);
+                editCommessa.Value = BusinessLogic.Commessa.GetCodifica(commessa);
             }
             catch (Exception ex)
             {

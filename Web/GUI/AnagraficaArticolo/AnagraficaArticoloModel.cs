@@ -38,9 +38,9 @@ namespace Web.GUI.AnagraficaArticolo
                 if (model != null)
                 {
                     var obj = (AnagraficaArticoloDto)model;
-                    infoSubtitle.Text = obj.Codice + " - " + obj.Descrizione;
+                    infoSubtitle.Text = BusinessLogic.Articolo.GetCodifica(obj);
                     infoSubtitleImage.Image = "Images.dashboard.anagraficaarticolo.png";
-                    infoTitle.Text = (obj.Id!=0? "ANAGRAFICA ARTICOLO " + obj.Codice: "NUOVA ANAGRAFICA ARTICOLO");
+                    infoTitle.Text = (obj.Id!=0? "ANAGRAFICA ARTICOLO " + BusinessLogic.Articolo.GetCodifica(obj): "NUOVA ANAGRAFICA ARTICOLO");
                 }
             }
             catch (Exception ex)
@@ -74,7 +74,7 @@ namespace Web.GUI.AnagraficaArticolo
             try
             {
                 editAzienda.Model = azienda;
-                editAzienda.Value = (azienda != null ? azienda.Codice + " - " + azienda.RagioneSociale : null);
+                editAzienda.Value = BusinessLogic.Azienda.GetCodifica(azienda);
             }
             catch (Exception ex)
             {

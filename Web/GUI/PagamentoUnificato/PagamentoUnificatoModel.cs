@@ -115,7 +115,7 @@ namespace Web.GUI.PagamentoUnificato
             try
             {
                 editAzienda.Model = azienda;
-                editAzienda.Value = (azienda != null ? azienda.Codice + " - " + azienda.RagioneSociale : null);
+                editAzienda.Value = BusinessLogic.Azienda.GetCodifica(azienda);
             }
             catch (Exception ex)
             {

@@ -47,9 +47,9 @@ namespace Web.GUI.Account
                 if (model != null)
                 {
                     var obj = (AccountDto)model;
-                    infoSubtitle.Text = obj.Nickname + " - " + obj.Ruolo;
+                    infoSubtitle.Text = BusinessLogic.Account.GetCodifica(obj);
                     infoSubtitleImage.Image = "Images.dashboard.account.png";
-                    infoTitle.Text = (obj.Id!=0? "ACCOUNT " + obj.Nickname: "NUOVO ACCOUNT");
+                    infoTitle.Text = (obj.Id!=0? "ACCOUNT " + BusinessLogic.Account.GetCodifica(obj): "NUOVO ACCOUNT");
                 }
             }
             catch (Exception ex)
@@ -87,7 +87,7 @@ namespace Web.GUI.Account
             try
             {
                 editAzienda.Model = azienda;
-                editAzienda.Value = (azienda != null ? azienda.Codice + " - " + azienda.RagioneSociale : null);
+                editAzienda.Value = BusinessLogic.Azienda.GetCodifica(azienda);
             }
             catch (Exception ex)
             {

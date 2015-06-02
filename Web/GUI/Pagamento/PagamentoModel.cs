@@ -93,8 +93,7 @@ namespace Web.GUI.Pagamento
                 var obj = (PagamentoDto)model;
                 infoSubtitle.Text = BusinessLogic.Pagamento.GetCodifica(obj);
                 infoSubtitleImage.Image = "Images.dashboard.pagamento.png";
-                var fatturaAcquisto = obj.FatturaAcquisto;
-                string title =  " | FATTURA " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
+                string title =  " | FATTURA " + BusinessLogic.Fattura.GetCodifica(obj.FatturaAcquisto);
                 var pagamentoUnificato = obj.PagamentoUnificato;
                 if (pagamentoUnificato != null)
                     title += " | PAGAMENTO UNIFICATO " + BusinessLogic.PagamentoUnificato.GetCodifica(pagamentoUnificato);

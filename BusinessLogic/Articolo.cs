@@ -59,12 +59,25 @@ namespace BusinessLogic
             {
                 if(articolo!=null)
                 {
-                    var anagraficaArticolo = articolo.AnagraficaArticolo;
-                    if(anagraficaArticolo!=null)
-                    {
-                        var codifica = anagraficaArticolo.Codice + " - " + anagraficaArticolo.Descrizione;
-                        return codifica;
-                    }
+                    var codifica = GetCodifica(articolo.AnagraficaArticolo);
+                    return codifica;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public static string GetCodifica(AnagraficaArticoloDto anagraficaArticolo)
+        {
+            try
+            {
+                if (anagraficaArticolo != null)
+                {
+                    var codifica = anagraficaArticolo.Codice + " - " + anagraficaArticolo.Descrizione;
+                    return codifica;
                 }
             }
             catch (Exception ex)

@@ -171,7 +171,7 @@ namespace Web.GUI.NotaCredito
                 editFornitore.Model = anagraficaFornitore;
                 if (anagraficaFornitore != null)
                 {
-                    editFornitore.Value = anagraficaFornitore.Codice + " - " + anagraficaFornitore.RagioneSociale;
+                    editFornitore.Value = BusinessLogic.Fornitore.GetCodifica(anagraficaFornitore);
                     var viewModelFornitore = new Fornitore.FornitoreViewModel();
                     var fornitori = viewModelFornitore.ReadFornitori(anagraficaFornitore);
                     fornitoriAnagraficaId = (from q in fornitori select q.Id).ToList();
@@ -218,7 +218,7 @@ namespace Web.GUI.NotaCredito
                 editCommessa.Model = commessa;
                 if (commessa != null)
                 {
-                    editCommessa.Value = commessa.Codice + " - " + commessa.Denominazione;
+                    editCommessa.Value = BusinessLogic.Commessa.GetCodifica(commessa);
                     var viewModelFornitore = new Fornitore.FornitoreViewModel();
                     var fornitori = viewModelFornitore.ReadFornitori(commessa);
                     fornitoriCommessaId = (from q in fornitori select q.Id).ToList();

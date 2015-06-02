@@ -26,9 +26,9 @@ namespace Web.GUI.Azienda
                 if (model != null)
                 {
                     var obj = (AziendaDto)model;
-                    infoSubtitle.Text = obj.Codice + " - " + obj.RagioneSociale;
+                    infoSubtitle.Text = BusinessLogic.Azienda.GetCodifica(obj);
                     infoSubtitleImage.Image = "Images.dashboard.azienda.png";
-                    infoTitle.Text = (obj.Id != 0 ? "AZIENDA " + obj.RagioneSociale : "NUOVA AZIENDA");
+                    infoTitle.Text = (obj.Id != 0 ? "AZIENDA " + BusinessLogic.Azienda.GetCodifica(obj) : "NUOVA AZIENDA");
                 }
             }
             catch (Exception ex)

@@ -93,10 +93,10 @@ namespace Web.GUI.Incasso
                 if (model != null)
                 {
                     var obj = (IncassoDto)model;
-                    infoSubtitle.Text = obj.Codice + " - " + obj.Descrizione;
+                    infoSubtitle.Text = BusinessLogic.Incasso.GetCodifica(obj);
                     infoSubtitleImage.Image = "Images.dashboard.incasso.png";
-                    var fatturaVendita = obj.FatturaVendita;
-                    infoTitle.Text = (obj.Id!=0? "INCASSO " + obj.Codice + " - " + BusinessLogic.Fattura.GetCodifica(fatturaVendita):"NUOVO INCASSO");
+                    infoTitle.Text = (obj.Id != 0 ? "INCASSO " + BusinessLogic.Incasso.GetCodifica(obj) : "NUOVO INCASSO") +
+                        (obj!=null? " | FATTURA VENDITA " + BusinessLogic.Fattura.GetCodifica(obj.FatturaVendita):null);
                 }
             }
             catch (Exception ex)

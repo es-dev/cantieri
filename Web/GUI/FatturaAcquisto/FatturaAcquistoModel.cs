@@ -352,7 +352,7 @@ namespace Web.GUI.FatturaAcquisto
                 {
                     var obj = (FatturaAcquistoDto)Model;
                     var space = new Pagamento.PagamentoView(obj);
-                    space.Title = "PAGAMENTI / FATTURA " + BusinessLogic.Fattura.GetCodifica(obj);
+                    space.Title = "PAGAMENTI | FATTURA " + BusinessLogic.Fattura.GetCodifica(obj);
                     Workspace.AddSpace(space);
                 }
             }
@@ -373,7 +373,7 @@ namespace Web.GUI.FatturaAcquisto
                 {
                     var obj = (FatturaAcquistoDto)Model;
                     var space = new Reso.ResoView(obj);
-                    space.Title = "RESI / FATTURA" + BusinessLogic.Fattura.GetCodifica(obj);
+                    space.Title = "RESI | FATTURA" + BusinessLogic.Fattura.GetCodifica(obj);
                     Workspace.AddSpace(space);
                 }
             }
@@ -392,7 +392,7 @@ namespace Web.GUI.FatturaAcquisto
                 {
                     var obj = (FatturaAcquistoDto)Model;
                     var space = new Articolo.ArticoloView(obj);
-                    space.Title = "DETTAGLIO ACQUISTI / FATTURA " + BusinessLogic.Fattura.GetCodifica(obj);
+                    space.Title = "DETTAGLIO ACQUISTI | FATTURA " + BusinessLogic.Fattura.GetCodifica(obj);
                     Workspace.AddSpace(space);
                 }
             }

@@ -39,11 +39,7 @@ namespace Web.GUI.Incasso
                     var fatturaVendita = obj.FatturaVendita;
                     infoFatturaVendita.Text = "Fattura " + BusinessLogic.Fattura.GetCodifica(fatturaVendita);
                     if(fatturaVendita!=null)
-                    {
-                        var committente = fatturaVendita.Committente;
-                        var anagraficaCommittente = committente.AnagraficaCommittente;
-                        infoCommittente.Text = anagraficaCommittente.RagioneSociale;
-                    }
+                        infoCommittente.Text = BusinessLogic.Committente.GetCodifica(fatturaVendita.Committente);
 
                 }
             }

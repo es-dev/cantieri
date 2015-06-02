@@ -41,7 +41,7 @@ namespace Web.GUI.Reso
                 var obj = (ResoDto)model;
                 infoSubtitle.Text = BusinessLogic.Reso.GetCodifica(obj);
                 infoSubtitleImage.Image = "Images.dashboard.reso.png";
-                infoTitle.Text = (obj.Id != 0 ? "RESO " + obj.Codice : "NUOVO RESO") + " / NOTA CREDITO " + BusinessLogic.Fattura.GetCodifica(obj.NotaCredito);
+                infoTitle.Text = (obj.Id != 0 ? "RESO " + BusinessLogic.Reso.GetCodifica(obj) : "NUOVO RESO") + " | NOTA CREDITO " + BusinessLogic.Fattura.GetCodifica(obj.NotaCredito);
             }
             catch (Exception ex)
             {

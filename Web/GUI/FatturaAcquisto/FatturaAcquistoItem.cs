@@ -37,16 +37,10 @@ namespace Web.GUI.FatturaAcquisto
                     toolTip.SetToolTip(imgStato, stato.Description);
                     infoImage.Image = "Images.dashboard.fatturaacquisto.png";
                     infoCodice.Text = "FA-" + numero;
-                    infoNumeroData.Text = "FATTURA "+ BusinessLogic.Fattura.GetCodifica(obj);
+                    infoNumeroData.Text = "FATTURA " + BusinessLogic.Fattura.GetCodifica(obj);
                     infoPagamentoTotale.Text = "Pagato " + totalePagamenti + " su un totale di " + totaleFattura;
                     infoCentroCosto.Text = UtilityValidation.GetStringND(centroCosto.Denominazione);
-
-                    var fornitore = obj.Fornitore;
-                    if (fornitore != null)
-                    {
-                        var anagraficaFornitore = fornitore.AnagraficaFornitore;
-                        infoFornitore.Text = (anagraficaFornitore!=null? anagraficaFornitore.RagioneSociale:null);
-                    }
+                    infoFornitore.Text = BusinessLogic.Fornitore.GetCodifica(obj.Fornitore);
                 }
             }
             catch (Exception ex)

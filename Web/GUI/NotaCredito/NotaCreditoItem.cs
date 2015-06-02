@@ -35,8 +35,7 @@ namespace Web.GUI.NotaCredito
                     infoImage.Image = "Images.dashboard.notacredito.png";
                     infoCodice.Text = "NC-"+numero;
                     infoImporto.Text = "Totale di " + (totale!=null?totale:"N/D");
-                 
-                    BindViewFornitore(obj.Fornitore);
+                    infoFornitore.Text = BusinessLogic.Fornitore.GetCodifica(obj.Fornitore);
                 }
             }
             catch (Exception ex)
@@ -45,20 +44,5 @@ namespace Web.GUI.NotaCredito
             }
         }
 
-        private void BindViewFornitore(FornitoreDto fornitore)
-        {
-            try
-            {
-                var anagraficaFornitore = fornitore.AnagraficaFornitore;
-                infoFornitore.Text = (fornitore!=null? anagraficaFornitore.RagioneSociale:"N/D");
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-         
-        }
-
-      
 	}
 }

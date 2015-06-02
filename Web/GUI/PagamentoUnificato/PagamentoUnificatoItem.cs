@@ -36,9 +36,7 @@ namespace Web.GUI.PagamentoUnificato
                     infoCodice.Text = "PU-"+codice;
                     infoImporto.Text = "Totale di " + (importo!=null? importo:"N/D");
                     infoTipoPagamento.Text = obj.TipoPagamento;
-
-                    var anagraficaFornitore = obj.AnagraficaFornitore;
-                    infoFornitore.Text = (anagraficaFornitore != null ? anagraficaFornitore.RagioneSociale : "N/D");
+                    infoFornitore.Text = BusinessLogic.Fornitore.GetCodifica(obj.AnagraficaFornitore);
                 }
             }
             catch (Exception ex)

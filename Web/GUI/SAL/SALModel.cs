@@ -98,7 +98,7 @@ namespace Web.GUI.SAL
             try
             {
                 editCommessa.Model = commessa;
-                editCommessa.Value = (commessa != null ? BusinessLogic.Commessa.GetCodifica(commessa) : null);
+                editCommessa.Value = BusinessLogic.Commessa.GetCodifica(commessa);
             }
             catch (Exception ex)
             {

@@ -36,9 +36,9 @@ namespace Web.GUI.CentroCosto
             try
             {
                 var obj = (CentroCostoDto)model;
-                infoSubtitle.Text = obj.Codice + " - " + obj.Denominazione; 
+                infoSubtitle.Text = BusinessLogic.CentroCosto.GetCodifica(obj);
                 infoSubtitleImage.Image = "Images.dashboard.centrocosto.png";
-                infoTitle.Text = (obj.Id!=0? "CENTRO DI COSTO " + obj.Codice:"NUOVO CENTRO DI COSTO");
+                infoTitle.Text = (obj.Id != 0 ? "CENTRO DI COSTO " + BusinessLogic.CentroCosto.GetCodifica(obj) : "NUOVO CENTRO DI COSTO");
             }
             catch (Exception ex)
             {
@@ -71,7 +71,7 @@ namespace Web.GUI.CentroCosto
             try
             {
                 editAzienda.Model = azienda;
-                editAzienda.Value = (azienda != null ? azienda.Codice + " - " + azienda.RagioneSociale : null);
+                editAzienda.Value = BusinessLogic.Azienda.GetCodifica(azienda);
             }
             catch (Exception ex)
             {

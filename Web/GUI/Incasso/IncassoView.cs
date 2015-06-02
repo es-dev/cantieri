@@ -196,10 +196,9 @@ namespace Web.GUI.Incasso
         {
             try
             {
-                var committente = fatturaVendita.Committente;
-                editFatturaVendita.Model = fatturaVendita;
-                editFatturaVendita.Value = (fatturaVendita != null ? BusinessLogic.Fattura.GetCodifica(fatturaVendita) : null) + " - " +
-                    (committente != null ? committente.AnagraficaCommittente.RagioneSociale : null);
+                    editFatturaVendita.Model = fatturaVendita;
+                    editFatturaVendita.Value = BusinessLogic.Fattura.GetCodifica(fatturaVendita)  + 
+                        (fatturaVendita!=null?" | COMMITTENTE " + BusinessLogic.Committente.GetCodifica(fatturaVendita.Committente):null);
             }
             catch (Exception ex)
             {

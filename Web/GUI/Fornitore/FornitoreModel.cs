@@ -152,7 +152,7 @@ namespace Web.GUI.Fornitore
             try
             {
                 editCommessa.Model = commessa;
-                editCommessa.Value = (commessa != null ? BusinessLogic.Commessa.GetCodifica(commessa) : null);
+                editCommessa.Value = BusinessLogic.Commessa.GetCodifica(commessa);
             }
             catch (Exception ex)
             {
@@ -299,7 +299,7 @@ namespace Web.GUI.Fornitore
                 {
                     var obj = (FornitoreDto)Model;
                     var space = new NotaCredito.NotaCreditoView(obj);
-                    space.Title = "NOTE CREDITO / FORNITORE " + obj.AnagraficaFornitore.RagioneSociale;
+                    space.Title = "NOTE CREDITO | FORNITORE " + BusinessLogic.Fornitore.GetCodifica(obj);
                     Workspace.AddSpace(space);
                 }
             }
@@ -318,7 +318,7 @@ namespace Web.GUI.Fornitore
                 {
                     var obj = (FornitoreDto)Model;
                     var space = new FatturaAcquisto.FatturaAcquistoView(obj);
-                    space.Title = "FATTURE ACQUISTO / FORNITORE " + obj.AnagraficaFornitore.RagioneSociale;
+                    space.Title = "FATTURE ACQUISTO | FORNITORE " + BusinessLogic.Fornitore.GetCodifica(obj);
                     Workspace.AddSpace(space);
                 }
             }
@@ -337,7 +337,7 @@ namespace Web.GUI.Fornitore
                 {
                     var obj = (FornitoreDto)Model;
                     var space = new Pagamento.PagamentoView(obj);
-                    space.Title = "PAGAMENTI / FORNITORE " + obj.AnagraficaFornitore.RagioneSociale;
+                    space.Title = "PAGAMENTI | FORNITORE " + BusinessLogic.Fornitore.GetCodifica(obj);
                     Workspace.AddSpace(space);
 
                 }

@@ -274,7 +274,7 @@ namespace Web.GUI.FatturaVendita
                 {
                     var obj = (FatturaVenditaDto)Model;
                     var space = new Incasso.IncassoView(obj);
-                    space.Title = "INCASSI / FATTURA " + BusinessLogic.Fattura.GetCodifica(obj);
+                    space.Title = "INCASSI | FATTURA " + BusinessLogic.Fattura.GetCodifica(obj);
                     Workspace.AddSpace(space);
 
                 }

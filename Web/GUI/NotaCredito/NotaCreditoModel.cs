@@ -205,7 +205,7 @@ namespace Web.GUI.NotaCredito
                 {
                     var obj = (NotaCreditoDto)Model;
                     var space = new Reso.ResoView(obj);
-                    space.Title = "RESI / NOTA CREDITO " + BusinessLogic.Fattura.GetCodifica(obj);
+                    space.Title = "RESI | NOTA CREDITO " + BusinessLogic.Fattura.GetCodifica(obj);
                     Workspace.AddSpace(space);
                 }
             }

@@ -39,9 +39,9 @@ namespace Web.GUI.AnagraficaFornitore
                 if (model != null)
                 {
                     var obj = (AnagraficaFornitoreDto)model;
-                    infoSubtitle.Text = obj.Codice + " - " + obj.RagioneSociale;
+                    infoSubtitle.Text = BusinessLogic.Fornitore.GetCodifica(obj);
                     infoSubtitleImage.Image = "Images.dashboard.anagraficafornitore.png";
-                    infoTitle.Text = (obj.Id!=0? "ANAGRAFICA FORNITORE " + obj.RagioneSociale:"NUOVA ANAGRAFICA FORNITORE");
+                    infoTitle.Text = (obj.Id != 0 ? "ANAGRAFICA FORNITORE " + BusinessLogic.Fornitore.GetCodifica(obj) : "NUOVA ANAGRAFICA FORNITORE");
                 }
             }
             catch (Exception ex)
@@ -84,7 +84,7 @@ namespace Web.GUI.AnagraficaFornitore
             try
             {
                 editAzienda.Model = azienda;
-                editAzienda.Value = (azienda != null ? azienda.Codice + " - " + azienda.RagioneSociale : null);
+                editAzienda.Value = BusinessLogic.Azienda.GetCodifica(azienda);
             }
             catch (Exception ex)
             {

@@ -39,11 +39,7 @@ namespace Web.GUI.Pagamento
                     var fatturaAcquisto = obj.FatturaAcquisto;
                     infoFatturaAcquisto.Text = "Fattura " + BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
                     if (fatturaAcquisto != null)
-                    {
-                        var fornitore = fatturaAcquisto.Fornitore;
-                        var anagraficaFornitore=fornitore.AnagraficaFornitore;
-                        infoFornitore.Text = anagraficaFornitore.RagioneSociale;
-                    }
+                        infoFornitore.Text = BusinessLogic.Fornitore.GetCodifica(fatturaAcquisto.Fornitore);
                 }
             }
             catch (Exception ex)

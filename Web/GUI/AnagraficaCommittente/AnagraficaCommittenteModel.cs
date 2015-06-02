@@ -39,9 +39,9 @@ namespace Web.GUI.AnagraficaCommittente
                 if (model != null)
                 {
                     var obj = (AnagraficaCommittenteDto)model;
-                    infoSubtitle.Text = obj.Codice + " - " + obj.RagioneSociale;
+                    infoSubtitle.Text = BusinessLogic.Committente.GetCodifica(obj);
                     infoSubtitleImage.Image = "Images.dashboard.anagraficacommittente.png";
-                    infoTitle.Text = (obj.Id!=0? "ANAGRAFICA COMMITTENTE " + obj.RagioneSociale:"NUOVA ANAGRAFICA COMMITTENTE");
+                    infoTitle.Text = (obj.Id != 0 ? "ANAGRAFICA COMMITTENTE " + BusinessLogic.Committente.GetCodifica(obj) : "NUOVA ANAGRAFICA COMMITTENTE");
                 }
             }
             catch (Exception ex)
@@ -84,7 +84,7 @@ namespace Web.GUI.AnagraficaCommittente
             try
             {
                 editAzienda.Model = azienda;
-                editAzienda.Value = (azienda != null ? azienda.Codice + " - " + azienda.RagioneSociale : null);
+                editAzienda.Value = BusinessLogic.Azienda.GetCodifica(azienda);
             }
             catch (Exception ex)
             {
