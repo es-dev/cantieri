@@ -111,25 +111,28 @@ namespace Web.GUI.SAL
         {
             try
             {
-                var viewModel = new Commessa.CommessaViewModel();
-                var commessa = viewModel.ReadCommessa(obj);
-                var data = editData.Value;
-                if (commessa != null && data != null)
+                if (obj != null)
                 {
-                    var fornitori = commessa.Fornitores;
-                    var committenti = commessa.Committentes;
+                    var commessa = obj.Commessa;
+                    if (commessa != null)
+                    {
+                        var data = UtilityValidation.GetData(editData.Value);
 
-                    var totaleFattureAcquisto = BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, data.Value);
-                    var totaleFattureVendita = BusinessLogic.SAL.GetTotaleFattureVendita(committenti, data.Value);
-                    var totalePagamenti = BusinessLogic.SAL.GetTotalePagamenti(fornitori, data.Value);
-                    var totaleIncassi = BusinessLogic.SAL.GetTotaleIncassi(committenti, data.Value);
-                    var statoDescrizione = BusinessLogic.SAL.GetStatoDescrizione(obj, commessa);
+                        var fornitori = commessa.Fornitores;
+                        var committenti = commessa.Committentes;
 
-                    editStato.Value = statoDescrizione;
-                    editTotaleFattureAcquisto.Value = totaleFattureAcquisto;
-                    editTotaleFattureVendita.Value = totaleFattureVendita;
-                    editTotalePagamenti.Value = totalePagamenti;
-                    editTotaleIncassi.Value = totaleIncassi;
+                        var totaleFattureAcquisto = BusinessLogic.SAL.GetTotaleFattureAcquisto(fornitori, data);
+                        var totaleFattureVendita = BusinessLogic.SAL.GetTotaleFattureVendita(committenti, data);
+                        var totalePagamenti = BusinessLogic.SAL.GetTotalePagamenti(fornitori, data);
+                        var totaleIncassi = BusinessLogic.SAL.GetTotaleIncassi(committenti, data);
+                        var statoDescrizione = BusinessLogic.SAL.GetStatoDescrizione(obj);
+
+                        editStato.Value = statoDescrizione;
+                        editTotaleFattureAcquisto.Value = totaleFattureAcquisto;
+                        editTotaleFattureVendita.Value = totaleFattureVendita;
+                        editTotalePagamenti.Value = totalePagamenti;
+                        editTotaleIncassi.Value = totaleIncassi;
+                    }
                 }
             }
             catch (Exception ex)
@@ -199,8 +202,12 @@ namespace Web.GUI.SAL
         {
             try
             {
-                var obj = (WcfService.Dto.SALDto)Model;
-                BindViewTotali(obj);
+                bool saved = Save();
+                if (saved)
+                {
+                    var obj = (SALDto)Model;
+                    BindViewTotali(obj);
+                }
             }
             catch (Exception ex)
             {

@@ -64,6 +64,7 @@ namespace Web.GUI.Pagamento
             this.panelOrderBy.Controls.Add(this.optCodice);
             this.panelOrderBy.Controls.Add(this.optData);
             this.panelOrderBy.Controls.Add(this.optTipoTransazione);
+            this.panelOrderBy.Size = new System.Drawing.Size(473, 267);
             this.panelOrderBy.Controls.SetChildIndex(this.btnConfirmOrderBy, 0);
             this.panelOrderBy.Controls.SetChildIndex(this.btnCloseOrderBy, 0);
             this.panelOrderBy.Controls.SetChildIndex(this.btnCancelOrderBy, 0);
@@ -86,9 +87,25 @@ namespace Web.GUI.Pagamento
             // 
             this.btnCancelAdvancedSearch.Location = new System.Drawing.Point(321, 269);
             // 
+            // btnCancelOrderBy
+            // 
+            this.btnCancelOrderBy.Location = new System.Drawing.Point(146, 226);
+            // 
+            // btnConfirmOrderBy
+            // 
+            this.btnConfirmOrderBy.Location = new System.Drawing.Point(341, 226);
+            // 
             // lblTitleAdvancedSearch
             // 
             this.lblTitleAdvancedSearch.Size = new System.Drawing.Size(584, 44);
+            // 
+            // optDescending
+            // 
+            this.optDescending.Location = new System.Drawing.Point(56, 233);
+            // 
+            // optAscending
+            // 
+            this.optAscending.Location = new System.Drawing.Point(9, 233);
             // 
             // optTipoTransazione
             // 
@@ -163,12 +180,12 @@ namespace Web.GUI.Pagamento
             this.editDataFine.Changed = false;
             this.editDataFine.Editing = true;
             this.editDataFine.Label = "Data al";
-            this.editDataFine.LabelWidth = 135;
-            this.editDataFine.Location = new System.Drawing.Point(19, 158);
+            this.editDataFine.LabelWidth = 150;
+            this.editDataFine.Location = new System.Drawing.Point(16, 148);
             this.editDataFine.Name = "editDataFine";
             this.editDataFine.ReadOnly = false;
             this.editDataFine.Required = false;
-            this.editDataFine.Size = new System.Drawing.Size(572, 30);
+            this.editDataFine.Size = new System.Drawing.Size(591, 30);
             this.editDataFine.TabIndex = 7;
             this.editDataFine.Value = null;
             // 
@@ -184,12 +201,12 @@ namespace Web.GUI.Pagamento
             this.editTipoTransazione.Editing = true;
             this.editTipoTransazione.Items = null;
             this.editTipoTransazione.Label = "Tipo transazione";
-            this.editTipoTransazione.LabelWidth = 135;
-            this.editTipoTransazione.Location = new System.Drawing.Point(19, 207);
+            this.editTipoTransazione.LabelWidth = 150;
+            this.editTipoTransazione.Location = new System.Drawing.Point(16, 192);
             this.editTipoTransazione.Name = "editTipoTransazione";
             this.editTipoTransazione.ReadOnly = false;
             this.editTipoTransazione.Required = false;
-            this.editTipoTransazione.Size = new System.Drawing.Size(572, 30);
+            this.editTipoTransazione.Size = new System.Drawing.Size(591, 30);
             this.editTipoTransazione.TabIndex = 6;
             this.editTipoTransazione.Value = null;
             // 
@@ -203,12 +220,12 @@ namespace Web.GUI.Pagamento
             this.editDataInizio.Changed = false;
             this.editDataInizio.Editing = true;
             this.editDataInizio.Label = "Data dal";
-            this.editDataInizio.LabelWidth = 135;
-            this.editDataInizio.Location = new System.Drawing.Point(19, 109);
+            this.editDataInizio.LabelWidth = 150;
+            this.editDataInizio.Location = new System.Drawing.Point(16, 104);
             this.editDataInizio.Name = "editDataInizio";
             this.editDataInizio.ReadOnly = false;
             this.editDataInizio.Required = false;
-            this.editDataInizio.Size = new System.Drawing.Size(572, 30);
+            this.editDataInizio.Size = new System.Drawing.Size(591, 30);
             this.editDataInizio.TabIndex = 5;
             this.editDataInizio.Value = null;
             // 
@@ -222,23 +239,23 @@ namespace Web.GUI.Pagamento
             this.editFatturaAcquisto.Changed = false;
             this.editFatturaAcquisto.Editing = true;
             this.editFatturaAcquisto.Label = "Fattura di acquisto";
-            this.editFatturaAcquisto.LabelWidth = 135;
+            this.editFatturaAcquisto.LabelWidth = 150;
             this.editFatturaAcquisto.Location = new System.Drawing.Point(16, 60);
             this.editFatturaAcquisto.Model = null;
             this.editFatturaAcquisto.Name = "editFatturaAcquisto";
             this.editFatturaAcquisto.ReadOnly = false;
             this.editFatturaAcquisto.Required = false;
-            this.editFatturaAcquisto.Size = new System.Drawing.Size(572, 30);
+            this.editFatturaAcquisto.Size = new System.Drawing.Size(591, 30);
             this.editFatturaAcquisto.TabIndex = 7;
             this.editFatturaAcquisto.Value = null;
             this.editFatturaAcquisto.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editFatturaAcquisto_ComboConfirm);
             this.editFatturaAcquisto.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editFatturaAcquisto_ComboClick);
-            this.Controls.SetChildIndex(this.panelAdvancedSearch, 0);
-            this.Controls.SetChildIndex(this.panelOrderBy, 0);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.txtSearch, 0);
             this.Controls.SetChildIndex(this.btnOrderBy, 0);
             this.Controls.SetChildIndex(this.btnAdvancedSearch, 0);
+            this.Controls.SetChildIndex(this.panelAdvancedSearch, 0);
+            this.Controls.SetChildIndex(this.panelOrderBy, 0);
             this.panelCommands.ResumeLayout(false);
             this.panelAdvancedSearch.ResumeLayout(false);
             this.panelOrderBy.ResumeLayout(false);

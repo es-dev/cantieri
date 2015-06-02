@@ -72,19 +72,16 @@ namespace Web.GUI.NotaCredito
             {
                 var obj = (DataLayer.NotaCredito)model;
 
-                //1° filtro
                 var filterData = true;
                 var inizio = editDataInizio.Value;
                 var fine = editDataFine.Value;
                 if (inizio != null && fine != null)
                     filterData = (inizio <= obj.Data && obj.Data <= fine);
 
-                //2° filtro
                 var filterFornitore = true;
                 if (fornitoriAnagraficaId != null)
                     filterFornitore = fornitoriAnagraficaId.Contains(obj.FornitoreId);
 
-                //3° filtro
                 var filterCommessa = true;
                 if (fornitoriCommessaId != null)
                     filterCommessa = fornitoriCommessaId.Contains(obj.FornitoreId);

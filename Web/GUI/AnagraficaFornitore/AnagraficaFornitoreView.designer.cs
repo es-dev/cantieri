@@ -67,12 +67,12 @@ namespace Web.GUI.AnagraficaFornitore
             this.optRagioneSociale.TabIndex = 2;
             this.optRagioneSociale.Text = "Ragione sociale";
             this.optRagioneSociale.Value = false;
-            this.Controls.SetChildIndex(this.panelAdvancedSearch, 0);
-            this.Controls.SetChildIndex(this.panelOrderBy, 0);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.txtSearch, 0);
             this.Controls.SetChildIndex(this.btnOrderBy, 0);
             this.Controls.SetChildIndex(this.btnAdvancedSearch, 0);
+            this.Controls.SetChildIndex(this.panelAdvancedSearch, 0);
+            this.Controls.SetChildIndex(this.panelOrderBy, 0);
             this.panelCommands.ResumeLayout(false);
             this.panelAdvancedSearch.ResumeLayout(false);
             this.panelOrderBy.ResumeLayout(false);

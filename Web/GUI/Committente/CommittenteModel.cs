@@ -178,17 +178,20 @@ namespace Web.GUI.Committente
         {
             try
             {
-                var fatture = obj.FatturaVenditas;
-                var today = DateTime.Today;
-                if (fatture != null)
+                if (obj != null)
                 {
-                    var totaleFatture = BusinessLogic.Committente.GetTotaleFattureVendita(obj, today);
-                    var totaleIncassi = BusinessLogic.Committente.GetTotaleIncassi(obj, today);
-                    var statoDescrizione = BusinessLogic.Committente.GetStatoDescrizione(obj);
+                    var fatture = obj.FatturaVenditas;
+                    var today = DateTime.Today;
+                    if (fatture != null)
+                    {
+                        var totaleFatture = BusinessLogic.Committente.GetTotaleFattureVendita(obj, today);
+                        var totaleIncassi = BusinessLogic.Committente.GetTotaleIncassi(obj, today);
+                        var statoDescrizione = BusinessLogic.Committente.GetStatoDescrizione(obj);
 
-                    editStato.Value = statoDescrizione;
-                    editTotaleFattureVendita.Value = totaleFatture;
-                    editTotaleIncassi.Value = totaleIncassi;
+                        editStato.Value = statoDescrizione;
+                        editTotaleFattureVendita.Value = totaleFatture;
+                        editTotaleIncassi.Value = totaleIncassi;
+                    }
                 }
             }
             catch (Exception ex)

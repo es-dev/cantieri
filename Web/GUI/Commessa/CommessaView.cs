@@ -58,20 +58,17 @@ namespace Web.GUI.Commessa
             {
                 var obj = (DataLayer.Commessa)model;
 
-                //1° filtro
                 var filterStato = true;
                 var stato = editStato.Value;
                 if (stato != null && stato.Length > 0)
                     filterStato = (obj.Stato!=null && obj.Stato.StartsWith(stato));
 
-                //2° filtro
                 var filterData = true;
                 var inizio = editScadenzaInizio.Value;
                 var fine = editScadenzaFine.Value;
                 if (inizio != null && fine != null)
                     filterData = (inizio <= obj.Scadenza && obj.Scadenza <= fine);
 
-                //filtro globale
                 var filter = (filterStato && filterData);
                 return filter;
             }

@@ -46,7 +46,7 @@ namespace Web.GUI.PagamentoUnificato
             this.panelAdvancedSearch.Controls.Add(this.editDataInizio);
             this.panelAdvancedSearch.Controls.Add(this.editAnagraficaFornitore);
             this.panelAdvancedSearch.Location = new System.Drawing.Point(244, 68);
-            this.panelAdvancedSearch.Size = new System.Drawing.Size(622, 249);
+            this.panelAdvancedSearch.Size = new System.Drawing.Size(622, 264);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.btnConfirmAdvancedSearch, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.btnCloseAdvancedSearch, 0);
             this.panelAdvancedSearch.Controls.SetChildIndex(this.btnCancelAdvancedSearch, 0);
@@ -74,11 +74,11 @@ namespace Web.GUI.PagamentoUnificato
             // 
             // btnConfirmAdvancedSearch
             // 
-            this.btnConfirmAdvancedSearch.Location = new System.Drawing.Point(487, 208);
+            this.btnConfirmAdvancedSearch.Location = new System.Drawing.Point(485, 221);
             // 
             // btnCancelAdvancedSearch
             // 
-            this.btnCancelAdvancedSearch.Location = new System.Drawing.Point(321, 208);
+            this.btnCancelAdvancedSearch.Location = new System.Drawing.Point(319, 221);
             // 
             // lblTitleAdvancedSearch
             // 
@@ -185,12 +185,12 @@ namespace Web.GUI.PagamentoUnificato
             this.editDataFine.Size = new System.Drawing.Size(572, 30);
             this.editDataFine.TabIndex = 7;
             this.editDataFine.Value = null;
-            this.Controls.SetChildIndex(this.panelAdvancedSearch, 0);
             this.Controls.SetChildIndex(this.panelOrderBy, 0);
             this.Controls.SetChildIndex(this.panelCommands, 0);
             this.Controls.SetChildIndex(this.txtSearch, 0);
             this.Controls.SetChildIndex(this.btnOrderBy, 0);
             this.Controls.SetChildIndex(this.btnAdvancedSearch, 0);
+            this.Controls.SetChildIndex(this.panelAdvancedSearch, 0);
             this.panelCommands.ResumeLayout(false);
             this.panelAdvancedSearch.ResumeLayout(false);
             this.panelOrderBy.ResumeLayout(false);

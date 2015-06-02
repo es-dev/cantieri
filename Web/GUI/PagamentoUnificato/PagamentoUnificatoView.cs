@@ -36,20 +36,17 @@ namespace Web.GUI.PagamentoUnificato
             {
                 var obj = (DataLayer.PagamentoUnificato)model;
 
-                //2° filtro
                 var filterData = true;
                 var inizio = editDataInizio.Value;
                 var fine = editDataFine.Value;
                 if (inizio != null && fine != null)
                     filterData = (inizio <= obj.Data && obj.Data <= fine);
 
-                //3° filtro
                 var filterFornitore = true;
                 var anagraficaFornitore = (AnagraficaFornitoreDto)editAnagraficaFornitore.Model;
                 if (anagraficaFornitore != null)
                     filterFornitore = (obj.AnagraficaFornitoreId==anagraficaFornitore.Id);
 
-                //filtro globale
                 var filter = (filterData && filterFornitore);
                 return filter;
             }

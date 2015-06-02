@@ -138,13 +138,15 @@ namespace Web.GUI.PagamentoUnificato
             
         }
 
-        private void BindViewTotali()
+        private void BindViewTotali(PagamentoUnificatoDto obj)
         {
             try
             {
-                var obj = (PagamentoUnificatoDto)Model;
-                var importoPagamento = BusinessLogic.PagamentoUnificato.GetTotalePagamentoUnificato(obj);
-                editImporto.Value = importoPagamento;
+                if (obj != null)
+                {
+                    var importoPagamento = BusinessLogic.PagamentoUnificato.GetTotalePagamentoUnificato(obj);
+                    editImporto.Value = importoPagamento;
+                }
             }
             catch (Exception ex)
             {
@@ -215,7 +217,8 @@ namespace Web.GUI.PagamentoUnificato
                 bool saved = Save();
                 if (saved)
                 {
-                    BindViewTotali();
+                    var obj = (PagamentoUnificatoDto)Model;
+                    BindViewTotali(obj);
                 }
             }
             catch (Exception ex)

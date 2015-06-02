@@ -79,31 +79,37 @@ namespace Web.GUI.FatturaVendita
             {
                 var obj = (DataLayer.FatturaVendita)model;
 
-                //1° filtro
                 var filterStato = true;
                 var stato = editStato.Value;
                 if (stato != null && stato.Length > 0)
                     filterStato = (obj.Stato != null && obj.Stato.StartsWith(stato));
 
-                //2° filtro
-                var filterData = true;
-                var inizio = editScadenzaInizio.Value;
-                var fine = editScadenzaFine.Value;
-                if (inizio != null && fine != null)
-                    filterData = (inizio <= obj.Scadenza && obj.Scadenza <= fine);
+                var filterScadenza = true;
+                var scadenzaInizio = editScadenzaInizio.Value;
+                var scadenzaFine = editScadenzaFine.Value;
+                if (scadenzaInizio != null && scadenzaFine != null)
+                    filterScadenza = (scadenzaInizio <= obj.Scadenza && obj.Scadenza <= scadenzaFine);
 
-                //3° filtro
                 var filterCommittente = true;
                 if (committentiAnagraficaId != null)
                     filterCommittente = committentiAnagraficaId.Contains(obj.CommittenteId);
 
-                //4° filtro
                 var filterCommessa = true;
                 if (committentiCommessaId != null)
                     filterCommessa = committentiCommessaId.Contains(obj.CommittenteId);
 
-                //filtro globale
-                var filter = (filterStato && filterData && filterCommittente && filterCommessa); 
+                var filterNumero = true;
+                var numero = editNumero.Value;
+                if (numero != null && numero.Length > 0)
+                    filterNumero = (obj.Numero == numero);
+
+                var filterData = true;
+                var dataInizio = editDataInizio.Value;
+                var dataFine = editDataFine.Value;
+                if (dataInizio != null && dataFine != null)
+                    filterData = (dataInizio <= obj.Data && obj.Data <= dataFine);
+
+                var filter = (filterStato && filterScadenza && filterCommittente && filterCommessa && filterNumero && filterData); 
                 return filter;
             }
             catch (Exception ex)
@@ -136,6 +142,8 @@ namespace Web.GUI.FatturaVendita
                 object orderBy = null;
                 if (optNumero.Value)
                     orderBy = obj.Numero;
+                else if (optData.Value)
+                    orderBy = obj.Data;
                 else if (optScadenza.Value)
                     orderBy = obj.Scadenza;
                 else if (optStato.Value)

@@ -108,17 +108,16 @@ namespace Web.GUI.NotaCredito
             
         }
 
-        private void BindViewTotali()
+        private void BindViewTotali(NotaCreditoDto obj)
         {
             try
             {
-                var data = editData.Value;
-                if (data != null)
+                if (obj != null)
                 {
-                    var obj = (WcfService.Dto.NotaCreditoDto)Model;
-                    editImponibile.Value = BusinessLogic.Fattura.GetImponibileNotaCredito(obj, data.Value);
-                    editIVA.Value = BusinessLogic.Fattura.GetIVANotaCredito(obj, data.Value);
-                    editTotale.Value = BusinessLogic.Fattura.GetTotaleNotaCredito(obj, data.Value);
+                    var data = UtilityValidation.GetData(editData.Value);
+                    editImponibile.Value = BusinessLogic.Fattura.GetImponibileNotaCredito(obj, data);
+                    editIVA.Value = BusinessLogic.Fattura.GetIVANotaCredito(obj, data);
+                    editTotale.Value = BusinessLogic.Fattura.GetTotaleNotaCredito(obj, data);
                 }
             }
             catch (Exception ex)
@@ -187,7 +186,8 @@ namespace Web.GUI.NotaCredito
                 bool saved = Save();
                 if (saved)
                 {
-                    BindViewTotali();
+                    var obj = (NotaCreditoDto)Model;
+                    BindViewTotali(obj);
                 }
             }
             catch (Exception ex)

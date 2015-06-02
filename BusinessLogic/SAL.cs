@@ -200,25 +200,29 @@ namespace BusinessLogic
             return Tipi.StatoSAL.None;
         }
 
-        public static string GetStatoDescrizione(SALDto sal, CommessaDto commessa)
+        public static string GetStatoDescrizione(SALDto sal)
         {
             try
             {
                 var statoDescrizione = "N/D";
-                if (commessa != null)
+                if (sal != null)
                 {
-                    var statoCommessa = commessa.Stato;
-                    if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                        statoDescrizione = sal.Stato;
-                    else
+                    var commessa = sal.Commessa;
+                    if (commessa != null)
                     {
-                        var data = UtilityValidation.GetData(sal.Data);
-                        var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
-                        var margine = UtilityValidation.GetDecimal(commessa.Margine);
-                        var margineOperativo = GetMargineOperativo(commessa, data);
-                        var statoSAL = GetStato(commessa, data);
-                        var _statoDescrizione = GetStatoDescrizione(importoLavori, margine, margineOperativo, statoSAL);
-                        statoDescrizione = _statoDescrizione.ToString();
+                        var statoCommessa = commessa.Stato;
+                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                            statoDescrizione = sal.Stato;
+                        else
+                        {
+                            var data = UtilityValidation.GetData(sal.Data);
+                            var importoLavori = UtilityValidation.GetDecimal(commessa.Importo);
+                            var margine = UtilityValidation.GetDecimal(commessa.Margine);
+                            var margineOperativo = GetMargineOperativo(commessa, data);
+                            var statoSAL = GetStato(commessa, data);
+                            var _statoDescrizione = GetStatoDescrizione(importoLavori, margine, margineOperativo, statoSAL);
+                            statoDescrizione = _statoDescrizione.ToString();
+                        }
                     }
                 }
                 return statoDescrizione;

@@ -70,19 +70,16 @@ namespace Web.GUI.PagamentoUnificatoFatturaAcquisto
             {
                 var obj = (DataLayer.PagamentoUnificatoFatturaAcquisto)model;
 
-                //2° filtro
                 var filterPagamentoUnificato = true;
                 var pagamentoUnificato = (PagamentoUnificatoDto)editPagamentoUnificato.Model;
                 if (pagamentoUnificato != null)
                     filterPagamentoUnificato = (obj.PagamentoUnificatoId == pagamentoUnificato.Id);
 
-                //3° filtro
                 var filterFatturaAcquisto = true;
                 var fatturaAcquisto = (FatturaAcquistoDto)editFatturaAcquisto.Model;
                 if (fatturaAcquisto != null)
                     filterFatturaAcquisto = (obj.FatturaAcquistoId == fatturaAcquisto.Id);
 
-                //filtro globale
                 var filter = (filterPagamentoUnificato && filterFatturaAcquisto);
                 return filter;
             }

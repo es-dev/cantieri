@@ -64,19 +64,16 @@ namespace Web.GUI.Committente
             {
                 var obj = (DataLayer.Committente)model;
 
-                //1° filtro
                 var filterStato = true;
                 var stato = editStato.Value;
                 if (stato != null && stato.Length > 0)
                     filterStato = (obj.Stato != null && obj.Stato.StartsWith(stato));
 
-                //2° filtro
                 var filterCommessa = true;
                 var commessa = (CommessaDto)editCommessa.Model;
                 if (commessa != null)
                     filterCommessa = (obj.CommessaId == commessa.Id);
 
-                //filtro globale
                 var filter = (filterStato && filterCommessa);
                 return filter;
             }

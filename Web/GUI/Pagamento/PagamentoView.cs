@@ -100,26 +100,22 @@ namespace Web.GUI.Pagamento
             {
                 var obj = (DataLayer.Pagamento)model;
 
-                //1° filtro
                 var filterStato = true;
                 var tipoTransazione = editTipoTransazione.Value;
                 if (tipoTransazione != null && tipoTransazione.Length > 0)
                     filterStato = (obj.TransazionePagamento != null && obj.TransazionePagamento.StartsWith(tipoTransazione));
 
-                //2° filtro
                 var filterData = true;
                 var inizio = editDataInizio.Value;
                 var fine = editDataFine.Value;
                 if (inizio != null && fine != null)
                     filterData = (inizio <= obj.Data && obj.Data <= fine);
 
-                //3° filtro
                 var filterFatturaAcquisto = true;
                 var fatturaAcquisto = (FatturaAcquistoDto)editFatturaAcquisto.Model;
                 if (fatturaAcquisto != null)
                     filterFatturaAcquisto = (obj.FatturaAcquistoId == fatturaAcquisto.Id);
 
-                //filtro globale
                 var filter = (filterStato && filterData && filterFatturaAcquisto);
                 return filter;
             }

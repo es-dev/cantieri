@@ -89,26 +89,22 @@ namespace Web.GUI.Reso
             {
                 var obj = (DataLayer.Reso)model;
 
-                //1° filtro
                 var filterNotaCredito = true;
                 var notaCredito = (NotaCreditoDto)editNotaCredito.Model;
                 if (notaCredito != null)
                     filterNotaCredito = (obj.NotaCreditoId == notaCredito.Id);
 
-                //2° filtro
                 var filterData = true;
                 var inizio = editDataInizio.Value;
                 var fine = editDataFine.Value;
                 if (inizio != null && fine != null)
                     filterData = (inizio <= obj.Data && obj.Data <= fine);
 
-                //3° filtro
                 var filterFatturaAcquisto = true;
                 var fatturaAcquisto = (FatturaAcquistoDto)editFatturaAcquisto.Model;
                 if (fatturaAcquisto != null)
                     filterFatturaAcquisto = (obj.FatturaAcquistoId == fatturaAcquisto.Id);
 
-                //filtro globale
                 var filter = (filterNotaCredito && filterData && filterFatturaAcquisto);
                 return filter;
             }
