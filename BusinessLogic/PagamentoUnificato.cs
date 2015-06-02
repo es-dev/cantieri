@@ -15,18 +15,20 @@ namespace BusinessLogic
         {
             try
             {
-                decimal totale = 0;
                 if (pagamentoUnificato != null)
                 {
                     var pagamentiUnificatiFattureAcquisto = pagamentoUnificato.PagamentoUnificatoFatturaAcquistos;
                     if (pagamentiUnificatiFattureAcquisto != null)
                     {
+                        decimal totale = 0;
                         foreach (var pagamentoUnificatoFatturaAcquisto in pagamentiUnificatiFattureAcquisto)
-                            totale += UtilityValidation.GetDecimal(pagamentoUnificatoFatturaAcquisto.Saldo);
-
+                        {
+                            var saldo = UtilityValidation.GetDecimal(pagamentoUnificatoFatturaAcquisto.Saldo);
+                            totale += saldo;
+                        }
+                        return totale;
                     }
                 }
-                return totale;
             }
             catch (Exception ex)
             {
@@ -67,9 +69,7 @@ namespace BusinessLogic
             {
                 if(pagamentoUnificato!=null)
                 {
-                    var data = UtilityValidation.GetDataND(pagamentoUnificato.Data);
-                    var codice = pagamentoUnificato.Codice;
-                    var codifica = codice + " DEL " + data;
+                    var codifica = pagamentoUnificato.Codice + " DEL " + UtilityValidation.GetDataND(pagamentoUnificato.Data);
                     return codifica;
                 }
             }

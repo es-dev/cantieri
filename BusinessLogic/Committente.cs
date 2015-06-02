@@ -121,8 +121,8 @@ namespace BusinessLogic
             {
                 if (fattureVendita != null)
                 {
-                    var fattureInsolute = GetFatture(fattureVendita, Tipi.StatoFattura.Insoluta);
-                    return fattureInsolute;
+                    var fatture = GetFatture(fattureVendita, Tipi.StatoFattura.Insoluta);
+                    return fatture;
                 }
             }
             catch (Exception ex)
@@ -132,14 +132,14 @@ namespace BusinessLogic
             return null;
         }
 
-        public static IList<FatturaVenditaDto> GetFattureNonLiquidate(IList<FatturaVenditaDto> fattureVendita)
+        public static IList<FatturaVenditaDto> GetFattureNonIncassate(IList<FatturaVenditaDto> fattureVendita)
         {
             try
             {
                 if (fattureVendita != null)
                 {
-                    var fattureNonLiquidate = GetFatture(fattureVendita, Tipi.StatoFattura.NonPagata);
-                    return fattureNonLiquidate;
+                    var fatture = GetFatture(fattureVendita, Tipi.StatoFattura.NonPagata);
+                    return fatture;
                 }
             }
             catch (Exception ex)
@@ -155,8 +155,8 @@ namespace BusinessLogic
             {
                 if (fattureVendita != null)
                 {
-                    var _fatture = (from q in fattureVendita where Fattura.GetStato(q) == stato select q).ToList();
-                    return _fatture;
+                    var fatture = (from q in fattureVendita where Fattura.GetStato(q) == stato select q).ToList();
+                    return fatture;
                 }
             }
             catch (Exception ex)
@@ -222,9 +222,9 @@ namespace BusinessLogic
                             var totaleFattureVendita = GetTotaleFattureVendita(committente, today);
                             var totaleIncassi = GetTotaleIncassi(committente, today);
                             var fattureInsolute = GetFattureInsolute(fattureVendita);
-                            var fattureNonLiquidate = GetFattureNonLiquidate(fattureVendita);
+                            var fattureNonIncassate = GetFattureNonIncassate(fattureVendita);
                             var statoCommittente = GetStato(committente);
-                            var _statoDescrizione = GetStatoDescrizione(totaleFattureVendita, totaleIncassi, fattureInsolute, fattureNonLiquidate, statoCommittente);
+                            var _statoDescrizione = GetStatoDescrizione(totaleFattureVendita, totaleIncassi, fattureInsolute, fattureNonIncassate, statoCommittente);
                             statoDescrizione = _statoDescrizione.ToString();
                         }
                     }
@@ -240,31 +240,31 @@ namespace BusinessLogic
 
         //todo: da modificare
         private static StateDescriptionImage GetStatoDescrizione(decimal totaleFattureVendita, decimal totaleIncassi, IList<FatturaVenditaDto> fattureInsolute,
-           IList<FatturaVenditaDto> fattureNonLiquidate, Tipi.StatoCommittente statoCommittente)
+           IList<FatturaVenditaDto> fattureNonIncassate, Tipi.StatoCommittente statoCommittente)
         {
             try
             {
                 var descrizione = "";
                 var stato = TypeState.None;
                 var existFattureInsolute = (fattureInsolute.Count >= 1);
-                var existFattureNonLiquidate = (fattureNonLiquidate.Count >= 1);
+                var existFattureNonIncassate = (fattureNonIncassate.Count >= 1);
                 var listaFattureInsolute = BusinessLogic.Fattura.GetListaFatture(fattureInsolute);
-                var listaFattureNonLiquidate = BusinessLogic.Fattura.GetListaFatture(fattureNonLiquidate);
+                var listaFattureNonIncassate = BusinessLogic.Fattura.GetListaFatture(fattureNonIncassate);
                 var _totaleIncassi = UtilityValidation.GetEuro(totaleIncassi);
                 var _totaleFattureVendita = UtilityValidation.GetEuro(totaleFattureVendita);
 
                 if (statoCommittente == Tipi.StatoCommittente.Insoluto) //condizione di non soluzione delle fatture, segalo le fatture insolute ed eventualmente quelle non pagate
                 {
                     descrizione = "Il committente risulta insoluto. Il totale incassi pari a " + _totaleIncassi + " è inferiore al totale fatture pari a " + _totaleFattureVendita + ". Le fatture insolute sono " + listaFattureInsolute;
-                    if (existFattureNonLiquidate)
-                        descrizione += " Le fatture non incassate sono " + listaFattureNonLiquidate;
+                    if (existFattureNonIncassate)
+                        descrizione += " Le fatture non incassate sono " + listaFattureNonIncassate;
                     stato = TypeState.Critical;
                 }
                 else if (statoCommittente == Tipi.StatoCommittente.NonIncassato) //condizione di non pagamento (pagamenti nulli o non completi, se non completi segnalo le fatture non pagate)
                 {
                     descrizione = "Il committente risulta non incassato. Il totale incassi pari a " + _totaleIncassi + " è inferiore al totale fatture pari a " + _totaleFattureVendita;
-                    if (existFattureNonLiquidate)
-                        descrizione += " Le fatture non pagate sono " + listaFattureNonLiquidate;
+                    if (existFattureNonIncassate)
+                        descrizione += " Le fatture non pagate sono " + listaFattureNonIncassate;
                     stato = TypeState.Warning;
                 }
                 else if (statoCommittente == Tipi.StatoCommittente.Incoerente) 
@@ -276,7 +276,7 @@ namespace BusinessLogic
                 {
                     if (totaleFattureVendita > 0 && totaleIncassi > 0)
                     {
-                        descrizione = "Il committente risulta incassato. Tutte le fatture sono state liquidate";
+                        descrizione = "Il committente risulta incassato. Tutte le fatture sono state incassate";
                         stato = TypeState.Normal;
                     }
                     else

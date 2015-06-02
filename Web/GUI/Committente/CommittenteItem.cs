@@ -68,9 +68,9 @@ namespace Web.GUI.Committente
             try
             {
                 var fatture = committente.FatturaVenditas;
-                var fattureNonLiquidate = BusinessLogic.Committente.GetFattureNonLiquidate(fatture);
+                var fattureNonIncassate = BusinessLogic.Committente.GetFattureNonIncassate(fatture);
                 var fattureInsolute = BusinessLogic.Committente.GetFattureInsolute(fatture);
-                var listaFattureNonLiquidate = BusinessLogic.Fattura.GetListaFatture(fattureNonLiquidate);
+                var listaFattureNonIncassate = BusinessLogic.Fattura.GetListaFatture(fattureNonIncassate);
                 var listaFattureInsolute = BusinessLogic.Fattura.GetListaFatture(fattureInsolute);
 
                 var image = "";
@@ -89,7 +89,7 @@ namespace Web.GUI.Committente
                 else if (stato == Tipi.StatoCommittente.NonIncassato)
                 {
                     image = "Images.messageQuestion.png";
-                    descrizione = "Committente non incassato, le fatture non incassate sono " + listaFattureNonLiquidate;
+                    descrizione = "Committente non incassato, le fatture non incassate sono " + listaFattureNonIncassate;
                 }
                 else if (stato == Tipi.StatoCommittente.Insoluto)
                 {

@@ -16,12 +16,11 @@ namespace BusinessLogic
             {
                 if (fatturaVendita != null)
                 {
-                    var numeroFattura = fatturaVendita.Numero;
-                    var progressivo = 1;
                     var incassi = fatturaVendita.Incassos;
+                    var progressivo = 1;
                     if (incassi != null)
                         progressivo = incassi.Count + 1;
-                    var codice = numeroFattura + "/" + DateTime.Today.Year.ToString() + "/" + progressivo.ToString("000");  //numerofattura/anno/progressivo
+                    var codice = fatturaVendita.Numero + "/" + DateTime.Today.Year.ToString() + "/" + progressivo.ToString("000");  //numerofattura/anno/progressivo
                     return codice;
                 }
             }

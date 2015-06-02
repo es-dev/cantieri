@@ -26,7 +26,7 @@ namespace BusinessLogic
             }
         }
 
-        private TimeSpan interval = new TimeSpan(0, 1, 0);
+        private TimeSpan interval = new TimeSpan(0, 5, 0);
         public TimeSpan Interval
         {
             get
@@ -58,7 +58,6 @@ namespace BusinessLogic
                
                 var pathRoot = UtilityWeb.GetRootPath(context);
                 //UtilityEmail.Send("pasqualeiaquinta@hotmail.com", "Test WFS - WorkActivity at " + DateTime.Now.ToString(), "Elaborazione flusso di lavoro avviato il " + DateTime.Now.ToString());
-                System.IO.File.AppendAllText(pathRoot+@"Resources\test.txt", DateTime.Now.ToString() + " - " + url + Environment.NewLine);
             }
             catch (Exception ex)
             {

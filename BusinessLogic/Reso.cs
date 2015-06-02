@@ -16,12 +16,11 @@ namespace BusinessLogic
             {
                 if (notaCredito != null)
                 {
-                    var numeroNotaCredito = notaCredito.Numero;
                     var progressivo = 1;
                     var resi = notaCredito.Resos;
                     if (resi != null)
                         progressivo = resi.Count + 1;
-                    var codice = numeroNotaCredito + "/" + DateTime.Today.Year.ToString() + "/" + progressivo.ToString("000");  //numerofattura/anno/progressivo
+                    var codice = notaCredito.Numero + "/" + DateTime.Today.Year.ToString() + "/" + progressivo.ToString("000");  //numerofattura/anno/progressivo
                     return codice;
                 }
             }

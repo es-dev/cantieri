@@ -16,12 +16,11 @@ namespace BusinessLogic
             {
                 if (fatturaAcquisto != null)
                 {
-                    var numeroFattura = fatturaAcquisto.Numero;
                     var pagamenti = fatturaAcquisto.Pagamentos;
                     var progressivo = 1;
                     if (pagamenti != null)
                         progressivo = pagamenti.Count + 1;
-                    var codice = numeroFattura + "/" + DateTime.Today.Year.ToString() + "/" + progressivo.ToString("000");  //numerofattura/anno/progressivo
+                    var codice = fatturaAcquisto.Numero + "/" + DateTime.Today.Year.ToString() + "/" + progressivo.ToString("000");  //numerofattura/anno/progressivo
                     return codice;
                 }
             }
@@ -66,9 +65,7 @@ namespace BusinessLogic
             {
                 if(pagamento!=null)
                 {
-                    var codice = UtilityValidation.GetStringND(pagamento.Codice);
-                    var data = UtilityValidation.GetDataND(pagamento.Data);
-                    var codifica = codice + " DEL " + data;
+                    var codifica = pagamento.Codice + " DEL " +  UtilityValidation.GetDataND(pagamento.Data);
                     return codifica;
                 }
             }
