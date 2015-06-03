@@ -96,7 +96,7 @@ namespace Web.GUI.FatturaAcquisto
             this.infoNumeroData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.infoNumeroData.Location = new System.Drawing.Point(91, 2);
             this.infoNumeroData.Name = "infoNumeroData";
-            this.infoNumeroData.Size = new System.Drawing.Size(260, 26);
+            this.infoNumeroData.Size = new System.Drawing.Size(301, 26);
             this.infoNumeroData.TabIndex = 1;
             this.infoNumeroData.Text = "NUMERO";
             // 

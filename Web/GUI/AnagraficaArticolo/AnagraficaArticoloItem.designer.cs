@@ -91,7 +91,7 @@ namespace Web.GUI.AnagraficaArticolo
             this.infoCodiceArticolo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.infoCodiceArticolo.Location = new System.Drawing.Point(91, 2);
             this.infoCodiceArticolo.Name = "infoCodiceArticolo";
-            this.infoCodiceArticolo.Size = new System.Drawing.Size(263, 30);
+            this.infoCodiceArticolo.Size = new System.Drawing.Size(300, 30);
             this.infoCodiceArticolo.TabIndex = 1;
             this.infoCodiceArticolo.Text = "CODICE ARTICOLO";
             // 

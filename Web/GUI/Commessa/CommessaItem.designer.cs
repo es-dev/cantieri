@@ -85,7 +85,7 @@ namespace Web.GUI.Commessa
             this.infoDenominazione.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.infoDenominazione.Location = new System.Drawing.Point(91, 2);
             this.infoDenominazione.Name = "infoDenominazione";
-            this.infoDenominazione.Size = new System.Drawing.Size(263, 30);
+            this.infoDenominazione.Size = new System.Drawing.Size(298, 30);
             this.infoDenominazione.TabIndex = 1;
             this.infoDenominazione.Text = "DENOMINAZIONE";
             // 

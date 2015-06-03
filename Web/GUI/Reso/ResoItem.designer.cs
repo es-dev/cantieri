@@ -94,7 +94,7 @@ namespace Web.GUI.Reso
             this.infoReso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.infoReso.Location = new System.Drawing.Point(91, 2);
             this.infoReso.Name = "infoReso";
-            this.infoReso.Size = new System.Drawing.Size(263, 30);
+            this.infoReso.Size = new System.Drawing.Size(300, 30);
             this.infoReso.TabIndex = 1;
             this.infoReso.Text = "RESO";
             // 

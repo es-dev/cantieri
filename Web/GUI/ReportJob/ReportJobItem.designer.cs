@@ -94,7 +94,7 @@ namespace Web.GUI.ReportJob
             this.infoCodiceReport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.infoCodiceReport.Location = new System.Drawing.Point(91, 3);
             this.infoCodiceReport.Name = "infoCodiceReport";
-            this.infoCodiceReport.Size = new System.Drawing.Size(263, 30);
+            this.infoCodiceReport.Size = new System.Drawing.Size(301, 30);
             this.infoCodiceReport.TabIndex = 1;
             this.infoCodiceReport.Text = "CODICE REPORT";
             // 

@@ -96,7 +96,7 @@ namespace Web.GUI.Incasso
             this.infoIncasso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.infoIncasso.Location = new System.Drawing.Point(91, 2);
             this.infoIncasso.Name = "infoIncasso";
-            this.infoIncasso.Size = new System.Drawing.Size(263, 30);
+            this.infoIncasso.Size = new System.Drawing.Size(298, 30);
             this.infoIncasso.TabIndex = 1;
             this.infoIncasso.Text = "INCASSO";
             // 

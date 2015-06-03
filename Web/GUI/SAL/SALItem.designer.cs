@@ -81,7 +81,7 @@ namespace Web.GUI.SAL
             this.infoSAL.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.infoSAL.Location = new System.Drawing.Point(87, 2);
             this.infoSAL.Name = "infoSAL";
-            this.infoSAL.Size = new System.Drawing.Size(267, 30);
+            this.infoSAL.Size = new System.Drawing.Size(305, 30);
             this.infoSAL.TabIndex = 1;
             this.infoSAL.Text = "SAL";
             // 

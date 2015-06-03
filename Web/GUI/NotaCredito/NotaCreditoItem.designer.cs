@@ -92,7 +92,7 @@ namespace Web.GUI.NotaCredito
             this.infoNotaCredito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(100)))));
             this.infoNotaCredito.Location = new System.Drawing.Point(91, 2);
             this.infoNotaCredito.Name = "infoNotaCredito";
-            this.infoNotaCredito.Size = new System.Drawing.Size(263, 30);
+            this.infoNotaCredito.Size = new System.Drawing.Size(298, 30);
             this.infoNotaCredito.TabIndex = 1;
             this.infoNotaCredito.Text = "NOTA DI CREDITO";
             // 
