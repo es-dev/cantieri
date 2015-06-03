@@ -114,7 +114,7 @@ namespace Web.GUI.Commessa
             // 
             this.imgStato.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.imgStato.BackColor = System.Drawing.Color.Transparent;
-            this.imgStato.Location = new System.Drawing.Point(369, 74);
+            this.imgStato.Location = new System.Drawing.Point(370, 74);
             this.imgStato.Name = "imgStato";
             this.imgStato.Size = new System.Drawing.Size(20, 20);
             this.imgStato.SizeMode = Gizmox.WebGUI.Forms.PictureBoxSizeMode.StretchImage;
@@ -127,9 +127,9 @@ namespace Web.GUI.Commessa
             | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.infoStatoLavori.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoStatoLavori.ForeColor = System.Drawing.Color.DarkRed;
-            this.infoStatoLavori.Location = new System.Drawing.Point(224, 75);
+            this.infoStatoLavori.Location = new System.Drawing.Point(224, 74);
             this.infoStatoLavori.Name = "infoStatoLavori";
-            this.infoStatoLavori.Size = new System.Drawing.Size(136, 16);
+            this.infoStatoLavori.Size = new System.Drawing.Size(143, 16);
             this.infoStatoLavori.TabIndex = 1;
             this.infoStatoLavori.Text = "Scadenza dd/MM/yyyy";
             this.infoStatoLavori.TextAlign = System.Drawing.ContentAlignment.TopRight;
