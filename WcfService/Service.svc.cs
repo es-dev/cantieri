@@ -667,7 +667,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Fornitore> QueryFornitori(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, OrderBy orderBy = null)
+        private IQueryable<DataLayer.Fornitore> QueryFornitori(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, OrderBy orderBy = null, IList<string> stati=null)
         {
             try
             {
@@ -684,6 +684,20 @@ namespace WcfService
                                  where anagraficheFornitoriId.Contains(q.AnagraficaFornitoreId) ||
                                      commesseId.Contains(q.CommessaId)
                                  select q);
+                }
+
+                if (stati != null && stati.Count >= 1)
+                {
+                    IQueryable<DataLayer.Fornitore> fornitoriStati = null;
+                    foreach (var stato in stati)
+                    {
+                        var fornitoriStato = (from q in fornitori where q.Stato != null && q.Stato.Contains(stato) select q);
+                        if (fornitoriStati != null)
+                            fornitoriStati = fornitoriStati.Concat(fornitoriStato);
+                        else
+                            fornitoriStati = fornitoriStato;
+                    }
+                    fornitori = fornitoriStati;
                 }
                 
                 if (advancedSearch != null)
@@ -706,6 +720,23 @@ namespace WcfService
             }
             return null;
         }
+
+        public IEnumerable<Dto.FornitoreDto> ReadFornitori(IList<string> stati)
+        {
+            try
+            {
+                var fornitori = QueryFornitori(null, null, null, null, stati);
+
+                var fornitoriDto = UtilityPOCO.Assemble<Dto.FornitoreDto>(fornitori, true);
+                return fornitoriDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+       
 
         public IEnumerable<Dto.FornitoreDto> ReadFornitori(Dto.AnagraficaFornitoreDto anagraficaFornitore)
         {
@@ -1053,7 +1084,7 @@ namespace WcfService
         }
 
         private IQueryable<DataLayer.FatturaAcquisto> QueryFattureAcquisto(string search = null, object advancedSearch = null, Dto.FornitoreDto fornitore = null,
-            Dto.AnagraficaFornitoreDto anagraficaFornitore = null, DateTime? start = null, DateTime? end = null, OrderBy orderBy = null)
+            Dto.AnagraficaFornitoreDto anagraficaFornitore = null, DateTime? start = null, DateTime? end = null, OrderBy orderBy = null, IList<string> stati=null)
         {
             try
             {
@@ -1080,6 +1111,20 @@ namespace WcfService
                 if (advancedSearch != null)
                     fattureAcquisto = fattureAcquisto.Where((Func<DataLayer.FatturaAcquisto, bool>)advancedSearch).AsQueryable();
                 
+                if(stati!=null && stati.Count>=1)
+                {
+                    IQueryable<DataLayer.FatturaAcquisto> fattureAcquistoStati = null;
+                    foreach(var stato in stati)
+                    {
+                        var fattureAcquistoStato = (from q in fattureAcquisto where q.Stato!=null && q.Stato.Contains(stato) select q);
+                        if (fattureAcquistoStati != null)
+                            fattureAcquistoStati = fattureAcquistoStati.Concat(fattureAcquistoStato);
+                        else
+                            fattureAcquistoStati = fattureAcquistoStato;
+                    }
+                    fattureAcquisto = fattureAcquistoStati;
+                }
+
                 fattureAcquisto = (from q in fattureAcquisto orderby q.Id descending select q);
                 if (orderBy != null)
                 {
@@ -1103,6 +1148,22 @@ namespace WcfService
             try
             {
                 var fattureAcquisto = QueryFattureAcquisto(search, advancedSearch, null, null, start, end);
+
+                var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto, true);
+                return fattureAcquistoDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquisto(IList<string> stati)
+        {
+            try
+            {
+                var fattureAcquisto = QueryFattureAcquisto(null,null,null,null,null,null,null,stati);
 
                 var fattureAcquistoDto = UtilityPOCO.Assemble<Dto.FatturaAcquistoDto>(fattureAcquisto, true);
                 return fattureAcquistoDto;
@@ -2350,7 +2411,8 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Committente> QueryCommittenti(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, OrderBy orderBy = null)
+        private IQueryable<DataLayer.Committente> QueryCommittenti(string search = null, object advancedSearch = null, Dto.CommessaDto commessa = null, OrderBy orderBy = null,
+            IList<string> stati=null)
         {
             try
             {
@@ -2367,6 +2429,20 @@ namespace WcfService
                                where anagraficheCommittentiId.Contains(q.AnagraficaCommittenteId) ||
                                  commesseId.Contains(q.Commessa.Id)
                                select q);
+                }
+
+                if (stati != null && stati.Count >= 1)
+                {
+                    IQueryable<DataLayer.Committente> committentiStati = null;
+                    foreach (var stato in stati)
+                    {
+                        var committenteStato = (from q in committenti where q.Stato != null && q.Stato.Contains(stato) select q);
+                        if (committentiStati != null)
+                            committentiStati = committentiStati.Concat(committenteStato);
+                        else
+                            committentiStati = committenteStato;
+                    }
+                    committenti = committentiStati;
                 }
 
                 if (advancedSearch != null)
@@ -2389,6 +2465,23 @@ namespace WcfService
             }
             return null;
         }
+
+        public IEnumerable<Dto.CommittenteDto> ReadCommittenti(IList<string> stati)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var committenti = QueryCommittenti(null, null, null, null, stati);
+                var committentiDto = UtilityPOCO.Assemble<Dto.CommittenteDto>(committenti, true);
+                return committentiDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
 
         public IEnumerable<Dto.CommittenteDto> ReadCommittenti(Dto.CommessaDto commessa)
         {
@@ -2469,6 +2562,22 @@ namespace WcfService
             try
             {
                 var fattureVendita = QueryFattureVendita();
+                var fattureVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fattureVendita, true);
+                return fattureVenditaDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<Dto.FatturaVenditaDto> ReadFattureVendita(IList<string> stati)
+        {
+            try
+            {
+                var fattureVendita = QueryFattureVendita(null, null, null, null, stati);
+
                 var fattureVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fattureVendita, true);
                 return fattureVenditaDto;
             }
@@ -2575,7 +2684,8 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.FatturaVendita> QueryFattureVendita(string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null, OrderBy orderBy = null)
+        private IQueryable<DataLayer.FatturaVendita> QueryFattureVendita(string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null,
+            OrderBy orderBy = null, IList<string> stati=null)
         {
             try
             {
@@ -2596,6 +2706,20 @@ namespace WcfService
 
                 if (advancedSearch != null)
                     fattureVendita = fattureVendita.Where((Func<DataLayer.FatturaVendita, bool>)advancedSearch).AsQueryable();
+
+                if (stati != null && stati.Count >= 1)
+                {
+                    IQueryable<DataLayer.FatturaVendita> fattureVenditaStati = null;
+                    foreach (var stato in stati)
+                    {
+                        var fattureVenditaStato = (from q in fattureVendita where q.Stato != null && q.Stato.Contains(stato) select q);
+                        if (fattureVenditaStati != null)
+                            fattureVenditaStati = fattureVenditaStati.Concat(fattureVenditaStato);
+                        else
+                            fattureVenditaStati = fattureVenditaStato;
+                    }
+                    fattureVendita = fattureVenditaStati;
+                }
 
                 fattureVendita = (from q in fattureVendita orderby q.Id descending select q);
                 if (orderBy != null)

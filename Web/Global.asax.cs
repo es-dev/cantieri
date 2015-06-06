@@ -25,7 +25,7 @@ namespace Web
         {
             try
             {
-                UtilityWorkFlow.Start(this.Context, new TimeSpan(0, 1, 0));
+                UtilityWorkFlow.Start(this.Context, new TimeSpan(0, 0, 10));
             }
             catch (Exception ex)
             {

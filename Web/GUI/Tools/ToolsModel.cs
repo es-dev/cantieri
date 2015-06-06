@@ -378,7 +378,6 @@ namespace Web.GUI.Tools
                 AddLog("Avvio controllo stati fatture di acquisto");
                 var viewModel = new FatturaAcquisto.FatturaAcquistoViewModel();
                 var fattureAcquisto = viewModel.ReadFatture();
-                var viewModelCommessa = new Commessa.CommessaViewModel();
                 foreach (var fatturaAcquisto in fattureAcquisto)
                 {
                     fatturaAcquisto.Stato = BusinessLogic.Fattura.GetStatoDescrizione(fatturaAcquisto);
@@ -404,7 +403,6 @@ namespace Web.GUI.Tools
                 AddLog("Avvio controllo stati fatture di vendita");
                 var viewModel = new FatturaVendita.FatturaVenditaViewModel();
                 var fattureVendita = viewModel.ReadFatture();
-                var viewModelCommessa = new Commessa.CommessaViewModel();
                 foreach (var fatturaVendita in fattureVendita)
                 {
                     fatturaVendita.Stato = BusinessLogic.Fattura.GetStatoDescrizione(fatturaVendita);

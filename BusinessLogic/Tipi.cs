@@ -127,6 +127,41 @@ namespace BusinessLogic
                 var stati = new List<string>();
                 stati.Add(StatoFattura.Insoluta.ToString());
                 stati.Add(StatoFattura.NonPagata.ToString());
+                stati.Add(StatoFattura.Incoerente.ToString());
+                return stati;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public static IList<string> GetStatiFornitoriInsolutiNonPagati()
+        {
+            try
+            {
+                var stati = new List<string>();
+                stati.Add(StatoFornitore.Insoluto.ToString());
+                stati.Add(StatoFornitore.NonPagato.ToString());
+                stati.Add(StatoFornitore.Incoerente.ToString());
+                return stati;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public static IList<string> GetStatiCommittentiInsolutiNonIncassati()
+        {
+            try
+            {
+                var stati = new List<string>();
+                stati.Add(StatoCommittente.Insoluto.ToString());
+                stati.Add(StatoCommittente.NonIncassato.ToString());
+                stati.Add(StatoCommittente.Incoerente.ToString());
                 return stati;
             }
             catch (Exception ex)
