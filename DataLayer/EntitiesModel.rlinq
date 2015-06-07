@@ -1148,6 +1148,33 @@
           </orm:columnMapping>
         </orm:index>
       </orm:class>
+      <orm:class name="Notifica" uniqueId="9a35023d-adbf-437a-842a-b2648ad45fd9">
+        <orm:table name="Notifica" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:field name="_id" property="Id" uniqueId="ed694c6a-ad92-4086-b179-d0f8b9db947d" type="System.Int32">
+          <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_applicazione" property="Applicazione" uniqueId="abd40585-1a63-44ff-a18a-fd3a6c5f4934" type="System.String">
+          <orm:column name="Applicazione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_codice" property="Codice" uniqueId="cd64ee05-9a78-4be3-bb8b-697a2b2ef7f5" type="System.String">
+          <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_data" property="Data" uniqueId="f1a2527c-1889-44d7-a544-e3c91c44d9ea" type="System.DateTime">
+          <orm:column name="Data" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_tipo" property="Tipo" uniqueId="702ca175-c437-4bed-865f-b4c038a57b09" type="System.String">
+          <orm:column name="Tipo" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_descrizione" property="Descrizione" uniqueId="2489cad0-62e3-495b-b660-e603ede8d8a5" type="System.String">
+          <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
+        </orm:field>
+      </orm:class>
     </orm:namespace>
     <orm:schema schema="">
       <orm:table name="Azienda">
@@ -1477,6 +1504,14 @@
             <orm:column name="NotaCreditoId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
           </orm:columnMapping>
         </orm:index>
+      </orm:table>
+      <orm:table name="Notifica">
+        <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Applicazione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="Codice" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="Data" sql-type="datetime" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
+        <orm:column name="Tipo" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="Descrizione" sql-type="varchar(max)" nullable="true" length="0" scale="0" ado-type="" />
       </orm:table>
     </orm:schema>
     <orm:relational-naming-settings>
@@ -2414,6 +2449,14 @@
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
+    <DomainClass Id="9a35023d-adbf-437a-842a-b2648ad45fd9" name="Notifica" namespace="DataLayer" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="ed694c6a-ad92-4086-b179-d0f8b9db947d" name="Id" type="System.Int32" label="Id : System.Int32" identity="true" fieldName="_id" />
+      <Property Id="cd64ee05-9a78-4be3-bb8b-697a2b2ef7f5" name="Codice" label="Codice : String" fieldName="_codice" />
+      <Property Id="f1a2527c-1889-44d7-a544-e3c91c44d9ea" name="Data" type="DateTime" label="Data : DateTime" fieldName="_data" />
+      <Property Id="abd40585-1a63-44ff-a18a-fd3a6c5f4934" name="Applicazione" label="Applicazione : String" fieldName="_applicazione" />
+      <Property Id="702ca175-c437-4bed-865f-b4c038a57b09" name="Tipo" label="Tipo : String" fieldName="_tipo" />
+      <Property Id="2489cad0-62e3-495b-b660-e603ede8d8a5" name="Descrizione" label="Descrizione : String" fieldName="_descrizione" />
+    </DomainClass>
   </Types>
   <domainContext>
     <domainModelHasDomainContext Id="0d78686f-daea-40df-b476-5e7a97b883da">
@@ -2438,6 +2481,7 @@
         <entitySetProperty name="PagamentoUnificatoFatturaAcquistos" namespace="DataLayer" type="PagamentoUnificatoFatturaAcquisto" label="PagamentoUnificatoFatturaAcquistos : IQueryable&lt;DataLayer.PagamentoUnificatoFatturaAcquisto&gt;" />
         <entitySetProperty name="NotaCreditos" namespace="DataLayer" type="NotaCredito" label="NotaCreditos : IQueryable&lt;DataLayer.NotaCredito&gt;" />
         <entitySetProperty name="Resos" namespace="DataLayer" type="Reso" label="Resos : IQueryable&lt;DataLayer.Reso&gt;" />
+        <entitySetProperty name="Notificas" namespace="DataLayer" type="Notifica" label="Notificas : IQueryable&lt;DataLayer.Notifica&gt;" />
       </domainContainer>
     </domainModelHasDomainContext>
   </domainContext>

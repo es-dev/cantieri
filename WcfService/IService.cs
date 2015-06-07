@@ -145,6 +145,9 @@ namespace WcfService
 
         [OperationContract]
         IEnumerable<Dto.FornitoreDto> ReadFornitori(IEnumerable<Dto.AnagraficaFornitoreDto> anagraficheFornitori);
+
+        [OperationContract]
+        IEnumerable<Dto.FornitoreDto> ReadFornitori(IList<string> stati);
         #endregion
         #endregion
 
@@ -209,6 +212,9 @@ namespace WcfService
 
         [OperationContract]
         IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquisto(DateTime start, DateTime end, string search = null, object advancedSearch = null);
+
+        [OperationContract]
+        IEnumerable<Dto.FatturaAcquistoDto> ReadFattureAcquisto(IList<string> stati);
         #endregion
         #endregion
 
@@ -442,6 +448,9 @@ namespace WcfService
 
         [OperationContract]
         IEnumerable<Dto.CommittenteDto> ReadCommittenti(IEnumerable<Dto.AnagraficaCommittenteDto> anagraficheCommittenti);
+
+        [OperationContract]
+        IEnumerable<Dto.CommittenteDto> ReadCommittenti(IList<string> stati);
         #endregion
         #endregion
 
@@ -473,6 +482,9 @@ namespace WcfService
 
         [OperationContract]
         Dto.FatturaVenditaDto ReadFatturaVendita(object id);
+
+        [OperationContract]
+        IEnumerable<Dto.FatturaVenditaDto> ReadFattureVendita(IList<string> stati);
         #endregion
         #endregion
 
@@ -666,6 +678,39 @@ namespace WcfService
         Dto.ReportJobDto ReadReportJob(object id);
         #endregion
         #endregion
+
+        #region Notifica
+        #region CRUD
+        [OperationContract]
+        Dto.NotificaDto CreateNotifica(Dto.NotificaDto notifica);
+
+        [OperationContract]
+        IEnumerable<Dto.NotificaDto> ReadNotifiche();
+
+        [OperationContract]
+        bool UpdateNotifica(Dto.NotificaDto notifica);
+
+        [OperationContract]
+        bool DeleteNotifica(Dto.NotificaDto notifica);
+
+        [OperationContract]
+        int CountNotifiche();
+        #endregion
+        #region Custom
+        [OperationContract]
+        IEnumerable<Dto.NotificaDto> LoadNotifiche(int skip, int take, string search = null, object advancedSearch = null, OrderBy orderBy = null);
+
+        [OperationContract]
+        int CountNotifiche(string search = null, object advancedSearch = null);
+
+        [OperationContract]
+        Dto.NotificaDto ReadNotifica(object id);
+
+        [OperationContract]
+        Dto.NotificaDto ReadNotifica(Dto.NotificaDto notifica);
+        #endregion
+        #endregion
+
 
     }
 }

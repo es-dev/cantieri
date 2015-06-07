@@ -210,6 +210,14 @@ namespace DataLayer
 			}
 		}
 		
+		public IQueryable<Notifica> Notificas 
+		{
+			get
+			{
+				return this.GetAll<Notifica>();
+			}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -309,6 +317,10 @@ namespace DataLayer
 			get;
 		}
 		IQueryable<Reso> Resos
+		{
+			get;
+		}
+		IQueryable<Notifica> Notificas
 		{
 			get;
 		}

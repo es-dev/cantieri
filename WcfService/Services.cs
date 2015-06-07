@@ -453,5 +453,19 @@ namespace WcfService.Services
 	
 	    }
 	}
+	
+	public partial interface INotificaService : IService<NotificaDto, Notifica>
+	{
+	
+	}
+	
+	public partial class NotificaService : Service<NotificaDto, Notifica>, INotificaService
+	{
+	    public NotificaService(INotificaAssembler assembler, INotificaRepository repository)
+	        : base(assembler, repository)
+	    {
+	
+	    }
+	}
 }
 #pragma warning restore 1591

@@ -1413,6 +1413,105 @@ namespace WcfService
 	    
 	    #endregion
 	    
+	    #region Notificas CRUD Operations
+	
+	    /// <summary>
+	    /// Returns all notificas.
+	    /// </summary>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<NotificaDto> ReadNotificas();
+	
+	    /// <summary>
+	    /// Returns a specified amount of notificas from the given start index.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<NotificaDto> ReadNotificasPaged(int startIndex, int pageSize);
+	
+	    /// <summary>
+	    /// Returns all notificas filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<NotificaDto> ReadNotificasFiltered(string sortExpression, string filterExpression);
+	
+	    /// <summary>
+	    /// Returns a specified amount of notificas from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    IEnumerable<NotificaDto> ReadNotificasPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression);
+	
+	    /// <summary>
+	    /// Returns a notifica with the specified dto key.
+	    /// </summary>
+	    /// <param name="dtoKey">The specified dto key value.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    NotificaDto ReadNotifica(string dtoKey);
+	
+	    /// <summary>
+	    /// Returns all notificas count.
+	    /// </summary>
+	    /// <returns></returns>
+	    [OperationContract]
+	    int NotificasCount();
+	
+	    /// <summary>
+	    /// Returns all notificas count filtered by the specified filter expression.
+	    /// </summary>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    [OperationContract]
+	    int NotificasCountFiltered(string filterExpression);
+	
+	    /// <summary>
+	    /// Adds a new notifica from the given dto object into the database.
+	    /// </summary>
+	    /// <param name="notifica">The dto object.</param>
+	    /// <returns>The dto key of the newly created notifica.</returns>
+	    [OperationContract]
+	    string CreateNotifica(NotificaDto notifica);
+	
+	    /// <summary>
+	    /// Updates notifica in the database from the given dto object.
+	    /// </summary>
+	    /// <param name="notifica">The dto object.</param>
+	    [OperationContract]
+	    void UpdateNotifica(NotificaDto notifica);
+	
+	    /// <summary>
+	    /// Update an existing notificas in the database from the given dto object list.
+	    /// </summary>
+	    /// <param name="notificas">The dto object list.</param>
+	    [OperationContract]
+	    void UpdateNotificas(IEnumerable<NotificaDto> notificas);
+	
+	    /// <summary>
+	    /// Deletes notifica from the database by the given dto object.
+	    /// </summary>
+	    /// <param name="notifica">The dto object.</param>
+	    [OperationContract]
+	    void DeleteNotifica(NotificaDto notifica);
+	
+	    /// <summary>
+	    /// Delete notificas from the database by the given dto object list.
+	    /// </summary>
+	    /// <param name="notificas">The dto object list.</param>
+	    [OperationContract]
+	    void DeleteNotificas(IEnumerable<NotificaDto> notificas);
+	    
+	    #endregion
+	    
 	    #region Pagamentos CRUD Operations
 	
 	    /// <summary>

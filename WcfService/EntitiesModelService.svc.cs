@@ -2522,6 +2522,182 @@ namespace WcfService
 	    #endregion
 	    
 	    /// <summary>
+	    /// A general purpose generated service used for all CRUD operations against Notifica entity.
+	    /// </summary>
+	    private INotificaService notificaservice;
+	    
+	    /// <summary>
+	    /// Gets or sets the general purpose generated service used for all CRUD operations against Notifica entity.
+	    /// </summary>
+	    public virtual INotificaService NotificaService
+	    {
+	        get
+	        {
+	            if (this.notificaservice == null)
+	            {
+	                INotificaAssembler assembler = new NotificaAssembler();
+	                INotificaRepository repository = new NotificaRepository(this.UnitOfWork);
+	
+	                this.notificaservice = new NotificaService(assembler, repository);
+	            }
+	            return this.notificaservice;
+	        }
+	    }
+	        
+	    #region Notificas CRUD Operations
+	
+	    /// <summary>
+	    /// Returns all notificas.
+	    /// </summary>
+	    /// <returns></returns>
+	    public IEnumerable<NotificaDto> ReadNotificas()	
+	    {
+	        return this.NotificaService.GetAll();
+	    }
+	
+	    /// <summary>
+	    /// Returns a specified amount of notificas from the given start index.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <returns></returns>
+	    public IEnumerable<NotificaDto> ReadNotificasPaged(int startIndex, int pageSize)
+	    {
+	        return this.NotificaService.Find(startIndex, pageSize);
+	    }
+	
+	    /// <summary>
+	    /// Returns all notificas filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public IEnumerable<NotificaDto> ReadNotificasFiltered(string sortExpression, string filterExpression)
+	    {
+	        return this.NotificaService.Find(sortExpression, filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Returns a specified amount of notificas from the given start index filtered by the specified filter expression and sorted by the specified sort expression.
+	    /// </summary>
+	    /// <param name="startIndex">The start index.</param>
+	    /// <param name="pageSize">The returned entities count.</param>
+	    /// <param name="sortExpression">The sort expression.</param>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public IEnumerable<NotificaDto> ReadNotificasPagedAndFiltered(int startIndex, int pageSize, string sortExpression, string filterExpression)
+	    {
+	        return this.NotificaService.Find(startIndex, pageSize, sortExpression, filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Returns a notifica with the specified dto key.
+	    /// </summary>
+	    /// <param name="dtoKey">The specified dto key value.</param>
+	    /// <returns></returns>
+	    public NotificaDto ReadNotifica(string dtoKey)
+	    {
+	        return this.NotificaService.GetByKey(dtoKey);
+	    }
+	    
+	    /// <summary>
+	    /// Returns all notificas count.
+	    /// </summary>
+	    /// <returns></returns>
+	    public int NotificasCount()
+	    {
+	        return this.NotificaService.Count();
+	    }
+	    
+	    /// <summary>
+	    /// Returns all notificas count filtered by the specified filter expression.
+	    /// </summary>
+	    /// <param name="filterExpression">The filter expression.</param>
+	    /// <returns></returns>
+	    public int NotificasCountFiltered(string filterExpression)
+	    {
+	        return this.NotificaService.Count(filterExpression);
+	    }
+	
+	    /// <summary>
+	    /// Adds a new notifica from the given dto object into the database.
+	    /// </summary>
+	    /// <param name="notifica">The dto object.</param>
+	    /// <returns>The dto key of the newly created notifica.</returns>
+	    public string CreateNotifica(NotificaDto notifica)
+	    {
+	        string key = this.NotificaService.Add(notifica);
+	        this.UnitOfWork.SaveChanges();
+	        return key;
+	    }
+	
+	    /// <summary>
+	    /// Updates an existing notifica in the database from the given dto object.
+	    /// </summary>
+	    /// <param name="notifica">The dto object.</param>
+	    public void UpdateNotifica(NotificaDto notifica)
+	    {
+	        this.NotificaService.Update(notifica);
+	        this.UnitOfWork.SaveChanges();
+	    }
+	
+	    /// <summary>
+	    /// Update notificas in the database from the given dto object list.
+	    /// </summary>
+	    /// <param name="notificas">The dto object list.</param>
+	    public void UpdateNotificas(IEnumerable<NotificaDto> notificas)
+	    {
+	        if (notificas == null)
+	        {
+	            return;
+	        }
+	
+	        foreach (NotificaDto notifica in notificas)
+	        {
+	            if (notifica == null)
+	            {
+	                continue;
+	            }
+	            
+	            this.UpdateNotifica(notifica);
+	        }
+	    }
+	
+	    /// <summary>
+	    /// Deletes notifica from the database by the given dto object.
+	    /// </summary>
+	    /// <param name="notifica">The dto object.</param>
+	    public void DeleteNotifica(NotificaDto notifica)
+	    {
+	        this.NotificaService.Delete(notifica);
+	        this.UnitOfWork.SaveChanges();		
+	    }
+	
+	    /// <summary>
+	    /// Delete notificas from the database by the given dto object list.
+	    /// </summary>
+	    /// <param name="notificas">The dto object list.</param>
+	    public void DeleteNotificas(IEnumerable<NotificaDto> notificas)
+	    {
+	        if (notificas == null)
+	        {
+	            return;
+	        }
+	
+	        foreach (NotificaDto notifica in notificas)
+	        {
+	            if (notifica == null)
+	            {
+	                continue;
+	            }
+	            
+	            this.DeleteNotifica(notifica);
+	        }
+	    }
+	    
+	    #endregion
+	    
+	    /// <summary>
 	    /// A general purpose generated service used for all CRUD operations against Pagamento entity.
 	    /// </summary>
 	    private IPagamentoService pagamentoservice;

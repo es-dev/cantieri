@@ -2010,5 +2010,73 @@ namespace WcfService.Assemblers
 	{
 	    
 	}
+	
+	public partial interface INotificaAssembler : IAssembler<NotificaDto, Notifica>
+	{ 
+	
+	}
+	
+	public partial class NotificaAssemblerBase : Assembler<NotificaDto, Notifica>
+	{
+		/// <summary>
+	    /// Invoked after the NotificaDto instance is assembled.
+	    /// </summary>
+	    /// <param name="dto"><see cref="NotificaDto"/> The Dto instance.</param>
+		partial void OnDTOAssembled(NotificaDto dto);
+	
+		/// <summary>
+	    /// Invoked after the Notifica instance is assembled.
+	    /// </summary>
+	    /// <param name="entity">The <see cref="Notifica"/> instance.</param>
+		partial void OnEntityAssembled(Notifica entity);
+		
+	    public override Notifica Assemble(Notifica entity, NotificaDto dto)
+	    {
+	        if (entity == null)
+	        {
+	            entity = new Notifica();
+	        }
+			
+			entity.Id = dto.Id;
+			entity.Applicazione = dto.Applicazione;
+			entity.Codice = dto.Codice;
+			entity.Data = dto.Data;
+			entity.Tipo = dto.Tipo;
+			entity.Descrizione = dto.Descrizione;
+	        this.OnEntityAssembled(entity);
+	        return entity;
+	    }
+	
+	    public override NotificaDto Assemble(Notifica entity)
+	    {
+	        NotificaDto dto = new NotificaDto();
+	        
+			ObjectKey key = KeyUtility.Instance.Create(entity);
+			dto.DtoKey = KeyUtility.Instance.Convert(key);
+			dto.Id = entity.Id;
+			dto.Applicazione = entity.Applicazione;
+			dto.Codice = entity.Codice;
+			dto.Data = entity.Data;
+			dto.Tipo = entity.Tipo;
+			dto.Descrizione = entity.Descrizione;
+			this.OnDTOAssembled(dto); 
+	        return dto;
+	    }
+	
+	    public override void AssembleReferences(Notifica entity, NotificaDto dto)
+	    {
+	    }
+	
+	    public override void AssembleCollections(Notifica entity, NotificaDto dto)
+	    {
+	    }
+	
+	}
+	
+	
+	public partial class NotificaAssembler : NotificaAssemblerBase, INotificaAssembler
+	{
+	    
+	}
 }
 #pragma warning restore 1591

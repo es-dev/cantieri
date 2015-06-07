@@ -11,6 +11,12 @@ namespace BusinessLogic
 {
     public class Tipi
     {
+        public enum TipoNotifica
+        {
+            FatturaAcquisto,
+            FatturaVendita
+        }
+
         public enum TipoPagamento
         {
             None,

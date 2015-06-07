@@ -1524,5 +1524,45 @@ namespace WcfService.Dto
 
 	}
 	
+	[DataContract(IsReference = true)]
+	public partial class NotificaDto : IDtoWithKey
+	{
+		public NotificaDto()
+		{
+		}
+		
+		public NotificaDto(int _id, string _applicazione, string _codice, DateTime _data, string _tipo, string _descrizione)
+		{
+			this.Id = _id;
+			this.Applicazione = _applicazione;
+			this.Codice = _codice;
+			this.Data = _data;
+			this.Tipo = _tipo;
+			this.Descrizione = _descrizione;
+		}
+		
+		[DataMember]
+		public virtual string DtoKey { get; set; }
+		
+		[DataMember]
+		public virtual int Id { get;set; }
+
+		[DataMember]
+		public virtual string Applicazione { get;set; }
+
+		[DataMember]
+		public virtual string Codice { get;set; }
+
+		[DataMember]
+		public virtual DateTime Data { get;set; }
+
+		[DataMember]
+		public virtual string Tipo { get;set; }
+
+		[DataMember]
+		public virtual string Descrizione { get;set; }
+
+	}
+	
 }
 #pragma warning restore 1591

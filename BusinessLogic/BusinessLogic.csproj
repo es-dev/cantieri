@@ -85,6 +85,7 @@
     <Compile Include="Fattura.cs" />
     <Compile Include="Fornitore.cs" />
     <Compile Include="Incasso.cs" />
+    <Compile Include="Notifica.cs" />
     <Compile Include="Pagamento.cs" />
     <Compile Include="PagamentoUnificato.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

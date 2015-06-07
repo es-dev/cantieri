@@ -326,5 +326,18 @@ namespace WcfService.Repositories
 	    {
 	    }
 	}
+	
+	public partial interface INotificaRepository : IRepository<Notifica>
+	{ 
+	
+	}
+	
+	public partial class NotificaRepository : Repository<Notifica>, INotificaRepository
+	{
+	    public NotificaRepository(IEntitiesModelUnitOfWork unitOfWork)
+	        : base(unitOfWork)
+	    {
+	    }
+	}
 }
 #pragma warning restore 1591

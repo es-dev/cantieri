@@ -2573,22 +2573,6 @@ namespace WcfService
             return null;
         }
 
-        public IEnumerable<Dto.FatturaVenditaDto> ReadFattureVendita(IList<string> stati)
-        {
-            try
-            {
-                var fattureVendita = QueryFattureVendita(null, null, null, null, stati);
-
-                var fattureVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fattureVendita, true);
-                return fattureVenditaDto;
-            }
-            catch (Exception ex)
-            {
-                UtilityError.Write(ex);
-            }
-            return null;
-        }
-
         public bool UpdateFatturaVendita(Dto.FatturaVenditaDto fatturaVendita)
         {
             try
@@ -2641,7 +2625,7 @@ namespace WcfService
         {
             try
             {
-                var fattureVendita = QueryFattureVendita(search, advancedSearch, committente, orderBy);
+                var fattureVendita = QueryFattureVendita(search, advancedSearch, committente, null, null, orderBy);
                 fattureVendita = (from q in fattureVendita select q).Skip(skip).Take(take);
 
                 var fattureVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fattureVendita, true);
@@ -2685,8 +2669,40 @@ namespace WcfService
             return null;
         }
 
+        public IEnumerable<Dto.FatturaVenditaDto> ReadFattureVendita(IList<string> stati)
+        {
+            try
+            {
+                var fattureVendita = QueryFattureVendita(null, null, null, null, null, null, stati);
+
+                var fattureVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fattureVendita, true);
+                return fattureVenditaDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<Dto.FatturaVenditaDto> ReadFattureVendita(DateTime start, DateTime end, string search = null, object advancedSearch = null)
+        {
+            try
+            {
+                var fattureVendita = QueryFattureVendita(search, advancedSearch, null, start, end);
+
+                var fattureVenditaDto = UtilityPOCO.Assemble<Dto.FatturaVenditaDto>(fattureVendita, true);
+                return fattureVenditaDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         private IQueryable<DataLayer.FatturaVendita> QueryFattureVendita(string search = null, object advancedSearch = null, Dto.CommittenteDto committente = null,
-            OrderBy orderBy = null, IList<string> stati=null)
+            DateTime? start = null, DateTime? end = null, OrderBy orderBy = null, IList<string> stati=null)
         {
             try
             {
@@ -2694,6 +2710,9 @@ namespace WcfService
                 var fattureVendita = (from q in ef.FatturaVenditas select q);
                 if(committente!=null)
                     fattureVendita = (from q in fattureVendita where q.CommittenteId == committente.Id select q);
+
+                if (start != null && end != null)
+                    fattureVendita = (from q in fattureVendita where start <= q.Scadenza && q.Scadenza <= end select q);
 
                 if (search != null && search.Length > 0)
                 {
@@ -3806,6 +3825,188 @@ namespace WcfService
 
         #endregion
         #endregion
+
+        #region Notifica
+        #region CRUD
+        public Dto.NotificaDto CreateNotifica(Dto.NotificaDto notifica)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var dtoKey = wcf.CreateNotifica(notifica);
+                var newNotifica = wcf.ReadNotifica(dtoKey);
+                return newNotifica;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<Dto.NotificaDto> ReadNotifiche()
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var notifiche = wcf.ReadNotificas();
+                return notifiche;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public bool UpdateNotifica(Dto.NotificaDto notifica)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                wcf.UpdateNotifica(notifica);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
+        }
+
+        public bool DeleteNotifica(Dto.NotificaDto notifica)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                wcf.DeleteNotifica(notifica);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
+        }
+
+        public int CountNotifiche()
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var count = wcf.NotificasCount();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+        #endregion
+        #region Custom
+        public IEnumerable<Dto.NotificaDto> LoadNotifiche(int skip, int take, string search = null, object advancedSearch = null, OrderBy orderBy = null)
+        {
+            try
+            {
+                var notifiche = QueryNotifiche(search, advancedSearch, orderBy);
+                notifiche = (from q in notifiche select q).Skip(skip).Take(take);
+
+                var notificheDto = UtilityPOCO.Assemble<Dto.NotificaDto>(notifiche);
+                return notificheDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public int CountNotifiche(string search = null, object advancedSearch = null)
+        {
+            try
+            {
+                var notifiche = QueryNotifiche(search, advancedSearch);
+                var count = notifiche.Count();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return 0;
+        }
+
+        public Dto.NotificaDto ReadNotifica(object id)
+        {
+            try
+            {
+                var wcf = new EntitiesModelService();
+                var dtoKey = UtilityPOCO.GetDtoKey((int)id);
+                var notifica = wcf.ReadNotifica(dtoKey);
+                return notifica;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public Dto.NotificaDto ReadNotifica(Dto.NotificaDto notifica)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var today = DateTime.Today;
+                var inizio = new DateTime(today.Year, today.Month, today.Day, 0, 0, 0);
+                var fine = new DateTime(today.Year, today.Month, today.Day, 23, 59, 59);
+                var _notifica = (from q in ef.Notificas where q.Codice==notifica.Codice && q.Tipo==notifica.Tipo && q.Applicazione==notifica.Applicazione && 
+                                     inizio<=q.Data && q.Data<=fine select q).FirstOrDefault();
+                var notificaDto = UtilityPOCO.Assemble<Dto.NotificaDto>(_notifica);
+                return notificaDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private IQueryable<DataLayer.Notifica> QueryNotifiche(string search = null, object advancedSearch = null, OrderBy orderBy = null)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var notifiche = (from q in ef.Notificas select q);
+
+                if (search != null && search.Length > 0)
+                    notifiche = (from q in notifiche
+                               where q.Codice.StartsWith(search) || q.Applicazione.Contains(search) || q.Tipo.StartsWith(search) 
+                               select q);
+
+                if (advancedSearch != null)
+                    notifiche = notifiche.Where((Func<DataLayer.Notifica, bool>)advancedSearch).AsQueryable();
+
+                notifiche = (from q in notifiche orderby q.Id descending select q);
+                if (orderBy != null)
+                {
+                    if (orderBy.Direction == TypeOrder.Ascending)
+                        notifiche = notifiche.OrderBy((Func<DataLayer.Notifica, object>)orderBy.Value).AsQueryable();
+                    else if (orderBy.Direction == TypeOrder.Descending)
+                        notifiche = notifiche.OrderByDescending((Func<DataLayer.Notifica, object>)orderBy.Value).AsQueryable();
+                }
+                return notifiche;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+        #endregion
+        #endregion
+
 
     }
 }
