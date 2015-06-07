@@ -2472,6 +2472,7 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var committenti = QueryCommittenti(null, null, null, null, stati);
+
                 var committentiDto = UtilityPOCO.Assemble<Dto.CommittenteDto>(committenti, true);
                 return committentiDto;
             }

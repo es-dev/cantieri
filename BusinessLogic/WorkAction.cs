@@ -26,7 +26,7 @@ namespace BusinessLogic
             }
         }
 
-        private TimeSpan interval = new TimeSpan(0, 0, 30);
+        private TimeSpan interval = new TimeSpan(0, 5, 0);
         public TimeSpan Interval
         {
             get
@@ -54,15 +54,151 @@ namespace BusinessLogic
             {
                 KeepAlive();
                 CheckState();
+                //CheckScadenze();
 
-
-                var pathRoot = UtilityWeb.GetRootPath(context);
-                //UtilityEmail.Send("pasqualeiaquinta@hotmail.com", "Test WFS - WorkActivity at " + DateTime.Now.ToString(), "Elaborazione flusso di lavoro avviato il " + DateTime.Now.ToString());
             }
             catch (Exception ex)
             {
                 UtilityError.Write(ex);
             }
+        }
+
+        private void CheckScadenze()
+        {
+            try
+            {
+                CheckScadenzeFattureAcquisto();
+                CheckScadenzeFattureVendita();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void CheckScadenzeFattureVendita()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void CheckScadenzeFattureAcquisto()
+        {
+            try
+            {
+                var giorniPreavviso = 7;
+                var inizio = DateTime.Now;
+                var fine = inizio.AddDays(giorniPreavviso);
+                var wcf = new WcfService.Service();
+                var fattureAcquisto = wcf.ReadFattureAcquisto(inizio, fine);
+                if(fattureAcquisto!=null)
+                {
+                    foreach (var fatturaAcquisto in fattureAcquisto)
+                    {
+                        //verifica se già notificata
+                        var data = DateTime.Today;
+                        var codificaFattura = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
+                        var scadenza = UtilityValidation.GetDataND(fatturaAcquisto.Scadenza);
+                        var totalePagamentiDare = BusinessLogic.Fattura.GetTotalePagamentiDare(fatturaAcquisto, data);
+                        if (totalePagamentiDare > 0)
+                        {
+                            var email = "pasqualeiaquinta@hotmail.com";
+                            var subject = GetSubjectAvvisoScadenzaFattura(fatturaAcquisto, codificaFattura, scadenza, totalePagamentiDare);
+                            var body = GetBodyAvvisoScadenzaFattura(fatturaAcquisto, data, scadenza, totalePagamentiDare);
+                            var sent = UtilityEmail.Send(email, subject, body);
+                            if (sent)
+                            {
+                                //aggiornamento tabella notifiche
+                                break;
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private string GetBodyAvvisoScadenzaFattura(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto, DateTime data, string scadenza, decimal totalePagamentiDare)
+        {
+            try
+            {
+                var pathRoot = UtilityWeb.GetRootPath(context);
+                var pathTemplateAvvisoScadenzaFattura = pathRoot + @"\Resources\Templates\TemplateAvvisoScadenzaFattura.html";
+                var content = System.IO.File.ReadAllText(pathTemplateAvvisoScadenzaFattura);
+                var codificaFattura = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto).ToLower();
+                var codificaFornitore = BusinessLogic.Fornitore.GetCodifica(fatturaAcquisto.Fornitore);
+                var codificaAzienda = BusinessLogic.Azienda.GetCodifica(fatturaAcquisto.Fornitore.Commessa.Azienda);
+                var codificaPagamenti = GetCodificaPagamenti(fatturaAcquisto.Pagamentos);
+                var totalePagamentiDato = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotalePagamentiDato(fatturaAcquisto, data));
+                var totaleFattura = UtilityValidation.GetEuro(fatturaAcquisto.Totale);
+                content = content.Replace("$codificaAzienda$", codificaAzienda);
+                content = content.Replace("$codificaFattura$", codificaFattura);
+                content = content.Replace("$codificaFornitore$",codificaFornitore );
+                content = content.Replace("$codificaPagamenti$", codificaPagamenti);
+                content = content.Replace("$scadenza$", scadenza);
+                content = content.Replace("$totalePagamentiDato$",totalePagamentiDato);
+                content = content.Replace("$totalePagamentiDare$", UtilityValidation.GetEuro(totalePagamentiDare));
+                content = content.Replace("$totaleFattura$", totaleFattura);
+
+                return content;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private string GetCodificaPagamenti(IList<WcfService.Dto.PagamentoDto> pagamenti)
+        {
+            try
+            {
+                string listaPagamenti = null;
+                if (pagamenti != null && pagamenti.Count >= 1)
+                {
+                    foreach (var pagamento in pagamenti)
+                    {
+                        if (listaPagamenti != null)
+                            listaPagamenti += "<br />";
+
+                        listaPagamenti += "N. " + BusinessLogic.Pagamento.GetCodifica(pagamento).ToLower() + " per un importo pari a " + UtilityValidation.GetEuro(pagamento.Importo) +
+                            " | Tipo transazione: " + pagamento.TransazionePagamento;
+                    }
+                }
+                if (listaPagamenti == null)
+                    listaPagamenti = "Nessun pagamento";
+
+                return listaPagamenti;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private string GetSubjectAvvisoScadenzaFattura(WcfService.Dto.FatturaAcquistoDto fatturaAcquisto, string codificaFattura, string scadenza, decimal totalePagamentiDare)
+        {
+            try
+            {
+                var subject = "AVVISO DI SCADENZA | FATTURA N." + codificaFattura + " | SCADENZA IL " + scadenza + " | TOTALE DA PAGARE " + UtilityValidation.GetEuro(totalePagamentiDare);
+                return subject;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
         }
 
         private void CheckState()
@@ -87,10 +223,13 @@ namespace BusinessLogic
                 var wcf = new WcfService.Service();
                 var stati = BusinessLogic.Tipi.GetStatiFattureInsoluteNonPagate();
                 var fattureAcquisto = wcf.ReadFattureAcquisto(stati);
-                foreach (var fatturaAcquisto in fattureAcquisto)
+                if (fattureAcquisto != null)
                 {
-                    fatturaAcquisto.Stato = BusinessLogic.Fattura.GetStatoDescrizione(fatturaAcquisto);
-                    bool saved = wcf.UpdateFatturaAcquisto(fatturaAcquisto);
+                    foreach (var fatturaAcquisto in fattureAcquisto)
+                    {
+                        fatturaAcquisto.Stato = BusinessLogic.Fattura.GetStatoDescrizione(fatturaAcquisto);
+                        bool saved = wcf.UpdateFatturaAcquisto(fatturaAcquisto);
+                    }
                 }
             }
             catch (Exception ex)
@@ -106,10 +245,13 @@ namespace BusinessLogic
                 var wcf = new WcfService.Service();
                 var stati = BusinessLogic.Tipi.GetStatiFattureInsoluteNonPagate();
                 var fattureVendita = wcf.ReadFattureVendita(stati);
-                foreach (var fatturaVendita in fattureVendita)
+                if (fattureVendita != null)
                 {
-                    fatturaVendita.Stato = BusinessLogic.Fattura.GetStatoDescrizione(fatturaVendita);
-                    bool saved = wcf.UpdateFatturaVendita(fatturaVendita);
+                    foreach (var fatturaVendita in fattureVendita)
+                    {
+                        fatturaVendita.Stato = BusinessLogic.Fattura.GetStatoDescrizione(fatturaVendita);
+                        bool saved = wcf.UpdateFatturaVendita(fatturaVendita);
+                    }
                 }
             }
             catch (Exception ex)
@@ -126,10 +268,13 @@ namespace BusinessLogic
                 var wcf = new WcfService.Service();
                 var stati = Tipi.GetStatiFornitoriInsolutiNonPagati();
                 var fornitori = wcf.ReadFornitori(stati);
-                foreach (var fornitore in fornitori)
+                if (fornitori != null)
                 {
-                    fornitore.Stato = BusinessLogic.Fornitore.GetStatoDescrizione(fornitore);
-                    bool saved = wcf.UpdateFornitore(fornitore);
+                    foreach (var fornitore in fornitori)
+                    {
+                        fornitore.Stato = BusinessLogic.Fornitore.GetStatoDescrizione(fornitore);
+                        bool saved = wcf.UpdateFornitore(fornitore);
+                    }
                 }
             }
             catch (Exception ex)
@@ -145,10 +290,13 @@ namespace BusinessLogic
                 var wcf = new WcfService.Service();
                 var stati = Tipi.GetStatiCommittentiInsolutiNonIncassati();
                 var committenti = wcf.ReadCommittenti(stati);
-                foreach (var committente in committenti)
+                if (committenti != null)
                 {
-                    committente.Stato = BusinessLogic.Committente.GetStatoDescrizione(committente);
-                    bool saved = wcf.UpdateCommittente(committente);
+                    foreach (var committente in committenti)
+                    {
+                        committente.Stato = BusinessLogic.Committente.GetStatoDescrizione(committente);
+                        bool saved = wcf.UpdateCommittente(committente);
+                    }
                 }
             }
             catch (Exception ex)
