@@ -3859,6 +3859,23 @@ namespace WcfService
             return null;
         }
 
+        public IEnumerable<Dto.NotificaDto> ReadNotifiche(DateTime dataMax, string applicazione)
+        {
+            try
+            {
+                var notifiche = QueryNotifiche(null, null, null, dataMax, applicazione);
+                notifiche = (from q in notifiche select q).Take(1000);
+
+                var notificheDto = UtilityPOCO.Assemble<Dto.NotificaDto>(notifiche);
+                return notificheDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         public bool UpdateNotifica(Dto.NotificaDto notifica)
         {
             try
@@ -3973,7 +3990,7 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.Notifica> QueryNotifiche(string search = null, object advancedSearch = null, OrderBy orderBy = null)
+        private IQueryable<DataLayer.Notifica> QueryNotifiche(string search = null, object advancedSearch = null, OrderBy orderBy = null, DateTime? dataMax=null, string applicazione=null)
         {
             try
             {
@@ -3987,6 +4004,9 @@ namespace WcfService
 
                 if (advancedSearch != null)
                     notifiche = notifiche.Where((Func<DataLayer.Notifica, bool>)advancedSearch).AsQueryable();
+
+                if (dataMax != null)
+                    notifiche = (from q in notifiche where q.Applicazione == applicazione && q.Data <= dataMax select q);
 
                 notifiche = (from q in notifiche orderby q.Id descending select q);
                 if (orderBy != null)

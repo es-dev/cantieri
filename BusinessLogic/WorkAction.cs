@@ -11,15 +11,15 @@ using WcfService.Dto;
 
 namespace BusinessLogic
 {
-    public class WorkAction : IWorkAction
+    public class WorkAction : Library.Code.WorkAction
     {
         public WorkAction()
         {
 
         }
 
-        private string name = "Workflow per la gestione degli stati, invio delle notifiche, ...";
-        public string Name
+        private string name = "ES.Cantieri";
+        public override string Name
         {
             get
             {
@@ -27,8 +27,17 @@ namespace BusinessLogic
             }
         }
 
+        private string description = "Workflow per la gestione degli stati, invio delle notifiche, ...";
+        public override string Description
+        {
+            get
+            {
+                return description;
+            }
+        }
+
         private TimeSpan interval = new TimeSpan(0, 5, 0);
-        public TimeSpan Interval
+        public override TimeSpan Interval
         {
             get
             {
@@ -37,7 +46,7 @@ namespace BusinessLogic
         }
 
         private HttpContext context = null;
-        public HttpContext Context
+        public override HttpContext Context
         {
             get
             {
@@ -49,14 +58,38 @@ namespace BusinessLogic
             }
         }
 
-        public void Start()
+        public override void Start()
         {
             try
             {
+                AddLog("Avvio work force manager...", "START");
                 KeepAlive();
                 CheckState();
                 CheckScadenze();
+                ClearNotifiche();
+                AddLog("Stop work force manager...", "END");
 
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void ClearNotifiche()
+        {
+            try
+            {
+                int periodoLog = 7;
+                AddLog("Clear delle notifiche storiche | periodo-log = "+periodoLog+" giorni ...", "OK");
+                var dataMax = DateTime.Today.AddDays(-periodoLog);
+                var wcf = new WcfService.Service();
+                var notifiche = wcf.ReadNotifiche(dataMax, name);
+                if(notifiche!=null)
+                {
+                    foreach (var notifica in notifiche)
+                        wcf.DeleteNotifica(notifica);
+                }
             }
             catch (Exception ex)
             {
@@ -68,7 +101,9 @@ namespace BusinessLogic
         {
             try
             {
+                AddLog("Controllo scadenze per fatture di acquisto...", "OK");
                 CheckScadenzeFattureAcquisto();
+                AddLog("Controllo scadenze per fatture di acquisto...", "OK");
                 CheckScadenzeFattureVendita();
             }
             catch (Exception ex)
@@ -90,19 +125,16 @@ namespace BusinessLogic
                 {
                     foreach (var fatturaVendita in fattureVendita)
                     {
-                        var notifica = BusinessLogic.Notifica.GetNewNotifica(fatturaVendita);
+                        var notifica = BusinessLogic.Notifica.GetNewNotifica(fatturaVendita, name);
                         var _notifica = wcf.ReadNotifica(notifica);
                         if (_notifica == null)
                         {
                             var data = DateTime.Today;
-                            var codificaFattura = BusinessLogic.Fattura.GetCodifica(fatturaVendita);
-                            var codificaCommittente = BusinessLogic.Committente.GetCodifica(fatturaVendita.Committente);
-                            var scadenza = UtilityValidation.GetDataND(fatturaVendita.Scadenza);
                             var totaleIncassiAvere = BusinessLogic.Fattura.GetTotaleIncassiAvere(fatturaVendita, data);
                             if (totaleIncassiAvere > 0)
                             {
-                                var subject = GetSubjectAvvisoScadenzaFattura(fatturaVendita, codificaFattura, codificaCommittente, scadenza, totaleIncassiAvere);
-                                var body = GetBodyAvvisoScadenzaFattura(fatturaVendita, data, codificaCommittente, scadenza, totaleIncassiAvere);
+                                var subject = GetSubjectAvvisoScadenzaFattura(fatturaVendita);
+                                var body = GetBodyAvvisoScadenzaFattura(fatturaVendita, data, totaleIncassiAvere);
                                 var email = BusinessLogic.Azienda.GetEmail(fatturaVendita);
                                 if (email != null && email.Length > 0)
                                 {
@@ -140,19 +172,16 @@ namespace BusinessLogic
                 {
                     foreach (var fatturaAcquisto in fattureAcquisto)
                     {
-                        var notifica = BusinessLogic.Notifica.GetNewNotifica(fatturaAcquisto);
+                        var notifica = BusinessLogic.Notifica.GetNewNotifica(fatturaAcquisto, name);
                         var _notifica = wcf.ReadNotifica(notifica);
                         if (_notifica == null)
                         {
                             var data = DateTime.Today;
-                            var codificaFattura = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
-                            var codificaFornitore = BusinessLogic.Fornitore.GetCodifica(fatturaAcquisto.Fornitore);
-                            var scadenza = UtilityValidation.GetDataND(fatturaAcquisto.Scadenza);
                             var totalePagamentiDare = BusinessLogic.Fattura.GetTotalePagamentiDare(fatturaAcquisto, data);
                             if (totalePagamentiDare > 0)
                             {
-                                var subject = GetSubjectAvvisoScadenzaFattura(fatturaAcquisto, codificaFattura, codificaFornitore, scadenza, totalePagamentiDare);
-                                var body = GetBodyAvvisoScadenzaFattura(fatturaAcquisto, data, codificaFornitore, scadenza, totalePagamentiDare);
+                                var subject = GetSubjectAvvisoScadenzaFattura(fatturaAcquisto);
+                                var body = GetBodyAvvisoScadenzaFattura(fatturaAcquisto, data, totalePagamentiDare);
                                 var email = BusinessLogic.Azienda.GetEmail(fatturaAcquisto);
                                 if (email != null && email.Length > 0)
                                 {
@@ -177,12 +206,12 @@ namespace BusinessLogic
             }
         }
 
-        private string GetSubjectAvvisoScadenzaFattura(FatturaAcquistoDto fatturaAcquisto, string codificaFattura, string codificaFornitore, string scadenza, decimal totalePagamentiDare)
+        private string GetSubjectAvvisoScadenzaFattura(FatturaAcquistoDto fatturaAcquisto)
         {
             try
             {
-                var subject = "AVVISO DI SCADENZA FATTURA DI ACQUISTO N." + codificaFattura + " | FORNITORE " + codificaFornitore + " | SCADENZA IL " + scadenza +
-                    " | TOTALE DA PAGARE " + UtilityValidation.GetEuro(totalePagamentiDare);
+                var codificaFattura = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto);
+                var subject = "AVVISO DI SCADENZA FATTURA DI ACQUISTO N." + codificaFattura;
                 return subject;
             }
             catch (Exception ex)
@@ -192,12 +221,12 @@ namespace BusinessLogic
             return null;
         }
 
-        private string GetSubjectAvvisoScadenzaFattura(FatturaVenditaDto fatturaVendita, string codificaFattura, string codificaCommittente, string scadenza, decimal totaleIncassiAvere)
+        private string GetSubjectAvvisoScadenzaFattura(FatturaVenditaDto fatturaVendita)
         {
             try
             {
-                var subject = "AVVISO DI SCADENZA FATTURA DI VENDITA N." + codificaFattura + " | COMMITTENTE " + codificaCommittente + " | SCADENZA IL " + scadenza +
-                    " | TOTALE DA INCASSARE " + UtilityValidation.GetEuro(totaleIncassiAvere);
+                var codificaFattura = BusinessLogic.Fattura.GetCodifica(fatturaVendita);
+                var subject = "AVVISO DI SCADENZA FATTURA DI VENDITA N." + codificaFattura;
                 return subject;
             }
             catch (Exception ex)
@@ -207,7 +236,7 @@ namespace BusinessLogic
             return null;
         }
 
-        private string GetBodyAvvisoScadenzaFattura(FatturaAcquistoDto fatturaAcquisto, DateTime data, string codificaFornitore, string scadenza, decimal totalePagamentiDare)
+        private string GetBodyAvvisoScadenzaFattura(FatturaAcquistoDto fatturaAcquisto, DateTime data, decimal totalePagamentiDare)
         {
             try
             {
@@ -216,7 +245,9 @@ namespace BusinessLogic
                 var content = System.IO.File.ReadAllText(pathTemplateAvvisoScadenzaFattura);
                 var codificaFattura = BusinessLogic.Fattura.GetCodifica(fatturaAcquisto).ToLower();
                 var codificaAzienda = BusinessLogic.Azienda.GetCodifica(fatturaAcquisto);
+                var codificaFornitore = BusinessLogic.Fornitore.GetCodifica(fatturaAcquisto.Fornitore);
                 var codificaPagamenti = GetCodificaPagamenti(fatturaAcquisto.Pagamentos);
+                var scadenza = UtilityValidation.GetDataND(fatturaAcquisto.Scadenza);
                 var totalePagamentiDato = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotalePagamentiDato(fatturaAcquisto, data));
                 var totaleFattura = UtilityValidation.GetEuro(fatturaAcquisto.Totale);
                 content = content.Replace("$codificaAzienda$", codificaAzienda);
@@ -237,7 +268,7 @@ namespace BusinessLogic
             return null;
         }
 
-        private string GetBodyAvvisoScadenzaFattura(FatturaVenditaDto fatturaVendita, DateTime data, string codificaCommittente, string scadenza, decimal totaleIncassiAvere)
+        private string GetBodyAvvisoScadenzaFattura(FatturaVenditaDto fatturaVendita, DateTime data, decimal totaleIncassiAvere)
         {
             try
             {
@@ -247,6 +278,8 @@ namespace BusinessLogic
                 var codificaFattura = BusinessLogic.Fattura.GetCodifica(fatturaVendita).ToLower();
                 var codificaAzienda = BusinessLogic.Azienda.GetCodifica(fatturaVendita);
                 var codificaIncassi = GetCodificaIncassi(fatturaVendita.Incassos);
+                var codificaCommittente = BusinessLogic.Committente.GetCodifica(fatturaVendita.Committente);
+                var scadenza = UtilityValidation.GetDataND(fatturaVendita.Scadenza);
                 var totaleIncassiAvuto = UtilityValidation.GetEuro(BusinessLogic.Fattura.GetTotaleIncassiAvuto(fatturaVendita, data));
                 var totaleFattura = UtilityValidation.GetEuro(fatturaVendita.Totale);
                 content = content.Replace("$codificaAzienda$", codificaAzienda);
@@ -328,9 +361,13 @@ namespace BusinessLogic
         {
             try
             {
+                AddLog("Controllo stato per fatture di acquisto...", "OK");
                 CheckStatiFattureAcquisto();
+                AddLog("Controllo stato per fatture di vendita...", "OK");
                 CheckStatiFattureVendita();
+                AddLog("Controllo stato per fornitori...", "OK");
                 CheckStatiFornitori();
+                AddLog("Controllo stato per committenti...", "OK");
                 CheckStatiCommittenti();
             }
             catch (Exception ex)
@@ -435,6 +472,7 @@ namespace BusinessLogic
                 var url = UtilityWeb.GetRootUrl(context);
                 var webclient = new WebClient();
                 webclient.DownloadString(url);
+                AddLog("KeepAlive avviato per sito " + url, "OK");
             }
             catch (Exception ex)
             {

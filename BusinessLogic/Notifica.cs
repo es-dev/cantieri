@@ -10,9 +10,7 @@ namespace BusinessLogic
 {
     public class Notifica
     {
-        private static string applicazione = "ES.Cantieri";
-
-        internal static NotificaDto GetNewNotifica(FatturaAcquistoDto fatturaAcquisto)
+        internal static NotificaDto GetNewNotifica(FatturaAcquistoDto fatturaAcquisto, string applicazione)
         {
             try
             {
@@ -34,7 +32,7 @@ namespace BusinessLogic
             return null;
         }
 
-        internal static NotificaDto GetNewNotifica(FatturaVenditaDto fatturaVendita)
+        internal static NotificaDto GetNewNotifica(FatturaVenditaDto fatturaVendita, string applicazione)
         {
             try
             {
