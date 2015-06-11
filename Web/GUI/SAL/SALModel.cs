@@ -113,7 +113,8 @@ namespace Web.GUI.SAL
             {
                 if (obj != null)
                 {
-                    var commessa = obj.Commessa;
+                    var viewModel = new Commessa.CommessaViewModel();
+                    var commessa = viewModel.ReadCommessa(obj);
                     if (commessa != null)
                     {
                         var data = UtilityValidation.GetData(editData.Value);
@@ -125,7 +126,7 @@ namespace Web.GUI.SAL
                         var totaleFattureVendita = BusinessLogic.SAL.GetTotaleFattureVendita(committenti, data);
                         var totalePagamenti = BusinessLogic.SAL.GetTotalePagamenti(fornitori, data);
                         var totaleIncassi = BusinessLogic.SAL.GetTotaleIncassi(committenti, data);
-                        var statoDescrizione = BusinessLogic.SAL.GetStatoDescrizione(obj);
+                        var statoDescrizione = BusinessLogic.SAL.GetStatoDescrizione(obj, commessa);
 
                         editStato.Value = statoDescrizione;
                         editTotaleFattureAcquisto.Value = totaleFattureAcquisto;

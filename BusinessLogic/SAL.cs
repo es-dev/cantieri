@@ -200,14 +200,13 @@ namespace BusinessLogic
             return Tipi.StatoSAL.None;
         }
 
-        public static string GetStatoDescrizione(SALDto sal)
+        public static string GetStatoDescrizione(SALDto sal, CommessaDto commessa)
         {
             try
             {
                 var statoDescrizione = "N/D";
                 if (sal != null)
                 {
-                    var commessa = sal.Commessa;
                     if (commessa != null)
                     {
                         var statoCommessa = commessa.Stato;

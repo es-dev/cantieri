@@ -30,7 +30,7 @@ namespace Web.GUI.SAL
                     var data = UtilityValidation.GetData(obj.Data);
 
                     var viewModel = new Commessa.CommessaViewModel();
-                    var commessa = (CommessaDto)viewModel.ReadCommessa(obj);
+                    var commessa = viewModel.ReadCommessa(obj);
                     var importoLavori = UtilityValidation.GetEuro(commessa.Importo);
                     var margineOperativo = BusinessLogic.SAL.GetMargineOperativo(obj, commessa);
 
