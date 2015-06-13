@@ -77,6 +77,7 @@ namespace BusinessLogic
             NonPagata, //fattura il cui totale pagamenti < totale fattura e today<=scadenza=data fattura+ scadenza pagamento
             Incoerente //fattura il cui totale pagamenti > totale fattura
         }
+       
         public enum StatoFornitore
         {
             None,

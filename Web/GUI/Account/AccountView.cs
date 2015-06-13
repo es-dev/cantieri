@@ -28,19 +28,5 @@ namespace Web.GUI.Account
             }
         }
 
-        //private void btnAdd_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        var space = new AccountModel();
-        //        space.Model = new WcfService.Dto.AccountDto();
-        //        AddSpace(space);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        UtilityError.Write(ex);
-        //    } 
-        //}
-
 	}
 }
