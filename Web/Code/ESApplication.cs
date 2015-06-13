@@ -14,8 +14,8 @@ namespace Web.Code
             try
             {
                 view.Title = "ES | GESTIONE CANTIERI";
-                view.Version = "rev. 1.1e";
-                view.LogoSoftware = "Images.logoSoftware.png";
+                view.Version = "rev. 1.2";
+                view.LogoSoftware = "Images.es.cantieri.png";
                 view.LogoESD = "Images.logoESD.png";
                 view.BackgroundImage = "Images.background.png";
                 view.UrlHomePortal = "http://www.3gcostruzioni.it";
