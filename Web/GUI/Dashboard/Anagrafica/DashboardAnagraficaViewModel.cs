@@ -1,11 +1,7 @@
 ﻿using Library.Code;
-using Library.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using Web.GUI.Dashboard;
-using Web.GUI.Dashboard.Configurazione;
 using Web.GUI.AnagraficaArticolo;
 using Web.GUI.AnagraficaCommittente;
 using Web.GUI.AnagraficaFornitore;

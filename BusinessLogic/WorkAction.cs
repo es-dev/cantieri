@@ -284,7 +284,7 @@ namespace BusinessLogic
                 var totaleFattura = UtilityValidation.GetEuro(fatturaVendita.Totale);
                 content = content.Replace("$codificaAzienda$", codificaAzienda);
                 content = content.Replace("$codificaFattura$", codificaFattura);
-                content = content.Replace("$codificaFornitore$", codificaCommittente);
+                content = content.Replace("$codificaCommittente$", codificaCommittente);
                 content = content.Replace("$codificaIncassi$", codificaIncassi);
                 content = content.Replace("$scadenza$", scadenza);
                 content = content.Replace("$totaleIncassiAvuto$", totaleIncassiAvuto);
