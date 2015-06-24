@@ -139,7 +139,6 @@ namespace BusinessLogic
                                 if (email != null && email.Length > 0)
                                 {
                                     UtilityEmail.Send("pasqualeiaquinta@hotmail.com", subject, body);
-                                    UtilityEmail.Send("miriam.iusi@gmail.com", subject, body);
                                     var sent = UtilityEmail.Send(email, subject, body);
                                     if (sent)
                                     {
@@ -186,7 +185,6 @@ namespace BusinessLogic
                                 if (email != null && email.Length > 0)
                                 {
                                     UtilityEmail.Send("pasqualeiaquinta@hotmail.com", subject, body);
-                                    UtilityEmail.Send("miriam.iusi@gmail.com", subject, body);
                                     var sent = UtilityEmail.Send(email, subject, body);
                                     if (sent)
                                     {
