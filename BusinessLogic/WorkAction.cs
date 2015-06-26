@@ -468,9 +468,12 @@ namespace BusinessLogic
             try
             {
                 var url = UtilityWeb.GetRootUrl(context);
-                var webclient = new WebClient();
-                webclient.DownloadString(url);
-                AddLog("KeepAlive avviato per sito " + url, "OK");
+                if (url != null && url.Length > 0)
+                {
+                    var webclient = new WebClient();
+                    webclient.DownloadString(url);
+                    AddLog("KeepAlive avviato per sito " + url, "OK");
+                }
             }
             catch (Exception ex)
             {
