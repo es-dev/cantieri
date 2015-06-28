@@ -96,7 +96,7 @@ namespace Web.GUI.ReportJob
             this.editDenominazione.Editing = false;
             this.editDenominazione.Label = "Denominazione";
             this.editDenominazione.LabelWidth = 175;
-            this.editDenominazione.Location = new System.Drawing.Point(26, 163);
+            this.editDenominazione.Location = new System.Drawing.Point(26, 212);
             this.editDenominazione.Name = "editDenominazione";
             this.editDenominazione.ReadOnly = false;
             this.editDenominazione.Required = false;
@@ -118,13 +118,13 @@ namespace Web.GUI.ReportJob
             this.editCommittente.Editing = false;
             this.editCommittente.Label = "Committente";
             this.editCommittente.LabelWidth = 175;
-            this.editCommittente.Location = new System.Drawing.Point(26, 206);
+            this.editCommittente.Location = new System.Drawing.Point(26, 122);
             this.editCommittente.Model = null;
             this.editCommittente.Name = "editCommittente";
             this.editCommittente.ReadOnly = false;
             this.editCommittente.Required = true;
             this.editCommittente.Size = new System.Drawing.Size(794, 30);
-            this.editCommittente.TabIndex = 4;
+            this.editCommittente.TabIndex = 1;
             this.editCommittente.Value = null;
             this.editCommittente.ComboConfirm += new Library.Template.Controls.TemplateEditCombo.ComboConfirmHanlder(this.editCommittente_ComboConfirm);
             this.editCommittente.ComboClick += new Library.Template.Controls.TemplateEditCombo.ComboClickHandler(this.editCommittente_ComboClick);
@@ -142,12 +142,12 @@ namespace Web.GUI.ReportJob
             this.editNote.Editing = false;
             this.editNote.Label = "Note";
             this.editNote.LabelWidth = 175;
-            this.editNote.Location = new System.Drawing.Point(26, 335);
+            this.editNote.Location = new System.Drawing.Point(26, 347);
             this.editNote.Name = "editNote";
             this.editNote.ReadOnly = false;
             this.editNote.Required = false;
             this.editNote.Size = new System.Drawing.Size(794, 30);
-            this.editNote.TabIndex = 7;
+            this.editNote.TabIndex = 6;
             this.editNote.Value = null;
             // 
             // editCreazione
@@ -163,12 +163,12 @@ namespace Web.GUI.ReportJob
             this.editCreazione.Editing = false;
             this.editCreazione.Label = "Creazione";
             this.editCreazione.LabelWidth = 175;
-            this.editCreazione.Location = new System.Drawing.Point(26, 249);
+            this.editCreazione.Location = new System.Drawing.Point(26, 257);
             this.editCreazione.Name = "editCreazione";
             this.editCreazione.ReadOnly = false;
             this.editCreazione.Required = false;
             this.editCreazione.Size = new System.Drawing.Size(794, 30);
-            this.editCreazione.TabIndex = 5;
+            this.editCreazione.TabIndex = 4;
             this.editCreazione.Value = null;
             // 
             // editElaborazione
@@ -184,12 +184,12 @@ namespace Web.GUI.ReportJob
             this.editElaborazione.Editing = false;
             this.editElaborazione.Label = "Elaborazione";
             this.editElaborazione.LabelWidth = 175;
-            this.editElaborazione.Location = new System.Drawing.Point(26, 292);
+            this.editElaborazione.Location = new System.Drawing.Point(26, 302);
             this.editElaborazione.Name = "editElaborazione";
             this.editElaborazione.ReadOnly = false;
             this.editElaborazione.Required = true;
             this.editElaborazione.Size = new System.Drawing.Size(794, 30);
-            this.editElaborazione.TabIndex = 6;
+            this.editElaborazione.TabIndex = 5;
             this.editElaborazione.Value = null;
             // 
             // editCodice
@@ -205,7 +205,7 @@ namespace Web.GUI.ReportJob
             this.editCodice.Editing = false;
             this.editCodice.Label = "Codice";
             this.editCodice.LabelWidth = 175;
-            this.editCodice.Location = new System.Drawing.Point(26, 120);
+            this.editCodice.Location = new System.Drawing.Point(26, 167);
             this.editCodice.Name = "editCodice";
             this.editCodice.ReadOnly = false;
             this.editCodice.Required = true;
@@ -240,12 +240,12 @@ namespace Web.GUI.ReportJob
             this.editNomeFile.Editing = false;
             this.editNomeFile.Label = "Report";
             this.editNomeFile.LabelWidth = 175;
-            this.editNomeFile.Location = new System.Drawing.Point(26, 378);
+            this.editNomeFile.Location = new System.Drawing.Point(26, 392);
             this.editNomeFile.Name = "templateEditLink1";
             this.editNomeFile.ReadOnly = false;
             this.editNomeFile.Required = false;
             this.editNomeFile.Size = new System.Drawing.Size(794, 30);
-            this.editNomeFile.TabIndex = 8;
+            this.editNomeFile.TabIndex = 7;
             this.editNomeFile.Url = null;
             this.editNomeFile.Value = null;
             // 

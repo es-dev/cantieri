@@ -115,12 +115,12 @@ namespace Web.GUI.AnagraficaFornitore
             return null;
         }
 
-        internal IEnumerable<AnagraficaFornitoreDto> ReadAnagraficheFornitori()
+        internal IEnumerable<AnagraficaFornitoreDto> ReadAnagraficheFornitori(AziendaDto azienda=null)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.ReadAnagraficheFornitori();
+                var objs = wcf.ReadAnagraficheFornitori(azienda);
                 return objs;
             }
             catch (Exception ex)

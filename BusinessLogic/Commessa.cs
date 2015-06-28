@@ -283,9 +283,8 @@ namespace BusinessLogic
                     if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
                         importoAvanzamentoLavori = UtilityValidation.GetDecimal(commessa.ImportoAvanzamento);
                     else
-                    {
                         importoAvanzamentoLavori = BusinessLogic.SAL.GetImportoAvanzamentoLavori(commessa);
-                    }
+                    
                     return importoAvanzamentoLavori;
                 }
             }
@@ -439,6 +438,32 @@ namespace BusinessLogic
                 {
                     var codifica = commessa.Codice + " - " + commessa.Denominazione;
                     return codifica;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        internal static string GetStato(CommessaDto commessa)
+        {
+            try
+            {
+                if(commessa!=null)
+                {
+                    var stato = Tipi.StatoCommessa.None;
+                    var importo = UtilityValidation.GetDecimal(commessa.Importo);
+                    if (importo > 0)
+                    {
+                        var percentuale = UtilityValidation.GetDecimal(commessa.Percentuale);
+                        stato = (percentuale >= 100 ? Tipi.StatoCommessa.Chiusa : Tipi.StatoCommessa.InLavorazione);
+                    }
+                    else
+                        stato = Tipi.StatoCommessa.Aperta;
+
+                    return stato.ToString();
                 }
             }
             catch (Exception ex)

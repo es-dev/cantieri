@@ -536,6 +536,22 @@ namespace WcfService
             return null;
         }
 
+        public IEnumerable<Dto.CommessaDto> ReadCommesse(IList<string> stati)
+        {
+            try
+            {
+                var ef = new DataLayer.EntitiesModel();
+                var commesse = (from q in ef.Commessas where stati.Contains(q.Stato) select q);
+                var commesseDto = UtilityPOCO.Assemble<Dto.CommessaDto>(commesse, true);
+                return commesseDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
         #endregion
         #endregion
 
@@ -3192,11 +3208,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.AnagraficaFornitoreDto> LoadAnagraficheFornitori(int skip, int take, string search = null, object advancedSearch = null, OrderBy orderBy = null)
+        public IEnumerable<Dto.AnagraficaFornitoreDto> LoadAnagraficheFornitori(int skip, int take, string search = null, object advancedSearch = null, OrderBy orderBy = null, Dto.AziendaDto azienda=null)
         {
             try
             {
-                var anagraficheFornitori = QueryAnagraficheFornitori(search, advancedSearch, orderBy);
+                var anagraficheFornitori = QueryAnagraficheFornitori(search, advancedSearch, orderBy, azienda);
                 anagraficheFornitori = (from q in anagraficheFornitori select q).Skip(skip).Take(take);
 
                 var anagraficheFornitoriDto = UtilityPOCO.Assemble<Dto.AnagraficaFornitoreDto>(anagraficheFornitori);
@@ -3272,13 +3288,31 @@ namespace WcfService
             return null;
         }
 
+         public IEnumerable<Dto.AnagraficaFornitoreDto> ReadAnagraficheFornitori(Dto.AziendaDto azienda)
+        {
+            try
+            {
+                var anagraficheFornitori = QueryAnagraficheFornitori(null, null, null, azienda);
+                var anagraficheFornitoriDto = UtilityPOCO.Assemble<Dto.AnagraficaFornitoreDto>(anagraficheFornitori);
+                return anagraficheFornitoriDto;
 
-        private IQueryable<DataLayer.AnagraficaFornitore> QueryAnagraficheFornitori(string search = null, object advancedSearch = null, OrderBy orderBy = null)
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private IQueryable<DataLayer.AnagraficaFornitore> QueryAnagraficheFornitori(string search = null, object advancedSearch = null, OrderBy orderBy = null, Dto.AziendaDto azienda=null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var anagraficheFornitori = (from q in ef.AnagraficaFornitores select q);
+
+                if (azienda != null)
+                    anagraficheFornitori = (from q in anagraficheFornitori where q.AziendaId == azienda.Id select q);
 
                 if (search != null && search.Length > 0)
                     anagraficheFornitori = (from q in anagraficheFornitori
@@ -3392,11 +3426,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.AnagraficaCommittenteDto> LoadAnagraficheCommittenti(int skip, int take, string search = null, object advancedSearch = null, OrderBy orderBy = null)
+        public IEnumerable<Dto.AnagraficaCommittenteDto> LoadAnagraficheCommittenti(int skip, int take, string search = null, object advancedSearch = null, OrderBy orderBy = null, Dto.AziendaDto azienda=null)
         {
             try
             {
-                var anagraficheCommittenti = QueryAnagraficheCommittenti(search, advancedSearch, orderBy);
+                var anagraficheCommittenti = QueryAnagraficheCommittenti(search, advancedSearch, orderBy, azienda);
                 anagraficheCommittenti = (from q in anagraficheCommittenti select q).Skip(skip).Take(take);
 
                 var anagraficheCommittentiDto = UtilityPOCO.Assemble<Dto.AnagraficaCommittenteDto>(anagraficheCommittenti);
@@ -3456,12 +3490,30 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.AnagraficaCommittente> QueryAnagraficheCommittenti(string search = null, object advancedSearch = null, OrderBy orderBy = null)
+        public IEnumerable<Dto.AnagraficaCommittenteDto> ReadAnagraficheCommittenti(Dto.AziendaDto azienda)
+        {
+            try
+            {
+                var anagraficheCommittenti = QueryAnagraficheCommittenti(null, null, null, azienda);
+                var anagraficheCommittentiDto = UtilityPOCO.Assemble<Dto.AnagraficaCommittenteDto>(anagraficheCommittenti);
+                return anagraficheCommittentiDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private IQueryable<DataLayer.AnagraficaCommittente> QueryAnagraficheCommittenti(string search = null, object advancedSearch = null, OrderBy orderBy = null, Dto.AziendaDto azienda=null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var anagraficheCommittenti = (from q in ef.AnagraficaCommittentes select q);
+
+                if (azienda != null)
+                    anagraficheCommittenti = (from q in anagraficheCommittenti where q.AziendaId == azienda.Id select q);
 
                 if (search != null && search.Length > 0)
                     anagraficheCommittenti = (from q in anagraficheCommittenti
@@ -3574,11 +3626,11 @@ namespace WcfService
         }
         #endregion
         #region Custom
-        public IEnumerable<Dto.AnagraficaArticoloDto> LoadAnagraficheArticoli(int skip, int take, string search = null, object advancedSearch = null, OrderBy orderBy = null)
+        public IEnumerable<Dto.AnagraficaArticoloDto> LoadAnagraficheArticoli(int skip, int take, string search = null, object advancedSearch = null, OrderBy orderBy = null, Dto.AziendaDto azienda=null)
         {
             try
             {
-                var anagraficheArticoli = QueryAnagraficheArticoli(search, advancedSearch, orderBy);
+                var anagraficheArticoli = QueryAnagraficheArticoli(search, advancedSearch, orderBy, azienda);
                 anagraficheArticoli = (from q in anagraficheArticoli select q).Skip(skip).Take(take);
 
                 var anagraficheArticoliDto = UtilityPOCO.Assemble<Dto.AnagraficaArticoloDto>(anagraficheArticoli);
@@ -3622,12 +3674,30 @@ namespace WcfService
             return null;
         }
 
-        private IQueryable<DataLayer.AnagraficaArticolo> QueryAnagraficheArticoli(string search = null, object advancedSearch = null, OrderBy orderBy = null)
+        public IEnumerable<Dto.AnagraficaArticoloDto> ReadAnagraficheArticoli(Dto.AziendaDto azienda)
+        {
+            try
+            {
+                var anagraficheArticoli = QueryAnagraficheArticoli(null, null, null, azienda);
+                var anagraficheArticoliDto = UtilityPOCO.Assemble<Dto.AnagraficaArticoloDto>(anagraficheArticoli);
+                return anagraficheArticoliDto;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private IQueryable<DataLayer.AnagraficaArticolo> QueryAnagraficheArticoli(string search = null, object advancedSearch = null, OrderBy orderBy = null, Dto.AziendaDto azienda=null)
         {
             try
             {
                 var ef = new DataLayer.EntitiesModel();
                 var anagraficheArticoli = (from q in ef.AnagraficaArticolos select q);
+
+                if (azienda != null)
+                    anagraficheArticoli = (from q in anagraficheArticoli where q.AziendaId == azienda.Id select q);
 
                 if (search != null && search.Length > 0)
                     anagraficheArticoli = (from q in anagraficheArticoli where q.Codice.StartsWith(search) || q.Descrizione.Contains(search) select q);
@@ -3978,8 +4048,12 @@ namespace WcfService
                 var today = DateTime.Today;
                 var inizio = new DateTime(today.Year, today.Month, today.Day, 0, 0, 0);
                 var fine = new DateTime(today.Year, today.Month, today.Day, 23, 59, 59);
-                var _notifica = (from q in ef.Notificas where q.Codice==notifica.Codice && q.Tipo==notifica.Tipo && q.Applicazione==notifica.Applicazione && 
-                                     inizio<=q.Data && q.Data<=fine select q).FirstOrDefault();
+                var _notifica = (from q in ef.Notificas
+                                 where q.Codice == notifica.Codice &&
+                                     q.Tipo == notifica.Tipo &&
+                                     q.Applicazione == notifica.Applicazione &&
+                                     inizio <= q.Data && q.Data <= fine
+                                 select q).FirstOrDefault();
                 var notificaDto = UtilityPOCO.Assemble<Dto.NotificaDto>(_notifica);
                 return notificaDto;
             }

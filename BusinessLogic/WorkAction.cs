@@ -66,6 +66,9 @@ namespace BusinessLogic
                 KeepAlive();
                 CheckState();
                 CheckScadenze();
+                CheckSALs();
+                CheckCommesse();
+                CheckReports();
                 ClearNotifiche();
                 AddLog("Stop work force manager...", "END");
 
@@ -76,13 +79,264 @@ namespace BusinessLogic
             }
         }
 
+        private void CheckReports()
+        {
+            try
+            {
+                AddLog("Check report situazione fornitori... ", "OK");
+                CheckReportFornitori();
+
+                AddLog("Check report situazione committenti... ", "OK");
+                CheckReportCommittenti();
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void CheckReportFornitori()
+        {
+            try
+            {
+                var wcf = new WcfService.Service();
+                var aziende = wcf.ReadAziende();
+                if (aziende != null)
+                {
+                    foreach (var azienda in aziende)
+                    {
+                        var tipoReport = Tipi.TipoReport.Fornitori;
+                        var notifica = BusinessLogic.Notifica.GetNewNotifica(azienda, tipoReport, name);
+                        var _notifica = wcf.ReadNotifica(notifica);
+                        if (_notifica == null)
+                        {
+                            var anagraficheFornitori = wcf.ReadAnagraficheFornitori(azienda).ToList();
+                            if (anagraficheFornitori != null)
+                            {
+                                var data = DateTime.Today.ToString("ddMMyyyy");
+                                var elaborazione = DateTime.Now;
+                                string pathTemplate = UtilityWeb.GetRootPath(Context) + @"Resources\Templates\TemplateResocontoFornitori.doc";
+                                var fileName = "ResocontoFornitori_" + data + ".PDF";
+                                var pathReport = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileName;
+                                var fornitori = wcf.ReadFornitori(anagraficheFornitori).ToList();
+
+                                var report = BusinessLogic.ReportJob.GetReportFornitori(azienda, anagraficheFornitori, fornitori, elaborazione);
+                                if (report != null)
+                                {
+                                    bool performed = report.Create(pathTemplate, pathReport);
+                                    if (performed)
+                                    {
+                                        string url = UtilityWeb.GetRootUrl(Context) + @"/Resources/Reports/" + fileName;
+                                        var subject = "Report Business Analyst - " + UtilityEnum.GetDescription<Tipi.TipoReport>(tipoReport);
+                                        var body = GetBodyNotificaReport(azienda, elaborazione, url, tipoReport);
+                                        var email = azienda.Email;
+                                        if (email != null && email.Length > 0)
+                                        {
+                                            UtilityEmail.Send("pasqualeiaquinta@hotmail.com", subject, body);
+                                            var sent = UtilityEmail.Send(email, subject, body);
+                                            if (sent)
+                                            {
+                                                notifica.Descrizione = subject;
+                                                wcf.CreateNotifica(notifica);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void CheckReportCommittenti()
+        {
+            try
+            {
+                var wcf = new WcfService.Service();
+                var aziende = wcf.ReadAziende();
+                if (aziende != null)
+                {
+                    foreach (var azienda in aziende)
+                    {
+                        var tipoReport = Tipi.TipoReport.Committenti;
+                        var notifica = BusinessLogic.Notifica.GetNewNotifica(azienda, tipoReport, name);
+                        var _notifica = wcf.ReadNotifica(notifica);
+                        if (_notifica == null)
+                        {
+                            var anagraficheCommittenti = wcf.ReadAnagraficheCommittenti(azienda).ToList();
+                            if (anagraficheCommittenti != null)
+                            {
+                                var data = DateTime.Today.ToString("ddMMyyyy");
+                                var elaborazione = DateTime.Now;
+                                string pathTemplate = UtilityWeb.GetRootPath(Context) + @"Resources\Templates\TemplateResocontoCommittenti.doc";
+                                var fileName = "ResocontoCommittenti_" + data + ".PDF";
+                                var pathReport = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileName;
+                                var committenti = wcf.ReadCommittenti(anagraficheCommittenti).ToList();
+
+                                var report = BusinessLogic.ReportJob.GetReportCommittenti(azienda, anagraficheCommittenti, committenti, elaborazione);
+                                if (report != null)
+                                {
+                                    bool performed = report.Create(pathTemplate, pathReport);
+                                    if (performed)
+                                    {
+                                        string url = UtilityWeb.GetRootUrl(Context) + @"/Resources/Reports/" + fileName;
+                                        var subject = "Report Business Analyst - " + UtilityEnum.GetDescription<Tipi.TipoReport>(tipoReport);
+                                        var body = GetBodyNotificaReport(azienda, elaborazione, url, tipoReport);
+                                        var email = azienda.Email;
+                                        if (email != null && email.Length > 0)
+                                        {
+                                            UtilityEmail.Send("pasqualeiaquinta@hotmail.com", subject, body);
+                                            var sent = UtilityEmail.Send(email, subject, body);
+                                            if (sent)
+                                            {
+                                                notifica.Descrizione = subject;
+                                                wcf.CreateNotifica(notifica);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private string GetBodyNotificaReport(AziendaDto azienda, DateTime elaborazione, string url, Tipi.TipoReport tipoReport)
+        {
+            try
+            {
+                var pathRoot = UtilityWeb.GetRootPath(context);
+                var templateName = "";
+                if (tipoReport == Tipi.TipoReport.Committenti)
+                    templateName = "TemplateReportCommittenti.html";
+                else if(tipoReport == Tipi.TipoReport.Fornitori)
+                    templateName = "TemplateReportFornitori.html";
+
+                var pathTemplateReport = pathRoot + @"\Resources\Templates\"+ templateName;
+                var content = System.IO.File.ReadAllText(pathTemplateReport);
+                var codificaAzienda = BusinessLogic.Azienda.GetCodifica(azienda);
+                content = content.Replace("$elaborazione$", elaborazione.ToString("dd/MM/yyyy"));
+                content = content.Replace("$url$", url);
+                content = content.Replace("$codificaAzienda$", codificaAzienda);
+
+                return content;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        private void CheckCommesse()
+        {
+            try
+            {
+                AddLog("Check stato commesse di lavorazione... ", "OK");
+                var wcf = new WcfService.Service();
+                var stati = BusinessLogic.Tipi.GetStatiCommesseInLavorazione();
+                var commesse = wcf.ReadCommesse(stati);
+                if (commesse != null)
+                {
+                    foreach (var commessa in commesse)
+                    {
+                        var lastSal = (from q in commessa.SALs orderby q.Id descending select q).Take(1).FirstOrDefault();
+                        commessa.ImportoAvanzamento = BusinessLogic.Commessa.GetImportoAvanzamentoLavori(commessa);
+                        commessa.Percentuale = BusinessLogic.Commessa.GetPercentualeAvanzamento(commessa);
+                        commessa.Stato = BusinessLogic.Commessa.GetStato(commessa);
+
+                        bool performed = wcf.UpdateCommessa(commessa);
+                        if(performed)
+                            AddLog("Variazione stato per commessa " + BusinessLogic.Commessa.GetCodifica(commessa) + "... ", "OK");
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private void CheckSALs()
+        {
+            try
+            {
+                AddLog("Check stato avanzamento lavori per le commesse di lavorazione... ", "OK");
+                var wcf = new WcfService.Service();
+                var stati=BusinessLogic.Tipi.GetStatiCommesseInLavorazione();
+                var commesse = wcf.ReadCommesse(stati);
+                if(commesse!=null)
+                {
+                    foreach(var commessa in commesse)
+                    {
+                        var lastSal = (from q in commessa.SALs orderby q.Id descending select q).Take(1).FirstOrDefault();
+                        if(lastSal==null || IsTimeoutSal(lastSal))
+                        {
+                            var sal = new SALDto();
+                            sal.CommessaId = commessa.Id;
+                            sal.Codice = BusinessLogic.SAL.GetNewCodice(commessa);
+                            sal.Data = DateTime.Now;
+                            sal.Denominazione = BusinessLogic.SAL.GetDenominazione(sal, commessa); ;
+                            sal.Note = "SAL CREATO CON PROCEDURA AUTOMATICA";
+                            sal.TotaleFattureAcquisto = BusinessLogic.SAL.GetTotaleFattureAcquisto(sal ,commessa);
+                            sal.TotaleFattureVendita = BusinessLogic.SAL.GetTotaleFattureVendita(sal, commessa);
+                            sal.TotaleIncassi = BusinessLogic.SAL.GetTotaleIncassi(sal, commessa);
+                            sal.TotalePagamenti = BusinessLogic.SAL.GetTotalePagamenti(sal, commessa);
+                            sal.Stato = BusinessLogic.SAL.GetStatoDescrizione(sal, commessa);
+
+                            var newSal=wcf.CreateSAL(sal);
+                            if(newSal!=null)
+                                AddLog("Creazione SAL per la commessa " +  BusinessLogic.Commessa.GetCodifica(commessa) + "... ", "OK");
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+        }
+
+        private bool IsTimeoutSal(SALDto sal)
+        {
+            try
+            {
+                if(sal!=null)
+                {
+                    int timeout = 7; //in giorni --> da parametrizzare in tabella impostazioni
+                    var data = UtilityValidation.GetData(sal.Data);
+                    var now = DateTime.Now;
+                    var elapsed = now.Subtract(data).TotalDays;
+                    if (elapsed >= timeout)
+                        return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return false;
+        }
+
         private void ClearNotifiche()
         {
             try
             {
-                int periodoLog = 7;
-                AddLog("Clear delle notifiche storiche | periodo-log = "+periodoLog+" giorni ...", "OK");
-                var dataMax = DateTime.Today.AddDays(-periodoLog);
+                int periodo = 7; //in giorni --> da parametrizzare in tabella impostazioni
+                AddLog("Clear delle notifiche storiche | periodo log = "+periodo+" giorni ...", "OK");
+                var dataMax = DateTime.Today.AddDays(-periodo);
                 var wcf = new WcfService.Service();
                 var notifiche = wcf.ReadNotifiche(dataMax, name);
                 if(notifiche!=null)
@@ -103,7 +357,7 @@ namespace BusinessLogic
             {
                 AddLog("Controllo scadenze per fatture di acquisto...", "OK");
                 CheckScadenzeFattureAcquisto();
-                AddLog("Controllo scadenze per fatture di acquisto...", "OK");
+                AddLog("Controllo scadenze per fatture di vendita...", "OK");
                 CheckScadenzeFattureVendita();
             }
             catch (Exception ex)
@@ -467,7 +721,7 @@ namespace BusinessLogic
         {
             try
             {
-                var url = UtilityWeb.GetRootUrl(context);
+                var url = UtilityWeb.GetRootUrl(context) + @"/cantieri-login.aspx";
                 if (url != null && url.Length > 0)
                 {
                     var webclient = new WebClient();

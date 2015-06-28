@@ -53,5 +53,27 @@ namespace BusinessLogic
             }
             return null;
         }
+
+        internal static NotificaDto GetNewNotifica(AziendaDto azienda, Tipi.TipoReport tipoReport, string applicazione)
+        {
+            try
+            {
+                if (azienda != null)
+                {
+                    var notifica = new NotificaDto();
+                    notifica.Applicazione = applicazione;
+                    notifica.Codice = "Id=Report";
+                    notifica.Tipo = tipoReport.ToString();
+                    notifica.Data = DateTime.Now;
+
+                    return notifica;
+                }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }

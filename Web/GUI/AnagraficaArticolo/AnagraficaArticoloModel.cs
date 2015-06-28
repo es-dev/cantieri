@@ -139,12 +139,16 @@ namespace Web.GUI.AnagraficaArticolo
 
                 var obj = (AnagraficaArticoloDto)Model;
                 var viewModel = (AnagraficaArticoloViewModel)ViewModel;
-                var anagraficheArticoli = viewModel.ReadArticoli();
-                var validateAnagraficaArticolo = BusinessLogic.Diagnostico.ValidateAnagraficaArticolo(obj, anagraficheArticoli);
-                if (validateAnagraficaArticolo != null)
+                var azienda = (AziendaDto)editAzienda.Model;
+                if (azienda != null)
                 {
-                    validated.State = validateAnagraficaArticolo.State;
-                    validated.Message = validateAnagraficaArticolo.Message;
+                    var anagraficheArticoli = viewModel.ReadArticoli(azienda);
+                    var validateAnagraficaArticolo = BusinessLogic.Diagnostico.ValidateAnagraficaArticolo(obj, anagraficheArticoli);
+                    if (validateAnagraficaArticolo != null)
+                    {
+                        validated.State = validateAnagraficaArticolo.State;
+                        validated.Message = validateAnagraficaArticolo.Message;
+                    }
                 }
                 return validated;
             }

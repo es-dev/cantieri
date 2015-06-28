@@ -167,28 +167,31 @@ namespace Web.GUI.ReportJob
                 bool saved = Save();
                 if (saved)
                 {
-                    var viewModelAnagraficaCommittente = new AnagraficaCommittente.AnagraficaCommittenteViewModel();
-                    var anagraficheCommittenti = viewModelAnagraficaCommittente.ReadAnagraficheCommittenti().ToList();
-                    if (anagraficheCommittenti != null)
+                    var azienda = (AziendaDto)editAzienda.Model;
+                    if (azienda != null)
                     {
-                        var data = DateTime.Today.ToString("ddMMyyyy");
-                        var elaborazione = UtilityValidation.GetData(editElaborazione.Value);
-                        string pathTemplate = UtilityWeb.GetRootPath(Context) + @"Resources\Templates\TemplateResocontoCommittenti.doc";
-                        var fileName = "ResocontoCommittenti_" + data + ".PDF";
-                        var pathReport = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileName;
-                        var azienda = (AziendaDto)editAzienda.Model;
-                        var viewModel = new Committente.CommittenteViewModel();
-                        var committenti = viewModel.ReadCommittenti(anagraficheCommittenti).ToList();
-
-                        var report = BusinessLogic.ReportJob.GetReportCommittenti(azienda, anagraficheCommittenti, committenti, elaborazione);
-                        if (report != null)
+                        var viewModelAnagraficaCommittente = new AnagraficaCommittente.AnagraficaCommittenteViewModel();
+                        var anagraficheCommittenti = viewModelAnagraficaCommittente.ReadAnagraficheCommittenti(azienda).ToList();
+                        if (anagraficheCommittenti != null)
                         {
-                            bool performed = report.Create(pathTemplate, pathReport);
-                            if (performed)
+                            var data = DateTime.Today.ToString("ddMMyyyy");
+                            var elaborazione = UtilityValidation.GetData(editElaborazione.Value);
+                            string pathTemplate = UtilityWeb.GetRootPath(Context) + @"Resources\Templates\TemplateResocontoCommittenti.doc";
+                            var fileName = "ResocontoCommittenti_" + data + ".PDF";
+                            var pathReport = UtilityWeb.GetRootPath(Context) + @"Resources\Reports\" + fileName;
+                            var viewModel = new Committente.CommittenteViewModel();
+                            var committenti = viewModel.ReadCommittenti(anagraficheCommittenti).ToList();
+
+                            var report = BusinessLogic.ReportJob.GetReportCommittenti(azienda, anagraficheCommittenti, committenti, elaborazione);
+                            if (report != null)
                             {
-                                string url = UtilityWeb.GetRootUrl(Context) + @"/Resources/Reports/" + fileName;
-                                editNomeFile.Url = url;
-                                editNomeFile.Value = fileName;
+                                bool performed = report.Create(pathTemplate, pathReport);
+                                if (performed)
+                                {
+                                    string url = UtilityWeb.GetRootUrl(Context) + @"/Resources/Reports/" + fileName;
+                                    editNomeFile.Url = url;
+                                    editNomeFile.Value = fileName;
+                                }
                             }
                         }
                     }

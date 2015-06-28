@@ -160,12 +160,16 @@ namespace Web.GUI.AnagraficaFornitore
 
                 var obj = (AnagraficaFornitoreDto)Model;
                 var viewModel = (AnagraficaFornitoreViewModel)ViewModel;
-                var anagraficheFornitori = viewModel.ReadAnagraficheFornitori();
-                var validateAnagraficaFornitore = BusinessLogic.Diagnostico.ValidateAnagraficaFornitore(obj, anagraficheFornitori);
-                if (validateAnagraficaFornitore != null)
+                var azienda = (AziendaDto)editAzienda.Model;
+                if (azienda != null)
                 {
-                    validated.State = validateAnagraficaFornitore.State;
-                    validated.Message = validateAnagraficaFornitore.Message;
+                    var anagraficheFornitori = viewModel.ReadAnagraficheFornitori(azienda);
+                    var validateAnagraficaFornitore = BusinessLogic.Diagnostico.ValidateAnagraficaFornitore(obj, anagraficheFornitori);
+                    if (validateAnagraficaFornitore != null)
+                    {
+                        validated.State = validateAnagraficaFornitore.State;
+                        validated.Message = validateAnagraficaFornitore.Message;
+                    }
                 }
                 return validated;
             }

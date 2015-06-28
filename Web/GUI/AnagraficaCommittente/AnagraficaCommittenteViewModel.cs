@@ -115,12 +115,12 @@ namespace Web.GUI.AnagraficaCommittente
             return null;
         }
 
-        internal IEnumerable<AnagraficaCommittenteDto> ReadAnagraficheCommittenti()
+        internal IEnumerable<AnagraficaCommittenteDto> ReadAnagraficheCommittenti(AziendaDto azienda=null)
         {
             try
             {
                 var wcf = new WcfService.Service();
-                var objs = wcf.ReadAnagraficheCommittenti();
+                var objs = wcf.ReadAnagraficheCommittenti(azienda);
                 return objs;
             }
             catch (Exception ex)

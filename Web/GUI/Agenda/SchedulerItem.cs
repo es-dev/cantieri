@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using WcfService.Dto;
 using Web.GUI.FatturaAcquisto;
+using Web.GUI.FatturaVendita;
 using Web.GUI.Pagamento;
 
 namespace Web.GUI.Agenda
@@ -56,6 +57,13 @@ namespace Web.GUI.Agenda
                         var obj = (FatturaAcquistoDto)model;
                         var space = new FatturaAcquistoModel();
                         var viewModel = new FatturaAcquistoViewModel();
+                        AddSpace(space, obj, viewModel);
+                    }
+                    else if (model.GetType() == typeof(FatturaVenditaDto))
+                    {
+                        var obj = (FatturaVenditaDto)model;
+                        var space = new FatturaVenditaModel();
+                        var viewModel = new FatturaVenditaViewModel();
                         AddSpace(space, obj, viewModel);
                     }
                     else if (model.GetType() == typeof(PagamentoDto))

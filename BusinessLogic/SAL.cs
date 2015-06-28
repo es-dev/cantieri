@@ -42,8 +42,8 @@ namespace BusinessLogic
                         var lastSAL = (from q in SALs orderby q.Id descending select q).Take(1).FirstOrDefault();
                         if (lastSAL != null)
                         {
-                            var totaleIncassi = UtilityValidation.GetDecimal(lastSAL.TotaleIncassi);
-                            return totaleIncassi;
+                            var importoAvanzamentoLavori = UtilityValidation.GetDecimal(lastSAL.TotaleFattureVendita);
+                            return importoAvanzamentoLavori;
                         }
                     }
                 }
@@ -268,7 +268,7 @@ namespace BusinessLogic
             return null;
         }
 
-        public  static decimal GatTotalePagamenti(SALDto sal, CommessaDto commessa)
+        public  static decimal GetTotalePagamenti(SALDto sal, CommessaDto commessa)
         {
             try
             {
@@ -410,6 +410,52 @@ namespace BusinessLogic
                     string codfica = "SAL " + sal.Codice + " DEL " + UtilityValidation.GetDataND(sal.Data);
                     return codfica;
                 }
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public static string GetNewCodice(CommessaDto commessa)
+        {
+            try
+            {
+                var wcf = new WcfService.Service();
+                var count = wcf.CountSALs(null, null, commessa);
+                var progressivo = count + 1;
+                var codice = progressivo.ToString("00");
+                return codice;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public static string GetDenominazione(SALDto sal, CommessaDto commessa)
+        {
+            try
+            {
+                var denominazione = "SAL " + GetCodifica(sal) + " | COMMESSA " + BusinessLogic.Commessa.GetCodifica(commessa);
+                return denominazione;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
+
+        public static string GetDenominazione(string codice, DateTime data, CommessaDto commessa)
+        {
+            try
+            {
+                var sal = new SALDto() { Codice = codice, Data = data };
+                var denominazione = GetDenominazione(sal, commessa);
+                return denominazione;
             }
             catch (Exception ex)
             {

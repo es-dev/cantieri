@@ -160,12 +160,16 @@ namespace Web.GUI.AnagraficaCommittente
 
                 var obj = (AnagraficaCommittenteDto)Model;
                 var viewModel = (AnagraficaCommittenteViewModel)ViewModel;
-                var anagraficheCommittenti = viewModel.ReadAnagraficheCommittenti();
-                var validateAnagraficaCommittente =  BusinessLogic.Diagnostico.ValidateAnagraficaCommittente(obj, anagraficheCommittenti);
-                if (validateAnagraficaCommittente != null)
+                var azienda = (AziendaDto)editAzienda.Model;
+                if (azienda != null)
                 {
-                    validated.State = validateAnagraficaCommittente.State;
-                    validated.Message = validateAnagraficaCommittente.Message;
+                    var anagraficheCommittenti = viewModel.ReadAnagraficheCommittenti(azienda);
+                    var validateAnagraficaCommittente = BusinessLogic.Diagnostico.ValidateAnagraficaCommittente(obj, anagraficheCommittenti);
+                    if (validateAnagraficaCommittente != null)
+                    {
+                        validated.State = validateAnagraficaCommittente.State;
+                        validated.Message = validateAnagraficaCommittente.Message;
+                    }
                 }
                 return validated;
             }
