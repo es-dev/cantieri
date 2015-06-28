@@ -106,8 +106,9 @@ namespace BusinessLogic
                     foreach (var azienda in aziende)
                     {
                         var tipoReport = Tipi.TipoReport.Fornitori;
+                        var occorrenza = 7; //in giorni
                         var notifica = BusinessLogic.Notifica.GetNewNotifica(azienda, tipoReport, name);
-                        var _notifica = wcf.ReadNotifica(notifica);
+                        var _notifica = wcf.ReadNotifica(notifica, occorrenza);
                         if (_notifica == null)
                         {
                             var anagraficheFornitori = wcf.ReadAnagraficheFornitori(azienda).ToList();
@@ -164,8 +165,9 @@ namespace BusinessLogic
                     foreach (var azienda in aziende)
                     {
                         var tipoReport = Tipi.TipoReport.Committenti;
+                        var occorrenza = 7; //in giorni
                         var notifica = BusinessLogic.Notifica.GetNewNotifica(azienda, tipoReport, name);
-                        var _notifica = wcf.ReadNotifica(notifica);
+                        var _notifica = wcf.ReadNotifica(notifica, occorrenza);
                         if (_notifica == null)
                         {
                             var anagraficheCommittenti = wcf.ReadAnagraficheCommittenti(azienda).ToList();
@@ -379,8 +381,9 @@ namespace BusinessLogic
                 {
                     foreach (var fatturaVendita in fattureVendita)
                     {
+                        var occorrenza = 0; //in giorni
                         var notifica = BusinessLogic.Notifica.GetNewNotifica(fatturaVendita, name);
-                        var _notifica = wcf.ReadNotifica(notifica);
+                        var _notifica = wcf.ReadNotifica(notifica, occorrenza);
                         if (_notifica == null)
                         {
                             var data = DateTime.Today;
@@ -425,8 +428,9 @@ namespace BusinessLogic
                 {
                     foreach (var fatturaAcquisto in fattureAcquisto)
                     {
+                        var occorrenza = 0; //in giorni
                         var notifica = BusinessLogic.Notifica.GetNewNotifica(fatturaAcquisto, name);
-                        var _notifica = wcf.ReadNotifica(notifica);
+                        var _notifica = wcf.ReadNotifica(notifica, occorrenza);
                         if (_notifica == null)
                         {
                             var data = DateTime.Today;
