@@ -4046,7 +4046,8 @@ namespace WcfService
             {
                 var ef = new DataLayer.EntitiesModel();
                 var today = DateTime.Today;
-                var inizio = new DateTime(today.Year, today.Month, today.Day - occorrenza, 0, 0, 0);
+                var _inizio = today.AddDays(-occorrenza);
+                var inizio = new DateTime(_inizio.Year, _inizio.Month, _inizio.Day , 0, 0, 0);
                 var fine = new DateTime(today.Year, today.Month, today.Day, 23, 59, 59);
                 var _notifica = (from q in ef.Notificas
                                  where q.Codice == notifica.Codice &&
