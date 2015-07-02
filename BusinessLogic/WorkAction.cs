@@ -725,12 +725,16 @@ namespace BusinessLogic
         {
             try
             {
-                var url = UtilityWeb.GetRootUrl(context) + @"/cantieri-login.aspx";
-                if (url != null && url.Length > 0)
+                var rootUrl = UtilityWeb.GetRootUrl(context);
+                if (rootUrl != null && rootUrl.Length > 0)
                 {
-                    var webclient = new WebClient();
-                    webclient.DownloadString(url);
-                    AddLog("KeepAlive avviato per sito " + url, "OK");
+                    var url = rootUrl + @"/cantieri-login.aspx";
+                    if (url != null && url.Length > 0)
+                    {
+                        var webclient = new WebClient();
+                        webclient.DownloadString(url);
+                        AddLog("KeepAlive avviato per sito " + url, "OK");
+                    }
                 }
             }
             catch (Exception ex)

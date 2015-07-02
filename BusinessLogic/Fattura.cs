@@ -679,17 +679,21 @@ namespace BusinessLogic
                 var statoDescrizione = "N/D";
                 if (fatturaAcquisto != null)
                 {
-                    var commessa = fatturaAcquisto.Fornitore.Commessa;
-                    if (commessa != null)
+                    var fornitore = fatturaAcquisto.Fornitore;
+                    if (fornitore != null)
                     {
-                        var statoCommessa = commessa.Stato;
-                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                            statoDescrizione = fatturaAcquisto.Stato;
-                        else
+                        var commessa = fornitore.Commessa;
+                        if (commessa != null)
                         {
-                            var today = DateTime.Today;
-                            var _statoDescrizione = GetStatoDescrizione(fatturaAcquisto, today);
-                            statoDescrizione = _statoDescrizione.ToString();
+                            var statoCommessa = commessa.Stato;
+                            if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                                statoDescrizione = fatturaAcquisto.Stato;
+                            else
+                            {
+                                var today = DateTime.Today;
+                                var _statoDescrizione = GetStatoDescrizione(fatturaAcquisto, today);
+                                statoDescrizione = _statoDescrizione.ToString();
+                            }
                         }
                     }
                 }
@@ -709,17 +713,21 @@ namespace BusinessLogic
                 var statoDescrizione = "N/D";
                 if (fatturaVendita != null)
                 {
-                    var commessa = fatturaVendita.Committente.Commessa;
-                    if (commessa != null)
+                    var committente = fatturaVendita.Committente;
+                    if (committente != null)
                     {
-                        var statoCommessa = commessa.Stato;
-                        if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
-                            statoDescrizione = fatturaVendita.Stato;
-                        else
+                        var commessa = committente.Commessa;
+                        if (commessa != null)
                         {
-                            var today = DateTime.Today;
-                            var _statoDescrizione = GetStatoDescrizione(fatturaVendita, today);
-                            statoDescrizione = _statoDescrizione.ToString();
+                            var statoCommessa = commessa.Stato;
+                            if (statoCommessa == Tipi.StatoCommessa.Chiusa.ToString())
+                                statoDescrizione = fatturaVendita.Stato;
+                            else
+                            {
+                                var today = DateTime.Today;
+                                var _statoDescrizione = GetStatoDescrizione(fatturaVendita, today);
+                                statoDescrizione = _statoDescrizione.ToString();
+                            }
                         }
                     }
                 }
