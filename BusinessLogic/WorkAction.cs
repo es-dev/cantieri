@@ -259,7 +259,7 @@ namespace BusinessLogic
 
                         bool performed = wcf.UpdateCommessa(commessa);
                         if(performed)
-                            AddLog("Variazione stato per commessa " + BusinessLogic.Commessa.GetCodifica(commessa) + "... ", "OK");
+                            AddLog("Check variazione stato per commessa " + BusinessLogic.Commessa.GetCodifica(commessa) + "... ", "OK");
 
                     }
                 }
@@ -726,15 +726,13 @@ namespace BusinessLogic
             try
             {
                 var rootUrl = UtilityWeb.GetRootUrl(context);
-                if (rootUrl != null && rootUrl.Length > 0)
+                var valid = UtilityValidation.IsValidUri(rootUrl);
+                if (valid)
                 {
                     var url = rootUrl + @"/cantieri-login.aspx";
-                    if (url != null && url.Length > 0)
-                    {
-                        var webclient = new WebClient();
-                        webclient.DownloadString(url);
-                        AddLog("KeepAlive avviato per sito " + url, "OK");
-                    }
+                    var webclient = new WebClient();
+                    webclient.DownloadString(url);
+                    AddLog("KeepAlive avviato per sito " + url, "OK");
                 }
             }
             catch (Exception ex)
