@@ -95,8 +95,7 @@ namespace Web.GUI.Incasso
                     var obj = (IncassoDto)model;
                     infoSubtitle.Text = BusinessLogic.Incasso.GetCodifica(obj);
                     infoSubtitleImage.Image = "Images.dashboard.incasso.png";
-                    infoTitle.Text = (obj.Id != 0 ? "INCASSO " + BusinessLogic.Incasso.GetCodifica(obj) : "NUOVO INCASSO") +
-                        (obj!=null? " | FATTURA VENDITA " + BusinessLogic.Fattura.GetCodifica(obj.FatturaVendita):null);
+                    infoTitle.Text = (obj.Id != 0 ? "INCASSO " + BusinessLogic.Incasso.GetCodifica(obj) : "NUOVO INCASSO") + " | FATTURA VENDITA " + BusinessLogic.Fattura.GetCodifica(obj.FatturaVendita);
                 }
             }
             catch (Exception ex)

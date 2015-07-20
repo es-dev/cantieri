@@ -76,15 +76,11 @@ namespace Web.GUI.SAL
         {
             try
             {
-                var viewModel = (SALViewModel)ViewModel;
-                viewModel.Commessa = commessa;
-                var progressivo = viewModel.Count() + 1;
-                var codice = progressivo.ToString("00");
-                var now = DateTime.Now;
-                var data = DateTime.Now.ToString("dd/MM/yyyy");
+                var codice = BusinessLogic.SAL.GetNewCodice(commessa);
+                var data = DateTime.Now;
                 editCodice.Value = codice;
-                editData.Value = now;
-                editDenominazione.Value = "SAL " + codice + " DEL " + data + " | COMMESSA " + BusinessLogic.Commessa.GetCodifica(commessa);
+                editData.Value =  data;
+                editDenominazione.Value = BusinessLogic.SAL.GetDenominazione(codice, data, commessa);
             }
             catch (Exception ex)
             {

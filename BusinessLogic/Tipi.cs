@@ -178,5 +178,21 @@ namespace BusinessLogic
             return null;
         }
 
+
+        internal static IList<string> GetStatiCommesseInLavorazione()
+        {
+            try
+            {
+                var stati = new List<string>();
+                stati.Add(StatoCommessa.Aperta.ToString());
+                stati.Add(StatoCommessa.InLavorazione.ToString());
+                return stati;
+            }
+            catch (Exception ex)
+            {
+                UtilityError.Write(ex);
+            }
+            return null;
+        }
     }
 }
